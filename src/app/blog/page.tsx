@@ -19,8 +19,8 @@ function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; 
   }, []);
   return (
     <div ref={ref} className={className} style={{
-      opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(50px)",
-      transition: `opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
+      opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(32px)",
+      transition: `opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
     }}>{children}</div>
   );
 }
@@ -36,27 +36,27 @@ export default function BlogPage() {
   return (
     <main className="min-h-screen bg-white">
       {/* Header */}
-      <section className="max-w-[1100px] mx-auto px-6 pt-40 pb-20">
+      <section className="max-w-5xl mx-auto px-6 pt-40 pb-16">
         <Reveal>
-          <p className="text-[11px] tracking-[0.25em] uppercase text-gray-400 mb-6 font-medium">Blog</p>
-          <h1 className="text-[clamp(1.8rem,4vw,3rem)] font-extralight tracking-tight text-gray-900 leading-[1.15]">
+          <p className="text-sm font-semibold text-indigo-600 mb-4">Blog</p>
+          <h1 className="text-3xl font-bold text-gray-900">
             最新の記事
           </h1>
         </Reveal>
       </section>
 
       {/* Category Filter */}
-      <section className="max-w-[1100px] mx-auto px-6 pb-16">
+      <section className="max-w-5xl mx-auto px-6 pb-12">
         <Reveal>
           <div className="flex flex-wrap gap-3">
             {categories.map((category) => (
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
-                className={`px-5 py-2 text-[12px] tracking-[0.1em] transition-all duration-300 ${
+                className={`px-4 py-2 text-sm font-semibold rounded-full transition-all duration-300 ${
                   selectedCategory === category
                     ? "bg-gray-900 text-white"
-                    : "text-gray-400 border border-gray-200 hover:text-gray-600 hover:border-gray-300"
+                    : "text-gray-500 border border-gray-200 hover:text-gray-700 hover:border-gray-300"
                 }`}
               >
                 {category}
@@ -67,26 +67,26 @@ export default function BlogPage() {
       </section>
 
       {/* Blog Grid */}
-      <section className="max-w-[1100px] mx-auto px-6 pb-32 lg:pb-44">
+      <section className="max-w-5xl mx-auto px-6 pb-20 lg:pb-28">
         {filteredPosts.length === 0 ? (
-          <p className="text-center text-gray-400 py-20 text-[14px] tracking-wide">
+          <p className="text-center text-gray-400 py-20 text-sm">
             該当する記事がありません
           </p>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredPosts.map((post, i) => (
               <Reveal key={post.slug} delay={i * 100}>
                 <Link href={`/blog/${post.slug}`} className="group block">
                   <div
-                    className="w-full aspect-[4/3] mb-5 transition-transform duration-700 group-hover:scale-[1.02]"
+                    className="w-full aspect-[4/3] rounded-2xl mb-4 transition-transform duration-500 group-hover:scale-[1.02]"
                     style={{ backgroundColor: post.thumbnail }}
                   />
-                  <div className="flex items-center gap-3 mb-3">
-                    <span className="text-[11px] tracking-[0.15em] text-gray-400 uppercase">{post.category}</span>
-                    <span className="w-[3px] h-[3px] rounded-full bg-gray-300" />
-                    <time className="text-[11px] tracking-[0.05em] text-gray-400">{post.date}</time>
+                  <div className="flex items-center gap-3 mb-2">
+                    <span className="text-sm font-semibold text-indigo-600">{post.category}</span>
+                    <span className="w-1 h-1 rounded-full bg-gray-300" />
+                    <time className="text-sm text-gray-400">{post.date}</time>
                   </div>
-                  <h2 className="text-[15px] font-light text-gray-700 leading-[1.8] group-hover:text-gray-900 transition-colors duration-300">
+                  <h2 className="text-base font-semibold text-gray-900 leading-relaxed group-hover:text-indigo-600 transition-colors duration-300">
                     {post.title}
                   </h2>
                 </Link>

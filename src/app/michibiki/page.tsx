@@ -17,14 +17,14 @@ function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; 
   }, []);
   return (
     <div ref={ref} className={className} style={{
-      opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(50px)",
-      transition: `opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
+      opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(32px)",
+      transition: `opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
     }}>{children}</div>
   );
 }
 
 function SectionLabel({ children }: { children: ReactNode }) {
-  return <p className="text-[11px] tracking-[0.25em] uppercase mb-6 font-medium text-gray-400">{children}</p>;
+  return <p className="text-sm font-semibold text-indigo-600 mb-4">{children}</p>;
 }
 
 export default function MichibikiPage() {
@@ -34,31 +34,31 @@ export default function MichibikiPage() {
   return (
     <>
       {/* ═══ HERO ═══ */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden bg-white">
-        <div className="absolute top-1/3 left-1/3 w-[1px] h-[1px] shadow-[0_0_300px_150px_rgba(124,58,237,0.08)]" />
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white">
+        <div className="absolute top-1/3 left-1/3 w-[1px] h-[1px] shadow-[0_0_300px_150px_rgba(79,70,229,0.08)]" />
 
-        <div className="relative z-10 max-w-[900px] mx-auto px-8 text-center">
-          <p className="text-[12px] tracking-[0.3em] uppercase text-gray-400 mb-8 transition-all duration-1000"
+        <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
+          <span className="inline-block rounded-full bg-indigo-50 text-indigo-600 px-3 py-1 text-sm font-semibold mb-6 transition-all duration-700"
             style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "300ms" }}>
             AI Interview Platform
-          </p>
-          <h1 className="text-[clamp(3rem,8vw,7rem)] font-extralight text-gray-900 leading-[1.2] tracking-[0.04em] mb-2 transition-all duration-1000"
-            style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0)" : "translateY(30px)", transitionDelay: "500ms" }}>
+          </span>
+          <h1 className="text-[clamp(3rem,8vw,7rem)] font-bold text-gray-900 leading-[1.1] mb-2 transition-all duration-700"
+            style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0)" : "translateY(24px)", transitionDelay: "500ms" }}>
             導
           </h1>
-          <p className="text-[18px] text-gray-400 font-light tracking-[0.15em] mb-8 transition-all duration-1000"
+          <p className="text-lg text-gray-500 font-medium mb-6 transition-all duration-700"
             style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "700ms" }}>
             みちびき
           </p>
-          <p className="text-[14px] text-gray-500 leading-[2.2] max-w-md mx-auto mb-14 font-light transition-all duration-1000"
+          <p className="text-base text-gray-600 leading-relaxed max-w-md mx-auto mb-10 transition-all duration-700"
             style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "900ms" }}>
             AIが面接を行い、候補者のスキルを客観的に評価。
             <br />録画・分析データを企業に提供する、AI面接プラットフォーム。
           </p>
-          <div className="flex items-center justify-center gap-6 transition-all duration-1000"
+          <div className="flex items-center justify-center gap-4 transition-all duration-700"
             style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "1100ms" }}>
             <a href="https://www.michibiki.tech" target="_blank" rel="noopener noreferrer"
-              className="text-[12px] tracking-[0.1em] text-white bg-[#7c3aed] px-8 py-3.5 hover:bg-[#6d28d9] transition-all duration-500">
+              className="rounded-xl bg-indigo-600 text-white font-semibold px-8 py-3.5 hover:bg-indigo-700 transition-colors duration-300">
               導を体験する
             </a>
           </div>
@@ -66,16 +66,16 @@ export default function MichibikiPage() {
       </section>
 
       {/* ═══ WHAT IS 導 ═══ */}
-      <section className="py-32 lg:py-44 bg-white">
-        <div className="max-w-[1400px] mx-auto px-8 lg:px-12">
+      <section className="py-20 lg:py-28 bg-white">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
             <SectionLabel>What is 導</SectionLabel>
             <div className="max-w-3xl">
-              <h2 className="text-[clamp(1.5rem,3vw,2.5rem)] font-extralight text-gray-900 leading-[1.6] tracking-[0.02em] mb-8">
+              <h2 className="text-3xl font-bold text-gray-900 leading-snug mb-6">
                 求職者がAIと面接し、
                 <br />そのすべてを企業に届ける。
               </h2>
-              <p className="text-[14px] text-gray-500 leading-[2.4] font-light">
+              <p className="text-base text-gray-600 leading-relaxed">
                 導は、求職者がいつでもどこからでもAI面接を受けられるプラットフォームです。
                 面接の全録画データ、AIによるスキル評価、回答の文字起こしを企業に提供し、
                 採用の判断材料を飛躍的に充実させます。面接官の工数を削減しながら、
@@ -86,12 +86,12 @@ export default function MichibikiPage() {
         </div>
       </section>
 
-      {/* ═══ HOW IT WORKS - 具体的なフロー ═══ */}
-      <section className="py-32 lg:py-44 bg-[#f9fafb]">
-        <div className="max-w-[1400px] mx-auto px-8 lg:px-12">
+      {/* ═══ HOW IT WORKS ═══ */}
+      <section className="py-20 lg:py-28 bg-gray-50">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
             <SectionLabel>How it works</SectionLabel>
-            <h2 className="text-[clamp(1.5rem,3vw,2.5rem)] font-extralight text-gray-900 leading-[1.5] tracking-[0.02em] mb-20 max-w-xl">
+            <h2 className="text-2xl font-bold text-gray-900 mb-14">
               面接の流れ
             </h2>
           </Reveal>
@@ -124,16 +124,16 @@ export default function MichibikiPage() {
               },
             ].map((step, i) => (
               <Reveal key={step.num} delay={i * 100}>
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 py-16 border-b border-gray-100 last:border-0">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 py-10 border-b border-gray-200 last:border-0">
                   <div className="lg:col-span-1">
-                    <span className="text-[11px] tracking-[0.2em] text-[#7c3aed] font-medium">{step.num}</span>
+                    <span className="text-sm font-bold text-indigo-600">{step.num}</span>
                   </div>
                   <div className="lg:col-span-4">
-                    <h3 className="text-xl font-light text-gray-900 tracking-[0.02em]">{step.title}</h3>
+                    <h3 className="text-xl font-bold text-gray-900">{step.title}</h3>
                   </div>
                   <div className="lg:col-span-7">
-                    <p className="text-[14px] text-gray-500 leading-[2.2] font-light mb-4">{step.desc}</p>
-                    <p className="text-[13px] text-gray-400 leading-[2.2] font-light">{step.detail}</p>
+                    <p className="text-sm text-gray-600 leading-relaxed mb-3">{step.desc}</p>
+                    <p className="text-sm text-gray-500 leading-relaxed">{step.detail}</p>
                   </div>
                 </div>
               </Reveal>
@@ -142,17 +142,17 @@ export default function MichibikiPage() {
         </div>
       </section>
 
-      {/* ═══ FEATURES 具体的な機能 ═══ */}
-      <section className="py-32 lg:py-44 bg-white">
-        <div className="max-w-[1400px] mx-auto px-8 lg:px-12">
+      {/* ═══ FEATURES ═══ */}
+      <section className="py-20 lg:py-28 bg-white">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
             <SectionLabel>Features</SectionLabel>
-            <h2 className="text-[clamp(1.5rem,3vw,2.5rem)] font-extralight text-gray-900 leading-[1.5] tracking-[0.02em] mb-20 max-w-xl">
+            <h2 className="text-2xl font-bold text-gray-900 mb-14">
               導の機能
             </h2>
           </Reveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-gray-100">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
               {
                 title: "AI音声面接官",
@@ -180,9 +180,9 @@ export default function MichibikiPage() {
               },
             ].map((feature, i) => (
               <Reveal key={feature.title} delay={i * 80}>
-                <div className="bg-white p-10 lg:p-14">
-                  <h3 className="text-lg font-light text-gray-900 mb-4 tracking-[0.02em]">{feature.title}</h3>
-                  <p className="text-[13px] text-gray-500 leading-[2.2] font-light">{feature.desc}</p>
+                <div className="bg-white rounded-2xl border border-gray-200 p-6 hover:shadow-lg transition-shadow duration-300">
+                  <h3 className="text-base font-bold text-gray-900 mb-3">{feature.title}</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed">{feature.desc}</p>
                 </div>
               </Reveal>
             ))}
@@ -191,16 +191,16 @@ export default function MichibikiPage() {
       </section>
 
       {/* ═══ FOR COMPANIES / FOR CANDIDATES ═══ */}
-      <section className="py-32 lg:py-44 bg-[#f9fafb]">
-        <div className="max-w-[1400px] mx-auto px-8 lg:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      <section className="py-20 lg:py-28 bg-gray-50">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* 企業向け */}
             <Reveal>
-              <div className="bg-[#7c3aed] p-10 lg:p-14 min-h-[500px] flex flex-col justify-between">
+              <div className="bg-indigo-600 rounded-2xl p-8 lg:p-10 min-h-[480px] flex flex-col justify-between">
                 <div>
-                  <p className="text-[11px] tracking-[0.25em] uppercase text-white/50 mb-6">For Companies</p>
-                  <h3 className="text-2xl font-extralight text-white tracking-[0.02em] mb-6">企業の方へ</h3>
-                  <ul className="space-y-5">
+                  <span className="inline-block rounded-full bg-white/10 text-white/80 px-3 py-1 text-sm font-semibold mb-6">For Companies</span>
+                  <h3 className="text-2xl font-bold text-white mb-6">企業の方へ</h3>
+                  <ul className="space-y-4">
                     {[
                       "面接官の工数を大幅に削減。AIが一次スクリーニングを完了",
                       "全候補者を同じ基準で評価。バイアスのない公平な採用",
@@ -209,13 +209,13 @@ export default function MichibikiPage() {
                       "候補者の辞退を減らす、いつでもどこでも受けられる面接体験",
                     ].map((item, i) => (
                       <li key={i} className="flex items-start gap-3">
-                        <span className="text-white/30 text-[13px] mt-0.5">—</span>
-                        <span className="text-[13px] text-white/80 leading-[2] font-light">{item}</span>
+                        <span className="text-white/40 mt-0.5">-</span>
+                        <span className="text-sm text-white/90 leading-relaxed">{item}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
-                <a href="/contact" className="mt-10 inline-flex items-center gap-2 text-[12px] text-white/60 tracking-[0.1em] hover:text-white transition-colors duration-300">
+                <a href="/contact" className="mt-8 inline-flex items-center gap-2 rounded-xl bg-white text-indigo-600 font-semibold px-6 py-3 hover:bg-indigo-50 transition-colors duration-300 w-fit">
                   導入を相談する <span>→</span>
                 </a>
               </div>
@@ -223,11 +223,11 @@ export default function MichibikiPage() {
 
             {/* 求職者向け */}
             <Reveal delay={100}>
-              <div className="bg-white border border-gray-200 p-10 lg:p-14 min-h-[500px] flex flex-col justify-between">
+              <div className="bg-white rounded-2xl border border-gray-200 p-8 lg:p-10 min-h-[480px] flex flex-col justify-between">
                 <div>
-                  <p className="text-[11px] tracking-[0.25em] uppercase text-gray-400 mb-6">For Candidates</p>
-                  <h3 className="text-2xl font-extralight text-gray-900 tracking-[0.02em] mb-6">求職者の方へ</h3>
-                  <ul className="space-y-5">
+                  <span className="inline-block rounded-full bg-indigo-50 text-indigo-600 px-3 py-1 text-sm font-semibold mb-6">For Candidates</span>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-6">求職者の方へ</h3>
+                  <ul className="space-y-4">
                     {[
                       "いつでもどこでも、自分のペースでAI面接を受験",
                       "面接後すぐに評価フィードバックを確認できる",
@@ -236,14 +236,14 @@ export default function MichibikiPage() {
                       "テスト結果に基づくAIの追加質問で、真の実力をアピール",
                     ].map((item, i) => (
                       <li key={i} className="flex items-start gap-3">
-                        <span className="text-gray-300 text-[13px] mt-0.5">—</span>
-                        <span className="text-[13px] text-gray-500 leading-[2] font-light">{item}</span>
+                        <span className="text-gray-300 mt-0.5">-</span>
+                        <span className="text-sm text-gray-600 leading-relaxed">{item}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
                 <a href="https://www.michibiki.tech" target="_blank" rel="noopener noreferrer"
-                  className="mt-10 inline-flex items-center gap-2 text-[12px] text-gray-400 tracking-[0.1em] hover:text-gray-900 transition-colors duration-300">
+                  className="mt-8 inline-flex items-center gap-2 rounded-xl bg-indigo-600 text-white font-semibold px-6 py-3 hover:bg-indigo-700 transition-colors duration-300 w-fit">
                   導を始める <span>→</span>
                 </a>
               </div>
@@ -253,16 +253,16 @@ export default function MichibikiPage() {
       </section>
 
       {/* ═══ TECH STACK ═══ */}
-      <section className="py-32 lg:py-44 bg-white">
-        <div className="max-w-[1400px] mx-auto px-8 lg:px-12">
+      <section className="py-20 lg:py-28 bg-white">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
             <SectionLabel>Technology</SectionLabel>
-            <h2 className="text-[clamp(1.5rem,3vw,2.5rem)] font-extralight text-gray-900 leading-[1.5] tracking-[0.02em] mb-20 max-w-xl">
+            <h2 className="text-2xl font-bold text-gray-900 mb-14">
               支える技術
             </h2>
           </Reveal>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-gray-100">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
               { label: "AI面接エンジン", tech: "Claude API" },
               { label: "音声合成", tech: "Edge TTS / VOICEVOX" },
@@ -274,9 +274,9 @@ export default function MichibikiPage() {
               { label: "ホスティング", tech: "Vercel" },
             ].map((item, i) => (
               <Reveal key={item.label} delay={i * 50}>
-                <div className="bg-white p-8 text-center">
-                  <p className="text-[11px] text-gray-400 tracking-[0.1em] mb-2">{item.label}</p>
-                  <p className="text-[14px] text-gray-700 font-light tracking-[0.02em]">{item.tech}</p>
+                <div className="bg-white rounded-2xl border border-gray-200 p-6 text-center hover:shadow-lg transition-shadow duration-300">
+                  <p className="text-sm text-gray-500 mb-1">{item.label}</p>
+                  <p className="text-base font-bold text-gray-900">{item.tech}</p>
                 </div>
               </Reveal>
             ))}
@@ -285,19 +285,19 @@ export default function MichibikiPage() {
       </section>
 
       {/* ═══ STATUS ═══ */}
-      <section className="py-32 lg:py-44 bg-[#f3f4f6]">
-        <div className="max-w-[1400px] mx-auto px-8 lg:px-12">
+      <section className="py-20 lg:py-28 bg-indigo-50 rounded-2xl mx-4 lg:mx-8 my-4">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
-            <div className="text-center mb-20">
+            <div className="text-center mb-14">
               <SectionLabel>Current Status</SectionLabel>
-              <h2 className="text-[clamp(1.3rem,2.5vw,2rem)] font-extralight text-gray-900 leading-[1.6] tracking-[0.04em]">
+              <h2 className="text-2xl font-bold text-gray-900 leading-snug">
                 導は、まだ始まったばかり。
-                <br /><span className="text-gray-400">一社一社、丁寧に。</span>
+                <br /><span className="text-gray-500">一社一社、丁寧に。</span>
               </h2>
             </div>
           </Reveal>
 
-          <div className="grid grid-cols-1 sm:grid-cols-4 gap-px">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
             {[
               { label: "導入企業", value: "1", suffix: "社" },
               { label: "対応職種", value: "6", suffix: "カテゴリ" },
@@ -305,11 +305,11 @@ export default function MichibikiPage() {
               { label: "リリース", value: "2025", suffix: "年" },
             ].map((stat, i) => (
               <Reveal key={stat.label} delay={i * 100}>
-                <div className="text-center py-12">
-                  <p className="text-[clamp(1.8rem,4vw,3rem)] font-extralight text-[#7c3aed] tracking-[0.02em]">
-                    {stat.value}<span className="text-base text-gray-400 ml-1">{stat.suffix}</span>
+                <div className="text-center py-8">
+                  <p className="text-4xl font-bold text-indigo-600">
+                    {stat.value}<span className="text-base text-gray-500 font-medium ml-1">{stat.suffix}</span>
                   </p>
-                  <p className="text-[12px] text-gray-400 tracking-[0.1em] mt-3">{stat.label}</p>
+                  <p className="text-sm text-gray-600 mt-2">{stat.label}</p>
                 </div>
               </Reveal>
             ))}
@@ -318,24 +318,24 @@ export default function MichibikiPage() {
       </section>
 
       {/* ═══ CTA ═══ */}
-      <section className="py-32 lg:py-44 bg-white">
-        <div className="max-w-[700px] mx-auto px-8 text-center">
+      <section className="py-20 lg:py-28 bg-white">
+        <div className="max-w-2xl mx-auto px-6 text-center">
           <Reveal>
             <SectionLabel>Get Started</SectionLabel>
-            <h2 className="text-[clamp(1.5rem,3vw,2.5rem)] font-extralight text-gray-900 leading-[1.6] tracking-[0.04em] mb-6">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
               導で、採用を変える。
             </h2>
-            <p className="text-[14px] text-gray-500 leading-[2.2] font-light mb-14">
+            <p className="text-base text-gray-600 leading-relaxed mb-10">
               求職者の方はそのまま無料でご利用いただけます。
               <br />企業の方は、まずはお問い合わせください。
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a href="https://www.michibiki.tech" target="_blank" rel="noopener noreferrer"
-                className="text-[12px] tracking-[0.1em] text-white bg-[#7c3aed] px-10 py-4 hover:bg-[#6d28d9] transition-all duration-500">
+                className="rounded-xl bg-indigo-600 text-white font-semibold px-10 py-4 hover:bg-indigo-700 transition-colors duration-300">
                 導を始める（無料）
               </a>
               <a href="/contact"
-                className="text-[12px] tracking-[0.1em] text-gray-400 hover:text-gray-900 transition-colors duration-300">
+                className="text-sm text-gray-500 font-semibold hover:text-gray-900 transition-colors duration-300">
                 企業向けお問い合わせ →
               </a>
             </div>

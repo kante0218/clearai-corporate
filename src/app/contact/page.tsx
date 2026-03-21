@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef, FormEvent, type ReactNode } from "react";
 
-/* ─── Scroll-triggered reveal ─── */
 function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
@@ -24,20 +23,12 @@ function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; 
       className={className}
       style={{
         opacity: visible ? 1 : 0,
-        transform: visible ? "translateY(0)" : "translateY(50px)",
-        transition: `opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
+        transform: visible ? "translateY(0)" : "translateY(32px)",
+        transition: `opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
       }}
     >
       {children}
     </div>
-  );
-}
-
-function Label({ children }: { children: ReactNode }) {
-  return (
-    <p className="text-[11px] tracking-[0.25em] uppercase text-gray-400 mb-6 font-medium">
-      {children}
-    </p>
   );
 }
 
@@ -66,23 +57,23 @@ export default function ContactPage() {
   return (
     <main className="min-h-screen bg-white">
       {/* Header */}
-      <section className="max-w-[1100px] mx-auto px-6 pt-40 pb-20">
+      <section className="max-w-5xl mx-auto px-6 pt-40 pb-16">
         <Reveal>
-          <Label>Contact</Label>
-          <h1 className="text-[clamp(1.8rem,4vw,3rem)] font-extralight tracking-tight text-gray-900 leading-[1.15]">
+          <p className="text-sm font-semibold text-indigo-600 mb-4">Contact</p>
+          <h1 className="text-3xl font-bold text-gray-900">
             お問い合わせ
           </h1>
         </Reveal>
       </section>
 
-      <section className="max-w-[1100px] mx-auto px-6 pb-32 lg:pb-44">
+      <section className="max-w-5xl mx-auto px-6 pb-20 lg:pb-28">
         {submitted ? (
           /* Success State */
           <Reveal>
-            <div className="max-w-[500px] mx-auto text-center py-20">
-              <div className="w-16 h-16 border border-gray-200 rounded-full flex items-center justify-center mx-auto mb-8">
+            <div className="max-w-md mx-auto text-center py-20">
+              <div className="w-16 h-16 bg-indigo-50 rounded-full flex items-center justify-center mx-auto mb-6">
                 <svg
-                  className="w-7 h-7 text-gray-400"
+                  className="w-7 h-7 text-indigo-600"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -90,55 +81,55 @@ export default function ContactPage() {
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    strokeWidth={1.5}
+                    strokeWidth={2}
                     d="M5 13l4 4L19 7"
                   />
                 </svg>
               </div>
-              <h2 className="text-[clamp(1.2rem,2.5vw,1.6rem)] font-extralight text-gray-900 mb-4">
+              <h2 className="text-xl font-bold text-gray-900 mb-3">
                 お問い合わせありがとうございます
               </h2>
-              <p className="text-[14px] text-gray-500 font-light">
+              <p className="text-base text-gray-600">
                 2営業日以内にご連絡いたします。
               </p>
             </div>
           </Reveal>
         ) : (
           /* Form Layout */
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-20">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-16">
             {/* Left: Info */}
             <Reveal className="lg:col-span-2">
-              <div className="space-y-10">
+              <div className="space-y-8">
                 <div>
-                  <p className="text-[14px] text-gray-500 leading-[2.2] font-light">
+                  <p className="text-base text-gray-600 leading-relaxed">
                     AI導入やサービスに関するご質問、お見積もりのご依頼など、どのようなことでもお気軽にお問い合わせください。
                   </p>
                 </div>
 
-                <div className="space-y-8 pt-4">
-                  <div>
-                    <p className="text-[11px] tracking-[0.2em] text-gray-400 font-medium mb-2">
+                <div className="space-y-6 pt-2">
+                  <div className="bg-gray-50 rounded-2xl p-5">
+                    <p className="text-sm font-semibold text-gray-500 mb-1">
                       EMAIL
                     </p>
-                    <p className="text-[14px] text-gray-700 font-light">
+                    <p className="text-base text-gray-900">
                       info@and-clearai.com
                     </p>
                   </div>
 
-                  <div>
-                    <p className="text-[11px] tracking-[0.2em] text-gray-400 font-medium mb-2">
+                  <div className="bg-gray-50 rounded-2xl p-5">
+                    <p className="text-sm font-semibold text-gray-500 mb-1">
                       TEL
                     </p>
-                    <p className="text-[14px] text-gray-700 font-light">
+                    <p className="text-base text-gray-900">
                       03-XXXX-XXXX
                     </p>
                   </div>
 
-                  <div>
-                    <p className="text-[11px] tracking-[0.2em] text-gray-400 font-medium mb-2">
+                  <div className="bg-gray-50 rounded-2xl p-5">
+                    <p className="text-sm font-semibold text-gray-500 mb-1">
                       営業時間
                     </p>
-                    <p className="text-[14px] text-gray-700 font-light">
+                    <p className="text-base text-gray-900">
                       平日 9:00〜18:00（土日祝休み）
                     </p>
                   </div>
@@ -148,11 +139,11 @@ export default function ContactPage() {
 
             {/* Right: Form */}
             <Reveal className="lg:col-span-3" delay={150}>
-              <form onSubmit={handleSubmit} className="space-y-8">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-[12px] text-gray-500 tracking-[0.05em] mb-3">
-                      会社名 <span className="text-gray-300">*</span>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      会社名 <span className="text-red-400">*</span>
                     </label>
                     <input
                       type="text"
@@ -161,12 +152,12 @@ export default function ContactPage() {
                       value={form.company}
                       onChange={handleChange}
                       placeholder="株式会社〇〇"
-                      className="w-full bg-transparent border-b border-gray-200 focus:border-gray-900 pb-3 text-[14px] text-gray-700 font-light placeholder-gray-300 outline-none transition-colors duration-300"
+                      className="w-full rounded-lg border border-gray-200 px-4 py-3 text-base text-gray-900 placeholder-gray-400 outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600 transition-colors duration-200"
                     />
                   </div>
                   <div>
-                    <label className="block text-[12px] text-gray-500 tracking-[0.05em] mb-3">
-                      ご担当者名 <span className="text-gray-300">*</span>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      ご担当者名 <span className="text-red-400">*</span>
                     </label>
                     <input
                       type="text"
@@ -175,15 +166,15 @@ export default function ContactPage() {
                       value={form.name}
                       onChange={handleChange}
                       placeholder="山田 太郎"
-                      className="w-full bg-transparent border-b border-gray-200 focus:border-gray-900 pb-3 text-[14px] text-gray-700 font-light placeholder-gray-300 outline-none transition-colors duration-300"
+                      className="w-full rounded-lg border border-gray-200 px-4 py-3 text-base text-gray-900 placeholder-gray-400 outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600 transition-colors duration-200"
                     />
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-[12px] text-gray-500 tracking-[0.05em] mb-3">
-                      メールアドレス <span className="text-gray-300">*</span>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      メールアドレス <span className="text-red-400">*</span>
                     </label>
                     <input
                       type="email"
@@ -192,11 +183,11 @@ export default function ContactPage() {
                       value={form.email}
                       onChange={handleChange}
                       placeholder="info@example.com"
-                      className="w-full bg-transparent border-b border-gray-200 focus:border-gray-900 pb-3 text-[14px] text-gray-700 font-light placeholder-gray-300 outline-none transition-colors duration-300"
+                      className="w-full rounded-lg border border-gray-200 px-4 py-3 text-base text-gray-900 placeholder-gray-400 outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600 transition-colors duration-200"
                     />
                   </div>
                   <div>
-                    <label className="block text-[12px] text-gray-500 tracking-[0.05em] mb-3">
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
                       電話番号
                     </label>
                     <input
@@ -205,20 +196,20 @@ export default function ContactPage() {
                       value={form.phone}
                       onChange={handleChange}
                       placeholder="03-XXXX-XXXX"
-                      className="w-full bg-transparent border-b border-gray-200 focus:border-gray-900 pb-3 text-[14px] text-gray-700 font-light placeholder-gray-300 outline-none transition-colors duration-300"
+                      className="w-full rounded-lg border border-gray-200 px-4 py-3 text-base text-gray-900 placeholder-gray-400 outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600 transition-colors duration-200"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-[12px] text-gray-500 tracking-[0.05em] mb-3">
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
                     従業員規模
                   </label>
                   <select
                     name="size"
                     value={form.size}
                     onChange={handleChange}
-                    className="w-full bg-transparent border-b border-gray-200 focus:border-gray-900 pb-3 text-[14px] text-gray-700 font-light outline-none transition-colors duration-300 appearance-none cursor-pointer"
+                    className="w-full rounded-lg border border-gray-200 px-4 py-3 text-base text-gray-900 outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600 transition-colors duration-200 appearance-none cursor-pointer bg-white"
                   >
                     <option value="">選択してください</option>
                     <option value="~50名">〜50名</option>
@@ -230,8 +221,8 @@ export default function ContactPage() {
                 </div>
 
                 <div>
-                  <label className="block text-[12px] text-gray-500 tracking-[0.05em] mb-3">
-                    ご相談内容 <span className="text-gray-300">*</span>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    ご相談内容 <span className="text-red-400">*</span>
                   </label>
                   <textarea
                     name="message"
@@ -240,14 +231,14 @@ export default function ContactPage() {
                     value={form.message}
                     onChange={handleChange}
                     placeholder="ご質問やご相談内容をご記入ください"
-                    className="w-full bg-transparent border-b border-gray-200 focus:border-gray-900 pb-3 text-[14px] text-gray-700 font-light placeholder-gray-300 outline-none transition-colors duration-300 resize-none"
+                    className="w-full rounded-lg border border-gray-200 px-4 py-3 text-base text-gray-900 placeholder-gray-400 outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600 transition-colors duration-200 resize-none"
                   />
                 </div>
 
-                <div className="pt-4">
+                <div className="pt-2">
                   <button
                     type="submit"
-                    className="bg-gray-900 text-white px-10 py-3.5 text-[12px] tracking-[0.1em] hover:bg-gray-800 transition-colors duration-300"
+                    className="rounded-xl bg-indigo-600 text-white font-semibold px-10 py-3.5 hover:bg-indigo-700 transition-colors duration-300"
                   >
                     送信する
                   </button>

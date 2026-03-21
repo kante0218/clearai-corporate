@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
 
-/* ─── Scroll-triggered reveal ─── */
 function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
@@ -24,8 +23,8 @@ function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; 
       className={className}
       style={{
         opacity: visible ? 1 : 0,
-        transform: visible ? "translateY(0)" : "translateY(50px)",
-        transition: `opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
+        transform: visible ? "translateY(0)" : "translateY(32px)",
+        transition: `opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
       }}
     >
       {children}
@@ -35,7 +34,7 @@ function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; 
 
 function Label({ children }: { children: ReactNode }) {
   return (
-    <p className="text-[11px] tracking-[0.25em] uppercase text-gray-400 mb-6 font-medium">
+    <p className="text-sm font-semibold text-indigo-600 mb-4">
       {children}
     </p>
   );
@@ -71,24 +70,24 @@ export default function AboutPage() {
   return (
     <main className="min-h-screen bg-white">
       {/* Header */}
-      <section className="max-w-[1100px] mx-auto px-6 pt-40 pb-20">
+      <section className="max-w-5xl mx-auto px-6 pt-40 pb-16">
         <Reveal>
           <Label>About</Label>
-          <h1 className="text-[clamp(1.8rem,4vw,3rem)] font-extralight tracking-tight text-gray-900 leading-[1.15]">
+          <h1 className="text-3xl font-bold text-gray-900">
             会社概要
           </h1>
         </Reveal>
       </section>
 
       {/* Mission */}
-      <section className="py-32 lg:py-44">
-        <div className="max-w-[1100px] mx-auto px-6">
+      <section className="py-20 lg:py-28">
+        <div className="max-w-5xl mx-auto px-6">
           <Reveal>
             <Label>Mission</Label>
-            <h2 className="text-[clamp(1.6rem,3.5vw,2.8rem)] font-extralight tracking-tight text-gray-900 leading-[1.3] mb-10">
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 leading-snug mb-6">
               AIの力を、すべての企業に。
             </h2>
-            <p className="max-w-[600px] text-[14px] text-gray-500 leading-[2.4] font-light">
+            <p className="max-w-2xl text-base text-gray-600 leading-relaxed">
               私たちclear AIは、まだ小さなチームですが、AI技術を活用して企業の成長と変革を支援するという大きなビジョンを持っています。AI面接プラットフォーム「導（みちびき）」と企業向けAI導入支援を通じて、すべての企業がAIの恩恵を受けられる社会を目指し、一歩一歩前進しています。
             </p>
           </Reveal>
@@ -96,23 +95,23 @@ export default function AboutPage() {
       </section>
 
       {/* Company Info */}
-      <section className="py-32 lg:py-44 border-t border-gray-100">
-        <div className="max-w-[1100px] mx-auto px-6">
+      <section className="py-20 lg:py-28 bg-gray-50">
+        <div className="max-w-5xl mx-auto px-6">
           <Reveal>
             <Label>Company</Label>
-            <h2 className="text-[clamp(1.4rem,3vw,2.2rem)] font-extralight tracking-tight text-gray-900 leading-[1.3] mb-16">
+            <h2 className="text-2xl font-bold text-gray-900 mb-10">
               企業情報
             </h2>
           </Reveal>
 
-          <div className="max-w-[700px]">
+          <div className="max-w-2xl bg-white rounded-2xl border border-gray-200 overflow-hidden">
             {companyInfo.map((item, i) => (
               <Reveal key={item.label} delay={i * 80}>
-                <div className="flex flex-col sm:flex-row sm:items-baseline py-6 border-b border-gray-100">
-                  <span className="sm:w-[160px] shrink-0 text-[12px] tracking-[0.1em] text-gray-400 font-medium mb-1 sm:mb-0">
+                <div className="flex flex-col sm:flex-row sm:items-baseline px-6 py-5 border-b border-gray-100 last:border-0">
+                  <span className="sm:w-[160px] shrink-0 text-sm font-semibold text-gray-500 mb-1 sm:mb-0">
                     {item.label}
                   </span>
-                  <span className="text-[14px] text-gray-700 font-light">
+                  <span className="text-base text-gray-900">
                     {item.value}
                   </span>
                 </div>
@@ -123,33 +122,33 @@ export default function AboutPage() {
       </section>
 
       {/* Timeline */}
-      <section className="py-32 lg:py-44 border-t border-gray-100">
-        <div className="max-w-[1100px] mx-auto px-6">
+      <section className="py-20 lg:py-28">
+        <div className="max-w-5xl mx-auto px-6">
           <Reveal>
             <Label>History</Label>
-            <h2 className="text-[clamp(1.4rem,3vw,2.2rem)] font-extralight tracking-tight text-gray-900 leading-[1.3] mb-16">
+            <h2 className="text-2xl font-bold text-gray-900 mb-10">
               沿革
             </h2>
           </Reveal>
 
-          <div className="relative max-w-[700px]">
+          <div className="relative max-w-2xl">
             {/* Vertical line */}
-            <div className="absolute left-[3px] top-2 bottom-2 w-px bg-gray-200" />
+            <div className="absolute left-[3px] top-2 bottom-2 w-px bg-indigo-200" />
 
-            <div className="space-y-16">
+            <div className="space-y-12">
               {timeline.map((item, i) => (
                 <Reveal key={i} delay={i * 120}>
                   <div className="relative pl-10">
                     {/* Dot */}
-                    <div className="absolute left-0 top-1.5 w-[7px] h-[7px] rounded-full bg-gray-400" />
+                    <div className="absolute left-0 top-1.5 w-[7px] h-[7px] rounded-full bg-indigo-600" />
 
-                    <span className="block text-[11px] tracking-[0.2em] text-gray-400 font-medium mb-2">
+                    <span className="block text-sm font-semibold text-indigo-600 mb-1">
                       {item.year}
                     </span>
-                    <h3 className="text-[16px] font-light text-gray-700 mb-2">
+                    <h3 className="text-base font-bold text-gray-900 mb-1">
                       {item.title}
                     </h3>
-                    <p className="text-[13px] text-gray-500 font-light leading-[1.8]">
+                    <p className="text-sm text-gray-600 leading-relaxed">
                       {item.description}
                     </p>
                   </div>

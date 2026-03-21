@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", "Noto Sans JP", sans-serif;
-  --font-display: "Inter", "Noto Sans JP", sans-serif;
+  --font-sans: "Noto Sans JP", "Inter", sans-serif;
+  --font-display: "Noto Sans JP", "Inter", sans-serif;
 
   --color-navy-950: #111827;
   --color-navy-900: #1f2937;
@@ -10,10 +10,10 @@
   --color-navy-700: #4b5563;
   --color-navy-600: #6b7280;
 
-  /* 導 = 紫系 */
-  --color-purple: #7c3aed;
-  --color-purple-light: #a78bfa;
-  --color-purple-dark: #6d28d9;
+  /* 導 = indigo/紫系（michibiki.techと統一） */
+  --color-purple: #4f46e5;
+  --color-purple-light: #818cf8;
+  --color-purple-dark: #4338ca;
 
   /* AI導入 = 青系 */
   --color-blue: #2563eb;
@@ -28,8 +28,8 @@ html {
 }
 
 body {
-  letter-spacing: 0.02em;
-  line-height: 1.8;
+  letter-spacing: 0.01em;
+  line-height: 1.75;
 }
 
 /* Custom scrollbar - ultra thin */
