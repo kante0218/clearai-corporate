@@ -9,42 +9,24 @@ function renderContent(content: string) {
   return blocks.map((block, i) => {
     const trimmed = block.trim();
     if (trimmed.startsWith("### ")) {
-      return (
-        <h3
-          key={i}
-          className="text-lg font-light text-black/70 mt-10 mb-3"
-        >
-          {trimmed.replace("### ", "")}
-        </h3>
-      );
+      return <h3 key={i} className="text-lg font-light text-white/60 mt-10 mb-3">{trimmed.replace("### ", "")}</h3>;
     }
     if (trimmed.startsWith("## ")) {
-      return (
-        <h2
-          key={i}
-          className="text-xl font-light text-black/80 mt-12 mb-4"
-        >
-          {trimmed.replace("## ", "")}
-        </h2>
-      );
+      return <h2 key={i} className="text-xl font-light text-white/70 mt-12 mb-4">{trimmed.replace("## ", "")}</h2>;
     }
     if (trimmed.startsWith("- ")) {
       const items = trimmed.split("\n").filter((l) => l.startsWith("- "));
       return (
-        <ul key={i} className="space-y-2 text-[14px] text-black/40 leading-[2.4] font-light pl-4">
+        <ul key={i} className="space-y-2 text-[14px] text-white/35 leading-[2.4] font-light pl-4">
           {items.map((item, j) => (
-            <li key={j} className="relative pl-4 before:content-[''] before:absolute before:left-0 before:top-[0.85em] before:w-[4px] before:h-[4px] before:rounded-full before:bg-black/15">
+            <li key={j} className="relative pl-4 before:content-[''] before:absolute before:left-0 before:top-[0.85em] before:w-[4px] before:h-[4px] before:rounded-full before:bg-white/15">
               {item.replace("- ", "")}
             </li>
           ))}
         </ul>
       );
     }
-    return (
-      <p key={i} className="text-[14px] text-black/40 leading-[2.4] font-light">
-        {trimmed}
-      </p>
-    );
+    return <p key={i} className="text-[14px] text-white/35 leading-[2.4] font-light">{trimmed}</p>;
   });
 }
 
@@ -55,79 +37,39 @@ export default function BlogPostPage() {
 
   if (!post) {
     return (
-      <main className="min-h-screen bg-white">
+      <main className="min-h-screen bg-[#0a0a0a]">
         <div className="max-w-[700px] mx-auto px-6 pt-40 pb-32 text-center">
-          <h1 className="text-[clamp(1.5rem,3vw,2.2rem)] font-extralight text-black/80 mb-4">
-            記事が見つかりません
-          </h1>
-          <p className="text-[14px] text-black/30 font-light mb-10">
-            お探しの記事は存在しないか、削除された可能性があります。
-          </p>
-          <Link
-            href="/blog"
-            className="text-[12px] tracking-[0.1em] text-black/30 hover:text-black/60 transition-colors duration-300"
-          >
-            ← ブログ一覧
-          </Link>
+          <h1 className="text-[clamp(1.5rem,3vw,2.2rem)] font-extralight text-white/80 mb-4">記事が見つかりません</h1>
+          <p className="text-[14px] text-white/30 font-light mb-10">お探しの記事は存在しないか、削除された可能性があります。</p>
+          <Link href="/blog" className="text-[12px] tracking-[0.1em] text-white/30 hover:text-white/60 transition-colors duration-300">← ブログ一覧</Link>
         </div>
       </main>
     );
   }
 
   return (
-    <main className="min-h-screen bg-white">
-      {/* Article Header */}
+    <main className="min-h-screen bg-[#0a0a0a]">
       <div className="max-w-[700px] mx-auto px-6 pt-40">
-        {/* Back Link */}
-        <Link
-          href="/blog"
-          className="inline-block text-[12px] tracking-[0.05em] text-black/30 hover:text-black/60 transition-colors duration-300 mb-12"
-        >
-          ← ブログ一覧
-        </Link>
+        <Link href="/blog" className="inline-block text-[12px] tracking-[0.05em] text-white/30 hover:text-white/60 transition-colors duration-300 mb-12">← ブログ一覧</Link>
 
-        {/* Meta */}
         <div className="flex items-center gap-4 mb-6">
-          <span
-            className="inline-block px-3 py-1 text-[10px] tracking-[0.15em] uppercase text-white"
-            style={{ backgroundColor: post.thumbnail }}
-          >
-            {post.category}
-          </span>
-          <time className="text-[11px] tracking-[0.05em] text-black/25">
-            {post.date}
-          </time>
-          <span className="text-[11px] text-black/25">・</span>
-          <span className="text-[11px] tracking-[0.05em] text-black/25">
-            {post.readTime}
-          </span>
+          <span className="inline-block px-3 py-1 text-[10px] tracking-[0.15em] uppercase text-white" style={{ backgroundColor: post.thumbnail }}>{post.category}</span>
+          <time className="text-[11px] tracking-[0.05em] text-white/25">{post.date}</time>
+          <span className="text-[11px] text-white/25">・</span>
+          <span className="text-[11px] tracking-[0.05em] text-white/25">{post.readTime}</span>
         </div>
 
-        {/* Title */}
-        <h1 className="text-[clamp(1.5rem,3vw,2.2rem)] font-extralight text-black/90 leading-[1.35] mb-8">
-          {post.title}
-        </h1>
-
-        {/* Author */}
-        <p className="text-[12px] tracking-[0.05em] text-black/30 font-light pb-10 border-b border-black/5">
-          {post.author}
-        </p>
+        <h1 className="text-[clamp(1.5rem,3vw,2.2rem)] font-extralight text-white/90 leading-[1.35] mb-8">{post.title}</h1>
+        <p className="text-[12px] tracking-[0.05em] text-white/30 font-light pb-10 border-b border-white/5">{post.author}</p>
       </div>
 
-      {/* Article Content */}
       <article className="max-w-[700px] mx-auto px-6 py-16 space-y-6">
         {renderContent(post.content)}
       </article>
 
-      {/* Back Link Bottom */}
       <div className="max-w-[700px] mx-auto px-6 pb-32 lg:pb-44">
-        <div className="border-t border-black/5 pt-10">
-          <Link
-            href="/blog"
-            className="text-[12px] tracking-[0.1em] text-black/30 hover:text-black/60 transition-colors duration-300"
-          >
-            ← ブログ一覧に戻る
-          </Link>
+        <div className="border-t border-white/5 pt-10">
+          <Link href="/blog" className="text-[12px] tracking-[0.1em] text-white/30 hover:text-white/60 transition-colors duration-300">← ブログ一覧に戻る</Link>
         </div>
       </div>
     </main>

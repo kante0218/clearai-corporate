@@ -54,13 +54,13 @@ export default function AiConsultingPage() {
       </section>
 
       {/* INTRO */}
-      <section className="py-32 lg:py-44 bg-white">
+      <section className="py-32 lg:py-44 bg-[#0e0e0e]">
         <div className="max-w-[1400px] mx-auto px-8 lg:px-12">
           <Reveal>
             <Label>About</Label>
             <div className="max-w-3xl">
-              <h2 className="text-[clamp(1.5rem,3vw,2.5rem)] font-extralight text-black leading-[1.6] tracking-[0.02em] mb-8">AIは魔法ではなく、道具です。<br />正しく使えば、確実に成果が出ます。</h2>
-              <p className="text-[14px] text-black/35 leading-[2.4] font-light">
+              <h2 className="text-[clamp(1.5rem,3vw,2.5rem)] font-extralight text-white/90 leading-[1.6] tracking-[0.02em] mb-8">AIは魔法ではなく、道具です。<br />正しく使えば、確実に成果が出ます。</h2>
+              <p className="text-[14px] text-white/35 leading-[2.4] font-light">
                 多くの企業が「AIを導入したい」と考えながら、何から始めればいいかわからずに立ち止まっています。clear AIは、AIの専門知識がない企業でも安心して始められるよう、ヒアリングから運用定着まで伴走します。派手な提案ではなく、貴社の課題に合った地に足のついたAI活用を、一緒に見つけていきます。
               </p>
             </div>
@@ -69,24 +69,24 @@ export default function AiConsultingPage() {
       </section>
 
       {/* SERVICE AREAS - hover color cards */}
-      <section id="services" className="py-32 lg:py-44 bg-[#fafaf8]">
+      <section id="services" className="py-32 lg:py-44 bg-[#111]">
         <div className="max-w-[1400px] mx-auto px-8 lg:px-12">
           <Reveal>
             <Label>Service Areas</Label>
-            <h2 className="text-[clamp(1.5rem,3vw,2.5rem)] font-extralight text-black leading-[1.5] tracking-[0.02em] mb-20 max-w-xl">4つの支援領域</h2>
+            <h2 className="text-[clamp(1.5rem,3vw,2.5rem)] font-extralight text-white/90 leading-[1.5] tracking-[0.02em] mb-20 max-w-xl">4つの支援領域</h2>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-black/5">
             {[
-              { num: "01", title: "AI戦略策定", desc: "現状分析から導入ロードマップの策定まで。ROIを試算し、優先度の高い領域から着手する実行可能な計画を立案します。", hoverBg: "hover:bg-blue-50/80" },
-              { num: "02", title: "データ分析・活用", desc: "社内データの棚卸しと分析基盤の構築。散在するデータを統合し、AIが活用できる形に整備します。", hoverBg: "hover:bg-emerald-50/80" },
-              { num: "03", title: "業務自動化", desc: "繰り返しの多い業務をAIで自動化。カスタマーサポート、文書処理、データ入力など、人がやらなくていい仕事を見つけ出します。", hoverBg: "hover:bg-amber-50/80" },
-              { num: "04", title: "生成AI活用", desc: "ChatGPT・Claudeなどの生成AIを業務フローに組み込むご支援。社内ナレッジベースとの連携やカスタムチャットボットの構築も。", hoverBg: "hover:bg-purple-50/80" },
+              { num: "01", title: "AI戦略策定", desc: "現状分析から導入ロードマップの策定まで。ROIを試算し、優先度の高い領域から着手する実行可能な計画を立案します。", hoverBg: "hover:bg-blue-950/30" },
+              { num: "02", title: "データ分析・活用", desc: "社内データの棚卸しと分析基盤の構築。散在するデータを統合し、AIが活用できる形に整備します。", hoverBg: "hover:bg-emerald-950/30" },
+              { num: "03", title: "業務自動化", desc: "繰り返しの多い業務をAIで自動化。カスタマーサポート、文書処理、データ入力など、人がやらなくていい仕事を見つけ出します。", hoverBg: "hover:bg-amber-950/30" },
+              { num: "04", title: "生成AI活用", desc: "ChatGPT・Claudeなどの生成AIを業務フローに組み込むご支援。社内ナレッジベースとの連携やカスタムチャットボットの構築も。", hoverBg: "hover:bg-purple-950/30" },
             ].map((item, i) => (
               <Reveal key={item.num} delay={i * 100}>
-                <div className={`bg-white p-10 lg:p-14 transition-all duration-500 cursor-default group ${item.hoverBg}`}>
-                  <span className="text-[11px] tracking-[0.2em] text-black/15 font-medium group-hover:text-black/30 transition-colors duration-500">{item.num}</span>
-                  <h3 className="text-xl font-light text-black mt-4 mb-5 tracking-[0.02em] group-hover:translate-x-2 transition-transform duration-500">{item.title}</h3>
-                  <p className="text-[13px] text-black/35 leading-[2.2] font-light group-hover:text-black/50 transition-colors duration-500">{item.desc}</p>
+                <div className={`bg-[#1a1a1a] p-10 lg:p-14 transition-all duration-500 cursor-default group ${item.hoverBg}`}>
+                  <span className="text-[11px] tracking-[0.2em] text-white/15 font-medium group-hover:text-white/30 transition-colors duration-500">{item.num}</span>
+                  <h3 className="text-xl font-light text-white/80 mt-4 mb-5 tracking-[0.02em] group-hover:translate-x-2 transition-transform duration-500">{item.title}</h3>
+                  <p className="text-[13px] text-white/30 leading-[2.2] font-light group-hover:text-white/50 transition-colors duration-500">{item.desc}</p>
                 </div>
               </Reveal>
             ))}
@@ -95,11 +95,11 @@ export default function AiConsultingPage() {
       </section>
 
       {/* PROCESS */}
-      <section className="py-32 lg:py-44 bg-white">
+      <section className="py-32 lg:py-44 bg-[#0e0e0e]">
         <div className="max-w-[1400px] mx-auto px-8 lg:px-12">
           <Reveal>
             <Label>Process</Label>
-            <h2 className="text-[clamp(1.5rem,3vw,2.5rem)] font-extralight text-black leading-[1.5] tracking-[0.02em] mb-20 max-w-xl">導入の流れ</h2>
+            <h2 className="text-[clamp(1.5rem,3vw,2.5rem)] font-extralight text-white/90 leading-[1.5] tracking-[0.02em] mb-20 max-w-xl">導入の流れ</h2>
           </Reveal>
           {[
             { num: "01", title: "ヒアリング", en: "Hearing", desc: "課題・目標の整理と現状分析を実施。現場へのインタビューも行い、本当に効果が出る領域を特定します。" },
@@ -108,13 +108,13 @@ export default function AiConsultingPage() {
             { num: "04", title: "運用・改善", en: "Operation", desc: "導入後の定着支援とKPI計測。社内トレーニングも実施し、自走できる体制づくりを支援します。" },
           ].map((step, i) => (
             <Reveal key={step.num} delay={i * 100}>
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 py-16 border-b border-black/5 last:border-0 group hover:bg-[#fafaf8] transition-colors duration-500 px-4 -mx-4">
-                <div className="lg:col-span-1"><span className="text-[11px] tracking-[0.2em] text-black/15 font-medium">{step.num}</span></div>
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 py-16 border-b border-white/5 last:border-0 group hover:bg-white/[0.02] transition-colors duration-500 px-4 -mx-4">
+                <div className="lg:col-span-1"><span className="text-[11px] tracking-[0.2em] text-white/15 font-medium">{step.num}</span></div>
                 <div className="lg:col-span-3">
-                  <h3 className="text-xl font-light text-black tracking-[0.02em]">{step.title}</h3>
-                  <p className="text-[11px] text-black/20 tracking-[0.15em] uppercase mt-1">{step.en}</p>
+                  <h3 className="text-xl font-light text-white/80 tracking-[0.02em]">{step.title}</h3>
+                  <p className="text-[11px] text-white/20 tracking-[0.15em] uppercase mt-1">{step.en}</p>
                 </div>
-                <div className="lg:col-span-8"><p className="text-[14px] text-black/40 leading-[2.2] font-light">{step.desc}</p></div>
+                <div className="lg:col-span-8"><p className="text-[14px] text-white/35 leading-[2.2] font-light">{step.desc}</p></div>
               </div>
             </Reveal>
           ))}
@@ -122,11 +122,11 @@ export default function AiConsultingPage() {
       </section>
 
       {/* PRICING */}
-      <section className="py-32 lg:py-44 bg-[#fafaf8]">
+      <section className="py-32 lg:py-44 bg-[#111]">
         <div className="max-w-[1400px] mx-auto px-8 lg:px-12">
           <Reveal>
             <Label>Pricing</Label>
-            <h2 className="text-[clamp(1.5rem,3vw,2.5rem)] font-extralight text-black leading-[1.5] tracking-[0.02em] mb-20 max-w-xl">料金プラン</h2>
+            <h2 className="text-[clamp(1.5rem,3vw,2.5rem)] font-extralight text-white/90 leading-[1.5] tracking-[0.02em] mb-20 max-w-xl">料金プラン</h2>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {[
@@ -135,23 +135,23 @@ export default function AiConsultingPage() {
               { name: "エンタープライズ", price: "要相談", unit: "", desc: "大規模導入・複数部署展開に対応。", features: ["専任コンサルタント配置", "複数部署への横展開", "カスタムAI開発", "24/7サポート", "KPI計測・改善サイクル"], featured: false },
             ].map((plan, i) => (
               <Reveal key={plan.name} delay={i * 100}>
-                <div className={`p-10 lg:p-12 transition-all duration-500 ${plan.featured ? "bg-[#0a0a0a] text-white" : "bg-white border border-black/5 hover:border-black/10"}`}>
-                  {plan.featured && <p className="text-[10px] tracking-[0.2em] uppercase text-white/30 mb-4">Recommended</p>}
-                  <h3 className={`text-lg font-light tracking-[0.02em] mb-2 ${plan.featured ? "text-white" : "text-black"}`}>{plan.name}</h3>
+                <div className={`p-10 lg:p-12 transition-all duration-500 ${plan.featured ? "bg-white text-black" : "bg-[#1a1a1a] border border-white/5 hover:border-white/10"}`}>
+                  {plan.featured && <p className="text-[10px] tracking-[0.2em] uppercase text-black/30 mb-4">Recommended</p>}
+                  <h3 className={`text-lg font-light tracking-[0.02em] mb-2 ${plan.featured ? "text-black" : "text-white/80"}`}>{plan.name}</h3>
                   <div className="mb-4">
-                    <span className={`text-2xl font-extralight ${plan.featured ? "text-white" : "text-black"}`}>{plan.price}</span>
-                    {plan.unit && <span className={`text-[12px] ml-1 ${plan.featured ? "text-white/40" : "text-black/30"}`}>/ {plan.unit}</span>}
+                    <span className={`text-2xl font-extralight ${plan.featured ? "text-black" : "text-white/80"}`}>{plan.price}</span>
+                    {plan.unit && <span className={`text-[12px] ml-1 ${plan.featured ? "text-black/40" : "text-white/30"}`}>/ {plan.unit}</span>}
                   </div>
-                  <p className={`text-[13px] leading-[2] font-light mb-8 ${plan.featured ? "text-white/40" : "text-black/35"}`}>{plan.desc}</p>
+                  <p className={`text-[13px] leading-[2] font-light mb-8 ${plan.featured ? "text-black/40" : "text-white/35"}`}>{plan.desc}</p>
                   <ul className="space-y-3 mb-10">
                     {plan.features.map((f) => (
                       <li key={f} className="flex items-start gap-3">
-                        <span className={`text-[13px] mt-0.5 ${plan.featured ? "text-white/20" : "text-black/15"}`}>—</span>
-                        <span className={`text-[13px] font-light ${plan.featured ? "text-white/60" : "text-black/40"}`}>{f}</span>
+                        <span className={`text-[13px] mt-0.5 ${plan.featured ? "text-black/20" : "text-white/15"}`}>—</span>
+                        <span className={`text-[13px] font-light ${plan.featured ? "text-black/50" : "text-white/40"}`}>{f}</span>
                       </li>
                     ))}
                   </ul>
-                  <a href="/contact" className={`block text-center text-[12px] tracking-[0.1em] py-3 transition-all duration-500 ${plan.featured ? "bg-white text-black hover:bg-white/90" : "border border-black/10 text-black/50 hover:border-black/30 hover:text-black"}`}>相談する</a>
+                  <a href="/contact" className={`block text-center text-[12px] tracking-[0.1em] py-3 transition-all duration-500 ${plan.featured ? "bg-black text-white hover:bg-black/80" : "border border-white/10 text-white/40 hover:border-white/30 hover:text-white"}`}>相談する</a>
                 </div>
               </Reveal>
             ))}
@@ -160,13 +160,13 @@ export default function AiConsultingPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-32 lg:py-44 bg-white">
+      <section className="py-32 lg:py-44 bg-[#0e0e0e]">
         <div className="max-w-[700px] mx-auto px-8 text-center">
           <Reveal>
             <Label>Contact</Label>
-            <h2 className="text-[clamp(1.5rem,3vw,2.5rem)] font-extralight text-black leading-[1.6] tracking-[0.04em] mb-6">まずは、お話しませんか。</h2>
-            <p className="text-[14px] text-black/30 leading-[2.2] font-light mb-14">「何から始めればいいかわからない」でも大丈夫です。<br />貴社の状況をお聞きした上で、最適な進め方をご提案します。</p>
-            <a href="/contact" className="text-[12px] tracking-[0.1em] text-white bg-black px-10 py-4 hover:bg-black/80 transition-all duration-500 inline-block">無料で相談する</a>
+            <h2 className="text-[clamp(1.5rem,3vw,2.5rem)] font-extralight text-white/90 leading-[1.6] tracking-[0.04em] mb-6">まずは、お話しませんか。</h2>
+            <p className="text-[14px] text-white/30 leading-[2.2] font-light mb-14">「何から始めればいいかわからない」でも大丈夫です。<br />貴社の状況をお聞きした上で、最適な進め方をご提案します。</p>
+            <a href="/contact" className="text-[12px] tracking-[0.1em] text-black bg-white px-10 py-4 hover:bg-white/80 transition-all duration-500 inline-block">無料で相談する</a>
           </Reveal>
         </div>
       </section>
