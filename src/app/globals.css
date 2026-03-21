@@ -83,6 +83,18 @@ body {
   animation: scaleIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
+/* Marquee */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Shimmer gradient text */
+@keyframes shimmer {
+  0% { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
+
 /* Horizontal rule style */
 .divider {
   height: 1px;
