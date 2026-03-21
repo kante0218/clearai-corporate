@@ -2,7 +2,7 @@
 
 import { useParams } from "next/navigation";
 import Link from "next/link";
-import { getPostBySlug, blogPosts } from "@/lib/blog-data";
+import { getPostBySlug } from "@/lib/blog-data";
 
 function renderContent(content: string) {
   const blocks = content.split("\n\n");
@@ -12,7 +12,7 @@ function renderContent(content: string) {
       return (
         <h3
           key={i}
-          className="text-xl font-bold text-navy-950 mt-10 mb-4"
+          className="text-lg font-light text-black/70 mt-10 mb-3"
         >
           {trimmed.replace("### ", "")}
         </h3>
@@ -22,7 +22,7 @@ function renderContent(content: string) {
       return (
         <h2
           key={i}
-          className="text-2xl font-bold text-navy-950 mt-12 mb-4 pb-2 border-b border-gray-200"
+          className="text-xl font-light text-black/80 mt-12 mb-4"
         >
           {trimmed.replace("## ", "")}
         </h2>
@@ -31,15 +31,17 @@ function renderContent(content: string) {
     if (trimmed.startsWith("- ")) {
       const items = trimmed.split("\n").filter((l) => l.startsWith("- "));
       return (
-        <ul key={i} className="list-disc list-inside space-y-2 text-gray-700 leading-relaxed">
+        <ul key={i} className="space-y-2 text-[14px] text-black/40 leading-[2.4] font-light pl-4">
           {items.map((item, j) => (
-            <li key={j}>{item.replace("- ", "")}</li>
+            <li key={j} className="relative pl-4 before:content-[''] before:absolute before:left-0 before:top-[0.85em] before:w-[4px] before:h-[4px] before:rounded-full before:bg-black/15">
+              {item.replace("- ", "")}
+            </li>
           ))}
         </ul>
       );
     }
     return (
-      <p key={i} className="text-gray-700 leading-relaxed">
+      <p key={i} className="text-[14px] text-black/40 leading-[2.4] font-light">
         {trimmed}
       </p>
     );
@@ -53,22 +55,19 @@ export default function BlogPostPage() {
 
   if (!post) {
     return (
-      <main className="pt-20 min-h-screen bg-white">
-        <div className="max-w-3xl mx-auto px-6 py-32 text-center">
-          <h1 className="text-3xl font-bold text-navy-950 mb-4">
+      <main className="min-h-screen bg-white">
+        <div className="max-w-[700px] mx-auto px-6 pt-40 pb-32 text-center">
+          <h1 className="text-[clamp(1.5rem,3vw,2.2rem)] font-extralight text-black/80 mb-4">
             記事が見つかりません
           </h1>
-          <p className="text-gray-600 mb-8">
+          <p className="text-[14px] text-black/30 font-light mb-10">
             お探しの記事は存在しないか、削除された可能性があります。
           </p>
           <Link
             href="/blog"
-            className="inline-flex items-center gap-2 text-accent hover:text-accent-dark font-medium transition-colors"
+            className="text-[12px] tracking-[0.1em] text-black/30 hover:text-black/60 transition-colors duration-300"
           >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-            ブログ一覧に戻る
+            ← ブログ一覧
           </Link>
         </div>
       </main>
@@ -76,65 +75,61 @@ export default function BlogPostPage() {
   }
 
   return (
-    <main className="pt-20 min-h-screen bg-white">
-      {/* Header */}
-      <section className="bg-gray-50 border-b border-gray-200">
-        <div className="max-w-3xl mx-auto px-6 py-16">
-          <Link
-            href="/blog"
-            className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-accent transition-colors mb-8"
+    <main className="min-h-screen bg-white">
+      {/* Article Header */}
+      <div className="max-w-[700px] mx-auto px-6 pt-40">
+        {/* Back Link */}
+        <Link
+          href="/blog"
+          className="inline-block text-[12px] tracking-[0.05em] text-black/30 hover:text-black/60 transition-colors duration-300 mb-12"
+        >
+          ← ブログ一覧
+        </Link>
+
+        {/* Meta */}
+        <div className="flex items-center gap-4 mb-6">
+          <span
+            className="inline-block px-3 py-1 text-[10px] tracking-[0.15em] uppercase text-white"
+            style={{ backgroundColor: post.thumbnail }}
           >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-            ブログ一覧
-          </Link>
-
-          <div className="flex items-center gap-3 mb-4">
-            <span
-              className="inline-block px-3 py-1 text-xs font-semibold text-white rounded-full"
-              style={{ backgroundColor: post.thumbnail }}
-            >
-              {post.category}
-            </span>
-            <time className="text-sm text-gray-500">{post.date}</time>
-            <span className="text-sm text-gray-500">・{post.readTime}</span>
-          </div>
-
-          <h1 className="text-3xl lg:text-4xl font-bold text-navy-950 leading-tight">
-            {post.title}
-          </h1>
-
-          <div className="mt-6 flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center">
-              <svg className="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-              </svg>
-            </div>
-            <span className="text-sm font-medium text-navy-950">{post.author}</span>
-          </div>
+            {post.category}
+          </span>
+          <time className="text-[11px] tracking-[0.05em] text-black/25">
+            {post.date}
+          </time>
+          <span className="text-[11px] text-black/25">・</span>
+          <span className="text-[11px] tracking-[0.05em] text-black/25">
+            {post.readTime}
+          </span>
         </div>
-      </section>
+
+        {/* Title */}
+        <h1 className="text-[clamp(1.5rem,3vw,2.2rem)] font-extralight text-black/90 leading-[1.35] mb-8">
+          {post.title}
+        </h1>
+
+        {/* Author */}
+        <p className="text-[12px] tracking-[0.05em] text-black/30 font-light pb-10 border-b border-black/5">
+          {post.author}
+        </p>
+      </div>
 
       {/* Article Content */}
-      <article className="max-w-3xl mx-auto px-6 py-12 space-y-6">
+      <article className="max-w-[700px] mx-auto px-6 py-16 space-y-6">
         {renderContent(post.content)}
       </article>
 
-      {/* Back Link */}
-      <section className="max-w-3xl mx-auto px-6 pb-20">
-        <div className="border-t border-gray-200 pt-8">
+      {/* Back Link Bottom */}
+      <div className="max-w-[700px] mx-auto px-6 pb-32 lg:pb-44">
+        <div className="border-t border-black/5 pt-10">
           <Link
             href="/blog"
-            className="inline-flex items-center gap-2 text-accent hover:text-accent-dark font-medium transition-colors"
+            className="text-[12px] tracking-[0.1em] text-black/30 hover:text-black/60 transition-colors duration-300"
           >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-            ブログ一覧に戻る
+            ← ブログ一覧に戻る
           </Link>
         </div>
-      </section>
+      </div>
     </main>
   );
 }

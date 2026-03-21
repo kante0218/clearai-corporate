@@ -1,8 +1,47 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef, type ReactNode } from "react";
 import Link from "next/link";
 import { blogPosts, categories } from "@/lib/blog-data";
+
+/* ─── Scroll-triggered reveal ─── */
+function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setVisible(true); observer.unobserve(el); } },
+      { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      className={className}
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? "translateY(0)" : "translateY(50px)",
+        transition: `opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
+      }}
+    >
+      {children}
+    </div>
+  );
+}
+
+function Label({ children }: { children: ReactNode }) {
+  return (
+    <p className="text-[11px] tracking-[0.25em] uppercase text-black/30 mb-6 font-medium">
+      {children}
+    </p>
+  );
+}
 
 export default function BlogPage() {
   const [selectedCategory, setSelectedCategory] = useState("すべて");
@@ -13,80 +52,72 @@ export default function BlogPage() {
       : blogPosts.filter((post) => post.category === selectedCategory);
 
   return (
-    <main className="pt-20 min-h-screen bg-white">
-      {/* Hero */}
-      <section className="bg-gray-50 border-b border-gray-200">
-        <div className="max-w-6xl mx-auto px-6 py-16 text-center">
-          <h1 className="text-4xl lg:text-5xl font-bold text-navy-950 tracking-tight">
-            ブログ
+    <main className="min-h-screen bg-white">
+      {/* Header */}
+      <section className="max-w-[1100px] mx-auto px-6 pt-40 pb-20">
+        <Reveal>
+          <Label>Blog</Label>
+          <h1 className="text-[clamp(1.8rem,4vw,3rem)] font-extralight tracking-tight text-black/90 leading-[1.15]">
+            最新の記事
           </h1>
-          <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
-            AI活用の最新情報、導入事例、テクノロジートレンドをお届けします
-          </p>
-        </div>
+        </Reveal>
       </section>
 
       {/* Category Filter */}
-      <section className="max-w-6xl mx-auto px-6 py-8">
-        <div className="flex flex-wrap gap-3 justify-center">
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => setSelectedCategory(category)}
-              className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-                selectedCategory === category
-                  ? "bg-accent text-white shadow-md shadow-accent/25"
-                  : "bg-gray-100 text-gray-600 hover:bg-gray-200 hover:text-navy-950"
-              }`}
-            >
-              {category}
-            </button>
-          ))}
-        </div>
+      <section className="max-w-[1100px] mx-auto px-6 pb-16">
+        <Reveal>
+          <div className="flex flex-wrap gap-3">
+            {categories.map((category) => (
+              <button
+                key={category}
+                onClick={() => setSelectedCategory(category)}
+                className={`px-5 py-2 text-[12px] tracking-[0.1em] transition-all duration-300 ${
+                  selectedCategory === category
+                    ? "bg-black text-white"
+                    : "text-black/30 border border-black/10 hover:text-black/60 hover:border-black/25"
+                }`}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+        </Reveal>
       </section>
 
       {/* Blog Grid */}
-      <section className="max-w-6xl mx-auto px-6 pb-20">
+      <section className="max-w-[1100px] mx-auto px-6 pb-32 lg:pb-44">
         {filteredPosts.length === 0 ? (
-          <p className="text-center text-gray-500 py-16">
+          <p className="text-center text-black/30 py-20 text-[14px] tracking-wide">
             該当する記事がありません
           </p>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredPosts.map((post) => (
-              <Link
-                key={post.slug}
-                href={`/blog/${post.slug}`}
-                className="group block bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-xl hover:shadow-gray-200/50 hover:border-gray-300 transition-all duration-300"
-              >
-                {/* Thumbnail */}
-                <div
-                  className="h-48 w-full relative overflow-hidden"
-                  style={{ backgroundColor: post.thumbnail }}
-                >
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-                  <div className="absolute bottom-4 left-4">
-                    <span className="inline-block px-3 py-1 bg-white/90 backdrop-blur-sm text-xs font-semibold text-navy-950 rounded-full">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
+            {filteredPosts.map((post, i) => (
+              <Reveal key={post.slug} delay={i * 100}>
+                <Link href={`/blog/${post.slug}`} className="group block">
+                  {/* Thumbnail */}
+                  <div
+                    className="w-full aspect-[4/3] mb-5 transition-transform duration-700 group-hover:scale-[1.02]"
+                    style={{ backgroundColor: post.thumbnail }}
+                  />
+
+                  {/* Meta */}
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className="text-[11px] tracking-[0.15em] text-black/30 uppercase">
                       {post.category}
                     </span>
+                    <span className="w-[3px] h-[3px] rounded-full bg-black/15" />
+                    <time className="text-[11px] tracking-[0.05em] text-black/25">
+                      {post.date}
+                    </time>
                   </div>
-                </div>
 
-                {/* Content */}
-                <div className="p-6">
-                  <div className="flex items-center gap-3 text-sm text-gray-500 mb-3">
-                    <time>{post.date}</time>
-                    <span className="w-1 h-1 rounded-full bg-gray-300" />
-                    <span>{post.readTime}</span>
-                  </div>
-                  <h2 className="text-lg font-bold text-navy-950 leading-snug group-hover:text-accent transition-colors duration-200 line-clamp-2">
+                  {/* Title */}
+                  <h2 className="text-[15px] font-light text-black/70 leading-[1.8] group-hover:text-black transition-colors duration-300">
                     {post.title}
                   </h2>
-                  <p className="mt-3 text-sm text-gray-600 leading-relaxed line-clamp-3">
-                    {post.excerpt}
-                  </p>
-                </div>
-              </Link>
+                </Link>
+              </Reveal>
             ))}
           </div>
         )}

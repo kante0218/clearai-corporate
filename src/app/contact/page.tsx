@@ -1,6 +1,45 @@
 "use client";
 
-import { useState, FormEvent } from "react";
+import { useState, useEffect, useRef, FormEvent, type ReactNode } from "react";
+
+/* ─── Scroll-triggered reveal ─── */
+function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setVisible(true); observer.unobserve(el); } },
+      { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      className={className}
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? "translateY(0)" : "translateY(50px)",
+        transition: `opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
+      }}
+    >
+      {children}
+    </div>
+  );
+}
+
+function Label({ children }: { children: ReactNode }) {
+  return (
+    <p className="text-[11px] tracking-[0.25em] uppercase text-black/30 mb-6 font-medium">
+      {children}
+    </p>
+  );
+}
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -25,111 +64,95 @@ export default function ContactPage() {
   };
 
   return (
-    <main className="pt-20 min-h-screen bg-white">
-      {/* Hero */}
-      <section className="bg-gray-50 border-b border-gray-200">
-        <div className="max-w-6xl mx-auto px-6 py-16 text-center">
-          <h1 className="text-4xl lg:text-5xl font-bold text-navy-950 tracking-tight">
+    <main className="min-h-screen bg-white">
+      {/* Header */}
+      <section className="max-w-[1100px] mx-auto px-6 pt-40 pb-20">
+        <Reveal>
+          <Label>Contact</Label>
+          <h1 className="text-[clamp(1.8rem,4vw,3rem)] font-extralight tracking-tight text-black/90 leading-[1.15]">
             お問い合わせ
           </h1>
-          <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
-            サービスに関するご質問・ご相談はお気軽にお問い合わせください
-          </p>
-        </div>
+        </Reveal>
       </section>
 
-      <section className="max-w-6xl mx-auto px-6 py-20">
+      <section className="max-w-[1100px] mx-auto px-6 pb-32 lg:pb-44">
         {submitted ? (
           /* Success State */
-          <div className="max-w-lg mx-auto text-center py-16">
-            <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-              <svg
-                className="w-10 h-10 text-green-600"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M5 13l4 4L19 7"
-                />
-              </svg>
+          <Reveal>
+            <div className="max-w-[500px] mx-auto text-center py-20">
+              <div className="w-16 h-16 border border-black/10 rounded-full flex items-center justify-center mx-auto mb-8">
+                <svg
+                  className="w-7 h-7 text-black/40"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.5}
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
+              </div>
+              <h2 className="text-[clamp(1.2rem,2.5vw,1.6rem)] font-extralight text-black/80 mb-4">
+                お問い合わせありがとうございます
+              </h2>
+              <p className="text-[14px] text-black/30 font-light">
+                2営業日以内にご連絡いたします。
+              </p>
             </div>
-            <h2 className="text-2xl font-bold text-navy-950 mb-3">
-              お問い合わせありがとうございます
-            </h2>
-            <p className="text-gray-600">
-              2営業日以内にご連絡いたします。
-            </p>
-          </div>
+          </Reveal>
         ) : (
           /* Form Layout */
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-20">
             {/* Left: Info */}
-            <div className="lg:col-span-2 space-y-8">
-              <div>
-                <h2 className="text-2xl font-bold text-navy-950 mb-2">
-                  お気軽にご相談ください
-                </h2>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  AI導入やサービスに関するご質問、お見積もりのご依頼など、
-                  どのようなことでもお気軽にお問い合わせください。
-                </p>
-              </div>
-
-              <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center shrink-0">
-                    <svg className="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold text-navy-950">メール</p>
-                    <p className="text-sm text-gray-600">info@and-clearai.com</p>
-                  </div>
+            <Reveal className="lg:col-span-2">
+              <div className="space-y-10">
+                <div>
+                  <p className="text-[14px] text-black/40 leading-[2.2] font-light">
+                    AI導入やサービスに関するご質問、お見積もりのご依頼など、どのようなことでもお気軽にお問い合わせください。
+                  </p>
                 </div>
 
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center shrink-0">
-                    <svg className="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                    </svg>
-                  </div>
+                <div className="space-y-8 pt-4">
                   <div>
-                    <p className="text-sm font-semibold text-navy-950">電話</p>
-                    <p className="text-sm text-gray-600">03-XXXX-XXXX</p>
+                    <p className="text-[11px] tracking-[0.2em] text-black/25 font-medium mb-2">
+                      EMAIL
+                    </p>
+                    <p className="text-[14px] text-black/60 font-light">
+                      info@and-clearai.com
+                    </p>
                   </div>
-                </div>
 
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center shrink-0">
-                    <svg className="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </div>
                   <div>
-                    <p className="text-sm font-semibold text-navy-950">営業時間</p>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-[11px] tracking-[0.2em] text-black/25 font-medium mb-2">
+                      TEL
+                    </p>
+                    <p className="text-[14px] text-black/60 font-light">
+                      03-XXXX-XXXX
+                    </p>
+                  </div>
+
+                  <div>
+                    <p className="text-[11px] tracking-[0.2em] text-black/25 font-medium mb-2">
+                      営業時間
+                    </p>
+                    <p className="text-[14px] text-black/60 font-light">
                       平日 9:00〜18:00（土日祝休み）
                     </p>
                   </div>
                 </div>
               </div>
-            </div>
+            </Reveal>
 
             {/* Right: Form */}
-            <div className="lg:col-span-3">
-              <form
-                onSubmit={handleSubmit}
-                className="bg-gray-50 rounded-2xl border border-gray-200 p-8 space-y-6"
-              >
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <Reveal className="lg:col-span-3" delay={150}>
+              <form onSubmit={handleSubmit} className="space-y-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                   <div>
-                    <label className="block text-sm font-semibold text-navy-950 mb-2">
-                      会社名 <span className="text-red-500">*</span>
+                    <label className="block text-[12px] text-black/40 tracking-[0.05em] mb-3">
+                      会社名 <span className="text-black/20">*</span>
                     </label>
                     <input
                       type="text"
@@ -138,12 +161,12 @@ export default function ContactPage() {
                       value={form.company}
                       onChange={handleChange}
                       placeholder="株式会社〇〇"
-                      className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-sm text-navy-950 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-all"
+                      className="w-full bg-transparent border-b border-black/10 focus:border-black/40 pb-3 text-[14px] text-black/70 font-light placeholder-black/15 outline-none transition-colors duration-300"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-semibold text-navy-950 mb-2">
-                      ご担当者名 <span className="text-red-500">*</span>
+                    <label className="block text-[12px] text-black/40 tracking-[0.05em] mb-3">
+                      ご担当者名 <span className="text-black/20">*</span>
                     </label>
                     <input
                       type="text"
@@ -152,15 +175,15 @@ export default function ContactPage() {
                       value={form.name}
                       onChange={handleChange}
                       placeholder="山田 太郎"
-                      className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-sm text-navy-950 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-all"
+                      className="w-full bg-transparent border-b border-black/10 focus:border-black/40 pb-3 text-[14px] text-black/70 font-light placeholder-black/15 outline-none transition-colors duration-300"
                     />
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                   <div>
-                    <label className="block text-sm font-semibold text-navy-950 mb-2">
-                      メールアドレス <span className="text-red-500">*</span>
+                    <label className="block text-[12px] text-black/40 tracking-[0.05em] mb-3">
+                      メールアドレス <span className="text-black/20">*</span>
                     </label>
                     <input
                       type="email"
@@ -169,11 +192,11 @@ export default function ContactPage() {
                       value={form.email}
                       onChange={handleChange}
                       placeholder="info@example.com"
-                      className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-sm text-navy-950 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-all"
+                      className="w-full bg-transparent border-b border-black/10 focus:border-black/40 pb-3 text-[14px] text-black/70 font-light placeholder-black/15 outline-none transition-colors duration-300"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-semibold text-navy-950 mb-2">
+                    <label className="block text-[12px] text-black/40 tracking-[0.05em] mb-3">
                       電話番号
                     </label>
                     <input
@@ -182,20 +205,20 @@ export default function ContactPage() {
                       value={form.phone}
                       onChange={handleChange}
                       placeholder="03-XXXX-XXXX"
-                      className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-sm text-navy-950 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-all"
+                      className="w-full bg-transparent border-b border-black/10 focus:border-black/40 pb-3 text-[14px] text-black/70 font-light placeholder-black/15 outline-none transition-colors duration-300"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-navy-950 mb-2">
+                  <label className="block text-[12px] text-black/40 tracking-[0.05em] mb-3">
                     従業員規模
                   </label>
                   <select
                     name="size"
                     value={form.size}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-sm text-navy-950 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-all"
+                    className="w-full bg-transparent border-b border-black/10 focus:border-black/40 pb-3 text-[14px] text-black/70 font-light outline-none transition-colors duration-300 appearance-none cursor-pointer"
                   >
                     <option value="">選択してください</option>
                     <option value="~50名">〜50名</option>
@@ -207,8 +230,8 @@ export default function ContactPage() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-semibold text-navy-950 mb-2">
-                    ご相談内容 <span className="text-red-500">*</span>
+                  <label className="block text-[12px] text-black/40 tracking-[0.05em] mb-3">
+                    ご相談内容 <span className="text-black/20">*</span>
                   </label>
                   <textarea
                     name="message"
@@ -217,18 +240,20 @@ export default function ContactPage() {
                     value={form.message}
                     onChange={handleChange}
                     placeholder="ご質問やご相談内容をご記入ください"
-                    className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-sm text-navy-950 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-all resize-none"
+                    className="w-full bg-transparent border-b border-black/10 focus:border-black/40 pb-3 text-[14px] text-black/70 font-light placeholder-black/15 outline-none transition-colors duration-300 resize-none"
                   />
                 </div>
 
-                <button
-                  type="submit"
-                  className="w-full py-3.5 bg-accent hover:bg-accent-dark text-white font-semibold rounded-lg transition-colors duration-200 shadow-md shadow-accent/25 hover:shadow-lg hover:shadow-accent/30"
-                >
-                  送信する
-                </button>
+                <div className="pt-4">
+                  <button
+                    type="submit"
+                    className="bg-black text-white px-10 py-3.5 text-[12px] tracking-[0.1em] hover:bg-black/80 transition-colors duration-300"
+                  >
+                    送信する
+                  </button>
+                </div>
               </form>
-            </div>
+            </Reveal>
           </div>
         )}
       </section>
