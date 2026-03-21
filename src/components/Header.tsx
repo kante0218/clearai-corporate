@@ -1,40 +1,54 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 
 const navItems = [
   { label: "事業紹介", href: "/#services" },
-  { label: "AI導入支援", href: "/ai-consulting" },
-  { label: "導（みちびき）", href: "/michibiki" },
+  { label: "AI導入", href: "/ai-consulting" },
+  { label: "導", href: "/michibiki" },
   { label: "ブログ", href: "/blog" },
   { label: "会社概要", href: "/about" },
 ];
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-xl border-b border-gray-100">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-20">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled
+          ? "bg-white/90 backdrop-blur-xl border-b border-black/5"
+          : "bg-transparent"
+      }`}
+    >
+      <div className="max-w-[1400px] mx-auto px-8 lg:px-12">
+        <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2.5 group">
-            <div className="w-8 h-8 rounded-lg bg-navy-950 flex items-center justify-center">
-              <span className="text-white text-sm font-bold">C</span>
-            </div>
-            <span className="text-lg font-bold text-navy-950 tracking-tight">
+          <Link href="/" className="relative z-10">
+            <span className={`text-[15px] font-semibold tracking-[0.2em] uppercase transition-colors duration-500 ${
+              scrolled || isOpen ? "text-black" : "text-white"
+            }`}>
               clear AI
             </span>
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-8">
+          <nav className="hidden lg:flex items-center gap-10">
             {navItems.map((item) => (
               <Link
                 key={item.label}
                 href={item.href}
-                className="text-sm text-navy-700 hover:text-navy-950 transition-colors relative after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-[2px] after:bg-accent after:transition-all hover:after:w-full"
+                className={`text-[13px] tracking-[0.08em] transition-colors duration-500 hover:opacity-60 ${
+                  scrolled ? "text-black" : "text-white/80"
+                }`}
               >
                 {item.label}
               </Link>
@@ -42,10 +56,14 @@ export default function Header() {
           </nav>
 
           {/* CTA */}
-          <div className="hidden lg:flex items-center gap-3">
+          <div className="hidden lg:block relative z-10">
             <Link
               href="/contact"
-              className="bg-navy-950 text-white px-6 py-2.5 rounded-full text-sm font-medium hover:bg-navy-800 transition-colors"
+              className={`text-[12px] tracking-[0.1em] px-6 py-2.5 border transition-all duration-500 ${
+                scrolled
+                  ? "border-black text-black hover:bg-black hover:text-white"
+                  : "border-white/40 text-white hover:bg-white hover:text-black"
+              }`}
             >
               お問い合わせ
             </Link>
@@ -54,42 +72,49 @@ export default function Header() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2"
+            className="lg:hidden relative z-10 p-2"
             aria-label="メニュー"
           >
-            <div className="w-6 h-5 flex flex-col justify-between">
-              <span className={`w-full h-0.5 bg-navy-950 transition-transform ${isOpen ? "rotate-45 translate-y-2" : ""}`} />
-              <span className={`w-full h-0.5 bg-navy-950 transition-opacity ${isOpen ? "opacity-0" : ""}`} />
-              <span className={`w-full h-0.5 bg-navy-950 transition-transform ${isOpen ? "-rotate-45 -translate-y-2" : ""}`} />
+            <div className="w-6 h-4 flex flex-col justify-between">
+              <span className={`w-full h-px transition-all duration-300 ${
+                isOpen ? "rotate-45 translate-y-[7px] bg-black" : scrolled ? "bg-black" : "bg-white"
+              }`} />
+              <span className={`w-full h-px transition-all duration-300 ${
+                isOpen ? "opacity-0" : scrolled ? "bg-black" : "bg-white"
+              }`} />
+              <span className={`w-full h-px transition-all duration-300 ${
+                isOpen ? "-rotate-45 -translate-y-[7px] bg-black" : scrolled ? "bg-black" : "bg-white"
+              }`} />
             </div>
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      {isOpen && (
-        <div className="lg:hidden bg-white border-t border-gray-100">
-          <nav className="max-w-7xl mx-auto px-6 py-6 space-y-4">
-            {navItems.map((item) => (
-              <Link
-                key={item.label}
-                href={item.href}
-                onClick={() => setIsOpen(false)}
-                className="block text-base text-navy-700 hover:text-navy-950 py-2"
-              >
-                {item.label}
-              </Link>
-            ))}
+      {/* Mobile Menu - Full screen overlay */}
+      <div className={`lg:hidden fixed inset-0 bg-white transition-all duration-500 ${
+        isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+      }`}>
+        <nav className="flex flex-col items-center justify-center h-full gap-8">
+          {navItems.map((item, i) => (
             <Link
-              href="/contact"
+              key={item.label}
+              href={item.href}
               onClick={() => setIsOpen(false)}
-              className="block bg-navy-950 text-white px-6 py-3 rounded-full text-sm font-medium text-center mt-4"
+              className="text-2xl font-light text-black tracking-[0.1em] hover:opacity-50 transition-opacity"
+              style={{ animationDelay: `${i * 80}ms` }}
             >
-              お問い合わせ
+              {item.label}
             </Link>
-          </nav>
-        </div>
-      )}
+          ))}
+          <Link
+            href="/contact"
+            onClick={() => setIsOpen(false)}
+            className="text-[13px] tracking-[0.1em] px-8 py-3 border border-black text-black hover:bg-black hover:text-white transition-all mt-4"
+          >
+            お問い合わせ
+          </Link>
+        </nav>
+      </div>
     </header>
   );
 }
