@@ -133,16 +133,18 @@ export default function HomePage() {
           </Reveal>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            {/* AI導入支援 */}
+            {/* 導（みちびき） - メイン事業 */}
             <Reveal delay={100}>
-              <Link href="/ai-consulting" className="group block">
+              <Link href="/michibiki" className="group block">
                 <div className="relative aspect-[4/3] lg:aspect-[3/2] bg-[#0a0a0a] overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-br from-[#0a0a0a] via-[#111] to-[#1a1a2e] group-hover:scale-[1.03] transition-transform duration-700" />
                   <div className="absolute inset-0 flex flex-col justify-end p-8 lg:p-12 z-10">
                     <p className="text-[11px] tracking-[0.2em] uppercase text-white/30 mb-3">Service 01</p>
-                    <h3 className="text-2xl lg:text-3xl font-extralight text-white tracking-[0.02em] mb-3">AI導入支援</h3>
+                    <h3 className="text-2xl lg:text-3xl font-extralight text-white tracking-[0.02em] mb-3">
+                      導<span className="text-base ml-2 text-white/40">みちびき</span>
+                    </h3>
                     <p className="text-[13px] text-white/40 leading-[2] max-w-sm font-light">
-                      戦略策定から実装・運用まで。<br />貴社に最適なAIソリューションを、ともに。
+                      AI面接プラットフォーム。<br />構造化された面接で、最適な採用を実現する。
                     </p>
                     <div className="flex items-center gap-2 mt-6 text-white/50 text-[12px] tracking-wide group-hover:text-white transition-colors duration-500">
                       <span>詳しく見る</span>
@@ -153,18 +155,16 @@ export default function HomePage() {
               </Link>
             </Reveal>
 
-            {/* 導（みちびき） */}
+            {/* AI導入支援 */}
             <Reveal delay={200}>
-              <Link href="/michibiki" className="group block">
+              <Link href="/ai-consulting" className="group block">
                 <div className="relative aspect-[4/3] lg:aspect-[3/2] bg-[#f5f5f0] overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-br from-[#f5f5f0] via-[#eeeee8] to-[#e8e8e0] group-hover:scale-[1.03] transition-transform duration-700" />
                   <div className="absolute inset-0 flex flex-col justify-end p-8 lg:p-12 z-10">
                     <p className="text-[11px] tracking-[0.2em] uppercase text-black/25 mb-3">Service 02</p>
-                    <h3 className="text-2xl lg:text-3xl font-extralight text-black tracking-[0.02em] mb-3">
-                      導<span className="text-base ml-2 text-black/40">みちびき</span>
-                    </h3>
+                    <h3 className="text-2xl lg:text-3xl font-extralight text-black tracking-[0.02em] mb-3">AI導入支援</h3>
                     <p className="text-[13px] text-black/40 leading-[2] max-w-sm font-light">
-                      AI面接プラットフォーム。<br />構造化された面接で、最適な採用を実現する。
+                      戦略策定から実装・運用まで。<br />貴社に最適なAIソリューションを、ともに。
                     </p>
                     <div className="flex items-center gap-2 mt-6 text-black/30 text-[12px] tracking-wide group-hover:text-black transition-colors duration-500">
                       <span>詳しく見る</span>

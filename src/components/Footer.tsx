@@ -14,7 +14,7 @@ export default function Footer() {
             <p className="text-[13px] text-white/40 leading-[2] max-w-sm">
               AIの力で、すべての企業に変革を。
               <br />
-              AI導入支援と導で、新しい未来をつくる。
+              導とAI導入支援で、新しい未来をつくる。
             </p>
           </div>
 
@@ -23,8 +23,8 @@ export default function Footer() {
             <p className="text-[11px] text-white/30 tracking-[0.15em] uppercase mb-6">事業</p>
             <ul className="space-y-4">
               {[
-                { label: "AI導入支援", href: "/ai-consulting" },
                 { label: "導（みちびき）", href: "/michibiki" },
+                { label: "AI導入支援", href: "/ai-consulting" },
               ].map((link) => (
                 <li key={link.label}>
                   <Link href={link.href} className="text-[13px] text-white/60 hover:text-white transition-colors duration-300">

@@ -5,8 +5,8 @@ import Link from "next/link";
 
 const navItems = [
   { label: "事業紹介", href: "/#services" },
-  { label: "AI導入", href: "/ai-consulting" },
   { label: "導", href: "/michibiki" },
+  { label: "AI導入", href: "/ai-consulting" },
   { label: "ブログ", href: "/blog" },
   { label: "会社概要", href: "/about" },
 ];
