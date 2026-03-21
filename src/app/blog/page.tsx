@@ -34,12 +34,12 @@ export default function BlogPage() {
       : blogPosts.filter((post) => post.category === selectedCategory);
 
   return (
-    <main className="min-h-screen bg-[#0a0a0a]">
+    <main className="min-h-screen bg-white">
       {/* Header */}
       <section className="max-w-[1100px] mx-auto px-6 pt-40 pb-20">
         <Reveal>
-          <p className="text-[11px] tracking-[0.25em] uppercase text-white/20 mb-6 font-medium">Blog</p>
-          <h1 className="text-[clamp(1.8rem,4vw,3rem)] font-extralight tracking-tight text-white/90 leading-[1.15]">
+          <p className="text-[11px] tracking-[0.25em] uppercase text-gray-400 mb-6 font-medium">Blog</p>
+          <h1 className="text-[clamp(1.8rem,4vw,3rem)] font-extralight tracking-tight text-gray-900 leading-[1.15]">
             最新の記事
           </h1>
         </Reveal>
@@ -55,8 +55,8 @@ export default function BlogPage() {
                 onClick={() => setSelectedCategory(category)}
                 className={`px-5 py-2 text-[12px] tracking-[0.1em] transition-all duration-300 ${
                   selectedCategory === category
-                    ? "bg-white text-black"
-                    : "text-white/30 border border-white/10 hover:text-white/60 hover:border-white/25"
+                    ? "bg-gray-900 text-white"
+                    : "text-gray-400 border border-gray-200 hover:text-gray-600 hover:border-gray-300"
                 }`}
               >
                 {category}
@@ -69,7 +69,7 @@ export default function BlogPage() {
       {/* Blog Grid */}
       <section className="max-w-[1100px] mx-auto px-6 pb-32 lg:pb-44">
         {filteredPosts.length === 0 ? (
-          <p className="text-center text-white/30 py-20 text-[14px] tracking-wide">
+          <p className="text-center text-gray-400 py-20 text-[14px] tracking-wide">
             該当する記事がありません
           </p>
         ) : (
@@ -82,11 +82,11 @@ export default function BlogPage() {
                     style={{ backgroundColor: post.thumbnail }}
                   />
                   <div className="flex items-center gap-3 mb-3">
-                    <span className="text-[11px] tracking-[0.15em] text-white/30 uppercase">{post.category}</span>
-                    <span className="w-[3px] h-[3px] rounded-full bg-white/15" />
-                    <time className="text-[11px] tracking-[0.05em] text-white/25">{post.date}</time>
+                    <span className="text-[11px] tracking-[0.15em] text-gray-400 uppercase">{post.category}</span>
+                    <span className="w-[3px] h-[3px] rounded-full bg-gray-300" />
+                    <time className="text-[11px] tracking-[0.05em] text-gray-400">{post.date}</time>
                   </div>
-                  <h2 className="text-[15px] font-light text-white/60 leading-[1.8] group-hover:text-white transition-colors duration-300">
+                  <h2 className="text-[15px] font-light text-gray-700 leading-[1.8] group-hover:text-gray-900 transition-colors duration-300">
                     {post.title}
                   </h2>
                 </Link>
