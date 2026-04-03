@@ -34,7 +34,7 @@ function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; 
 
 function Label({ children }: { children: ReactNode }) {
   return (
-    <p className="text-sm font-semibold text-indigo-600 mb-4">
+    <p className="text-sm font-semibold text-blue-600 mb-4">
       {children}
     </p>
   );
@@ -43,7 +43,7 @@ function Label({ children }: { children: ReactNode }) {
 const companyInfo = [
   { label: "会社名", value: "clear AI株式会社" },
   { label: "設立", value: "2025年" },
-  { label: "代表", value: "［準備中］" },
+  { label: "代表", value: "代表取締役" },
   { label: "所在地", value: "東京都" },
   { label: "事業内容", value: "AI導入支援事業 / AI面接プラットフォーム「導」" },
 ];
@@ -133,16 +133,16 @@ export default function AboutPage() {
 
           <div className="relative max-w-2xl">
             {/* Vertical line */}
-            <div className="absolute left-[3px] top-2 bottom-2 w-px bg-indigo-200" />
+            <div className="absolute left-[3px] top-2 bottom-2 w-px bg-blue-200" />
 
             <div className="space-y-12">
               {timeline.map((item, i) => (
                 <Reveal key={i} delay={i * 120}>
                   <div className="relative pl-10">
                     {/* Dot */}
-                    <div className="absolute left-0 top-1.5 w-[7px] h-[7px] rounded-full bg-indigo-600" />
+                    <div className="absolute left-0 top-1.5 w-[7px] h-[7px] rounded-full bg-blue-600" />
 
-                    <span className="block text-sm font-semibold text-indigo-600 mb-1">
+                    <span className="block text-sm font-semibold text-blue-600 mb-1">
                       {item.year}
                     </span>
                     <h3 className="text-base font-bold text-gray-900 mb-1">

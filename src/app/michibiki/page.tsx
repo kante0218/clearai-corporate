@@ -24,7 +24,7 @@ function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; 
 }
 
 function SectionLabel({ children }: { children: ReactNode }) {
-  return <p className="text-sm font-semibold text-indigo-600 mb-4">{children}</p>;
+  return <p className="text-sm font-semibold text-blue-600 mb-4">{children}</p>;
 }
 
 export default function MichibikiPage() {
@@ -38,7 +38,7 @@ export default function MichibikiPage() {
         <div className="absolute top-1/3 left-1/3 w-[1px] h-[1px] shadow-[0_0_300px_150px_rgba(79,70,229,0.08)]" />
 
         <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
-          <span className="inline-block rounded-full bg-indigo-50 text-indigo-600 px-3 py-1 text-sm font-semibold mb-6 transition-all duration-700"
+          <span className="inline-block rounded-full bg-blue-50 text-blue-600 px-3 py-1 text-sm font-semibold mb-6 transition-all duration-700"
             style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "300ms" }}>
             AI Interview Platform
           </span>
@@ -58,7 +58,7 @@ export default function MichibikiPage() {
           <div className="flex items-center justify-center gap-4 transition-all duration-700"
             style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "1100ms" }}>
             <a href="https://www.michibiki.tech" target="_blank" rel="noopener noreferrer"
-              className="rounded-xl bg-indigo-600 text-white font-semibold px-8 py-3.5 hover:bg-indigo-700 transition-colors duration-300">
+              className="rounded-xl bg-blue-600 text-white font-semibold px-8 py-3.5 hover:bg-blue-700 transition-colors duration-300">
               導を体験する
             </a>
           </div>
@@ -126,7 +126,7 @@ export default function MichibikiPage() {
               <Reveal key={step.num} delay={i * 100}>
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 py-10 border-b border-gray-200 last:border-0">
                   <div className="lg:col-span-1">
-                    <span className="text-sm font-bold text-indigo-600">{step.num}</span>
+                    <span className="text-sm font-bold text-blue-600">{step.num}</span>
                   </div>
                   <div className="lg:col-span-4">
                     <h3 className="text-xl font-bold text-gray-900">{step.title}</h3>
@@ -196,7 +196,7 @@ export default function MichibikiPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* 企業向け */}
             <Reveal>
-              <div className="bg-indigo-600 rounded-2xl p-8 lg:p-10 min-h-[480px] flex flex-col justify-between">
+              <div className="bg-blue-600 rounded-2xl p-8 lg:p-10 min-h-[480px] flex flex-col justify-between">
                 <div>
                   <span className="inline-block rounded-full bg-white/10 text-white/80 px-3 py-1 text-sm font-semibold mb-6">For Companies</span>
                   <h3 className="text-2xl font-bold text-white mb-6">企業の方へ</h3>
@@ -215,7 +215,7 @@ export default function MichibikiPage() {
                     ))}
                   </ul>
                 </div>
-                <a href="/contact" className="mt-8 inline-flex items-center gap-2 rounded-xl bg-white text-indigo-600 font-semibold px-6 py-3 hover:bg-indigo-50 transition-colors duration-300 w-fit">
+                <a href="/contact" className="mt-8 inline-flex items-center gap-2 rounded-xl bg-white text-blue-600 font-semibold px-6 py-3 hover:bg-blue-50 transition-colors duration-300 w-fit">
                   導入を相談する <span>→</span>
                 </a>
               </div>
@@ -225,7 +225,7 @@ export default function MichibikiPage() {
             <Reveal delay={100}>
               <div className="bg-white rounded-2xl border border-gray-200 p-8 lg:p-10 min-h-[480px] flex flex-col justify-between">
                 <div>
-                  <span className="inline-block rounded-full bg-indigo-50 text-indigo-600 px-3 py-1 text-sm font-semibold mb-6">For Candidates</span>
+                  <span className="inline-block rounded-full bg-blue-50 text-blue-600 px-3 py-1 text-sm font-semibold mb-6">For Candidates</span>
                   <h3 className="text-2xl font-bold text-gray-900 mb-6">求職者の方へ</h3>
                   <ul className="space-y-4">
                     {[
@@ -243,7 +243,7 @@ export default function MichibikiPage() {
                   </ul>
                 </div>
                 <a href="https://www.michibiki.tech" target="_blank" rel="noopener noreferrer"
-                  className="mt-8 inline-flex items-center gap-2 rounded-xl bg-indigo-600 text-white font-semibold px-6 py-3 hover:bg-indigo-700 transition-colors duration-300 w-fit">
+                  className="mt-8 inline-flex items-center gap-2 rounded-xl bg-blue-600 text-white font-semibold px-6 py-3 hover:bg-blue-700 transition-colors duration-300 w-fit">
                   導を始める <span>→</span>
                 </a>
               </div>
@@ -285,7 +285,7 @@ export default function MichibikiPage() {
       </section>
 
       {/* ═══ STATUS ═══ */}
-      <section className="py-20 lg:py-28 bg-indigo-50 rounded-2xl mx-4 lg:mx-8 my-4">
+      <section className="py-20 lg:py-28 bg-blue-50 rounded-2xl mx-4 lg:mx-8 my-4">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
             <div className="text-center mb-14">
@@ -306,7 +306,7 @@ export default function MichibikiPage() {
             ].map((stat, i) => (
               <Reveal key={stat.label} delay={i * 100}>
                 <div className="text-center py-8">
-                  <p className="text-4xl font-bold text-indigo-600">
+                  <p className="text-4xl font-bold text-blue-600">
                     {stat.value}<span className="text-base text-gray-500 font-medium ml-1">{stat.suffix}</span>
                   </p>
                   <p className="text-sm text-gray-600 mt-2">{stat.label}</p>
@@ -331,7 +331,7 @@ export default function MichibikiPage() {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a href="https://www.michibiki.tech" target="_blank" rel="noopener noreferrer"
-                className="rounded-xl bg-indigo-600 text-white font-semibold px-10 py-4 hover:bg-indigo-700 transition-colors duration-300">
+                className="rounded-xl bg-blue-600 text-white font-semibold px-10 py-4 hover:bg-blue-700 transition-colors duration-300">
                 導を始める（無料）
               </a>
               <a href="/contact"

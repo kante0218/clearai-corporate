@@ -17,6 +17,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://clearai.jp"),
   title: {
     default: "clear AI株式会社 | AIで、ビジネスの未来を切り拓く",
     template: "%s | clear AI株式会社",
@@ -27,6 +28,17 @@ export const metadata: Metadata = {
     "clear AI", "AI導入", "AI面接", "DX推進", "導", "みちびき",
     "企業AI", "AI活用", "採用AI", "生成AI導入",
   ],
+  openGraph: {
+    type: "website",
+    locale: "ja_JP",
+    siteName: "clear AI株式会社",
+  },
+  alternates: {
+    canonical: "https://clearai.jp",
+  },
+  verification: {
+    google: "nE6Ji9Kv43p2EsW5odNprPtSSmKWya33nWYBZNJ5lSc",
+  },
 };
 
 export default function RootLayout({

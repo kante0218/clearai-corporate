@@ -59,7 +59,7 @@ export default function ContactPage() {
       {/* Header */}
       <section className="max-w-5xl mx-auto px-6 pt-40 pb-16">
         <Reveal>
-          <p className="text-sm font-semibold text-indigo-600 mb-4">Contact</p>
+          <p className="text-sm font-semibold text-blue-600 mb-4">Contact</p>
           <h1 className="text-3xl font-bold text-gray-900">
             お問い合わせ
           </h1>
@@ -71,9 +71,9 @@ export default function ContactPage() {
           /* Success State */
           <Reveal>
             <div className="max-w-md mx-auto text-center py-20">
-              <div className="w-16 h-16 bg-indigo-50 rounded-full flex items-center justify-center mx-auto mb-6">
+              <div className="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-6">
                 <svg
-                  className="w-7 h-7 text-indigo-600"
+                  className="w-7 h-7 text-blue-600"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -118,10 +118,10 @@ export default function ContactPage() {
 
                   <div className="bg-gray-50 rounded-2xl p-5">
                     <p className="text-sm font-semibold text-gray-500 mb-1">
-                      TEL
+                      対応方法
                     </p>
                     <p className="text-base text-gray-900">
-                      03-XXXX-XXXX
+                      メール・オンライン面談
                     </p>
                   </div>
 
@@ -152,7 +152,7 @@ export default function ContactPage() {
                       value={form.company}
                       onChange={handleChange}
                       placeholder="株式会社〇〇"
-                      className="w-full rounded-lg border border-gray-200 px-4 py-3 text-base text-gray-900 placeholder-gray-400 outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600 transition-colors duration-200"
+                      className="w-full rounded-lg border border-gray-200 px-4 py-3 text-base text-gray-900 placeholder-gray-400 outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 transition-colors duration-200"
                     />
                   </div>
                   <div>
@@ -166,7 +166,7 @@ export default function ContactPage() {
                       value={form.name}
                       onChange={handleChange}
                       placeholder="山田 太郎"
-                      className="w-full rounded-lg border border-gray-200 px-4 py-3 text-base text-gray-900 placeholder-gray-400 outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600 transition-colors duration-200"
+                      className="w-full rounded-lg border border-gray-200 px-4 py-3 text-base text-gray-900 placeholder-gray-400 outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 transition-colors duration-200"
                     />
                   </div>
                 </div>
@@ -183,7 +183,7 @@ export default function ContactPage() {
                       value={form.email}
                       onChange={handleChange}
                       placeholder="info@example.com"
-                      className="w-full rounded-lg border border-gray-200 px-4 py-3 text-base text-gray-900 placeholder-gray-400 outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600 transition-colors duration-200"
+                      className="w-full rounded-lg border border-gray-200 px-4 py-3 text-base text-gray-900 placeholder-gray-400 outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 transition-colors duration-200"
                     />
                   </div>
                   <div>
@@ -196,7 +196,7 @@ export default function ContactPage() {
                       value={form.phone}
                       onChange={handleChange}
                       placeholder="03-XXXX-XXXX"
-                      className="w-full rounded-lg border border-gray-200 px-4 py-3 text-base text-gray-900 placeholder-gray-400 outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600 transition-colors duration-200"
+                      className="w-full rounded-lg border border-gray-200 px-4 py-3 text-base text-gray-900 placeholder-gray-400 outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 transition-colors duration-200"
                     />
                   </div>
                 </div>
@@ -209,7 +209,7 @@ export default function ContactPage() {
                     name="size"
                     value={form.size}
                     onChange={handleChange}
-                    className="w-full rounded-lg border border-gray-200 px-4 py-3 text-base text-gray-900 outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600 transition-colors duration-200 appearance-none cursor-pointer bg-white"
+                    className="w-full rounded-lg border border-gray-200 px-4 py-3 text-base text-gray-900 outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 transition-colors duration-200 appearance-none cursor-pointer bg-white"
                   >
                     <option value="">選択してください</option>
                     <option value="~50名">〜50名</option>
@@ -231,14 +231,14 @@ export default function ContactPage() {
                     value={form.message}
                     onChange={handleChange}
                     placeholder="ご質問やご相談内容をご記入ください"
-                    className="w-full rounded-lg border border-gray-200 px-4 py-3 text-base text-gray-900 placeholder-gray-400 outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600 transition-colors duration-200 resize-none"
+                    className="w-full rounded-lg border border-gray-200 px-4 py-3 text-base text-gray-900 placeholder-gray-400 outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 transition-colors duration-200 resize-none"
                   />
                 </div>
 
                 <div className="pt-2">
                   <button
                     type="submit"
-                    className="rounded-xl bg-indigo-600 text-white font-semibold px-10 py-3.5 hover:bg-indigo-700 transition-colors duration-300"
+                    className="rounded-xl bg-blue-600 text-white font-semibold px-10 py-3.5 hover:bg-blue-700 transition-colors duration-300"
                   >
                     送信する
                   </button>
