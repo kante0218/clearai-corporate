@@ -11,14 +11,17 @@ export type Blog = {
   readTime: string;
 } & MicroCMSListContent;
 
-const client = createClient({
-  serviceDomain: process.env.MICROCMS_SERVICE_DOMAIN!,
-  apiKey: process.env.MICROCMS_API_KEY!,
-});
+const serviceDomain = process.env.MICROCMS_SERVICE_DOMAIN ?? "";
+const apiKey = process.env.MICROCMS_API_KEY ?? "";
+
+const client = serviceDomain && apiKey
+  ? createClient({ serviceDomain, apiKey })
+  : null;
 
 export const categories = ["すべて", "AI活用", "テクノロジー", "導入事例", "お知らせ"];
 
 export async function getBlogs() {
+  if (!client) throw new Error("microCMS not configured");
   const data = await client.getList<Blog>({
     endpoint: "blogs",
     queries: { orders: "-publishedAt", limit: 100 },
@@ -27,6 +30,7 @@ export async function getBlogs() {
 }
 
 export async function getBlogsByCategory(category: string) {
+  if (!client) throw new Error("microCMS not configured");
   if (category === "すべて") return getBlogs();
   const data = await client.getList<Blog>({
     endpoint: "blogs",
@@ -40,6 +44,7 @@ export async function getBlogsByCategory(category: string) {
 }
 
 export async function getBlogBySlug(slug: string) {
+  if (!client) throw new Error("microCMS not configured");
   const data = await client.getListDetail<Blog>({
     endpoint: "blogs",
     contentId: slug,
@@ -48,6 +53,7 @@ export async function getBlogBySlug(slug: string) {
 }
 
 export async function getAllBlogSlugs() {
+  if (!client) throw new Error("microCMS not configured");
   const data = await client.getList<Blog>({
     endpoint: "blogs",
     queries: { fields: "id", limit: 100 },
