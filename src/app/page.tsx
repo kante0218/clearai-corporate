@@ -230,12 +230,6 @@ export default function HomePage() {
         </div>
 
         <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-gray-950 to-transparent pointer-events-none" />
-
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 transition-all duration-1000 flex flex-col items-center gap-2"
-          style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "1400ms" }}>
-          <span className="text-xs text-white/30 tracking-widest uppercase font-medium">Scroll</span>
-          <div className="w-px h-12 bg-gradient-to-b from-white/30 to-transparent animate-[lineGrow_2s_ease-in-out_infinite]" />
-        </div>
       </section>
 
       {/* ═══ VISION ═══ */}
@@ -303,13 +297,16 @@ export default function HomePage() {
               <Link href="/ai-consulting" className="group block">
                 <div className="relative overflow-hidden rounded-3xl bg-gray-950 min-h-[480px] flex flex-col justify-end p-12 hover:shadow-2xl hover:shadow-blue-900/30 transition-all duration-700 hover:-translate-y-2 glow-card">
                   <div className="absolute inset-0">
-                    <div className="absolute inset-0 bg-gradient-to-br from-blue-900/80 via-blue-800/60 to-cyan-900/80" />
-                    <div className="absolute top-0 right-0 w-72 h-72 bg-blue-400/20 rounded-full -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-1000 blur-3xl" />
-                    <div className="absolute bottom-0 left-0 w-56 h-56 bg-cyan-400/15 rounded-full translate-y-1/2 -translate-x-1/2 group-hover:scale-150 transition-transform duration-1000 blur-3xl" />
-                    <div className="absolute inset-0 opacity-[0.05]" style={{
-                      backgroundImage: "linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px)",
-                      backgroundSize: "40px 40px"
-                    }} />
+                    <video
+                      src="/videos/technology.mp4"
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-br from-blue-900/70 via-blue-900/50 to-cyan-900/70" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                   </div>
                   <div className="relative z-10">
                     <span className="inline-block text-[10px] font-black tracking-widest text-blue-300/80 border border-blue-400/20 px-3 py-1 rounded-full mb-6 uppercase">Service 01</span>
@@ -331,13 +328,16 @@ export default function HomePage() {
               <Link href="/ai-agriculture" className="group block">
                 <div className="relative overflow-hidden rounded-3xl bg-gray-950 min-h-[480px] flex flex-col justify-end p-12 hover:shadow-2xl hover:shadow-emerald-900/30 transition-all duration-700 hover:-translate-y-2 glow-card">
                   <div className="absolute inset-0">
-                    <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/80 via-green-800/60 to-teal-900/80" />
-                    <div className="absolute top-0 right-0 w-72 h-72 bg-emerald-400/20 rounded-full -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-1000 blur-3xl" />
-                    <div className="absolute bottom-0 left-0 w-56 h-56 bg-lime-400/15 rounded-full translate-y-1/2 -translate-x-1/2 group-hover:scale-150 transition-transform duration-1000 blur-3xl" />
-                    <div className="absolute inset-0 opacity-[0.05]" style={{
-                      backgroundImage: "linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px)",
-                      backgroundSize: "40px 40px"
-                    }} />
+                    <video
+                      src="/videos/agriculture.mp4"
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/70 via-green-900/50 to-teal-900/70" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                   </div>
                   <div className="relative z-10">
                     <span className="inline-block text-[10px] font-black tracking-widest text-emerald-300/80 border border-emerald-400/20 px-3 py-1 rounded-full mb-6 uppercase">Service 02</span>
