@@ -184,9 +184,9 @@ export default function HomePage() {
             transform: heroLoaded ? "translateY(0)" : "translateY(24px)",
             transitionDelay: "200ms"
           }}>
-            <div className="inline-flex items-center gap-2.5 bg-white/5 border border-white/10 backdrop-blur-sm rounded-full px-5 py-2 mb-10">
-              <div className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
-              <span className="text-xs font-bold tracking-widest text-white/70 uppercase">AI × Business × Agriculture</span>
+            <div className="inline-flex items-center gap-2.5 bg-white/30 border border-white/50 backdrop-blur-md rounded-full px-5 py-2 mb-10 shadow-lg">
+              <div className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse" />
+              <span className="text-xs font-bold tracking-widest text-white uppercase drop-shadow-[0_1px_4px_rgba(0,0,0,0.5)]">AI × Business × Agriculture</span>
             </div>
           </div>
 
@@ -201,10 +201,10 @@ export default function HomePage() {
               すべてをクリア
             </span>
             <br />
-            <span className="text-white/50 text-4xl sm:text-5xl lg:text-6xl font-bold">にする。</span>
+            <span className="text-white/90 text-4xl sm:text-5xl lg:text-6xl font-bold drop-shadow-[0_2px_12px_rgba(0,0,0,0.35)]">にする。</span>
           </h1>
 
-          <p className="text-base lg:text-xl text-white/50 leading-relaxed max-w-xl mx-auto mb-12 transition-all duration-1000"
+          <p className="text-base lg:text-xl text-white leading-relaxed max-w-xl mx-auto mb-12 transition-all duration-1000 drop-shadow-[0_2px_10px_rgba(0,0,0,0.45)] font-medium"
             style={{
               opacity: heroLoaded ? 1 : 0,
               transform: heroLoaded ? "translateY(0)" : "translateY(30px)",
@@ -230,7 +230,7 @@ export default function HomePage() {
               </span>
             </Link>
             <Link href="#services"
-              className="text-sm font-semibold text-white/60 border border-white/15 px-8 py-4 rounded-full hover:border-white/30 hover:text-white hover:bg-white/5 transition-all duration-300">
+              className="text-sm font-bold text-gray-900 bg-white/90 backdrop-blur-sm border border-white px-8 py-4 rounded-full hover:bg-white hover:shadow-xl transition-all duration-300">
               事業を見る
             </Link>
           </div>
