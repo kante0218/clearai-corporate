@@ -7,9 +7,8 @@ import { usePathname } from "next/navigation";
 
 const navItems = [
   { label: "事業紹介", href: "/#services" },
-  { label: "導", href: "/michibiki" },
-  { label: "AI導入", href: "/ai-consulting" },
-  { label: "アプリ", href: "/#apps" },
+  { label: "AIコンサルティング", href: "/ai-consulting" },
+  { label: "AI×農業", href: "/ai-agriculture" },
   { label: "ブログ", href: "/blog" },
   { label: "会社概要", href: "/about" },
 ];

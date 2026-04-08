@@ -134,7 +134,7 @@ function SectionLabel({ children, light = false }: { children: ReactNode; light?
   );
 }
 
-/* ── Cinematic dark background (replaces video) ── */
+/* ── Cinematic dark background ── */
 function CinematicBg({ children }: { children?: ReactNode }) {
   return (
     <div className="absolute inset-0 overflow-hidden">
@@ -180,7 +180,6 @@ function FloatingParticles({ count = 8, light = false }: { count?: number; light
   );
 }
 
-
 /* ── Mouse follower gradient ── */
 function MouseGlow({ dark = false }: { dark?: boolean }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -197,38 +196,6 @@ function MouseGlow({ dark = false }: { dark?: boolean }) {
   return (
     <div ref={ref} onMouseMove={handleMouseMove} className="absolute inset-0 pointer-events-none"
       style={{ background: gradient }} />
-  );
-}
-
-/* ── Video embed section component ── */
-function VideoSection() {
-  return (
-    <div className="relative w-full aspect-video overflow-hidden rounded-2xl">
-      {/* Pexels free video embed via iframe — abstract tech visualization */}
-      <iframe
-        src="https://player.vimeo.com/video/174595275?background=1&autoplay=1&loop=1&byline=0&title=0&muted=1"
-        className="absolute inset-0 w-full h-full scale-110"
-        frameBorder="0"
-        allow="autoplay; fullscreen"
-        title="background video"
-      />
-      {/* Fallback gradient if video fails */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-900 via-cyan-900 to-blue-900 opacity-60" />
-      {/* Animated particles overlay */}
-      <div className="absolute inset-0">
-        {[...Array(20)].map((_, i) => (
-          <div key={i}
-            className="absolute w-1 h-1 rounded-full bg-white/40"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animation: `float${(i % 4) + 1} ${5 + i * 0.5}s ease-in-out infinite`,
-              animationDelay: `${i * 0.3}s`,
-            }}
-          />
-        ))}
-      </div>
-    </div>
   );
 }
 
@@ -250,21 +217,19 @@ export default function HomePage() {
     <>
       <CustomCursor />
 
-      {/* ═══ HERO — dark cinematic ═══ */}
+      {/* ═══ HERO ═══ */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <CinematicBg />
         <FloatingParticles count={10} />
 
-        {/* Parallax orbs */}
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] rounded-full bg-blue-600/10 blur-[140px]"
             style={{ transform: `translateY(${scrollY * 0.12}px)` }} />
-          <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] rounded-full bg-cyan-500/8 blur-[120px]"
+          <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] rounded-full bg-emerald-500/8 blur-[120px]"
             style={{ transform: `translateY(${scrollY * -0.08}px)` }} />
         </div>
 
         <div className="relative z-20 max-w-5xl mx-auto px-6 text-center">
-          {/* Badge */}
           <div className="transition-all duration-1000" style={{
             opacity: heroLoaded ? 1 : 0,
             transform: heroLoaded ? "translateY(0)" : "translateY(24px)",
@@ -272,11 +237,10 @@ export default function HomePage() {
           }}>
             <div className="inline-flex items-center gap-2.5 bg-white/5 border border-white/10 backdrop-blur-sm rounded-full px-5 py-2 mb-10">
               <div className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
-              <span className="text-xs font-bold tracking-widest text-white/70 uppercase">AI × Business</span>
+              <span className="text-xs font-bold tracking-widest text-white/70 uppercase">AI × Business × Agriculture</span>
             </div>
           </div>
 
-          {/* Main heading */}
           <h1 className="text-5xl sm:text-7xl lg:text-8xl xl:text-9xl font-black text-white leading-[0.95] tracking-tight mb-8 transition-all duration-1000"
             style={{
               opacity: heroLoaded ? 1 : 0,
@@ -284,7 +248,7 @@ export default function HomePage() {
               transitionDelay: "400ms"
             }}>
             AIで、<br />
-            <span className="bg-gradient-to-r from-blue-300 via-cyan-300 to-blue-300 bg-clip-text text-transparent bg-[length:200%_auto] animate-[shimmer_4s_linear_infinite]">
+            <span className="bg-gradient-to-r from-blue-300 via-cyan-300 to-emerald-300 bg-clip-text text-transparent bg-[length:200%_auto] animate-[shimmer_4s_linear_infinite]">
               すべてをクリア
             </span>
             <br />
@@ -297,8 +261,8 @@ export default function HomePage() {
               transform: heroLoaded ? "translateY(0)" : "translateY(30px)",
               transitionDelay: "700ms"
             }}>
-            AI導入支援・AI面接プラットフォーム「導」。<br />
-            3つの事業で、企業の未来を明瞭にします。
+            AIコンサルティングと、AI×農業。<br />
+            2つの事業で、日本の未来を明瞭にします。
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 transition-all duration-1000"
@@ -309,7 +273,7 @@ export default function HomePage() {
             }}>
             <Link href="/contact"
               className="group text-sm font-bold text-white bg-blue-600 pl-8 pr-6 py-4 rounded-full hover:bg-blue-500 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/30 inline-flex items-center gap-3">
-              AI導入を相談する
+              無料で相談する
               <span className="w-7 h-7 bg-white/15 rounded-full flex items-center justify-center group-hover:translate-x-1 transition-transform">
                 <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
@@ -323,10 +287,8 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Hero bottom fade */}
         <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-gray-950 to-transparent pointer-events-none" />
 
-        {/* Scroll indicator */}
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 transition-all duration-1000 flex flex-col items-center gap-2"
           style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "1400ms" }}>
           <span className="text-xs text-white/30 tracking-widest uppercase font-medium">Scroll</span>
@@ -334,8 +296,7 @@ export default function HomePage() {
         </div>
       </section>
 
-
-      {/* ═══ VISION — NOT A HOTEL style dark section ═══ */}
+      {/* ═══ VISION ═══ */}
       <DarkSection className="py-32 lg:py-48">
         <div className="max-w-6xl mx-auto px-6 lg:px-10 relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -343,28 +304,28 @@ export default function HomePage() {
               <SectionLabel light>Our Vision</SectionLabel>
               <h2 className="text-5xl lg:text-7xl font-black text-white leading-[0.95] tracking-tight">
                 AIを、<br />
-                <span className="text-cyan-400">誰もが</span>
-                <br />使える世界へ。
+                <span className="text-cyan-400">日本の現場</span>
+                <br />へ届ける。
               </h2>
             </Reveal>
             <Reveal direction="right" delay={200}>
               <div className="space-y-6">
                 <p className="text-lg text-white/60 leading-loose">
-                  AIはまだ、多くの企業にとって遠い存在です。難しい、コストが高い、何から始めればいいかわからない——そんな声を何度も聞いてきました。
+                  AIはまだ、多くの企業や生産者にとって遠い存在です。難しい、コストが高い、何から始めればいいかわからない——そんな声を何度も聞いてきました。
                 </p>
                 <p className="text-lg text-white/60 leading-loose">
-                  私たちはそのギャップを埋めるために生まれました。最先端のAI技術を、ビジネスの言葉に翻訳する。一社一社に寄り添い、AIの価値を丁寧に届けていきます。
+                  私たちはそのギャップを埋めるために生まれました。最先端のAI技術を、ビジネスと農業の言葉に翻訳する。一社一社、一農家一農家に寄り添い、AIの価値を丁寧に届けていきます。
                 </p>
                 <div className="divider-dark mt-8" />
                 <div className="flex items-center gap-6 pt-4">
                   <div>
-                    <p className="text-4xl font-black text-white">1<span className="text-base text-white/40 ml-1 font-normal">社</span></p>
-                    <p className="text-xs text-white/40 tracking-wider mt-1">導入企業</p>
+                    <p className="text-4xl font-black text-white">2<span className="text-base text-white/40 ml-1 font-normal">事業</span></p>
+                    <p className="text-xs text-white/40 tracking-wider mt-1">展開中</p>
                   </div>
                   <div className="w-px h-10 bg-white/10" />
                   <div>
-                    <p className="text-4xl font-black text-white">6<span className="text-base text-white/40 ml-1 font-normal">事業</span></p>
-                    <p className="text-xs text-white/40 tracking-wider mt-1">展開中</p>
+                    <p className="text-4xl font-black text-white">日本</p>
+                    <p className="text-xs text-white/40 tracking-wider mt-1">市場特化</p>
                   </div>
                   <div className="w-px h-10 bg-white/10" />
                   <div>
@@ -386,25 +347,23 @@ export default function HomePage() {
           <Reveal>
             <SectionLabel>Our Services</SectionLabel>
             <h2 className="text-4xl lg:text-6xl font-black text-gray-900 leading-[1.0] tracking-tight mb-4">
-              6つの事業で、<br />
-              <span className="text-gray-400">新しい価値を届ける。</span>
+              2つの事業で、<br />
+              <span className="text-gray-400">日本の未来をつくる。</span>
             </h2>
             <p className="text-base text-gray-500 mb-16 max-w-lg leading-relaxed">
-              AI・Web・アプリ・教育——それぞれが独自の切り口でビジネスと日常を変えていく。
+              企業のAI活用と、農業のAI実装。それぞれの現場に寄り添い、確実に成果を届けます。
             </p>
           </Reveal>
 
-          {/* Service cards — full bleed */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {/* Service 01 */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Service 01 — AIコンサルティング */}
             <Reveal delay={100} direction="left">
-              <Link href="/michibiki" className="group block">
-                <div className="relative overflow-hidden rounded-3xl bg-gray-950 min-h-[420px] flex flex-col justify-end p-10 hover:shadow-2xl hover:shadow-blue-900/30 transition-all duration-700 hover:-translate-y-2 glow-card">
+              <Link href="/ai-consulting" className="group block">
+                <div className="relative overflow-hidden rounded-3xl bg-gray-950 min-h-[480px] flex flex-col justify-end p-12 hover:shadow-2xl hover:shadow-blue-900/30 transition-all duration-700 hover:-translate-y-2 glow-card">
                   <div className="absolute inset-0">
                     <div className="absolute inset-0 bg-gradient-to-br from-blue-900/80 via-blue-800/60 to-cyan-900/80" />
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-blue-400/20 rounded-full -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-1000 blur-3xl" />
-                    <div className="absolute bottom-0 left-0 w-48 h-48 bg-cyan-400/15 rounded-full translate-y-1/2 -translate-x-1/2 group-hover:scale-150 transition-transform duration-1000 blur-3xl" />
-                    {/* Grid pattern */}
+                    <div className="absolute top-0 right-0 w-72 h-72 bg-blue-400/20 rounded-full -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-1000 blur-3xl" />
+                    <div className="absolute bottom-0 left-0 w-56 h-56 bg-cyan-400/15 rounded-full translate-y-1/2 -translate-x-1/2 group-hover:scale-150 transition-transform duration-1000 blur-3xl" />
                     <div className="absolute inset-0 opacity-[0.05]" style={{
                       backgroundImage: "linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px)",
                       backgroundSize: "40px 40px"
@@ -412,11 +371,9 @@ export default function HomePage() {
                   </div>
                   <div className="relative z-10">
                     <span className="inline-block text-[10px] font-black tracking-widest text-blue-300/80 border border-blue-400/20 px-3 py-1 rounded-full mb-6 uppercase">Service 01</span>
-                    <h3 className="text-3xl lg:text-4xl font-black text-white mb-4 leading-tight">
-                      導<span className="text-base font-normal ml-2 text-blue-300">みちびき</span>
-                    </h3>
-                    <p className="text-sm text-blue-100/70 leading-relaxed max-w-xs mb-8">
-                      AI面接プラットフォーム。構造化された面接で、最適な採用を実現する。
+                    <h3 className="text-3xl lg:text-5xl font-black text-white mb-4 leading-tight">AIコンサルティング</h3>
+                    <p className="text-sm lg:text-base text-blue-100/70 leading-relaxed max-w-md mb-8">
+                      戦略策定から実装・運用まで。日本企業のAI活用を、ヒアリングから定着まで一気通貫で伴走します。
                     </p>
                     <div className="flex items-center gap-2 text-blue-300 text-sm font-bold group-hover:text-white transition-colors duration-300">
                       <span>詳しく見る</span>
@@ -427,217 +384,38 @@ export default function HomePage() {
               </Link>
             </Reveal>
 
-            {/* Service 02 */}
-            <Reveal delay={200}>
-              <Link href="/ai-consulting" className="group block">
-                <div className="relative overflow-hidden rounded-3xl bg-gray-950 min-h-[420px] flex flex-col justify-end p-10 hover:shadow-2xl hover:shadow-blue-900/30 transition-all duration-700 hover:-translate-y-2 glow-card">
+            {/* Service 02 — AI×農業 */}
+            <Reveal delay={200} direction="right">
+              <Link href="/ai-agriculture" className="group block">
+                <div className="relative overflow-hidden rounded-3xl bg-gray-950 min-h-[480px] flex flex-col justify-end p-12 hover:shadow-2xl hover:shadow-emerald-900/30 transition-all duration-700 hover:-translate-y-2 glow-card">
                   <div className="absolute inset-0">
-                    <div className="absolute inset-0 bg-gradient-to-br from-blue-900/80 via-blue-800/60 to-cyan-900/80" />
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-blue-400/20 rounded-full -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-1000 blur-3xl" />
-                    <div className="absolute bottom-0 left-0 w-48 h-48 bg-cyan-400/15 rounded-full translate-y-1/2 -translate-x-1/2 group-hover:scale-150 transition-transform duration-1000 blur-3xl" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/80 via-green-800/60 to-teal-900/80" />
+                    <div className="absolute top-0 right-0 w-72 h-72 bg-emerald-400/20 rounded-full -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-1000 blur-3xl" />
+                    <div className="absolute bottom-0 left-0 w-56 h-56 bg-lime-400/15 rounded-full translate-y-1/2 -translate-x-1/2 group-hover:scale-150 transition-transform duration-1000 blur-3xl" />
                     <div className="absolute inset-0 opacity-[0.05]" style={{
                       backgroundImage: "linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px)",
                       backgroundSize: "40px 40px"
                     }} />
                   </div>
                   <div className="relative z-10">
-                    <span className="inline-block text-[10px] font-black tracking-widest text-blue-300/80 border border-blue-400/20 px-3 py-1 rounded-full mb-6 uppercase">Service 02</span>
-                    <h3 className="text-3xl lg:text-4xl font-black text-white mb-4 leading-tight">AI導入支援</h3>
-                    <p className="text-sm text-blue-100/70 leading-relaxed max-w-xs mb-8">
-                      戦略策定から実装・運用まで。貴社に最適なAIソリューションを、ともに。
+                    <span className="inline-block text-[10px] font-black tracking-widest text-emerald-300/80 border border-emerald-400/20 px-3 py-1 rounded-full mb-6 uppercase">Service 02</span>
+                    <h3 className="text-3xl lg:text-5xl font-black text-white mb-4 leading-tight">AI×農業</h3>
+                    <p className="text-sm lg:text-base text-emerald-100/70 leading-relaxed max-w-md mb-8">
+                      日本の農業をAIでアップデート。栽培管理・収穫予測・スマート農業ソリューションで、生産者の現場を支えます。
                     </p>
-                    <div className="flex items-center gap-2 text-blue-300 text-sm font-bold group-hover:text-white transition-colors duration-300">
+                    <div className="flex items-center gap-2 text-emerald-300 text-sm font-bold group-hover:text-white transition-colors duration-300">
                       <span>詳しく見る</span>
-                      <span className="w-6 h-6 bg-blue-500/30 rounded-full flex items-center justify-center group-hover:translate-x-2 transition-transform duration-300">→</span>
+                      <span className="w-6 h-6 bg-emerald-500/30 rounded-full flex items-center justify-center group-hover:translate-x-2 transition-transform duration-300">→</span>
                     </div>
                   </div>
                 </div>
               </Link>
             </Reveal>
-
-            {/* Service 03 — Web改善 */}
-            <Reveal delay={300} direction="right">
-              <div className="group relative overflow-hidden rounded-3xl bg-gray-950 min-h-[420px] flex flex-col justify-end p-10 hover:shadow-2xl hover:shadow-violet-900/30 transition-all duration-700 hover:-translate-y-2 glow-card">
-                <div className="absolute inset-0">
-                  <div className="absolute inset-0 bg-gradient-to-br from-violet-900/80 via-purple-800/60 to-fuchsia-900/80" />
-                  <div className="absolute top-0 right-0 w-64 h-64 bg-violet-400/20 rounded-full -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-1000 blur-3xl" />
-                  <div className="absolute bottom-0 left-0 w-48 h-48 bg-fuchsia-400/15 rounded-full translate-y-1/2 -translate-x-1/2 group-hover:scale-150 transition-transform duration-1000 blur-3xl" />
-                  <div className="absolute inset-0 opacity-[0.05]" style={{
-                    backgroundImage: "linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px)",
-                    backgroundSize: "40px 40px"
-                  }} />
-                </div>
-                <div className="relative z-10">
-                  <span className="inline-block text-[10px] font-black tracking-widest text-violet-300/80 border border-violet-400/20 px-3 py-1 rounded-full mb-6 uppercase">Service 03</span>
-                  <h3 className="text-3xl lg:text-4xl font-black text-white mb-4 leading-tight">ウェブサイト改善</h3>
-                  <p className="text-sm text-violet-100/70 leading-relaxed max-w-xs mb-8">
-                    デザイン・UX・SEOを最適化し、成果の出るウェブサイトへ。
-                  </p>
-                  <div className="flex items-center gap-2 text-violet-300 text-sm font-bold group-hover:text-white transition-colors duration-300">
-                    <span>詳しく見る</span>
-                    <span className="w-6 h-6 bg-violet-500/30 rounded-full flex items-center justify-center group-hover:translate-x-2 transition-transform duration-300">→</span>
-                  </div>
-                </div>
-              </div>
-            </Reveal>
-
-            {/* Service 04 — アプリ開発 */}
-            <Reveal delay={400} direction="left">
-              <div className="group relative overflow-hidden rounded-3xl bg-gray-950 min-h-[420px] flex flex-col justify-end p-10 hover:shadow-2xl hover:shadow-amber-900/30 transition-all duration-700 hover:-translate-y-2 glow-card">
-                <div className="absolute inset-0">
-                  <div className="absolute inset-0 bg-gradient-to-br from-amber-900/80 via-orange-800/60 to-yellow-900/80" />
-                  <div className="absolute top-0 right-0 w-64 h-64 bg-amber-400/20 rounded-full -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-1000 blur-3xl" />
-                  <div className="absolute bottom-0 left-0 w-48 h-48 bg-yellow-400/15 rounded-full translate-y-1/2 -translate-x-1/2 group-hover:scale-150 transition-transform duration-1000 blur-3xl" />
-                  <div className="absolute inset-0 opacity-[0.05]" style={{
-                    backgroundImage: "linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px)",
-                    backgroundSize: "40px 40px"
-                  }} />
-                </div>
-                <div className="relative z-10">
-                  <span className="inline-block text-[10px] font-black tracking-widest text-amber-300/80 border border-amber-400/20 px-3 py-1 rounded-full mb-6 uppercase">Service 04</span>
-                  <h3 className="text-3xl lg:text-4xl font-black text-white mb-4 leading-tight">アプリ開発</h3>
-                  <p className="text-sm text-amber-100/70 leading-relaxed max-w-xs mb-8">
-                    アイデアをカタチに。iOS・Web・業務アプリを企画から開発まで一気通貫で。
-                  </p>
-                  <div className="flex items-center gap-2 text-amber-300 text-sm font-bold group-hover:text-white transition-colors duration-300">
-                    <span>詳しく見る</span>
-                    <span className="w-6 h-6 bg-amber-500/30 rounded-full flex items-center justify-center group-hover:translate-x-2 transition-transform duration-300">→</span>
-                  </div>
-                </div>
-              </div>
-            </Reveal>
-
-            {/* Service 05 — HIMAHACK */}
-            <Reveal delay={500}>
-              <div className="relative overflow-hidden rounded-3xl bg-gray-950 min-h-[420px] flex flex-col justify-end p-10 glow-card">
-                <div className="absolute inset-0">
-                  <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/80 via-teal-800/60 to-cyan-900/80" />
-                  <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-400/20 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
-                  <div className="absolute bottom-0 left-0 w-48 h-48 bg-teal-400/15 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl" />
-                  <div className="absolute inset-0 opacity-[0.05]" style={{
-                    backgroundImage: "linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px)",
-                    backgroundSize: "40px 40px"
-                  }} />
-                </div>
-                <span className="absolute top-7 right-7 bg-white/10 backdrop-blur-sm text-white/80 text-[10px] font-black tracking-widest px-3 py-1.5 rounded-full z-10 uppercase border border-white/15">
-                  Coming Soon
-                </span>
-                <div className="relative z-10">
-                  <span className="inline-block text-[10px] font-black tracking-widest text-emerald-300/80 border border-emerald-400/20 px-3 py-1 rounded-full mb-6 uppercase">Service 05</span>
-                  <h3 className="text-3xl lg:text-4xl font-black text-white mb-4 leading-tight">HIMAHACK</h3>
-                  <p className="text-sm text-emerald-100/70 leading-relaxed max-w-xs mb-8">
-                    暇を、趣味に。毎月届くサブスク型趣味キットで、新しい体験を。
-                  </p>
-                  <div className="flex items-center gap-2 text-emerald-300/50 text-sm font-bold">
-                    <span>準備中</span>
-                  </div>
-                </div>
-              </div>
-            </Reveal>
-
-            {/* Service 06 — 新教育サービス */}
-            <Reveal delay={600} direction="right">
-              <div className="relative overflow-hidden rounded-3xl bg-gray-950 min-h-[420px] flex flex-col justify-end p-10 glow-card">
-                <div className="absolute inset-0">
-                  <div className="absolute inset-0 bg-gradient-to-br from-rose-900/80 via-pink-800/60 to-red-900/80" />
-                  <div className="absolute top-0 right-0 w-64 h-64 bg-rose-400/20 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
-                  <div className="absolute bottom-0 left-0 w-48 h-48 bg-pink-400/15 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl" />
-                  <div className="absolute inset-0 opacity-[0.05]" style={{
-                    backgroundImage: "linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px)",
-                    backgroundSize: "40px 40px"
-                  }} />
-                </div>
-                <span className="absolute top-7 right-7 bg-white/10 backdrop-blur-sm text-white/80 text-[10px] font-black tracking-widest px-3 py-1.5 rounded-full z-10 uppercase border border-white/15">
-                  Coming Soon
-                </span>
-                <div className="relative z-10">
-                  <span className="inline-block text-[10px] font-black tracking-widest text-rose-300/80 border border-rose-400/20 px-3 py-1 rounded-full mb-6 uppercase">Service 06</span>
-                  <h3 className="text-3xl lg:text-4xl font-black text-white mb-4 leading-tight">新しい教育</h3>
-                  <p className="text-sm text-rose-100/70 leading-relaxed max-w-xs mb-8">
-                    AIとテクノロジーで、一人ひとりに最適化された新しいスタイルの学びを届ける。
-                  </p>
-                  <div className="flex items-center gap-2 text-rose-300/50 text-sm font-bold">
-                    <span>準備中</span>
-                  </div>
-                </div>
-              </div>
-            </Reveal>
           </div>
         </div>
       </section>
 
-      {/* ═══ PERSONAL APPS ═══ */}
-      <section id="apps" className="py-24 lg:py-32 bg-gray-50 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.02]" style={{
-          backgroundImage: "radial-gradient(circle, #3b82f6 1px, transparent 1px)",
-          backgroundSize: "32px 32px",
-        }} />
-        <div className="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
-          <Reveal>
-            <SectionLabel>Personal Projects</SectionLabel>
-            <h2 className="text-4xl lg:text-5xl font-black text-gray-900 leading-tight tracking-tight mb-4">
-              個人開発アプリ
-            </h2>
-            <p className="text-base text-gray-500 mb-16 max-w-lg leading-relaxed">
-              仕事の外でも、プロダクト開発を続けています。
-            </p>
-          </Reveal>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* STELLA */}
-            <Reveal delay={100} direction="left">
-              <div className="group relative overflow-hidden rounded-3xl bg-gray-950 min-h-[280px] flex flex-col justify-end p-10 hover:shadow-2xl hover:shadow-amber-900/20 transition-all duration-700 hover:-translate-y-1 glow-card cursor-pointer">
-                <div className="absolute inset-0">
-                  <div className="absolute inset-0 bg-gradient-to-br from-amber-900/80 via-orange-900/60 to-rose-900/80" />
-                  <div className="absolute top-0 right-0 w-56 h-56 bg-amber-400/25 rounded-full -translate-y-1/3 translate-x-1/3 blur-3xl group-hover:scale-150 transition-transform duration-700" />
-                  {/* Stars decorative */}
-                  {[...Array(8)].map((_, i) => (
-                    <div key={i} className="absolute w-0.5 h-0.5 bg-white/60 rounded-full"
-                      style={{ left: `${15 + i * 11}%`, top: `${20 + (i % 3) * 20}%`, opacity: 0.4 + (i % 3) * 0.2 }} />
-                  ))}
-                </div>
-                <div className="relative z-10">
-                  <div className="flex items-center gap-3 mb-4">
-                    <span className="text-2xl">✦</span>
-                    <span className="text-[10px] font-black tracking-widest text-amber-300/70 uppercase border border-amber-400/20 px-2.5 py-1 rounded-full">App 01</span>
-                  </div>
-                  <h3 className="text-2xl lg:text-3xl font-black text-white mb-3">STELLA</h3>
-                  <p className="text-sm text-amber-100/60 leading-relaxed max-w-sm">
-                    星を集める習慣アプリ。タスクを達成するたびに星空が広がる、ゲーミフィケーション型ToDo。
-                  </p>
-                </div>
-              </div>
-            </Reveal>
-
-            {/* NutriAI */}
-            <Reveal delay={200} direction="right">
-              <div className="group relative overflow-hidden rounded-3xl bg-gray-950 min-h-[280px] flex flex-col justify-end p-10 hover:shadow-2xl hover:shadow-lime-900/20 transition-all duration-700 hover:-translate-y-1 glow-card cursor-pointer">
-                <div className="absolute inset-0">
-                  <div className="absolute inset-0 bg-gradient-to-br from-lime-900/80 via-green-900/60 to-teal-900/80" />
-                  <div className="absolute top-0 right-0 w-56 h-56 bg-lime-400/20 rounded-full -translate-y-1/3 translate-x-1/3 blur-3xl group-hover:scale-150 transition-transform duration-700" />
-                  {/* DNA-like dots */}
-                  {[...Array(6)].map((_, i) => (
-                    <div key={i} className="absolute w-1 h-1 bg-lime-400/30 rounded-full"
-                      style={{ left: `${20 + i * 12}%`, top: `${25 + (i % 2) * 30}%` }} />
-                  ))}
-                </div>
-                <div className="relative z-10">
-                  <div className="flex items-center gap-3 mb-4">
-                    <span className="text-2xl">◈</span>
-                    <span className="text-[10px] font-black tracking-widest text-lime-300/70 uppercase border border-lime-400/20 px-2.5 py-1 rounded-full">App 02</span>
-                  </div>
-                  <h3 className="text-2xl lg:text-3xl font-black text-white mb-3">NutriAI</h3>
-                  <p className="text-sm text-lime-100/60 leading-relaxed max-w-sm">
-                    AI栄養管理アプリ。食事ログ・バーコードスキャン・AIアドバイザーで、健康的な食生活をサポート。
-                  </p>
-                </div>
-              </div>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      {/* ═══ VIDEO SECTION — cinematic ═══ */}
+      {/* ═══ APPROACH ═══ */}
       <DarkSection className="py-24 lg:py-36">
         <div className="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -649,9 +427,9 @@ export default function HomePage() {
               </h2>
               <div className="space-y-8">
                 {[
-                  { num: "01", title: "正直であること", desc: "できないことはできないと言う。過度な期待を煽らず、確実に成果が出る領域から、一歩ずつ。", color: "indigo" },
-                  { num: "02", title: "伴走すること", desc: "導入して終わりではなく、運用が定着するまで。お客様のチームの一員として、ともに歩みます。", color: "purple" },
-                  { num: "03", title: "技術を翻訳すること", desc: "最先端のAI技術を、ビジネスの言葉に。専門知識がなくても理解できる、クリアな提案を。", color: "blue" },
+                  { num: "01", title: "正直であること", desc: "できないことはできないと言う。過度な期待を煽らず、確実に成果が出る領域から、一歩ずつ。" },
+                  { num: "02", title: "伴走すること", desc: "導入して終わりではなく、運用が定着するまで。お客様のチームの一員として、ともに歩みます。" },
+                  { num: "03", title: "技術を翻訳すること", desc: "最先端のAI技術を、ビジネスと現場の言葉に。専門知識がなくても理解できる、クリアな提案を。" },
                 ].map((item, i) => (
                   <Reveal key={item.num} delay={i * 100}>
                     <div className="flex gap-5 group">
@@ -669,58 +447,52 @@ export default function HomePage() {
               </div>
             </Reveal>
 
-            {/* Cinematic visual panel */}
             <Reveal direction="right" delay={300}>
               <div className="relative">
-                <div className="relative overflow-hidden rounded-3xl aspect-[4/5] bg-gradient-to-br from-blue-900/40 to-cyan-900/40 border border-white/10">
-                  {/* Animated gradient "video" */}
+                <div className="relative overflow-hidden rounded-3xl aspect-[4/5] bg-gradient-to-br from-blue-900/40 to-emerald-900/40 border border-white/10">
                   <div className="absolute inset-0">
-                    <div className="absolute inset-0 bg-gradient-to-br from-blue-950 via-cyan-950 to-gray-950" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-blue-950 via-emerald-950 to-gray-950" />
                     <div className="absolute w-full h-full opacity-60">
                       <div className="absolute top-1/4 left-1/4 w-48 h-48 bg-blue-500/30 rounded-full blur-3xl animate-float1" />
-                      <div className="absolute bottom-1/4 right-1/4 w-40 h-40 bg-cyan-500/25 rounded-full blur-3xl animate-float2" />
-                      <div className="absolute top-1/2 right-1/3 w-32 h-32 bg-blue-500/20 rounded-full blur-2xl animate-float3" />
+                      <div className="absolute bottom-1/4 right-1/4 w-40 h-40 bg-emerald-500/25 rounded-full blur-3xl animate-float2" />
+                      <div className="absolute top-1/2 right-1/3 w-32 h-32 bg-cyan-500/20 rounded-full blur-2xl animate-float3" />
                     </div>
-                    {/* Grid */}
                     <div className="absolute inset-0 opacity-[0.06]" style={{
                       backgroundImage: "linear-gradient(rgba(37,99,235,1) 1px, transparent 1px), linear-gradient(90deg, rgba(37,99,235,1) 1px, transparent 1px)",
                       backgroundSize: "40px 40px"
                     }} />
-                    {/* Center content */}
                     <div className="absolute inset-0 flex items-center justify-center">
                       <div className="text-center">
                         <div className="text-6xl font-black text-white/10 leading-none tracking-tighter">clear<br />AI</div>
                       </div>
                     </div>
                   </div>
-                  {/* Floating stats */}
                   <div className="absolute bottom-8 left-8 right-8 bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-5">
                     <div className="flex justify-between">
                       <div>
-                        <p className="text-2xl font-black text-white">3</p>
-                        <p className="text-xs text-white/40 tracking-wider">事業展開</p>
+                        <p className="text-2xl font-black text-white">2</p>
+                        <p className="text-xs text-white/40 tracking-wider">事業</p>
                       </div>
                       <div>
                         <p className="text-2xl font-black text-white">∞</p>
                         <p className="text-xs text-white/40 tracking-wider">可能性</p>
                       </div>
                       <div>
-                        <p className="text-2xl font-black text-cyan-400">AI</p>
-                        <p className="text-xs text-white/40 tracking-wider">ファースト</p>
+                        <p className="text-2xl font-black text-emerald-400">日本</p>
+                        <p className="text-xs text-white/40 tracking-wider">特化</p>
                       </div>
                     </div>
                   </div>
                 </div>
-                {/* Decorative orb */}
                 <div className="absolute -top-6 -right-6 w-24 h-24 bg-blue-500/20 rounded-full blur-2xl" />
-                <div className="absolute -bottom-6 -left-6 w-20 h-20 bg-cyan-500/20 rounded-full blur-xl" />
+                <div className="absolute -bottom-6 -left-6 w-20 h-20 bg-emerald-500/20 rounded-full blur-xl" />
               </div>
             </Reveal>
           </div>
         </div>
       </DarkSection>
 
-      {/* ═══ METRICS — large numbers ═══ */}
+      {/* ═══ METRICS ═══ */}
       <section className="py-24 lg:py-32 bg-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.02]" style={{
           backgroundImage: "linear-gradient(rgba(37,99,235,.2) 1px, transparent 1px), linear-gradient(90deg, rgba(37,99,235,.2) 1px, transparent 1px)",
@@ -737,10 +509,10 @@ export default function HomePage() {
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-gray-100 rounded-3xl overflow-hidden">
             {[
-              { label: "導入企業", value: 1, suffix: "社", icon: "🏢", note: "増加中" },
-              { label: "展開事業数", value: 3, suffix: "事業", icon: "🚀", note: "2025年〜" },
+              { label: "展開事業数", value: 2, suffix: "事業", icon: "🚀", note: "2025年〜" },
+              { label: "対象市場", value: 1, suffix: "（日本）", icon: "🇯🇵", note: "国内特化" },
               { label: "創業年", value: 2025, suffix: "", icon: "✦", note: "スタートアップ" },
-              { label: "個人開発アプリ", value: 2, suffix: "本", icon: "📱", note: "リリース予定" },
+              { label: "支援領域", value: 4, suffix: "領域", icon: "🌱", note: "戦略〜運用" },
             ].map((stat, i) => (
               <Reveal key={stat.label} delay={i * 100}>
                 <div className="bg-white p-8 lg:p-12 group hover:bg-blue-50/50 transition-colors duration-500">
@@ -772,8 +544,8 @@ export default function HomePage() {
             {[
               { name: "Next.js", category: "Frontend", color: "from-gray-700 to-gray-800" },
               { name: "TypeScript", category: "Language", color: "from-blue-900 to-blue-800" },
-              { name: "Tailwind", category: "CSS", color: "from-cyan-900 to-cyan-800" },
-              { name: "React Native", category: "Mobile", color: "from-blue-900 to-blue-800" },
+              { name: "Python", category: "ML/Data", color: "from-cyan-900 to-cyan-800" },
+              { name: "TensorFlow", category: "AI", color: "from-orange-900 to-orange-800" },
               { name: "Supabase", category: "Database", color: "from-emerald-900 to-emerald-800" },
               { name: "OpenAI API", category: "AI", color: "from-violet-900 to-violet-800" },
             ].map((tech, i) => (
@@ -838,7 +610,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ═══ CTA — full dark cinematic ═══ */}
+      {/* ═══ CTA ═══ */}
       <section className="relative overflow-hidden min-h-[60vh] flex items-center">
         <CinematicBg />
         <FloatingParticles count={6} />
@@ -851,7 +623,7 @@ export default function HomePage() {
                 <span className="text-cyan-400">お話しませんか。</span>
               </h2>
               <p className="text-base lg:text-lg text-white/50 leading-loose mb-12 max-w-lg mx-auto">
-                AIのことがわからなくても大丈夫です。<br />貴社の状況に合わせて、一緒に考えます。
+                AIのことがわからなくても大丈夫です。<br />貴社・貴農園の状況に合わせて、一緒に考えます。
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Link href="/contact"
@@ -861,15 +633,10 @@ export default function HomePage() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
                   </svg>
                 </Link>
-                <a href="https://www.michibiki.tech" target="_blank" rel="noopener noreferrer"
-                  className="text-sm font-semibold text-white/40 hover:text-white/70 transition-colors duration-300 border border-white/10 px-8 py-5 rounded-full hover:border-white/20">
-                  導のサイトを見る →
-                </a>
               </div>
             </Reveal>
           </div>
         </div>
-        {/* Bottom fade */}
         <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-gray-900 to-transparent pointer-events-none" />
       </section>
 

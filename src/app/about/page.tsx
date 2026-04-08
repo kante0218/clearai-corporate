@@ -45,24 +45,24 @@ const companyInfo = [
   { label: "設立", value: "2025年" },
   { label: "代表", value: "代表取締役" },
   { label: "所在地", value: "東京都" },
-  { label: "事業内容", value: "AI導入支援事業 / AI面接プラットフォーム「導」" },
+  { label: "事業内容", value: "AIコンサルティング / AI×農業ソリューション" },
 ];
 
 const timeline = [
   {
     year: "2025",
     title: "clear AI株式会社 設立",
-    description: "AIの力をすべての企業に届けるというミッションのもと創業。",
+    description: "AIの力を日本の企業と農業現場に届けるというミッションのもと創業。",
   },
   {
     year: "2025",
-    title: "AI面接プラットフォーム「導」リリース",
-    description: "日本市場に特化したAI面接サービスの提供を開始。",
+    title: "AIコンサルティング事業 開始",
+    description: "日本企業向けに、AI戦略策定から実装・運用まで一気通貫の支援を開始。",
   },
   {
     year: "2026",
-    title: "AI導入支援事業 開始",
-    description: "企業のAI活用を包括的にサポートするコンサルティング事業を本格展開。",
+    title: "AI×農業事業 開始",
+    description: "栽培管理・収穫予測・スマート農業ソリューションで、日本の農業の課題解決に取り組む。",
   },
 ];
 
@@ -88,7 +88,7 @@ export default function AboutPage() {
               AIの力を、すべての企業に。
             </h2>
             <p className="max-w-2xl text-base text-gray-600 leading-relaxed">
-              私たちclear AIは、まだ小さなチームですが、AI技術を活用して企業の成長と変革を支援するという大きなビジョンを持っています。AI面接プラットフォーム「導（みちびき）」と企業向けAI導入支援を通じて、すべての企業がAIの恩恵を受けられる社会を目指し、一歩一歩前進しています。
+              私たちclear AIは、まだ小さなチームですが、AI技術を活用して日本の企業と農業現場を支援するという大きなビジョンを持っています。AIコンサルティング事業とAI×農業事業を通じて、ビジネスと一次産業の現場にAIの恩恵を届け、日本の未来をともにつくっていきます。
             </p>
           </Reveal>
         </div>

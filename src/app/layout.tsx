@@ -23,10 +23,10 @@ export const metadata: Metadata = {
     template: "%s | clear AI株式会社",
   },
   description:
-    "clear AI株式会社は、AI導入支援とAI面接プラットフォーム「導（みちびき）」の2事業で企業のDX推進を支援します。",
+    "clear AI株式会社は、AIコンサルティングとAI×農業の2事業で、日本の企業と農業現場のDX・スマート化を支援します。",
   keywords: [
-    "clear AI", "AI導入", "AI面接", "DX推進", "導", "みちびき",
-    "企業AI", "AI活用", "採用AI", "生成AI導入",
+    "clear AI", "AIコンサルティング", "AI導入", "AI×農業", "スマート農業",
+    "企業AI", "AI活用", "生成AI", "DX推進", "日本農業",
   ],
   openGraph: {
     type: "website",
