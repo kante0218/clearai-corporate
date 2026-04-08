@@ -161,7 +161,15 @@ export default function HomePage() {
     <>
       {/* ═══ HERO ═══ */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <CinematicBg />
+        <video
+          src="/videos/hero.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover z-0"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-gray-950/70 via-gray-950/60 to-gray-950/85 z-[1]" />
         <FloatingParticles count={10} />
 
         <div className="absolute inset-0 pointer-events-none">
