@@ -530,29 +530,117 @@ export default function HomePage() {
       </section>
 
       {/* ═══ TECH STACK ═══ */}
-      <DarkSection className="py-20 lg:py-28">
+      <DarkSection className="py-24 lg:py-36">
         <div className="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
           <Reveal>
-            <div className="flex items-center justify-between mb-14">
-              <div>
-                <SectionLabel light>Tech Stack</SectionLabel>
-                <h2 className="text-3xl lg:text-4xl font-black text-white">使用技術</h2>
-              </div>
+            <div className="mb-16">
+              <SectionLabel light>Tech Stack</SectionLabel>
+              <h2 className="text-3xl lg:text-5xl font-black text-white mb-4">使用技術</h2>
+              <p className="text-base text-white/50 max-w-xl leading-relaxed">
+                信頼性・実績・コミュニティの厚さを基準に、プロダクションレディな技術のみを採用しています。
+              </p>
             </div>
           </Reveal>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+
+          <div className="space-y-14">
             {[
-              { name: "Next.js", category: "Frontend", color: "from-gray-700 to-gray-800" },
-              { name: "TypeScript", category: "Language", color: "from-blue-900 to-blue-800" },
-              { name: "Python", category: "ML/Data", color: "from-cyan-900 to-cyan-800" },
-              { name: "TensorFlow", category: "AI", color: "from-orange-900 to-orange-800" },
-              { name: "Supabase", category: "Database", color: "from-emerald-900 to-emerald-800" },
-              { name: "OpenAI API", category: "AI", color: "from-violet-900 to-violet-800" },
-            ].map((tech, i) => (
-              <Reveal key={tech.name} delay={i * 60}>
-                <div className={`relative overflow-hidden rounded-2xl bg-gradient-to-br ${tech.color} p-5 border border-white/10 hover:border-white/20 transition-all duration-300 hover:-translate-y-1`}>
-                  <p className="text-[10px] text-white/40 tracking-wider mb-2">{tech.category}</p>
-                  <p className="text-sm font-black text-white">{tech.name}</p>
+              {
+                category: "Frontend",
+                label: "フロントエンド",
+                items: [
+                  { name: "Next.js", slug: "nextdotjs" },
+                  { name: "React", slug: "react" },
+                  { name: "TypeScript", slug: "typescript" },
+                  { name: "Tailwind CSS", slug: "tailwindcss" },
+                  { name: "Vite", slug: "vite" },
+                ],
+              },
+              {
+                category: "Backend / Language",
+                label: "バックエンド・言語",
+                items: [
+                  { name: "Python", slug: "python" },
+                  { name: "Node.js", slug: "nodedotjs" },
+                  { name: "FastAPI", slug: "fastapi" },
+                  { name: "Go", slug: "go" },
+                  { name: "Rust", slug: "rust" },
+                ],
+              },
+              {
+                category: "AI / LLM",
+                label: "AI・機械学習",
+                items: [
+                  { name: "Anthropic Claude", slug: "anthropic" },
+                  { name: "OpenAI", slug: "openai" },
+                  { name: "Hugging Face", slug: "huggingface" },
+                  { name: "TensorFlow", slug: "tensorflow" },
+                  { name: "PyTorch", slug: "pytorch" },
+                  { name: "LangChain", slug: "langchain" },
+                ],
+              },
+              {
+                category: "Database / Storage",
+                label: "データベース",
+                items: [
+                  { name: "PostgreSQL", slug: "postgresql" },
+                  { name: "Supabase", slug: "supabase" },
+                  { name: "Redis", slug: "redis" },
+                  { name: "MongoDB", slug: "mongodb" },
+                  { name: "Firebase", slug: "firebase" },
+                ],
+              },
+              {
+                category: "Cloud / Infrastructure",
+                label: "クラウド・インフラ",
+                items: [
+                  { name: "AWS", slug: "amazonwebservices" },
+                  { name: "Google Cloud", slug: "googlecloud" },
+                  { name: "Vercel", slug: "vercel" },
+                  { name: "Cloudflare", slug: "cloudflare" },
+                  { name: "Docker", slug: "docker" },
+                  { name: "Kubernetes", slug: "kubernetes" },
+                ],
+              },
+              {
+                category: "DevOps / Tools",
+                label: "DevOps・ツール",
+                items: [
+                  { name: "GitHub", slug: "github" },
+                  { name: "GitHub Actions", slug: "githubactions" },
+                  { name: "Terraform", slug: "terraform" },
+                  { name: "Datadog", slug: "datadog" },
+                  { name: "Sentry", slug: "sentry" },
+                  { name: "Stripe", slug: "stripe" },
+                ],
+              },
+            ].map((group, gi) => (
+              <Reveal key={group.category} delay={gi * 80}>
+                <div className="grid lg:grid-cols-12 gap-6 lg:gap-10 items-start border-t border-white/5 pt-10">
+                  <div className="lg:col-span-3">
+                    <p className="text-[10px] font-black tracking-widest text-cyan-400/70 uppercase mb-2">{group.category}</p>
+                    <h3 className="text-lg font-black text-white">{group.label}</h3>
+                  </div>
+                  <div className="lg:col-span-9">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+                      {group.items.map((tech) => (
+                        <div key={tech.name}
+                          className="group relative overflow-hidden rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white/[0.06] hover:border-white/20 transition-all duration-300 hover:-translate-y-0.5 p-4 flex flex-col items-center justify-center gap-2.5 aspect-square">
+                          <div className="w-9 h-9 flex items-center justify-center opacity-80 group-hover:opacity-100 transition-opacity">
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img
+                              src={`https://cdn.simpleicons.org/${tech.slug}/white`}
+                              alt={tech.name}
+                              className="w-full h-full object-contain"
+                              loading="lazy"
+                            />
+                          </div>
+                          <p className="text-[11px] font-bold text-white/70 group-hover:text-white transition-colors text-center leading-tight">
+                            {tech.name}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </Reveal>
             ))}

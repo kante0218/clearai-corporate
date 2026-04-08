@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
 
 const navItems = [
   { label: "事業紹介", href: "/#services" },
@@ -14,13 +13,9 @@ const navItems = [
 ];
 
 export default function Header() {
-  const pathname = usePathname();
-  const isHomePage = pathname === "/";
-
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [isDark, setIsDark] = useState(isHomePage);
 
   useEffect(() => {
     const onScroll = () => {
@@ -28,22 +23,15 @@ export default function Header() {
       setScrolled(y > 50);
       const docH = document.documentElement.scrollHeight - window.innerHeight;
       setScrollProgress(docH > 0 ? (y / docH) * 100 : 0);
-      if (isHomePage) {
-        const heroH = window.innerHeight;
-        setIsDark(y < heroH * 0.85);
-      }
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, [isHomePage]);
+  }, []);
 
-  const showWhiteLogo = isDark && !scrolled;
-  const navColor = showWhiteLogo ? "text-white/80 hover:text-white" : "text-gray-600 hover:text-gray-900";
+  const navColor = "text-gray-600 hover:text-gray-900";
   const headerBg = scrolled
     ? "bg-white/95 backdrop-blur-xl border-b border-gray-200 shadow-sm"
-    : isDark
-      ? "bg-transparent"
-      : "bg-white border-b border-gray-100";
+    : "bg-white border-b border-gray-100";
 
   return (
     <>
@@ -54,7 +42,7 @@ export default function Header() {
           <div className="flex items-center justify-between h-16 lg:h-18">
             <Link href="/" className="flex items-center group">
               <Image
-                src={showWhiteLogo ? "/images/logo-white.png" : "/images/logo.png"}
+                src="/images/logo.png"
                 alt="clear AI"
                 width={140}
                 height={40}
@@ -75,26 +63,22 @@ export default function Header() {
 
             <div className="hidden lg:flex items-center gap-3">
               <Link href="/contact"
-                className={`text-sm font-semibold px-5 py-2 rounded-full border transition-all duration-300 ${
-                  showWhiteLogo
-                    ? "border-white/30 text-white hover:bg-white hover:text-gray-900"
-                    : "border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white"
-                }`}>
+                className="text-sm font-semibold px-5 py-2 rounded-full border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-300">
                 お問い合わせ
               </Link>
             </div>
 
             <button onClick={() => setIsOpen(!isOpen)} className="lg:hidden p-2 z-10" aria-label="メニュー">
               <div className="w-6 h-5 flex flex-col justify-between">
-                <span className={`w-full h-0.5 transition-all duration-300 ${
+                <span className={`w-full h-0.5 bg-gray-900 transition-all duration-300 ${
                   isOpen ? "rotate-45 translate-y-[9px]" : ""
-                } ${showWhiteLogo ? "bg-white" : "bg-gray-900"}`} />
-                <span className={`w-full h-0.5 transition-all duration-300 ${
+                }`} />
+                <span className={`w-full h-0.5 bg-gray-900 transition-all duration-300 ${
                   isOpen ? "opacity-0 w-0" : ""
-                } ${showWhiteLogo ? "bg-white" : "bg-gray-900"}`} />
-                <span className={`w-full h-0.5 transition-all duration-300 ${
+                }`} />
+                <span className={`w-full h-0.5 bg-gray-900 transition-all duration-300 ${
                   isOpen ? "-rotate-45 -translate-y-[9px]" : ""
-                } ${showWhiteLogo ? "bg-white" : "bg-gray-900"}`} />
+                }`} />
               </div>
             </button>
           </div>
