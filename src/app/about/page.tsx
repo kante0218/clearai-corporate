@@ -42,20 +42,20 @@ function Label({ children }: { children: ReactNode }) {
 
 const companyInfo = [
   { label: "会社名", value: "clear AI株式会社" },
-  { label: "設立", value: "2025年" },
+  { label: "設立", value: "2026年4月" },
   { label: "代表", value: "代表取締役" },
-  { label: "所在地", value: "東京都" },
+  { label: "所在地", value: "茨城県" },
   { label: "事業内容", value: "AIコンサルティング / AI×農業ソリューション" },
 ];
 
 const timeline = [
   {
-    year: "2025",
+    year: "2026年4月",
     title: "clear AI株式会社 設立",
-    description: "AIの力を日本の企業と農業現場に届けるというミッションのもと創業。",
+    description: "定款認証を経て、AIの力を日本の企業と農業現場に届けるというミッションのもと茨城県にて創業。",
   },
   {
-    year: "2025",
+    year: "2026",
     title: "AIコンサルティング事業 開始",
     description: "日本企業向けに、AI戦略策定から実装・運用まで一気通貫の支援を開始。",
   },

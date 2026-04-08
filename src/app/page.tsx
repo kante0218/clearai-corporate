@@ -66,62 +66,6 @@ function CountUp({ target, suffix = "" }: { target: number; suffix?: string }) {
   return <span ref={ref}>{count.toLocaleString()}{suffix}</span>;
 }
 
-/* ── Custom cursor ── */
-function CustomCursor() {
-  const dotRef = useRef<HTMLDivElement>(null);
-  const ringRef = useRef<HTMLDivElement>(null);
-  const pos = useRef({ x: 0, y: 0 });
-  const ringPos = useRef({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const onMove = (e: MouseEvent) => {
-      pos.current = { x: e.clientX, y: e.clientY };
-      if (dotRef.current) {
-        dotRef.current.style.left = `${e.clientX}px`;
-        dotRef.current.style.top = `${e.clientY}px`;
-      }
-    };
-    const onHover = () => {
-      dotRef.current?.classList.add("hovering");
-      ringRef.current?.classList.add("hovering");
-    };
-    const onLeave = () => {
-      dotRef.current?.classList.remove("hovering");
-      ringRef.current?.classList.remove("hovering");
-    };
-
-    let raf: number;
-    const animateRing = () => {
-      ringPos.current.x += (pos.current.x - ringPos.current.x) * 0.1;
-      ringPos.current.y += (pos.current.y - ringPos.current.y) * 0.1;
-      if (ringRef.current) {
-        ringRef.current.style.left = `${ringPos.current.x}px`;
-        ringRef.current.style.top = `${ringPos.current.y}px`;
-      }
-      raf = requestAnimationFrame(animateRing);
-    };
-    raf = requestAnimationFrame(animateRing);
-
-    document.addEventListener("mousemove", onMove);
-    document.querySelectorAll("a, button").forEach(el => {
-      el.addEventListener("mouseenter", onHover);
-      el.addEventListener("mouseleave", onLeave);
-    });
-
-    return () => {
-      document.removeEventListener("mousemove", onMove);
-      cancelAnimationFrame(raf);
-    };
-  }, []);
-
-  return (
-    <>
-      <div ref={dotRef} className="custom-cursor" />
-      <div ref={ringRef} className="custom-cursor-ring" />
-    </>
-  );
-}
-
 /* ── Section label ── */
 function SectionLabel({ children, light = false }: { children: ReactNode; light?: boolean }) {
   return (
@@ -215,8 +159,6 @@ export default function HomePage() {
 
   return (
     <>
-      <CustomCursor />
-
       {/* ═══ HERO ═══ */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <CinematicBg />
@@ -329,7 +271,7 @@ export default function HomePage() {
                   </div>
                   <div className="w-px h-10 bg-white/10" />
                   <div>
-                    <p className="text-4xl font-black text-white">2025</p>
+                    <p className="text-4xl font-black text-white">2026</p>
                     <p className="text-xs text-white/40 tracking-wider mt-1">創業</p>
                   </div>
                 </div>
@@ -509,9 +451,9 @@ export default function HomePage() {
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-gray-100 rounded-3xl overflow-hidden">
             {[
-              { label: "展開事業数", value: 2, suffix: "事業", icon: "🚀", note: "2025年〜" },
+              { label: "展開事業数", value: 2, suffix: "事業", icon: "🚀", note: "2026年〜" },
               { label: "対象市場", value: 1, suffix: "（日本）", icon: "🇯🇵", note: "国内特化" },
-              { label: "創業年", value: 2025, suffix: "", icon: "✦", note: "スタートアップ" },
+              { label: "創業年", value: 2026, suffix: "", icon: "✦", note: "スタートアップ" },
               { label: "支援領域", value: 4, suffix: "領域", icon: "🌱", note: "戦略〜運用" },
             ].map((stat, i) => (
               <Reveal key={stat.label} delay={i * 100}>
