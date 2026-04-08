@@ -169,8 +169,7 @@ export default function HomePage() {
           playsInline
           className="absolute inset-0 w-full h-full object-cover z-0"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-gray-950/70 via-gray-950/60 to-gray-950/85 z-[1]" />
-        <FloatingParticles count={10} />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-white/5 to-white/30 z-[1]" />
 
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] rounded-full bg-blue-600/10 blur-[140px]"
@@ -191,7 +190,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          <h1 className="text-5xl sm:text-7xl lg:text-8xl xl:text-9xl font-black text-white leading-[0.95] tracking-tight mb-8 transition-all duration-1000"
+          <h1 className="text-5xl sm:text-7xl lg:text-8xl xl:text-9xl font-black text-white leading-[0.95] tracking-tight mb-8 transition-all duration-1000 drop-shadow-[0_4px_24px_rgba(0,0,0,0.4)]"
             style={{
               opacity: heroLoaded ? 1 : 0,
               transform: heroLoaded ? "translateY(0) scale(1)" : "translateY(40px) scale(0.97)",
@@ -237,52 +236,51 @@ export default function HomePage() {
           </div>
         </div>
 
-        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-gray-950 to-transparent pointer-events-none" />
+        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-white to-transparent pointer-events-none z-[2]" />
       </section>
 
       {/* ═══ VISION ═══ */}
-      <DarkSection className="py-32 lg:py-48">
+      <section className="relative overflow-hidden bg-white py-32 lg:py-48">
         <div className="max-w-6xl mx-auto px-6 lg:px-10 relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <Reveal direction="left">
-              <SectionLabel light>Our Vision</SectionLabel>
-              <h2 className="text-5xl lg:text-7xl font-black text-white leading-[0.95] tracking-tight">
+              <SectionLabel>Our Vision</SectionLabel>
+              <h2 className="text-5xl lg:text-7xl font-black text-gray-900 leading-[0.95] tracking-tight">
                 AIを、<br />
-                <span className="text-cyan-400">日本の現場</span>
+                <span className="text-blue-600">日本の現場</span>
                 <br />へ届ける。
               </h2>
             </Reveal>
             <Reveal direction="right" delay={200}>
               <div className="space-y-6">
-                <p className="text-lg text-white/60 leading-loose">
+                <p className="text-lg text-gray-600 leading-loose">
                   AIはまだ、多くの企業や生産者にとって遠い存在です。難しい、コストが高い、何から始めればいいかわからない——そんな声を何度も聞いてきました。
                 </p>
-                <p className="text-lg text-white/60 leading-loose">
+                <p className="text-lg text-gray-600 leading-loose">
                   私たちはそのギャップを埋めるために生まれました。最先端のAI技術を、ビジネスと農業の言葉に翻訳する。一社一社、一農家一農家に寄り添い、AIの価値を丁寧に届けていきます。
                 </p>
-                <div className="divider-dark mt-8" />
+                <div className="h-px bg-gray-200 mt-8" />
                 <div className="flex items-center gap-6 pt-4">
                   <div>
-                    <p className="text-4xl font-black text-white">2<span className="text-base text-white/40 ml-1 font-normal">事業</span></p>
-                    <p className="text-xs text-white/40 tracking-wider mt-1">展開中</p>
+                    <p className="text-4xl font-black text-gray-900">2<span className="text-base text-gray-400 ml-1 font-normal">事業</span></p>
+                    <p className="text-xs text-gray-400 tracking-wider mt-1">展開中</p>
                   </div>
-                  <div className="w-px h-10 bg-white/10" />
+                  <div className="w-px h-10 bg-gray-200" />
                   <div>
-                    <p className="text-4xl font-black text-white">日本</p>
-                    <p className="text-xs text-white/40 tracking-wider mt-1">市場特化</p>
+                    <p className="text-4xl font-black text-gray-900">日本</p>
+                    <p className="text-xs text-gray-400 tracking-wider mt-1">市場特化</p>
                   </div>
-                  <div className="w-px h-10 bg-white/10" />
+                  <div className="w-px h-10 bg-gray-200" />
                   <div>
-                    <p className="text-4xl font-black text-white">2026</p>
-                    <p className="text-xs text-white/40 tracking-wider mt-1">創業</p>
+                    <p className="text-4xl font-black text-gray-900">2026</p>
+                    <p className="text-xs text-gray-400 tracking-wider mt-1">創業</p>
                   </div>
                 </div>
               </div>
             </Reveal>
           </div>
         </div>
-        <MouseGlow dark />
-      </DarkSection>
+      </section>
 
       {/* ═══ SERVICES ═══ */}
       <section id="services" className="py-24 lg:py-36 bg-white relative overflow-hidden">
@@ -366,14 +364,14 @@ export default function HomePage() {
       </section>
 
       {/* ═══ APPROACH ═══ */}
-      <DarkSection className="py-24 lg:py-36">
+      <section className="relative overflow-hidden bg-gray-50 py-24 lg:py-36">
         <div className="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <Reveal direction="left">
-              <SectionLabel light>Our Approach</SectionLabel>
-              <h2 className="text-4xl lg:text-6xl font-black text-white leading-[0.95] tracking-tight mb-8">
+              <SectionLabel>Our Approach</SectionLabel>
+              <h2 className="text-4xl lg:text-6xl font-black text-gray-900 leading-[0.95] tracking-tight mb-8">
                 私たちが<br />大切にする<br />
-                <span className="text-cyan-400">3つのこと</span>
+                <span className="text-blue-600">3つのこと</span>
               </h2>
               <div className="space-y-8">
                 {[
@@ -384,14 +382,14 @@ export default function HomePage() {
                   <Reveal key={item.num} delay={i * 100}>
                     <div className="flex gap-5 group">
                       <div className="flex-shrink-0">
-                        <span className="text-xs font-black text-cyan-400/60 tracking-widest">{item.num}</span>
+                        <span className="text-xs font-black text-blue-600/70 tracking-widest">{item.num}</span>
                       </div>
                       <div>
-                        <h3 className="text-base font-black text-white mb-1.5 group-hover:text-blue-300 transition-colors">{item.title}</h3>
-                        <p className="text-sm text-white/40 leading-relaxed">{item.desc}</p>
+                        <h3 className="text-base font-black text-gray-900 mb-1.5 group-hover:text-blue-600 transition-colors">{item.title}</h3>
+                        <p className="text-sm text-gray-500 leading-relaxed">{item.desc}</p>
                       </div>
                     </div>
-                    {i < 2 && <div className="divider-dark mt-6 ml-8" />}
+                    {i < 2 && <div className="h-px bg-gray-200 mt-6 ml-8" />}
                   </Reveal>
                 ))}
               </div>
@@ -399,48 +397,47 @@ export default function HomePage() {
 
             <Reveal direction="right" delay={300}>
               <div className="relative">
-                <div className="relative overflow-hidden rounded-3xl aspect-[4/5] bg-gradient-to-br from-blue-900/40 to-emerald-900/40 border border-white/10">
+                <div className="relative overflow-hidden rounded-3xl aspect-[4/5] bg-gradient-to-br from-blue-50 to-emerald-50 border border-gray-200">
                   <div className="absolute inset-0">
-                    <div className="absolute inset-0 bg-gradient-to-br from-blue-950 via-emerald-950 to-gray-950" />
-                    <div className="absolute w-full h-full opacity-60">
-                      <div className="absolute top-1/4 left-1/4 w-48 h-48 bg-blue-500/30 rounded-full blur-3xl animate-float1" />
-                      <div className="absolute bottom-1/4 right-1/4 w-40 h-40 bg-emerald-500/25 rounded-full blur-3xl animate-float2" />
-                      <div className="absolute top-1/2 right-1/3 w-32 h-32 bg-cyan-500/20 rounded-full blur-2xl animate-float3" />
+                    <div className="absolute w-full h-full opacity-70">
+                      <div className="absolute top-1/4 left-1/4 w-48 h-48 bg-blue-300/40 rounded-full blur-3xl animate-float1" />
+                      <div className="absolute bottom-1/4 right-1/4 w-40 h-40 bg-emerald-300/35 rounded-full blur-3xl animate-float2" />
+                      <div className="absolute top-1/2 right-1/3 w-32 h-32 bg-cyan-300/30 rounded-full blur-2xl animate-float3" />
                     </div>
-                    <div className="absolute inset-0 opacity-[0.06]" style={{
+                    <div className="absolute inset-0 opacity-[0.08]" style={{
                       backgroundImage: "linear-gradient(rgba(37,99,235,1) 1px, transparent 1px), linear-gradient(90deg, rgba(37,99,235,1) 1px, transparent 1px)",
                       backgroundSize: "40px 40px"
                     }} />
                     <div className="absolute inset-0 flex items-center justify-center">
                       <div className="text-center">
-                        <div className="text-6xl font-black text-white/10 leading-none tracking-tighter">clear<br />AI</div>
+                        <div className="text-6xl font-black text-gray-900/10 leading-none tracking-tighter">clear<br />AI</div>
                       </div>
                     </div>
                   </div>
-                  <div className="absolute bottom-8 left-8 right-8 bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-5">
+                  <div className="absolute bottom-8 left-8 right-8 bg-white/80 backdrop-blur-md border border-gray-200 rounded-2xl p-5 shadow-lg">
                     <div className="flex justify-between">
                       <div>
-                        <p className="text-2xl font-black text-white">2</p>
-                        <p className="text-xs text-white/40 tracking-wider">事業</p>
+                        <p className="text-2xl font-black text-gray-900">2</p>
+                        <p className="text-xs text-gray-400 tracking-wider">事業</p>
                       </div>
                       <div>
-                        <p className="text-2xl font-black text-white">∞</p>
-                        <p className="text-xs text-white/40 tracking-wider">可能性</p>
+                        <p className="text-2xl font-black text-gray-900">∞</p>
+                        <p className="text-xs text-gray-400 tracking-wider">可能性</p>
                       </div>
                       <div>
-                        <p className="text-2xl font-black text-emerald-400">日本</p>
-                        <p className="text-xs text-white/40 tracking-wider">特化</p>
+                        <p className="text-2xl font-black text-emerald-600">日本</p>
+                        <p className="text-xs text-gray-400 tracking-wider">特化</p>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div className="absolute -top-6 -right-6 w-24 h-24 bg-blue-500/20 rounded-full blur-2xl" />
-                <div className="absolute -bottom-6 -left-6 w-20 h-20 bg-emerald-500/20 rounded-full blur-xl" />
+                <div className="absolute -top-6 -right-6 w-24 h-24 bg-blue-300/40 rounded-full blur-2xl" />
+                <div className="absolute -bottom-6 -left-6 w-20 h-20 bg-emerald-300/40 rounded-full blur-xl" />
               </div>
             </Reveal>
           </div>
         </div>
-      </DarkSection>
+      </section>
 
       {/* ═══ METRICS ═══ */}
       <section className="py-24 lg:py-32 bg-white relative overflow-hidden">
@@ -480,13 +477,13 @@ export default function HomePage() {
       </section>
 
       {/* ═══ TECH STACK ═══ */}
-      <DarkSection className="py-24 lg:py-36">
+      <section className="relative overflow-hidden bg-white py-24 lg:py-36">
         <div className="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
           <Reveal>
             <div className="mb-16">
-              <SectionLabel light>Tech Stack</SectionLabel>
-              <h2 className="text-3xl lg:text-5xl font-black text-white mb-4">使用技術</h2>
-              <p className="text-base text-white/50 max-w-xl leading-relaxed">
+              <SectionLabel>Tech Stack</SectionLabel>
+              <h2 className="text-3xl lg:text-5xl font-black text-gray-900 mb-4">使用技術</h2>
+              <p className="text-base text-gray-500 max-w-xl leading-relaxed">
                 信頼性・実績・コミュニティの厚さを基準に、プロダクションレディな技術のみを採用しています。
               </p>
             </div>
@@ -565,26 +562,26 @@ export default function HomePage() {
               },
             ].map((group, gi) => (
               <Reveal key={group.category} delay={gi * 80}>
-                <div className="grid lg:grid-cols-12 gap-6 lg:gap-10 items-start border-t border-white/5 pt-10">
+                <div className="grid lg:grid-cols-12 gap-6 lg:gap-10 items-start border-t border-gray-200 pt-10">
                   <div className="lg:col-span-3">
-                    <p className="text-[10px] font-black tracking-widest text-cyan-400/70 uppercase mb-2">{group.category}</p>
-                    <h3 className="text-lg font-black text-white">{group.label}</h3>
+                    <p className="text-[10px] font-black tracking-widest text-blue-600/80 uppercase mb-2">{group.category}</p>
+                    <h3 className="text-lg font-black text-gray-900">{group.label}</h3>
                   </div>
                   <div className="lg:col-span-9">
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
                       {group.items.map((tech) => (
                         <div key={tech.name}
-                          className="group relative overflow-hidden rounded-2xl bg-white/[0.03] border border-white/10 hover:bg-white/[0.06] hover:border-white/20 transition-all duration-300 hover:-translate-y-0.5 p-4 flex flex-col items-center justify-center gap-2.5 aspect-square">
+                          className="group relative overflow-hidden rounded-2xl bg-gray-50 border border-gray-200 hover:bg-white hover:border-blue-200 hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 p-4 flex flex-col items-center justify-center gap-2.5 aspect-square">
                           <div className="w-9 h-9 flex items-center justify-center opacity-80 group-hover:opacity-100 transition-opacity">
                             {/* eslint-disable-next-line @next/next/no-img-element */}
                             <img
-                              src={`https://api.iconify.design/simple-icons/${tech.slug}.svg?color=%23ffffff`}
+                              src={`https://api.iconify.design/simple-icons/${tech.slug}.svg?color=%23374151`}
                               alt={tech.name}
                               className="w-full h-full object-contain"
                               loading="lazy"
                             />
                           </div>
-                          <p className="text-[11px] font-bold text-white/70 group-hover:text-white transition-colors text-center leading-tight">
+                          <p className="text-[11px] font-bold text-gray-600 group-hover:text-gray-900 transition-colors text-center leading-tight">
                             {tech.name}
                           </p>
                         </div>
@@ -596,8 +593,7 @@ export default function HomePage() {
             ))}
           </div>
         </div>
-        <MouseGlow dark />
-      </DarkSection>
+      </section>
 
       {/* ═══ BLOG ═══ */}
       <section className="py-24 lg:py-32 bg-white relative overflow-hidden">
@@ -649,23 +645,25 @@ export default function HomePage() {
       </section>
 
       {/* ═══ CTA ═══ */}
-      <section className="relative overflow-hidden min-h-[60vh] flex items-center">
-        <CinematicBg />
-        <FloatingParticles count={6} />
+      <section className="relative overflow-hidden min-h-[60vh] flex items-center bg-gradient-to-br from-blue-50 via-white to-emerald-50">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full bg-blue-200/40 blur-[120px]" />
+          <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full bg-emerald-200/40 blur-[100px]" />
+        </div>
         <div className="relative z-10 w-full py-28 lg:py-40">
           <div className="max-w-4xl mx-auto px-6 text-center">
             <Reveal>
-              <p className="text-xs font-black tracking-widest text-blue-300/60 uppercase mb-6">Contact</p>
-              <h2 className="text-5xl lg:text-7xl font-black text-white leading-[0.95] tracking-tight mb-8">
+              <p className="text-xs font-black tracking-widest text-blue-600 uppercase mb-6">Contact</p>
+              <h2 className="text-5xl lg:text-7xl font-black text-gray-900 leading-[0.95] tracking-tight mb-8">
                 まずは、<br />
-                <span className="text-cyan-400">お話しませんか。</span>
+                <span className="text-blue-600">お話しませんか。</span>
               </h2>
-              <p className="text-base lg:text-lg text-white/50 leading-loose mb-12 max-w-lg mx-auto">
+              <p className="text-base lg:text-lg text-gray-600 leading-loose mb-12 max-w-lg mx-auto">
                 AIのことがわからなくても大丈夫です。<br />貴社・貴農園の状況に合わせて、一緒に考えます。
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Link href="/contact"
-                  className="group text-sm font-black text-gray-900 bg-white px-12 py-5 rounded-full hover:bg-blue-50 transition-all duration-300 hover:shadow-2xl hover:shadow-white/10 inline-flex items-center gap-3">
+                  className="group text-sm font-black text-white bg-blue-600 px-12 py-5 rounded-full hover:bg-blue-500 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/30 inline-flex items-center gap-3">
                   無料で相談する
                   <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
@@ -675,7 +673,6 @@ export default function HomePage() {
             </Reveal>
           </div>
         </div>
-        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-gray-900 to-transparent pointer-events-none" />
       </section>
 
       {/* ═══ FLOATING CONTACT BUTTON ═══ */}
