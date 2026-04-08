@@ -628,7 +628,7 @@ export default function HomePage() {
                           <div className="w-9 h-9 flex items-center justify-center opacity-80 group-hover:opacity-100 transition-opacity">
                             {/* eslint-disable-next-line @next/next/no-img-element */}
                             <img
-                              src={`https://cdn.simpleicons.org/${tech.slug}/white`}
+                              src={`https://api.iconify.design/simple-icons/${tech.slug}.svg?color=%23ffffff`}
                               alt={tech.name}
                               className="w-full h-full object-contain"
                               loading="lazy"

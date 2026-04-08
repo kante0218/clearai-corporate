@@ -15,14 +15,10 @@ const navItems = [
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
     const onScroll = () => {
-      const y = window.scrollY;
-      setScrolled(y > 50);
-      const docH = document.documentElement.scrollHeight - window.innerHeight;
-      setScrollProgress(docH > 0 ? (y / docH) * 100 : 0);
+      setScrolled(window.scrollY > 50);
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -35,8 +31,6 @@ export default function Header() {
 
   return (
     <>
-      <div className="scroll-progress" style={{ width: `${scrollProgress}%` }} />
-
       <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${headerBg}`}>
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <div className="flex items-center justify-between h-16 lg:h-18">
