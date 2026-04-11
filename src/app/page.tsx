@@ -456,14 +456,41 @@ export default function HomePage() {
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-gray-100 rounded-3xl overflow-hidden">
             {[
-              { label: "展開事業数", value: 2, suffix: "事業", icon: "🚀", note: "2026年〜" },
-              { label: "対象市場", value: 1, suffix: "（日本）", icon: "🇯🇵", note: "国内特化" },
-              { label: "創業年", value: 2026, suffix: "", icon: "✦", note: "スタートアップ" },
-              { label: "支援領域", value: 4, suffix: "領域", icon: "🌱", note: "戦略〜運用" },
+              { label: "展開事業数", value: 2, suffix: "事業", icon: (
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                  <path d="M8 26L13 18L17 22L24 6" stroke="url(#metric-rocket)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M20 6H24V10" stroke="url(#metric-rocket)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  <circle cx="24" cy="6" r="2" fill="#2563eb" opacity="0.3"/>
+                  <defs><linearGradient id="metric-rocket" x1="8" y1="26" x2="24" y2="6"><stop stopColor="#60a5fa"/><stop offset="1" stopColor="#2563eb"/></linearGradient></defs>
+                </svg>
+              ), note: "2026年〜" },
+              { label: "対象市場", value: 1, suffix: "（日本）", icon: (
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                  <rect x="3" y="6" width="26" height="20" rx="3" fill="#fafafa" stroke="#cbd5e1" strokeWidth="1.5"/>
+                  <circle cx="16" cy="16" r="5.5" fill="#DC2626"/>
+                </svg>
+              ), note: "国内特化" },
+              { label: "創業年", value: 2026, suffix: "", icon: (
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                  <path d="M16 4L18.8 12.2H27.4L20.3 17.4L23.1 25.6L16 20.4L8.9 25.6L11.7 17.4L4.6 12.2H13.2L16 4Z" fill="url(#metric-star)" opacity="0.12"/>
+                  <path d="M16 4L18.8 12.2H27.4L20.3 17.4L23.1 25.6L16 20.4L8.9 25.6L11.7 17.4L4.6 12.2H13.2L16 4Z" stroke="url(#metric-star)" strokeWidth="1.5" strokeLinejoin="round"/>
+                  <defs><linearGradient id="metric-star" x1="4" y1="4" x2="28" y2="28"><stop stopColor="#2563eb"/><stop offset="1" stopColor="#7c3aed"/></linearGradient></defs>
+                </svg>
+              ), note: "スタートアップ" },
+              { label: "支援領域", value: 4, suffix: "領域", icon: (
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                  <path d="M16 28C16 28 16 22 16 18" stroke="#16a34a" strokeWidth="2" strokeLinecap="round"/>
+                  <path d="M16 18C16 14 20 12 22 10" stroke="#16a34a" strokeWidth="2" strokeLinecap="round"/>
+                  <path d="M16 21C16 17 12 15 10 13" stroke="#16a34a" strokeWidth="2" strokeLinecap="round"/>
+                  <circle cx="22" cy="8" r="3.5" fill="#16a34a" opacity="0.12" stroke="#16a34a" strokeWidth="1.5"/>
+                  <circle cx="10" cy="11" r="3" fill="#16a34a" opacity="0.12" stroke="#16a34a" strokeWidth="1.5"/>
+                  <circle cx="16" cy="7" r="4" fill="#16a34a" opacity="0.12" stroke="#16a34a" strokeWidth="1.5"/>
+                </svg>
+              ), note: "戦略〜運用" },
             ].map((stat, i) => (
               <Reveal key={stat.label} delay={i * 100}>
                 <div className="bg-white p-8 lg:p-12 group hover:bg-blue-50/50 transition-colors duration-500">
-                  <div className="text-2xl mb-3">{stat.icon}</div>
+                  <div className="mb-3">{stat.icon}</div>
                   <p className="text-4xl lg:text-6xl font-black text-gray-900 tracking-tight">
                     <CountUp target={stat.value} />{stat.suffix}
                   </p>
@@ -495,69 +522,69 @@ export default function HomePage() {
                 category: "Frontend",
                 label: "フロントエンド",
                 items: [
-                  { name: "Next.js", slug: "nextdotjs" },
-                  { name: "React", slug: "react" },
-                  { name: "TypeScript", slug: "typescript" },
-                  { name: "Tailwind CSS", slug: "tailwindcss" },
-                  { name: "Vite", slug: "vite" },
+                  { name: "Next.js", slug: "nextdotjs", color: "000000" },
+                  { name: "React", slug: "react", color: "61DAFB" },
+                  { name: "TypeScript", slug: "typescript", color: "3178C6" },
+                  { name: "Tailwind CSS", slug: "tailwindcss", color: "06B6D4" },
+                  { name: "Vite", slug: "vite", color: "646CFF" },
                 ],
               },
               {
                 category: "Backend / Language",
                 label: "バックエンド・言語",
                 items: [
-                  { name: "Python", slug: "python" },
-                  { name: "Node.js", slug: "nodedotjs" },
-                  { name: "FastAPI", slug: "fastapi" },
-                  { name: "Go", slug: "go" },
-                  { name: "Rust", slug: "rust" },
+                  { name: "Python", slug: "python", color: "3776AB" },
+                  { name: "Node.js", slug: "nodedotjs", color: "5FA04E" },
+                  { name: "FastAPI", slug: "fastapi", color: "009688" },
+                  { name: "Go", slug: "go", color: "00ADD8" },
+                  { name: "Rust", slug: "rust", color: "000000" },
                 ],
               },
               {
                 category: "AI / LLM",
                 label: "AI・機械学習",
                 items: [
-                  { name: "Anthropic Claude", slug: "anthropic" },
-                  { name: "OpenAI", slug: "openai" },
-                  { name: "Hugging Face", slug: "huggingface" },
-                  { name: "TensorFlow", slug: "tensorflow" },
-                  { name: "PyTorch", slug: "pytorch" },
-                  { name: "LangChain", slug: "langchain" },
+                  { name: "Anthropic Claude", slug: "anthropic", color: "D4A27F" },
+                  { name: "OpenAI", slug: "openai", color: "412991" },
+                  { name: "Hugging Face", slug: "huggingface", color: "FFD21E" },
+                  { name: "TensorFlow", slug: "tensorflow", color: "FF6F00" },
+                  { name: "PyTorch", slug: "pytorch", color: "EE4C2C" },
+                  { name: "LangChain", slug: "langchain", color: "1C3C3C" },
                 ],
               },
               {
                 category: "Database / Storage",
                 label: "データベース",
                 items: [
-                  { name: "PostgreSQL", slug: "postgresql" },
-                  { name: "Supabase", slug: "supabase" },
-                  { name: "Redis", slug: "redis" },
-                  { name: "MongoDB", slug: "mongodb" },
-                  { name: "Firebase", slug: "firebase" },
+                  { name: "PostgreSQL", slug: "postgresql", color: "4169E1" },
+                  { name: "Supabase", slug: "supabase", color: "3FCF8E" },
+                  { name: "Redis", slug: "redis", color: "FF4438" },
+                  { name: "MongoDB", slug: "mongodb", color: "47A248" },
+                  { name: "Firebase", slug: "firebase", color: "DD2C00" },
                 ],
               },
               {
                 category: "Cloud / Infrastructure",
                 label: "クラウド・インフラ",
                 items: [
-                  { name: "AWS", slug: "amazonwebservices" },
-                  { name: "Google Cloud", slug: "googlecloud" },
-                  { name: "Vercel", slug: "vercel" },
-                  { name: "Cloudflare", slug: "cloudflare" },
-                  { name: "Docker", slug: "docker" },
-                  { name: "Kubernetes", slug: "kubernetes" },
+                  { name: "AWS", slug: "amazonwebservices", color: "232F3E" },
+                  { name: "Google Cloud", slug: "googlecloud", color: "4285F4" },
+                  { name: "Vercel", slug: "vercel", color: "000000" },
+                  { name: "Cloudflare", slug: "cloudflare", color: "F38020" },
+                  { name: "Docker", slug: "docker", color: "2496ED" },
+                  { name: "Kubernetes", slug: "kubernetes", color: "326CE5" },
                 ],
               },
               {
                 category: "DevOps / Tools",
                 label: "DevOps・ツール",
                 items: [
-                  { name: "GitHub", slug: "github" },
-                  { name: "GitHub Actions", slug: "githubactions" },
-                  { name: "Terraform", slug: "terraform" },
-                  { name: "Datadog", slug: "datadog" },
-                  { name: "Sentry", slug: "sentry" },
-                  { name: "Stripe", slug: "stripe" },
+                  { name: "GitHub", slug: "github", color: "181717" },
+                  { name: "GitHub Actions", slug: "githubactions", color: "2088FF" },
+                  { name: "Terraform", slug: "terraform", color: "844FBA" },
+                  { name: "Datadog", slug: "datadog", color: "632CA6" },
+                  { name: "Sentry", slug: "sentry", color: "362D59" },
+                  { name: "Stripe", slug: "stripe", color: "635BFF" },
                 ],
               },
             ].map((group, gi) => (
@@ -575,7 +602,7 @@ export default function HomePage() {
                           <div className="w-9 h-9 flex items-center justify-center opacity-80 group-hover:opacity-100 transition-opacity">
                             {/* eslint-disable-next-line @next/next/no-img-element */}
                             <img
-                              src={`https://api.iconify.design/simple-icons/${tech.slug}.svg?color=%23374151`}
+                              src={`https://api.iconify.design/simple-icons/${tech.slug}.svg?color=%23${tech.color}`}
                               alt={tech.name}
                               className="w-full h-full object-contain"
                               loading="lazy"
