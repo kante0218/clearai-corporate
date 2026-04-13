@@ -1,20 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState, useCallback, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { blogPosts } from "@/lib/blog-data";
 
-/* ═══════════════════════════════════════════
-   UTILITY COMPONENTS
-═══════════════════════════════════════════ */
-
-/* ── Scroll-triggered reveal ── */
-function Reveal({
-  children, className = "", delay = 0, direction = "up"
-}: {
-  children: ReactNode; className?: string; delay?: number;
-  direction?: "up" | "left" | "right" | "scale" | "fade"
-}) {
+/* Scroll-triggered reveal - simplified, up direction only */
+function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
   useEffect(() => {
@@ -22,258 +13,112 @@ function Reveal({
     if (!el) return;
     const obs = new IntersectionObserver(
       ([e]) => { if (e.isIntersecting) { setVisible(true); obs.unobserve(el); } },
-      { threshold: 0.08, rootMargin: "0px 0px -40px 0px" }
+      { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
     );
     obs.observe(el);
     return () => obs.disconnect();
   }, []);
-  const transforms = {
-    up: "translateY(50px)", left: "translateX(-50px)",
-    right: "translateX(50px)", scale: "scale(0.93)", fade: "none"
-  };
   return (
     <div ref={ref} className={className} style={{
       opacity: visible ? 1 : 0,
-      transform: visible ? "none" : transforms[direction],
-      transition: `opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
+      transform: visible ? "none" : "translateY(24px)",
+      transition: `opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
     }}>{children}</div>
   );
 }
 
-/* ── CountUp animation ── */
-function CountUp({ target, suffix = "" }: { target: number; suffix?: string }) {
-  const [count, setCount] = useState(0);
-  const ref = useRef<HTMLSpanElement>(null);
-  const started = useRef(false);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting && !started.current) {
-        started.current = true;
-        const dur = 2000, steps = 60, inc = target / steps;
-        let cur = 0;
-        const timer = setInterval(() => {
-          cur += inc;
-          if (cur >= target) { setCount(target); clearInterval(timer); }
-          else setCount(Math.floor(cur));
-        }, dur / steps);
-      }
-    }, { threshold: 0.5 });
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, [target]);
-  return <span ref={ref}>{count.toLocaleString()}{suffix}</span>;
-}
-
-/* ── Section label ── */
-function SectionLabel({ children, light = false }: { children: ReactNode; light?: boolean }) {
+/* Section label */
+function SectionLabel({ children }: { children: ReactNode }) {
   return (
-    <div className="flex items-center gap-2 mb-5">
-      <div className={`w-1.5 h-1.5 rounded-full ${light ? "bg-blue-300" : "bg-blue-600"}`} />
-      <p className={`text-xs font-bold tracking-widest uppercase ${light ? "text-blue-300" : "text-blue-600"}`}>
-        {children}
-      </p>
-    </div>
+    <p className="text-xs font-semibold tracking-widest uppercase text-blue-600 mb-4">{children}</p>
   );
 }
 
-/* ── Cinematic dark background ── */
-function CinematicBg({ children }: { children?: ReactNode }) {
-  return (
-    <div className="absolute inset-0 overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-950 via-[#0d0b2b] to-gray-950" />
-      <div className="absolute w-[700px] h-[700px] rounded-full bg-blue-600/20 blur-[120px] animate-float1 -top-20 -left-20" />
-      <div className="absolute w-[500px] h-[500px] rounded-full bg-cyan-600/15 blur-[100px] animate-float2 bottom-0 right-0" />
-      <div className="absolute w-[400px] h-[400px] rounded-full bg-blue-500/10 blur-[80px] animate-float3 top-1/2 right-1/4" />
-      <div className="absolute w-[300px] h-[300px] rounded-full bg-sky-500/10 blur-[80px] animate-float4 bottom-1/4 left-1/3" />
-      <div className="absolute inset-0 opacity-[0.035]" style={{
-        backgroundImage: "linear-gradient(rgba(37,99,235,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(37,99,235,0.6) 1px, transparent 1px)",
-        backgroundSize: "60px 60px",
-      }} />
-      {children}
-    </div>
-  );
-}
-
-/* ── Dark section noise texture ── */
-function DarkSection({ children, className = "" }: { children: ReactNode; className?: string }) {
-  return (
-    <section className={`relative overflow-hidden bg-gray-950 ${className}`}>
-      <div className="grain absolute inset-0" />
-      {children}
-    </section>
-  );
-}
-
-/* ── Floating particles ── */
-function FloatingParticles({ count = 8, light = false }: { count?: number; light?: boolean }) {
-  return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {[...Array(count)].map((_, i) => (
-        <div key={i}
-          className={`absolute rounded-full ${light ? "bg-white/10" : "bg-blue-400/8"}`}
-          style={{
-            width: `${4 + i * 6}px`, height: `${4 + i * 6}px`,
-            left: `${5 + i * 12}%`, top: `${10 + (i % 4) * 22}%`,
-            animation: `float${(i % 4) + 1} ${6 + i * 1.2}s ease-in-out infinite`,
-            animationDelay: `${i * 0.6}s`,
-          }} />
-      ))}
-    </div>
-  );
-}
-
-/* ── Mouse follower gradient ── */
-function MouseGlow({ dark = false }: { dark?: boolean }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const handleMouseMove = useCallback((e: React.MouseEvent) => {
-    if (ref.current) {
-      const rect = ref.current.getBoundingClientRect();
-      ref.current.style.setProperty("--mx", `${e.clientX - rect.left}px`);
-      ref.current.style.setProperty("--my", `${e.clientY - rect.top}px`);
-    }
-  }, []);
-  const gradient = dark
-    ? "radial-gradient(700px circle at var(--mx, 50%) var(--my, 50%), rgba(37,99,235,0.06), transparent 60%)"
-    : "radial-gradient(600px circle at var(--mx, 50%) var(--my, 50%), rgba(37,99,235,0.04), transparent 60%)";
-  return (
-    <div ref={ref} onMouseMove={handleMouseMove} className="absolute inset-0 pointer-events-none"
-      style={{ background: gradient }} />
-  );
-}
-
-/* ═══════════════════════════════════════════
-   MAIN PAGE
-═══════════════════════════════════════════ */
 export default function HomePage() {
   const [heroLoaded, setHeroLoaded] = useState(false);
-  const [scrollY, setScrollY] = useState(0);
-
   useEffect(() => { setTimeout(() => setHeroLoaded(true), 100); }, []);
-  useEffect(() => {
-    const onScroll = () => setScrollY(window.scrollY);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   return (
     <>
       {/* ═══ HERO ═══ */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <video
-          src="/videos/hero.mp4"
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover z-0"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-white/5 to-white/30 z-[1]" />
-
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] rounded-full bg-blue-600/10 blur-[140px]"
-            style={{ transform: `translateY(${scrollY * 0.12}px)` }} />
-          <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] rounded-full bg-emerald-500/8 blur-[120px]"
-            style={{ transform: `translateY(${scrollY * -0.08}px)` }} />
-        </div>
-
-        <div className="relative z-20 max-w-5xl mx-auto px-6 text-center">
-          <div className="transition-all duration-1000" style={{
-            opacity: heroLoaded ? 1 : 0,
-            transform: heroLoaded ? "translateY(0)" : "translateY(24px)",
-            transitionDelay: "200ms"
-          }}>
-            <div className="inline-flex items-center gap-2.5 bg-white/30 border border-white/50 backdrop-blur-md rounded-full px-5 py-2 mb-10 shadow-lg">
-              <div className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse" />
-              <span className="text-xs font-bold tracking-widest text-white uppercase drop-shadow-[0_1px_4px_rgba(0,0,0,0.5)]">AI × Business × Agriculture</span>
-            </div>
-          </div>
-
-          <h1 className="text-5xl sm:text-7xl lg:text-8xl xl:text-9xl font-black text-white leading-[0.95] tracking-tight mb-8 transition-all duration-1000 drop-shadow-[0_4px_24px_rgba(0,0,0,0.4)]"
-            style={{
-              opacity: heroLoaded ? 1 : 0,
-              transform: heroLoaded ? "translateY(0) scale(1)" : "translateY(40px) scale(0.97)",
-              transitionDelay: "400ms"
-            }}>
-            AIで、<br />
-            <span className="bg-gradient-to-r from-blue-300 via-cyan-300 to-emerald-300 bg-clip-text text-transparent bg-[length:200%_auto] animate-[shimmer_4s_linear_infinite]">
-              すべてをクリア
-            </span>
-            <br />
-            <span className="text-white/90 text-4xl sm:text-5xl lg:text-6xl font-bold drop-shadow-[0_2px_12px_rgba(0,0,0,0.35)]">にする。</span>
-          </h1>
-
-          <p className="text-base lg:text-xl text-white leading-relaxed max-w-xl mx-auto mb-12 transition-all duration-1000 drop-shadow-[0_2px_10px_rgba(0,0,0,0.45)] font-medium"
-            style={{
-              opacity: heroLoaded ? 1 : 0,
-              transform: heroLoaded ? "translateY(0)" : "translateY(30px)",
-              transitionDelay: "700ms"
-            }}>
-            AIコンサルティングと、AI×農業。<br />
-            2つの事業で、日本の未来を明瞭にします。
+        <video src="/videos/hero.mp4" autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover z-0" />
+        <div className="absolute inset-0 bg-white/60 z-[1]" />
+        <div className="relative z-20 max-w-4xl mx-auto px-6 text-center">
+          <p className="text-xs font-semibold tracking-widest text-blue-600 uppercase mb-8 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "200ms" }}>
+            AI Consulting &amp; Agriculture Engineering
           </p>
-
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 transition-all duration-1000"
-            style={{
-              opacity: heroLoaded ? 1 : 0,
-              transform: heroLoaded ? "translateY(0)" : "translateY(20px)",
-              transitionDelay: "900ms"
-            }}>
-            <Link href="/contact"
-              className="group text-sm font-bold text-white bg-blue-600 pl-8 pr-6 py-4 rounded-full hover:bg-blue-500 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/30 inline-flex items-center gap-3">
-              無料で相談する
-              <span className="w-7 h-7 bg-white/15 rounded-full flex items-center justify-center group-hover:translate-x-1 transition-transform">
-                <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-                </svg>
-              </span>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0)" : "translateY(24px)", transitionDelay: "400ms" }}>
+            AIで、すべてを<br />クリアにする。
+          </h1>
+          <p className="text-base lg:text-lg text-gray-600 leading-relaxed max-w-xl mx-auto mb-10 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "600ms" }}>
+            AIコンサルティングと、エンジニアによる農業支援。<br />2つの事業で、日本の産業に確かな価値を届けます。
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "800ms" }}>
+            <Link href="/contact" className="text-sm font-semibold text-white bg-blue-600 px-8 py-3.5 rounded-lg hover:bg-blue-700 transition-colors duration-300">
+              お問い合わせ
             </Link>
-            <Link href="#services"
-              className="text-sm font-bold text-gray-900 bg-white/90 backdrop-blur-sm border border-white px-8 py-4 rounded-full hover:bg-white hover:shadow-xl transition-all duration-300">
+            <Link href="#services" className="text-sm font-semibold text-gray-600 border border-gray-300 px-8 py-3.5 rounded-lg hover:border-gray-400 hover:text-gray-900 transition-colors duration-300">
               事業を見る
             </Link>
           </div>
         </div>
+      </section>
 
-        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-white to-transparent pointer-events-none z-[2]" />
+      {/* ═══ TRUST METRICS ═══ */}
+      <section className="py-12 bg-white border-b border-gray-100">
+        <div className="max-w-5xl mx-auto px-6">
+          <Reveal>
+            <div className="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-gray-200">
+              {[
+                { value: "2事業", label: "展開中" },
+                { value: "4領域", label: "ワンストップ支援" },
+                { value: "全国対応", label: "日本全国" },
+                { value: "2営業日", label: "初回返信" },
+              ].map((stat) => (
+                <div key={stat.label} className="flex flex-col items-center justify-center py-6 px-4 text-center">
+                  <span className="text-lg font-bold text-gray-900">{stat.value}</span>
+                  <span className="text-xs text-gray-500 mt-1">{stat.label}</span>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+        </div>
       </section>
 
       {/* ═══ VISION ═══ */}
-      <section className="relative overflow-hidden bg-white py-32 lg:py-48">
-        <div className="max-w-6xl mx-auto px-6 lg:px-10 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <Reveal direction="left">
+      <section className="py-20 lg:py-28 bg-white">
+        <div className="max-w-5xl mx-auto px-6 lg:px-10">
+          <div className="grid lg:grid-cols-2 gap-16 items-start">
+            <Reveal>
               <SectionLabel>Our Vision</SectionLabel>
-              <h2 className="text-5xl lg:text-7xl font-black text-gray-900 leading-[0.95] tracking-tight">
-                AIを、<br />
-                <span className="text-blue-600">日本の現場</span>
-                <br />へ届ける。
+              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-6">
+                AIを、日本の現場へ届ける。
               </h2>
             </Reveal>
-            <Reveal direction="right" delay={200}>
-              <div className="space-y-6">
-                <p className="text-lg text-gray-600 leading-loose">
+            <Reveal delay={100}>
+              <div className="space-y-5">
+                <p className="text-base text-gray-600 leading-relaxed">
                   AIはまだ、多くの企業や生産者にとって遠い存在です。難しい、コストが高い、何から始めればいいかわからない——そんな声を何度も聞いてきました。
                 </p>
-                <p className="text-lg text-gray-600 leading-loose">
+                <p className="text-base text-gray-600 leading-relaxed">
                   私たちはそのギャップを埋めるために生まれました。最先端のAI技術をビジネスの言葉に翻訳し、エンジニアの力で農家の経営を支える。一社一社、一農家一農家に寄り添い、確かな価値を届けていきます。
                 </p>
-                <div className="h-px bg-gray-200 mt-8" />
-                <div className="flex items-center gap-6 pt-4">
+                <div className="h-px bg-gray-200 mt-6" />
+                <div className="flex items-center gap-8 pt-4">
                   <div>
-                    <p className="text-4xl font-black text-gray-900">2<span className="text-base text-gray-400 ml-1 font-normal">事業</span></p>
-                    <p className="text-xs text-gray-400 tracking-wider mt-1">展開中</p>
+                    <p className="text-2xl font-bold text-gray-900">2<span className="text-sm text-gray-400 ml-1 font-normal">事業</span></p>
+                    <p className="text-xs text-gray-400 mt-1">展開中</p>
                   </div>
                   <div className="w-px h-10 bg-gray-200" />
                   <div>
-                    <p className="text-4xl font-black text-gray-900">日本</p>
-                    <p className="text-xs text-gray-400 tracking-wider mt-1">市場特化</p>
+                    <p className="text-2xl font-bold text-gray-900">日本</p>
+                    <p className="text-xs text-gray-400 mt-1">市場特化</p>
                   </div>
                   <div className="w-px h-10 bg-gray-200" />
                   <div>
-                    <p className="text-4xl font-black text-gray-900">2026</p>
-                    <p className="text-xs text-gray-400 tracking-wider mt-1">創業</p>
+                    <p className="text-2xl font-bold text-gray-900">2026</p>
+                    <p className="text-xs text-gray-400 mt-1">創業</p>
                   </div>
                 </div>
               </div>
@@ -283,79 +128,55 @@ export default function HomePage() {
       </section>
 
       {/* ═══ SERVICES ═══ */}
-      <section id="services" className="py-24 lg:py-36 bg-white relative overflow-hidden">
-        <MouseGlow />
-        <div className="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
+      <section id="services" className="py-20 lg:py-28 bg-gray-50">
+        <div className="max-w-5xl mx-auto px-6 lg:px-10">
           <Reveal>
             <SectionLabel>Our Services</SectionLabel>
-            <h2 className="text-4xl lg:text-6xl font-black text-gray-900 leading-[1.0] tracking-tight mb-4">
-              2つの事業で、<br />
-              <span className="text-gray-400">日本の未来をつくる。</span>
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4">
+              2つの事業で、日本の未来をつくる。
             </h2>
-            <p className="text-base text-gray-500 mb-16 max-w-lg leading-relaxed">
+            <p className="text-base text-gray-500 mb-14 max-w-lg leading-relaxed">
               企業のAI活用と、エンジニアによる農業支援。それぞれの現場に寄り添い、確実に成果を届けます。
             </p>
           </Reveal>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Service 01 — AIコンサルティング */}
-            <Reveal delay={100} direction="left">
+            <Reveal delay={0}>
               <Link href="/ai-consulting" className="group block">
-                <div className="relative overflow-hidden rounded-3xl bg-gray-950 min-h-[480px] flex flex-col justify-end p-12 hover:shadow-2xl hover:shadow-blue-900/30 transition-all duration-700 hover:-translate-y-2 glow-card">
-                  <div className="absolute inset-0">
-                    <video
-                      src="/videos/technology.mp4"
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                      className="absolute inset-0 w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-br from-blue-900/70 via-blue-900/50 to-cyan-900/70" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                <div className="bg-white border border-gray-200 rounded-2xl p-8 lg:p-10 hover:border-blue-300 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
+                  <span className="inline-block text-xs font-semibold tracking-widest uppercase text-blue-600 mb-4">Service 01</span>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-3">AIコンサルティング</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">
+                    戦略策定から実装・運用まで。日本企業のAI活用を、ヒアリングから定着まで一気通貫で伴走します。
+                  </p>
+                  <div className="flex items-center gap-3 flex-wrap mb-6">
+                    {["AI戦略策定", "データ分析", "業務自動化", "生成AI活用"].map((tag) => (
+                      <span key={tag} className="text-xs text-gray-500 border border-gray-200 rounded px-2.5 py-1">{tag}</span>
+                    ))}
                   </div>
-                  <div className="relative z-10">
-                    <span className="inline-block text-[10px] font-black tracking-widest text-blue-300/80 border border-blue-400/20 px-3 py-1 rounded-full mb-6 uppercase">Service 01</span>
-                    <h3 className="text-3xl lg:text-5xl font-black text-white mb-4 leading-tight">AIコンサルティング</h3>
-                    <p className="text-sm lg:text-base text-blue-100/70 leading-relaxed max-w-md mb-8">
-                      戦略策定から実装・運用まで。日本企業のAI活用を、ヒアリングから定着まで一気通貫で伴走します。
-                    </p>
-                    <div className="flex items-center gap-2 text-blue-300 text-sm font-bold group-hover:text-white transition-colors duration-300">
-                      <span>詳しく見る</span>
-                      <span className="w-6 h-6 bg-blue-500/30 rounded-full flex items-center justify-center group-hover:translate-x-2 transition-transform duration-300">→</span>
-                    </div>
-                  </div>
+                  <span className="text-sm font-semibold text-blue-600 group-hover:text-blue-700 transition-colors">
+                    詳しく見る →
+                  </span>
                 </div>
               </Link>
             </Reveal>
 
-            {/* Service 02 — AI×農業 */}
-            <Reveal delay={200} direction="right">
+            <Reveal delay={100}>
               <Link href="/ai-agriculture" className="group block">
-                <div className="relative overflow-hidden rounded-3xl bg-gray-950 min-h-[480px] flex flex-col justify-end p-12 hover:shadow-2xl hover:shadow-emerald-900/30 transition-all duration-700 hover:-translate-y-2 glow-card">
-                  <div className="absolute inset-0">
-                    <video
-                      src="/videos/agriculture.mp4"
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                      className="absolute inset-0 w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/70 via-green-900/50 to-teal-900/70" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                <div className="bg-white border border-gray-200 rounded-2xl p-8 lg:p-10 hover:border-emerald-300 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
+                  <span className="inline-block text-xs font-semibold tracking-widest uppercase text-emerald-600 mb-4">Service 02</span>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-3">農業×エンジニアリング</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">
+                    エンジニアが農家の経営を支える。EC構築・利益率改善・業務効率化で、農業の「稼ぐ力」を引き上げます。
+                  </p>
+                  <div className="flex items-center gap-3 flex-wrap mb-6">
+                    {["EC構築", "利益率改善", "業務効率化", "ブランディング"].map((tag) => (
+                      <span key={tag} className="text-xs text-gray-500 border border-gray-200 rounded px-2.5 py-1">{tag}</span>
+                    ))}
                   </div>
-                  <div className="relative z-10">
-                    <span className="inline-block text-[10px] font-black tracking-widest text-emerald-300/80 border border-emerald-400/20 px-3 py-1 rounded-full mb-6 uppercase">Service 02</span>
-                    <h3 className="text-3xl lg:text-5xl font-black text-white mb-4 leading-tight">農業×エンジニアリング</h3>
-                    <p className="text-sm lg:text-base text-emerald-100/70 leading-relaxed max-w-md mb-8">
-                      エンジニアが農家の経営を支える。EC構築・利益率改善・業務効率化で、農業の「稼ぐ力」を引き上げます。
-                    </p>
-                    <div className="flex items-center gap-2 text-emerald-300 text-sm font-bold group-hover:text-white transition-colors duration-300">
-                      <span>詳しく見る</span>
-                      <span className="w-6 h-6 bg-emerald-500/30 rounded-full flex items-center justify-center group-hover:translate-x-2 transition-transform duration-300">→</span>
-                    </div>
-                  </div>
+                  <span className="text-sm font-semibold text-emerald-600 group-hover:text-emerald-700 transition-colors">
+                    詳しく見る →
+                  </span>
                 </div>
               </Link>
             </Reveal>
@@ -364,138 +185,25 @@ export default function HomePage() {
       </section>
 
       {/* ═══ APPROACH ═══ */}
-      <section className="relative overflow-hidden bg-gray-50 py-24 lg:py-36">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <Reveal direction="left">
-              <SectionLabel>Our Approach</SectionLabel>
-              <h2 className="text-4xl lg:text-6xl font-black text-gray-900 leading-[0.95] tracking-tight mb-8">
-                私たちが<br />大切にする<br />
-                <span className="text-blue-600">3つのこと</span>
-              </h2>
-              <div className="space-y-8">
-                {[
-                  { num: "01", title: "正直であること", desc: "できないことはできないと言う。過度な期待を煽らず、確実に成果が出る領域から、一歩ずつ。" },
-                  { num: "02", title: "伴走すること", desc: "導入して終わりではなく、運用が定着するまで。お客様のチームの一員として、ともに歩みます。" },
-                  { num: "03", title: "技術を翻訳すること", desc: "最先端のAI技術を、ビジネスと現場の言葉に。専門知識がなくても理解できる、クリアな提案を。" },
-                ].map((item, i) => (
-                  <Reveal key={item.num} delay={i * 100}>
-                    <div className="flex gap-5 group">
-                      <div className="flex-shrink-0">
-                        <span className="text-xs font-black text-blue-600/70 tracking-widest">{item.num}</span>
-                      </div>
-                      <div>
-                        <h3 className="text-base font-black text-gray-900 mb-1.5 group-hover:text-blue-600 transition-colors">{item.title}</h3>
-                        <p className="text-sm text-gray-500 leading-relaxed">{item.desc}</p>
-                      </div>
-                    </div>
-                    {i < 2 && <div className="h-px bg-gray-200 mt-6 ml-8" />}
-                  </Reveal>
-                ))}
-              </div>
-            </Reveal>
-
-            <Reveal direction="right" delay={300}>
-              <div className="relative">
-                <div className="relative overflow-hidden rounded-3xl aspect-[4/5] bg-gradient-to-br from-blue-50 to-emerald-50 border border-gray-200">
-                  <div className="absolute inset-0">
-                    <div className="absolute w-full h-full opacity-70">
-                      <div className="absolute top-1/4 left-1/4 w-48 h-48 bg-blue-300/40 rounded-full blur-3xl animate-float1" />
-                      <div className="absolute bottom-1/4 right-1/4 w-40 h-40 bg-emerald-300/35 rounded-full blur-3xl animate-float2" />
-                      <div className="absolute top-1/2 right-1/3 w-32 h-32 bg-cyan-300/30 rounded-full blur-2xl animate-float3" />
-                    </div>
-                    <div className="absolute inset-0 opacity-[0.08]" style={{
-                      backgroundImage: "linear-gradient(rgba(37,99,235,1) 1px, transparent 1px), linear-gradient(90deg, rgba(37,99,235,1) 1px, transparent 1px)",
-                      backgroundSize: "40px 40px"
-                    }} />
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="text-center">
-                        <div className="text-6xl font-black text-gray-900/10 leading-none tracking-tighter">clear<br />AI</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="absolute bottom-8 left-8 right-8 bg-white/80 backdrop-blur-md border border-gray-200 rounded-2xl p-5 shadow-lg">
-                    <div className="flex justify-between">
-                      <div>
-                        <p className="text-2xl font-black text-gray-900">2</p>
-                        <p className="text-xs text-gray-400 tracking-wider">事業</p>
-                      </div>
-                      <div>
-                        <p className="text-2xl font-black text-gray-900">∞</p>
-                        <p className="text-xs text-gray-400 tracking-wider">可能性</p>
-                      </div>
-                      <div>
-                        <p className="text-2xl font-black text-emerald-600">日本</p>
-                        <p className="text-xs text-gray-400 tracking-wider">特化</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="absolute -top-6 -right-6 w-24 h-24 bg-blue-300/40 rounded-full blur-2xl" />
-                <div className="absolute -bottom-6 -left-6 w-20 h-20 bg-emerald-300/40 rounded-full blur-xl" />
-              </div>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      {/* ═══ METRICS ═══ */}
-      <section className="py-24 lg:py-32 bg-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.02]" style={{
-          backgroundImage: "linear-gradient(rgba(37,99,235,.2) 1px, transparent 1px), linear-gradient(90deg, rgba(37,99,235,.2) 1px, transparent 1px)",
-          backgroundSize: "40px 40px",
-        }} />
-        <div className="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
+      <section className="py-20 lg:py-28 bg-white">
+        <div className="max-w-5xl mx-auto px-6 lg:px-10">
           <Reveal>
-            <SectionLabel>Current Status</SectionLabel>
-            <h2 className="text-4xl lg:text-5xl font-black text-gray-900 leading-tight tracking-tight mb-16">
-              まだ始まったばかりです。<br />
-              <span className="text-gray-400">だからこそ、全力で。</span>
+            <SectionLabel>Our Approach</SectionLabel>
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-14">
+              私たちが大切にする3つのこと
             </h2>
           </Reveal>
-
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-gray-100 rounded-3xl overflow-hidden">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { label: "展開事業数", value: 2, suffix: "事業", icon: (
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                  <path d="M8 26L13 18L17 22L24 6" stroke="url(#metric-rocket)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-                  <path d="M20 6H24V10" stroke="url(#metric-rocket)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-                  <circle cx="24" cy="6" r="2" fill="#2563eb" opacity="0.3"/>
-                  <defs><linearGradient id="metric-rocket" x1="8" y1="26" x2="24" y2="6"><stop stopColor="#60a5fa"/><stop offset="1" stopColor="#2563eb"/></linearGradient></defs>
-                </svg>
-              ), note: "2026年〜" },
-              { label: "対象市場", value: 1, suffix: "（日本）", icon: (
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                  <rect x="3" y="6" width="26" height="20" rx="3" fill="#fafafa" stroke="#cbd5e1" strokeWidth="1.5"/>
-                  <circle cx="16" cy="16" r="5.5" fill="#DC2626"/>
-                </svg>
-              ), note: "国内特化" },
-              { label: "創業年", value: 2026, suffix: "", icon: (
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                  <path d="M16 4L18.8 12.2H27.4L20.3 17.4L23.1 25.6L16 20.4L8.9 25.6L11.7 17.4L4.6 12.2H13.2L16 4Z" fill="url(#metric-star)" opacity="0.12"/>
-                  <path d="M16 4L18.8 12.2H27.4L20.3 17.4L23.1 25.6L16 20.4L8.9 25.6L11.7 17.4L4.6 12.2H13.2L16 4Z" stroke="url(#metric-star)" strokeWidth="1.5" strokeLinejoin="round"/>
-                  <defs><linearGradient id="metric-star" x1="4" y1="4" x2="28" y2="28"><stop stopColor="#2563eb"/><stop offset="1" stopColor="#7c3aed"/></linearGradient></defs>
-                </svg>
-              ), note: "スタートアップ" },
-              { label: "支援領域", value: 4, suffix: "領域", icon: (
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                  <path d="M16 28C16 28 16 22 16 18" stroke="#16a34a" strokeWidth="2" strokeLinecap="round"/>
-                  <path d="M16 18C16 14 20 12 22 10" stroke="#16a34a" strokeWidth="2" strokeLinecap="round"/>
-                  <path d="M16 21C16 17 12 15 10 13" stroke="#16a34a" strokeWidth="2" strokeLinecap="round"/>
-                  <circle cx="22" cy="8" r="3.5" fill="#16a34a" opacity="0.12" stroke="#16a34a" strokeWidth="1.5"/>
-                  <circle cx="10" cy="11" r="3" fill="#16a34a" opacity="0.12" stroke="#16a34a" strokeWidth="1.5"/>
-                  <circle cx="16" cy="7" r="4" fill="#16a34a" opacity="0.12" stroke="#16a34a" strokeWidth="1.5"/>
-                </svg>
-              ), note: "戦略〜運用" },
-            ].map((stat, i) => (
-              <Reveal key={stat.label} delay={i * 100}>
-                <div className="bg-white p-8 lg:p-12 group hover:bg-blue-50/50 transition-colors duration-500">
-                  <div className="mb-3">{stat.icon}</div>
-                  <p className="text-4xl lg:text-6xl font-black text-gray-900 tracking-tight">
-                    <CountUp target={stat.value} />{stat.suffix}
-                  </p>
-                  <p className="text-sm font-bold text-gray-900 mt-3 mb-1">{stat.label}</p>
-                  <p className="text-xs text-gray-400">{stat.note}</p>
+              { num: "01", title: "正直であること", desc: "できないことはできないと言う。過度な期待を煽らず、確実に成果が出る領域から、一歩ずつ。" },
+              { num: "02", title: "伴走すること", desc: "導入して終わりではなく、運用が定着するまで。お客様のチームの一員として、ともに歩みます。" },
+              { num: "03", title: "技術を翻訳すること", desc: "最先端のAI技術を、ビジネスと現場の言葉に。専門知識がなくても理解できる、クリアな提案を。" },
+            ].map((item, i) => (
+              <Reveal key={item.num} delay={i * 80}>
+                <div className="border-t-2 border-blue-600 pt-6">
+                  <span className="text-xs font-semibold text-blue-600 tracking-widest">{item.num}</span>
+                  <h3 className="text-lg font-bold text-gray-900 mt-2 mb-3">{item.title}</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
                 </div>
               </Reveal>
             ))}
@@ -504,113 +212,47 @@ export default function HomePage() {
       </section>
 
       {/* ═══ TECH STACK ═══ */}
-      <section className="relative overflow-hidden bg-white py-24 lg:py-36">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
+      <section className="py-20 lg:py-28 bg-gray-50">
+        <div className="max-w-5xl mx-auto px-6 lg:px-10">
           <Reveal>
-            <div className="mb-16">
-              <SectionLabel>Tech Stack</SectionLabel>
-              <h2 className="text-3xl lg:text-5xl font-black text-gray-900 mb-4">使用技術</h2>
-              <p className="text-base text-gray-500 max-w-xl leading-relaxed">
-                信頼性・実績・コミュニティの厚さを基準に、プロダクションレディな技術のみを採用しています。
-              </p>
-            </div>
+            <SectionLabel>Tech Stack</SectionLabel>
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">使用技術</h2>
+            <p className="text-base text-gray-500 max-w-xl leading-relaxed mb-14">
+              信頼性・実績・コミュニティの厚さを基準に、プロダクションレディな技術のみを採用しています。
+            </p>
           </Reveal>
-
-          <div className="space-y-14">
+          <div className="space-y-10">
             {[
-              {
-                category: "Frontend",
-                label: "フロントエンド",
-                items: [
-                  { name: "Next.js", slug: "nextdotjs", color: "000000" },
-                  { name: "React", slug: "react", color: "61DAFB" },
-                  { name: "TypeScript", slug: "typescript", color: "3178C6" },
-                  { name: "Tailwind CSS", slug: "tailwindcss", color: "06B6D4" },
-                  { name: "Vite", slug: "vite", color: "646CFF" },
-                ],
-              },
-              {
-                category: "Backend / Language",
-                label: "バックエンド・言語",
-                items: [
-                  { name: "Python", slug: "python", color: "3776AB" },
-                  { name: "Node.js", slug: "nodedotjs", color: "5FA04E" },
-                  { name: "FastAPI", slug: "fastapi", color: "009688" },
-                  { name: "Go", slug: "go", color: "00ADD8" },
-                  { name: "Rust", slug: "rust", color: "000000" },
-                ],
-              },
-              {
-                category: "AI / LLM",
-                label: "AI・機械学習",
-                items: [
-                  { name: "Anthropic Claude", slug: "anthropic", color: "D4A27F" },
-                  { name: "OpenAI", slug: "openai", color: "412991" },
-                  { name: "Hugging Face", slug: "huggingface", color: "FFD21E" },
-                  { name: "TensorFlow", slug: "tensorflow", color: "FF6F00" },
-                  { name: "PyTorch", slug: "pytorch", color: "EE4C2C" },
-                  { name: "LangChain", slug: "langchain", color: "1C3C3C" },
-                ],
-              },
-              {
-                category: "Database / Storage",
-                label: "データベース",
-                items: [
-                  { name: "PostgreSQL", slug: "postgresql", color: "4169E1" },
-                  { name: "Supabase", slug: "supabase", color: "3FCF8E" },
-                  { name: "Redis", slug: "redis", color: "FF4438" },
-                  { name: "MongoDB", slug: "mongodb", color: "47A248" },
-                  { name: "Firebase", slug: "firebase", color: "DD2C00" },
-                ],
-              },
-              {
-                category: "Cloud / Infrastructure",
-                label: "クラウド・インフラ",
-                items: [
-                  { name: "AWS", slug: "amazonwebservices", color: "232F3E" },
-                  { name: "Google Cloud", slug: "googlecloud", color: "4285F4" },
-                  { name: "Vercel", slug: "vercel", color: "000000" },
-                  { name: "Cloudflare", slug: "cloudflare", color: "F38020" },
-                  { name: "Docker", slug: "docker", color: "2496ED" },
-                  { name: "Kubernetes", slug: "kubernetes", color: "326CE5" },
-                ],
-              },
-              {
-                category: "DevOps / Tools",
-                label: "DevOps・ツール",
-                items: [
-                  { name: "GitHub", slug: "github", color: "181717" },
-                  { name: "GitHub Actions", slug: "githubactions", color: "2088FF" },
-                  { name: "Terraform", slug: "terraform", color: "844FBA" },
-                  { name: "Datadog", slug: "datadog", color: "632CA6" },
-                  { name: "Sentry", slug: "sentry", color: "362D59" },
-                  { name: "Stripe", slug: "stripe", color: "635BFF" },
-                ],
-              },
+              { category: "Frontend", label: "フロントエンド", items: [
+                { name: "Next.js", slug: "nextdotjs", color: "000000" }, { name: "React", slug: "react", color: "61DAFB" },
+                { name: "TypeScript", slug: "typescript", color: "3178C6" }, { name: "Tailwind CSS", slug: "tailwindcss", color: "06B6D4" },
+              ]},
+              { category: "Backend", label: "バックエンド", items: [
+                { name: "Python", slug: "python", color: "3776AB" }, { name: "Node.js", slug: "nodedotjs", color: "5FA04E" },
+                { name: "FastAPI", slug: "fastapi", color: "009688" }, { name: "Go", slug: "go", color: "00ADD8" },
+              ]},
+              { category: "AI / ML", label: "AI・機械学習", items: [
+                { name: "Anthropic Claude", slug: "anthropic", color: "D4A27F" }, { name: "OpenAI", slug: "openai", color: "412991" },
+                { name: "PyTorch", slug: "pytorch", color: "EE4C2C" }, { name: "LangChain", slug: "langchain", color: "1C3C3C" },
+              ]},
+              { category: "Infrastructure", label: "インフラ", items: [
+                { name: "AWS", slug: "amazonwebservices", color: "232F3E" }, { name: "Google Cloud", slug: "googlecloud", color: "4285F4" },
+                { name: "Docker", slug: "docker", color: "2496ED" }, { name: "Vercel", slug: "vercel", color: "000000" },
+              ]},
             ].map((group, gi) => (
-              <Reveal key={group.category} delay={gi * 80}>
-                <div className="grid lg:grid-cols-12 gap-6 lg:gap-10 items-start border-t border-gray-200 pt-10">
+              <Reveal key={group.category} delay={gi * 60}>
+                <div className="grid lg:grid-cols-12 gap-6 items-start border-t border-gray-200 pt-8">
                   <div className="lg:col-span-3">
-                    <p className="text-[10px] font-black tracking-widest text-blue-600/80 uppercase mb-2">{group.category}</p>
-                    <h3 className="text-lg font-black text-gray-900">{group.label}</h3>
+                    <p className="text-xs font-semibold tracking-widest text-blue-600 uppercase mb-1">{group.category}</p>
+                    <h3 className="text-base font-bold text-gray-900">{group.label}</h3>
                   </div>
                   <div className="lg:col-span-9">
-                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                       {group.items.map((tech) => (
-                        <div key={tech.name}
-                          className="group relative overflow-hidden rounded-2xl bg-gray-50 border border-gray-200 hover:bg-white hover:border-blue-200 hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 p-4 flex flex-col items-center justify-center gap-2.5 aspect-square">
-                          <div className="w-9 h-9 flex items-center justify-center opacity-80 group-hover:opacity-100 transition-opacity">
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img
-                              src={`https://api.iconify.design/simple-icons/${tech.slug}.svg?color=%23${tech.color}`}
-                              alt={tech.name}
-                              className="w-full h-full object-contain"
-                              loading="lazy"
-                            />
-                          </div>
-                          <p className="text-[11px] font-bold text-gray-600 group-hover:text-gray-900 transition-colors text-center leading-tight">
-                            {tech.name}
-                          </p>
+                        <div key={tech.name} className="bg-white border border-gray-200 rounded-lg p-4 flex items-center gap-3 hover:border-gray-300 transition-colors">
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img src={`https://api.iconify.design/simple-icons/${tech.slug}.svg?color=%23${tech.color}`} alt={tech.name} className="w-6 h-6 object-contain" loading="lazy" />
+                          <p className="text-sm font-medium text-gray-700">{tech.name}</p>
                         </div>
                       ))}
                     </div>
@@ -622,97 +264,56 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ═══ BLOG ═══ */}
-      <section className="py-24 lg:py-32 bg-white relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10">
+      {/* ═══ NEWS / BLOG ═══ */}
+      <section className="py-20 lg:py-28 bg-white">
+        <div className="max-w-5xl mx-auto px-6 lg:px-10">
           <Reveal>
-            <div className="flex items-end justify-between mb-14">
+            <div className="flex items-end justify-between mb-12">
               <div>
-                <SectionLabel>Blog</SectionLabel>
-                <h2 className="text-4xl lg:text-5xl font-black text-gray-900 tracking-tight">最新の記事</h2>
+                <SectionLabel>News</SectionLabel>
+                <h2 className="text-3xl lg:text-4xl font-bold text-gray-900">お知らせ</h2>
               </div>
-              <Link href="/blog" className="hidden sm:flex items-center gap-2 text-sm font-bold text-blue-600 hover:text-blue-700 transition-colors group border border-blue-100 px-5 py-2.5 rounded-full hover:bg-blue-50">
-                すべての記事
-                <svg className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-                </svg>
+              <Link href="/blog" className="hidden sm:inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:text-blue-700 transition-colors">
+                一覧を見る →
               </Link>
             </div>
           </Reveal>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-            {blogPosts.slice(0, 3).map((post, i) => (
-              <Reveal key={post.slug} delay={i * 100}>
-                <Link href={`/blog/${post.slug}`} className="group block">
-                  <div className="aspect-[16/10] mb-5 overflow-hidden rounded-2xl relative" style={{ backgroundColor: post.thumbnail }}>
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/15 transition-colors duration-500 flex items-center justify-center">
-                      <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 scale-75 group-hover:scale-100 shadow-lg">
-                        <svg className="w-4 h-4 text-gray-900" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="text-xs font-black text-blue-600 bg-blue-50 px-2.5 py-1 rounded-full">{post.category}</span>
-                    <span className="text-xs text-gray-400">{post.date}</span>
-                  </div>
-                  <h3 className="text-base font-bold text-gray-900 leading-snug group-hover:text-blue-600 transition-colors duration-300">
+          <div className="divide-y divide-gray-100">
+            {blogPosts.slice(0, 5).map((post, i) => (
+              <Reveal key={post.slug} delay={i * 60}>
+                <Link href={`/blog/${post.slug}`} className="group flex items-start gap-4 py-5 hover:bg-gray-50 -mx-4 px-4 rounded-lg transition-colors">
+                  <span className="text-xs text-gray-400 font-medium whitespace-nowrap pt-0.5">{post.date}</span>
+                  <span className="text-xs font-semibold text-blue-600 bg-blue-50 px-2 py-0.5 rounded whitespace-nowrap">{post.category}</span>
+                  <h3 className="text-sm font-medium text-gray-900 group-hover:text-blue-600 transition-colors leading-relaxed">
                     {post.title}
                   </h3>
                 </Link>
               </Reveal>
             ))}
           </div>
-
-          <div className="text-center mt-10 sm:hidden">
-            <Link href="/blog" className="text-sm font-bold text-blue-600">すべての記事 →</Link>
+          <div className="text-center mt-8 sm:hidden">
+            <Link href="/blog" className="text-sm font-semibold text-blue-600">一覧を見る →</Link>
           </div>
         </div>
       </section>
 
       {/* ═══ CTA ═══ */}
-      <section className="relative overflow-hidden min-h-[60vh] flex items-center bg-gradient-to-br from-blue-50 via-white to-emerald-50">
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full bg-blue-200/40 blur-[120px]" />
-          <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full bg-emerald-200/40 blur-[100px]" />
-        </div>
-        <div className="relative z-10 w-full py-28 lg:py-40">
-          <div className="max-w-4xl mx-auto px-6 text-center">
-            <Reveal>
-              <p className="text-xs font-black tracking-widest text-blue-600 uppercase mb-6">Contact</p>
-              <h2 className="text-5xl lg:text-7xl font-black text-gray-900 leading-[0.95] tracking-tight mb-8">
-                まずは、<br />
-                <span className="text-blue-600">お話しませんか。</span>
-              </h2>
-              <p className="text-base lg:text-lg text-gray-600 leading-loose mb-12 max-w-lg mx-auto">
-                AIのことがわからなくても、ECが初めてでも大丈夫です。<br />貴社・貴農園の状況に合わせて、一緒に考えます。
-              </p>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <Link href="/contact"
-                  className="group text-sm font-black text-white bg-blue-600 px-12 py-5 rounded-full hover:bg-blue-500 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/30 inline-flex items-center gap-3">
-                  無料で相談する
-                  <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-                  </svg>
-                </Link>
-              </div>
-            </Reveal>
-          </div>
+      <section className="py-20 lg:py-28 bg-gray-50">
+        <div className="max-w-3xl mx-auto px-6 text-center">
+          <Reveal>
+            <SectionLabel>Contact</SectionLabel>
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-6">
+              まずは、お話しませんか。
+            </h2>
+            <p className="text-base text-gray-600 leading-relaxed mb-10 max-w-lg mx-auto">
+              AIのことがわからなくても、ECが初めてでも大丈夫です。<br />貴社・貴農園の状況に合わせて、一緒に考えます。
+            </p>
+            <Link href="/contact" className="inline-block text-sm font-semibold text-white bg-blue-600 px-10 py-4 rounded-lg hover:bg-blue-700 transition-colors duration-300">
+              お問い合わせ
+            </Link>
+          </Reveal>
         </div>
       </section>
-
-      {/* ═══ FLOATING CONTACT BUTTON ═══ */}
-      <div className="fixed bottom-8 right-8 z-40">
-        <Link href="/contact"
-          className="flex items-center gap-2 bg-blue-600 text-white text-xs font-black px-5 py-3.5 rounded-full shadow-lg shadow-blue-500/30 hover:bg-blue-500 hover:shadow-xl hover:shadow-blue-500/40 transition-all duration-300 hover:-translate-y-0.5 group animate-pulse-glow">
-          <div className="w-2 h-2 bg-white rounded-full animate-pulse" />
-          <span>相談する</span>
-          <svg className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-          </svg>
-        </Link>
-      </div>
     </>
   );
 }

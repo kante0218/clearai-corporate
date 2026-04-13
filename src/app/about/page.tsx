@@ -37,7 +37,7 @@ const companyInfo = [
   { label: "会社名", value: "clear AI株式会社" },
   { label: "英文表記", value: "clear AI Inc." },
   { label: "設立", value: "2026年4月" },
-  { label: "代表取締役", value: "代表取締役" },
+  { label: "代表取締役", value: "—" },
   { label: "所在地", value: "茨城県" },
   { label: "事業内容", value: "AIコンサルティング事業 / 農業×エンジニアリング事業" },
   { label: "資本金", value: "非公開" },
@@ -66,8 +66,8 @@ const timeline = [
   },
   {
     year: "2026年",
-    title: "AI×農業事業 開始",
-    description: "栽培管理・収穫予測・スマート農業ソリューションで、日本の農業の課題解決に取り組む。",
+    title: "農業×エンジニアリング事業 開始",
+    description: "EC構築・利益率改善・業務効率化で、農家の経営をエンジニアの力で支援開始。",
     future: false,
   },
   {
@@ -95,7 +95,7 @@ export default function AboutPage() {
             <p className="text-xs font-semibold tracking-widest uppercase text-blue-600 mb-6">About Us</p>
           </Reveal>
           <Reveal delay={80}>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 leading-tight tracking-tight mb-8 max-w-3xl">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight tracking-tight mb-8 max-w-3xl">
               AIで、日本の<br />産業構造を、<br />書き換える。
             </h1>
           </Reveal>
@@ -107,11 +107,11 @@ export default function AboutPage() {
           <Reveal delay={240}>
             <div className="flex flex-wrap gap-4">
               <div className="inline-flex items-center gap-3 border border-gray-200 rounded-full px-6 py-3 bg-white">
-                <span className="text-2xl font-black text-blue-600">1000億円</span>
+                <span className="text-2xl font-bold text-blue-600">1000億円</span>
                 <span className="text-sm text-gray-500">2030年 売上目標</span>
               </div>
               <div className="inline-flex items-center gap-3 border border-gray-200 rounded-full px-6 py-3 bg-white">
-                <span className="text-2xl font-black text-emerald-600">10,000社</span>
+                <span className="text-2xl font-bold text-emerald-600">10,000社</span>
                 <span className="text-sm text-gray-500">支援目標企業数</span>
               </div>
             </div>
@@ -126,7 +126,7 @@ export default function AboutPage() {
             <Reveal>
               <div>
                 <p className="text-xs font-semibold tracking-widest uppercase text-blue-600 mb-6">私たちのミッション</p>
-                <h2 className="text-3xl md:text-4xl font-black text-gray-900 leading-tight tracking-tight">
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight tracking-tight">
                   AIの力を、<br />すべての企業と、<br />すべての現場に。
                 </h2>
               </div>
@@ -150,14 +150,10 @@ export default function AboutPage() {
 
       {/* ─── 3. VISION 2030 ──────────────────────────────────────────────── */}
       <section className="py-24 lg:py-32 bg-gray-950 relative overflow-hidden">
-        {/* Atmospheric orbs */}
-        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] rounded-full bg-blue-600/20 blur-[120px] pointer-events-none" />
-        <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] rounded-full bg-blue-600/10 blur-[120px] pointer-events-none" />
-
         <div className="relative max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
             <p className="text-xs font-semibold tracking-widest uppercase text-blue-400 mb-6">Vision 2030</p>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight tracking-tight mb-6 max-w-2xl">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight tracking-tight mb-6 max-w-2xl">
               2030年、日本最大の<br />AI変革パートナーへ。
             </h2>
             <p className="text-lg text-gray-400 leading-relaxed max-w-xl mb-16">
@@ -168,21 +164,21 @@ export default function AboutPage() {
           <div className="grid md:grid-cols-3 gap-8">
             <Reveal delay={0}>
               <div className="border border-white/10 rounded-2xl p-8 bg-white/5">
-                <p className="text-4xl lg:text-5xl font-black text-white mb-2">1000億円</p>
+                <p className="text-4xl lg:text-5xl font-bold text-white mb-2">1000億円</p>
                 <p className="text-sm font-semibold text-blue-400 mb-3">目標売上高（2030年）</p>
                 <p className="text-sm text-gray-400 leading-relaxed">日本のAIソリューション市場をリードする規模へ。全国の企業・農業現場を支援し続けることで実現します。</p>
               </div>
             </Reveal>
             <Reveal delay={80}>
               <div className="border border-white/10 rounded-2xl p-8 bg-white/5">
-                <p className="text-4xl lg:text-5xl font-black text-white mb-2">10,000社</p>
+                <p className="text-4xl lg:text-5xl font-bold text-white mb-2">10,000社</p>
                 <p className="text-sm font-semibold text-blue-400 mb-3">支援目標企業数</p>
                 <p className="text-sm text-gray-400 leading-relaxed">大企業から中小企業、スタートアップまで。業種・規模を問わず、すべての企業のAI活用を支援します。</p>
               </div>
             </Reveal>
             <Reveal delay={160}>
               <div className="border border-white/10 rounded-2xl p-8 bg-white/5">
-                <p className="text-4xl lg:text-5xl font-black text-white mb-2">47都道府県</p>
+                <p className="text-4xl lg:text-5xl font-bold text-white mb-2">47都道府県</p>
                 <p className="text-sm font-semibold text-blue-400 mb-3">全国展開</p>
                 <p className="text-sm text-gray-400 leading-relaxed">茨城から始まり、日本全国へ。地方の産業・農業こそが日本経済の根幹です。全国に展開します。</p>
               </div>
@@ -196,7 +192,7 @@ export default function AboutPage() {
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
             <p className="text-xs font-semibold tracking-widest uppercase text-blue-600 mb-6">価値観</p>
-            <h2 className="text-3xl md:text-4xl font-black text-gray-900 leading-tight tracking-tight mb-16 max-w-xl">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight tracking-tight mb-16 max-w-xl">
               私たちが大切にする、<br />4つの信条。
             </h2>
           </Reveal>
@@ -235,9 +231,9 @@ export default function AboutPage() {
               <Reveal key={v.num} delay={i * 80}>
                 <article className="group border border-gray-200 rounded-2xl p-8 bg-white hover:border-blue-300 hover:shadow-lg transition-all duration-300 cursor-default">
                   <div className="flex items-start gap-4 mb-5">
-                    <span className="text-4xl font-black text-gray-100 leading-none select-none">{v.num}</span>
+                    <span className="text-4xl font-bold text-gray-100 leading-none select-none">{v.num}</span>
                     <div>
-                      <h3 className="text-xl font-black text-gray-900">{v.title}</h3>
+                      <h3 className="text-xl font-bold text-gray-900">{v.title}</h3>
                       <p className="text-xs text-gray-400 font-medium tracking-wide">{v.subtitle}</p>
                     </div>
                   </div>
@@ -255,7 +251,7 @@ export default function AboutPage() {
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
             <p className="text-xs font-semibold tracking-widest uppercase text-blue-600 mb-6">Why Now</p>
-            <h2 className="text-3xl md:text-4xl font-black text-gray-900 leading-tight tracking-tight mb-16 max-w-xl">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight tracking-tight mb-16 max-w-xl">
               2026年、<br />日本のAI元年。
             </h2>
           </Reveal>
@@ -280,7 +276,7 @@ export default function AboutPage() {
             ].map((r, i) => (
               <Reveal key={r.num} delay={i * 80}>
                 <div className="bg-white border border-gray-200 rounded-2xl p-8">
-                  <span className="block text-5xl font-black text-gray-100 mb-4 leading-none select-none">{r.num}</span>
+                  <span className="block text-5xl font-bold text-gray-100 mb-4 leading-none select-none">{r.num}</span>
                   <h3 className="text-lg font-bold text-gray-900 mb-4">{r.title}</h3>
                   <p className="text-sm text-gray-600 leading-relaxed">{r.desc}</p>
                 </div>
@@ -295,7 +291,7 @@ export default function AboutPage() {
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
             <p className="text-xs font-semibold tracking-widest uppercase text-blue-600 mb-6">事業領域</p>
-            <h2 className="text-3xl md:text-4xl font-black text-gray-900 leading-tight tracking-tight mb-16 max-w-xl">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight tracking-tight mb-16 max-w-xl">
               2つの事業で、<br />日本を変える。
             </h2>
           </Reveal>
@@ -305,7 +301,7 @@ export default function AboutPage() {
               <article className="border-2 border-blue-600 rounded-2xl p-8 md:p-10 flex flex-col h-full">
                 <div className="mb-6">
                   <span className="inline-block text-xs font-semibold tracking-widest uppercase text-blue-600 border border-blue-200 bg-blue-50 rounded-full px-4 py-1.5 mb-4">事業 01</span>
-                  <h3 className="text-2xl font-black text-gray-900 mb-2">AIコンサルティング</h3>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">AIコンサルティング</h3>
                   <p className="text-base font-semibold text-blue-600">戦略から実装まで、一気通貫で伴走する。</p>
                 </div>
                 <ul className="space-y-3 mb-8 flex-1">
@@ -334,15 +330,15 @@ export default function AboutPage() {
               <article className="border-2 border-emerald-600 rounded-2xl p-8 md:p-10 flex flex-col h-full">
                 <div className="mb-6">
                   <span className="inline-block text-xs font-semibold tracking-widest uppercase text-emerald-600 border border-emerald-200 bg-emerald-50 rounded-full px-4 py-1.5 mb-4">事業 02</span>
-                  <h3 className="text-2xl font-black text-gray-900 mb-2">AI×農業</h3>
-                  <p className="text-base font-semibold text-emerald-600">日本の食と農業を、テクノロジーで守る。</p>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">農業×エンジニアリング</h3>
+                  <p className="text-base font-semibold text-emerald-600">エンジニアの力で、農家の経営を支える。</p>
                 </div>
                 <ul className="space-y-3 mb-8 flex-1">
                   {[
-                    "AIによる栽培管理・収穫量予測",
-                    "スマート農業システムの導入支援",
-                    "農業データの収集・分析・活用",
-                    "担い手不足・高齢化への技術的解決策",
+                    "農家向けEC・ネット販売サイト構築",
+                    "利益率改善コンサルティング",
+                    "受発注・顧客管理の業務効率化",
+                    "ブランディング・マーケティング支援",
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-3 text-sm text-gray-600">
                       <span className="mt-0.5 w-1.5 h-1.5 rounded-full bg-emerald-600 shrink-0" />
@@ -367,7 +363,7 @@ export default function AboutPage() {
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
             <p className="text-xs font-semibold tracking-widest uppercase text-blue-600 mb-6">Message</p>
-            <h2 className="text-3xl md:text-4xl font-black text-gray-900 leading-tight tracking-tight mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight tracking-tight mb-12">
               代表取締役メッセージ
             </h2>
           </Reveal>
@@ -407,7 +403,7 @@ export default function AboutPage() {
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
             <p className="text-xs font-semibold tracking-widest uppercase text-blue-600 mb-6">Company</p>
-            <h2 className="text-3xl md:text-4xl font-black text-gray-900 leading-tight tracking-tight mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight tracking-tight mb-12">
               企業情報
             </h2>
           </Reveal>
@@ -434,7 +430,7 @@ export default function AboutPage() {
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
             <p className="text-xs font-semibold tracking-widest uppercase text-blue-600 mb-6">History</p>
-            <h2 className="text-3xl md:text-4xl font-black text-gray-900 leading-tight tracking-tight mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight tracking-tight mb-16">
               沿革
             </h2>
           </Reveal>
@@ -477,7 +473,7 @@ export default function AboutPage() {
         <div className="relative max-w-6xl mx-auto px-6 lg:px-8 text-center">
           <Reveal>
             <p className="text-xs font-semibold tracking-widest uppercase text-blue-400 mb-6">Join Us</p>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight tracking-tight mb-6 max-w-2xl mx-auto">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight tracking-tight mb-6 max-w-2xl mx-auto">
               共に、未来をつくる<br />仲間を探しています。
             </h2>
             <p className="text-lg text-gray-400 leading-relaxed max-w-lg mx-auto mb-12">
@@ -488,14 +484,13 @@ export default function AboutPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold text-base rounded-full px-8 py-4 transition-colors duration-200"
+                className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold text-base rounded-lg px-8 py-4 transition-colors duration-200"
               >
                 お問い合わせ
               </Link>
-              <span className="inline-flex items-center justify-center gap-2 border border-white/20 text-white/40 font-bold text-base rounded-full px-8 py-4 cursor-not-allowed select-none">
-                採用情報
-                <span className="text-xs font-semibold tracking-wide text-white/30">準備中</span>
-              </span>
+              <Link href="/contact" className="inline-flex items-center justify-center gap-2 border border-white/20 text-white/60 font-semibold text-base rounded-lg px-8 py-4 hover:border-white/40 hover:text-white transition-colors duration-200">
+                採用情報 →
+              </Link>
             </div>
           </Reveal>
         </div>

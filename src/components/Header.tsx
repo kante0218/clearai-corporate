@@ -7,9 +7,9 @@ import Image from "next/image";
 const navItems = [
   { label: "事業紹介", href: "/#services" },
   { label: "AIコンサルティング", href: "/ai-consulting" },
-  { label: "AI×農業", href: "/ai-agriculture" },
-  { label: "ブログ", href: "/blog" },
+  { label: "農業×エンジニアリング", href: "/ai-agriculture" },
   { label: "会社概要", href: "/about" },
+  { label: "お知らせ", href: "/blog" },
 ];
 
 export default function Header() {
@@ -57,7 +57,7 @@ export default function Header() {
 
             <div className="hidden lg:flex items-center gap-3">
               <Link href="/contact"
-                className="text-sm font-semibold px-5 py-2 rounded-full border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-300">
+                className="text-sm font-semibold px-5 py-2 rounded-lg border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-300">
                 お問い合わせ
               </Link>
             </div>
@@ -89,7 +89,7 @@ export default function Header() {
                 </Link>
               ))}
               <Link href="/contact" onClick={() => setIsOpen(false)}
-                className="block text-center bg-blue-600 text-white px-6 py-3.5 rounded-full text-sm font-semibold mt-6 hover:bg-blue-500 transition-colors min-h-[44px]">
+                className="block text-center bg-blue-600 text-white px-6 py-3.5 rounded-lg text-sm font-semibold mt-6 hover:bg-blue-500 transition-colors min-h-[44px]">
                 お問い合わせ
               </Link>
             </nav>

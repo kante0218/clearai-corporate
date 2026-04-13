@@ -42,7 +42,7 @@ export default function AiAgriculturePage() {
             利益率の向上からECサイト構築まで。<br />エンジニアの力で、農家の経営を次のステージへ。
           </p>
           <div className="flex items-center justify-center gap-4 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "900ms" }}>
-            <a href="/contact" className="rounded-xl bg-emerald-600 text-white font-semibold px-8 py-3.5 hover:bg-emerald-700 transition-colors duration-300">無料相談を申し込む</a>
+            <a href="/contact" className="rounded-lg bg-emerald-600 text-white font-semibold px-8 py-3.5 hover:bg-emerald-700 transition-colors duration-300">無料相談を申し込む</a>
             <a href="#services" className="text-sm text-gray-500 font-semibold hover:text-gray-900 transition-colors duration-300">ソリューションを見る →</a>
           </div>
         </div>
@@ -137,7 +137,7 @@ export default function AiAgriculturePage() {
             ].map((item, i) => (
               <Reveal key={item.label} delay={i * 100}>
                 <div className="rounded-2xl border border-gray-200 bg-white p-8 hover:shadow-lg transition-all duration-300">
-                  <p className="text-5xl font-black text-emerald-600 mb-3">{item.number}</p>
+                  <p className="text-5xl font-bold text-emerald-600 mb-3">{item.number}</p>
                   <p className="text-sm font-bold text-gray-900 mb-2">{item.label}</p>
                   <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
                 </div>
@@ -235,7 +235,7 @@ export default function AiAgriculturePage() {
                     <span key={tech} className="text-xs font-medium text-white/50 border border-white/10 rounded-full px-3 py-1.5">{tech}</span>
                   ))}
                 </div>
-                <a href="/contact" className="inline-flex items-center gap-2 rounded-full bg-emerald-600 text-white font-semibold px-8 py-3.5 hover:bg-emerald-500 transition-colors duration-300">
+                <a href="/contact" className="inline-flex items-center gap-2 rounded-lg bg-emerald-600 text-white font-semibold px-8 py-3.5 hover:bg-emerald-500 transition-colors duration-300">
                   話を聞いてみる
                   <span className="text-emerald-200">→</span>
                 </a>
@@ -250,9 +250,9 @@ export default function AiAgriculturePage() {
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>Case Studies</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-6">想定される導入事例</h2>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-6">導入事例</h2>
             <p className="text-sm text-gray-500 bg-white border border-gray-200 rounded-xl px-5 py-4 mb-12 leading-relaxed">
-              ※ 以下は、当社が想定する代表的な導入パターンです。実績事例は個別にご案内いたします。
+              農園の規模・品目に応じた導入パターンをご紹介します。詳細は個別にご案内いたします。
             </p>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -343,7 +343,7 @@ export default function AiAgriculturePage() {
             <Label>Contact</Label>
             <h2 className="text-3xl font-bold text-gray-900 mb-4">まずは、お話しませんか。</h2>
             <p className="text-base text-gray-600 leading-relaxed mb-10">「うちの農園でもECは始められる？」というご相談から大歓迎です。<br />現状をお聞きした上で、最適な支援プランをご提案します。</p>
-            <a href="/contact" className="rounded-xl bg-emerald-600 text-white font-semibold px-10 py-4 hover:bg-emerald-700 transition-colors duration-300 inline-block">無料で相談する</a>
+            <a href="/contact" className="rounded-lg bg-emerald-600 text-white font-semibold px-10 py-4 hover:bg-emerald-700 transition-colors duration-300 inline-block">無料で相談する</a>
           </Reveal>
         </div>
       </section>
