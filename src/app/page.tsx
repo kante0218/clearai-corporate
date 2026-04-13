@@ -221,7 +221,7 @@ export default function HomePage() {
               中小企業でも安心して導入できるよう、実績・安定性・サポート体制が確立された技術のみを採用しています。
             </p>
           </Reveal>
-          <div className="space-y-10">
+          <div className="space-y-0">
             {[
               { category: "Frontend", label: "フロントエンド", items: [
                 { name: "Next.js", slug: "nextdotjs", color: "000000" },
@@ -230,7 +230,7 @@ export default function HomePage() {
                 { name: "Tailwind CSS", slug: "tailwindcss", color: "06B6D4" },
                 { name: "Vite", slug: "vite", color: "646CFF" },
               ]},
-              { category: "Backend", label: "バックエンド・言語", items: [
+              { category: "Backend", label: "バックエンド", items: [
                 { name: "Python", slug: "python", color: "3776AB" },
                 { name: "Node.js", slug: "nodedotjs", color: "5FA04E" },
                 { name: "FastAPI", slug: "fastapi", color: "009688" },
@@ -238,12 +238,11 @@ export default function HomePage() {
                 { name: "Ruby on Rails", slug: "rubyonrails", color: "D30001" },
               ]},
               { category: "AI / ML", label: "AI・機械学習", items: [
-                { name: "Anthropic Claude", slug: "anthropic", color: "D4A27F" },
+                { name: "Claude", slug: "anthropic", color: "D4A27F" },
                 { name: "OpenAI", slug: "openai", color: "412991" },
-                { name: "Google Gemini", slug: "googlegemini", color: "8E75B2" },
+                { name: "Gemini", slug: "googlegemini", color: "8E75B2" },
                 { name: "PyTorch", slug: "pytorch", color: "EE4C2C" },
                 { name: "LangChain", slug: "langchain", color: "1C3C3C" },
-                { name: "Hugging Face", slug: "huggingface", color: "FFD21E" },
               ]},
               { category: "Database", label: "データベース", items: [
                 { name: "PostgreSQL", slug: "postgresql", color: "4169E1" },
@@ -262,7 +261,9 @@ export default function HomePage() {
               { category: "EC / Commerce", label: "EC・決済", items: [
                 { name: "Shopify", slug: "shopify", color: "7AB55C" },
                 { name: "Stripe", slug: "stripe", color: "635BFF" },
-                { name: "BASE", slug: "base", color: "000000" },
+                { name: "Square", slug: "square", color: "006AFF" },
+                { name: "WooCommerce", slug: "woocommerce", color: "96588A" },
+                { name: "Amazon Pay", slug: "amazonpay", color: "FF9900" },
               ]},
               { category: "DevOps", label: "DevOps・運用", items: [
                 { name: "GitHub", slug: "github", color: "181717" },
@@ -272,21 +273,23 @@ export default function HomePage() {
                 { name: "Sentry", slug: "sentry", color: "362D59" },
               ]},
             ].map((group, gi) => (
-              <Reveal key={group.category} delay={gi * 60}>
-                <div className="grid lg:grid-cols-12 gap-6 items-start border-t border-gray-200 pt-8">
-                  <div className="lg:col-span-3">
-                    <p className="text-xs font-semibold tracking-widest text-blue-600 uppercase mb-1">{group.category}</p>
-                    <h3 className="text-base font-bold text-gray-900">{group.label}</h3>
-                  </div>
-                  <div className="lg:col-span-9">
-                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-                      {group.items.map((tech) => (
-                        <div key={tech.name} className="bg-white border border-gray-200 rounded-lg p-4 flex items-center gap-3 hover:border-gray-300 transition-colors">
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img src={`https://api.iconify.design/simple-icons/${tech.slug}.svg?color=%23${tech.color}`} alt={tech.name} className="w-6 h-6 object-contain" loading="lazy" />
-                          <p className="text-sm font-medium text-gray-700">{tech.name}</p>
-                        </div>
-                      ))}
+              <Reveal key={group.category} delay={gi * 40}>
+                <div className="border-t border-gray-200 py-6">
+                  <div className="grid lg:grid-cols-12 gap-4 items-center">
+                    <div className="lg:col-span-2">
+                      <p className="text-[10px] font-semibold tracking-widest text-blue-600 uppercase">{group.category}</p>
+                      <h3 className="text-sm font-bold text-gray-900">{group.label}</h3>
+                    </div>
+                    <div className="lg:col-span-10">
+                      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5">
+                        {group.items.map((tech) => (
+                          <div key={tech.name} className="bg-white border border-gray-200 rounded-lg py-3 px-4 flex items-center gap-3 hover:border-gray-300 transition-colors">
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img src={`https://api.iconify.design/simple-icons/${tech.slug}.svg?color=%23${tech.color}`} alt={tech.name} className="w-5 h-5 object-contain flex-shrink-0" loading="lazy" />
+                            <p className="text-sm font-medium text-gray-700 truncate">{tech.name}</p>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
