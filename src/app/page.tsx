@@ -224,57 +224,57 @@ export default function HomePage() {
           <div className="space-y-0">
             {[
               { category: "Frontend", label: "フロントエンド", items: [
-                { name: "Next.js", slug: "nextdotjs" },
-                { name: "React", slug: "react" },
-                { name: "TypeScript", slug: "typescript" },
-                { name: "Tailwind CSS", slug: "tailwindcss" },
-                { name: "Vite", slug: "vite" },
+                { name: "Next.js", slug: "nextdotjs", color: "000000" },
+                { name: "React", slug: "react", color: "61DAFB" },
+                { name: "TypeScript", slug: "typescript", color: "3178C6" },
+                { name: "Tailwind CSS", slug: "tailwindcss", color: "06B6D4" },
+                { name: "Vite", slug: "vite", color: "646CFF" },
               ]},
               { category: "Backend", label: "バックエンド", items: [
-                { name: "Python", slug: "python" },
-                { name: "Node.js", slug: "nodedotjs" },
-                { name: "FastAPI", slug: "fastapi" },
-                { name: "Go", slug: "go" },
-                { name: "Rails", slug: "rubyonrails" },
+                { name: "Python", slug: "python", color: "3776AB" },
+                { name: "Node.js", slug: "nodedotjs", color: "5FA04E" },
+                { name: "FastAPI", slug: "fastapi", color: "009688" },
+                { name: "Go", slug: "go", color: "00ADD8" },
+                { name: "Rails", slug: "rubyonrails", color: "D30001" },
               ]},
               { category: "AI / ML", label: "AI・機械学習", items: [
-                { name: "Claude", slug: "anthropic" },
-                { name: "OpenAI", slug: "openai" },
-                { name: "Gemini", slug: "googlegemini" },
-                { name: "PyTorch", slug: "pytorch" },
-                { name: "LangChain", slug: "langchain" },
+                { name: "Claude", slug: "anthropic", color: "191919" },
+                { name: "OpenAI", slug: "openai", color: "412991" },
+                { name: "Gemini", slug: "googlegemini", color: "8E75B2" },
+                { name: "PyTorch", slug: "pytorch", color: "EE4C2C" },
+                { name: "LangChain", slug: "langchain", color: "1C3C3C" },
               ]},
               { category: "Database", label: "データベース", items: [
-                { name: "PostgreSQL", slug: "postgresql" },
-                { name: "MySQL", slug: "mysql" },
-                { name: "Redis", slug: "redis" },
-                { name: "Supabase", slug: "supabase" },
-                { name: "Firebase", slug: "firebase" },
+                { name: "PostgreSQL", slug: "postgresql", color: "4169E1" },
+                { name: "MySQL", slug: "mysql", color: "4479A1" },
+                { name: "Redis", slug: "redis", color: "FF4438" },
+                { name: "Supabase", slug: "supabase", color: "3FCF8E" },
+                { name: "Firebase", slug: "firebase", color: "DD2C00" },
               ]},
               { category: "Cloud", label: "クラウド・インフラ", items: [
-                { name: "AWS", slug: "amazonwebservices" },
-                { name: "Google Cloud", slug: "googlecloud" },
-                { name: "Vercel", slug: "vercel" },
-                { name: "Cloudflare", slug: "cloudflare" },
-                { name: "Docker", slug: "docker" },
+                { name: "AWS", slug: "amazonwebservices", color: "FF9900" },
+                { name: "Google Cloud", slug: "googlecloud", color: "4285F4" },
+                { name: "Vercel", slug: "vercel", color: "000000" },
+                { name: "Cloudflare", slug: "cloudflare", color: "F38020" },
+                { name: "Docker", slug: "docker", color: "2496ED" },
               ]},
               { category: "EC / Commerce", label: "EC・決済", items: [
-                { name: "Shopify", slug: "shopify" },
-                { name: "Stripe", slug: "stripe" },
-                { name: "Square", slug: "square" },
-                { name: "WooCommerce", slug: "woocommerce" },
-                { name: "Amazon Pay", slug: "amazonpay" },
+                { name: "Shopify", slug: "shopify", color: "7AB55C" },
+                { name: "Stripe", slug: "stripe", color: "635BFF" },
+                { name: "Square", slug: "square", color: "006AFF" },
+                { name: "WooCommerce", slug: "woocommerce", color: "96588A" },
+                { name: "Amazon Pay", slug: "amazonpay", color: "FF9900" },
               ]},
               { category: "DevOps", label: "DevOps・運用", items: [
-                { name: "GitHub", slug: "github" },
-                { name: "Actions", slug: "githubactions" },
-                { name: "Terraform", slug: "terraform" },
-                { name: "Datadog", slug: "datadog" },
-                { name: "Sentry", slug: "sentry" },
+                { name: "GitHub", slug: "github", color: "181717" },
+                { name: "Actions", slug: "githubactions", color: "2088FF" },
+                { name: "Terraform", slug: "terraform", color: "844FBA" },
+                { name: "Datadog", slug: "datadog", color: "632CA6" },
+                { name: "Sentry", slug: "sentry", color: "362D59" },
               ]},
             ].map((group, gi) => (
               <Reveal key={group.category} delay={gi * 40}>
-                <div className="border-t border-gray-200 py-7">
+                <div className="border-t border-gray-200 py-8">
                   <div className="grid lg:grid-cols-12 gap-6 items-center">
                     <div className="lg:col-span-2">
                       <p className="text-[10px] font-semibold tracking-widest text-blue-600 uppercase">{group.category}</p>
@@ -283,10 +283,10 @@ export default function HomePage() {
                     <div className="lg:col-span-10">
                       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
                         {group.items.map((tech) => (
-                          <div key={tech.name} className="bg-white border border-gray-200 rounded-lg py-3.5 px-4 flex items-center gap-3 hover:border-gray-300 transition-colors">
+                          <div key={tech.name} className="bg-white border border-gray-200 rounded-xl p-5 flex flex-col items-center justify-center gap-3 hover:border-gray-300 hover:shadow-sm transition-all aspect-square">
                             {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img src={`https://cdn.simpleicons.org/${tech.slug}`} alt={tech.name} className="w-5 h-5 object-contain flex-shrink-0" loading="lazy" />
-                            <p className="text-sm font-medium text-gray-700">{tech.name}</p>
+                            <img src={`https://api.iconify.design/simple-icons/${tech.slug}.svg?color=%23${tech.color}`} alt={tech.name} className="w-8 h-8 object-contain" loading="lazy" />
+                            <p className="text-xs font-medium text-gray-600 text-center leading-tight">{tech.name}</p>
                           </div>
                         ))}
                       </div>
