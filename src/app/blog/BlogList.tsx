@@ -43,8 +43,8 @@ export default function BlogList({ posts, categories }: { posts: Blog[]; categor
     <main className="min-h-screen bg-white">
       <section className="max-w-5xl mx-auto px-6 pt-40 pb-16">
         <Reveal>
-          <p className="text-sm font-semibold text-blue-600 mb-4">Blog</p>
-          <h1 className="text-3xl font-bold text-gray-900">最新の記事</h1>
+          <p className="text-xs font-semibold tracking-widest uppercase text-blue-600 mb-4">News</p>
+          <h1 className="text-3xl font-bold text-gray-900">お知らせ</h1>
         </Reveal>
       </section>
 
