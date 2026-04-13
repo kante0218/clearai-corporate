@@ -16,8 +16,11 @@ export default function Footer() {
                 className="h-9 w-auto"
               />
             </div>
-            <p className="text-sm text-white/40 leading-relaxed max-w-xs mb-8">
-              AIコンサルティングとAI×農業で、日本の未来をつくる。
+            <p className="text-sm text-white/40 leading-relaxed max-w-xs mb-4">
+              AIコンサルティングと農業×エンジニアリングで、日本の未来をつくる。
+            </p>
+            <p className="text-xs text-white/20 leading-relaxed max-w-xs mb-8">
+              clear AI株式会社 / 茨城県 / 2026年4月設立
             </p>
             <Link href="/contact"
               className="inline-flex items-center gap-2 bg-blue-600 text-white text-xs font-black px-6 py-3 rounded-full hover:bg-blue-500 transition-all duration-300 tracking-wider">

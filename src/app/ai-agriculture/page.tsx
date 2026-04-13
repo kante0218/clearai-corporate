@@ -34,17 +34,38 @@ export default function AiAgriculturePage() {
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white">
         <div className="absolute bottom-1/3 right-1/4 w-[1px] h-[1px] shadow-[0_0_300px_150px_rgba(16,185,129,0.07)]" />
         <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
-          <span className="inline-block rounded-full bg-emerald-50 text-emerald-600 px-3 py-1 text-sm font-semibold mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "300ms" }}>AI × Agriculture</span>
+          <span className="inline-block rounded-full bg-emerald-50 text-emerald-600 px-3 py-1 text-sm font-semibold mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "300ms" }}>Engineering × Agriculture</span>
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0)" : "translateY(24px)", transitionDelay: "500ms" }}>
-            日本の農業を、<br />AIでアップデートする。
+            農家の未来を、<br />エンジニアが支える。
           </h1>
           <p className="text-base text-gray-600 leading-relaxed max-w-lg mx-auto mb-10 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "700ms" }}>
-            栽培管理・収穫予測・スマート農業ソリューション。<br />日本の生産者の現場に寄り添い、AIの力で農業の未来を支えます。
+            利益率の向上からECサイト構築まで。<br />エンジニアの力で、農家の経営を次のステージへ。
           </p>
           <div className="flex items-center justify-center gap-4 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "900ms" }}>
             <a href="/contact" className="rounded-xl bg-emerald-600 text-white font-semibold px-8 py-3.5 hover:bg-emerald-700 transition-colors duration-300">無料相談を申し込む</a>
             <a href="#services" className="text-sm text-gray-500 font-semibold hover:text-gray-900 transition-colors duration-300">ソリューションを見る →</a>
           </div>
+        </div>
+      </section>
+
+      {/* TRUST */}
+      <section className="py-12 bg-white border-y border-gray-100">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <Reveal>
+            <div className="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-gray-200">
+              {[
+                { value: "EC構築", label: "ネット販売支援" },
+                { value: "利益率改善", label: "経営サポート" },
+                { value: "全国対応", label: "日本全国" },
+                { value: "2営業日", label: "初回返信" },
+              ].map((stat) => (
+                <div key={stat.label} className="flex flex-col items-center justify-center py-6 px-4 text-center">
+                  <span className="text-xl font-bold text-gray-900">{stat.value}</span>
+                  <span className="text-xs text-gray-500 mt-1">{stat.label}</span>
+                </div>
+              ))}
+            </div>
+          </Reveal>
         </div>
       </section>
 
@@ -54,9 +75,9 @@ export default function AiAgriculturePage() {
           <Reveal>
             <Label>About</Label>
             <div className="max-w-3xl">
-              <h2 className="text-3xl font-bold text-gray-900 leading-snug mb-6">人手不足、高齢化、気候変動。<br />日本の農業の課題に、AIで応える。</h2>
+              <h2 className="text-3xl font-bold text-gray-900 leading-snug mb-6">農家の「売る力」と「稼ぐ力」を、<br />テクノロジーで引き上げる。</h2>
               <p className="text-base text-gray-600 leading-relaxed">
-                日本の農業は今、深刻な担い手不足と気候変動の影響に直面しています。私たちclear AIは、AIと最新テクノロジーを活用して、生産者の負担を減らし、収量と品質を高めるソリューションを提供します。派手な提案ではなく、現場で本当に使える形で、AIを農業に届けます。
+                日本の農業は、良いものを作っても利益が残らないという構造的な課題を抱えています。私たちclear AIは、エンジニアリングの力で農家の経営を支援。ECサイト構築による直販体制の確立、データに基づく利益率改善、業務効率化まで、農家の「稼ぐ力」を総合的にサポートします。
               </p>
             </div>
           </Reveal>
@@ -72,10 +93,10 @@ export default function AiAgriculturePage() {
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
-              { num: "01", title: "栽培管理AI", desc: "気温・湿度・土壌データをAIが分析し、最適な水やり・施肥タイミングを提案。経験と勘を、データで裏付けます。", hoverBg: "hover:bg-emerald-50" },
-              { num: "02", title: "収穫予測・出荷最適化", desc: "過去の収量データと気象情報から、収穫時期と量を予測。出荷計画と市場価格戦略を最適化します。", hoverBg: "hover:bg-lime-50" },
-              { num: "03", title: "病害虫検知", desc: "画像認識AIで作物の病害虫を早期発見。スマホで撮るだけで、対処法まで提案。被害を最小限に抑えます。", hoverBg: "hover:bg-teal-50" },
-              { num: "04", title: "スマート農業導入支援", desc: "ドローン、センサー、IoT機器の選定から導入まで。補助金活用も含めて、現場に合った形でご提案します。", hoverBg: "hover:bg-green-50" },
+              { num: "01", title: "EC・ネット販売構築", desc: "農家専用のECサイトを構築し、直販による利益率向上を実現。デザインから決済・配送連携まで、ネット販売に必要なすべてをワンストップで提供します。", hoverBg: "hover:bg-emerald-50" },
+              { num: "02", title: "利益率改善コンサルティング", desc: "原価構造の分析から販路の最適化まで、データに基づいた経営改善をご提案。「良いものを作っているのに利益が残らない」を解決します。", hoverBg: "hover:bg-lime-50" },
+              { num: "03", title: "業務効率化・DX支援", desc: "受発注管理、在庫管理、顧客管理など、農業経営に必要なシステムを導入。手作業を減らし、本業に集中できる環境を整えます。", hoverBg: "hover:bg-teal-50" },
+              { num: "04", title: "ブランディング・マーケティング支援", desc: "産地・生産者のストーリーを活かしたブランド構築。SNS運用、写真撮影、パッケージデザインまで、売れる仕組みをつくります。", hoverBg: "hover:bg-green-50" },
             ].map((item, i) => (
               <Reveal key={item.num} delay={i * 100}>
                 <div className={`bg-white rounded-2xl border border-gray-200 p-8 transition-all duration-300 cursor-default group ${item.hoverBg} hover:shadow-lg`}>
@@ -89,18 +110,55 @@ export default function AiAgriculturePage() {
         </div>
       </section>
 
-      {/* PROCESS */}
+      {/* ISSUES */}
       <section className="py-20 lg:py-28 bg-white">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <Reveal>
+            <Label>Challenges</Label>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">日本の農業が抱える構造課題</h2>
+          </Reveal>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                number: "30%",
+                label: "農家の直販比率（全国平均）",
+                desc: "ほとんどの農産物がJAや卸を経由し、生産者の手取りは小売価格の20〜30%程度です。",
+              },
+              {
+                number: "▲15%",
+                label: "農業所得の減少傾向",
+                desc: "コスト上昇に対して販売価格が追いつかず、利益が圧迫されています。",
+              },
+              {
+                number: "85%",
+                label: "EC未導入の農家割合",
+                desc: "ネット販売の可能性を感じながらも、始め方がわからない農家が大半です。",
+              },
+            ].map((item, i) => (
+              <Reveal key={item.label} delay={i * 100}>
+                <div className="rounded-2xl border border-gray-200 bg-white p-8 hover:shadow-lg transition-all duration-300">
+                  <p className="text-5xl font-black text-emerald-600 mb-3">{item.number}</p>
+                  <p className="text-sm font-bold text-gray-900 mb-2">{item.label}</p>
+                  <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* PROCESS */}
+      <section className="py-20 lg:py-28 bg-gray-50">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>Process</Label>
             <h2 className="text-2xl font-bold text-gray-900 mb-14">導入の流れ</h2>
           </Reveal>
           {[
-            { num: "01", title: "現場ヒアリング", en: "Hearing", desc: "農園・圃場を訪問し、栽培品目・規模・課題を整理。生産者の声を起点に、本当に効果が出る領域を特定します。" },
-            { num: "02", title: "ソリューション提案", en: "Proposal", desc: "現場に合った技術選定と導入計画をご提案。補助金活用やROI試算も含めて、無理のないプランをお示しします。" },
-            { num: "03", title: "実装・現場導入", en: "Implementation", desc: "センサー設置・AI設定・運用テストまで対応。生産者が自ら使いこなせるよう、現場で丁寧にレクチャーします。" },
-            { num: "04", title: "運用・改善", en: "Operation", desc: "シーズンごとにデータを振り返り、精度を改善。生産者と二人三脚で、収量・品質の向上を目指します。" },
+            { num: "01", title: "経営ヒアリング", en: "Hearing", desc: "現在の販路・原価構造・課題を丁寧にお聞きします。農園の強みと改善ポイントを整理し、最適な支援プランを設計します。" },
+            { num: "02", title: "戦略・設計", en: "Planning", desc: "EC構築、ブランディング、利益改善など、優先度の高い施策から着手。無理のないスケジュールでご提案します。" },
+            { num: "03", title: "構築・導入", en: "Implementation", desc: "ECサイト構築、システム導入、デザイン制作などを実施。農家様が自ら運用できるよう、丁寧にレクチャーします。" },
+            { num: "04", title: "運用・改善", en: "Operation", desc: "売上データを分析しながら、集客施策やリピーター育成を継続的に改善。農家と二人三脚で成果を追求します。" },
           ].map((step, i) => (
             <Reveal key={step.num} delay={i * 100}>
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 py-10 border-b border-gray-100 last:border-0">
@@ -116,13 +174,175 @@ export default function AiAgriculturePage() {
         </div>
       </section>
 
+      {/* DEVELOPMENT STATUS */}
+      <section className="py-20 lg:py-28 bg-white relative overflow-hidden">
+        <div className="absolute top-1/4 right-0 w-[400px] h-[400px] rounded-full bg-emerald-100/40 blur-[120px] pointer-events-none" />
+        <div className="max-w-6xl mx-auto px-6 lg:px-8 relative z-10">
+          <Reveal>
+            <Label>Status</Label>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-6">現在、提供中のサービスです。</h2>
+            <p className="text-base text-gray-600 leading-relaxed max-w-2xl mb-14">
+              clear AIは、農家の経営課題をエンジニアリングで解決するサービスを提供しています。<br />
+              ECサイト構築から利益率改善まで、農家の「稼ぐ力」を総合的にサポートします。
+            </p>
+          </Reveal>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-14">
+            {[
+              {
+                status: "提供中",
+                statusColor: "bg-emerald-100 text-emerald-700",
+                title: "EC・ネット販売構築",
+                desc: "Shopify・BASEなどを活用した農家向けECサイトの企画・構築・運用支援を提供中です。",
+              },
+              {
+                status: "提供中",
+                statusColor: "bg-emerald-100 text-emerald-700",
+                title: "経営改善コンサルティング",
+                desc: "原価分析・販路最適化・利益率改善のコンサルティングサービスを提供しています。",
+              },
+              {
+                status: "準備中",
+                statusColor: "bg-blue-100 text-blue-700",
+                title: "農業特化SaaS",
+                desc: "受発注・顧客管理・在庫管理を一元化する農業特化型のクラウドサービスを開発中です。",
+              },
+            ].map((item, i) => (
+              <Reveal key={item.title} delay={i * 100}>
+                <div className="rounded-2xl border border-gray-200 bg-white p-8 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
+                  <span className={`inline-block self-start rounded-full px-3 py-1 text-xs font-bold mb-4 ${item.statusColor}`}>{item.status}</span>
+                  <h3 className="text-lg font-bold text-gray-900 mb-3">{item.title}</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed flex-1">{item.desc}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal delay={300}>
+            <div className="rounded-2xl bg-gray-950 p-10 lg:p-14 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-[300px] h-[300px] rounded-full bg-emerald-500/10 blur-[100px] pointer-events-none" />
+              <div className="relative z-10">
+                <span className="inline-block rounded-full bg-emerald-500/20 text-emerald-400 px-4 py-1.5 text-xs font-bold tracking-widest uppercase mb-6">Now Hiring</span>
+                <h3 className="text-2xl lg:text-3xl font-bold text-white mb-4 leading-tight">
+                  一緒に農業を変えるエンジニアを募集しています。
+                </h3>
+                <p className="text-base text-white/60 leading-relaxed max-w-xl mb-8">
+                  農家の経営課題をテクノロジーで解決する。<br />
+                  フロントエンド、バックエンド、デザイナーを募集中です。
+                </p>
+                <div className="flex flex-wrap gap-3 mb-8">
+                  {["TypeScript / React", "Next.js", "Shopify / EC", "UI/UX Design", "Python", "AWS / GCP"].map((tech) => (
+                    <span key={tech} className="text-xs font-medium text-white/50 border border-white/10 rounded-full px-3 py-1.5">{tech}</span>
+                  ))}
+                </div>
+                <a href="/contact" className="inline-flex items-center gap-2 rounded-full bg-emerald-600 text-white font-semibold px-8 py-3.5 hover:bg-emerald-500 transition-colors duration-300">
+                  話を聞いてみる
+                  <span className="text-emerald-200">→</span>
+                </a>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* CASE STUDIES */}
+      <section className="py-20 lg:py-28 bg-gray-50">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <Reveal>
+            <Label>Case Studies</Label>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-6">想定される導入事例</h2>
+            <p className="text-sm text-gray-500 bg-white border border-gray-200 rounded-xl px-5 py-4 mb-12 leading-relaxed">
+              ※ 以下は、当社が想定する代表的な導入パターンです。実績事例は個別にご案内いたします。
+            </p>
+          </Reveal>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                title: "トマト農家 / EC直販サイト構築",
+                desc: "ECサイト構築により直販を開始。中間マージンの削減で、同じ出荷量でも手取り収入が大幅に改善しました。",
+                effect: "利益率 +40%",
+              },
+              {
+                title: "果樹園 / ブランディング支援",
+                desc: "産地のストーリーを活かしたブランド構築とSNS運用で、贈答需要を開拓。単価の向上に成功しました。",
+                effect: "客単価 +60%",
+              },
+              {
+                title: "大規模水田 / 業務効率化",
+                desc: "受発注管理と顧客管理をシステム化。事務作業時間を大幅に削減し、栽培に集中できる体制を実現しました。",
+                effect: "事務工数 -70%",
+              },
+            ].map((item, i) => (
+              <Reveal key={item.title} delay={i * 100}>
+                <div className="rounded-2xl border border-gray-200 bg-white p-8 hover:shadow-lg transition-all duration-300 flex flex-col h-full">
+                  <h3 className="text-base font-bold text-gray-900 mb-3">{item.title}</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed flex-1">{item.desc}</p>
+                  <div className="mt-6 pt-4 border-t border-gray-100">
+                    <p className="text-xs text-gray-400 mb-1">想定効果</p>
+                    <p className="text-base font-bold text-emerald-600">{item.effect}</p>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="py-20 lg:py-28 bg-white">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <Reveal>
+            <Label>FAQ</Label>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">よくあるご質問</h2>
+          </Reveal>
+          <div className="max-w-3xl">
+            {[
+              {
+                q: "小規模農家でも相談できますか？",
+                a: "はい。小規模農家様こそ、直販やECの効果が大きいと考えています。規模を問わずご相談ください。",
+              },
+              {
+                q: "ECサイトの運用経験がなくても大丈夫ですか？",
+                a: "もちろんです。スマートフォンが使える方であれば運用できるよう、シンプルな仕組みと丁寧なレクチャーをご提供します。",
+              },
+              {
+                q: "費用はどのくらいかかりますか？",
+                a: "農園の規模や必要な支援内容によって異なります。まずはヒアリングの上、最適なプランと費用感をご提案しますので、お気軽にご相談ください。",
+              },
+              {
+                q: "補助金は使えますか？",
+                a: "IT導入補助金、小規模事業者持続化補助金など、活用可能な補助金について申請支援まで行います。",
+              },
+              {
+                q: "どんな作物に対応していますか？",
+                a: "野菜・果物・米・花卉・加工品など幅広く対応可能です。品目やターゲット顧客に合わせた最適な販売戦略をご提案します。",
+              },
+              {
+                q: "対応エリアはどこですか？",
+                a: "オンラインでの対応を基本に、全国どこでもサポートが可能です。必要に応じて現地訪問も行います。",
+              },
+            ].map((item, i) => (
+              <Reveal key={i} delay={i * 80}>
+                <details className="border-b border-gray-100 py-5 group">
+                  <summary className="font-semibold text-gray-900 cursor-pointer list-none flex items-center justify-between gap-4">
+                    <span>{item.q}</span>
+                    <span className="text-gray-400 text-lg leading-none flex-shrink-0 transition-transform duration-300 group-open:rotate-45">+</span>
+                  </summary>
+                  <p className="text-gray-600 text-sm leading-relaxed mt-3">{item.a}</p>
+                </details>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="py-20 lg:py-28 bg-gray-50">
         <div className="max-w-2xl mx-auto px-6 text-center">
           <Reveal>
             <Label>Contact</Label>
             <h2 className="text-3xl font-bold text-gray-900 mb-4">まずは、お話しませんか。</h2>
-            <p className="text-base text-gray-600 leading-relaxed mb-10">「うちの農園でも使えるのか」というご相談から大歓迎です。<br />現場の状況をお聞きした上で、最適な進め方をご提案します。</p>
+            <p className="text-base text-gray-600 leading-relaxed mb-10">「うちの農園でもECは始められる？」というご相談から大歓迎です。<br />現状をお聞きした上で、最適な支援プランをご提案します。</p>
             <a href="/contact" className="rounded-xl bg-emerald-600 text-white font-semibold px-10 py-4 hover:bg-emerald-700 transition-colors duration-300 inline-block">無料で相談する</a>
           </Reveal>
         </div>

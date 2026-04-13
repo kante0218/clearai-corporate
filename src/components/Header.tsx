@@ -62,7 +62,7 @@ export default function Header() {
               </Link>
             </div>
 
-            <button onClick={() => setIsOpen(!isOpen)} className="lg:hidden p-2 z-10" aria-label="メニュー">
+            <button onClick={() => setIsOpen(!isOpen)} className="lg:hidden p-2 z-10 min-h-[44px] min-w-[44px] flex items-center justify-center" aria-label="メニュー" aria-expanded={isOpen}>
               <div className="w-6 h-5 flex flex-col justify-between">
                 <span className={`w-full h-0.5 bg-gray-900 transition-all duration-300 ${
                   isOpen ? "rotate-45 translate-y-[9px]" : ""
@@ -79,17 +79,17 @@ export default function Header() {
         </div>
 
         <div className={`lg:hidden overflow-hidden transition-all duration-500 ${isOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"}`}>
-          <div className="bg-gray-950 border-t border-white/10">
+          <div className="bg-white/98 backdrop-blur-xl border-t border-gray-100">
             <nav className="max-w-7xl mx-auto px-6 py-8 space-y-1">
               {navItems.map((item, i) => (
                 <Link key={item.label} href={item.href} onClick={() => setIsOpen(false)}
-                  className="block text-base text-white/70 hover:text-white py-3 border-b border-white/5 transition-colors"
+                  className="block text-base text-gray-700 hover:text-gray-900 py-3.5 border-b border-gray-100 transition-colors font-medium"
                   style={{ transitionDelay: `${i * 30}ms` }}>
                   {item.label}
                 </Link>
               ))}
               <Link href="/contact" onClick={() => setIsOpen(false)}
-                className="block text-center bg-blue-600 text-white px-6 py-3.5 rounded-full text-sm font-semibold mt-6 hover:bg-blue-500 transition-colors">
+                className="block text-center bg-blue-600 text-white px-6 py-3.5 rounded-full text-sm font-semibold mt-6 hover:bg-blue-500 transition-colors min-h-[44px]">
                 お問い合わせ
               </Link>
             </nav>

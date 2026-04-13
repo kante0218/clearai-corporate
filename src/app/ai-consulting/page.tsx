@@ -48,6 +48,27 @@ export default function AiConsultingPage() {
         </div>
       </section>
 
+      {/* TRUST */}
+      <section className="py-12 bg-white border-y border-gray-100">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <Reveal>
+            <div className="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-gray-200">
+              {[
+                { value: "100+", label: "支援可能な業種" },
+                { value: "4領域", label: "ワンストップ提供" },
+                { value: "PoC→本番", label: "伴走支援" },
+                { value: "2営業日", label: "初回返信" },
+              ].map((stat) => (
+                <div key={stat.label} className="flex flex-col items-center justify-center py-6 px-4 text-center">
+                  <span className="text-2xl font-bold text-gray-900">{stat.value}</span>
+                  <span className="text-xs text-gray-500 mt-1">{stat.label}</span>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       {/* INTRO */}
       <section className="py-20 lg:py-28 bg-white">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
@@ -89,8 +110,34 @@ export default function AiConsultingPage() {
         </div>
       </section>
 
-      {/* PROCESS */}
+      {/* DIFFERENTIATION */}
       <section className="py-20 lg:py-28 bg-white">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <Reveal>
+            <Label>Why Us</Label>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">なぜ clear AI が選ばれるのか</h2>
+          </Reveal>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {[
+              { icon: "🎯", title: "課題ドリブン", desc: "流行ではなく、貴社の業務課題から逆算してAIを選定します。" },
+              { icon: "⚖️", title: "技術選定に中立", desc: "特定ベンダー縛りなし。OpenAI、Anthropic、Google、オープンソースを横断比較。" },
+              { icon: "🔧", title: "実装まで一気通貫", desc: "戦略だけで終わらせない。PoCから本番稼働、運用定着まで。" },
+              { icon: "💬", title: "経営との対話", desc: "現場と経営層の両方の言葉で話せる。ROI議論が可能です。" },
+            ].map((item, i) => (
+              <Reveal key={item.title} delay={i * 100}>
+                <div className="rounded-2xl border border-gray-200 bg-white p-8 hover:shadow-lg transition-all duration-300">
+                  <span className="text-3xl mb-4 block">{item.icon}</span>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">{item.title}</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* PROCESS */}
+      <section className="py-20 lg:py-28 bg-gray-50">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>Process</Label>
@@ -117,7 +164,7 @@ export default function AiConsultingPage() {
       </section>
 
       {/* PRICING */}
-      <section className="py-20 lg:py-28 bg-gray-50">
+      <section className="py-20 lg:py-28 bg-white">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>Pricing</Label>
@@ -125,9 +172,9 @@ export default function AiConsultingPage() {
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { name: "スポットコンサル", price: "¥500,000〜", unit: "回", desc: "現状分析とAI活用の方向性をご提案。", features: ["現状ヒアリング（2時間）", "AI活用レポート作成", "導入ロードマップ素案", "2週間のメールサポート"], featured: false },
-              { name: "スタンダード", price: "¥1,500,000〜", unit: "月", desc: "PoC〜本番実装まで。伴走型の導入支援。", features: ["月次ヒアリング・進捗会議", "AI戦略策定・設計", "PoC開発・検証", "本番実装・テスト", "社内トレーニング"], featured: true },
-              { name: "エンタープライズ", price: "要相談", unit: "", desc: "大規模導入・複数部署展開に対応。", features: ["専任コンサルタント配置", "複数部署への横展開", "カスタムAI開発", "24/7サポート", "KPI計測・改善サイクル"], featured: false },
+              { name: "スポットコンサル", price: "ご相談", unit: "", desc: "現状分析とAI活用の方向性をご提案。", features: ["現状ヒアリング（2時間）", "AI活用レポート作成", "導入ロードマップ素案", "2週間のメールサポート"], featured: false },
+              { name: "スタンダード", price: "ご相談", unit: "", desc: "PoC〜本番実装まで。伴走型の導入支援。", features: ["月次ヒアリング・進捗会議", "AI戦略策定・設計", "PoC開発・検証", "本番実装・テスト", "社内トレーニング"], featured: true },
+              { name: "エンタープライズ", price: "ご相談", unit: "", desc: "大規模導入・複数部署展開に対応。", features: ["専任コンサルタント配置", "複数部署への横展開", "カスタムAI開発", "24/7サポート", "KPI計測・改善サイクル"], featured: false },
             ].map((plan, i) => (
               <Reveal key={plan.name} delay={i * 100}>
                 <div className={`rounded-2xl p-8 lg:p-10 transition-all duration-300 ${plan.featured ? "bg-blue-600 text-white shadow-xl" : "bg-white border border-gray-200 hover:shadow-lg"}`}>
@@ -154,8 +201,103 @@ export default function AiConsultingPage() {
         </div>
       </section>
 
-      {/* CTA */}
+      {/* CASE STUDIES */}
+      <section className="py-20 lg:py-28 bg-gray-50">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <Reveal>
+            <Label>Case Studies</Label>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-6">想定される導入事例</h2>
+            <p className="text-sm text-gray-500 bg-white border border-gray-200 rounded-xl px-5 py-4 mb-12 leading-relaxed">
+              ※ 以下は、当社が想定する代表的な導入パターンです。実績事例は個別にご案内いたします。
+            </p>
+          </Reveal>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              {
+                tag: "業務自動化",
+                title: "製造業A社 / 品質検査自動化",
+                desc: "画像認識AIで目視検査を自動化。検査時間を70%削減、見逃し率も改善。",
+                effect: "検査時間 -70%",
+              },
+              {
+                tag: "データ分析",
+                title: "小売B社 / 需要予測",
+                desc: "POSデータと気象情報を組み合わせた需要予測AI。廃棄ロスを40%削減。",
+                effect: "廃棄ロス -40%",
+              },
+              {
+                tag: "生成AI活用",
+                title: "金融C社 / 生成AI導入",
+                desc: "社内ナレッジと連携した生成AIチャットボットで問い合わせ対応を半自動化。",
+                effect: "対応工数 -50%",
+              },
+            ].map((item, i) => (
+              <Reveal key={item.title} delay={i * 100}>
+                <div className="rounded-2xl border border-gray-200 bg-white p-8 hover:shadow-lg transition-all duration-300 flex flex-col h-full">
+                  <span className="inline-block rounded-full bg-blue-50 text-blue-600 text-xs font-semibold px-3 py-1 mb-4 self-start">{item.tag}</span>
+                  <h3 className="text-base font-bold text-gray-900 mb-3">{item.title}</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed flex-1">{item.desc}</p>
+                  <div className="mt-6 pt-4 border-t border-gray-100">
+                    <p className="text-xs text-gray-400 mb-1">想定効果</p>
+                    <p className="text-lg font-bold text-blue-600">{item.effect}</p>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
       <section className="py-20 lg:py-28 bg-white">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <Reveal>
+            <Label>FAQ</Label>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">よくあるご質問</h2>
+          </Reveal>
+          <div className="max-w-3xl">
+            {[
+              {
+                q: "AIについての知識がなくても相談できますか？",
+                a: "もちろんです。当社は「AIの専門知識ゼロ」の企業様を最も得意としています。現状把握から一緒に行いますので、まずはお気軽にご相談ください。",
+              },
+              {
+                q: "どのくらいの期間でAI導入ができますか？",
+                a: "PoC（概念実証）フェーズで1〜3ヶ月、本番実装で3〜6ヶ月が目安です。業務範囲と複雑性により変動します。",
+              },
+              {
+                q: "費用感を教えてください。",
+                a: "サービス内容や規模に応じて異なります。まずはヒアリングの上、最適なプランと費用感をご提案いたしますので、お気軽にご相談ください。",
+              },
+              {
+                q: "特定のAIベンダーに縛られますか？",
+                a: "いいえ。当社はベンダーニュートラルな立場で、OpenAI・Anthropic・Google・オープンソース（Llama等）を横断的に比較・選定します。",
+              },
+              {
+                q: "既存システムとの連携は可能ですか？",
+                a: "可能です。ERP・CRM・SaaS等、お使いのシステムとのAPI連携やデータ統合を前提に設計します。",
+              },
+              {
+                q: "オンサイト対応はありますか？",
+                a: "必要に応じて全国対応いたします。リモートとオンサイトを組み合わせた柔軟なプロジェクト進行が可能です。",
+              },
+            ].map((item, i) => (
+              <Reveal key={i} delay={i * 80}>
+                <details className="border-b border-gray-100 py-5 group">
+                  <summary className="font-semibold text-gray-900 cursor-pointer list-none flex items-center justify-between gap-4">
+                    <span>{item.q}</span>
+                    <span className="text-gray-400 text-lg leading-none flex-shrink-0 transition-transform duration-300 group-open:rotate-45">+</span>
+                  </summary>
+                  <p className="text-gray-600 text-sm leading-relaxed mt-3">{item.a}</p>
+                </details>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-20 lg:py-28 bg-gray-50">
         <div className="max-w-2xl mx-auto px-6 text-center">
           <Reveal>
             <Label>Contact</Label>

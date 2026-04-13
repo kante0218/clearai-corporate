@@ -257,7 +257,7 @@ export default function HomePage() {
                   AIはまだ、多くの企業や生産者にとって遠い存在です。難しい、コストが高い、何から始めればいいかわからない——そんな声を何度も聞いてきました。
                 </p>
                 <p className="text-lg text-gray-600 leading-loose">
-                  私たちはそのギャップを埋めるために生まれました。最先端のAI技術を、ビジネスと農業の言葉に翻訳する。一社一社、一農家一農家に寄り添い、AIの価値を丁寧に届けていきます。
+                  私たちはそのギャップを埋めるために生まれました。最先端のAI技術をビジネスの言葉に翻訳し、エンジニアの力で農家の経営を支える。一社一社、一農家一農家に寄り添い、確かな価値を届けていきます。
                 </p>
                 <div className="h-px bg-gray-200 mt-8" />
                 <div className="flex items-center gap-6 pt-4">
@@ -293,7 +293,7 @@ export default function HomePage() {
               <span className="text-gray-400">日本の未来をつくる。</span>
             </h2>
             <p className="text-base text-gray-500 mb-16 max-w-lg leading-relaxed">
-              企業のAI活用と、農業のAI実装。それぞれの現場に寄り添い、確実に成果を届けます。
+              企業のAI活用と、エンジニアによる農業支援。それぞれの現場に寄り添い、確実に成果を届けます。
             </p>
           </Reveal>
 
@@ -347,9 +347,9 @@ export default function HomePage() {
                   </div>
                   <div className="relative z-10">
                     <span className="inline-block text-[10px] font-black tracking-widest text-emerald-300/80 border border-emerald-400/20 px-3 py-1 rounded-full mb-6 uppercase">Service 02</span>
-                    <h3 className="text-3xl lg:text-5xl font-black text-white mb-4 leading-tight">AI×農業</h3>
+                    <h3 className="text-3xl lg:text-5xl font-black text-white mb-4 leading-tight">農業×エンジニアリング</h3>
                     <p className="text-sm lg:text-base text-emerald-100/70 leading-relaxed max-w-md mb-8">
-                      日本の農業をAIでアップデート。栽培管理・収穫予測・スマート農業ソリューションで、生産者の現場を支えます。
+                      エンジニアが農家の経営を支える。EC構築・利益率改善・業務効率化で、農業の「稼ぐ力」を引き上げます。
                     </p>
                     <div className="flex items-center gap-2 text-emerald-300 text-sm font-bold group-hover:text-white transition-colors duration-300">
                       <span>詳しく見る</span>
@@ -686,7 +686,7 @@ export default function HomePage() {
                 <span className="text-blue-600">お話しませんか。</span>
               </h2>
               <p className="text-base lg:text-lg text-gray-600 leading-loose mb-12 max-w-lg mx-auto">
-                AIのことがわからなくても大丈夫です。<br />貴社・貴農園の状況に合わせて、一緒に考えます。
+                AIのことがわからなくても、ECが初めてでも大丈夫です。<br />貴社・貴農園の状況に合わせて、一緒に考えます。
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Link href="/contact"
