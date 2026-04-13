@@ -119,15 +119,15 @@ export default function AiConsultingPage() {
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
-              { icon: "🎯", title: "課題ドリブン", desc: "流行ではなく、貴社の業務課題から逆算してAIを選定します。" },
-              { icon: "⚖️", title: "技術選定に中立", desc: "特定ベンダー縛りなし。OpenAI、Anthropic、Google、オープンソースを横断比較。" },
-              { icon: "🔧", title: "実装まで一気通貫", desc: "戦略だけで終わらせない。PoCから本番稼働、運用定着まで。" },
-              { icon: "💬", title: "経営との対話", desc: "現場と経営層の両方の言葉で話せる。ROI議論が可能です。" },
+              { num: "01", title: "課題ドリブン", desc: "流行ではなく、貴社の業務課題から逆算してAIを選定します。" },
+              { num: "02", title: "技術選定に中立", desc: "特定ベンダー縛りなし。OpenAI、Anthropic、Google、オープンソースを横断比較。" },
+              { num: "03", title: "実装まで一気通貫", desc: "戦略だけで終わらせない。PoCから本番稼働、運用定着まで。" },
+              { num: "04", title: "経営との対話", desc: "現場と経営層の両方の言葉で話せる。ROI議論が可能です。" },
             ].map((item, i) => (
               <Reveal key={item.title} delay={i * 100}>
                 <div className="rounded-2xl border border-gray-200 bg-white p-8 hover:shadow-lg transition-all duration-300">
-                  <span className="text-3xl mb-4 block">{item.icon}</span>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">{item.title}</h3>
+                  <span className="text-xs font-semibold text-blue-600 tracking-widest">{item.num}</span>
+                  <h3 className="text-lg font-bold text-gray-900 mt-2 mb-3">{item.title}</h3>
                   <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
                 </div>
               </Reveal>
@@ -170,30 +170,29 @@ export default function AiConsultingPage() {
             <Label>Pricing</Label>
             <h2 className="text-2xl font-bold text-gray-900 mb-14">料金プラン</h2>
           </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
             {[
-              { name: "スポットコンサル", price: "ご相談", unit: "", desc: "現状分析とAI活用の方向性をご提案。", features: ["現状ヒアリング（2時間）", "AI活用レポート作成", "導入ロードマップ素案", "2週間のメールサポート"], featured: false },
-              { name: "スタンダード", price: "ご相談", unit: "", desc: "PoC〜本番実装まで。伴走型の導入支援。", features: ["月次ヒアリング・進捗会議", "AI戦略策定・設計", "PoC開発・検証", "本番実装・テスト", "社内トレーニング"], featured: true },
-              { name: "エンタープライズ", price: "ご相談", unit: "", desc: "大規模導入・複数部署展開に対応。", features: ["専任コンサルタント配置", "複数部署への横展開", "カスタムAI開発", "24/7サポート", "KPI計測・改善サイクル"], featured: false },
+              { name: "スポットコンサル", price: "ご相談", desc: "現状分析とAI活用の方向性をご提案。", features: ["現状ヒアリング（2時間）", "AI活用レポート作成", "導入ロードマップ素案", "2週間のメールサポート"], featured: false },
+              { name: "スタンダード", price: "ご相談", desc: "PoC〜本番実装まで。伴走型の導入支援。", features: ["月次ヒアリング・進捗会議", "AI戦略策定・設計", "PoC開発・検証", "本番実装・テスト", "社内トレーニング"], featured: true },
+              { name: "エンタープライズ", price: "ご相談", desc: "大規模導入・複数部署展開に対応。", features: ["専任コンサルタント配置", "複数部署への横展開", "カスタムAI開発", "24/7サポート", "KPI計測・改善サイクル"], featured: false },
             ].map((plan, i) => (
-              <Reveal key={plan.name} delay={i * 100}>
-                <div className={`rounded-2xl p-8 lg:p-10 transition-all duration-300 ${plan.featured ? "bg-blue-600 text-white shadow-xl" : "bg-white border border-gray-200 hover:shadow-lg"}`}>
-                  {plan.featured && <span className="inline-block rounded-full bg-white/20 text-white px-3 py-1 text-sm font-semibold mb-4">Recommended</span>}
+              <Reveal key={plan.name} delay={i * 100} className="flex">
+                <div className={`rounded-2xl p-8 lg:p-10 transition-all duration-300 flex flex-col w-full ${plan.featured ? "bg-blue-600 text-white shadow-xl" : "bg-white border border-gray-200 hover:shadow-lg"}`}>
+                  {plan.featured && <span className="inline-block rounded-full bg-white/20 text-white px-3 py-1 text-sm font-semibold mb-4 self-start">Recommended</span>}
                   <h3 className={`text-lg font-bold mb-2 ${plan.featured ? "text-white" : "text-gray-900"}`}>{plan.name}</h3>
                   <div className="mb-4">
                     <span className={`text-2xl font-bold ${plan.featured ? "text-white" : "text-gray-900"}`}>{plan.price}</span>
-                    {plan.unit && <span className={`text-sm ml-1 ${plan.featured ? "text-white/60" : "text-gray-400"}`}>/ {plan.unit}</span>}
                   </div>
                   <p className={`text-sm leading-relaxed mb-6 ${plan.featured ? "text-white/80" : "text-gray-600"}`}>{plan.desc}</p>
-                  <ul className="space-y-3 mb-8">
+                  <ul className="space-y-3 mb-8 flex-1">
                     {plan.features.map((f) => (
                       <li key={f} className="flex items-start gap-3">
-                        <span className={`mt-0.5 ${plan.featured ? "text-white/40" : "text-gray-300"}`}>-</span>
+                        <span className={`mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 ${plan.featured ? "bg-white/40" : "bg-blue-600"}`} />
                         <span className={`text-sm ${plan.featured ? "text-white/90" : "text-gray-600"}`}>{f}</span>
                       </li>
                     ))}
                   </ul>
-                  <a href="/contact" className={`block text-center text-sm font-semibold py-3 rounded-lg transition-all duration-300 ${plan.featured ? "bg-white text-blue-600 hover:bg-blue-50" : "border border-gray-200 text-gray-600 hover:border-gray-400 hover:text-gray-900"}`}>相談する</a>
+                  <a href="/contact" className={`block text-center text-sm font-semibold py-3 rounded-lg transition-all duration-300 mt-auto ${plan.featured ? "bg-white text-blue-600 hover:bg-blue-50" : "border border-gray-200 text-gray-600 hover:border-gray-400 hover:text-gray-900"}`}>相談する</a>
                 </div>
               </Reveal>
             ))}
