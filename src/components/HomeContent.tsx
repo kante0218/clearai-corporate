@@ -40,86 +40,26 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
   return (
     <>
       {/* ═══ HERO ═══ */}
-      <section
-        className="relative flex items-center justify-center overflow-hidden"
-        style={{
-          background: "var(--clay-cream)",
-          minHeight: "88vh",
-          paddingTop: "clamp(5rem, 12vh, 9rem)",
-          paddingBottom: "clamp(4rem, 8vh, 7rem)",
-        }}
-      >
-        {/* Content — centered column */}
-        <div
-          className="relative z-10 w-full max-w-3xl mx-auto px-6 lg:px-10 text-center"
-          style={{
-            opacity: heroLoaded ? 1 : 0,
-            transform: heroLoaded ? "none" : "translateY(28px)",
-            transition: "opacity 0.8s cubic-bezier(0.16,1,0.3,1) 80ms, transform 0.8s cubic-bezier(0.16,1,0.3,1) 80ms",
-          }}
-        >
-          {/* Uppercase label */}
-          <span
-            className="clay-label"
-            style={{ marginBottom: "1.5rem", display: "block" }}
-          >
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white">
+        <div className="absolute bottom-1/3 right-1/4 w-[1px] h-[1px] shadow-[0_0_300px_150px_rgba(37,99,235,0.07)]" />
+        <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
+          <span className="inline-block rounded-full bg-blue-50 text-blue-600 px-3 py-1 text-sm font-semibold mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "300ms" }}>
             AI Consulting &amp; Agriculture Engineering
           </span>
-
-          {/* H1 — Clay display scale */}
-          <h1
-            className="clay-display"
-            style={{
-              color: "var(--clay-black)",
-              marginBottom: "1.5rem",
-              opacity: heroLoaded ? 1 : 0,
-              transform: heroLoaded ? "none" : "translateY(24px)",
-              transition: "opacity 0.75s cubic-bezier(0.16,1,0.3,1) 220ms, transform 0.75s cubic-bezier(0.16,1,0.3,1) 220ms",
-            }}
-          >
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0)" : "translateY(24px)", transitionDelay: "500ms" }}>
             AIで、すべてを<br />クリアにする。
           </h1>
-
-          {/* Sub-copy */}
-          <p
-            style={{
-              fontSize: "1.125rem",
-              fontWeight: 400,
-              lineHeight: 1.65,
-              color: "var(--clay-warm-silver)",
-              letterSpacing: "-0.02em",
-              maxWidth: "38rem",
-              margin: "0 auto 2.5rem",
-              opacity: heroLoaded ? 1 : 0,
-              transition: "opacity 0.75s cubic-bezier(0.16,1,0.3,1) 380ms",
-            }}
-          >
+          <p className="text-base text-gray-600 leading-relaxed max-w-lg mx-auto mb-10 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "700ms" }}>
             AIコンサルティング・AI顧問・エンジニアによる農業支援。<br />3つの事業で、日本の産業に確かな価値を届けます。
           </p>
-
-          {/* CTA row */}
-          <div
-            className="flex items-center justify-center gap-4 flex-wrap"
-            style={{
-              opacity: heroLoaded ? 1 : 0,
-              transition: "opacity 0.75s cubic-bezier(0.16,1,0.3,1) 520ms",
-            }}
-          >
-            <Link href="/contact" className="btn-clay">
+          <div className="flex items-center justify-center gap-4 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "900ms" }}>
+            <Link href="/contact" className="rounded-lg bg-blue-600 text-white font-semibold px-8 py-3.5 hover:bg-blue-700 transition-colors duration-300">
               お問い合わせ
             </Link>
-            <Link href="#services" className="btn-clay-ghost">
+            <Link href="#services" className="text-sm text-gray-500 font-semibold hover:text-gray-900 transition-colors duration-300">
               事業を見る →
             </Link>
           </div>
-        </div>
-
-        {/* Bottom oat dashed divider */}
-        <div
-          className="absolute bottom-0 left-0 right-0"
-          style={{ padding: "0 1.5rem" }}
-        >
-          <hr className="clay-divider" />
         </div>
       </section>
 
