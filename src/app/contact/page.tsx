@@ -156,8 +156,8 @@ export default function ContactPage() {
               </h2>
               <p className="text-base text-gray-600 mb-8">
                 担当者より2営業日以内にご連絡いたします。お急ぎの場合は{" "}
-                <a href="mailto:info@and-clearai.com" className="text-blue-600 underline">
-                  info@and-clearai.com
+                <a href="mailto:t.kante@clearai.jp" className="text-blue-600 underline">
+                  t.kante@clearai.jp
                 </a>{" "}
                 まで直接ご連絡ください。
               </p>
@@ -185,7 +185,7 @@ export default function ContactPage() {
                 <div className="space-y-6 pt-2">
                   <div className="bg-gray-50 rounded-2xl p-5">
                     <p className="text-sm font-semibold text-gray-500 mb-1">EMAIL</p>
-                    <p className="text-base text-gray-900">info@and-clearai.com</p>
+                    <p className="text-base text-gray-900">t.kante@clearai.jp</p>
                   </div>
 
                   <div className="bg-gray-50 rounded-2xl p-5">
