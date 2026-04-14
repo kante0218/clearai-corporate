@@ -1,0 +1,84 @@
+import type { Metadata } from "next";
+import Script from "next/script";
+
+const description =
+  "clear AI株式会社のAI導入コンサルティング。生成AI活用・業務自動化・DX推進まで、戦略策定から開発・実装・運用まで一気通貫でサポート。中小企業から大企業まで、貴社に最適なAIソリューションを共に創り上げます。";
+
+export const metadata: Metadata = {
+  title: "AIコンサルティング | 戦略・実装・運用を一気通貫で伴走",
+  description,
+  keywords: [
+    "AIコンサルティング",
+    "AI導入支援",
+    "生成AI活用",
+    "DX推進",
+    "業務自動化",
+    "企業AI",
+    "AI戦略",
+    "LLM導入",
+  ],
+  alternates: { canonical: "https://clearai.jp/ai-consulting" },
+  openGraph: {
+    title: "AIコンサルティング | clear AI株式会社",
+    description,
+    url: "https://clearai.jp/ai-consulting",
+    type: "website",
+    locale: "ja_JP",
+    siteName: "clear AI株式会社",
+    images: ["/images/logo.png"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "AIコンサルティング | clear AI株式会社",
+    description,
+    images: ["/images/logo.png"],
+  },
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  serviceType: "AIコンサルティング",
+  provider: {
+    "@type": "Organization",
+    name: "clear AI株式会社",
+    url: "https://clearai.jp",
+  },
+  areaServed: { "@type": "Country", name: "日本" },
+  name: "AI導入コンサルティングサービス",
+  description,
+  url: "https://clearai.jp/ai-consulting",
+  offers: {
+    "@type": "Offer",
+    availability: "https://schema.org/InStock",
+  },
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "ホーム", item: "https://clearai.jp" },
+    { "@type": "ListItem", position: 2, name: "AIコンサルティング", item: "https://clearai.jp/ai-consulting" },
+  ],
+};
+
+export default function AiConsultingLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <>
+      {children}
+      <Script
+        id="schema-service-consulting"
+        type="application/ld+json"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+      <Script
+        id="schema-breadcrumb-consulting"
+        type="application/ld+json"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+    </>
+  );
+}

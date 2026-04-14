@@ -78,6 +78,14 @@ export const metadata: Metadata = {
   verification: {
     google: "nE6Ji9Kv43p2EsW5odNprPtSSmKWya33nWYBZNJ5lSc",
   },
+  category: "technology",
+  applicationName: "clear AI",
+  referrer: "origin-when-cross-origin",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
 };
 
 const organizationSchema = {
@@ -101,6 +109,15 @@ const organizationSchema = {
     "availableLanguage": ["Japanese"],
   },
   "sameAs": [],
+  "knowsAbout": [
+    "AIコンサルティング",
+    "生成AI",
+    "DX推進",
+    "業務自動化",
+    "農業DX",
+    "スマート農業",
+    "AgriTech",
+  ],
 };
 
 const websiteSchema = {
@@ -109,6 +126,16 @@ const websiteSchema = {
   "name": "clear AI株式会社",
   "url": "https://clearai.jp",
   "inLanguage": "ja",
+  "publisher": {
+    "@type": "Organization",
+    "name": "clear AI株式会社",
+    "url": "https://clearai.jp",
+  },
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://clearai.jp/blog?q={search_term_string}",
+    "query-input": "required name=search_term_string",
+  },
 };
 
 export default function RootLayout({

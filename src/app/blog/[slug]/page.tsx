@@ -1,5 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
+import Script from "next/script";
+import type { Metadata } from "next";
 import { getBlogBySlug, getAllBlogSlugs } from "@/lib/microcms";
 import { notFound } from "next/navigation";
 
@@ -11,6 +13,45 @@ export async function generateStaticParams() {
     return slugs.map((slug) => ({ slug }));
   } catch {
     return [];
+  }
+}
+
+function stripHtml(html: string, max = 160): string {
+  const text = html.replace(/<[^>]*>/g, "").replace(/\s+/g, " ").trim();
+  return text.length > max ? text.slice(0, max) + "…" : text;
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  try {
+    const post = await getBlogBySlug(slug);
+    const description = stripHtml(post.content ?? "");
+    const url = `https://clearai.jp/blog/${slug}`;
+    const images = post.eyecatch?.url ? [post.eyecatch.url] : ["/images/logo.png"];
+    return {
+      title: post.title,
+      description,
+      alternates: { canonical: url },
+      openGraph: {
+        title: post.title,
+        description,
+        url,
+        type: "article",
+        locale: "ja_JP",
+        siteName: "clear AI株式会社",
+        publishedTime: post.publishedAt,
+        modifiedTime: post.revisedAt ?? post.publishedAt,
+        images,
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: post.title,
+        description,
+        images,
+      },
+    };
+  } catch {
+    return { title: "記事が見つかりません" };
   }
 }
 
@@ -29,8 +70,45 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     notFound();
   }
 
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    image: post.eyecatch?.url ? [post.eyecatch.url] : ["https://clearai.jp/images/logo.png"],
+    datePublished: post.publishedAt,
+    dateModified: post.revisedAt ?? post.publishedAt,
+    author: { "@type": "Organization", name: "clear AI株式会社", url: "https://clearai.jp" },
+    publisher: {
+      "@type": "Organization",
+      name: "clear AI株式会社",
+      logo: { "@type": "ImageObject", url: "https://clearai.jp/images/logo.png" },
+    },
+    mainEntityOfPage: { "@type": "WebPage", "@id": `https://clearai.jp/blog/${slug}` },
+    description: stripHtml(post.content ?? ""),
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "ホーム", item: "https://clearai.jp" },
+      { "@type": "ListItem", position: 2, name: "お知らせ", item: "https://clearai.jp/blog" },
+      { "@type": "ListItem", position: 3, name: post.title, item: `https://clearai.jp/blog/${slug}` },
+    ],
+  };
+
   return (
     <main className="min-h-screen bg-white">
+      <Script
+        id={`schema-article-${slug}`}
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+      <Script
+        id={`schema-breadcrumb-${slug}`}
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <div className="max-w-3xl mx-auto px-6 pt-40">
         <Link href="/blog" className="inline-block text-sm font-semibold text-blue-600 hover:text-blue-800 transition-colors duration-300 mb-10">
           ← お知らせ一覧
