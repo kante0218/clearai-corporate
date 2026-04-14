@@ -161,20 +161,23 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
             </Reveal>
 
             <Reveal delay={80} className="h-full">
-              <Link href="/contact" className="group block h-full">
+              <Link href="/contact?inquiry=advisor" className="group block h-full">
                 <div className="bg-white border border-gray-200 rounded-2xl p-8 lg:p-10 hover:border-indigo-300 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
                   <span className="inline-block text-xs font-semibold tracking-widest uppercase text-indigo-600 mb-4">Service 02</span>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-3">AI顧問サービス</h3>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-3">AI顧問 ＋ ウェブサイト監修</h3>
                   <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">
-                    経営に寄り添う外部AI顧問。月次の壁打ちから最新動向のキャッチアップ、社内AI活用の方針づくりまで継続的に支援します。
+                    経営に寄り添う外部AI顧問として月次で伴走。あわせて自社ウェブサイトのAI監修・改善提案も担います。業務委託契約ベースで、複数社の顧問先を募集中です。
                   </p>
                   <div className="flex items-center gap-3 flex-wrap mb-6">
-                    {["月次顧問", "経営助言", "技術監修", "動向アップデート"].map((tag) => (
+                    {["AI顧問契約", "ウェブサイト監修", "月次壁打ち", "業務委託"].map((tag) => (
                       <span key={tag} className="text-xs text-gray-500 border border-gray-200 rounded px-2.5 py-1">{tag}</span>
                     ))}
                   </div>
+                  <div className="text-xs text-gray-500 mb-4 border-t border-gray-100 pt-4">
+                    <span className="font-semibold text-gray-700">顧問先:</span> 日本アセット戦略機構
+                  </div>
                   <span className="text-sm font-semibold text-indigo-600 group-hover:text-indigo-700 transition-colors">
-                    詳しく見る →
+                    顧問契約のご相談 →
                   </span>
                 </div>
               </Link>
@@ -200,6 +203,58 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
               </Link>
             </Reveal>
           </div>
+        </div>
+      </section>
+
+      {/* ═══ CLIENTS / 顧問先 ═══ */}
+      <section className="py-20 lg:py-24 bg-gray-50">
+        <div className="max-w-5xl mx-auto px-6 lg:px-10">
+          <Reveal>
+            <SectionLabel>Advisory Clients</SectionLabel>
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-6">
+              AI顧問としての、信頼の実績。
+            </h2>
+            <p className="text-base text-gray-500 mb-12 max-w-2xl leading-relaxed">
+              業務委託契約に基づき、AI顧問 兼 ウェブサイト監修として継続的に支援している顧問先企業です。同様のスキームで、新たな顧問先を募集しています。
+            </p>
+          </Reveal>
+
+          <Reveal delay={80}>
+            <div className="bg-white border border-gray-200 rounded-2xl p-8 lg:p-10 hover:border-indigo-300 hover:shadow-lg transition-all duration-300">
+              <div className="flex items-start gap-6 flex-col sm:flex-row">
+                <div className="flex-shrink-0 w-16 h-16 rounded-xl bg-gradient-to-br from-indigo-500 to-blue-600 flex items-center justify-center text-white font-bold text-2xl">
+                  日
+                </div>
+                <div className="flex-1">
+                  <div className="flex items-center gap-2 mb-2 flex-wrap">
+                    <span className="text-xs font-semibold text-indigo-600 tracking-widest uppercase">Client 01</span>
+                    <span className="text-xs px-2 py-0.5 rounded-full bg-indigo-50 text-indigo-600 font-medium">業務委託 継続中</span>
+                  </div>
+                  <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-3">日本アセット戦略機構</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed mb-4">
+                    AI顧問 兼 ウェブサイト監修として、業務委託契約に基づき継続的に伴走支援。事業のAI活用方針づくりから、ウェブサイトの品質監修・改善提案まで一体で担当しています。
+                  </p>
+                  <div className="flex items-center gap-2 flex-wrap">
+                    {["AI顧問契約", "ウェブサイト監修", "月次伴走"].map((tag) => (
+                      <span key={tag} className="text-xs text-gray-600 bg-gray-100 rounded px-2.5 py-1">{tag}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+
+          <Reveal delay={160}>
+            <div className="mt-10 text-center">
+              <p className="text-sm text-gray-600 mb-5">
+                同様の業務委託スキームで、新たな顧問先企業を募集しています。
+              </p>
+              <Link href="/contact?inquiry=advisor" className="inline-flex items-center gap-2 text-sm font-semibold px-6 py-3 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 transition-colors">
+                AI顧問契約のご相談
+                <span>→</span>
+              </Link>
+            </div>
+          </Reveal>
         </div>
       </section>
 
@@ -290,53 +345,74 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
           <div className="space-y-0">
             {[
               { category: "Frontend", label: "フロントエンド", items: [
-                { name: "Next.js", slug: "nextdotjs", color: "000000" },
-                { name: "React", slug: "react", color: "61DAFB" },
-                { name: "TypeScript", slug: "typescript", color: "3178C6" },
-                { name: "Tailwind CSS", slug: "tailwindcss", color: "06B6D4" },
-                { name: "Vite", slug: "vite", color: "646CFF" },
+                { name: "Next.js", icon: "logos:nextjs-icon" },
+                { name: "React", icon: "logos:react" },
+                { name: "TypeScript", icon: "logos:typescript-icon" },
+                { name: "Tailwind CSS", icon: "logos:tailwindcss-icon" },
+                { name: "Vite", icon: "logos:vitejs" },
               ]},
               { category: "Backend", label: "バックエンド", items: [
-                { name: "Python", slug: "python", color: "3776AB" },
-                { name: "Node.js", slug: "nodedotjs", color: "5FA04E" },
-                { name: "FastAPI", slug: "fastapi", color: "009688" },
-                { name: "Go", slug: "go", color: "00ADD8" },
-                { name: "Rails", slug: "rubyonrails", color: "D30001" },
+                { name: "Python", icon: "logos:python" },
+                { name: "Node.js", icon: "logos:nodejs-icon" },
+                { name: "FastAPI", icon: "logos:fastapi-icon" },
+                { name: "Go", icon: "logos:go" },
+                { name: "Rails", icon: "logos:rails" },
               ]},
               { category: "AI / ML", label: "AI・機械学習", items: [
-                { name: "Claude", slug: "anthropic", color: "191919" },
-                { name: "OpenAI", slug: "openai", color: "000000" },
-                { name: "Gemini", slug: "googlegemini", color: "8E75B2" },
-                { name: "PyTorch", slug: "pytorch", color: "EE4C2C" },
-                { name: "LangChain", slug: "langchain", color: "1C3C3C" },
+                { name: "Claude", icon: "simple-icons:anthropic", color: "D97757" },
+                { name: "OpenAI", icon: "simple-icons:openai", color: "000000" },
+                { name: "Gemini", icon: "logos:google-gemini" },
+                { name: "PyTorch", icon: "logos:pytorch-icon" },
+                { name: "LangChain", icon: "simple-icons:langchain", color: "1C3C3C" },
               ]},
               { category: "Database", label: "データベース", items: [
-                { name: "PostgreSQL", slug: "postgresql", color: "336791" },
-                { name: "MySQL", slug: "mysql", color: "4479A1" },
-                { name: "Redis", slug: "redis", color: "FF4438" },
-                { name: "Supabase", slug: "supabase", color: "3FCF8E" },
-                { name: "Firebase", slug: "firebase", color: "FFCA28" },
+                { name: "PostgreSQL", icon: "logos:postgresql" },
+                { name: "MySQL", icon: "logos:mysql" },
+                { name: "Redis", icon: "logos:redis" },
+                { name: "Supabase", icon: "logos:supabase-icon" },
+                { name: "Firebase", icon: "logos:firebase" },
               ]},
               { category: "Cloud", label: "クラウド・インフラ", items: [
-                { name: "AWS", slug: "amazonwebservices", color: "FF9900" },
-                { name: "Google Cloud", slug: "googlecloud", color: "4285F4" },
-                { name: "Vercel", slug: "vercel", color: "000000" },
-                { name: "Cloudflare", slug: "cloudflare", color: "F38020" },
-                { name: "Docker", slug: "docker", color: "2496ED" },
+                { name: "AWS", icon: "logos:aws" },
+                { name: "Google Cloud", icon: "logos:google-cloud" },
+                { name: "Vercel", icon: "logos:vercel-icon" },
+                { name: "Cloudflare", icon: "logos:cloudflare" },
+                { name: "Docker", icon: "logos:docker-icon" },
               ]},
               { category: "EC / Commerce", label: "EC・決済", items: [
-                { name: "Shopify", slug: "shopify", color: "96BF48" },
-                { name: "Stripe", slug: "stripe", color: "635BFF" },
-                { name: "Square", slug: "square", color: "006AFF" },
-                { name: "WooCommerce", slug: "woocommerce", color: "96588A" },
-                { name: "Amazon Pay", slug: "amazonpay", color: "FF9900" },
+                { name: "Shopify", icon: "logos:shopify" },
+                { name: "Stripe", icon: "logos:stripe" },
+                { name: "Square", icon: "simple-icons:square", color: "000000" },
+                { name: "WooCommerce", icon: "logos:woocommerce" },
+                { name: "Amazon Pay", icon: "simple-icons:amazonpay", color: "FF9900" },
               ]},
               { category: "DevOps", label: "DevOps・運用", items: [
-                { name: "GitHub", slug: "github", color: "181717" },
-                { name: "Actions", slug: "githubactions", color: "2088FF" },
-                { name: "Terraform", slug: "terraform", color: "844FBA" },
-                { name: "Datadog", slug: "datadog", color: "632CA6" },
-                { name: "Sentry", slug: "sentry", color: "362D59" },
+                { name: "GitHub", icon: "logos:github-icon" },
+                { name: "Actions", icon: "logos:github-actions" },
+                { name: "Terraform", icon: "logos:terraform-icon" },
+                { name: "Datadog", icon: "logos:datadog" },
+                { name: "Sentry", icon: "logos:sentry-icon" },
+              ]},
+              { category: "Data / Analytics", label: "データ基盤・分析", items: [
+                { name: "Snowflake", icon: "logos:snowflake-icon" },
+                { name: "BigQuery", icon: "logos:google-bigquery" },
+                { name: "Databricks", icon: "logos:databricks-icon" },
+                { name: "Kafka", icon: "logos:kafka-icon" },
+                { name: "Elasticsearch", icon: "logos:elasticsearch" },
+              ]},
+              { category: "Enterprise / Security", label: "エンタープライズ・セキュリティ", items: [
+                { name: "Azure", icon: "logos:microsoft-azure" },
+                { name: "Kubernetes", icon: "logos:kubernetes" },
+                { name: "Auth0", icon: "logos:auth0-icon" },
+                { name: "Okta", icon: "logos:okta" },
+                { name: "Vault", icon: "logos:vault-icon" },
+              ]},
+              { category: "Business Integrations", label: "業務連携・コラボレーション", items: [
+                { name: "Salesforce", icon: "logos:salesforce" },
+                { name: "Slack", icon: "logos:slack-icon" },
+                { name: "Microsoft 365", icon: "logos:microsoft-icon" },
+                { name: "Notion", icon: "logos:notion-icon" },
+                { name: "Jira", icon: "logos:jira" },
               ]},
             ].map((group, gi) => (
               <Reveal key={group.category} delay={gi * 40}>
@@ -351,7 +427,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
                         {group.items.map((tech) => (
                           <div key={tech.name} className="bg-white border border-gray-200 rounded-xl p-5 flex flex-col items-center justify-center gap-3 hover:border-gray-300 hover:shadow-sm transition-all aspect-square">
                             {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img src={`https://api.iconify.design/simple-icons/${tech.slug}.svg?color=%23${tech.color}`} alt={tech.name} className="w-8 h-8 object-contain" loading="lazy" />
+                            <img src={`https://api.iconify.design/${tech.icon}.svg${tech.color ? `?color=%23${tech.color}` : ''}`} alt={tech.name} className="w-8 h-8 object-contain" loading="lazy" />
                             <p className="text-xs font-medium text-gray-600 text-center leading-tight">{tech.name}</p>
                           </div>
                         ))}
