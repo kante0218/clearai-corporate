@@ -117,15 +117,15 @@ export default function AiConsultingPage() {
             <Label>Why Us</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">なぜ clear AI が選ばれるのか</h2>
           </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
             {[
               { num: "01", title: "課題ドリブン", desc: "流行ではなく、貴社の業務課題から逆算してAIを選定します。" },
               { num: "02", title: "技術選定に中立", desc: "特定ベンダー縛りなし。OpenAI、Anthropic、Google、オープンソースを横断比較。" },
               { num: "03", title: "実装まで一気通貫", desc: "戦略だけで終わらせない。PoCから本番稼働、運用定着まで。" },
               { num: "04", title: "経営との対話", desc: "現場と経営層の両方の言葉で話せる。ROI議論が可能です。" },
             ].map((item, i) => (
-              <Reveal key={item.title} delay={i * 100}>
-                <div className="rounded-2xl border border-gray-200 bg-white p-8 hover:shadow-lg transition-all duration-300">
+              <Reveal key={item.title} delay={i * 100} className="h-full">
+                <div className="rounded-2xl border border-gray-200 bg-white p-8 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
                   <span className="text-xs font-semibold text-blue-600 tracking-widest">{item.num}</span>
                   <h3 className="text-lg font-bold text-gray-900 mt-2 mb-3">{item.title}</h3>
                   <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
