@@ -36,10 +36,10 @@ export default function AiAgriculturePage() {
         <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
           <span className="inline-block rounded-full bg-emerald-50 text-emerald-600 px-3 py-1 text-sm font-semibold mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "300ms" }}>Engineering × Agriculture</span>
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0)" : "translateY(24px)", transitionDelay: "500ms" }}>
-            農家の未来を、<br />エンジニアが支える。
+            農業インフラから、<br />宇宙・防衛産業へ。
           </h1>
           <p className="text-base text-gray-600 leading-relaxed max-w-lg mx-auto mb-10 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "700ms" }}>
-            利益率の向上からECサイト構築まで。<br />エンジニアの力で、農家の経営を次のステージへ。
+            田んぼの水流管理や、ビニールハウスの自動化から。<br />農家の声に根差した技術を、未来の極限環境へ拡張する。
           </p>
           <div className="flex items-center justify-center gap-4 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "900ms" }}>
             <a href="/contact" className="rounded-lg bg-emerald-600 text-white font-semibold px-8 py-3.5 hover:bg-emerald-700 transition-colors duration-300">無料相談を申し込む</a>
@@ -75,9 +75,9 @@ export default function AiAgriculturePage() {
           <Reveal>
             <Label>About</Label>
             <div className="max-w-3xl">
-              <h2 className="text-3xl font-bold text-gray-900 leading-snug mb-6">農家の「売る力」と「稼ぐ力」を、<br />テクノロジーで引き上げる。</h2>
+              <h2 className="text-3xl font-bold text-gray-900 leading-snug mb-6">農家の声から始め、<br />極限環境の栽培へ広げる。</h2>
               <p className="text-base text-gray-600 leading-relaxed">
-                日本の農業は、良いものを作っても利益が残らないという構造的な課題を抱えています。私たちclear AIは、エンジニアリングの力で農家の経営を支援。ECサイト構築による直販体制の確立、データに基づく利益率改善、業務効率化まで、農家の「稼ぐ力」を総合的にサポートします。
+                clear AIの農業事業は、まず現場の農家様の声に徹底的に耳を傾けることから始めます。田んぼの水流管理、ビニールハウスの温湿度・灌水制御といった<span className="font-semibold text-gray-900">農業インフラの自動化</span>を第一歩として支援。その先には、宇宙・潜水艦・シェルターなど、光も土もない<span className="font-semibold text-gray-900">無機質な空間での栽培</span>へと踏み込みます。農業というアプローチから、防衛産業と宇宙産業そのものを育てていく。それが私たちの描く未来です。
               </p>
             </div>
           </Reveal>
@@ -88,15 +88,17 @@ export default function AiAgriculturePage() {
       <section id="services" className="py-20 lg:py-28 bg-gray-50">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
-            <Label>Solutions</Label>
-            <h2 className="text-2xl font-bold text-gray-900 mb-14">4つのソリューション</h2>
+            <Label>Roadmap</Label>
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">農業インフラから、宇宙・防衛へ。</h2>
+            <p className="text-base text-gray-600 leading-relaxed max-w-2xl mb-14">
+              現場の声から始める「地に足のついた自動化」を起点に、段階的に極限環境の栽培技術へと展開していきます。
+            </p>
           </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { num: "01", title: "EC・ネット販売構築", desc: "農家専用のECサイトを構築し、直販による利益率向上を実現。デザインから決済・配送連携まで、ネット販売に必要なすべてをワンストップで提供します。", hoverBg: "hover:bg-emerald-50" },
-              { num: "02", title: "利益率改善コンサルティング", desc: "原価構造の分析から販路の最適化まで、データに基づいた経営改善をご提案。「良いものを作っているのに利益が残らない」を解決します。", hoverBg: "hover:bg-lime-50" },
-              { num: "03", title: "業務効率化・DX支援", desc: "受発注管理、在庫管理、顧客管理など、農業経営に必要なシステムを導入。手作業を減らし、本業に集中できる環境を整えます。", hoverBg: "hover:bg-teal-50" },
-              { num: "04", title: "ブランディング・マーケティング支援", desc: "産地・生産者のストーリーを活かしたブランド構築。SNS運用、写真撮影、パッケージデザインまで、売れる仕組みをつくります。", hoverBg: "hover:bg-green-50" },
+              { num: "Phase 01", title: "農業インフラの自動化", desc: "田んぼの水流管理、ビニールハウスの温湿度・灌水・換気の自動化など、農家様の現場課題に密着したインフラ自動化支援から着手します。", hoverBg: "hover:bg-emerald-50" },
+              { num: "Phase 02", title: "閉鎖空間・極限環境での栽培", desc: "宇宙空間、潜水艦内、地下シェルター等、光も土もない無機質な空間における栽培技術の研究開発。環境制御型農業のコア技術を構築します。", hoverBg: "hover:bg-teal-50" },
+              { num: "Phase 03", title: "防衛・宇宙産業への展開", desc: "閉鎖空間における食料生産技術を、宇宙産業と防衛産業のコア基盤技術として提供。農業というアプローチから、両産業そのものを育てていきます。", hoverBg: "hover:bg-lime-50" },
             ].map((item, i) => (
               <Reveal key={item.num} delay={i * 100}>
                 <div className={`bg-white rounded-2xl border border-gray-200 p-8 transition-all duration-300 cursor-default group ${item.hoverBg} hover:shadow-lg`}>
@@ -120,16 +122,19 @@ export default function AiAgriculturePage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               {
+                prefix: null,
                 number: "30%",
                 label: "農家の直販比率（全国平均）",
                 desc: "ほとんどの農産物がJAや卸を経由し、生産者の手取りは小売価格の20〜30%程度です。",
               },
               {
-                number: "▲15%",
+                prefix: "▼",
+                number: "15%",
                 label: "農業所得の減少傾向",
                 desc: "コスト上昇に対して販売価格が追いつかず、利益が圧迫されています。",
               },
               {
+                prefix: null,
                 number: "85%",
                 label: "EC未導入の農家割合",
                 desc: "ネット販売の可能性を感じながらも、始め方がわからない農家が大半です。",
@@ -137,7 +142,12 @@ export default function AiAgriculturePage() {
             ].map((item, i) => (
               <Reveal key={item.label} delay={i * 100}>
                 <div className="rounded-2xl border border-gray-200 bg-white p-8 hover:shadow-lg transition-all duration-300">
-                  <p className="text-5xl font-bold text-emerald-600 mb-3">{item.number}</p>
+                  <p className="flex items-baseline gap-2 mb-3">
+                    {item.prefix && (
+                      <span className="text-2xl font-bold text-emerald-600 leading-none">{item.prefix}</span>
+                    )}
+                    <span className="text-5xl font-bold text-emerald-600 leading-none">{item.number}</span>
+                  </p>
                   <p className="text-sm font-bold text-gray-900 mb-2">{item.label}</p>
                   <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
                 </div>
