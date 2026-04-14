@@ -139,9 +139,9 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
             </p>
           </Reveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <Reveal delay={0}>
-              <Link href="/ai-consulting" className="group block">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+            <Reveal delay={0} className="h-full">
+              <Link href="/ai-consulting" className="group block h-full">
                 <div className="bg-white border border-gray-200 rounded-2xl p-8 lg:p-10 hover:border-blue-300 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
                   <span className="inline-block text-xs font-semibold tracking-widest uppercase text-blue-600 mb-4">Service 01</span>
                   <h3 className="text-2xl font-bold text-gray-900 mb-3">AIコンサルティング</h3>
@@ -160,8 +160,8 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
               </Link>
             </Reveal>
 
-            <Reveal delay={80}>
-              <Link href="/contact" className="group block">
+            <Reveal delay={80} className="h-full">
+              <Link href="/contact" className="group block h-full">
                 <div className="bg-white border border-gray-200 rounded-2xl p-8 lg:p-10 hover:border-indigo-300 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
                   <span className="inline-block text-xs font-semibold tracking-widest uppercase text-indigo-600 mb-4">Service 02</span>
                   <h3 className="text-2xl font-bold text-gray-900 mb-3">AI顧問サービス</h3>
@@ -180,8 +180,8 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
               </Link>
             </Reveal>
 
-            <Reveal delay={160}>
-              <Link href="/ai-agriculture" className="group block">
+            <Reveal delay={160} className="h-full">
+              <Link href="/ai-agriculture" className="group block h-full">
                 <div className="bg-white border border-gray-200 rounded-2xl p-8 lg:p-10 hover:border-emerald-300 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
                   <span className="inline-block text-xs font-semibold tracking-widest uppercase text-emerald-600 mb-4">Service 03</span>
                   <h3 className="text-2xl font-bold text-gray-900 mb-3">農業×エンジニアリング</h3>
@@ -243,8 +243,8 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
             </p>
           </Reveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <Reveal delay={0}>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+            <Reveal delay={0} className="h-full">
               <div className="bg-gray-50 border border-gray-200 rounded-2xl p-8 lg:p-10 h-full flex flex-col">
                 <span className="inline-block text-xs font-semibold tracking-widest uppercase text-blue-600 mb-4">Strategy &amp; DX</span>
                 <h3 className="text-xl font-bold text-gray-900 mb-4">業務改革・DX領域の監修</h3>
@@ -259,7 +259,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
               </div>
             </Reveal>
 
-            <Reveal delay={100}>
+            <Reveal delay={100} className="h-full">
               <div className="bg-gray-50 border border-gray-200 rounded-2xl p-8 lg:p-10 h-full flex flex-col">
                 <span className="inline-block text-xs font-semibold tracking-widest uppercase text-emerald-600 mb-4">Engineering</span>
                 <h3 className="text-xl font-bold text-gray-900 mb-4">開発・デプロイ・メンテナンス</h3>
