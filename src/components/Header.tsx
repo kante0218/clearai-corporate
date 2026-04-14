@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 const navItems = [
   { label: "事業紹介", href: "/#services" },
@@ -15,6 +16,8 @@ const navItems = [
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+  const isAgriculture = pathname?.startsWith("/ai-agriculture");
 
   useEffect(() => {
     const onScroll = () => {
@@ -40,7 +43,12 @@ export default function Header() {
                 alt="clear AI"
                 width={140}
                 height={40}
-                className="h-8 w-auto transition-opacity duration-500"
+                className="h-8 w-auto transition-all duration-500"
+                style={{
+                  filter: isAgriculture
+                    ? "hue-rotate(-95deg) saturate(1.1)"
+                    : "none",
+                }}
                 priority
               />
             </Link>

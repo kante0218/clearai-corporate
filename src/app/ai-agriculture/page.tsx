@@ -245,45 +245,70 @@ export default function AiAgriculturePage() {
         </div>
       </section>
 
-      {/* CASE STUDIES */}
+      {/* R&D PARTNERS */}
       <section className="py-20 lg:py-28 bg-gray-50">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
-            <Label>Case Studies</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-6">導入事例</h2>
-            <p className="text-sm text-gray-500 bg-white border border-gray-200 rounded-xl px-5 py-4 mb-12 leading-relaxed">
-              農園の規模・品目に応じた導入パターンをご紹介します。詳細は個別にご案内いたします。
+            <Label>R&D Partners</Label>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-6">現場と歩む、共同研究フェーズ。</h2>
+            <p className="text-sm text-gray-600 bg-white border border-gray-200 rounded-xl px-5 py-4 mb-12 leading-relaxed max-w-3xl">
+              clear AIの農業事業は、まだ導入実績を積み上げるフェーズではありません。現在は<span className="font-semibold text-gray-900">秋田・北海道の農家様</span>と連携しながら、現場の課題に根差した技術開発と実地検証を進めています。机上の空論ではなく、土と向き合う方々と共につくる。それが私たちのスタンスです。
             </p>
           </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
               {
-                title: "トマト農家 / EC直販サイト構築",
-                desc: "ECサイト構築により直販を開始。中間マージンの削減で、同じ出荷量でも手取り収入が大幅に改善しました。",
-                effect: "利益率 +40%",
+                region: "秋田",
+                title: "秋田の農家様との協業",
+                desc: "米作を中心とした生産現場で、業務効率化と販路設計の共同検証を進めています。現地のオペレーションに合わせたプロトタイプを開発し、継続的にフィードバックをいただきながら改善しています。",
               },
               {
-                title: "果樹園 / ブランディング支援",
-                desc: "産地のストーリーを活かしたブランド構築とSNS運用で、贈答需要を開拓。単価の向上に成功しました。",
-                effect: "客単価 +60%",
-              },
-              {
-                title: "大規模水田 / 業務効率化",
-                desc: "受発注管理と顧客管理をシステム化。事務作業時間を大幅に削減し、栽培に集中できる体制を実現しました。",
-                effect: "事務工数 -70%",
+                region: "北海道",
+                title: "北海道の農家様との協業",
+                desc: "広域・大規模な農業環境における受発注・顧客管理・データ活用の実証を行っています。北の大地ならではのスケール感と気候条件に即した技術検証を共同で進めています。",
               },
             ].map((item, i) => (
-              <Reveal key={item.title} delay={i * 100}>
-                <div className="rounded-2xl border border-gray-200 bg-white p-8 hover:shadow-lg transition-all duration-300 flex flex-col h-full">
-                  <h3 className="text-base font-bold text-gray-900 mb-3">{item.title}</h3>
-                  <p className="text-sm text-gray-600 leading-relaxed flex-1">{item.desc}</p>
-                  <div className="mt-6 pt-4 border-t border-gray-100">
-                    <p className="text-xs text-gray-400 mb-1">想定効果</p>
-                    <p className="text-base font-bold text-emerald-600">{item.effect}</p>
-                  </div>
+              <Reveal key={item.region} delay={i * 100}>
+                <div className="rounded-2xl border border-gray-200 bg-white p-8 hover:shadow-lg transition-all duration-300 h-full">
+                  <span className="inline-block rounded-full bg-emerald-50 text-emerald-700 px-3 py-1 text-xs font-bold mb-4">{item.region}</span>
+                  <h3 className="text-lg font-bold text-gray-900 mb-3">{item.title}</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
                 </div>
               </Reveal>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* TEAM & ADVISORS */}
+      <section className="py-20 lg:py-28 bg-white">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <Reveal>
+            <Label>Team & Advisors</Label>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-6">参画メンバーとアドバイザー</h2>
+            <p className="text-base text-gray-600 leading-relaxed max-w-2xl mb-14">
+              農業とエンジニアリングの両面から、現場に貢献できる体制を構築しています。研究と実装、アカデミアと現場、その両方を行き来できるチームです。
+            </p>
+          </Reveal>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <Reveal>
+              <div className="rounded-2xl border border-gray-200 bg-white p-8 hover:shadow-lg transition-all duration-300 h-full">
+                <span className="inline-block rounded-full bg-emerald-50 text-emerald-700 px-3 py-1 text-xs font-bold mb-4">参画メンバー</span>
+                <h3 className="text-lg font-bold text-gray-900 mb-3">筑波大学 落合研究室 × 起業家</h3>
+                <p className="text-sm text-gray-600 leading-relaxed">
+                  筑波大学 落合研究室にて研究に従事しながら、自ら会社を起業したメンバーが参画予定です。最先端の研究知見と、事業をゼロから立ち上げた実行力を、農業領域の技術開発に還元します。
+                </p>
+              </div>
+            </Reveal>
+            <Reveal delay={100}>
+              <div className="rounded-2xl border border-gray-200 bg-white p-8 hover:shadow-lg transition-all duration-300 h-full">
+                <span className="inline-block rounded-full bg-blue-50 text-blue-700 px-3 py-1 text-xs font-bold mb-4">アドバイザー（予定）</span>
+                <h3 className="text-lg font-bold text-gray-900 mb-3">東京大学 農学部</h3>
+                <p className="text-sm text-gray-600 leading-relaxed">
+                  東京大学 農学部にてアカデミックな知見を有する方を、アドバイザーとして迎える予定です。農学分野の専門性に基づき、事業の方向性や技術検証に助言をいただきます。
+                </p>
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>
