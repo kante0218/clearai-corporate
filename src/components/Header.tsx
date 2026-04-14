@@ -43,12 +43,9 @@ export default function Header() {
                 alt="clear AI"
                 width={140}
                 height={40}
-                className="h-8 w-auto transition-all duration-500"
-                style={{
-                  filter: isAgriculture
-                    ? "hue-rotate(-95deg) saturate(1.1)"
-                    : "none",
-                }}
+                className={`h-8 w-auto transition-all duration-500 ${
+                  isAgriculture ? "logo-green-filter" : ""
+                }`}
                 priority
               />
             </Link>

@@ -406,3 +406,8 @@ details[open] summary {
     animation: none !important;
   }
 }
+
+/* Header logo green tint for agriculture page */
+.logo-green-filter {
+  filter: hue-rotate(-100deg) saturate(1.4) brightness(0.95);
+}
