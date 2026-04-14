@@ -40,25 +40,24 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
   return (
     <>
       {/* ═══ HERO ═══ */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <video src="/videos/hero.mp4" autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover z-0" />
-        <div className="absolute inset-0 bg-white/60 z-[1]" />
-        <div className="relative z-20 max-w-4xl mx-auto px-6 text-center">
-          <p className="text-xs font-semibold tracking-widest text-blue-600 uppercase mb-8 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "200ms" }}>
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white">
+        <div className="absolute bottom-1/3 right-1/4 w-[1px] h-[1px] shadow-[0_0_300px_150px_rgba(37,99,235,0.07)]" />
+        <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
+          <span className="inline-block rounded-full bg-blue-50 text-blue-600 px-3 py-1 text-sm font-semibold mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "300ms" }}>
             AI Consulting &amp; Agriculture Engineering
-          </p>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0)" : "translateY(24px)", transitionDelay: "400ms" }}>
+          </span>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0)" : "translateY(24px)", transitionDelay: "500ms" }}>
             AIで、すべてを<br />クリアにする。
           </h1>
-          <p className="text-base lg:text-lg text-gray-600 leading-relaxed max-w-xl mx-auto mb-10 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "600ms" }}>
+          <p className="text-base text-gray-600 leading-relaxed max-w-lg mx-auto mb-10 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "700ms" }}>
             AIコンサルティング・AI顧問・エンジニアによる農業支援。<br />3つの事業で、日本の産業に確かな価値を届けます。
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "800ms" }}>
-            <Link href="/contact" className="text-sm font-semibold text-white bg-blue-600 px-8 py-3.5 rounded-lg hover:bg-blue-700 transition-colors duration-300">
+          <div className="flex items-center justify-center gap-4 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "900ms" }}>
+            <Link href="/contact" className="rounded-lg bg-blue-600 text-white font-semibold px-8 py-3.5 hover:bg-blue-700 transition-colors duration-300">
               お問い合わせ
             </Link>
-            <Link href="#services" className="text-sm font-semibold text-gray-600 border border-gray-300 px-8 py-3.5 rounded-lg hover:border-gray-400 hover:text-gray-900 transition-colors duration-300">
-              事業を見る
+            <Link href="#services" className="text-sm text-gray-500 font-semibold hover:text-gray-900 transition-colors duration-300">
+              事業を見る →
             </Link>
           </div>
         </div>
@@ -355,48 +354,48 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
                 { name: "Python", icon: "logos:python" },
                 { name: "Node.js", icon: "logos:nodejs-icon" },
                 { name: "FastAPI", icon: "logos:fastapi-icon" },
-                { name: "Go", icon: "logos:go" },
-                { name: "Rails", icon: "logos:rails" },
+                { name: "Go", icon: "simple-icons:go", color: "00ADD8" },
+                { name: "Rails", icon: "simple-icons:rubyonrails", color: "D30001" },
               ]},
               { category: "AI / ML", label: "AI・機械学習", items: [
                 { name: "Claude", icon: "simple-icons:anthropic", color: "D97757" },
                 { name: "OpenAI", icon: "simple-icons:openai", color: "000000" },
-                { name: "Gemini", icon: "logos:google-gemini" },
+                { name: "Gemini", icon: "simple-icons:googlegemini", color: "8E75B2" },
                 { name: "PyTorch", icon: "logos:pytorch-icon" },
                 { name: "LangChain", icon: "simple-icons:langchain", color: "1C3C3C" },
               ]},
               { category: "Database", label: "データベース", items: [
                 { name: "PostgreSQL", icon: "logos:postgresql" },
-                { name: "MySQL", icon: "logos:mysql" },
+                { name: "MySQL", icon: "logos:mysql-icon" },
                 { name: "Redis", icon: "logos:redis" },
                 { name: "Supabase", icon: "logos:supabase-icon" },
-                { name: "Firebase", icon: "logos:firebase" },
+                { name: "Firebase", icon: "logos:firebase-icon" },
               ]},
               { category: "Cloud", label: "クラウド・インフラ", items: [
                 { name: "AWS", icon: "logos:aws" },
                 { name: "Google Cloud", icon: "logos:google-cloud" },
                 { name: "Vercel", icon: "logos:vercel-icon" },
-                { name: "Cloudflare", icon: "logos:cloudflare" },
+                { name: "Cloudflare", icon: "logos:cloudflare-icon" },
                 { name: "Docker", icon: "logos:docker-icon" },
               ]},
               { category: "EC / Commerce", label: "EC・決済", items: [
                 { name: "Shopify", icon: "logos:shopify" },
-                { name: "Stripe", icon: "logos:stripe" },
+                { name: "Stripe", icon: "simple-icons:stripe", color: "635BFF" },
                 { name: "Square", icon: "simple-icons:square", color: "000000" },
-                { name: "WooCommerce", icon: "logos:woocommerce" },
+                { name: "WooCommerce", icon: "logos:woocommerce-icon" },
                 { name: "Amazon Pay", icon: "simple-icons:amazonpay", color: "FF9900" },
               ]},
               { category: "DevOps", label: "DevOps・運用", items: [
                 { name: "GitHub", icon: "logos:github-icon" },
                 { name: "Actions", icon: "logos:github-actions" },
                 { name: "Terraform", icon: "logos:terraform-icon" },
-                { name: "Datadog", icon: "logos:datadog" },
+                { name: "Datadog", icon: "logos:datadog-icon" },
                 { name: "Sentry", icon: "logos:sentry-icon" },
               ]},
               { category: "Data / Analytics", label: "データ基盤・分析", items: [
                 { name: "Snowflake", icon: "logos:snowflake-icon" },
-                { name: "BigQuery", icon: "logos:google-bigquery" },
-                { name: "Databricks", icon: "logos:databricks-icon" },
+                { name: "BigQuery", icon: "simple-icons:googlebigquery", color: "669DF6" },
+                { name: "Databricks", icon: "simple-icons:databricks", color: "FF3621" },
                 { name: "Kafka", icon: "logos:kafka-icon" },
                 { name: "Elasticsearch", icon: "logos:elasticsearch" },
               ]},
@@ -404,7 +403,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
                 { name: "Azure", icon: "logos:microsoft-azure" },
                 { name: "Kubernetes", icon: "logos:kubernetes" },
                 { name: "Auth0", icon: "logos:auth0-icon" },
-                { name: "Okta", icon: "logos:okta" },
+                { name: "Okta", icon: "simple-icons:okta", color: "007DC1" },
                 { name: "Vault", icon: "logos:vault-icon" },
               ]},
               { category: "Business Integrations", label: "業務連携・コラボレーション", items: [

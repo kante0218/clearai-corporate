@@ -85,37 +85,35 @@ const timeline = [
 ];
 
 export default function AboutPage() {
+  const [heroLoaded, setHeroLoaded] = useState(false);
+  useEffect(() => { setTimeout(() => setHeroLoaded(true), 100); }, []);
+
   return (
     <main className="min-h-screen bg-white">
 
       {/* ─── 1. HERO ─────────────────────────────────────────────────────── */}
-      <section className="pt-48 lg:pt-56 pb-24 lg:pb-32 bg-white">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
-          <Reveal>
-            <p className="text-xs font-semibold tracking-widest uppercase text-blue-600 mb-6">About Us</p>
-          </Reveal>
-          <Reveal delay={80}>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight tracking-tight mb-8 max-w-3xl">
-              AIで、日本の<br />産業構造を、<br />書き換える。
-            </h1>
-          </Reveal>
-          <Reveal delay={160}>
-            <p className="text-lg md:text-xl text-gray-600 leading-relaxed max-w-xl mb-12">
-              clear AIは、人工知能の力を真に必要としている現場へ届けるため創業しました。大企業だけのものではない、すべての産業のためのAIを。
-            </p>
-          </Reveal>
-          <Reveal delay={240}>
-            <div className="flex flex-wrap gap-4">
-              <div className="inline-flex items-center gap-3 border border-gray-200 rounded-full px-6 py-3 bg-white">
-                <span className="text-2xl font-bold text-blue-600">1000億円</span>
-                <span className="text-sm text-gray-500">2030年 売上目標</span>
-              </div>
-              <div className="inline-flex items-center gap-3 border border-gray-200 rounded-full px-6 py-3 bg-white">
-                <span className="text-2xl font-bold text-emerald-600">10,000社</span>
-                <span className="text-sm text-gray-500">支援目標企業数</span>
-              </div>
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white">
+        <div className="absolute bottom-1/3 right-1/4 w-[1px] h-[1px] shadow-[0_0_300px_150px_rgba(37,99,235,0.07)]" />
+        <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
+          <span className="inline-block rounded-full bg-blue-50 text-blue-600 px-3 py-1 text-sm font-semibold mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "300ms" }}>
+            About Us
+          </span>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0)" : "translateY(24px)", transitionDelay: "500ms" }}>
+            AIで、日本の<br />産業構造を、書き換える。
+          </h1>
+          <p className="text-base text-gray-600 leading-relaxed max-w-lg mx-auto mb-10 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "700ms" }}>
+            clear AIは、人工知能の力を真に必要としている現場へ届けるため創業しました。<br />大企業だけのものではない、すべての産業のためのAIを。
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-4 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "900ms" }}>
+            <div className="inline-flex items-center gap-3 border border-gray-200 rounded-full px-6 py-3 bg-white">
+              <span className="text-2xl font-bold text-blue-600">1000億円</span>
+              <span className="text-sm text-gray-500">2030年 売上目標</span>
             </div>
-          </Reveal>
+            <div className="inline-flex items-center gap-3 border border-gray-200 rounded-full px-6 py-3 bg-white">
+              <span className="text-2xl font-bold text-emerald-600">10,000社</span>
+              <span className="text-sm text-gray-500">支援目標企業数</span>
+            </div>
+          </div>
         </div>
       </section>
 
