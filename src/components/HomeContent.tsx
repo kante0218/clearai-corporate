@@ -305,17 +305,17 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
               ]},
               { category: "AI / ML", label: "AI・機械学習", items: [
                 { name: "Claude", slug: "anthropic", color: "191919" },
-                { name: "OpenAI", slug: "openai", color: "412991" },
+                { name: "OpenAI", slug: "openai", color: "000000" },
                 { name: "Gemini", slug: "googlegemini", color: "8E75B2" },
                 { name: "PyTorch", slug: "pytorch", color: "EE4C2C" },
                 { name: "LangChain", slug: "langchain", color: "1C3C3C" },
               ]},
               { category: "Database", label: "データベース", items: [
-                { name: "PostgreSQL", slug: "postgresql", color: "4169E1" },
+                { name: "PostgreSQL", slug: "postgresql", color: "336791" },
                 { name: "MySQL", slug: "mysql", color: "4479A1" },
                 { name: "Redis", slug: "redis", color: "FF4438" },
                 { name: "Supabase", slug: "supabase", color: "3FCF8E" },
-                { name: "Firebase", slug: "firebase", color: "DD2C00" },
+                { name: "Firebase", slug: "firebase", color: "FFCA28" },
               ]},
               { category: "Cloud", label: "クラウド・インフラ", items: [
                 { name: "AWS", slug: "amazonwebservices", color: "FF9900" },
@@ -325,7 +325,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
                 { name: "Docker", slug: "docker", color: "2496ED" },
               ]},
               { category: "EC / Commerce", label: "EC・決済", items: [
-                { name: "Shopify", slug: "shopify", color: "7AB55C" },
+                { name: "Shopify", slug: "shopify", color: "96BF48" },
                 { name: "Stripe", slug: "stripe", color: "635BFF" },
                 { name: "Square", slug: "square", color: "006AFF" },
                 { name: "WooCommerce", slug: "woocommerce", color: "96588A" },
