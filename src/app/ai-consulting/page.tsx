@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
+import DXScene from "@/components/illustrations/DXScene";
 
 function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -31,19 +32,53 @@ export default function AiConsultingPage() {
   return (
     <>
       {/* HERO */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white">
-        <div className="absolute bottom-1/3 right-1/4 w-[1px] h-[1px] shadow-[0_0_300px_150px_rgba(37,99,235,0.07)]" />
-        <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
-          <span className="inline-block rounded-full bg-blue-50 text-blue-600 px-3 py-1 text-sm font-semibold mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "300ms" }}>AI Implementation Support</span>
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0)" : "translateY(24px)", transitionDelay: "500ms" }}>
-            AI導入を、<br />共に考え、共に創る。
-          </h1>
-          <p className="text-base text-gray-600 leading-relaxed max-w-lg mx-auto mb-10 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "700ms" }}>
-            戦略策定から開発・実装・運用まで、一気通貫でサポート。<br />貴社のビジネスに最適なAIソリューションを共に創り上げます。
-          </p>
-          <div className="flex items-center justify-center gap-4 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "900ms" }}>
-            <a href="/contact" className="rounded-lg bg-blue-600 text-white font-semibold px-8 py-3.5 hover:bg-blue-700 transition-colors duration-300">無料相談を申し込む</a>
-            <a href="#services" className="text-sm text-gray-500 font-semibold hover:text-gray-900 transition-colors duration-300">サービスを見る →</a>
+      <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-white">
+        <div className="absolute bottom-1/3 right-1/4 w-[1px] h-[1px] shadow-[0_0_300px_150px_rgba(37,99,235,0.06)]" />
+        <div className="relative z-10 w-full max-w-6xl mx-auto px-6 lg:px-10 py-20 lg:py-0">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            {/* Copy — left column */}
+            <div>
+              <span
+                className="inline-block rounded-full bg-blue-50 text-blue-600 px-3 py-1 text-sm font-semibold mb-6 transition-all duration-700"
+                style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "300ms" }}
+              >
+                AI Implementation Support
+              </span>
+              <h1
+                className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-6 transition-all duration-700"
+                style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0)" : "translateY(24px)", transitionDelay: "500ms" }}
+              >
+                AI導入を、<br />共に考え、共に創る。
+              </h1>
+              <p
+                className="text-base text-gray-600 leading-relaxed mb-10 transition-all duration-700"
+                style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "700ms" }}
+              >
+                戦略策定から開発・実装・運用まで、一気通貫でサポート。<br />貴社のビジネスに最適なAIソリューションを共に創り上げます。
+              </p>
+              <div
+                className="flex items-center gap-4 transition-all duration-700"
+                style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "900ms" }}
+              >
+                <a href="/contact" className="rounded-lg bg-blue-600 text-white font-semibold px-8 py-3.5 hover:bg-blue-700 transition-colors duration-300">無料相談を申し込む</a>
+                <a href="#services" className="text-sm text-gray-500 font-semibold hover:text-gray-900 transition-colors duration-300">サービスを見る →</a>
+              </div>
+            </div>
+
+            {/* Illustration — right column */}
+            <div
+              className="hidden lg:flex items-center justify-center transition-all duration-1000"
+              style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0) scale(1)" : "translateY(16px) scale(0.97)", transitionDelay: "400ms" }}
+            >
+              <DXScene className="w-full max-w-[520px] drop-shadow-sm" />
+            </div>
+            {/* Mobile illustration */}
+            <div
+              className="lg:hidden transition-all duration-1000"
+              style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "800ms" }}
+            >
+              <DXScene className="w-full max-w-[340px] mx-auto drop-shadow-sm" />
+            </div>
           </div>
         </div>
       </section>
