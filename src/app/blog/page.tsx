@@ -1,4 +1,4 @@
-import { getBlogs, categories } from "@/lib/microcms";
+import { getBlogs, categoryLabels } from "@/lib/microcms";
 import type { Blog } from "@/lib/microcms";
 import BlogList from "./BlogList";
 
@@ -12,5 +12,5 @@ export default async function BlogPage() {
   } catch {
     // microCMS未設定時は空のブログリストを表示
   }
-  return <BlogList posts={contents} categories={categories} />;
+  return <BlogList posts={contents} categories={categoryLabels} />;
 }

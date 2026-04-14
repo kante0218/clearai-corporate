@@ -20,7 +20,7 @@ function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; 
   }, []);
   return (
     <div ref={ref} className={className} style={{
-      opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(32px)",
+      opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(24px)",
       transition: `opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
     }}>{children}</div>
   );
@@ -37,7 +37,7 @@ export default function BlogList({ posts, categories }: { posts: Blog[]; categor
   const filteredPosts =
     selectedCategory === "すべて"
       ? posts
-      : posts.filter((post) => post.category === selectedCategory);
+      : posts.filter((post) => post.category?.name === selectedCategory);
 
   return (
     <main className="min-h-screen bg-white">
@@ -55,7 +55,7 @@ export default function BlogList({ posts, categories }: { posts: Blog[]; categor
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
-                className={`px-4 py-2 text-sm font-semibold rounded-full transition-all duration-300 ${
+                className={`px-4 py-2 text-sm font-semibold rounded-lg transition-all duration-300 ${
                   selectedCategory === category
                     ? "bg-gray-900 text-white"
                     : "text-gray-500 border border-gray-200 hover:text-gray-700 hover:border-gray-300"
@@ -72,31 +72,32 @@ export default function BlogList({ posts, categories }: { posts: Blog[]; categor
         {filteredPosts.length === 0 ? (
           <p className="text-center text-gray-400 py-20 text-sm">該当する記事がありません</p>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="divide-y divide-gray-100">
             {filteredPosts.map((post, i) => (
-              <Reveal key={post.id} delay={i * 100}>
-                <Link href={`/blog/${post.id}`} className="group block">
-                  {post.thumbnail ? (
-                    <div className="w-full aspect-[4/3] rounded-2xl mb-4 overflow-hidden">
+              <Reveal key={post.id} delay={i * 60}>
+                <Link href={`/blog/${post.id}`} className="group flex items-start gap-4 py-6 hover:bg-gray-50 -mx-4 px-4 rounded-lg transition-colors">
+                  {post.eyecatch && (
+                    <div className="w-20 h-14 rounded-lg overflow-hidden flex-shrink-0 hidden sm:block">
                       <Image
-                        src={post.thumbnail.url}
+                        src={post.eyecatch.url}
                         alt={post.title}
-                        width={post.thumbnail.width ?? 800}
-                        height={post.thumbnail.height ?? 600}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        width={80}
+                        height={56}
+                        className="w-full h-full object-cover"
                       />
                     </div>
-                  ) : (
-                    <div className="w-full aspect-[4/3] rounded-2xl mb-4 bg-gradient-to-br from-blue-400 to-cyan-500 transition-transform duration-500 group-hover:scale-[1.02]" />
                   )}
-                  <div className="flex items-center gap-3 mb-2">
-                    <span className="text-sm font-semibold text-blue-600">{post.category}</span>
-                    <span className="w-1 h-1 rounded-full bg-gray-300" />
-                    <time className="text-sm text-gray-400">{formatDate(post.publishedAt!)}</time>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-3 mb-1.5">
+                      <time className="text-xs text-gray-400 font-medium">{formatDate(post.publishedAt!)}</time>
+                      {post.category && (
+                        <span className="text-xs font-semibold text-blue-600 bg-blue-50 px-2 py-0.5 rounded">{post.category.name}</span>
+                      )}
+                    </div>
+                    <h2 className="text-base font-medium text-gray-900 group-hover:text-blue-600 transition-colors leading-relaxed">
+                      {post.title}
+                    </h2>
                   </div>
-                  <h2 className="text-base font-semibold text-gray-900 leading-relaxed group-hover:text-blue-600 transition-colors duration-300">
-                    {post.title}
-                  </h2>
                 </Link>
               </Reveal>
             ))}

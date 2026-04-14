@@ -16,20 +16,13 @@ export default async function NewsList() {
       slug: p.id,
       title: p.title,
       date: formatDate(p.publishedAt!),
-      category: p.category,
+      category: p.category?.name ?? "お知らせ",
     }));
   } catch {
     // microCMS未設定時はローカルデータにフォールバック
-    posts = blogPosts.slice(0, 5).map((p) => ({
-      slug: p.slug,
-      title: p.title,
-      date: p.date,
-      category: p.category,
-    }));
   }
 
   if (posts.length === 0) {
-    // ローカルデータをフォールバックとして使用
     posts = blogPosts.slice(0, 5).map((p) => ({
       slug: p.slug,
       title: p.title,

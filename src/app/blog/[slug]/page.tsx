@@ -33,16 +33,16 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     <main className="min-h-screen bg-white">
       <div className="max-w-3xl mx-auto px-6 pt-40">
         <Link href="/blog" className="inline-block text-sm font-semibold text-blue-600 hover:text-blue-800 transition-colors duration-300 mb-10">
-          ← ブログ一覧
+          ← お知らせ一覧
         </Link>
 
-        {post.thumbnail && (
+        {post.eyecatch && (
           <div className="w-full aspect-[2/1] rounded-2xl overflow-hidden mb-8">
             <Image
-              src={post.thumbnail.url}
+              src={post.eyecatch.url}
               alt={post.title}
-              width={post.thumbnail.width ?? 1200}
-              height={post.thumbnail.height ?? 600}
+              width={post.eyecatch.width ?? 1200}
+              height={post.eyecatch.height ?? 600}
               className="w-full h-full object-cover"
               priority
             />
@@ -50,16 +50,15 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         )}
 
         <div className="flex items-center gap-3 mb-5">
-          <span className="inline-block rounded-full px-3 py-1 text-sm font-semibold text-white bg-blue-600">
-            {post.category}
-          </span>
+          {post.category && (
+            <span className="inline-block rounded-lg px-3 py-1 text-xs font-semibold text-blue-600 bg-blue-50">
+              {post.category.name}
+            </span>
+          )}
           <time className="text-sm text-gray-400">{formatDate(post.publishedAt!)}</time>
-          <span className="text-sm text-gray-300">・</span>
-          <span className="text-sm text-gray-400">{post.readTime}</span>
         </div>
 
-        <h1 className="text-2xl font-bold text-gray-900 leading-snug mb-6">{post.title}</h1>
-        <p className="text-sm text-gray-500 pb-8 border-b border-gray-200">{post.author}</p>
+        <h1 className="text-2xl font-bold text-gray-900 leading-snug mb-8">{post.title}</h1>
       </div>
 
       <article
@@ -70,7 +69,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       <div className="max-w-3xl mx-auto px-6 pb-20 lg:pb-28">
         <div className="border-t border-gray-200 pt-8">
           <Link href="/blog" className="text-sm font-semibold text-blue-600 hover:text-blue-800 transition-colors duration-300">
-            ← ブログ一覧に戻る
+            ← お知らせ一覧に戻る
           </Link>
         </div>
       </div>

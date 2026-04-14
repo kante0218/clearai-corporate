@@ -1,14 +1,15 @@
 import { createClient } from "microcms-js-sdk";
 import type { MicroCMSImage, MicroCMSListContent } from "microcms-js-sdk";
 
+export type Category = {
+  name: string;
+} & MicroCMSListContent;
+
 export type Blog = {
   title: string;
-  excerpt: string;
   content: string;
-  category: string;
-  thumbnail?: MicroCMSImage;
-  author: string;
-  readTime: string;
+  eyecatch?: MicroCMSImage;
+  category?: Category;
 } & MicroCMSListContent;
 
 const serviceDomain = process.env.MICROCMS_SERVICE_DOMAIN ?? "";
@@ -18,27 +19,13 @@ const client = serviceDomain && apiKey
   ? createClient({ serviceDomain, apiKey })
   : null;
 
-export const categories = ["すべて", "AI活用", "テクノロジー", "導入事例", "お知らせ"];
+export const categoryLabels = ["すべて", "AI活用", "テクノロジー", "導入事例", "お知らせ"];
 
 export async function getBlogs() {
   if (!client) throw new Error("microCMS not configured");
   const data = await client.getList<Blog>({
     endpoint: "blogs",
     queries: { orders: "-publishedAt", limit: 100 },
-  });
-  return data;
-}
-
-export async function getBlogsByCategory(category: string) {
-  if (!client) throw new Error("microCMS not configured");
-  if (category === "すべて") return getBlogs();
-  const data = await client.getList<Blog>({
-    endpoint: "blogs",
-    queries: {
-      orders: "-publishedAt",
-      filters: `category[equals]${category}`,
-      limit: 100,
-    },
   });
   return data;
 }
