@@ -1,12 +1,12 @@
 export default function SkyScene({ className = "" }: { className?: string }) {
   return (
     <svg
-      viewBox="0 0 500 400"
+      viewBox="0 0 1200 560"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
+      preserveAspectRatio="xMidYMid slice"
       aria-hidden="true"
     >
-      {/* Sky gradient background */}
       <defs>
         <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stopColor="#bfdbfe" />
@@ -27,23 +27,21 @@ export default function SkyScene({ className = "" }: { className?: string }) {
         </radialGradient>
       </defs>
 
-      {/* Sky */}
-      <rect width="500" height="400" fill="url(#skyGrad)" rx="16" />
+      {/* Sky background */}
+      <rect width="1200" height="560" fill="url(#skyGrad)" />
 
-      {/* Sun glow */}
-      <ellipse cx="370" cy="110" rx="80" ry="80" fill="url(#sunGlow)" />
-
-      {/* Sun */}
-      <circle cx="370" cy="110" r="38" fill="url(#sunGrad)" />
-      <circle cx="370" cy="110" r="28" fill="#fde68a" />
+      {/* Sun — right side, upper area */}
+      <ellipse cx="950" cy="140" rx="110" ry="110" fill="url(#sunGlow)" />
+      <circle cx="950" cy="140" r="52" fill="url(#sunGrad)" />
+      <circle cx="950" cy="140" r="38" fill="#fde68a" />
 
       {/* Sun rays */}
       {[0, 45, 90, 135, 180, 225, 270, 315].map((angle, i) => {
         const rad = (angle * Math.PI) / 180;
-        const x1 = 370 + Math.cos(rad) * 44;
-        const y1 = 110 + Math.sin(rad) * 44;
-        const x2 = 370 + Math.cos(rad) * 56;
-        const y2 = 110 + Math.sin(rad) * 56;
+        const x1 = 950 + Math.cos(rad) * 60;
+        const y1 = 140 + Math.sin(rad) * 60;
+        const x2 = 950 + Math.cos(rad) * 78;
+        const y2 = 140 + Math.sin(rad) * 78;
         return (
           <line
             key={i}
@@ -52,101 +50,113 @@ export default function SkyScene({ className = "" }: { className?: string }) {
             x2={x2}
             y2={y2}
             stroke="#fbbf24"
-            strokeWidth="3"
+            strokeWidth="4"
             strokeLinecap="round"
-            opacity="0.7"
+            opacity="0.65"
           />
         );
       })}
 
       {/* Light rays from sun downward */}
-      <line x1="370" y1="148" x2="340" y2="320" stroke="#fde68a" strokeWidth="1.5" opacity="0.18" />
-      <line x1="370" y1="148" x2="390" y2="320" stroke="#fde68a" strokeWidth="1.5" opacity="0.18" />
-      <line x1="370" y1="148" x2="420" y2="320" stroke="#fde68a" strokeWidth="1.5" opacity="0.13" />
+      <line x1="950" y1="192" x2="880" y2="520" stroke="#fde68a" strokeWidth="2" opacity="0.12" />
+      <line x1="950" y1="192" x2="970" y2="520" stroke="#fde68a" strokeWidth="2" opacity="0.12" />
+      <line x1="950" y1="192" x2="1060" y2="520" stroke="#fde68a" strokeWidth="2" opacity="0.08" />
 
-      {/* Cloud 1 - large, center-left */}
-      <g transform="translate(60, 90)">
-        <ellipse cx="60" cy="30" rx="55" ry="22" fill="white" opacity="0.95" />
-        <ellipse cx="38" cy="36" rx="32" ry="18" fill="white" opacity="0.95" />
-        <ellipse cx="82" cy="36" rx="28" ry="16" fill="white" opacity="0.95" />
-        <ellipse cx="60" cy="40" rx="50" ry="14" fill="white" opacity="0.95" />
+      {/* Cloud 1 — large, center-left */}
+      <g transform="translate(80, 110)">
+        <ellipse cx="90" cy="42" rx="82" ry="32" fill="white" opacity="0.95" />
+        <ellipse cx="56" cy="52" rx="48" ry="26" fill="white" opacity="0.95" />
+        <ellipse cx="124" cy="52" rx="42" ry="24" fill="white" opacity="0.95" />
+        <ellipse cx="90" cy="58" rx="76" ry="20" fill="white" opacity="0.95" />
       </g>
 
-      {/* Cloud 2 - medium, upper right */}
-      <g transform="translate(250, 55)">
-        <ellipse cx="45" cy="24" rx="42" ry="18" fill="white" opacity="0.85" />
-        <ellipse cx="28" cy="29" rx="24" ry="14" fill="white" opacity="0.85" />
-        <ellipse cx="62" cy="29" rx="22" ry="13" fill="white" opacity="0.85" />
-        <ellipse cx="45" cy="32" rx="40" ry="11" fill="white" opacity="0.85" />
+      {/* Cloud 2 — medium, upper center */}
+      <g transform="translate(480, 60)">
+        <ellipse cx="70" cy="34" rx="64" ry="26" fill="white" opacity="0.88" />
+        <ellipse cx="44" cy="42" rx="38" ry="20" fill="white" opacity="0.88" />
+        <ellipse cx="96" cy="42" rx="34" ry="18" fill="white" opacity="0.88" />
+        <ellipse cx="70" cy="48" rx="60" ry="16" fill="white" opacity="0.88" />
       </g>
 
-      {/* Cloud 3 - small, left-upper */}
-      <g transform="translate(10, 50)">
-        <ellipse cx="34" cy="20" rx="30" ry="14" fill="white" opacity="0.75" />
-        <ellipse cx="20" cy="24" rx="18" ry="11" fill="white" opacity="0.75" />
-        <ellipse cx="48" cy="24" rx="16" ry="10" fill="white" opacity="0.75" />
-        <ellipse cx="34" cy="27" rx="28" ry="9" fill="white" opacity="0.75" />
+      {/* Cloud 3 — small, far left */}
+      <g transform="translate(0, 60)">
+        <ellipse cx="50" cy="28" rx="46" ry="20" fill="white" opacity="0.78" />
+        <ellipse cx="30" cy="34" rx="28" ry="16" fill="white" opacity="0.78" />
+        <ellipse cx="70" cy="34" rx="24" ry="14" fill="white" opacity="0.78" />
       </g>
 
-      {/* Cloud 4 - small, far right mid */}
-      <g transform="translate(430, 145)">
-        <ellipse cx="28" cy="16" rx="26" ry="12" fill="white" opacity="0.70" />
-        <ellipse cx="16" cy="20" rx="16" ry="9" fill="white" opacity="0.70" />
-        <ellipse cx="40" cy="20" rx="14" ry="8" fill="white" opacity="0.70" />
+      {/* Cloud 4 — wispy, right-mid area */}
+      <g transform="translate(1070, 180)">
+        <ellipse cx="42" cy="22" rx="38" ry="16" fill="white" opacity="0.72" />
+        <ellipse cx="24" cy="28" rx="24" ry="12" fill="white" opacity="0.72" />
+        <ellipse cx="60" cy="28" rx="20" ry="11" fill="white" opacity="0.72" />
       </g>
 
-      {/* Cloud 5 - wispy, lower left area */}
-      <g transform="translate(30, 185)">
-        <ellipse cx="40" cy="14" rx="38" ry="10" fill="white" opacity="0.60" />
-        <ellipse cx="22" cy="18" rx="20" ry="8" fill="white" opacity="0.60" />
-        <ellipse cx="58" cy="18" rx="18" ry="7" fill="white" opacity="0.60" />
+      {/* Cloud 5 — wispy, left-mid */}
+      <g transform="translate(30, 240)">
+        <ellipse cx="58" cy="18" rx="54" ry="14" fill="white" opacity="0.60" />
+        <ellipse cx="32" cy="24" rx="30" ry="11" fill="white" opacity="0.60" />
+        <ellipse cx="84" cy="24" rx="28" ry="10" fill="white" opacity="0.60" />
       </g>
 
-      {/* Birds - simple V shapes */}
-      {/* Bird 1 */}
-      <path d="M 155 140 Q 160 134 165 140" stroke="#60a5fa" strokeWidth="2" fill="none" strokeLinecap="round" />
-      {/* Bird 2 */}
-      <path d="M 170 128 Q 176 122 182 128" stroke="#60a5fa" strokeWidth="2" fill="none" strokeLinecap="round" />
-      {/* Bird 3 (smaller, farther) */}
-      <path d="M 200 118 Q 204 114 208 118" stroke="#93c5fd" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+      {/* Cloud 6 — far right below sun */}
+      <g transform="translate(1080, 290)">
+        <ellipse cx="50" cy="20" rx="46" ry="15" fill="white" opacity="0.55" />
+        <ellipse cx="28" cy="26" rx="28" ry="11" fill="white" opacity="0.55" />
+        <ellipse cx="72" cy="26" rx="24" ry="10" fill="white" opacity="0.55" />
+      </g>
 
-      {/* Horizon / ground */}
-      <ellipse cx="250" cy="400" rx="320" ry="95" fill="url(#groundGrad)" opacity="0.7" />
+      {/* Birds — left cluster */}
+      <path d="M 310 190 Q 318 182 326 190" stroke="#60a5fa" strokeWidth="2.5" fill="none" strokeLinecap="round" />
+      <path d="M 335 174 Q 344 166 353 174" stroke="#60a5fa" strokeWidth="2.5" fill="none" strokeLinecap="round" />
+      <path d="M 378 160 Q 384 154 390 160" stroke="#93c5fd" strokeWidth="2" fill="none" strokeLinecap="round" />
 
-      {/* Rolling hills */}
+      {/* Birds — right cluster near sun */}
+      <path d="M 750 110 Q 758 103 766 110" stroke="#93c5fd" strokeWidth="2" fill="none" strokeLinecap="round" />
+      <path d="M 780 98 Q 786 93 792 98" stroke="#93c5fd" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+
+      {/* Horizon / rolling hills */}
+      <ellipse cx="600" cy="560" rx="800" ry="160" fill="url(#groundGrad)" opacity="0.6" />
+
       <path
-        d="M 0 320 Q 80 270 160 300 Q 220 320 280 290 Q 350 260 420 300 Q 460 316 500 310 L 500 400 L 0 400 Z"
+        d="M 0 440 Q 180 380 360 420 Q 520 454 680 400 Q 840 350 1000 410 Q 1100 440 1200 428 L 1200 560 L 0 560 Z"
         fill="#bae6fd"
-        opacity="0.55"
+        opacity="0.52"
       />
       <path
-        d="M 0 345 Q 70 315 140 335 Q 210 355 290 330 Q 370 310 450 340 Q 475 350 500 342 L 500 400 L 0 400 Z"
+        d="M 0 480 Q 160 448 320 468 Q 500 490 680 458 Q 860 426 1040 470 Q 1120 486 1200 470 L 1200 560 L 0 560 Z"
         fill="#e0f2fe"
-        opacity="0.65"
+        opacity="0.62"
       />
 
-      {/* Distant mountains / cityscape silhouette */}
+      {/* Distant mountain / city silhouette — spread wide */}
       <path
-        d="M 40 330 L 70 295 L 100 330 L 120 308 L 145 330 L 170 300 L 195 330 L 230 310 L 260 330"
+        d="M 80 462 L 128 418 L 176 462 L 210 432 L 246 462 L 290 424 L 336 462 L 390 435 L 440 462"
         stroke="#93c5fd"
-        strokeWidth="1.5"
+        strokeWidth="2"
         fill="none"
-        opacity="0.4"
+        opacity="0.35"
+      />
+      <path
+        d="M 760 468 L 808 428 L 856 468 L 892 440 L 926 468 L 968 432 L 1008 468 L 1056 440 L 1100 468"
+        stroke="#93c5fd"
+        strokeWidth="2"
+        fill="none"
+        opacity="0.28"
       />
 
-      {/* Flag on a hill */}
-      <line x1="300" y1="298" x2="300" y2="260" stroke="#2563eb" strokeWidth="2.5" strokeLinecap="round" />
-      <path d="M 300 260 L 322 268 L 300 276 Z" fill="#2563eb" opacity="0.9" />
-      {/* Hill beneath flag */}
-      <ellipse cx="300" cy="305" rx="28" ry="12" fill="#7dd3fc" opacity="0.5" />
+      {/* Flag on a hill — center */}
+      <line x1="600" y1="420" x2="600" y2="366" stroke="#2563eb" strokeWidth="3" strokeLinecap="round" />
+      <path d="M 600 366 L 634 378 L 600 390 Z" fill="#2563eb" opacity="0.88" />
+      <ellipse cx="600" cy="428" rx="40" ry="16" fill="#7dd3fc" opacity="0.45" />
 
-      {/* Sparkle dots */}
-      <circle cx="420" cy="200" r="2.5" fill="#fbbf24" opacity="0.7" />
-      <circle cx="435" cy="185" r="1.5" fill="#fbbf24" opacity="0.5" />
-      <circle cx="408" cy="192" r="1.5" fill="#fbbf24" opacity="0.5" />
+      {/* Sparkle dots — right side near sun */}
+      <circle cx="1060" cy="270" r="3" fill="#fbbf24" opacity="0.7" />
+      <circle cx="1082" cy="248" r="2" fill="#fbbf24" opacity="0.5" />
+      <circle cx="1040" cy="258" r="2" fill="#fbbf24" opacity="0.5" />
 
       {/* Light beam horizontal band */}
-      <rect x="0" y="155" width="500" height="18" fill="#fef9c3" opacity="0.08" rx="4" />
+      <rect x="0" y="210" width="1200" height="24" fill="#fef9c3" opacity="0.06" />
     </svg>
   );
 }
