@@ -195,7 +195,7 @@ export default function AboutPage() {
             </h2>
           </Reveal>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-6 auto-rows-fr">
             {[
               {
                 num: "01",
@@ -226,8 +226,8 @@ export default function AboutPage() {
                 desc: "流行の技術を追いかけるのではなく、10年後も価値を発揮し続ける堅牢な仕組みを構築します。本質的な変革には、時間と根気が必要です。",
               },
             ].map((v, i) => (
-              <Reveal key={v.num} delay={i * 80}>
-                <article className="group border border-gray-200 rounded-2xl p-8 bg-white hover:border-blue-300 hover:shadow-lg transition-all duration-300 cursor-default">
+              <Reveal key={v.num} delay={i * 80} className="h-full">
+                <article className="group h-full border border-gray-200 rounded-2xl p-8 bg-white hover:border-blue-300 hover:shadow-lg transition-all duration-300 cursor-default">
                   <div className="flex items-start gap-4 mb-5">
                     <span className="text-4xl font-bold text-gray-100 leading-none select-none inline-block transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-2 group-hover:text-blue-500 group-hover:drop-shadow-[0_6px_12px_rgba(59,130,246,0.35)]">{v.num}</span>
                     <div>
@@ -254,7 +254,7 @@ export default function AboutPage() {
             </h2>
           </Reveal>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-6 auto-rows-fr">
             {[
               {
                 num: "01",
@@ -272,8 +272,8 @@ export default function AboutPage() {
                 desc: "米国・中国・欧州のAI活用は日本を大きく上回るペースで進んでいます。このまま手をこまねいていれば、日本企業の国際競争力はさらに低下します。今すぐ動き出した企業だけが、次の10年を生き残れます。",
               },
             ].map((r, i) => (
-              <Reveal key={r.num} delay={i * 80}>
-                <div className="group bg-white border border-gray-200 rounded-2xl p-8 hover:border-blue-300 hover:shadow-lg transition-all duration-300 cursor-default">
+              <Reveal key={r.num} delay={i * 80} className="h-full">
+                <div className="group h-full bg-white border border-gray-200 rounded-2xl p-8 hover:border-blue-300 hover:shadow-lg transition-all duration-300 cursor-default">
                   <span className="block text-5xl font-bold text-gray-100 mb-4 leading-none select-none transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-2 group-hover:text-blue-500 group-hover:drop-shadow-[0_8px_16px_rgba(59,130,246,0.35)]">{r.num}</span>
                   <h3 className="text-lg font-bold text-gray-900 mb-4">{r.title}</h3>
                   <p className="text-sm text-gray-600 leading-relaxed">{r.desc}</p>
