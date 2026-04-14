@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import SkyScene from "@/components/illustrations/SkyScene";
 
 /* Scroll-triggered reveal - simplified, up direction only */
 function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
@@ -41,62 +40,86 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
   return (
     <>
       {/* ═══ HERO ═══ */}
-      <section className="relative min-h-[90vh] flex items-center overflow-hidden">
-        {/* Illustration — full-width background layer */}
+      <section
+        className="relative flex items-center justify-center overflow-hidden"
+        style={{
+          background: "var(--clay-cream)",
+          minHeight: "88vh",
+          paddingTop: "clamp(5rem, 12vh, 9rem)",
+          paddingBottom: "clamp(4rem, 8vh, 7rem)",
+        }}
+      >
+        {/* Content — centered column */}
         <div
-          className="absolute inset-0 transition-all duration-1000"
-          style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "200ms" }}
-          aria-hidden="true"
+          className="relative z-10 w-full max-w-3xl mx-auto px-6 lg:px-10 text-center"
+          style={{
+            opacity: heroLoaded ? 1 : 0,
+            transform: heroLoaded ? "none" : "translateY(28px)",
+            transition: "opacity 0.8s cubic-bezier(0.16,1,0.3,1) 80ms, transform 0.8s cubic-bezier(0.16,1,0.3,1) 80ms",
+          }}
         >
-          <SkyScene className="w-full h-full" />
+          {/* Uppercase label */}
+          <span
+            className="clay-label"
+            style={{ marginBottom: "1.5rem", display: "block" }}
+          >
+            AI Consulting &amp; Agriculture Engineering
+          </span>
+
+          {/* H1 — Clay display scale */}
+          <h1
+            className="clay-display"
+            style={{
+              color: "var(--clay-black)",
+              marginBottom: "1.5rem",
+              opacity: heroLoaded ? 1 : 0,
+              transform: heroLoaded ? "none" : "translateY(24px)",
+              transition: "opacity 0.75s cubic-bezier(0.16,1,0.3,1) 220ms, transform 0.75s cubic-bezier(0.16,1,0.3,1) 220ms",
+            }}
+          >
+            AIで、すべてを<br />クリアにする。
+          </h1>
+
+          {/* Sub-copy */}
+          <p
+            style={{
+              fontSize: "1.125rem",
+              fontWeight: 400,
+              lineHeight: 1.65,
+              color: "var(--clay-warm-silver)",
+              letterSpacing: "-0.02em",
+              maxWidth: "38rem",
+              margin: "0 auto 2.5rem",
+              opacity: heroLoaded ? 1 : 0,
+              transition: "opacity 0.75s cubic-bezier(0.16,1,0.3,1) 380ms",
+            }}
+          >
+            AIコンサルティング・AI顧問・エンジニアによる農業支援。<br />3つの事業で、日本の産業に確かな価値を届けます。
+          </p>
+
+          {/* CTA row */}
+          <div
+            className="flex items-center justify-center gap-4 flex-wrap"
+            style={{
+              opacity: heroLoaded ? 1 : 0,
+              transition: "opacity 0.75s cubic-bezier(0.16,1,0.3,1) 520ms",
+            }}
+          >
+            <Link href="/contact" className="btn-clay">
+              お問い合わせ
+            </Link>
+            <Link href="#services" className="btn-clay-ghost">
+              事業を見る →
+            </Link>
+          </div>
         </div>
 
-        {/* Gradient overlay for text legibility — left-heavy fade */}
+        {/* Bottom oat dashed divider */}
         <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background: "linear-gradient(to right, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.72) 40%, rgba(255,255,255,0.20) 75%, rgba(255,255,255,0) 100%)",
-          }}
-        />
-        {/* Bottom fade for smooth section transition */}
-        <div
-          className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none"
-          style={{ background: "linear-gradient(to bottom, transparent, rgba(255,255,255,0.60))" }}
-        />
-
-        {/* Copy — overlaid, left-aligned */}
-        <div className="relative z-10 w-full max-w-6xl mx-auto px-6 lg:px-10 py-20">
-          <div className="max-w-xl">
-            <span
-              className="inline-block rounded-full bg-blue-50/90 text-blue-600 px-3 py-1 text-sm font-semibold mb-6 transition-all duration-700"
-              style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "300ms" }}
-            >
-              AI Consulting &amp; Agriculture Engineering
-            </span>
-            <h1
-              className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-6 transition-all duration-700"
-              style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0)" : "translateY(24px)", transitionDelay: "500ms" }}
-            >
-              AIで、すべてを<br />クリアにする。
-            </h1>
-            <p
-              className="text-base text-gray-700 leading-relaxed mb-10 transition-all duration-700"
-              style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "700ms" }}
-            >
-              AIコンサルティング・AI顧問・エンジニアによる農業支援。<br />3つの事業で、日本の産業に確かな価値を届けます。
-            </p>
-            <div
-              className="flex items-center gap-4 transition-all duration-700"
-              style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "900ms" }}
-            >
-              <Link href="/contact" className="rounded-lg bg-blue-600 text-white font-semibold px-8 py-3.5 hover:bg-blue-700 transition-colors duration-300">
-                お問い合わせ
-              </Link>
-              <Link href="#services" className="text-sm text-gray-600 font-semibold hover:text-gray-900 transition-colors duration-300">
-                事業を見る →
-              </Link>
-            </div>
-          </div>
+          className="absolute bottom-0 left-0 right-0"
+          style={{ padding: "0 1.5rem" }}
+        >
+          <hr className="clay-divider" />
         </div>
       </section>
 

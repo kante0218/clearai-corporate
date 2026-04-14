@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import DXScene from "@/components/illustrations/DXScene";
 
 function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -32,57 +31,76 @@ export default function AiConsultingPage() {
   return (
     <>
       {/* HERO */}
-      <section className="relative min-h-[90vh] flex items-center overflow-hidden">
-        {/* Illustration — full-width background layer */}
+      <section
+        className="relative flex items-center justify-center overflow-hidden"
+        style={{
+          background: "var(--clay-cream)",
+          minHeight: "88vh",
+          paddingTop: "clamp(5rem, 12vh, 9rem)",
+          paddingBottom: "clamp(4rem, 8vh, 7rem)",
+        }}
+      >
         <div
-          className="absolute inset-0 transition-all duration-1000"
-          style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "200ms" }}
-          aria-hidden="true"
+          className="relative z-10 w-full max-w-3xl mx-auto px-6 lg:px-10 text-center"
+          style={{
+            opacity: heroLoaded ? 1 : 0,
+            transform: heroLoaded ? "none" : "translateY(28px)",
+            transition: "opacity 0.8s cubic-bezier(0.16,1,0.3,1) 80ms, transform 0.8s cubic-bezier(0.16,1,0.3,1) 80ms",
+          }}
         >
-          <DXScene className="w-full h-full" />
+          <span
+            className="clay-label"
+            style={{ marginBottom: "1.5rem", display: "block" }}
+          >
+            AI Implementation Support
+          </span>
+
+          <h1
+            className="clay-display"
+            style={{
+              color: "var(--clay-black)",
+              marginBottom: "1.5rem",
+              opacity: heroLoaded ? 1 : 0,
+              transform: heroLoaded ? "none" : "translateY(24px)",
+              transition: "opacity 0.75s cubic-bezier(0.16,1,0.3,1) 220ms, transform 0.75s cubic-bezier(0.16,1,0.3,1) 220ms",
+            }}
+          >
+            AI導入を、共に考え、<br />共に創る。
+          </h1>
+
+          <p
+            style={{
+              fontSize: "1.125rem",
+              fontWeight: 400,
+              lineHeight: 1.65,
+              color: "var(--clay-warm-silver)",
+              letterSpacing: "-0.02em",
+              maxWidth: "38rem",
+              margin: "0 auto 2.5rem",
+              opacity: heroLoaded ? 1 : 0,
+              transition: "opacity 0.75s cubic-bezier(0.16,1,0.3,1) 380ms",
+            }}
+          >
+            戦略策定から開発・実装・運用まで、一気通貫でサポート。<br />貴社のビジネスに最適なAIソリューションを共に創り上げます。
+          </p>
+
+          <div
+            className="flex items-center justify-center gap-4 flex-wrap"
+            style={{
+              opacity: heroLoaded ? 1 : 0,
+              transition: "opacity 0.75s cubic-bezier(0.16,1,0.3,1) 520ms",
+            }}
+          >
+            <a href="/contact" className="btn-clay">無料相談を申し込む</a>
+            <a href="#services" className="btn-clay-ghost">サービスを見る →</a>
+          </div>
         </div>
 
-        {/* Gradient overlay for text legibility */}
         <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background: "linear-gradient(to right, rgba(255,255,255,0.90) 0%, rgba(255,255,255,0.76) 40%, rgba(255,255,255,0.22) 75%, rgba(255,255,255,0) 100%)",
-          }}
-        />
-        <div
-          className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none"
-          style={{ background: "linear-gradient(to bottom, transparent, rgba(255,255,255,0.60))" }}
-        />
-
-        {/* Copy — overlaid, left-aligned */}
-        <div className="relative z-10 w-full max-w-6xl mx-auto px-6 lg:px-10 py-20">
-          <div className="max-w-xl">
-            <span
-              className="inline-block rounded-full bg-blue-50/90 text-blue-600 px-3 py-1 text-sm font-semibold mb-6 transition-all duration-700"
-              style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "300ms" }}
-            >
-              AI Implementation Support
-            </span>
-            <h1
-              className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-6 transition-all duration-700"
-              style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0)" : "translateY(24px)", transitionDelay: "500ms" }}
-            >
-              AI導入を、<br />共に考え、共に創る。
-            </h1>
-            <p
-              className="text-base text-gray-700 leading-relaxed mb-10 transition-all duration-700"
-              style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "700ms" }}
-            >
-              戦略策定から開発・実装・運用まで、一気通貫でサポート。<br />貴社のビジネスに最適なAIソリューションを共に創り上げます。
-            </p>
-            <div
-              className="flex items-center gap-4 transition-all duration-700"
-              style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "900ms" }}
-            >
-              <a href="/contact" className="rounded-lg bg-blue-600 text-white font-semibold px-8 py-3.5 hover:bg-blue-700 transition-colors duration-300">無料相談を申し込む</a>
-              <a href="#services" className="text-sm text-gray-600 font-semibold hover:text-gray-900 transition-colors duration-300">サービスを見る →</a>
-            </div>
-          </div>
+          className="absolute bottom-0 left-0 right-0"
+          style={{ padding: "0 1.5rem" }}
+        >
+          <hr className="clay-divider" />
         </div>
       </section>
 
