@@ -190,32 +190,32 @@ export default function AiAgriculturePage() {
         <div className="max-w-6xl mx-auto px-6 lg:px-8 relative z-10">
           <Reveal>
             <Label>Status</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-6">現在、提供中のサービスです。</h2>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-6">まだ、提供中のサービスはありません。</h2>
             <p className="text-base text-gray-600 leading-relaxed max-w-2xl mb-14">
-              clear AIは、農家の経営課題をエンジニアリングで解決するサービスを提供しています。<br />
-              ECサイト構築から利益率改善まで、農家の「稼ぐ力」を総合的にサポートします。
+              clear AIの農業事業は、今まさに立ち上げの準備段階です。<br />
+              農家様の声を起点に、大学の教授・優秀なエンジニア・学生と協力しながら、一歩ずつ形にしていきます。
             </p>
           </Reveal>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-14">
             {[
               {
-                status: "提供中",
+                status: "Step 01",
                 statusColor: "bg-emerald-100 text-emerald-700",
-                title: "EC・ネット販売構築",
-                desc: "Shopify・BASEなどを活用した農家向けECサイトの企画・構築・運用支援を提供中です。",
+                title: "農家様の声を聞く",
+                desc: "まずは現場に足を運び、農家様が実際に困っていることを丁寧にヒアリング。机上の空論ではなく、本当に必要とされる技術の種を探すところから始めます。",
               },
               {
-                status: "提供中",
+                status: "Step 02",
                 statusColor: "bg-emerald-100 text-emerald-700",
-                title: "経営改善コンサルティング",
-                desc: "原価分析・販路最適化・利益率改善のコンサルティングサービスを提供しています。",
+                title: "できることから自動化",
+                desc: "教授・エンジニア・学生と協力し、水流管理やビニールハウスの自動化など、手の届く範囲から開発・検証。プロトタイプを現場で磨いていきます。",
               },
               {
-                status: "準備中",
+                status: "Step 03",
                 statusColor: "bg-blue-100 text-blue-700",
-                title: "農業特化SaaS",
-                desc: "受発注・顧客管理・在庫管理を一元化する農業特化型のクラウドサービスを開発中です。",
+                title: "製品化 & 全国導入",
+                desc: "現場で磨いた自動化技術を製品化し、全国の農家様へ展開予定。自らも野菜を育てながら、ロボット栽培や無機質空間での栽培にも着手していきます。",
               },
             ].map((item, i) => (
               <Reveal key={item.title} delay={i * 100}>

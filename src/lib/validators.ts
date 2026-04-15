@@ -3,29 +3,45 @@ export function isValidEmail(email: string): boolean {
 }
 
 const ALLOWED_SIZES = ["~50名", "51-200名", "201-500名", "501-1000名", "1001名~", ""];
+export const INQUIRY_TYPES = ["business", "engineer", "other"] as const;
+export type InquiryType = (typeof INQUIRY_TYPES)[number];
 
 export interface ContactFormData {
-  company: string;
+  inquiryType?: string;
+  company?: string;
   name: string;
   email: string;
   phone?: string;
   size?: string;
+  position?: string;
+  experience?: string;
+  portfolio?: string;
   message: string;
 }
 
 export function validateContactForm(data: ContactFormData): Record<string, string> {
   const errors: Record<string, string> = {};
 
-  if (!data.company || data.company.trim().length === 0) {
-    errors.company = "会社名は必須です。";
-  } else if (data.company.trim().length > 200) {
+  const inquiryType: InquiryType =
+    data.inquiryType && (INQUIRY_TYPES as readonly string[]).includes(data.inquiryType)
+      ? (data.inquiryType as InquiryType)
+      : "business";
+
+  // 会社名: business のみ必須
+  if (inquiryType === "business") {
+    if (!data.company || data.company.trim().length === 0) {
+      errors.company = "会社名は必須です。";
+    } else if (data.company.trim().length > 200) {
+      errors.company = "会社名は200文字以内でご入力ください。";
+    }
+  } else if (data.company && data.company.trim().length > 200) {
     errors.company = "会社名は200文字以内でご入力ください。";
   }
 
   if (!data.name || data.name.trim().length === 0) {
-    errors.name = "ご担当者名は必須です。";
+    errors.name = "お名前は必須です。";
   } else if (data.name.trim().length > 100) {
-    errors.name = "ご担当者名は100文字以内でご入力ください。";
+    errors.name = "お名前は100文字以内でご入力ください。";
   }
 
   if (!data.email || data.email.trim().length === 0) {
@@ -42,12 +58,29 @@ export function validateContactForm(data: ContactFormData): Record<string, strin
     errors.size = "有効な従業員規模を選択してください。";
   }
 
+  // エンジニア応募固有
+  if (inquiryType === "engineer") {
+    if (!data.position || data.position.trim().length === 0) {
+      errors.position = "希望ポジションは必須です。";
+    } else if (data.position.trim().length > 100) {
+      errors.position = "希望ポジションは100文字以内でご入力ください。";
+    }
+
+    if (data.experience && data.experience.trim().length > 100) {
+      errors.experience = "経験年数は100文字以内でご入力ください。";
+    }
+
+    if (data.portfolio && data.portfolio.trim().length > 500) {
+      errors.portfolio = "URLは500文字以内でご入力ください。";
+    }
+  }
+
   if (!data.message || data.message.trim().length === 0) {
-    errors.message = "ご相談内容は必須です。";
+    errors.message = inquiryType === "engineer" ? "自己紹介は必須です。" : "ご相談内容は必須です。";
   } else if (data.message.trim().length < 10) {
-    errors.message = "ご相談内容は10文字以上でご入力ください。";
+    errors.message = inquiryType === "engineer" ? "自己紹介は10文字以上でご入力ください。" : "ご相談内容は10文字以上でご入力ください。";
   } else if (data.message.trim().length > 5000) {
-    errors.message = "ご相談内容は5000文字以内でご入力ください。";
+    errors.message = "5000文字以内でご入力ください。";
   }
 
   return errors;

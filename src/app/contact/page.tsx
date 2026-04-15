@@ -33,12 +33,24 @@ function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; 
   );
 }
 
+type InquiryType = "business" | "engineer" | "other";
+
+const INQUIRY_OPTIONS: { value: InquiryType; label: string; desc: string }[] = [
+  { value: "business", label: "ご相談・お見積もり", desc: "AI導入・コンサル・開発のご依頼" },
+  { value: "engineer", label: "エンジニア採用", desc: "一緒に農業を変える仲間を募集中" },
+  { value: "other", label: "その他", desc: "取材・提携・一般的なお問い合わせ" },
+];
+
 const EMPTY_FORM = {
+  inquiryType: "business" as InquiryType,
   company: "",
   name: "",
   email: "",
   phone: "",
   size: "",
+  position: "",
+  experience: "",
+  portfolio: "",
   message: "",
   website: "", // honeypot
 };
@@ -65,11 +77,15 @@ export default function ContactPage() {
 
     // Client-side validation
     const clientErrors = validateContactForm({
+      inquiryType: form.inquiryType,
       company: form.company,
       name: form.name,
       email: form.email,
       phone: form.phone,
       size: form.size,
+      position: form.position,
+      experience: form.experience,
+      portfolio: form.portfolio,
       message: form.message,
     });
     if (Object.keys(clientErrors).length > 0) {
@@ -118,6 +134,14 @@ export default function ContactPage() {
     `w-full rounded-lg border px-4 py-3 text-base text-gray-900 placeholder-gray-400 outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 transition-colors duration-200 ${
       errors[field] ? "border-red-400" : "border-gray-200"
     }`;
+
+  const selectInquiry = (t: InquiryType) => {
+    setForm({ ...form, inquiryType: t });
+    setErrors({});
+  };
+
+  const isBusiness = form.inquiryType === "business";
+  const isEngineer = form.inquiryType === "engineer";
 
   return (
     <main className="min-h-screen bg-white">
@@ -178,7 +202,11 @@ export default function ContactPage() {
               <div className="space-y-8">
                 <div>
                   <p className="text-base text-gray-600 leading-relaxed">
-                    AI導入やサービスに関するご質問、お見積もりのご依頼など、どのようなことでもお気軽にお問い合わせください。
+                    {isEngineer
+                      ? "clear AIでは、農業×エンジニアリングに共感いただける仲間を募集しています。お気軽にご連絡ください。"
+                      : isBusiness
+                      ? "AI導入やサービスに関するご質問、お見積もりのご依頼など、どのようなことでもお気軽にお問い合わせください。"
+                      : "取材・提携・その他のお問い合わせを承ります。まずはお気軽にご連絡ください。"}
                   </p>
                 </div>
 
@@ -221,30 +249,41 @@ export default function ContactPage() {
                   style={{ position: "absolute", left: "-9999px", width: "1px", height: "1px", overflow: "hidden" }}
                 />
 
+                {/* Inquiry type selector */}
+                <div>
+                  <p className="block text-sm font-semibold text-gray-700 mb-3">
+                    お問い合わせ種別 <span className="text-red-400">*</span>
+                  </p>
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    {INQUIRY_OPTIONS.map((opt) => {
+                      const active = form.inquiryType === opt.value;
+                      return (
+                        <button
+                          key={opt.value}
+                          type="button"
+                          onClick={() => selectInquiry(opt.value)}
+                          aria-pressed={active}
+                          className={`text-left rounded-xl border px-4 py-4 transition-all duration-200 ${
+                            active
+                              ? "border-blue-600 bg-blue-50/60 ring-1 ring-blue-600"
+                              : "border-gray-200 bg-white hover:border-gray-300"
+                          }`}
+                        >
+                          <span className={`block text-sm font-bold ${active ? "text-blue-700" : "text-gray-900"}`}>
+                            {opt.label}
+                          </span>
+                          <span className="block text-xs text-gray-500 mt-1 leading-snug">{opt.desc}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Common: name + email */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="company" className="block text-sm font-semibold text-gray-700 mb-2">
-                      会社名 <span className="text-red-400">*</span>
-                    </label>
-                    <input
-                      id="company"
-                      type="text"
-                      name="company"
-                      value={form.company}
-                      onChange={handleChange}
-                      placeholder="株式会社〇〇"
-                      autoComplete="organization"
-                      aria-invalid={!!errors.company}
-                      aria-describedby={errors.company ? "company-error" : undefined}
-                      className={inputClass("company")}
-                    />
-                    {errors.company && (
-                      <p id="company-error" className="mt-1 text-sm text-red-500">{errors.company}</p>
-                    )}
-                  </div>
-                  <div>
                     <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
-                      ご担当者名 <span className="text-red-400">*</span>
+                      {isEngineer ? "お名前" : "ご担当者名"} <span className="text-red-400">*</span>
                     </label>
                     <input
                       id="name"
@@ -262,9 +301,6 @@ export default function ContactPage() {
                       <p id="name-error" className="mt-1 text-sm text-red-500">{errors.name}</p>
                     )}
                   </div>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
                       メールアドレス <span className="text-red-400">*</span>
@@ -285,56 +321,164 @@ export default function ContactPage() {
                       <p id="email-error" className="mt-1 text-sm text-red-500">{errors.email}</p>
                     )}
                   </div>
-                  <div>
-                    <label htmlFor="phone" className="block text-sm font-semibold text-gray-700 mb-2">
-                      電話番号
-                    </label>
-                    <input
-                      id="phone"
-                      type="tel"
-                      name="phone"
-                      value={form.phone}
-                      onChange={handleChange}
-                      placeholder="03-XXXX-XXXX"
-                      autoComplete="tel"
-                      aria-invalid={!!errors.phone}
-                      aria-describedby={errors.phone ? "phone-error" : undefined}
-                      className={inputClass("phone")}
-                    />
-                    {errors.phone && (
-                      <p id="phone-error" className="mt-1 text-sm text-red-500">{errors.phone}</p>
-                    )}
-                  </div>
                 </div>
 
-                <div>
-                  <label htmlFor="size" className="block text-sm font-semibold text-gray-700 mb-2">
-                    従業員規模
-                  </label>
-                  <select
-                    id="size"
-                    name="size"
-                    value={form.size}
-                    onChange={handleChange}
-                    aria-invalid={!!errors.size}
-                    aria-describedby={errors.size ? "size-error" : undefined}
-                    className={`${inputClass("size")} appearance-none cursor-pointer bg-white`}
-                  >
-                    <option value="">選択してください</option>
-                    <option value="~50名">〜50名</option>
-                    <option value="51-200名">51〜200名</option>
-                    <option value="201-500名">201〜500名</option>
-                    <option value="501-1000名">501〜1000名</option>
-                    <option value="1001名~">1001名〜</option>
-                  </select>
-                  {errors.size && (
-                    <p id="size-error" className="mt-1 text-sm text-red-500">{errors.size}</p>
-                  )}
-                </div>
+                {/* Business: company + size */}
+                {isBusiness && (
+                  <>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                      <div>
+                        <label htmlFor="company" className="block text-sm font-semibold text-gray-700 mb-2">
+                          会社名 <span className="text-red-400">*</span>
+                        </label>
+                        <input
+                          id="company"
+                          type="text"
+                          name="company"
+                          value={form.company}
+                          onChange={handleChange}
+                          placeholder="株式会社〇〇"
+                          autoComplete="organization"
+                          aria-invalid={!!errors.company}
+                          aria-describedby={errors.company ? "company-error" : undefined}
+                          className={inputClass("company")}
+                        />
+                        {errors.company && (
+                          <p id="company-error" className="mt-1 text-sm text-red-500">{errors.company}</p>
+                        )}
+                      </div>
+                      <div>
+                        <label htmlFor="phone" className="block text-sm font-semibold text-gray-700 mb-2">
+                          電話番号
+                        </label>
+                        <input
+                          id="phone"
+                          type="tel"
+                          name="phone"
+                          value={form.phone}
+                          onChange={handleChange}
+                          placeholder="03-XXXX-XXXX"
+                          autoComplete="tel"
+                          aria-invalid={!!errors.phone}
+                          aria-describedby={errors.phone ? "phone-error" : undefined}
+                          className={inputClass("phone")}
+                        />
+                        {errors.phone && (
+                          <p id="phone-error" className="mt-1 text-sm text-red-500">{errors.phone}</p>
+                        )}
+                      </div>
+                    </div>
+
+                    <div>
+                      <label htmlFor="size" className="block text-sm font-semibold text-gray-700 mb-2">
+                        従業員規模
+                      </label>
+                      <select
+                        id="size"
+                        name="size"
+                        value={form.size}
+                        onChange={handleChange}
+                        aria-invalid={!!errors.size}
+                        aria-describedby={errors.size ? "size-error" : undefined}
+                        className={`${inputClass("size")} appearance-none cursor-pointer bg-white`}
+                      >
+                        <option value="">選択してください</option>
+                        <option value="~50名">〜50名</option>
+                        <option value="51-200名">51〜200名</option>
+                        <option value="201-500名">201〜500名</option>
+                        <option value="501-1000名">501〜1000名</option>
+                        <option value="1001名~">1001名〜</option>
+                      </select>
+                      {errors.size && (
+                        <p id="size-error" className="mt-1 text-sm text-red-500">{errors.size}</p>
+                      )}
+                    </div>
+                  </>
+                )}
+
+                {/* Engineer: position + experience + portfolio */}
+                {isEngineer && (
+                  <>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                      <div>
+                        <label htmlFor="position" className="block text-sm font-semibold text-gray-700 mb-2">
+                          希望ポジション <span className="text-red-400">*</span>
+                        </label>
+                        <select
+                          id="position"
+                          name="position"
+                          value={form.position}
+                          onChange={handleChange}
+                          aria-invalid={!!errors.position}
+                          aria-describedby={errors.position ? "position-error" : undefined}
+                          className={`${inputClass("position")} appearance-none cursor-pointer bg-white`}
+                        >
+                          <option value="">選択してください</option>
+                          <option value="フロントエンド">フロントエンド</option>
+                          <option value="バックエンド">バックエンド</option>
+                          <option value="フルスタック">フルスタック</option>
+                          <option value="デザイナー">デザイナー</option>
+                          <option value="インフラ・SRE">インフラ・SRE</option>
+                          <option value="AI/ML">AI / ML</option>
+                          <option value="その他">その他</option>
+                        </select>
+                        {errors.position && (
+                          <p id="position-error" className="mt-1 text-sm text-red-500">{errors.position}</p>
+                        )}
+                      </div>
+                      <div>
+                        <label htmlFor="experience" className="block text-sm font-semibold text-gray-700 mb-2">
+                          エンジニア経験年数
+                        </label>
+                        <select
+                          id="experience"
+                          name="experience"
+                          value={form.experience}
+                          onChange={handleChange}
+                          aria-invalid={!!errors.experience}
+                          aria-describedby={errors.experience ? "experience-error" : undefined}
+                          className={`${inputClass("experience")} appearance-none cursor-pointer bg-white`}
+                        >
+                          <option value="">選択してください</option>
+                          <option value="学生">学生</option>
+                          <option value="1年未満">1年未満</option>
+                          <option value="1-3年">1〜3年</option>
+                          <option value="3-5年">3〜5年</option>
+                          <option value="5-10年">5〜10年</option>
+                          <option value="10年以上">10年以上</option>
+                        </select>
+                        {errors.experience && (
+                          <p id="experience-error" className="mt-1 text-sm text-red-500">{errors.experience}</p>
+                        )}
+                      </div>
+                    </div>
+
+                    <div>
+                      <label htmlFor="portfolio" className="block text-sm font-semibold text-gray-700 mb-2">
+                        GitHub / ポートフォリオ URL
+                      </label>
+                      <input
+                        id="portfolio"
+                        type="url"
+                        name="portfolio"
+                        value={form.portfolio}
+                        onChange={handleChange}
+                        placeholder="https://github.com/your-id"
+                        autoComplete="url"
+                        aria-invalid={!!errors.portfolio}
+                        aria-describedby={errors.portfolio ? "portfolio-error" : undefined}
+                        className={inputClass("portfolio")}
+                      />
+                      {errors.portfolio && (
+                        <p id="portfolio-error" className="mt-1 text-sm text-red-500">{errors.portfolio}</p>
+                      )}
+                    </div>
+                  </>
+                )}
 
                 <div>
                   <label htmlFor="message" className="block text-sm font-semibold text-gray-700 mb-2">
-                    ご相談内容 <span className="text-red-400">*</span>
+                    {isEngineer ? "自己紹介・志望動機" : "ご相談内容"} <span className="text-red-400">*</span>
                   </label>
                   <textarea
                     id="message"
@@ -342,7 +486,11 @@ export default function ContactPage() {
                     rows={5}
                     value={form.message}
                     onChange={handleChange}
-                    placeholder="ご質問やご相談内容をご記入ください"
+                    placeholder={
+                      isEngineer
+                        ? "使用技術・得意分野・志望動機などをご記入ください"
+                        : "ご質問やご相談内容をご記入ください"
+                    }
                     aria-invalid={!!errors.message}
                     aria-describedby={errors.message ? "message-error" : undefined}
                     className={`${inputClass("message")} resize-none min-h-[140px]`}
