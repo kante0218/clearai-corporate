@@ -304,9 +304,9 @@ export default function AiAgriculturePage() {
             <Reveal>
               <div className="rounded-2xl border border-gray-200 bg-white p-8 hover:shadow-lg transition-all duration-300 h-full">
                 <span className="inline-block rounded-full bg-emerald-50 text-emerald-700 px-3 py-1 text-xs font-bold mb-4">参画メンバー</span>
-                <h3 className="text-lg font-bold text-gray-900 mb-3">筑波大学 落合研究室 × 起業家</h3>
+                <h3 className="text-lg font-bold text-gray-900 mb-3">筑波大学 落合陽一研究室 × 起業家</h3>
                 <p className="text-sm text-gray-600 leading-relaxed">
-                  筑波大学 落合研究室にて研究に従事しながら、自ら会社を起業したメンバーが参画予定です。最先端の研究知見と、事業をゼロから立ち上げた実行力を、農業領域の技術開発に還元します。
+                  筑波大学 情報メディア創成学類（落合陽一研究室所属）。10歳よりシステム開発を始め、現在は創株式会社 代表としてAI受託開発・研修・コンサル・アプリ開発を手がけるほか、EQパートナーズ株式会社 CAIO、Queue株式会社 PMなど複数社でエンジニア／CTOを歴任。金融機関・エンタープライズの大規模案件や自治体向けアプリ立ち上げを、営業から開発まで一気通貫で統括。「誰もが『創りたい』を創れる社会を創る」を掲げ、AIの民主化を推進中。
                 </p>
               </div>
             </Reveal>

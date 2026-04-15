@@ -50,7 +50,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
             AIで、すべてを<br />クリアにする。
           </h1>
           <p className="text-base text-gray-600 leading-relaxed max-w-lg mx-auto mb-10 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "700ms" }}>
-            AIコンサルティング・AI顧問・エンジニアによる農業支援。<br />3つの事業で、日本の産業に確かな価値を届けます。
+            AIコンサルティング・AI顧問・AI導入教育・CEO向けAI活用・Claude Code特化導入・エンジニアによる農業支援。<br />6つの事業で、日本の産業に確かな価値を届けます。
           </p>
           <div className="flex items-center justify-center gap-4 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "900ms" }}>
             <Link href="/contact" className="rounded-lg bg-blue-600 text-white font-semibold px-8 py-3.5 hover:bg-blue-700 transition-colors duration-300">
@@ -69,7 +69,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
           <Reveal>
             <div className="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-gray-200">
               {[
-                { value: "3事業", label: "展開中" },
+                { value: "6事業", label: "展開中" },
                 { value: "4領域", label: "ワンストップ支援" },
                 { value: "全国対応", label: "日本全国" },
                 { value: "2営業日", label: "初回返信" },
@@ -105,7 +105,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
                 <div className="h-px bg-gray-200 mt-6" />
                 <div className="flex items-center gap-8 pt-4">
                   <div>
-                    <p className="text-2xl font-bold text-gray-900">3<span className="text-sm text-gray-400 ml-1 font-normal">事業</span></p>
+                    <p className="text-2xl font-bold text-gray-900">6<span className="text-sm text-gray-400 ml-1 font-normal">事業</span></p>
                     <p className="text-xs text-gray-400 mt-1">展開中</p>
                   </div>
                   <div className="w-px h-10 bg-gray-200" />
@@ -127,23 +127,23 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
 
       {/* ═══ SERVICES ═══ */}
       <section id="services" className="py-20 lg:py-28 bg-gray-50">
-        <div className="max-w-5xl mx-auto px-6 lg:px-10">
+        <div className="max-w-6xl mx-auto px-6 lg:px-10">
           <Reveal>
             <SectionLabel>Our Services</SectionLabel>
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4">
-              3つの事業で、日本の未来をつくる。
+              AIと農業で、日本の未来をつくる。
             </h2>
-            <p className="text-base text-gray-500 mb-14 max-w-lg leading-relaxed">
-              企業のAI活用・AI顧問・エンジニアによる農業支援。それぞれの現場に寄り添い、確実に成果を届けます。
+            <p className="text-base text-gray-500 mb-14 max-w-2xl leading-relaxed">
+              AIコンサルティング・AI顧問・AI導入教育・CEO向けAI活用・Claude Code特化導入・エンジニアによる農業支援。それぞれの現場に寄り添い、確実に成果を届けます。
             </p>
           </Reveal>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
             <Reveal delay={0} className="h-full">
               <Link href="/ai-consulting" className="group block h-full">
-                <div className="bg-white border border-gray-200 rounded-2xl p-8 lg:p-10 hover:border-blue-300 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
+                <div className="bg-white border border-gray-200 rounded-2xl p-10 lg:p-12 hover:border-blue-300 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
                   <span className="inline-block text-xs font-semibold tracking-widest uppercase text-blue-600 mb-4">Service 01</span>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-3">AIコンサルティング</h3>
+                  <h3 className="text-2xl lg:text-[1.625rem] font-bold text-gray-900 mb-4">AIコンサルティング</h3>
                   <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">
                     戦略策定から実装・運用まで。日本企業のAI活用を、ヒアリングから定着まで一気通貫で伴走します。
                   </p>
@@ -161,9 +161,9 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
 
             <Reveal delay={80} className="h-full">
               <Link href="/contact?inquiry=advisor" className="group block h-full">
-                <div className="bg-white border border-gray-200 rounded-2xl p-8 lg:p-10 hover:border-indigo-300 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
+                <div className="bg-white border border-gray-200 rounded-2xl p-10 lg:p-12 hover:border-indigo-300 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
                   <span className="inline-block text-xs font-semibold tracking-widest uppercase text-indigo-600 mb-4">Service 02</span>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-3">AI顧問 ＋ ウェブサイト監修</h3>
+                  <h3 className="text-2xl lg:text-[1.625rem] font-bold text-gray-900 mb-4">AI顧問 ＋ ウェブサイト監修</h3>
                   <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">
                     経営に寄り添う外部AI顧問として月次で伴走。あわせて自社ウェブサイトのAI監修・改善提案も担います。業務委託契約ベースで、複数社の顧問先を募集中です。
                   </p>
@@ -184,9 +184,9 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
 
             <Reveal delay={160} className="h-full">
               <Link href="/ai-agriculture" className="group block h-full">
-                <div className="bg-white border border-gray-200 rounded-2xl p-8 lg:p-10 hover:border-emerald-300 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
+                <div className="bg-white border border-gray-200 rounded-2xl p-10 lg:p-12 hover:border-emerald-300 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
                   <span className="inline-block text-xs font-semibold tracking-widest uppercase text-emerald-600 mb-4">Service 03</span>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-3">農業×エンジニアリング</h3>
+                  <h3 className="text-2xl lg:text-[1.625rem] font-bold text-gray-900 mb-4 whitespace-nowrap">農業×エンジニアリング</h3>
                   <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">
                     エンジニアが農家の経営を支える。EC構築・利益率改善・業務効率化で、農業の「稼ぐ力」を引き上げます。
                   </p>
@@ -201,59 +201,67 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
                 </div>
               </Link>
             </Reveal>
-          </div>
-        </div>
-      </section>
 
-      {/* ═══ CLIENTS / 顧問先 ═══ */}
-      <section className="py-20 lg:py-24 bg-gray-50">
-        <div className="max-w-5xl mx-auto px-6 lg:px-10">
-          <Reveal>
-            <SectionLabel>Advisory Clients</SectionLabel>
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-6">
-              AI顧問としての、信頼の実績。
-            </h2>
-            <p className="text-base text-gray-500 mb-12 max-w-2xl leading-relaxed">
-              業務委託契約に基づき、AI顧問 兼 ウェブサイト監修として継続的に支援している顧問先企業です。同様のスキームで、新たな顧問先を募集しています。
-            </p>
-          </Reveal>
-
-          <Reveal delay={80}>
-            <div className="bg-white border border-gray-200 rounded-2xl p-8 lg:p-10 hover:border-indigo-300 hover:shadow-lg transition-all duration-300">
-              <div className="flex items-start gap-6 flex-col sm:flex-row">
-                <div className="flex-shrink-0 w-16 h-16 rounded-xl bg-gradient-to-br from-indigo-500 to-blue-600 flex items-center justify-center text-white font-bold text-2xl">
-                  日
-                </div>
-                <div className="flex-1">
-                  <div className="flex items-center gap-2 mb-2 flex-wrap">
-                    <span className="text-xs font-semibold text-indigo-600 tracking-widest uppercase">Client 01</span>
-                    <span className="text-xs px-2 py-0.5 rounded-full bg-indigo-50 text-indigo-600 font-medium">業務委託 継続中</span>
-                  </div>
-                  <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-3">日本アセット戦略機構</h3>
-                  <p className="text-sm text-gray-600 leading-relaxed mb-4">
-                    AI顧問 兼 ウェブサイト監修として、業務委託契約に基づき継続的に伴走支援。事業のAI活用方針づくりから、ウェブサイトの品質監修・改善提案まで一体で担当しています。
+            <Reveal delay={0} className="h-full">
+              <Link href="/contact?inquiry=education" className="group block h-full">
+                <div className="bg-white border border-gray-200 rounded-2xl p-10 lg:p-12 hover:border-amber-300 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
+                  <span className="inline-block text-xs font-semibold tracking-widest uppercase text-amber-600 mb-4">Service 04</span>
+                  <h3 className="text-2xl lg:text-[1.625rem] font-bold text-gray-900 mb-4">AI導入・教育</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">
+                    現場で使えるAIリテラシーを組織に根付かせる。導入研修から部門別ワークショップ、実務適用まで、社員が主役になる学習プログラムを設計・提供します。
                   </p>
-                  <div className="flex items-center gap-2 flex-wrap">
-                    {["AI顧問契約", "ウェブサイト監修", "月次伴走"].map((tag) => (
-                      <span key={tag} className="text-xs text-gray-600 bg-gray-100 rounded px-2.5 py-1">{tag}</span>
+                  <div className="flex items-center gap-3 flex-wrap mb-6">
+                    {["社員研修", "部門別ワークショップ", "プロンプト設計", "業務適用"].map((tag) => (
+                      <span key={tag} className="text-xs text-gray-500 border border-gray-200 rounded px-2.5 py-1">{tag}</span>
                     ))}
                   </div>
+                  <span className="text-sm font-semibold text-amber-600 group-hover:text-amber-700 transition-colors">
+                    お問い合わせ →
+                  </span>
                 </div>
-              </div>
-            </div>
-          </Reveal>
-
-          <Reveal delay={160}>
-            <div className="mt-10 text-center">
-              <p className="text-sm text-gray-600 mb-5">
-                同様の業務委託スキームで、新たな顧問先企業を募集しています。
-              </p>
-              <Link href="/contact?inquiry=advisor" className="inline-flex items-center gap-2 text-sm font-semibold px-6 py-3 rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 transition-colors">
-                AI顧問契約のご相談
-                <span>→</span>
               </Link>
-            </div>
-          </Reveal>
+            </Reveal>
+
+            <Reveal delay={80} className="h-full">
+              <Link href="/contact?inquiry=ceo" className="group block h-full">
+                <div className="bg-white border border-gray-200 rounded-2xl p-10 lg:p-12 hover:border-violet-300 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
+                  <span className="inline-block text-xs font-semibold tracking-widest uppercase text-violet-600 mb-4">Service 05</span>
+                  <h3 className="text-2xl lg:text-[1.625rem] font-bold text-gray-900 mb-4">CEO向けAI活用</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">
+                    経営者の意思決定そのものをAIで加速する。市場分析・戦略壁打ち・資料ドラフト・インプット高速化まで、CEOの時間価値を最大化する専属サポートです。
+                  </p>
+                  <div className="flex items-center gap-3 flex-wrap mb-6">
+                    {["経営者向け", "意思決定支援", "戦略壁打ち", "秘書的活用"].map((tag) => (
+                      <span key={tag} className="text-xs text-gray-500 border border-gray-200 rounded px-2.5 py-1">{tag}</span>
+                    ))}
+                  </div>
+                  <span className="text-sm font-semibold text-violet-600 group-hover:text-violet-700 transition-colors">
+                    お問い合わせ →
+                  </span>
+                </div>
+              </Link>
+            </Reveal>
+
+            <Reveal delay={160} className="h-full">
+              <Link href="/contact?inquiry=claude-code" className="group block h-full">
+                <div className="bg-white border border-gray-200 rounded-2xl p-10 lg:p-12 hover:border-orange-300 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
+                  <span className="inline-block text-xs font-semibold tracking-widest uppercase text-orange-600 mb-4">Service 06</span>
+                  <h3 className="text-2xl lg:text-[1.625rem] font-bold text-gray-900 mb-4">Claude Code特化導入</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">
+                    開発組織の生産性を最大化するClaude Code導入支援。環境構築・社内ルール整備・MCP/サブエージェント設計・運用定着まで、エンジニアリング現場に特化して伴走します。
+                  </p>
+                  <div className="flex items-center gap-3 flex-wrap mb-6">
+                    {["Claude Code", "環境構築", "MCP / Agents", "運用定着"].map((tag) => (
+                      <span key={tag} className="text-xs text-gray-500 border border-gray-200 rounded px-2.5 py-1">{tag}</span>
+                    ))}
+                  </div>
+                  <span className="text-sm font-semibold text-orange-600 group-hover:text-orange-700 transition-colors">
+                    お問い合わせ →
+                  </span>
+                </div>
+              </Link>
+            </Reveal>
+          </div>
         </div>
       </section>
 
