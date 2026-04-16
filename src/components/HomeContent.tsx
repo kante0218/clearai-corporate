@@ -127,23 +127,33 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
 
       {/* ═══ SERVICES ═══ */}
       <section id="services" className="py-20 lg:py-28 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-6 lg:px-10">
+        <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <Reveal>
             <SectionLabel>Our Services</SectionLabel>
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4">
               AIと農業で、日本の未来をつくる。
             </h2>
             <p className="text-base text-gray-500 mb-14 max-w-2xl leading-relaxed">
-              AIコンサルティング・AI顧問・AI導入教育・CEO向けAI活用・Claude Code特化導入・エンジニアによる農業支援。それぞれの現場に寄り添い、確実に成果を届けます。
+              2つの事業軸で、テクノロジーと一次産業の現場をつなぐ。それぞれの領域で確実に成果を届けます。
             </p>
           </Reveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+          {/* ── AI事業 ── */}
+          <Reveal>
+            <div className="flex items-center gap-3 mb-8">
+              <span className="inline-flex items-center gap-2 text-sm font-bold text-blue-700 bg-blue-50 border border-blue-200 rounded-full px-4 py-1.5 tracking-wide">
+                <span className="w-2 h-2 rounded-full bg-blue-600" />AI事業
+              </span>
+              <span className="flex-1 h-px bg-gray-200" />
+            </div>
+          </Reveal>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch mb-16">
             <Reveal delay={0} className="h-full">
               <Link href="/ai-consulting" className="group block h-full">
-                <div className="bg-white border border-gray-200 rounded-2xl p-10 lg:p-12 hover:border-blue-300 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
-                  <span className="inline-block text-xs font-semibold tracking-widest uppercase text-blue-600 mb-4">Service 01</span>
-                  <h3 className="text-2xl lg:text-[1.625rem] font-bold text-gray-900 mb-4">AIコンサルティング</h3>
+                <div className="bg-white border border-gray-200 rounded-2xl p-8 lg:p-10 hover:border-blue-300 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
+                  <span className="inline-block text-xs font-semibold tracking-widest uppercase text-blue-600 mb-4">AI 01</span>
+                  <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-4">AIコンサルティング</h3>
                   <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">
                     戦略策定から実装・運用まで。日本企業のAI活用を、ヒアリングから定着まで一気通貫で伴走します。
                   </p>
@@ -160,10 +170,10 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
             </Reveal>
 
             <Reveal delay={80} className="h-full">
-              <Link href="/contact?inquiry=advisor" className="group block h-full">
-                <div className="bg-white border border-gray-200 rounded-2xl p-10 lg:p-12 hover:border-indigo-300 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
-                  <span className="inline-block text-xs font-semibold tracking-widest uppercase text-indigo-600 mb-4">Service 02</span>
-                  <h3 className="text-2xl lg:text-[1.625rem] font-bold text-gray-900 mb-4">AI顧問 ＋ ウェブサイト監修</h3>
+              <Link href="/contact?service=advisor" className="group block h-full">
+                <div className="bg-white border border-gray-200 rounded-2xl p-8 lg:p-10 hover:border-indigo-300 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
+                  <span className="inline-block text-xs font-semibold tracking-widest uppercase text-indigo-600 mb-4">AI 02</span>
+                  <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-4">AI顧問 ＋ ウェブサイト監修</h3>
                   <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">
                     経営に寄り添う外部AI顧問として月次で伴走。あわせて自社ウェブサイトのAI監修・改善提案も担います。業務委託契約ベースで、複数社の顧問先を募集中です。
                   </p>
@@ -183,30 +193,10 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
             </Reveal>
 
             <Reveal delay={160} className="h-full">
-              <Link href="/ai-agriculture" className="group block h-full">
-                <div className="bg-white border border-gray-200 rounded-2xl p-10 lg:p-12 hover:border-emerald-300 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
-                  <span className="inline-block text-xs font-semibold tracking-widest uppercase text-emerald-600 mb-4">Service 03</span>
-                  <h3 className="text-2xl lg:text-[1.625rem] font-bold text-gray-900 mb-4 whitespace-nowrap">農業×エンジニアリング</h3>
-                  <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">
-                    エンジニアが農家の経営を支える。EC構築・利益率改善・業務効率化で、農業の「稼ぐ力」を引き上げます。
-                  </p>
-                  <div className="flex items-center gap-3 flex-wrap mb-6">
-                    {["EC構築", "利益率改善", "業務効率化", "ブランディング"].map((tag) => (
-                      <span key={tag} className="text-xs text-gray-500 border border-gray-200 rounded px-2.5 py-1">{tag}</span>
-                    ))}
-                  </div>
-                  <span className="text-sm font-semibold text-emerald-600 group-hover:text-emerald-700 transition-colors">
-                    詳しく見る →
-                  </span>
-                </div>
-              </Link>
-            </Reveal>
-
-            <Reveal delay={0} className="h-full">
-              <Link href="/contact?inquiry=education" className="group block h-full">
-                <div className="bg-white border border-gray-200 rounded-2xl p-10 lg:p-12 hover:border-amber-300 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
-                  <span className="inline-block text-xs font-semibold tracking-widest uppercase text-amber-600 mb-4">Service 04</span>
-                  <h3 className="text-2xl lg:text-[1.625rem] font-bold text-gray-900 mb-4">AI導入・教育</h3>
+              <Link href="/contact?service=education" className="group block h-full">
+                <div className="bg-white border border-gray-200 rounded-2xl p-8 lg:p-10 hover:border-amber-300 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
+                  <span className="inline-block text-xs font-semibold tracking-widest uppercase text-amber-600 mb-4">AI 03</span>
+                  <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-4">AI導入・教育</h3>
                   <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">
                     現場で使えるAIリテラシーを組織に根付かせる。導入研修から部門別ワークショップ、実務適用まで、社員が主役になる学習プログラムを設計・提供します。
                   </p>
@@ -222,11 +212,11 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
               </Link>
             </Reveal>
 
-            <Reveal delay={80} className="h-full">
-              <Link href="/contact?inquiry=ceo" className="group block h-full">
-                <div className="bg-white border border-gray-200 rounded-2xl p-10 lg:p-12 hover:border-violet-300 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
-                  <span className="inline-block text-xs font-semibold tracking-widest uppercase text-violet-600 mb-4">Service 05</span>
-                  <h3 className="text-2xl lg:text-[1.625rem] font-bold text-gray-900 mb-4">CEO向けAI活用</h3>
+            <Reveal delay={0} className="h-full">
+              <Link href="/contact?service=ceo" className="group block h-full">
+                <div className="bg-white border border-gray-200 rounded-2xl p-8 lg:p-10 hover:border-violet-300 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
+                  <span className="inline-block text-xs font-semibold tracking-widest uppercase text-violet-600 mb-4">AI 04</span>
+                  <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-4">CEO向けAI活用</h3>
                   <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">
                     経営者の意思決定そのものをAIで加速する。市場分析・戦略壁打ち・資料ドラフト・インプット高速化まで、CEOの時間価値を最大化する専属サポートです。
                   </p>
@@ -242,11 +232,11 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
               </Link>
             </Reveal>
 
-            <Reveal delay={160} className="h-full">
-              <Link href="/contact?inquiry=claude-code" className="group block h-full">
-                <div className="bg-white border border-gray-200 rounded-2xl p-10 lg:p-12 hover:border-orange-300 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
-                  <span className="inline-block text-xs font-semibold tracking-widest uppercase text-orange-600 mb-4">Service 06</span>
-                  <h3 className="text-2xl lg:text-[1.625rem] font-bold text-gray-900 mb-4">Claude Code特化導入</h3>
+            <Reveal delay={80} className="h-full">
+              <Link href="/contact?service=claude-code" className="group block h-full">
+                <div className="bg-white border border-gray-200 rounded-2xl p-8 lg:p-10 hover:border-orange-300 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
+                  <span className="inline-block text-xs font-semibold tracking-widest uppercase text-orange-600 mb-4">AI 05</span>
+                  <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-4">Claude Code特化導入</h3>
                   <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">
                     開発組織の生産性を最大化するClaude Code導入支援。環境構築・社内ルール整備・MCP/サブエージェント設計・運用定着まで、エンジニアリング現場に特化して伴走します。
                   </p>
@@ -256,6 +246,98 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
                     ))}
                   </div>
                   <span className="text-sm font-semibold text-orange-600 group-hover:text-orange-700 transition-colors">
+                    お問い合わせ →
+                  </span>
+                </div>
+              </Link>
+            </Reveal>
+          </div>
+
+          {/* ── 農業事業 ── */}
+          <Reveal>
+            <div className="flex items-center gap-3 mb-8">
+              <span className="inline-flex items-center gap-2 text-sm font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-full px-4 py-1.5 tracking-wide">
+                <span className="w-2 h-2 rounded-full bg-emerald-600" />農業事業
+              </span>
+              <span className="flex-1 h-px bg-gray-200" />
+            </div>
+          </Reveal>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+            <Reveal delay={0} className="h-full">
+              <Link href="/ai-agriculture" className="group block h-full">
+                <div className="bg-white border border-gray-200 rounded-2xl p-8 lg:p-10 hover:border-emerald-300 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
+                  <span className="inline-block text-xs font-semibold tracking-widest uppercase text-emerald-600 mb-4">AGRI 01</span>
+                  <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-4">インフラ設備の自動化</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">
+                    灌漑・換気・温度管理など農業インフラをIoTとソフトウェアで自動制御。人手に頼らず安定した栽培環境を実現し、省力化とコスト削減を両立します。
+                  </p>
+                  <div className="flex items-center gap-3 flex-wrap mb-6">
+                    {["IoT制御", "環境モニタリング", "省力化", "遠隔管理"].map((tag) => (
+                      <span key={tag} className="text-xs text-gray-500 border border-gray-200 rounded px-2.5 py-1">{tag}</span>
+                    ))}
+                  </div>
+                  <span className="text-sm font-semibold text-emerald-600 group-hover:text-emerald-700 transition-colors">
+                    詳しく見る →
+                  </span>
+                </div>
+              </Link>
+            </Reveal>
+
+            <Reveal delay={80} className="h-full">
+              <Link href="/contact?service=agriculture-import" className="group block h-full">
+                <div className="bg-white border border-gray-200 rounded-2xl p-8 lg:p-10 hover:border-emerald-300 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
+                  <span className="inline-block text-xs font-semibold tracking-widest uppercase text-emerald-600 mb-4">AGRI 02</span>
+                  <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-4">海外製部品の輸入・取り付け・保守</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">
+                    海外の先端農業機器・部品を調達し、現場への取り付けから運用・保守点検までワンストップで対応。国内では手に入りにくい高性能パーツを、安心の日本語サポート付きで提供します。
+                  </p>
+                  <div className="flex items-center gap-3 flex-wrap mb-6">
+                    {["海外部品調達", "設置工事", "運用サポート", "保守点検"].map((tag) => (
+                      <span key={tag} className="text-xs text-gray-500 border border-gray-200 rounded px-2.5 py-1">{tag}</span>
+                    ))}
+                  </div>
+                  <span className="text-sm font-semibold text-emerald-600 group-hover:text-emerald-700 transition-colors">
+                    お問い合わせ →
+                  </span>
+                </div>
+              </Link>
+            </Reveal>
+
+            <Reveal delay={0} className="h-full">
+              <Link href="/contact?service=agriculture-extreme" className="group block h-full">
+                <div className="bg-white border border-gray-200 rounded-2xl p-8 lg:p-10 hover:border-emerald-300 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
+                  <span className="inline-block text-xs font-semibold tracking-widest uppercase text-emerald-600 mb-4">AGRI 03</span>
+                  <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-4">極限空間での栽培</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">
+                    砂漠・寒冷地・都市部の地下空間など、従来不可能とされた環境での栽培を技術で実現。環境制御技術と独自ノウハウで、場所を選ばない食料生産の可能性を拓きます。
+                  </p>
+                  <div className="flex items-center gap-3 flex-wrap mb-6">
+                    {["環境制御", "植物工場", "閉鎖空間栽培", "食料安全保障"].map((tag) => (
+                      <span key={tag} className="text-xs text-gray-500 border border-gray-200 rounded px-2.5 py-1">{tag}</span>
+                    ))}
+                  </div>
+                  <span className="text-sm font-semibold text-emerald-600 group-hover:text-emerald-700 transition-colors">
+                    お問い合わせ →
+                  </span>
+                </div>
+              </Link>
+            </Reveal>
+
+            <Reveal delay={80} className="h-full">
+              <Link href="/contact?service=agriculture-physical-ai" className="group block h-full">
+                <div className="bg-white border border-gray-200 rounded-2xl p-8 lg:p-10 hover:border-emerald-300 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
+                  <span className="inline-block text-xs font-semibold tracking-widest uppercase text-emerald-600 mb-4">AGRI 04</span>
+                  <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-4">フィジカルAIによる自動化</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">
+                    ロボティクスとAIを融合し、収穫・選別・搬送などの農作業を自動化。フィジカルAIが人手不足の現場を支え、生産性と品質の両面を飛躍的に向上させます。
+                  </p>
+                  <div className="flex items-center gap-3 flex-wrap mb-6">
+                    {["農業ロボット", "自動収穫", "AI画像認識", "作業自動化"].map((tag) => (
+                      <span key={tag} className="text-xs text-gray-500 border border-gray-200 rounded px-2.5 py-1">{tag}</span>
+                    ))}
+                  </div>
+                  <span className="text-sm font-semibold text-emerald-600 group-hover:text-emerald-700 transition-colors">
                     お問い合わせ →
                   </span>
                 </div>
@@ -469,18 +551,46 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
 
       {/* ═══ CTA ═══ */}
       <section className="py-20 lg:py-28 bg-gray-50">
-        <div className="max-w-3xl mx-auto px-6 text-center">
+        <div className="max-w-4xl mx-auto px-6">
           <Reveal>
-            <SectionLabel>Contact</SectionLabel>
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-6">
-              まずは、お話しませんか。
-            </h2>
-            <p className="text-base text-gray-600 leading-relaxed mb-10 max-w-lg mx-auto">
-              AIのことがわからなくても、ECが初めてでも大丈夫です。<br />貴社・貴農園の状況に合わせて、一緒に考えます。
-            </p>
-            <Link href="/contact" className="inline-block text-sm font-semibold text-white bg-blue-600 px-10 py-4 rounded-lg hover:bg-blue-700 transition-colors duration-300">
-              お問い合わせ
-            </Link>
+            <div className="text-center mb-12">
+              <SectionLabel>Contact</SectionLabel>
+              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-6">
+                まずは、お話しませんか。
+              </h2>
+              <p className="text-base text-gray-600 leading-relaxed max-w-lg mx-auto">
+                AIのことがわからなくても、ECが初めてでも大丈夫です。<br />貴社・貴農園の状況に合わせて、一緒に考えます。
+              </p>
+            </div>
+          </Reveal>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            {[
+              { label: "AIコンサルティング", service: "consulting", color: "blue" },
+              { label: "AI顧問 + ウェブサイト監修", service: "advisor", color: "indigo" },
+              { label: "農業×エンジニアリング", service: "agriculture", color: "emerald" },
+              { label: "AI導入・教育", service: "education", color: "amber" },
+              { label: "CEO向けAI活用", service: "ceo", color: "violet" },
+              { label: "Claude Code特化導入", service: "claude-code", color: "orange" },
+            ].map((item, i) => (
+              <Reveal key={item.service} delay={i * 50}>
+                <Link
+                  href={`/contact?service=${item.service}`}
+                  className="group block rounded-xl border border-gray-200 bg-white px-5 py-4 hover:border-blue-300 hover:shadow-md transition-all duration-300"
+                >
+                  <span className="block text-sm font-bold text-gray-900 group-hover:text-blue-700 transition-colors">
+                    {item.label}
+                  </span>
+                  <span className="block text-xs text-gray-400 mt-1">お問い合わせ →</span>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+          <Reveal delay={350}>
+            <div className="text-center mt-8">
+              <Link href="/contact" className="text-sm text-gray-500 hover:text-gray-700 transition-colors">
+                その他のお問い合わせはこちら →
+              </Link>
+            </div>
           </Reveal>
         </div>
       </section>
