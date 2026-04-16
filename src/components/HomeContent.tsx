@@ -263,7 +263,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
             </div>
           </Reveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
             <Reveal delay={0} className="h-full">
               <Link href="/ai-agriculture" className="group block h-full">
                 <div className="bg-white border border-gray-200 rounded-2xl p-8 lg:p-10 hover:border-emerald-300 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
