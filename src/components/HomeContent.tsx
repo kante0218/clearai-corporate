@@ -47,7 +47,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
             AI Consulting &amp; Agriculture Engineering
           </span>
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0)" : "translateY(24px)", transitionDelay: "500ms" }}>
-            AIで、すべてを<br />クリアにする。
+            AIで明るい未来へ
           </h1>
           <p className="text-base text-gray-600 leading-relaxed max-w-lg mx-auto mb-10 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "700ms" }}>
             AIコンサルティング・AI顧問・AI導入教育・CEO向けAI活用・Claude Code特化導入・エンジニアによる農業支援。<br />6つの事業で、日本の産業に確かな価値を届けます。
