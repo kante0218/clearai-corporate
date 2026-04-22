@@ -414,5 +414,5 @@ details[open] summary {
 
 /* Header logo orange tint for claude page */
 .logo-orange-filter {
-  filter: hue-rotate(150deg) saturate(1.6) brightness(1.02);
+  filter: hue-rotate(190deg) saturate(2.2) brightness(1.12);
 }
