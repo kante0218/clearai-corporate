@@ -44,6 +44,17 @@ export default function Header() {
     ? "bg-white/95 backdrop-blur-xl border-b border-gray-200 shadow-sm"
     : "bg-white border-b border-gray-100";
 
+  const contactOutlineClass = isAgriculture
+    ? "border-green-600 text-green-600 hover:bg-green-600 hover:text-white"
+    : isClaude
+    ? "border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white"
+    : "border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white";
+  const contactFilledClass = isAgriculture
+    ? "bg-green-600 hover:bg-green-500 text-white"
+    : isClaude
+    ? "bg-orange-500 hover:bg-orange-400 text-white"
+    : "bg-blue-600 hover:bg-blue-500 text-white";
+
   return (
     <>
       <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${headerBg}`}>
@@ -120,7 +131,7 @@ export default function Header() {
 
             <div className="hidden lg:flex items-center gap-3">
               <Link href="/contact"
-                className="text-sm font-semibold px-5 py-2 rounded-lg border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white transition-all duration-300">
+                className={`text-sm font-semibold px-5 py-2 rounded-lg border transition-all duration-300 ${contactOutlineClass}`}>
                 お問い合わせ
               </Link>
             </div>
@@ -200,7 +211,7 @@ export default function Header() {
                 );
               })}
               <Link href="/contact" onClick={() => setIsOpen(false)}
-                className="block text-center bg-blue-600 text-white px-6 py-3.5 rounded-lg text-sm font-semibold mt-6 hover:bg-blue-500 transition-colors min-h-[44px]">
+                className={`block text-center px-6 py-3.5 rounded-lg text-sm font-semibold mt-6 transition-colors min-h-[44px] ${contactFilledClass}`}>
                 お問い合わせ
               </Link>
             </nav>

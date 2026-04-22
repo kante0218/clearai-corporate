@@ -18,12 +18,12 @@ export const SERVICE_KEYS = [
 export type ServiceKey = (typeof SERVICE_KEYS)[number];
 
 export const SERVICE_LABELS: Record<ServiceKey, string> = {
-  consulting: "AIコンサルティング",
-  advisor: "AI顧問 + ウェブサイト監修",
-  agriculture: "農業×エンジニアリング",
-  education: "AI導入・教育",
-  ceo: "CEO向けAI活用",
-  "claude-code": "Claude Code特化導入",
+  consulting: "AIコンサル・DX",
+  advisor: "AI顧問",
+  agriculture: "農業×AI",
+  education: "AI研修",
+  ceo: "経営者向けAI活用",
+  "claude-code": "Claude特化（スクール／導入支援）",
 };
 
 export interface ContactFormData {
