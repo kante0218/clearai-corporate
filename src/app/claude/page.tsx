@@ -36,7 +36,12 @@ export default function ClaudePage() {
         <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
           <span className="inline-block rounded-full bg-orange-50 text-orange-600 px-3 py-1 text-sm font-semibold mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "300ms" }}>Claude Specialized</span>
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0)" : "translateY(24px)", transitionDelay: "500ms" }}>
-            Claudeを、<br />経営の武器にする。
+            <span className="inline-flex items-center gap-3 md:gap-4 align-middle">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/images/claude-symbol.svg" alt="" aria-hidden="true" className="w-10 md:w-12 h-10 md:h-12 inline-block" />
+              <span>Claudeを、</span>
+            </span>
+            <br />経営の武器にする。
           </h1>
           <p className="text-base text-gray-600 leading-relaxed max-w-lg mx-auto mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "700ms" }}>
             AnthropicのClaudeに特化した、国内屈指の専門支援。<br />経営者プライベートスクールと、企業向けオンライン導入支援の2本立てで、Claudeを成果に直結させます。
