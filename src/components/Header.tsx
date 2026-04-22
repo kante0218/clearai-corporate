@@ -5,20 +5,31 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 
-const navItems = [
-  { label: "AIコンサルティング", href: "/ai-consulting" },
-  { label: "AI顧問", href: "/ai-consulting#advisor" },
-  { label: "AI導入", href: "/ai-consulting#implementation" },
-  { label: "農業×AI", href: "/ai-agriculture" },
-  { label: "会社概要", href: "/about" },
-  { label: "お知らせ", href: "/blog" },
+type NavChild = { label: string; href: string; description?: string };
+type NavItem = { label: string; href: string; children?: NavChild[] };
+
+const navItems: NavItem[] = [
+  {
+    label: "AI",
+    href: "/ai-consulting",
+    children: [
+      { label: "コンサル・DX", href: "/ai-consulting", description: "大手コンサル出身者が監修する戦略〜実装支援" },
+      { label: "顧問", href: "/advisor", description: "月5万円〜、継続的にAI活用を伴走" },
+      { label: "研修", href: "/training", description: "チームのAIリテラシーを底上げ" },
+    ],
+  },
+  { label: "Claude特化", href: "/claude" },
+  { label: "農業", href: "/ai-agriculture" },
 ];
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [openMenu, setOpenMenu] = useState<string | null>(null);
+  const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
   const pathname = usePathname();
   const isAgriculture = pathname?.startsWith("/ai-agriculture");
+  const isClaude = pathname?.startsWith("/claude");
 
   useEffect(() => {
     const onScroll = () => {
@@ -45,20 +56,66 @@ export default function Header() {
                 width={140}
                 height={40}
                 className={`h-8 w-auto transition-all duration-500 ${
-                  isAgriculture ? "logo-green-filter" : ""
+                  isAgriculture ? "logo-green-filter" : isClaude ? "logo-orange-filter" : ""
                 }`}
                 priority
               />
             </Link>
 
             <nav className="hidden lg:flex items-center gap-7">
-              {navItems.map((item) => (
-                <Link key={item.label} href={item.href}
-                  className={`text-sm font-medium transition-all duration-300 relative group ${navColor}`}>
-                  {item.label}
-                  <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-current group-hover:w-full transition-all duration-300" />
-                </Link>
-              ))}
+              {navItems.map((item) => {
+                const hasChildren = item.children && item.children.length > 0;
+                const isMenuOpen = openMenu === item.label;
+                return (
+                  <div
+                    key={item.label}
+                    className="relative"
+                    onMouseEnter={() => hasChildren && setOpenMenu(item.label)}
+                    onMouseLeave={() => hasChildren && setOpenMenu(null)}
+                  >
+                    <Link
+                      href={item.href}
+                      className={`text-sm font-medium transition-all duration-300 relative group inline-flex items-center gap-1 ${navColor}`}
+                    >
+                      {item.label}
+                      {hasChildren && (
+                        <svg
+                          className={`w-3 h-3 transition-transform duration-300 ${isMenuOpen ? "rotate-180" : ""}`}
+                          viewBox="0 0 12 12"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                        >
+                          <path d="M3 4.5L6 7.5L9 4.5" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      )}
+                      <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-current group-hover:w-full transition-all duration-300" />
+                    </Link>
+                    {hasChildren && (
+                      <div
+                        className={`absolute top-full left-1/2 -translate-x-1/2 pt-3 transition-all duration-300 ${
+                          isMenuOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-1"
+                        }`}
+                      >
+                        <div className="bg-white border border-gray-200 rounded-xl shadow-xl py-2 min-w-[260px]">
+                          {item.children!.map((child) => (
+                            <Link
+                              key={child.label}
+                              href={child.href}
+                              className="block px-5 py-3 hover:bg-gray-50 transition-colors"
+                            >
+                              <div className="text-sm font-semibold text-gray-900">{child.label}</div>
+                              {child.description && (
+                                <div className="text-xs text-gray-500 mt-0.5">{child.description}</div>
+                              )}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
             </nav>
 
             <div className="hidden lg:flex items-center gap-3">
@@ -87,13 +144,61 @@ export default function Header() {
         <div className={`lg:hidden overflow-hidden transition-all duration-500 ${isOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"}`}>
           <div className="bg-white/98 backdrop-blur-xl border-t border-gray-100">
             <nav className="max-w-7xl mx-auto px-6 py-8 space-y-1">
-              {navItems.map((item, i) => (
-                <Link key={item.label} href={item.href} onClick={() => setIsOpen(false)}
-                  className="block text-base text-gray-700 hover:text-gray-900 py-3.5 border-b border-gray-100 transition-colors font-medium"
-                  style={{ transitionDelay: `${i * 30}ms` }}>
-                  {item.label}
-                </Link>
-              ))}
+              {navItems.map((item, i) => {
+                const hasChildren = item.children && item.children.length > 0;
+                const expanded = mobileExpanded === item.label;
+                return (
+                  <div key={item.label} className="border-b border-gray-100" style={{ transitionDelay: `${i * 30}ms` }}>
+                    <div className="flex items-center justify-between">
+                      <Link
+                        href={item.href}
+                        onClick={() => setIsOpen(false)}
+                        className="flex-1 block text-base text-gray-700 hover:text-gray-900 py-3.5 transition-colors font-medium"
+                      >
+                        {item.label}
+                      </Link>
+                      {hasChildren && (
+                        <button
+                          type="button"
+                          onClick={() => setMobileExpanded(expanded ? null : item.label)}
+                          aria-label={`${item.label}のサブメニュー`}
+                          aria-expanded={expanded}
+                          className="p-3 text-gray-500"
+                        >
+                          <svg
+                            className={`w-4 h-4 transition-transform duration-300 ${expanded ? "rotate-180" : ""}`}
+                            viewBox="0 0 16 16"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="1.5"
+                          >
+                            <path d="M4 6L8 10L12 6" strokeLinecap="round" strokeLinejoin="round" />
+                          </svg>
+                        </button>
+                      )}
+                    </div>
+                    {hasChildren && (
+                      <div className={`overflow-hidden transition-all duration-300 ${expanded ? "max-h-96 pb-3" : "max-h-0"}`}>
+                        <div className="pl-4 space-y-1">
+                          {item.children!.map((child) => (
+                            <Link
+                              key={child.label}
+                              href={child.href}
+                              onClick={() => setIsOpen(false)}
+                              className="block py-2.5 text-sm text-gray-600 hover:text-gray-900"
+                            >
+                              {child.label}
+                              {child.description && (
+                                <span className="block text-xs text-gray-400 mt-0.5">{child.description}</span>
+                              )}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
               <Link href="/contact" onClick={() => setIsOpen(false)}
                 className="block text-center bg-blue-600 text-white px-6 py-3.5 rounded-lg text-sm font-semibold mt-6 hover:bg-blue-500 transition-colors min-h-[44px]">
                 お問い合わせ
