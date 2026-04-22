@@ -479,6 +479,23 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
               </Reveal>
             ))}
           </div>
+          <Reveal>
+            <div className="mt-10 border-t border-gray-200 pt-8">
+              <div className="bg-white border border-gray-200 rounded-2xl p-6 lg:p-8 flex flex-col lg:flex-row lg:items-center gap-4 lg:gap-6">
+                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center">
+                  <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                </div>
+                <div className="flex-1">
+                  <p className="text-sm font-bold text-gray-900 mb-1">上記以外の技術にも対応可能</p>
+                  <p className="text-sm text-gray-600 leading-relaxed">
+                    お客様の既存環境・社内標準・業界要件に合わせて、記載以外の言語・フレームワーク・クラウド・SaaS連携にも柔軟に対応いたします。まずはお気軽にご相談ください。
+                  </p>
+                </div>
+              </div>
+            </div>
+          </Reveal>
         </div>
       </section>
 
