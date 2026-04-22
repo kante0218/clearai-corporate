@@ -34,8 +34,8 @@ function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; 
 }
 
 const companyInfo = [
-  { label: "会社名", value: "clear AI株式会社" },
-  { label: "英文表記", value: "clear AI Inc." },
+  { label: "会社名", value: "clearAI株式会社" },
+  { label: "英文表記", value: "clearAI Inc." },
   { label: "設立", value: "2026年4月" },
   { label: "代表取締役", value: "—" },
   { label: "所在地", value: "茨城県" },
@@ -54,7 +54,7 @@ const timeline = [
   },
   {
     year: "2026年4月",
-    title: "clear AI株式会社 設立",
+    title: "clearAI株式会社 設立",
     description: "定款認証を経て、AIの力を日本の企業と農業現場に届けるというミッションのもと茨城県にて創業。",
     future: false,
   },
@@ -72,14 +72,20 @@ const timeline = [
   },
   {
     year: "2027年（予定）",
-    title: "全国展開フェーズ",
-    description: "大型パートナーシップ構築。47都道府県への展開を本格化し、地域産業のDX支援を加速。",
+    title: "AI顧問10社 / 農業事業 単月黒字化",
+    description: "紹介・金融機関提携・士業ネットワークを通じてAI顧問契約を10社まで拡大。農業事業はEC運用代行で月額MRR化し、単月黒字を達成。",
+    future: true,
+  },
+  {
+    year: "2028年（予定）",
+    title: "AI顧問20社 / 農業事業 通期黒字",
+    description: "代表の卒業に合わせ経営フルコミット。顧問契約20社・農業事業の通期黒字化を実現し、仕組みで回る組織へ。",
     future: true,
   },
   {
     year: "2030年（目標）",
-    title: "売上1000億円 / 支援企業10,000社",
-    description: "日本のAI産業変革のリーディングカンパニーとして、社会インフラとなるAI基盤を構築。",
+    title: "売上10億円 / 支援企業120社 / 関東圏No.1ブティック",
+    description: "粗利率50%超・継続率95%の「質を伴う10億円」を達成。茨城発、AI×地域産業の専門ブティックとして関東圏での確固たる地位を築く。",
     future: true,
   },
 ];
@@ -102,15 +108,15 @@ export default function AboutPage() {
             AIで、日本の<br />産業構造を、書き換える。
           </h1>
           <p className="text-base text-gray-600 leading-relaxed max-w-lg mx-auto mb-10 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "700ms" }}>
-            clear AIは、人工知能の力を真に必要としている現場へ届けるため創業しました。<br />大企業だけのものではない、すべての産業のためのAIを。
+            clearAIは、人工知能の力を真に必要としている現場へ届けるため創業しました。<br />大企業だけのものではない、すべての産業のためのAIを。
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "900ms" }}>
             <div className="inline-flex items-center gap-3 border border-gray-200 rounded-full px-6 py-3 bg-white">
-              <span className="text-2xl font-bold text-blue-600">1000億円</span>
+              <span className="text-2xl font-bold text-blue-600">10億円</span>
               <span className="text-sm text-gray-500">2030年 売上目標</span>
             </div>
             <div className="inline-flex items-center gap-3 border border-gray-200 rounded-full px-6 py-3 bg-white">
-              <span className="text-2xl font-bold text-emerald-600">10,000社</span>
+              <span className="text-2xl font-bold text-emerald-600">120社</span>
               <span className="text-sm text-gray-500">支援目標企業数</span>
             </div>
           </div>
@@ -138,7 +144,7 @@ export default function AboutPage() {
                   AIブームが叫ばれる一方で、現場では「何から始めればいいかわからない」「導入したが使いこなせない」という声が後を絶ちません。技術だけが先行し、実際のビジネス課題と結びついていない。そのギャップが、日本全体の競争力を蝕んでいます。
                 </p>
                 <p>
-                  clear AIは、誇張や流行に乗るのではなく、誠実かつ地に足のついたアプローチでAI活用を推進します。お客様のビジネスを深く理解し、技術を現場の言葉に翻訳し、長期的なパートナーとして伴走する——それが私たちの約束です。
+                  clearAIは、誇張や流行に乗るのではなく、誠実かつ地に足のついたアプローチでAI活用を推進します。お客様のビジネスを深く理解し、技術を現場の言葉に翻訳し、長期的なパートナーとして伴走する——それが私たちの約束です。
                 </p>
               </div>
             </Reveal>
@@ -152,33 +158,33 @@ export default function AboutPage() {
           <Reveal>
             <p className="text-xs font-semibold tracking-widest uppercase text-blue-400 mb-6">Vision 2030</p>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight tracking-tight mb-6 max-w-2xl">
-              2030年、日本最大の<br />AI変革パートナーへ。
+              2030年、関東圏で<br />最も信頼されるAIパートナーへ。
             </h2>
             <p className="text-lg text-gray-400 leading-relaxed max-w-xl mb-16">
-              数字は目標であり、約束です。私たちは日本全国の産業現場と共に、この数字を現実にしていきます。
+              派手な数字ではなく、一社一社の成功を積み重ねる。この3つの数字は、その結果として私たちが辿り着く約束です。
             </p>
           </Reveal>
 
           <div className="grid md:grid-cols-3 gap-8">
             <Reveal delay={0}>
               <div className="border border-white/10 rounded-2xl p-8 bg-white/5">
-                <p className="text-4xl lg:text-5xl font-bold text-white mb-2">1000億円</p>
+                <p className="text-4xl lg:text-5xl font-bold text-white mb-2">10億円</p>
                 <p className="text-sm font-semibold text-blue-400 mb-3">目標売上高（2030年）</p>
-                <p className="text-sm text-gray-400 leading-relaxed">日本のAIソリューション市場をリードする規模へ。全国の企業・農業現場を支援し続けることで実現します。</p>
+                <p className="text-sm text-gray-400 leading-relaxed">粗利率50%超・継続率95%の「質を伴う10億円」。派手な数字ではなく、一社一社の成功を積み重ねた結果としての売上です。</p>
               </div>
             </Reveal>
             <Reveal delay={80}>
               <div className="border border-white/10 rounded-2xl p-8 bg-white/5">
-                <p className="text-4xl lg:text-5xl font-bold text-white mb-2">10,000社</p>
+                <p className="text-4xl lg:text-5xl font-bold text-white mb-2">120社</p>
                 <p className="text-sm font-semibold text-blue-400 mb-3">支援目標企業数</p>
-                <p className="text-sm text-gray-400 leading-relaxed">大企業から中小企業、スタートアップまで。業種・規模を問わず、すべての企業のAI活用を支援します。</p>
+                <p className="text-sm text-gray-400 leading-relaxed">うちAI顧問契約40社・継続支援60社。広く浅くではなく、深く長く伴走できる関係性を築きます。</p>
               </div>
             </Reveal>
             <Reveal delay={160}>
               <div className="border border-white/10 rounded-2xl p-8 bg-white/5">
-                <p className="text-4xl lg:text-5xl font-bold text-white mb-2">47都道府県</p>
-                <p className="text-sm font-semibold text-blue-400 mb-3">全国展開</p>
-                <p className="text-sm text-gray-400 leading-relaxed">茨城から始まり、日本全国へ。地方の産業・農業こそが日本経済の根幹です。全国に展開します。</p>
+                <p className="text-4xl lg:text-5xl font-bold text-white mb-2">関東圏</p>
+                <p className="text-sm font-semibold text-blue-400 mb-3">事業展開エリア</p>
+                <p className="text-sm text-gray-400 leading-relaxed">茨城発・関東圏No.1のAI×地域産業ブティックへ。その先に、2035年の全国展開と食料安全保障インフラとしての中堅テック企業を見据えます。</p>
               </div>
             </Reveal>
           </div>
@@ -380,7 +386,7 @@ export default function AboutPage() {
                     同時に、日本の企業全体を見渡したとき、AI活用における途方もない機会損失が見えました。「AIは大企業のもの」「自分たちには難しすぎる」という思い込みが、多くの中堅・中小企業の可能性を閉ざしています。その壁を壊したい。
                   </p>
                   <p>
-                    clear AIという名前には、「明確な（clear）AI」という意味を込めています。難解な技術を分かりやすく、誠実に、現場に根ざした形で届ける会社でありたい。1000億円という目標は野心的ですが、それは数字のための数字ではありません。私たちが支援した企業が成長し、農業が再生し、日本の産業が活力を取り戻した結果として自然と達成される数字だと信じています。
+                    clearAIという名前には、「明確な（clear）AI」という意味を込めています。難解な技術を分かりやすく、誠実に、現場に根ざした形で届ける会社でありたい。2030年に売上10億円という目標は、決して派手ではありません。しかし、粗利率50%超・顧客継続率95%という「質を伴った10億円」は、無理に積み上げた100億円よりも遥かに強く、次の100億円、1000億円へと続く揺るぎない踏み台になると信じています。
                   </p>
                   <p>
                     まだ小さな会社です。でも、大きなビジョンがあります。共に歩んでいただける仲間、パートナー、お客様を、心からお待ちしています。
@@ -388,7 +394,7 @@ export default function AboutPage() {
                 </div>
                 <footer className="mt-10 pt-8 border-t border-gray-200">
                   <p className="text-sm text-gray-500">代表取締役</p>
-                  <p className="text-base font-bold text-gray-900 mt-1">clear AI株式会社</p>
+                  <p className="text-base font-bold text-gray-900 mt-1">clearAI株式会社</p>
                 </footer>
               </blockquote>
             </Reveal>
@@ -475,7 +481,7 @@ export default function AboutPage() {
               共に、未来をつくる<br />仲間を探しています。
             </h2>
             <p className="text-lg text-gray-400 leading-relaxed max-w-lg mx-auto mb-12">
-              clear AIのミッションに共感してくださる方、パートナー企業様、採用希望の方、まずはお気軽にご連絡ください。
+              clearAIのミッションに共感してくださる方、パートナー企業様、採用希望の方、まずはお気軽にご連絡ください。
             </p>
           </Reveal>
           <Reveal delay={80}>

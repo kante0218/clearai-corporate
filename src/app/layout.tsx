@@ -25,40 +25,40 @@ export const viewport: Viewport = {
 };
 
 const ogDescription =
-  "clear AI株式会社は、AIコンサルティング事業と農業×エンジニアリング事業を展開。企業のAI戦略策定から実装・運用まで伴走し、農家にはEC構築・利益率改善・業務効率化をエンジニアの力で支援。2026年創業、茨城県拠点。";
+  "clearAI株式会社は、AIコンサルティング事業と農業×エンジニアリング事業を展開。企業のAI戦略策定から実装・運用まで伴走し、農家にはEC構築・利益率改善・業務効率化をエンジニアの力で支援。2026年創業、茨城県拠点。";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://clearai.jp"),
   title: {
-    default: "clear AI株式会社 | AI導入コンサルティング & 農業×エンジニアリング",
-    template: "%s | clear AI株式会社",
+    default: "clearAI株式会社 | AI導入コンサルティング & 農業×エンジニアリング",
+    template: "%s | clearAI株式会社",
   },
   description: ogDescription,
   keywords: [
-    "clear AI", "AIコンサルティング", "AI導入", "農業EC", "農家支援",
+    "clearAI", "AIコンサルティング", "AI導入", "農業EC", "農家支援",
     "企業AI", "AI活用", "生成AI", "DX推進", "利益率改善", "農業エンジニアリング",
   ],
-  authors: [{ name: "clear AI株式会社" }],
-  creator: "clear AI株式会社",
+  authors: [{ name: "clearAI株式会社" }],
+  creator: "clearAI株式会社",
   openGraph: {
     type: "website",
     locale: "ja_JP",
-    siteName: "clear AI株式会社",
+    siteName: "clearAI株式会社",
     url: "https://clearai.jp",
-    title: "clear AI株式会社",
+    title: "clearAI株式会社",
     description: ogDescription,
     images: [
       {
         url: "/images/logo.png",
         width: 1207,
         height: 366,
-        alt: "clear AI株式会社",
+        alt: "clearAI株式会社",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "clear AI株式会社",
+    title: "clearAI株式会社",
     description: ogDescription,
     images: ["/images/logo.png"],
   },
@@ -79,7 +79,7 @@ export const metadata: Metadata = {
     google: "nE6Ji9Kv43p2EsW5odNprPtSSmKWya33nWYBZNJ5lSc",
   },
   category: "technology",
-  applicationName: "clear AI",
+  applicationName: "clearAI",
   referrer: "origin-when-cross-origin",
   formatDetection: {
     email: false,
@@ -91,8 +91,8 @@ export const metadata: Metadata = {
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "name": "clear AI株式会社",
-  "alternateName": "clear AI Inc.",
+  "name": "clearAI株式会社",
+  "alternateName": "clearAI Inc.",
   "url": "https://clearai.jp",
   "logo": "https://clearai.jp/images/logo.png",
   "foundingDate": "2026-04",
@@ -123,12 +123,12 @@ const organizationSchema = {
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "name": "clear AI株式会社",
+  "name": "clearAI株式会社",
   "url": "https://clearai.jp",
   "inLanguage": "ja",
   "publisher": {
     "@type": "Organization",
-    "name": "clear AI株式会社",
+    "name": "clearAI株式会社",
     "url": "https://clearai.jp",
   },
   "potentialAction": {

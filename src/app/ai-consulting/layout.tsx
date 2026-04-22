@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 
 const description =
-  "clear AI株式会社のAI導入コンサルティング。生成AI活用・業務自動化・DX推進まで、戦略策定から開発・実装・運用まで一気通貫でサポート。中小企業から大企業まで、貴社に最適なAIソリューションを共に創り上げます。";
+  "clearAI株式会社のAI導入コンサルティング。生成AI活用・業務自動化・DX推進まで、戦略策定から開発・実装・運用まで一気通貫でサポート。中小企業から大企業まで、貴社に最適なAIソリューションを共に創り上げます。";
 
 export const metadata: Metadata = {
   title: "AIコンサルティング | 戦略・実装・運用を一気通貫で伴走",
@@ -19,17 +19,17 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "https://clearai.jp/ai-consulting" },
   openGraph: {
-    title: "AIコンサルティング | clear AI株式会社",
+    title: "AIコンサルティング | clearAI株式会社",
     description,
     url: "https://clearai.jp/ai-consulting",
     type: "website",
     locale: "ja_JP",
-    siteName: "clear AI株式会社",
+    siteName: "clearAI株式会社",
     images: ["/images/logo.png"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "AIコンサルティング | clear AI株式会社",
+    title: "AIコンサルティング | clearAI株式会社",
     description,
     images: ["/images/logo.png"],
   },
@@ -41,7 +41,7 @@ const serviceSchema = {
   serviceType: "AIコンサルティング",
   provider: {
     "@type": "Organization",
-    name: "clear AI株式会社",
+    name: "clearAI株式会社",
     url: "https://clearai.jp",
   },
   areaServed: { "@type": "Country", name: "日本" },

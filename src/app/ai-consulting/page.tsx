@@ -77,7 +77,7 @@ export default function AiConsultingPage() {
             <div className="max-w-3xl">
               <h2 className="text-3xl font-bold text-gray-900 leading-snug mb-6">AIは魔法ではなく、道具です。<br />正しく使えば、確実に成果が出ます。</h2>
               <p className="text-base text-gray-600 leading-relaxed">
-                多くの企業が「AIを導入したい」と考えながら、何から始めればいいかわからずに立ち止まっています。clear AIは、AIの専門知識がない企業でも安心して始められるよう、ヒアリングから運用定着まで伴走します。派手な提案ではなく、貴社の課題に合った地に足のついたAI活用を、一緒に見つけていきます。
+                多くの企業が「AIを導入したい」と考えながら、何から始めればいいかわからずに立ち止まっています。clearAIは、AIの専門知識がない企業でも安心して始められるよう、ヒアリングから運用定着まで伴走します。派手な提案ではなく、貴社の課題に合った地に足のついたAI活用を、一緒に見つけていきます。
               </p>
             </div>
           </Reveal>
@@ -115,7 +115,7 @@ export default function AiConsultingPage() {
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>Why Us</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">なぜ clear AI が選ばれるのか</h2>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">なぜclearAIが選ばれるのか</h2>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
             {[
@@ -200,45 +200,107 @@ export default function AiConsultingPage() {
         </div>
       </section>
 
-      {/* CASE STUDIES */}
-      <section className="py-20 lg:py-28 bg-gray-50">
+      {/* TECH STACK */}
+      <section className="py-20 lg:py-28 bg-white">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
-            <Label>Case Studies</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-6">導入事例</h2>
-            <p className="text-sm text-gray-500 bg-white border border-gray-200 rounded-xl px-5 py-4 mb-12 leading-relaxed">
-              業種・規模に応じた導入パターンをご紹介します。詳細は個別にご案内いたします。
+            <Label>Tech Stack</Label>
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">使用技術</h2>
+            <p className="text-base text-gray-500 max-w-xl leading-relaxed mb-14">
+              中小企業でも安心して導入できるよう、実績・安定性・サポート体制が確立された技術のみを採用しています。
             </p>
           </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="space-y-0">
             {[
-              {
-                tag: "業務自動化",
-                title: "製造業A社 / 品質検査自動化",
-                desc: "画像認識AIで目視検査を自動化。検査時間を70%削減、見逃し率も改善。",
-                effect: "検査時間 -70%",
-              },
-              {
-                tag: "データ分析",
-                title: "小売B社 / 需要予測",
-                desc: "POSデータと気象情報を組み合わせた需要予測AI。廃棄ロスを40%削減。",
-                effect: "廃棄ロス -40%",
-              },
-              {
-                tag: "生成AI活用",
-                title: "金融C社 / 生成AI導入",
-                desc: "社内ナレッジと連携した生成AIチャットボットで問い合わせ対応を半自動化。",
-                effect: "対応工数 -50%",
-              },
-            ].map((item, i) => (
-              <Reveal key={item.title} delay={i * 100}>
-                <div className="rounded-2xl border border-gray-200 bg-white p-8 hover:shadow-lg transition-all duration-300 flex flex-col h-full">
-                  <span className="inline-block rounded-full bg-blue-50 text-blue-600 text-xs font-semibold px-3 py-1 mb-4 self-start">{item.tag}</span>
-                  <h3 className="text-base font-bold text-gray-900 mb-3">{item.title}</h3>
-                  <p className="text-sm text-gray-600 leading-relaxed flex-1">{item.desc}</p>
-                  <div className="mt-6 pt-4 border-t border-gray-100">
-                    <p className="text-xs text-gray-400 mb-1">想定効果</p>
-                    <p className="text-lg font-bold text-blue-600">{item.effect}</p>
+              { category: "Frontend", label: "フロントエンド", items: [
+                { name: "Next.js", icon: "logos:nextjs-icon" },
+                { name: "React", icon: "logos:react" },
+                { name: "TypeScript", icon: "logos:typescript-icon" },
+                { name: "Tailwind CSS", icon: "logos:tailwindcss-icon" },
+                { name: "Vite", icon: "logos:vitejs" },
+              ]},
+              { category: "Backend", label: "バックエンド", items: [
+                { name: "Python", icon: "logos:python" },
+                { name: "Node.js", icon: "logos:nodejs-icon" },
+                { name: "FastAPI", icon: "logos:fastapi-icon" },
+                { name: "Go", icon: "simple-icons:go", color: "00ADD8" },
+                { name: "Rails", icon: "simple-icons:rubyonrails", color: "D30001" },
+              ]},
+              { category: "AI / ML", label: "AI・機械学習", items: [
+                { name: "Claude", icon: "simple-icons:anthropic", color: "D97757" },
+                { name: "OpenAI", icon: "simple-icons:openai", color: "000000" },
+                { name: "Gemini", icon: "simple-icons:googlegemini", color: "8E75B2" },
+                { name: "PyTorch", icon: "logos:pytorch-icon" },
+                { name: "LangChain", icon: "simple-icons:langchain", color: "1C3C3C" },
+              ]},
+              { category: "Database", label: "データベース", items: [
+                { name: "PostgreSQL", icon: "logos:postgresql" },
+                { name: "MySQL", icon: "logos:mysql-icon" },
+                { name: "Redis", icon: "logos:redis" },
+                { name: "Supabase", icon: "logos:supabase-icon" },
+                { name: "Firebase", icon: "logos:firebase-icon" },
+              ]},
+              { category: "Cloud", label: "クラウド・インフラ", items: [
+                { name: "AWS", icon: "logos:aws" },
+                { name: "Google Cloud", icon: "logos:google-cloud" },
+                { name: "Vercel", icon: "logos:vercel-icon" },
+                { name: "Cloudflare", icon: "logos:cloudflare-icon" },
+                { name: "Docker", icon: "logos:docker-icon" },
+              ]},
+              { category: "EC / Commerce", label: "EC・決済", items: [
+                { name: "Shopify", icon: "logos:shopify" },
+                { name: "Stripe", icon: "simple-icons:stripe", color: "635BFF" },
+                { name: "Square", icon: "simple-icons:square", color: "000000" },
+                { name: "WooCommerce", icon: "logos:woocommerce-icon" },
+                { name: "Amazon Pay", icon: "simple-icons:amazonpay", color: "FF9900" },
+              ]},
+              { category: "DevOps", label: "DevOps・運用", items: [
+                { name: "GitHub", icon: "logos:github-icon" },
+                { name: "Actions", icon: "logos:github-actions" },
+                { name: "Terraform", icon: "logos:terraform-icon" },
+                { name: "Datadog", icon: "logos:datadog-icon" },
+                { name: "Sentry", icon: "logos:sentry-icon" },
+              ]},
+              { category: "Data / Analytics", label: "データ基盤・分析", items: [
+                { name: "Snowflake", icon: "logos:snowflake-icon" },
+                { name: "BigQuery", icon: "simple-icons:googlebigquery", color: "669DF6" },
+                { name: "Databricks", icon: "simple-icons:databricks", color: "FF3621" },
+                { name: "Kafka", icon: "logos:kafka-icon" },
+                { name: "Elasticsearch", icon: "logos:elasticsearch" },
+              ]},
+              { category: "Enterprise / Security", label: "エンタープライズ・セキュリティ", items: [
+                { name: "Azure", icon: "logos:microsoft-azure" },
+                { name: "Kubernetes", icon: "logos:kubernetes" },
+                { name: "Auth0", icon: "logos:auth0-icon" },
+                { name: "Okta", icon: "simple-icons:okta", color: "007DC1" },
+                { name: "Vault", icon: "logos:vault-icon" },
+              ]},
+              { category: "Business Integrations", label: "業務連携・コラボレーション", items: [
+                { name: "Salesforce", icon: "logos:salesforce" },
+                { name: "Slack", icon: "logos:slack-icon" },
+                { name: "Microsoft 365", icon: "logos:microsoft-icon" },
+                { name: "Notion", icon: "logos:notion-icon" },
+                { name: "Jira", icon: "logos:jira" },
+              ]},
+            ].map((group, gi) => (
+              <Reveal key={group.category} delay={gi * 40}>
+                <div className="border-t border-gray-200 py-8">
+                  <div className="grid lg:grid-cols-12 gap-6 items-center">
+                    <div className="lg:col-span-2">
+                      <p className="text-[10px] font-semibold tracking-widest text-blue-600 uppercase">{group.category}</p>
+                      <h3 className="text-sm font-bold text-gray-900 mt-0.5">{group.label}</h3>
+                    </div>
+                    <div className="lg:col-span-10">
+                      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+                        {group.items.map((tech) => (
+                          <div key={tech.name} className="bg-white border border-gray-200 rounded-xl p-5 flex flex-col items-center justify-center gap-3 hover:border-gray-300 hover:shadow-sm transition-all aspect-square">
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img src={`https://api.iconify.design/${tech.icon}.svg${tech.color ? `?color=%23${tech.color}` : ''}`} alt={tech.name} className="w-8 h-8 object-contain" loading="lazy" />
+                            <p className="text-xs font-medium text-gray-600 text-center leading-tight">{tech.name}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 </div>
               </Reveal>

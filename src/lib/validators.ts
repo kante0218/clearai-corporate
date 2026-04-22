@@ -6,6 +6,26 @@ const ALLOWED_SIZES = ["~50名", "51-200名", "201-500名", "501-1000名", "1001
 export const INQUIRY_TYPES = ["business", "engineer", "other"] as const;
 export type InquiryType = (typeof INQUIRY_TYPES)[number];
 
+/** Service keys used via ?service= query param to pre-select inquiry context */
+export const SERVICE_KEYS = [
+  "consulting",
+  "advisor",
+  "agriculture",
+  "education",
+  "ceo",
+  "claude-code",
+] as const;
+export type ServiceKey = (typeof SERVICE_KEYS)[number];
+
+export const SERVICE_LABELS: Record<ServiceKey, string> = {
+  consulting: "AIコンサルティング",
+  advisor: "AI顧問 + ウェブサイト監修",
+  agriculture: "農業×エンジニアリング",
+  education: "AI導入・教育",
+  ceo: "CEO向けAI活用",
+  "claude-code": "Claude Code特化導入",
+};
+
 export interface ContactFormData {
   inquiryType?: string;
   company?: string;

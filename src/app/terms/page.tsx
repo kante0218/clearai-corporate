@@ -14,7 +14,7 @@ export default function TermsPage() {
         <div className="prose text-gray-600 leading-relaxed space-y-8">
           <div>
             <h2 className="text-lg font-bold text-gray-900 mb-3">第1条（適用）</h2>
-            <p>本規約は、clear AI株式会社（以下「当社」）が提供するすべてのサービス（以下「本サービス」）の利用に関する条件を定めるものです。</p>
+            <p>本規約は、clearAI株式会社（以下「当社」）が提供するすべてのサービス（以下「本サービス」）の利用に関する条件を定めるものです。</p>
           </div>
 
           <div>

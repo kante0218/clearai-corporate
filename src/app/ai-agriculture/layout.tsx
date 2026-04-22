@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 
 const description =
-  "clear AI株式会社の農業×エンジニアリング事業。田んぼの水流管理・ビニールハウスの自動化から、農家向けEC構築・利益率改善・業務効率化まで、エンジニアの力で日本の一次産業を次世代に。将来は宇宙・防衛産業の極限環境へ展開。";
+  "clearAI株式会社の農業×エンジニアリング事業。田んぼの水流管理・ビニールハウスの自動化から、農家向けEC構築・利益率改善・業務効率化まで、エンジニアの力で日本の一次産業を次世代に。将来は宇宙・防衛産業の極限環境へ展開。";
 
 export const metadata: Metadata = {
   title: "農業×エンジニアリング | 農家をテクノロジーで支援",
@@ -20,17 +20,17 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "https://clearai.jp/ai-agriculture" },
   openGraph: {
-    title: "農業×エンジニアリング | clear AI株式会社",
+    title: "農業×エンジニアリング | clearAI株式会社",
     description,
     url: "https://clearai.jp/ai-agriculture",
     type: "website",
     locale: "ja_JP",
-    siteName: "clear AI株式会社",
+    siteName: "clearAI株式会社",
     images: ["/images/logo.png"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "農業×エンジニアリング | clear AI株式会社",
+    title: "農業×エンジニアリング | clearAI株式会社",
     description,
     images: ["/images/logo.png"],
   },
@@ -42,7 +42,7 @@ const serviceSchema = {
   serviceType: "農業エンジニアリング",
   provider: {
     "@type": "Organization",
-    name: "clear AI株式会社",
+    name: "clearAI株式会社",
     url: "https://clearai.jp",
   },
   areaServed: { "@type": "Country", name: "日本" },

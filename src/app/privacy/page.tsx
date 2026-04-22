@@ -14,7 +14,7 @@ export default function PrivacyPage() {
         <div className="prose text-gray-600 leading-relaxed space-y-8">
           <div>
             <h2 className="text-lg font-bold text-gray-900 mb-3">1. 個人情報の取り扱いについて</h2>
-            <p>clear AI株式会社（以下「当社」）は、お客様の個人情報を適切に保護し、取り扱うことが社会的責務であると考え、以下の方針に基づき個人情報の保護に努めます。</p>
+            <p>clearAI株式会社（以下「当社」）は、お客様の個人情報を適切に保護し、取り扱うことが社会的責務であると考え、以下の方針に基づき個人情報の保護に努めます。</p>
           </div>
 
           <div>
@@ -46,7 +46,7 @@ export default function PrivacyPage() {
           <div>
             <h2 className="text-lg font-bold text-gray-900 mb-3">6. お問い合わせ</h2>
             <p>個人情報の取り扱いに関するお問い合わせは、以下までご連絡ください。</p>
-            <p className="mt-2">clear AI株式会社<br />メール: info@and-clearai.com</p>
+            <p className="mt-2">clearAI株式会社<br />メール: info@and-clearai.com</p>
           </div>
 
           <p className="text-sm text-gray-400 mt-8">制定日: 2025年1月1日</p>

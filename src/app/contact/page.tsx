@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useEffect, useRef, FormEvent, type ReactNode } from "react";
-import { validateContactForm } from "@/lib/validators";
+import { Suspense, useState, useEffect, useRef, FormEvent, type ReactNode } from "react";
+import { useSearchParams } from "next/navigation";
+import { validateContactForm, SERVICE_KEYS, SERVICE_LABELS, type ServiceKey } from "@/lib/validators";
 
 function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -41,8 +42,18 @@ const INQUIRY_OPTIONS: { value: InquiryType; label: string; desc: string }[] = [
   { value: "other", label: "その他", desc: "取材・提携・一般的なお問い合わせ" },
 ];
 
+const SERVICE_OPTIONS: { value: ServiceKey; label: string; color: string }[] = [
+  { value: "consulting", label: "AIコンサルティング", color: "blue" },
+  { value: "advisor", label: "AI顧問 + ウェブサイト監修", color: "indigo" },
+  { value: "agriculture", label: "農業×エンジニアリング", color: "emerald" },
+  { value: "education", label: "AI導入・教育", color: "amber" },
+  { value: "ceo", label: "CEO向けAI活用", color: "violet" },
+  { value: "claude-code", label: "Claude Code特化導入", color: "orange" },
+];
+
 const EMPTY_FORM = {
   inquiryType: "business" as InquiryType,
+  service: "" as ServiceKey | "",
   company: "",
   name: "",
   email: "",
@@ -56,10 +67,31 @@ const EMPTY_FORM = {
 };
 
 export default function ContactPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-white" />}>
+      <ContactPageInner />
+    </Suspense>
+  );
+}
+
+function ContactPageInner() {
+  const searchParams = useSearchParams();
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [form, setForm] = useState(EMPTY_FORM);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [serverError, setServerError] = useState<string | null>(null);
+
+  // Read ?service= param on mount and pre-select service
+  useEffect(() => {
+    const serviceParam = searchParams.get("service");
+    if (serviceParam && (SERVICE_KEYS as readonly string[]).includes(serviceParam)) {
+      setForm((prev) => ({
+        ...prev,
+        inquiryType: "business" as InquiryType,
+        service: serviceParam as ServiceKey,
+      }));
+    }
+  }, [searchParams]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -128,6 +160,11 @@ export default function ContactPage() {
     setErrors({});
     setServerError(null);
     setStatus("idle");
+    // If there was a service param, keep it
+    const serviceParam = searchParams.get("service");
+    if (serviceParam && (SERVICE_KEYS as readonly string[]).includes(serviceParam)) {
+      setForm((prev) => ({ ...prev, service: serviceParam as ServiceKey }));
+    }
   };
 
   const inputClass = (field: string) =>
@@ -136,8 +173,12 @@ export default function ContactPage() {
     }`;
 
   const selectInquiry = (t: InquiryType) => {
-    setForm({ ...form, inquiryType: t });
+    setForm({ ...form, inquiryType: t, service: t === "business" ? form.service : "" });
     setErrors({});
+  };
+
+  const selectService = (s: ServiceKey | "") => {
+    setForm({ ...form, service: s });
   };
 
   const isBusiness = form.inquiryType === "business";
@@ -152,6 +193,11 @@ export default function ContactPage() {
           <h1 className="text-3xl font-bold text-gray-900">
             お問い合わせ
           </h1>
+          {form.service && (
+            <p className="text-base text-gray-500 mt-3">
+              {SERVICE_LABELS[form.service]}に関するお問い合わせ
+            </p>
+          )}
         </Reveal>
       </section>
 
@@ -201,9 +247,14 @@ export default function ContactPage() {
             <Reveal className="lg:col-span-2">
               <div className="space-y-8">
                 <div>
+                  {form.service && isBusiness && (
+                    <p className="text-sm font-semibold text-blue-600 mb-2">
+                      {SERVICE_LABELS[form.service]}
+                    </p>
+                  )}
                   <p className="text-base text-gray-600 leading-relaxed">
                     {isEngineer
-                      ? "clear AIでは、農業×エンジニアリングに共感いただける仲間を募集しています。お気軽にご連絡ください。"
+                      ? "clearAIでは、農業×エンジニアリングに共感いただける仲間を募集しています。お気軽にご連絡ください。"
                       : isBusiness
                       ? "AI導入やサービスに関するご質問、お見積もりのご依頼など、どのようなことでもお気軽にお問い合わせください。"
                       : "取材・提携・その他のお問い合わせを承ります。まずはお気軽にご連絡ください。"}
@@ -278,6 +329,37 @@ export default function ContactPage() {
                     })}
                   </div>
                 </div>
+
+                {/* Service selector (visible when business is selected) */}
+                {isBusiness && (
+                  <div>
+                    <p className="block text-sm font-semibold text-gray-700 mb-3">
+                      ご興味のあるサービス
+                    </p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                      {SERVICE_OPTIONS.map((opt) => {
+                        const active = form.service === opt.value;
+                        return (
+                          <button
+                            key={opt.value}
+                            type="button"
+                            onClick={() => selectService(active ? "" : opt.value)}
+                            aria-pressed={active}
+                            className={`text-left rounded-lg border px-3.5 py-3 transition-all duration-200 ${
+                              active
+                                ? "border-blue-600 bg-blue-50/60 ring-1 ring-blue-600"
+                                : "border-gray-200 bg-white hover:border-gray-300"
+                            }`}
+                          >
+                            <span className={`block text-sm font-semibold ${active ? "text-blue-700" : "text-gray-900"}`}>
+                              {opt.label}
+                            </span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
 
                 {/* Common: name + email */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">

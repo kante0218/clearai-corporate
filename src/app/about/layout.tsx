@@ -2,24 +2,24 @@ import type { Metadata } from "next";
 import Script from "next/script";
 
 const description =
-  "clear AI株式会社の会社概要。2026年4月設立、茨城県拠点。AIコンサルティング事業と農業×エンジニアリング事業を通じて、企業のDXと日本の一次産業の課題解決に取り組むAIスタートアップです。";
+  "clearAI株式会社の会社概要。2026年4月設立、茨城県拠点。AIコンサルティング事業と農業×エンジニアリング事業を通じて、企業のDXと日本の一次産業の課題解決に取り組むAIスタートアップです。";
 
 export const metadata: Metadata = {
   title: "会社概要",
   description,
   alternates: { canonical: "https://clearai.jp/about" },
   openGraph: {
-    title: "会社概要 | clear AI株式会社",
+    title: "会社概要 | clearAI株式会社",
     description,
     url: "https://clearai.jp/about",
     type: "website",
     locale: "ja_JP",
-    siteName: "clear AI株式会社",
+    siteName: "clearAI株式会社",
     images: ["/images/logo.png"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "会社概要 | clear AI株式会社",
+    title: "会社概要 | clearAI株式会社",
     description,
     images: ["/images/logo.png"],
   },

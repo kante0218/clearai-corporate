@@ -1,5 +1,5 @@
 import { Resend } from "resend";
-import { validateContactForm, INQUIRY_TYPES, type InquiryType } from "@/lib/validators";
+import { validateContactForm, INQUIRY_TYPES, SERVICE_KEYS, SERVICE_LABELS, type InquiryType, type ServiceKey } from "@/lib/validators";
 
 export const runtime = "nodejs";
 
@@ -8,7 +8,7 @@ export const runtime = "nodejs";
 const JSON_HEADERS = { "Content-Type": "application/json" };
 
 const TO_EMAIL = process.env.CONTACT_TO_EMAIL ?? "t.kante@clearai.jp";
-const FROM_EMAIL = process.env.CONTACT_FROM_EMAIL ?? "clear AI <onboarding@resend.dev>";
+const FROM_EMAIL = process.env.CONTACT_FROM_EMAIL ?? "clearAI <onboarding@resend.dev>";
 
 const INQUIRY_LABEL: Record<InquiryType, string> = {
   business: "ご相談・お見積もり",
@@ -27,6 +27,7 @@ function escapeHtml(s: string) {
 
 interface EmailPayload {
   inquiryType: InquiryType;
+  service?: ServiceKey;
   company?: string;
   name: string;
   email: string;
@@ -43,6 +44,7 @@ function buildEmail(payload: EmailPayload) {
   const isEngineer = payload.inquiryType === "engineer";
 
   const rows: Array<[string, string]> = [["種別", typeLabel]];
+  if (payload.service) rows.push(["対象サービス", SERVICE_LABELS[payload.service]]);
   if (payload.company) rows.push(["会社名", payload.company]);
   rows.push(["お名前", payload.name]);
   rows.push(["メール", payload.email]);
@@ -105,8 +107,14 @@ export async function POST(request: Request) {
       ? (rawType as InquiryType)
       : "business";
 
+    const rawService = typeof body.service === "string" ? body.service : "";
+    const service: ServiceKey | undefined = (SERVICE_KEYS as readonly string[]).includes(rawService)
+      ? (rawService as ServiceKey)
+      : undefined;
+
     const payload = {
       inquiryType,
+      service,
       company: typeof body.company === "string" ? body.company : "",
       name: typeof body.name === "string" ? body.name : "",
       email: typeof body.email === "string" ? body.email : "",
@@ -138,7 +146,8 @@ export async function POST(request: Request) {
     const { text, html } = buildEmail(payload);
     const resend = new Resend(apiKey);
 
-    const subjectPrefix = `【clear AI ${INQUIRY_LABEL[inquiryType]}】`;
+    const subjectLabel = service ? SERVICE_LABELS[service] : INQUIRY_LABEL[inquiryType];
+    const subjectPrefix = `【clearAI ${subjectLabel}】`;
     const subjectBody = payload.company ? `${payload.company} / ${payload.name}様` : `${payload.name}様`;
 
     const { data, error } = await resend.emails.send({

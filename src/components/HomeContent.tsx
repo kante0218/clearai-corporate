@@ -312,14 +312,11 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
                   <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">
                     砂漠・寒冷地・都市部の地下空間など、従来不可能とされた環境での栽培を技術で実現。環境制御技術と独自ノウハウで、場所を選ばない食料生産の可能性を拓きます。
                   </p>
-                  <div className="flex items-center gap-3 flex-wrap mb-6">
+                  <div className="flex items-center gap-3 flex-wrap">
                     {["環境制御", "植物工場", "閉鎖空間栽培", "食料安全保障"].map((tag) => (
                       <span key={tag} className="text-xs text-gray-500 border border-gray-200 rounded px-2.5 py-1">{tag}</span>
                     ))}
                   </div>
-                  <span className="text-sm font-semibold text-emerald-600 group-hover:text-emerald-700 transition-colors">
-                    お問い合わせ →
-                  </span>
                 </div>
               </Link>
             </Reveal>
@@ -332,14 +329,11 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
                   <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">
                     ロボティクスとAIを融合し、収穫・選別・搬送などの農作業を自動化。フィジカルAIが人手不足の現場を支え、生産性と品質の両面を飛躍的に向上させます。
                   </p>
-                  <div className="flex items-center gap-3 flex-wrap mb-6">
+                  <div className="flex items-center gap-3 flex-wrap">
                     {["農業ロボット", "自動収穫", "AI画像認識", "作業自動化"].map((tag) => (
                       <span key={tag} className="text-xs text-gray-500 border border-gray-200 rounded px-2.5 py-1">{tag}</span>
                     ))}
                   </div>
-                  <span className="text-sm font-semibold text-emerald-600 group-hover:text-emerald-700 transition-colors">
-                    お問い合わせ →
-                  </span>
                 </div>
               </Link>
             </Reveal>

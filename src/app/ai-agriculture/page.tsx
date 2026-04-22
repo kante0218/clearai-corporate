@@ -77,7 +77,7 @@ export default function AiAgriculturePage() {
             <div className="max-w-3xl">
               <h2 className="text-3xl font-bold text-gray-900 leading-snug mb-6">農家の声から始め、<br />極限環境の栽培へ広げる。</h2>
               <p className="text-base text-gray-600 leading-relaxed">
-                clear AIの農業事業は、まず現場の農家様の声に徹底的に耳を傾けることから始めます。田んぼの水流管理、ビニールハウスの温湿度・灌水制御といった<span className="font-semibold text-gray-900">農業インフラの自動化</span>を第一歩として支援。その先には、宇宙・潜水艦・シェルターなど、光も土もない<span className="font-semibold text-gray-900">無機質な空間での栽培</span>へと踏み込みます。農業というアプローチから、防衛産業と宇宙産業そのものを育てていく。それが私たちの描く未来です。
+                clearAIの農業事業は、まず現場の農家様の声に徹底的に耳を傾けることから始めます。田んぼの水流管理、ビニールハウスの温湿度・灌水制御といった<span className="font-semibold text-gray-900">農業インフラの自動化</span>を第一歩として支援。その先には、宇宙・潜水艦・シェルターなど、光も土もない<span className="font-semibold text-gray-900">無機質な空間での栽培</span>へと踏み込みます。農業というアプローチから、防衛産業と宇宙産業そのものを育てていく。それが私たちの描く未来です。
               </p>
             </div>
           </Reveal>
@@ -119,7 +119,7 @@ export default function AiAgriculturePage() {
             <Label>Challenges</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">日本の農業が抱える構造課題</h2>
           </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
             {[
               {
                 prefix: null,
@@ -128,7 +128,7 @@ export default function AiAgriculturePage() {
                 desc: "ほとんどの農産物がJAや卸を経由し、生産者の手取りは小売価格の20〜30%程度です。",
               },
               {
-                prefix: "▼",
+                prefix: "↘",
                 number: "15%",
                 label: "農業所得の減少傾向",
                 desc: "コスト上昇に対して販売価格が追いつかず、利益が圧迫されています。",
@@ -140,11 +140,11 @@ export default function AiAgriculturePage() {
                 desc: "ネット販売の可能性を感じながらも、始め方がわからない農家が大半です。",
               },
             ].map((item, i) => (
-              <Reveal key={item.label} delay={i * 100}>
-                <div className="rounded-2xl border border-gray-200 bg-white p-8 hover:shadow-lg transition-all duration-300">
+              <Reveal key={item.label} delay={i * 100} className="h-full">
+                <div className="rounded-2xl border border-gray-200 bg-white p-8 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
                   <p className="flex items-baseline gap-2 mb-3">
                     {item.prefix && (
-                      <span className="text-2xl font-bold text-emerald-600 leading-none">{item.prefix}</span>
+                      <span className="text-4xl font-bold text-emerald-600 leading-none">{item.prefix}</span>
                     )}
                     <span className="text-5xl font-bold text-emerald-600 leading-none">{item.number}</span>
                   </p>
@@ -192,7 +192,7 @@ export default function AiAgriculturePage() {
             <Label>Status</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-6">まだ、提供中のサービスはありません。</h2>
             <p className="text-base text-gray-600 leading-relaxed max-w-2xl mb-14">
-              clear AIの農業事業は、今まさに立ち上げの準備段階です。<br />
+              clearAIの農業事業は、今まさに立ち上げの準備段階です。<br />
               農家様の声を起点に、大学の教授・優秀なエンジニア・学生と協力しながら、一歩ずつ形にしていきます。
             </p>
           </Reveal>
@@ -262,7 +262,7 @@ export default function AiAgriculturePage() {
             <Label>R&D Partners</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-6">現場と歩む、共同研究フェーズ。</h2>
             <p className="text-sm text-gray-600 bg-white border border-gray-200 rounded-xl px-5 py-4 mb-12 leading-relaxed max-w-3xl">
-              clear AIの農業事業は、まだ導入実績を積み上げるフェーズではありません。現在は<span className="font-semibold text-gray-900">秋田・北海道の農家様</span>と連携しながら、現場の課題に根差した技術開発と実地検証を進めています。机上の空論ではなく、土と向き合う方々と共につくる。それが私たちのスタンスです。
+              clearAIの農業事業は、まだ導入実績を積み上げるフェーズではありません。現在は<span className="font-semibold text-gray-900">秋田・北海道の農家様</span>と連携しながら、現場の課題に根差した技術開発と実地検証を進めています。机上の空論ではなく、土と向き合う方々と共につくる。それが私たちのスタンスです。
             </p>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

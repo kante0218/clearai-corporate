@@ -6,9 +6,10 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 const navItems = [
-  { label: "事業紹介", href: "/#services" },
   { label: "AIコンサルティング", href: "/ai-consulting" },
-  { label: "農業×エンジニアリング", href: "/ai-agriculture" },
+  { label: "AI顧問", href: "/ai-consulting#advisor" },
+  { label: "AI導入", href: "/ai-consulting#implementation" },
+  { label: "農業×AI", href: "/ai-agriculture" },
   { label: "会社概要", href: "/about" },
   { label: "お知らせ", href: "/blog" },
 ];
@@ -40,7 +41,7 @@ export default function Header() {
             <Link href="/" className="flex items-center group">
               <Image
                 src="/images/logo.png"
-                alt="clear AI"
+                alt="clearAI"
                 width={140}
                 height={40}
                 className={`h-8 w-auto transition-all duration-500 ${
