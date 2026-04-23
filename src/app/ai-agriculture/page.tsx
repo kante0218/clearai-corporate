@@ -385,7 +385,7 @@ export default function AiAgriculturePage() {
         <div className="max-w-2xl mx-auto px-6 text-center">
           <Reveal>
             <Label>Contact</Label>
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">まずは、お話しませんか。</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">まずは、お話ししませんか。</h2>
             <p className="text-base text-gray-600 leading-relaxed mb-10">「うちの農園でもECは始められる？」というご相談から大歓迎です。<br />現状をお聞きした上で、最適な支援プランをご提案します。</p>
             <a href="/contact" className="rounded-lg bg-emerald-600 text-white font-semibold px-10 py-4 hover:bg-emerald-700 transition-colors duration-300 inline-block">無料で相談する</a>
           </Reveal>

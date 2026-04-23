@@ -365,7 +365,7 @@ export default function AiConsultingPage() {
         <div className="max-w-2xl mx-auto px-6 text-center">
           <Reveal>
             <Label>Contact</Label>
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">まずは、お話しませんか。</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">まずは、お話ししませんか。</h2>
             <p className="text-base text-gray-600 leading-relaxed mb-10">「何から始めればいいかわからない」でも大丈夫です。<br />貴社の状況をお聞きした上で、最適な進め方をご提案します。</p>
             <a href="/contact" className="rounded-lg bg-blue-600 text-white font-semibold px-10 py-4 hover:bg-blue-700 transition-colors duration-300 inline-block">無料で相談する</a>
           </Reveal>

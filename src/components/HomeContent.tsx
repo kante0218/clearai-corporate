@@ -47,10 +47,10 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
             AI Consulting &amp; Agriculture Engineering
           </span>
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0)" : "translateY(24px)", transitionDelay: "500ms" }}>
-            AIで明るい未来へ
+            中小企業と農業現場に、<br />使えるAIと実装力を。
           </h1>
           <p className="text-base text-gray-600 leading-relaxed max-w-lg mx-auto mb-10 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "700ms" }}>
-            AIコンサルティング・AI顧問・AI導入教育・CEO向けAI活用・Claude Code特化導入・エンジニアによる農業支援。<br />6つの事業で、日本の産業に確かな価値を届けます。
+            AI導入支援と農業自動化を、戦略から実装まで支援します。<br />コンサル・顧問・研修・Claude Code導入・補助金活用・農業自動化の6領域で、現場で動くものまで責任を持ちます。
           </p>
           <div className="flex items-center justify-center gap-4 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "900ms" }}>
             <Link href="/contact" className="rounded-lg bg-blue-600 text-white font-semibold px-8 py-3.5 hover:bg-blue-700 transition-colors duration-300">
@@ -175,7 +175,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
                   <span className="inline-block text-xs font-semibold tracking-widest uppercase text-indigo-600 mb-4">AI 02</span>
                   <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-4">AI顧問 ＋ ウェブサイト監修</h3>
                   <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">
-                    経営に寄り添う外部AI顧問として月次で伴走。あわせて自社ウェブサイトのAI監修・改善提案も担います。業務委託契約ベースで、複数社の顧問先を募集中です。
+                    外部AI顧問として、月次で経営・業務・Web改善を伴走支援します。戦略の壁打ちから現場の改善提案まで、業務委託契約ベースで継続的に関与します。
                   </p>
                   <div className="flex items-center gap-3 flex-wrap mb-6">
                     {["AI顧問契約", "ウェブサイト監修", "月次壁打ち", "業務委託"].map((tag) => (
@@ -221,10 +221,10 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
                   <span className="inline-block text-xs font-semibold tracking-widest uppercase text-violet-600 mb-4">AI 04</span>
                   <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-4">CEO向けAI活用</h3>
                   <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">
-                    経営者の意思決定そのものをAIで加速する。市場分析・戦略壁打ち・資料ドラフト・インプット高速化まで、CEOの時間価値を最大化する専属サポートです。
+                    経営判断のための情報整理・仮説整理・ドラフト作成を支援します。市場分析から戦略の壁打ち、役員会資料の下書きまで、CEOのインプットと意思決定を加速する専属サポートです。
                   </p>
                   <div className="flex items-center gap-3 flex-wrap mb-6">
-                    {["経営者向け", "意思決定支援", "戦略壁打ち", "秘書的活用"].map((tag) => (
+                    {["経営者向け", "意思決定支援", "戦略壁打ち", "情報整理・ドラフト"].map((tag) => (
                       <span key={tag} className="text-xs text-gray-500 border border-gray-200 rounded px-2.5 py-1">{tag}</span>
                     ))}
                   </div>
@@ -355,9 +355,9 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { num: "01", title: "正直であること", desc: "できないことはできないと言う。過度な期待を煽らず、確実に成果が出る領域から、一歩ずつ。" },
+              { num: "01", title: "正直であること", desc: "実現可能性を率直に見極め、効果の高い領域から着実に進めます。過度な期待を煽らず、成果が出る順に一歩ずつ。" },
               { num: "02", title: "伴走すること", desc: "導入して終わりではなく、運用が定着するまで。お客様のチームの一員として、ともに歩みます。" },
-              { num: "03", title: "技術を翻訳すること", desc: "最先端のAI技術を、ビジネスと現場の言葉に。専門知識がなくても理解できる、クリアな提案を。" },
+              { num: "03", title: "現場に落とし込むこと", desc: "技術選定から運用設計まで、現場で使える形に落とし込みます。専門知識がなくても扱える、具体的な提案を。" },
             ].map((item, i) => (
               <Reveal key={item.num} delay={i * 80}>
                 <div className="border-t-2 border-blue-600 pt-6">
@@ -528,10 +528,10 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
             <div className="text-center mb-12">
               <SectionLabel>Contact</SectionLabel>
               <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-6">
-                まずは、お話しませんか。
+                まずは、お話ししませんか。
               </h2>
               <p className="text-base text-gray-600 leading-relaxed max-w-lg mx-auto">
-                AIのことがわからなくても、ECが初めてでも大丈夫です。<br />貴社・貴農園の状況に合わせて、一緒に考えます。
+                AIのことがわからなくても大丈夫です。<br />貴社・貴農園の状況に合わせて、一緒に考えます。
               </p>
             </div>
           </Reveal>
