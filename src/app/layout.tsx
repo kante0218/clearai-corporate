@@ -106,7 +106,7 @@ const organizationSchema = {
   "contactPoint": {
     "@type": "ContactPoint",
     "contactType": "customer service",
-    "email": "info@and-clearai.com",
+    "email": "t.kante@clearai.jp",
     "availableLanguage": ["Japanese"],
   },
   "sameAs": [],
