@@ -193,8 +193,11 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
             </Reveal>
 
             <Reveal delay={160} className="h-full">
-              <Link href="/contact?service=education" className="group block h-full">
-                <div className="bg-white border border-gray-200 rounded-2xl p-8 lg:p-10 hover:border-amber-300 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
+              <Link href="/training" className="group block h-full">
+                <div className="relative bg-white border border-gray-200 rounded-2xl p-8 lg:p-10 hover:border-amber-300 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
+                  <span className="absolute top-4 right-4 inline-flex items-center gap-1 rounded-full bg-amber-500 text-white text-[10px] font-bold px-2.5 py-1 tracking-wide">
+                    補助金 最大75%OFF
+                  </span>
                   <span className="inline-block text-xs font-semibold tracking-widest uppercase text-amber-600 mb-4">AI 03</span>
                   <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-4">AI導入・教育</h3>
                   <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">
@@ -206,7 +209,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
                     ))}
                   </div>
                   <span className="text-sm font-semibold text-amber-600 group-hover:text-amber-700 transition-colors">
-                    お問い合わせ →
+                    研修プログラムを見る →
                   </span>
                 </div>
               </Link>
@@ -439,21 +442,21 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
                 { name: "Node.js", icon: "logos:nodejs-icon" },
                 { name: "FastAPI", icon: "logos:fastapi-icon" },
                 { name: "Go", icon: "simple-icons:go", color: "00ADD8" },
-                { name: "Rails", icon: "simple-icons:rubyonrails", color: "D30001" },
+                { name: "PostgreSQL", icon: "logos:postgresql" },
               ]},
               { category: "AI / ML", label: "AI・機械学習", items: [
                 { name: "Claude", icon: "simple-icons:anthropic", color: "D97757" },
                 { name: "OpenAI", icon: "simple-icons:openai", color: "000000" },
                 { name: "Gemini", icon: "simple-icons:googlegemini", color: "8E75B2" },
                 { name: "PyTorch", icon: "logos:pytorch-icon" },
-                { name: "LangChain", icon: "simple-icons:langchain", color: "1C3C3C" },
+                { name: "pgvector", icon: "logos:postgresql" },
               ]},
               { category: "Cloud", label: "クラウド・インフラ", items: [
                 { name: "AWS", icon: "logos:aws" },
                 { name: "Google Cloud", icon: "logos:google-cloud" },
-                { name: "Vercel", icon: "logos:vercel-icon" },
+                { name: "Azure", icon: "logos:microsoft-azure" },
                 { name: "Cloudflare", icon: "logos:cloudflare-icon" },
-                { name: "Docker", icon: "logos:docker-icon" },
+                { name: "Terraform", icon: "logos:terraform-icon" },
               ]},
             ].map((group, gi) => (
               <Reveal key={group.category} delay={gi * 40}>

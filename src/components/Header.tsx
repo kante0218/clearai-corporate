@@ -18,6 +18,7 @@ const navItems: NavItem[] = [
       { label: "研修", href: "/training", description: "チームのAIリテラシーを底上げ" },
     ],
   },
+  { label: "補助金サポート", href: "/subsidy" },
   { label: "Claude特化", href: "/claude" },
   { label: "農業", href: "/ai-agriculture" },
 ];
@@ -30,6 +31,11 @@ export default function Header() {
   const pathname = usePathname();
   const isAgriculture = pathname?.startsWith("/ai-agriculture");
   const isClaude = pathname?.startsWith("/claude");
+  const isAiConsulting =
+    pathname?.startsWith("/ai-consulting") ||
+    pathname?.startsWith("/advisor") ||
+    pathname?.startsWith("/training") ||
+    pathname?.startsWith("/subsidy");
 
   useEffect(() => {
     const onScroll = () => {
@@ -38,6 +44,15 @@ export default function Header() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    const root = document.documentElement;
+    if (isAgriculture) root.dataset.theme = "agriculture";
+    else if (isClaude) root.dataset.theme = "claude";
+    else if (isAiConsulting) root.dataset.theme = "ai";
+    else delete root.dataset.theme;
+  }, [isAgriculture, isClaude, isAiConsulting]);
+
 
   const navColor = "text-gray-600 hover:text-gray-900";
   const headerBg = scrolled

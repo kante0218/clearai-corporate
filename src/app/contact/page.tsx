@@ -61,6 +61,7 @@ const SERVICE_OPTIONS: { value: ServiceKey; label: string }[] = [
   { value: "consulting", label: "AIコンサル・DX" },
   { value: "advisor", label: "AI顧問" },
   { value: "education", label: "AI研修" },
+  { value: "subsidy", label: "補助金サポート" },
   { value: "claude-code", label: "Claude特化" },
   { value: "agriculture", label: "農業×AI" },
   { value: "ceo", label: "経営者向けAI活用" },
