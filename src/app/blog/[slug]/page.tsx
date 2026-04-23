@@ -31,6 +31,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return {
       title: post.title,
       description,
+      keywords: ["clearAI", "クリアエーアイ", post.category?.name, "AIコンサルティング", "AI導入"].filter(Boolean) as string[],
       alternates: { canonical: url },
       openGraph: {
         title: post.title,
@@ -70,6 +71,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     notFound();
   }
 
+  const plainText = (post.content ?? "").replace(/<[^>]*>/g, "").replace(/\s+/g, " ").trim();
+  const wordCount = plainText.length;
+
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -80,11 +84,23 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     author: { "@type": "Organization", name: "clearAI株式会社", url: "https://clearai.jp" },
     publisher: {
       "@type": "Organization",
+      "@id": "https://clearai.jp/#organization",
       name: "clearAI株式会社",
       logo: { "@type": "ImageObject", url: "https://clearai.jp/images/logo.png" },
     },
     mainEntityOfPage: { "@type": "WebPage", "@id": `https://clearai.jp/blog/${slug}` },
     description: stripHtml(post.content ?? ""),
+    inLanguage: "ja",
+    isAccessibleForFree: true,
+    wordCount,
+    articleSection: post.category?.name ?? "お知らせ",
+    keywords: [
+      "clearAI",
+      "クリアエーアイ",
+      post.category?.name,
+      "AIコンサルティング",
+      "AI導入",
+    ].filter(Boolean),
   };
 
   const breadcrumbSchema = {

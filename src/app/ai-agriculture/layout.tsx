@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 
 const description =
-  "clearAI株式会社の農業×エンジニアリング事業。田んぼの水流管理・ビニールハウスの自動化から、農家向けEC構築・利益率改善・業務効率化まで、エンジニアの力で日本の一次産業を次世代に。将来は宇宙・防衛産業の極限環境へ展開。";
+  "clearAI株式会社（クリアエーアイ）の農業×エンジニアリング事業。田んぼの水流管理・ビニールハウスの自動化から、農家向けEC構築・利益率改善・業務効率化まで、エンジニアの力で日本の一次産業を次世代に。フィジカルAI・植物工場・海外部品調達にも対応。将来は宇宙・防衛産業の極限環境へ展開。";
 
 export const metadata: Metadata = {
   title: "農業×エンジニアリング | 農家をテクノロジーで支援",
@@ -17,6 +17,11 @@ export const metadata: Metadata = {
     "ビニールハウス自動化",
     "水流管理",
     "AgriTech",
+    "フィジカルAI",
+    "植物工場",
+    "農業ロボット",
+    "clearAI",
+    "クリアエーアイ",
   ],
   alternates: { canonical: "https://clearai.jp/ai-agriculture" },
   openGraph: {

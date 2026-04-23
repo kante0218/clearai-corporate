@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 
 const description =
-  "clearAI株式会社のAI導入コンサルティング。生成AI活用・業務自動化・DX推進まで、戦略策定から開発・実装・運用まで一気通貫でサポート。中小企業から大企業まで、貴社に最適なAIソリューションを共に創り上げます。";
+  "clearAI株式会社（クリアエーアイ）のAI導入コンサルティング。生成AI活用・業務自動化・DX推進まで、戦略策定から開発・実装・運用まで一気通貫でサポート。中小企業から大企業まで、貴社に最適なAIソリューションを共に創り上げます。AI顧問・Claude特化導入・CEO向けAI活用にも対応。";
 
 export const metadata: Metadata = {
   title: "AIコンサルティング | 戦略・実装・運用を一気通貫で伴走",
@@ -10,12 +10,18 @@ export const metadata: Metadata = {
   keywords: [
     "AIコンサルティング",
     "AI導入支援",
+    "AI顧問",
     "生成AI活用",
     "DX推進",
     "業務自動化",
     "企業AI",
     "AI戦略",
     "LLM導入",
+    "Claude導入",
+    "CEO向けAI",
+    "clearAI",
+    "クリアエーアイ",
+    "クリアAI",
   ],
   alternates: { canonical: "https://clearai.jp/ai-consulting" },
   openGraph: {

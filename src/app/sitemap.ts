@@ -16,6 +16,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: "https://clearai.jp/contact", lastModified: new Date(), changeFrequency: "yearly", priority: 0.6 },
     { url: "https://clearai.jp/privacy", lastModified: new Date(), changeFrequency: "yearly", priority: 0.3 },
     { url: "https://clearai.jp/terms", lastModified: new Date(), changeFrequency: "yearly", priority: 0.3 },
+    { url: "https://clearai.jp/sitemap-page", lastModified: new Date(), changeFrequency: "weekly", priority: 0.4 },
   ];
 
   let blogPages: MetadataRoute.Sitemap = [];

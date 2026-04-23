@@ -35,7 +35,9 @@ function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; 
 
 const companyInfo = [
   { label: "会社名", value: "clearAI株式会社" },
+  { label: "読み方", value: "クリアエーアイ" },
   { label: "英文表記", value: "clearAI Inc." },
+  { label: "別表記", value: "clear AI / クリアAI / クリア・エーアイ / クリアーエーアイ" },
   { label: "設立", value: "2026年4月" },
   { label: "代表取締役", value: "髙橋 敢輝" },
   { label: "所在地", value: "茨城県" },
@@ -425,6 +427,60 @@ export default function AboutPage() {
                 </div>
               </Reveal>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── 8.5 ABOUT THE NAME ──────────────────────────────────────────── */}
+      <section className="py-24 lg:py-32 bg-white border-t border-gray-100">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <Reveal>
+            <p className="text-xs font-semibold tracking-widest uppercase text-blue-600 mb-6">About the Name</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight tracking-tight mb-8 max-w-xl">
+              社名「clearAI」について
+            </h2>
+          </Reveal>
+          <div className="grid md:grid-cols-2 gap-12 lg:gap-16">
+            <Reveal delay={80}>
+              <div className="space-y-5 text-base text-gray-600 leading-relaxed">
+                <p>
+                  社名「<strong className="text-gray-900">clearAI（クリアエーアイ）</strong>」は、英単語の <em>clear</em>（明確な・クリアな）と <em>AI</em>（Artificial Intelligence：人工知能）を組み合わせた造語です。
+                </p>
+                <p>
+                  正式名称は「clearAI株式会社」、英文表記は「clearAI Inc.」。日本語では「<strong>クリアエーアイ</strong>」と読み、「クリアAI」「クリア・エーアイ」「クリアーエーアイ」「クリアエイアイ」といった表記・読み方でも呼ばれることがあります。
+                </p>
+                <p>
+                  難解なAI技術を、誇張せず、分かりやすく、誠実に。企業と現場に<strong>クリアな価値</strong>を届けるという私たちの理念がこの社名に込められています。
+                </p>
+              </div>
+            </Reveal>
+            <Reveal delay={160}>
+              <div className="bg-gray-50 border border-gray-200 rounded-2xl p-8">
+                <p className="text-xs font-semibold tracking-widest text-blue-600 uppercase mb-4">Name &amp; Reading</p>
+                <dl className="space-y-4 text-sm">
+                  <div>
+                    <dt className="text-gray-500 mb-1">正式社名</dt>
+                    <dd className="text-gray-900 font-semibold">clearAI株式会社</dd>
+                  </div>
+                  <div>
+                    <dt className="text-gray-500 mb-1">読み方（ふりがな）</dt>
+                    <dd className="text-gray-900 font-semibold">クリアエーアイ かぶしきがいしゃ</dd>
+                  </div>
+                  <div>
+                    <dt className="text-gray-500 mb-1">英文表記</dt>
+                    <dd className="text-gray-900 font-semibold">clearAI Inc.</dd>
+                  </div>
+                  <div>
+                    <dt className="text-gray-500 mb-1">別表記・通称</dt>
+                    <dd className="text-gray-700">clear AI / Clear AI / クリアAI / クリア・エーアイ / クリアーエーアイ / クリアエイアイ</dd>
+                  </div>
+                  <div>
+                    <dt className="text-gray-500 mb-1">ドメイン</dt>
+                    <dd className="text-gray-900 font-semibold">clearai.jp</dd>
+                  </div>
+                </dl>
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>

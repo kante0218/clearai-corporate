@@ -78,7 +78,7 @@ export default function Header() {
             <Link href="/" className="flex items-center group">
               <Image
                 src="/images/logo.png"
-                alt="clearAI"
+                alt="clearAI株式会社（クリアエーアイ）"
                 width={140}
                 height={40}
                 className={`h-8 w-auto transition-all duration-500 ${
