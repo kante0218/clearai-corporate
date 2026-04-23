@@ -14,17 +14,23 @@ const VEGGIES = [
 ] as const;
 type VeggieKey = typeof VEGGIES[number];
 
+/* Home positions chosen so each veggie sits in its own zone *outside* the
+   text rectangle (|x|<3.5, |y|<2.5 in world space) and far enough from its
+   neighbours that the ±0.5-unit zero-G drift below never overlaps them.   */
 const POSITIONS: Record<VeggieKey, [number, number, number]> = {
-  Broccoli:    [-4.8,  2.3, -1.5],
-  Apple:       [ 4.8,  2.5, -1.3],
-  Lemon:       [-5.6,  0.2, -2.6],
-  Strawberry:  [ 5.0,  0.0, -1.8],
-  NapaCabbage: [-3.8, -2.2, -1.2],
-  Pumpkin:     [ 3.6, -2.2, -1.0],
-  Tomato:      [ 0.6,  3.2, -3.5],
-  Peach:       [-0.8, -3.0, -2.4],
-  Grapes:      [-6.4,  1.0, -4.5],
-  Onion:       [ 6.4, -1.0, -4.0],
+  // top row (y ≥ 3.5)
+  Broccoli:    [-5.5,  3.5, -1.5],
+  Strawberry:  [-1.8,  3.7, -3.5],
+  Onion:       [ 1.8,  3.7, -3.5],
+  Apple:       [ 5.5,  3.5, -1.5],
+  // bottom row (y ≤ -3.5)
+  NapaCabbage: [-5.0, -3.6, -1.0],
+  Tomato:      [-1.5, -3.7, -3.0],
+  Lemon:       [ 1.5, -3.7, -3.0],
+  Pumpkin:     [ 5.0, -3.6, -1.0],
+  // sides (|x| ≥ 6.5)
+  Grapes:      [-6.5,  0.4, -3.5],
+  Peach:       [ 6.5,  0.4, -3.5],
 };
 
 const SCALES: Record<VeggieKey, number> = {
@@ -203,11 +209,20 @@ function VegetableMorph({
     const t = state.clock.elapsedTime;
     powderMat.uniforms.uTime.value = t;
 
-    // gentle floating
+    // zero-gravity drift + tri-axis tumble — each veggie gets a unique
+    // motion pattern via phaseOffset modulation of frequencies.
     if (groupRef.current) {
-      groupRef.current.rotation.y = t * 0.18 + phaseOffset;
-      groupRef.current.rotation.x = Math.sin(t * 0.3 + phaseOffset) * 0.18;
-      groupRef.current.position.y = position[1] + Math.sin(t * 0.5 + phaseOffset) * 0.18;
+      const f = phaseOffset;
+      // drift (capped ±0.5 each axis → never crosses into neighbour zones)
+      const dx = Math.sin(t * 0.21 + f * 1.7) * 0.32 + Math.cos(t * 0.13 + f * 2.1) * 0.18;
+      const dy = Math.sin(t * 0.17 + f * 2.3) * 0.30 + Math.cos(t * 0.27 + f * 0.9) * 0.18;
+      const dz = Math.cos(t * 0.19 + f * 1.9) * 0.35;
+      groupRef.current.position.set(position[0] + dx, position[1] + dy, position[2] + dz);
+
+      // slow tri-axis tumble — like an object floating in microgravity
+      groupRef.current.rotation.x = t * (0.06 + (f * 0.013) % 0.05) + f * 0.7;
+      groupRef.current.rotation.y = t * (0.10 + (f * 0.017) % 0.05) + f * 1.4;
+      groupRef.current.rotation.z = t * (0.04 + (f * 0.011) % 0.04) + f * 0.9;
     }
 
     /* SYNC cycle */
