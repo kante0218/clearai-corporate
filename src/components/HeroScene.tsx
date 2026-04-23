@@ -28,8 +28,8 @@ const POSITIONS: Record<VeggieKey, [number, number, number]> = {
 };
 
 const SCALES: Record<VeggieKey, number> = {
-  Broccoli: 1.3, Apple: 1.0, Lemon: 0.85, Strawberry: 0.8, NapaCabbage: 1.5,
-  Pumpkin: 1.6, Tomato: 1.1, Peach: 1.0, Grapes: 1.4, Onion: 1.05,
+  Broccoli: 1.95, Apple: 1.55, Lemon: 1.30, Strawberry: 1.25, NapaCabbage: 2.20,
+  Pumpkin: 2.40, Tomato: 1.65, Peach: 1.55, Grapes: 2.10, Onion: 1.60,
 };
 
 const LINE_COLORS: Record<VeggieKey, string> = {
@@ -408,93 +408,80 @@ function ProceduralEnv() {
   return null;
 }
 
-/* ── ambient drifting dust ───────────────────────────────────── */
-function AmbientDust() {
+/* ── starfield (cosmic background) ───────────────────────────── */
+function Starfield() {
   const { geo, mat } = useMemo(() => {
-    const count = 600;
+    const count = 1400;
     const positions = new Float32Array(count * 3);
     const seeds = new Float32Array(count);
+    const sizes = new Float32Array(count);   // per-star base size
+    const tints = new Float32Array(count);   // 0=white, +blue, -warm
     for (let i = 0; i < count; i++) {
-      positions[i * 3]     = (Math.random() - 0.5) * 26;
-      positions[i * 3 + 1] = (Math.random() - 0.5) * 16;
-      positions[i * 3 + 2] = (Math.random() - 0.5) * 14 - 4;
+      // distribute on a thick spherical shell so stars surround the camera
+      const r = 22 + Math.random() * 18;       // depth 22..40
+      const theta = Math.random() * Math.PI * 2;
+      const phi = Math.acos(2 * Math.random() - 1);
+      positions[i * 3]     = r * Math.sin(phi) * Math.cos(theta);
+      positions[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta) * 0.5; // flatter vertically
+      positions[i * 3 + 2] = r * Math.cos(phi) - 6;                     // pushed back
       seeds[i] = Math.random();
+      // most stars small, a few bright ones
+      const r1 = Math.random();
+      sizes[i] = r1 < 0.85 ? 0.4 + Math.random() * 0.6 : 1.2 + Math.random() * 1.6;
+      // mostly neutral, slight blue/warm variance
+      tints[i] = (Math.random() - 0.5) * 1.0;
     }
     const g = new THREE.BufferGeometry();
     g.setAttribute("position", new THREE.BufferAttribute(positions, 3));
-    g.setAttribute("aSeed", new THREE.BufferAttribute(seeds, 1));
+    g.setAttribute("aSeed",    new THREE.BufferAttribute(seeds, 1));
+    g.setAttribute("aSize",    new THREE.BufferAttribute(sizes, 1));
+    g.setAttribute("aTint",    new THREE.BufferAttribute(tints, 1));
     const m = new THREE.ShaderMaterial({
-      uniforms: { uTime: { value: 0 }, uColor: { value: new THREE.Color(PRIMARY) } },
+      uniforms: { uTime: { value: 0 } },
       vertexShader: /* glsl */`
-        attribute float aSeed; uniform float uTime; varying float vAlpha;
+        attribute float aSeed;
+        attribute float aSize;
+        attribute float aTint;
+        uniform float uTime;
+        varying float vAlpha;
+        varying float vTint;
         void main() {
-          vec3 p = position;
-          p.y += sin(uTime * 0.3 + aSeed * 6.28) * 0.5;
-          p.x += cos(uTime * 0.2 + aSeed * 6.28) * 0.4;
-          vAlpha = 0.3 + 0.6 * sin(uTime * 0.6 + aSeed * 12.0);
-          vec4 mv = modelViewMatrix * vec4(p, 1.0);
+          // gentle twinkle — each star pulses on its own clock
+          float t = uTime * (0.5 + aSeed * 1.4) + aSeed * 12.566;
+          float twinkle = 0.6 + 0.4 * sin(t);
+          vAlpha = twinkle;
+          vTint = aTint;
+          vec4 mv = modelViewMatrix * vec4(position, 1.0);
           gl_Position = projectionMatrix * mv;
-          gl_PointSize = (1.4 + aSeed * 1.6) * (320.0 / -mv.z);
+          gl_PointSize = aSize * twinkle * (220.0 / -mv.z);
         }
       `,
       fragmentShader: /* glsl */`
-        uniform vec3 uColor; varying float vAlpha;
+        varying float vAlpha;
+        varying float vTint;
         void main() {
           vec2 c = gl_PointCoord - 0.5;
           float d = length(c);
           if (d > 0.5) discard;
-          float core = 1.0 - smoothstep(0.0, 0.5, d);
-          gl_FragColor = vec4(uColor, core * vAlpha * 0.5);
+          // soft round star with sharp core
+          float core    = 1.0 - smoothstep(0.0,  0.50, d);
+          float bright  = 1.0 - smoothstep(0.0,  0.10, d);
+          float a = (core * 0.45 + bright * 0.55) * vAlpha;
+          // subtle warm/cool tint (white core, slight color cast)
+          vec3 col = vec3(1.0);
+          col.r += vTint * -0.10;
+          col.b += vTint *  0.15;
+          gl_FragColor = vec4(col, a);
         }
       `,
-      transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
+      transparent: true,
+      depthWrite: false,
+      blending: THREE.AdditiveBlending,
     });
     return { geo: g, mat: m };
   }, []);
   useFrame((s) => { mat.uniforms.uTime.value = s.clock.elapsedTime; });
   return <points geometry={geo} material={mat} />;
-}
-
-/* ── tech grid floor ─────────────────────────────────────────── */
-function TechGrid() {
-  const ref = useRef<THREE.GridHelper>(null);
-  useFrame((s) => {
-    if (ref.current) {
-      const m = ref.current.material as THREE.LineBasicMaterial;
-      m.opacity = 0.07 + Math.abs(Math.sin(s.clock.elapsedTime * 0.5)) * 0.05;
-    }
-  });
-  return (
-    <gridHelper ref={ref} args={[40, 40, PRIMARY, ACCENT]} position={[0, -4.6, -3]}>
-      <lineBasicMaterial transparent opacity={0.10} depthWrite={false} />
-    </gridHelper>
-  );
-}
-
-/* ── connecting lines ────────────────────────────────────────── */
-function ConnectingLines() {
-  const { geo, mat } = useMemo(() => {
-    const verts: number[] = [];
-    const pairs: [VeggieKey, VeggieKey][] = [
-      ["Broccoli", "Tomato"], ["Tomato", "Apple"],
-      ["Apple", "Strawberry"], ["Strawberry", "Pumpkin"],
-      ["Pumpkin", "Peach"], ["Peach", "NapaCabbage"],
-      ["NapaCabbage", "Lemon"], ["Lemon", "Broccoli"],
-      ["Grapes", "Lemon"], ["Onion", "Strawberry"],
-    ];
-    for (const [a, b] of pairs) verts.push(...POSITIONS[a], ...POSITIONS[b]);
-    const g = new THREE.BufferGeometry();
-    g.setAttribute("position", new THREE.Float32BufferAttribute(verts, 3));
-    const m = new THREE.LineBasicMaterial({
-      color: ACCENT, transparent: true, opacity: 0.18,
-      depthWrite: false, blending: THREE.AdditiveBlending,
-    });
-    return { geo: g, mat: m };
-  }, []);
-  useFrame((s) => {
-    mat.opacity = 0.10 + Math.abs(Math.sin(s.clock.elapsedTime * 0.4)) * 0.16;
-  });
-  return <lineSegments geometry={geo} material={mat} />;
 }
 
 /* ── scene root ──────────────────────────────────────────────── */
@@ -519,14 +506,12 @@ function Scene() {
   return (
     <>
       <ProceduralEnv />
-      <ambientLight intensity={0.45} />
-      <directionalLight position={[6, 7, 5]} intensity={1.1} color="#ffffff" />
-      <directionalLight position={[-5, -2, -3]} intensity={0.4} color={ACCENT} />
+      <ambientLight intensity={0.40} />
+      <directionalLight position={[6, 7, 5]} intensity={1.15} color="#ffffff" />
+      <directionalLight position={[-6, -2, -3]} intensity={0.55} color="#9ec3ff" />
 
       <group ref={camRig}>
-        <TechGrid />
-        <ConnectingLines />
-        <AmbientDust />
+        <Starfield />
         {VEGGIES.map((name, i) => {
           const mesh = nodes[name];
           const wire = nodes[`${name}_wire`];
@@ -567,8 +552,8 @@ export default function HeroScene() {
       camera={{ position: [0, 0, 7], fov: 45, near: 0.1, far: 60 }}
       style={{ width: "100%", height: "100%" }}
     >
-      <color attach="background" args={["#02060a"]} />
-      <fog attach="fog" args={["#02060a", 8, 22]} />
+      <color attach="background" args={["#000000"]} />
+      <fog attach="fog" args={["#000000", 14, 36]} />
       <Suspense fallback={null}>
         <Scene />
         <Preload all />
