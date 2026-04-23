@@ -10,10 +10,10 @@ export default function Footer() {
           <div>
             <Image src="/images/logo-white.png" alt="clearAI" width={140} height={40} className="h-8 w-auto mb-4" />
             <p className="text-sm text-white/40 leading-relaxed mb-2">
-              AIコンサルティングと農業×エンジニアリングで、日本の産業に確かな価値を届けます。
+              中小企業と農業現場に、使えるAIと実装力を。戦略から実装まで一貫して支援します。
             </p>
             <p className="text-xs text-white/25 leading-relaxed">
-              clearAI株式会社<br />茨城県 / 2026年4月設立
+              clearAI株式会社<br />代表取締役 髙橋 敢輝<br />茨城県 / 2026年4月設立
             </p>
           </div>
 
@@ -23,6 +23,10 @@ export default function Footer() {
             <ul className="space-y-2.5">
               {[
                 { label: "AIコンサルティング", href: "/ai-consulting" },
+                { label: "AI顧問", href: "/advisor" },
+                { label: "AI研修", href: "/training" },
+                { label: "補助金サポート", href: "/subsidy" },
+                { label: "Claude特化", href: "/claude" },
                 { label: "農業×エンジニアリング", href: "/ai-agriculture" },
               ].map((link) => (
                 <li key={link.label}>
@@ -38,6 +42,7 @@ export default function Footer() {
             <ul className="space-y-2.5">
               {[
                 { label: "会社概要", href: "/about" },
+                { label: "よくある質問", href: "/faq" },
                 { label: "お知らせ", href: "/blog" },
                 { label: "お問い合わせ", href: "/contact" },
               ].map((link) => (

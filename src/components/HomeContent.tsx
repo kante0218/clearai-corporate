@@ -69,9 +69,9 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
           <Reveal>
             <div className="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-gray-200">
               {[
-                { value: "6事業", label: "展開中" },
-                { value: "4領域", label: "ワンストップ支援" },
-                { value: "全国対応", label: "日本全国" },
+                { value: "最大75%", label: "研修費助成対応" },
+                { value: "6領域", label: "AI × 農業" },
+                { value: "全国対応", label: "オンライン実施可" },
                 { value: "2営業日", label: "初回返信" },
               ].map((stat) => (
                 <div key={stat.label} className="flex flex-col items-center justify-center py-6 px-4 text-center">
@@ -105,7 +105,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
                 <div className="h-px bg-gray-200 mt-6" />
                 <div className="flex items-center gap-8 pt-4">
                   <div>
-                    <p className="text-2xl font-bold text-gray-900">6<span className="text-sm text-gray-400 ml-1 font-normal">事業</span></p>
+                    <p className="text-2xl font-bold text-gray-900">6<span className="text-sm text-gray-400 ml-1 font-normal">領域</span></p>
                     <p className="text-xs text-gray-400 mt-1">展開中</p>
                   </div>
                   <div className="w-px h-10 bg-gray-200" />
@@ -120,6 +120,74 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
                   </div>
                 </div>
               </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ ENTRY PRODUCTS ═══ */}
+      <section className="py-20 lg:py-28 bg-white border-t border-gray-100">
+        <div className="max-w-6xl mx-auto px-6 lg:px-10">
+          <Reveal>
+            <SectionLabel>Get Started</SectionLabel>
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4">
+              まずは、小さく始められます。
+            </h2>
+            <p className="text-base text-gray-500 mb-14 max-w-2xl leading-relaxed">
+              いきなりの大型契約は不要です。30分の無料診断と3分で読める資料から、貴社に合うかを見極めてください。
+            </p>
+          </Reveal>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <Reveal delay={0}>
+              <Link href="/contact?service=consulting" className="group block h-full">
+                <div className="bg-white border border-gray-200 rounded-2xl p-8 lg:p-10 hover:border-blue-300 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
+                  <span className="inline-block text-xs font-semibold tracking-widest uppercase text-blue-600 mb-4">STEP 01</span>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">無料AI診断（30分）</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">
+                    現状の業務・課題をヒアリングし、AI活用で効果の高そうな領域を1つ特定してお返しします。営業色の強い提案はしません。
+                  </p>
+                  <ul className="space-y-2 text-xs text-gray-500 mb-6">
+                    <li>・Zoom / 対面いずれも可</li>
+                    <li>・NDA締結のうえ、機密情報も扱えます</li>
+                    <li>・その場で簡易レポートを口頭共有</li>
+                  </ul>
+                  <span className="text-sm font-semibold text-blue-600 group-hover:text-blue-700 transition-colors">申し込む →</span>
+                </div>
+              </Link>
+            </Reveal>
+            <Reveal delay={80}>
+              <Link href="/contact?service=consulting&doc=company-deck" className="group block h-full">
+                <div className="bg-white border border-gray-200 rounded-2xl p-8 lg:p-10 hover:border-indigo-300 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
+                  <span className="inline-block text-xs font-semibold tracking-widest uppercase text-indigo-600 mb-4">STEP 02</span>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">3分でわかる会社資料</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">
+                    事業内容・代表的な支援パターン・料金レンジ・補助金活用例をまとめた1枚PDFを送付します。社内稟議用にどうぞ。
+                  </p>
+                  <ul className="space-y-2 text-xs text-gray-500 mb-6">
+                    <li>・PDF 1ページ</li>
+                    <li>・料金レンジと進め方の目安入り</li>
+                    <li>・登録不要・当日返信</li>
+                  </ul>
+                  <span className="text-sm font-semibold text-indigo-600 group-hover:text-indigo-700 transition-colors">資料をもらう →</span>
+                </div>
+              </Link>
+            </Reveal>
+            <Reveal delay={160}>
+              <Link href="/contact?service=consulting&doc=poc" className="group block h-full">
+                <div className="bg-white border border-gray-200 rounded-2xl p-8 lg:p-10 hover:border-amber-300 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
+                  <span className="inline-block text-xs font-semibold tracking-widest uppercase text-amber-600 mb-4">STEP 03</span>
+                  <h3 className="text-xl font-bold text-gray-900 mb-3">1部署・1業務からのPoC</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">
+                    いきなり全社展開ではなく、最も効果が出そうな1部署・1業務に絞って小さく試行導入。効果が見えてから拡張します。
+                  </p>
+                  <ul className="space-y-2 text-xs text-gray-500 mb-6">
+                    <li>・PoC期間 1〜2ヶ月</li>
+                    <li>・成功基準を事前合意</li>
+                    <li>・人材開発支援助成金の活用も可</li>
+                  </ul>
+                  <span className="text-sm font-semibold text-amber-600 group-hover:text-amber-700 transition-colors">相談する →</span>
+                </div>
+              </Link>
             </Reveal>
           </div>
         </div>

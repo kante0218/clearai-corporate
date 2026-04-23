@@ -97,6 +97,7 @@ const organizationSchema = {
   "logo": "https://clearai.jp/images/logo.png",
   "foundingDate": "2026-04",
   "description": "AIコンサルティングと農業×エンジニアリングの2事業を展開する日本のAI企業。",
+  "founder": { "@type": "Person", "name": "髙橋 敢輝" },
   "address": {
     "@type": "PostalAddress",
     "addressRegion": "茨城県",

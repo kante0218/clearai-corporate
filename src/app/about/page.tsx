@@ -37,7 +37,7 @@ const companyInfo = [
   { label: "会社名", value: "clearAI株式会社" },
   { label: "英文表記", value: "clearAI Inc." },
   { label: "設立", value: "2026年4月" },
-  { label: "代表取締役", value: "—" },
+  { label: "代表取締役", value: "髙橋 敢輝" },
   { label: "所在地", value: "茨城県" },
   { label: "事業内容", value: "AIコンサルティング事業 / 農業×エンジニアリング事業" },
   { label: "資本金", value: "非公開" },
@@ -84,8 +84,8 @@ const timeline = [
   },
   {
     year: "2030年（目標）",
-    title: "売上10億円 / 支援企業120社 / 関東圏No.1ブティック",
-    description: "粗利率50%超・継続率95%の「質を伴う10億円」を達成。茨城発、AI×地域産業の専門ブティックとして関東圏での確固たる地位を築く。",
+    title: "売上500億円 / 支援企業120社 / 関東圏No.1ブティック",
+    description: "粗利率50%超・継続率95%の「質を伴う500億円」を達成。茨城発、AI×地域産業の専門ブティックとして関東圏での確固たる地位を築く。",
     future: true,
   },
 ];
@@ -112,7 +112,7 @@ export default function AboutPage() {
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "900ms" }}>
             <div className="inline-flex items-center gap-3 border border-gray-200 rounded-full px-6 py-3 bg-white">
-              <span className="text-2xl font-bold text-blue-600">10億円</span>
+              <span className="text-2xl font-bold text-blue-600">500億円</span>
               <span className="text-sm text-gray-500">2030年 売上目標</span>
             </div>
             <div className="inline-flex items-center gap-3 border border-gray-200 rounded-full px-6 py-3 bg-white">
@@ -168,9 +168,9 @@ export default function AboutPage() {
           <div className="grid md:grid-cols-3 gap-8">
             <Reveal delay={0}>
               <div className="border border-white/10 rounded-2xl p-8 bg-white/5">
-                <p className="text-4xl lg:text-5xl font-bold text-white mb-2">10億円</p>
+                <p className="text-4xl lg:text-5xl font-bold text-white mb-2">500億円</p>
                 <p className="text-sm font-semibold text-blue-400 mb-3">目標売上高（2030年）</p>
-                <p className="text-sm text-gray-400 leading-relaxed">粗利率50%超・継続率95%の「質を伴う10億円」。派手な数字ではなく、一社一社の成功を積み重ねた結果としての売上です。</p>
+                <p className="text-sm text-gray-400 leading-relaxed">粗利率50%超・継続率95%の「質を伴う500億円」。派手な数字ではなく、一社一社の成功を積み重ねた結果としての売上です。</p>
               </div>
             </Reveal>
             <Reveal delay={80}>
@@ -386,15 +386,15 @@ export default function AboutPage() {
                     同時に、日本の企業全体を見渡したとき、AI活用における途方もない機会損失が見えました。「AIは大企業のもの」「自分たちには難しすぎる」という思い込みが、多くの中堅・中小企業の可能性を閉ざしています。その壁を壊したい。
                   </p>
                   <p>
-                    clearAIという名前には、「明確な（clear）AI」という意味を込めています。難解な技術を分かりやすく、誠実に、現場に根ざした形で届ける会社でありたい。2030年に売上10億円という目標は、決して派手ではありません。しかし、粗利率50%超・顧客継続率95%という「質を伴った10億円」は、無理に積み上げた100億円よりも遥かに強く、次の100億円、1000億円へと続く揺るぎない踏み台になると信じています。
+                    clearAIという名前には、「明確な（clear）AI」という意味を込めています。難解な技術を分かりやすく、誠実に、現場に根ざした形で届ける会社でありたい。2030年に売上500億円という目標は、決して小さくはありません。しかし、粗利率50%超・顧客継続率95%という「質を伴った500億円」は、無理に積み上げた数字ではなく、一社一社の成功の積み重ねとして達成する。次の1000億円、1兆円へと続く揺るぎない踏み台になると信じています。
                   </p>
                   <p>
                     まだ小さな会社です。でも、大きなビジョンがあります。共に歩んでいただける仲間、パートナー、お客様を、心からお待ちしています。
                   </p>
                 </div>
                 <footer className="mt-10 pt-8 border-t border-gray-200">
-                  <p className="text-sm text-gray-500">代表取締役</p>
-                  <p className="text-base font-bold text-gray-900 mt-1">clearAI株式会社</p>
+                  <p className="text-sm text-gray-500">clearAI株式会社 代表取締役</p>
+                  <p className="text-base font-bold text-gray-900 mt-1">髙橋 敢輝</p>
                 </footer>
               </blockquote>
             </Reveal>
