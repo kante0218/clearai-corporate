@@ -4,24 +4,12 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import LanguageToggle from "@/components/LanguageToggle";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
+import { header as headerDict } from "@/lib/i18n/translations";
 
 type NavChild = { label: string; href: string; description?: string };
 type NavItem = { label: string; href: string; children?: NavChild[] };
-
-const navItems: NavItem[] = [
-  {
-    label: "AI",
-    href: "/ai-consulting",
-    children: [
-      { label: "コンサル・DX", href: "/ai-consulting", description: "大手コンサル出身者が監修する戦略〜実装支援" },
-      { label: "顧問", href: "/advisor", description: "月5万円〜、継続的にAI活用を伴走" },
-      { label: "研修", href: "/training", description: "チームのAIリテラシーを底上げ" },
-    ],
-  },
-  { label: "補助金サポート", href: "/subsidy" },
-  { label: "Claude特化", href: "/claude" },
-  { label: "農業", href: "/ai-agriculture" },
-];
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,6 +17,23 @@ export default function Header() {
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
   const pathname = usePathname();
+  const { lang } = useLanguage();
+  const h = headerDict[lang];
+
+  const navItems: NavItem[] = [
+    {
+      label: h.navAi,
+      href: "/ai-consulting",
+      children: [
+        { label: h.navAiConsulting, href: "/ai-consulting", description: h.navAiConsultingDesc },
+        { label: h.navAdvisor, href: "/advisor", description: h.navAdvisorDesc },
+        { label: h.navTraining, href: "/training", description: h.navTrainingDesc },
+      ],
+    },
+    { label: h.navSubsidy, href: "/subsidy" },
+    { label: h.navClaude, href: "/claude" },
+    { label: h.navAgriculture, href: "/ai-agriculture" },
+  ];
   const isAgriculture = pathname?.startsWith("/ai-agriculture");
   const isClaude = pathname?.startsWith("/claude");
   const isAiConsulting =
@@ -145,13 +150,14 @@ export default function Header() {
             </nav>
 
             <div className="hidden lg:flex items-center gap-3">
+              <LanguageToggle variant="desktop" />
               <Link href="/contact"
-                className={`text-sm font-semibold px-5 py-2 rounded-lg border transition-all duration-300 ${contactOutlineClass}`}>
-                お問い合わせ
+                className={`inline-flex items-center justify-center text-sm font-semibold px-5 py-2 rounded-lg border transition-all duration-300 min-w-[120px] ${contactOutlineClass}`}>
+                {h.contact}
               </Link>
             </div>
 
-            <button onClick={() => setIsOpen(!isOpen)} className="lg:hidden p-2 z-10 min-h-[44px] min-w-[44px] flex items-center justify-center" aria-label="メニュー" aria-expanded={isOpen}>
+            <button onClick={() => setIsOpen(!isOpen)} className="lg:hidden p-2 z-10 min-h-[44px] min-w-[44px] flex items-center justify-center" aria-label={h.menuAria} aria-expanded={isOpen}>
               <div className="w-6 h-5 flex flex-col justify-between">
                 <span className={`w-full h-0.5 bg-gray-900 transition-all duration-300 ${
                   isOpen ? "rotate-45 translate-y-[9px]" : ""
@@ -187,7 +193,7 @@ export default function Header() {
                         <button
                           type="button"
                           onClick={() => setMobileExpanded(expanded ? null : item.label)}
-                          aria-label={`${item.label}のサブメニュー`}
+                          aria-label={`${item.label}${h.subMenuAria}`}
                           aria-expanded={expanded}
                           className="p-3 text-gray-500"
                         >

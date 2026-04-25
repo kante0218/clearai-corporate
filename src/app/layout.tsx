@@ -4,6 +4,7 @@ import Script from "next/script";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { LanguageProvider } from "@/lib/i18n/LanguageContext";
 
 const notoSansJP = Noto_Sans_JP({
   subsets: ["latin"],
@@ -309,9 +310,11 @@ export default function RootLayout({
   return (
     <html lang="ja" suppressHydrationWarning className={`${notoSansJP.variable} ${inter.variable}`}>
       <body className="font-sans antialiased text-navy-950 bg-white">
-        <Header />
-        <main className="min-h-screen">{children}</main>
-        <Footer />
+        <LanguageProvider>
+          <Header />
+          <main className="min-h-screen">{children}</main>
+          <Footer />
+        </LanguageProvider>
         <Script
           id="schema-organization"
           type="application/ld+json"

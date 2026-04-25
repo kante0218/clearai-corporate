@@ -14,23 +14,26 @@ const VEGGIES = [
 ] as const;
 type VeggieKey = typeof VEGGIES[number];
 
-/* Home positions chosen so each veggie sits in its own zone *outside* the
-   text rectangle (|x|<3.5, |y|<2.5 in world space) and far enough from its
-   neighbours that the ±0.5-unit zero-G drift below never overlaps them.   */
+/* Home anchors pulled inward so that, combined with the ±2-unit free
+   roaming drift below, veggies always stay inside the viewport on 16:10
+   and narrower aspect ratios. Neighbour overlap is fine — each fruit
+   orbits on its own Lissajous curve so they cross paths naturally, and
+   drifting through the centre text is allowed (the hero vignette keeps
+   the headline legible). */
 const POSITIONS: Record<VeggieKey, [number, number, number]> = {
-  // top row (y ≥ 3.5)
-  Broccoli:    [-5.5,  3.5, -1.5],
-  Strawberry:  [-1.8,  3.7, -3.5],
-  Onion:       [ 1.8,  3.7, -3.5],
-  Apple:       [ 5.5,  3.5, -1.5],
-  // bottom row (y ≤ -3.5)
-  NapaCabbage: [-5.0, -3.6, -1.0],
-  Tomato:      [-1.5, -3.7, -3.0],
-  Lemon:       [ 1.5, -3.7, -3.0],
-  Pumpkin:     [ 5.0, -3.6, -1.0],
-  // sides (|x| ≥ 6.5)
-  Grapes:      [-6.5,  0.4, -3.5],
-  Peach:       [ 6.5,  0.4, -3.5],
+  // upper band
+  Broccoli:    [-3.0,  2.6, -2.0],
+  Strawberry:  [-1.0,  3.0, -3.8],
+  Onion:       [ 1.2,  2.7, -3.4],
+  Apple:       [ 3.0,  2.4, -2.0],
+  // lower band
+  NapaCabbage: [-2.8, -2.6, -1.8],
+  Tomato:      [-0.9, -2.9, -3.2],
+  Lemon:       [ 1.1, -3.0, -3.6],
+  Pumpkin:     [ 2.8, -2.5, -2.0],
+  // mid-height sides
+  Grapes:      [-3.4,  0.0, -3.8],
+  Peach:       [ 3.4,  0.2, -3.6],
 };
 
 const SCALES: Record<VeggieKey, number> = {
@@ -209,14 +212,15 @@ function VegetableMorph({
     const t = state.clock.elapsedTime;
     powderMat.uniforms.uTime.value = t;
 
-    // zero-gravity drift + tri-axis tumble — each veggie gets a unique
-    // motion pattern via phaseOffset modulation of frequencies.
+    // zero-gravity drift + tri-axis tumble — each veggie roams freely on
+    // a slow two-component Lissajous path. Amplitudes are large enough
+    // that fruits traverse across the scene (and behind the headline),
+    // phase offsets keep their trajectories independent.
     if (groupRef.current) {
       const f = phaseOffset;
-      // drift (capped ±0.5 each axis → never crosses into neighbour zones)
-      const dx = Math.sin(t * 0.21 + f * 1.7) * 0.32 + Math.cos(t * 0.13 + f * 2.1) * 0.18;
-      const dy = Math.sin(t * 0.17 + f * 2.3) * 0.30 + Math.cos(t * 0.27 + f * 0.9) * 0.18;
-      const dz = Math.cos(t * 0.19 + f * 1.9) * 0.35;
+      const dx = Math.sin(t * 0.16 + f * 1.7) * 1.45 + Math.cos(t * 0.09 + f * 0.7) * 0.75;
+      const dy = Math.sin(t * 0.13 + f * 2.1) * 1.20 + Math.cos(t * 0.20 + f * 1.3) * 0.55;
+      const dz = Math.cos(t * 0.18 + f * 1.9) * 1.00 + Math.sin(t * 0.11 + f * 2.5) * 0.55;
       groupRef.current.position.set(position[0] + dx, position[1] + dy, position[2] + dz);
 
       // slow tri-axis tumble — like an object floating in microgravity

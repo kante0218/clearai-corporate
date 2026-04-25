@@ -37,6 +37,23 @@ html {
   -moz-osx-font-smoothing: grayscale;
   scrollbar-color: #2563eb transparent;
   scrollbar-width: thin;
+
+  /* Per-section accent colour. Consumed by the language toggle and any
+     other widget that should adapt to the current page context. */
+  --accent-solid: #2563eb;       /* blue-600  — default / AI        */
+  --accent-solid-hover: #1d4ed8; /* blue-700                        */
+}
+html[data-theme="ai"] {
+  --accent-solid: #2563eb;
+  --accent-solid-hover: #1d4ed8;
+}
+html[data-theme="agriculture"] {
+  --accent-solid: #16a34a;       /* green-600                       */
+  --accent-solid-hover: #15803d; /* green-700                       */
+}
+html[data-theme="claude"] {
+  --accent-solid: #f97316;       /* orange-500                      */
+  --accent-solid-hover: #ea580c; /* orange-600                      */
 }
 
 body {
