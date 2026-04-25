@@ -82,7 +82,7 @@ export default function Header() {
     <>
       <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${headerBg}`}>
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
-          <div className="flex items-center justify-between h-16 lg:h-18">
+          <div className="relative flex items-center justify-between h-16 lg:h-18">
             <Link href="/" className="flex items-center group">
               <Image
                 src="/images/logo.png"
@@ -96,7 +96,7 @@ export default function Header() {
               />
             </Link>
 
-            <nav className="hidden lg:flex items-center gap-6">
+            <nav className="hidden lg:flex items-center gap-6 absolute left-1/2 -translate-x-1/2">
               {navItems.map((item) => {
                 const hasChildren = item.children && item.children.length > 0;
                 const isMenuOpen = openMenu === item.label;
@@ -160,7 +160,7 @@ export default function Header() {
                 {h.docsDl}
               </Link>
               <Link href="/contact"
-                className={`inline-flex items-center justify-center text-sm font-semibold px-4 py-2 rounded-lg transition-all duration-300 ${contactFilledClass}`}>
+                className={`inline-flex items-center justify-center text-sm font-semibold px-4 py-2 rounded-lg border transition-all duration-300 ${contactOutlineClass}`}>
                 {h.contact}
               </Link>
             </div>
