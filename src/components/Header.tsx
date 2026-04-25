@@ -28,11 +28,14 @@ export default function Header() {
         { label: h.navAiConsulting, href: "/ai-consulting", description: h.navAiConsultingDesc },
         { label: h.navAdvisor, href: "/advisor", description: h.navAdvisorDesc },
         { label: h.navTraining, href: "/training", description: h.navTrainingDesc },
+        { label: h.navClaude, href: "/claude", description: h.navClaudeDesc },
       ],
     },
-    { label: h.navSubsidy, href: "/subsidy" },
-    { label: h.navClaude, href: "/claude" },
     { label: h.navAgriculture, href: "/ai-agriculture" },
+    { label: h.navSubsidy, href: "/subsidy" },
+    { label: h.navCases, href: "/case-studies" },
+    { label: h.navNews, href: "/blog" },
+    { label: h.navAbout, href: "/about" },
   ];
   const isAgriculture = pathname?.startsWith("/ai-agriculture");
   const isClaude = pathname?.startsWith("/claude");
@@ -93,7 +96,7 @@ export default function Header() {
               />
             </Link>
 
-            <nav className="hidden lg:flex items-center gap-7">
+            <nav className="hidden lg:flex items-center gap-6">
               {navItems.map((item) => {
                 const hasChildren = item.children && item.children.length > 0;
                 const isMenuOpen = openMenu === item.label;
@@ -150,9 +153,14 @@ export default function Header() {
             </nav>
 
             <div className="hidden lg:flex items-center gap-3">
+              <span className="w-px h-5 bg-gray-200" aria-hidden="true" />
               <LanguageToggle variant="desktop" />
+              <Link href="/downloads"
+                className={`inline-flex items-center justify-center text-sm font-semibold px-4 py-2 rounded-lg border transition-all duration-300 ${contactOutlineClass}`}>
+                {h.docsDl}
+              </Link>
               <Link href="/contact"
-                className={`inline-flex items-center justify-center text-sm font-semibold px-5 py-2 rounded-lg border transition-all duration-300 min-w-[120px] ${contactOutlineClass}`}>
+                className={`inline-flex items-center justify-center text-sm font-semibold px-4 py-2 rounded-lg transition-all duration-300 ${contactFilledClass}`}>
                 {h.contact}
               </Link>
             </div>
@@ -231,10 +239,16 @@ export default function Header() {
                   </div>
                 );
               })}
-              <Link href="/contact" onClick={() => setIsOpen(false)}
-                className={`block text-center px-6 py-3.5 rounded-lg text-sm font-semibold mt-6 transition-colors min-h-[44px] ${contactFilledClass}`}>
-                お問い合わせ
-              </Link>
+              <div className="grid grid-cols-2 gap-3 mt-6">
+                <Link href="/downloads" onClick={() => setIsOpen(false)}
+                  className={`block text-center px-4 py-3.5 rounded-lg text-sm font-semibold border transition-colors min-h-[44px] flex items-center justify-center ${contactOutlineClass}`}>
+                  {h.docsDl}
+                </Link>
+                <Link href="/contact" onClick={() => setIsOpen(false)}
+                  className={`block text-center px-4 py-3.5 rounded-lg text-sm font-semibold transition-colors min-h-[44px] flex items-center justify-center ${contactFilledClass}`}>
+                  {h.contact}
+                </Link>
+              </div>
             </nav>
           </div>
         </div>
