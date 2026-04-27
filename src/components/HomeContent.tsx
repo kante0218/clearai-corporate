@@ -35,7 +35,23 @@ function SectionLabel({ children }: { children: ReactNode }) {
 
 export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
   const [heroLoaded, setHeroLoaded] = useState(false);
+  const [kawasemiOpen, setKawasemiOpen] = useState(false);
   useEffect(() => { setTimeout(() => setHeroLoaded(true), 100); }, []);
+
+  useEffect(() => {
+    const openKawasemiFromHash = () => {
+      if (typeof window === "undefined") return;
+      if (window.location.hash !== "#kawasemi-project") return;
+      setKawasemiOpen(true);
+      window.requestAnimationFrame(() => {
+        const el = document.getElementById("kawasemi-project");
+        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    };
+    openKawasemiFromHash();
+    window.addEventListener("hashchange", openKawasemiFromHash);
+    return () => window.removeEventListener("hashchange", openKawasemiFromHash);
+  }, []);
 
   return (
     <>
@@ -50,7 +66,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
             中小企業と農業現場に、<br />使えるAIと実装力を。
           </h1>
           <p className="text-base text-gray-600 leading-relaxed max-w-lg mx-auto mb-10 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "700ms" }}>
-            AI導入支援と農業自動化を、戦略から実装まで支援します。<br />コンサル・顧問・研修・Claude Code導入・補助金活用・農業自動化の6領域で、現場で動くものまで責任を持ちます。
+            AI導入支援と農業自動化を、戦略から実装まで支援します。<br />コンサル・顧問・研修・Claude Code導入・広告・Web制作・補助金活用・農業自動化の8領域で、現場で動くものまで責任を持ちます。
           </p>
           <div className="flex items-center justify-center gap-4 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "900ms" }}>
             <Link href="/contact" className="rounded-lg bg-blue-600 text-white font-semibold px-8 py-3.5 hover:bg-blue-700 transition-colors duration-300">
@@ -70,7 +86,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
             <div className="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-gray-200">
               {[
                 { value: "最大75%", label: "研修費助成対応" },
-                { value: "6領域", label: "AI × 農業" },
+                { value: "8領域", label: "AI × 農業" },
                 { value: "全国対応", label: "オンライン実施可" },
                 { value: "2営業日", label: "初回返信" },
               ].map((stat) => (
@@ -331,6 +347,26 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
                 <span className="w-2 h-2 rounded-full bg-emerald-600" />農業事業
               </span>
               <span className="flex-1 h-px bg-gray-200" />
+              <button
+                type="button"
+                onClick={() => setKawasemiOpen((v) => !v)}
+                aria-expanded={kawasemiOpen}
+                aria-controls="kawasemi-project"
+                aria-label={kawasemiOpen ? "翡翠プロジェクトを閉じる" : "翡翠プロジェクトを開く"}
+                className="group inline-flex items-center justify-center w-9 h-9 rounded-full border border-emerald-200 bg-white text-emerald-700 hover:bg-emerald-50 hover:border-emerald-300 hover:shadow-sm transition-all duration-300"
+              >
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  className="transition-transform duration-500 ease-out"
+                  style={{ transform: kawasemiOpen ? "rotate(180deg)" : "rotate(0deg)" }}
+                  aria-hidden="true"
+                >
+                  <path d="M4 6l4 4 4-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
             </div>
           </Reveal>
 
@@ -408,6 +444,67 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
                 </div>
               </Link>
             </Reveal>
+          </div>
+
+          {/* ── 翡翠プロジェクト (expandable) ── */}
+          <div
+            id="kawasemi-project"
+            className="overflow-hidden transition-all duration-700 ease-out"
+            style={{
+              maxHeight: kawasemiOpen ? "1800px" : "0px",
+              opacity: kawasemiOpen ? 1 : 0,
+              marginTop: kawasemiOpen ? "5rem" : "0px",
+            }}
+            aria-hidden={!kawasemiOpen}
+          >
+            <div className="flex items-center gap-3 mb-8">
+              <span className="inline-flex items-center gap-2 text-sm font-bold text-cyan-700 bg-cyan-50 border border-cyan-200 rounded-full px-4 py-1.5 tracking-wide">
+                <span className="w-2 h-2 rounded-full bg-cyan-600" />翡翠プロジェクト
+              </span>
+              <span className="flex-1 h-px bg-gray-200" />
+            </div>
+
+            <div className="relative bg-gradient-to-br from-cyan-50 via-white to-emerald-50 border border-cyan-100 rounded-3xl p-8 lg:p-12 overflow-hidden">
+              <div className="absolute -top-16 -right-16 w-64 h-64 rounded-full bg-cyan-200/30 blur-3xl pointer-events-none" />
+              <div className="absolute -bottom-20 -left-20 w-72 h-72 rounded-full bg-emerald-200/30 blur-3xl pointer-events-none" />
+
+              <div className="relative grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-center">
+                <div className="md:col-span-7">
+                  <span className="inline-block text-xs font-semibold tracking-[0.2em] uppercase text-cyan-600 mb-4">KAWASEMI PROJECT</span>
+                  <h3 className="text-2xl lg:text-3xl xl:text-4xl font-bold text-gray-900 mb-6 leading-tight">
+                    美しい自然に、<br />日本の優秀な人を還す。
+                  </h3>
+                  <p className="text-sm lg:text-base text-gray-700 leading-relaxed mb-4">
+                    翡翠（カワセミ）は、清らかで美しい場所にしか生息しない鳥です。日本にはたくさんの優秀で素晴らしい人材がいます。その力を、日本の美しい自然を守ることにつなげていきたい——それが翡翠プロジェクトです。
+                  </p>
+                  <p className="text-sm lg:text-base text-gray-700 leading-relaxed mb-6">
+                    clearAIがお仕事を一件いただくたびに、植樹をはじめとした自然のためになる活動を続けていきます。仕事の積み重ねが、そのまま日本の自然をより豊かにしていく流れをつくります。
+                  </p>
+                  <div className="flex items-center gap-2 flex-wrap">
+                    {["植樹", "自然保護", "人材還流", "地域共生", "持続可能性"].map((tag) => (
+                      <span key={tag} className="text-xs font-medium text-cyan-700 bg-white border border-cyan-200 rounded-full px-3 py-1">{tag}</span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="md:col-span-5 flex items-center justify-center">
+                  <div className="relative w-full max-w-[280px] aspect-square">
+                    <div className="absolute inset-4 rounded-full bg-gradient-to-br from-cyan-300/40 via-emerald-200/30 to-transparent blur-2xl" />
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <span
+                        className="font-bold text-cyan-700/85 leading-none tracking-tight select-none"
+                        style={{ fontFamily: '"Hiragino Mincho ProN", "Yu Mincho", serif', fontSize: "clamp(6rem, 18vw, 9rem)" }}
+                      >
+                        翡翠
+                      </span>
+                    </div>
+                    <div className="absolute -top-2 right-6 w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+                    <div className="absolute bottom-8 -left-1 w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" style={{ animationDelay: "0.6s" }} />
+                    <div className="absolute top-1/2 right-2 w-1 h-1 rounded-full bg-cyan-300 animate-pulse" style={{ animationDelay: "1.2s" }} />
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

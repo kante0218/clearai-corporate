@@ -41,6 +41,8 @@ const mainSections = [
       { label: "AI研修", href: "/training" },
       { label: "補助金・助成金サポート", href: "/subsidy" },
       { label: "Claude特化", href: "/claude" },
+      { label: "AI広告運用", href: "/advertising" },
+      { label: "ウェブサイト作成", href: "/website" },
     ],
   },
   {

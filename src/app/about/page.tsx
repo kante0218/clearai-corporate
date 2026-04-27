@@ -35,9 +35,7 @@ function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; 
 
 const companyInfo = [
   { label: "会社名", value: "clearAI株式会社" },
-  { label: "読み方", value: "クリアエーアイ" },
   { label: "英文表記", value: "clearAI Inc." },
-  { label: "別表記", value: "clear AI / クリアAI / クリア・エーアイ / クリアーエーアイ" },
   { label: "設立", value: "2026年4月" },
   { label: "代表取締役", value: "髙橋 敢輝" },
   { label: "所在地", value: "茨城県" },
@@ -45,6 +43,16 @@ const companyInfo = [
   { label: "資本金", value: "非公開" },
   { label: "主要取引銀行", value: "非公開" },
   { label: "URL", value: "https://clearai.jp" },
+];
+
+const members = [
+  {
+    name: "髙橋 敢輝",
+    nameEn: "Kanki Takahashi",
+    role: "代表取締役 / Founder & CEO",
+    bio: "茨城県出身。AIと農業の交差点に日本の未来を見出し、2026年にclearAIを創業。誠実・伴走・翻訳・長期視点をコアバリューに、関東圏No.1のAI×地域産業ブティックを目指す。",
+    initial: "K",
+  },
 ];
 
 const timeline = [
@@ -130,10 +138,10 @@ export default function AboutPage() {
         <div className="relative max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
             <p className="text-xs font-semibold tracking-widest uppercase text-blue-400 mb-6">Vision 2030</p>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight tracking-tight mb-6 max-w-2xl">
+            <h2 className="text-3xl md:text-4xl font-bold text-white leading-tight tracking-tight mb-6 max-w-2xl">
               2030年、関東圏で<br />最も信頼されるAIパートナーへ。
             </h2>
-            <p className="text-lg text-gray-400 leading-relaxed max-w-xl mb-16">
+            <p className="text-base text-gray-400 leading-relaxed max-w-xl mb-16">
               派手な数字ではなく、一社一社の成功を積み重ねる。この3つの数字は、その結果として私たちが辿り着く約束です。
             </p>
           </Reveal>
@@ -348,7 +356,7 @@ export default function AboutPage() {
           <div className="max-w-3xl">
             <Reveal delay={80}>
               <blockquote className="border-l-4 border-blue-600 pl-8">
-                <div className="space-y-6 text-base md:text-lg text-gray-700 leading-relaxed">
+                <div className="space-y-6 text-base text-gray-700 leading-relaxed">
                   <p>
                     「なぜ農業なのか」と、よく聞かれます。
                   </p>
@@ -375,8 +383,43 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ─── 8. COMPANY INFORMATION ──────────────────────────────────────── */}
+      {/* ─── 7.5 MEMBERS ─────────────────────────────────────────────────── */}
       <section className="py-24 lg:py-32 bg-white">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <Reveal>
+            <p className="text-xs font-semibold tracking-widest uppercase text-blue-600 mb-6">Members</p>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight tracking-tight mb-6 max-w-xl">
+              メンバー
+            </h2>
+            <p className="text-base text-gray-600 leading-relaxed max-w-2xl mb-16">
+              clearAIを支えるメンバーをご紹介します。少数精鋭で、お客様一社一社に深く伴走します。
+            </p>
+          </Reveal>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
+            {members.map((m, i) => (
+              <Reveal key={m.name} delay={i * 80} className="h-full">
+                <article className="group h-full border border-gray-200 rounded-2xl p-8 bg-white hover:border-blue-300 hover:shadow-lg transition-all duration-300">
+                  <div className="flex items-center gap-5 mb-6">
+                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-white text-xl font-bold shrink-0 select-none">
+                      {m.initial}
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-bold text-gray-900 leading-tight">{m.name}</h3>
+                      <p className="text-xs text-gray-400 font-medium tracking-wide mt-0.5">{m.nameEn}</p>
+                    </div>
+                  </div>
+                  <p className="text-sm font-semibold text-blue-600 mb-3">{m.role}</p>
+                  <p className="text-sm text-gray-600 leading-relaxed">{m.bio}</p>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── 8. COMPANY INFORMATION ──────────────────────────────────────── */}
+      <section className="py-24 lg:py-32 bg-white border-t border-gray-100">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
             <p className="text-xs font-semibold tracking-widest uppercase text-blue-600 mb-6">Company</p>
@@ -398,60 +441,6 @@ export default function AboutPage() {
                 </div>
               </Reveal>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ─── 8.5 ABOUT THE NAME ──────────────────────────────────────────── */}
-      <section className="py-24 lg:py-32 bg-white border-t border-gray-100">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
-          <Reveal>
-            <p className="text-xs font-semibold tracking-widest uppercase text-blue-600 mb-6">About the Name</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight tracking-tight mb-8 max-w-xl">
-              社名「clearAI」について
-            </h2>
-          </Reveal>
-          <div className="grid md:grid-cols-2 gap-12 lg:gap-16">
-            <Reveal delay={80}>
-              <div className="space-y-5 text-base text-gray-600 leading-relaxed">
-                <p>
-                  社名「<strong className="text-gray-900">clearAI（クリアエーアイ）</strong>」は、英単語の <em>clear</em>（明確な・クリアな）と <em>AI</em>（Artificial Intelligence：人工知能）を組み合わせた造語です。
-                </p>
-                <p>
-                  正式名称は「clearAI株式会社」、英文表記は「clearAI Inc.」。日本語では「<strong>クリアエーアイ</strong>」と読み、「クリアAI」「クリア・エーアイ」「クリアーエーアイ」「クリアエイアイ」といった表記・読み方でも呼ばれることがあります。
-                </p>
-                <p>
-                  難解なAI技術を、誇張せず、分かりやすく、誠実に。企業と現場に<strong>クリアな価値</strong>を届けるという私たちの理念がこの社名に込められています。
-                </p>
-              </div>
-            </Reveal>
-            <Reveal delay={160}>
-              <div className="bg-gray-50 border border-gray-200 rounded-2xl p-8">
-                <p className="text-xs font-semibold tracking-widest text-blue-600 uppercase mb-4">Name &amp; Reading</p>
-                <dl className="space-y-4 text-sm">
-                  <div>
-                    <dt className="text-gray-500 mb-1">正式社名</dt>
-                    <dd className="text-gray-900 font-semibold">clearAI株式会社</dd>
-                  </div>
-                  <div>
-                    <dt className="text-gray-500 mb-1">読み方（ふりがな）</dt>
-                    <dd className="text-gray-900 font-semibold">クリアエーアイ かぶしきがいしゃ</dd>
-                  </div>
-                  <div>
-                    <dt className="text-gray-500 mb-1">英文表記</dt>
-                    <dd className="text-gray-900 font-semibold">clearAI Inc.</dd>
-                  </div>
-                  <div>
-                    <dt className="text-gray-500 mb-1">別表記・通称</dt>
-                    <dd className="text-gray-700">clear AI / Clear AI / クリアAI / クリア・エーアイ / クリアーエーアイ / クリアエイアイ</dd>
-                  </div>
-                  <div>
-                    <dt className="text-gray-500 mb-1">ドメイン</dt>
-                    <dd className="text-gray-900 font-semibold">clearai.jp</dd>
-                  </div>
-                </dl>
-              </div>
-            </Reveal>
           </div>
         </div>
       </section>
@@ -504,10 +493,10 @@ export default function AboutPage() {
         <div className="relative max-w-6xl mx-auto px-6 lg:px-8 text-center">
           <Reveal>
             <p className="text-xs font-semibold tracking-widest uppercase text-blue-400 mb-6">Join Us</p>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight tracking-tight mb-6 max-w-2xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold text-white leading-tight tracking-tight mb-6 max-w-2xl mx-auto">
               共に、未来をつくる<br />仲間を探しています。
             </h2>
-            <p className="text-lg text-gray-400 leading-relaxed max-w-lg mx-auto mb-12">
+            <p className="text-base text-gray-400 leading-relaxed max-w-lg mx-auto mb-12">
               clearAIのミッションに共感してくださる方、パートナー企業様、採用希望の方、まずはお気軽にご連絡ください。
             </p>
           </Reveal>
