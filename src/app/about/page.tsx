@@ -105,7 +105,7 @@ export default function AboutPage() {
     <main className="min-h-screen bg-white">
 
       {/* ─── 3. VISION 2030 ──────────────────────────────────────────────── */}
-      <section className="py-20 lg:py-28 bg-gray-950 relative overflow-hidden">
+      <section className="py-40 lg:py-56 bg-gray-950 relative overflow-hidden">
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
           <Reveal>
             <p className="text-xs font-semibold tracking-widest uppercase text-blue-400 mb-6">Vision 2030</p>
