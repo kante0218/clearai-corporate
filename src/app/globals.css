@@ -35,7 +35,7 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  scrollbar-color: #2563eb transparent;
+  scrollbar-color: var(--accent-solid) transparent;
   scrollbar-width: thin;
 
   /* Per-section accent colour. Consumed by the language toggle and any
@@ -90,11 +90,11 @@ h1, h2, h3, h4, h5, h6 {
   transition: width 0.1s linear;
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar — color follows the per-section --accent-solid (set on <html data-theme>) */
 ::-webkit-scrollbar { width: 3px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: #2563eb; border-radius: 2px; }
-::-webkit-scrollbar-thumb:hover { background: #3b82f6; }
+::-webkit-scrollbar-thumb { background: var(--accent-solid); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent-solid-hover); }
 
 ::selection { background: #2563eb; color: white; }
 
