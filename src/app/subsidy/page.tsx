@@ -272,7 +272,7 @@ export default function SubsidyPage() {
 
       {/* Simulator */}
       <section id="simulator" className="py-20 lg:py-28 bg-gradient-to-br from-amber-50 via-white to-sky-50">
-        <div className="max-w-5xl mx-auto px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>Simulator</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">実質負担額を、その場で計算。</h2>
@@ -331,7 +331,7 @@ export default function SubsidyPage() {
 
       {/* FLOW */}
       <section className="py-20 lg:py-28 bg-gray-50">
-        <div className="max-w-5xl mx-auto px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>Flow</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">申請から受給までの流れ</h2>
@@ -364,12 +364,12 @@ export default function SubsidyPage() {
 
       {/* FAQ */}
       <section className="py-20 lg:py-28 bg-white">
-        <div className="max-w-3xl mx-auto px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>FAQ</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">よくあるご質問</h2>
           </Reveal>
-          <div className="space-y-4">
+          <div className="max-w-3xl space-y-4">
             {[
               {
                 q: "人材開発支援助成金は誰でも使えますか？",
