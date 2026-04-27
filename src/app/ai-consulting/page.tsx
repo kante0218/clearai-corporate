@@ -92,7 +92,7 @@ export default function AiConsultingPage() {
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>Service Areas</Label>
-            <h2 className="text-2xl font-bold text-gray-900 mb-14">4つの支援領域</h2>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">4つの支援領域</h2>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
@@ -144,7 +144,7 @@ export default function AiConsultingPage() {
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>Process</Label>
-            <h2 className="text-2xl font-bold text-gray-900 mb-14">導入の流れ</h2>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">導入の流れ</h2>
           </Reveal>
           {[
             { num: "01", title: "ヒアリング", en: "Hearing", desc: "課題・目標の整理と現状分析を実施。現場へのインタビューも行い、本当に効果が出る領域を特定します。" },
@@ -171,7 +171,7 @@ export default function AiConsultingPage() {
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>Pricing</Label>
-            <h2 className="text-2xl font-bold text-gray-900 mb-14">料金プラン</h2>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">料金プラン</h2>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
             {[

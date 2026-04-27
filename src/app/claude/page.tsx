@@ -87,7 +87,7 @@ export default function ClaudePage() {
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>Services</Label>
-            <h2 className="text-2xl font-bold text-gray-900 mb-14">2つのサービス</h2>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">2つのサービス</h2>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
             {/* School */}
@@ -179,7 +179,7 @@ export default function ClaudePage() {
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>Curriculum</Label>
-            <h2 className="text-2xl font-bold text-gray-900 mb-14">スクールで学べること</h2>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">スクールで学べること</h2>
           </Reveal>
           {[
             { num: "01", title: "Claudeの原則", en: "Fundamentals", desc: "他のAIとの違い、得意・不得意、指示の出し方。経営者がまず押さえるべき思考の型を習得します。" },

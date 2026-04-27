@@ -78,7 +78,7 @@ export default function WebsitePage() {
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>Types</Label>
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">対応する制作タイプ</h2>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">対応する制作タイプ</h2>
             <p className="text-sm text-gray-500 mb-14 max-w-2xl leading-relaxed">
               すべての制作で「速い・直しやすい・AIに見つかる」を標準装備します。
             </p>
@@ -163,7 +163,7 @@ export default function WebsitePage() {
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>Pricing</Label>
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">料金の目安</h2>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">料金の目安</h2>
             <p className="text-sm text-gray-500 mb-14 max-w-2xl leading-relaxed">
               ページ数・機能要件・運用範囲により変動します。要件整理段階での無料お見積もりが可能です。
             </p>

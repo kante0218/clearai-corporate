@@ -202,7 +202,7 @@ export default function SubsidyPage() {
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>Programs</Label>
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">対応する3つの支援制度</h2>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">対応する3つの支援制度</h2>
             <p className="text-sm text-gray-500 mb-14 max-w-2xl leading-relaxed">
               AI研修・AI導入プロジェクトに最も適した制度を、貴社の事業ステージと目的に合わせてご提案します。
             </p>
@@ -275,7 +275,7 @@ export default function SubsidyPage() {
         <div className="max-w-5xl mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>Simulator</Label>
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">実質負担額を、その場で計算。</h2>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">実質負担額を、その場で計算。</h2>
             <p className="text-sm text-gray-500 mb-10 max-w-2xl leading-relaxed">
               受講人数・研修時間・企業規模を入れるだけ。人材開発支援助成金（事業展開等リスキリング支援コース）を前提にした概算が即座に表示されます。
             </p>
@@ -334,7 +334,7 @@ export default function SubsidyPage() {
         <div className="max-w-5xl mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>Flow</Label>
-            <h2 className="text-2xl font-bold text-gray-900 mb-14">申請から受給までの流れ</h2>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">申請から受給までの流れ</h2>
           </Reveal>
           <div className="space-y-6">
             {[

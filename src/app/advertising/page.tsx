@@ -78,7 +78,7 @@ export default function AdvertisingPage() {
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>Services</Label>
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">提供サービス</h2>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">提供サービス</h2>
             <p className="text-sm text-gray-500 mb-14 max-w-2xl leading-relaxed">
               Google広告・Meta広告・YouTube広告・LINE広告など主要媒体に対応。AIネイティブな運用フローで、人手では不可能な検証速度を実現します。
             </p>
@@ -160,7 +160,7 @@ export default function AdvertisingPage() {
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>Pricing</Label>
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">料金の目安</h2>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">料金の目安</h2>
             <p className="text-sm text-gray-500 mb-14 max-w-2xl leading-relaxed">
               月額固定＋広告費に対する成果報酬の組み合わせも可能です。詳しくはお気軽にご相談ください。
             </p>

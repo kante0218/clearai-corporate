@@ -98,7 +98,7 @@ export default function AiAgriculturePage() {
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>Roadmap</Label>
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">農業インフラから、宇宙・防衛へ。</h2>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">農業インフラから、宇宙・防衛へ。</h2>
             <p className="text-base text-gray-600 leading-relaxed max-w-2xl mb-14">
               現場の声から始める「地に足のついた自動化」を起点に、段階的に極限環境の栽培技術へと展開していきます。
             </p>
@@ -171,7 +171,7 @@ export default function AiAgriculturePage() {
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>Process</Label>
-            <h2 className="text-2xl font-bold text-gray-900 mb-14">導入の流れ</h2>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">導入の流れ</h2>
           </Reveal>
           {[
             { num: "01", title: "経営ヒアリング", en: "Hearing", desc: "現在の販路・原価構造・課題を丁寧にお聞きします。農園の強みと改善ポイントを整理し、最適な支援プランを設計します。" },

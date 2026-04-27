@@ -54,7 +54,7 @@ export default function FaqPage() {
         <div className="max-w-3xl mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>Questions</Label>
-            <h2 className="text-2xl font-bold text-gray-900 mb-14">12の質問にお答えします</h2>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">12の質問にお答えします</h2>
           </Reveal>
           <div className="space-y-3">
             {faqItems.map((f, i) => (

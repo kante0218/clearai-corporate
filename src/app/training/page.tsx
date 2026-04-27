@@ -90,7 +90,7 @@ export default function TrainingPage() {
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>Programs</Label>
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">主な研修プログラム</h2>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">主な研修プログラム</h2>
             <p className="text-sm text-gray-500 mb-14 max-w-2xl leading-relaxed">
               標準時間は助成金の要件（10時間以上）を満たす設計。貴社の目的に合わせて8h／40h／100hのボリュームで自由に組み合わせ可能です。
             </p>
@@ -229,7 +229,7 @@ export default function TrainingPage() {
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>Pricing</Label>
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">料金の目安</h2>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">料金の目安</h2>
             <p className="text-sm text-gray-500 mb-14 max-w-2xl leading-relaxed">
               下記は通常価格。助成金適用後の実質負担額は<a href="/subsidy" className="text-amber-600 font-semibold hover:underline">シミュレーター</a>でご確認いただけます。
             </p>

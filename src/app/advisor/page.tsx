@@ -80,7 +80,7 @@ export default function AdvisorPage() {
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>What We Do</Label>
-            <h2 className="text-2xl font-bold text-gray-900 mb-14">顧問として提供する内容</h2>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">顧問として提供する内容</h2>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
@@ -106,7 +106,7 @@ export default function AdvisorPage() {
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>Plans</Label>
-            <h2 className="text-2xl font-bold text-gray-900 mb-14">料金プラン</h2>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">料金プラン</h2>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
             {[
@@ -168,7 +168,7 @@ export default function AdvisorPage() {
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>Process</Label>
-            <h2 className="text-2xl font-bold text-gray-900 mb-14">開始までの流れ</h2>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">開始までの流れ</h2>
           </Reveal>
           {[
             { num: "01", title: "無料相談", en: "Consultation", desc: "貴社の現状と、顧問に期待したい役割をお伺いします（30〜45分）。" },
