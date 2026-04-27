@@ -104,41 +104,12 @@ export default function AboutPage() {
   return (
     <main className="min-h-screen bg-white">
 
-      {/* ─── MISSION NARRATIVE ───────────────────────────────────────────── */}
-      <section className="pt-32 pb-24 lg:pt-40 lg:pb-32 bg-white">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-16 lg:gap-24 items-start">
-            <Reveal>
-              <div>
-                <p className="text-xs font-semibold tracking-widest uppercase text-blue-600 mb-6">私たちのミッション</p>
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight tracking-tight">
-                  AIの力を、<br />すべての企業と、<br />すべての現場に。
-                </h2>
-              </div>
-            </Reveal>
-            <Reveal delay={120}>
-              <div className="space-y-6 text-base text-gray-600 leading-relaxed">
-                <p>
-                  日本のAI導入率は、先進国の中でも著しく低い水準に留まっています。多くの企業が「AIに興味はある」と答える一方で、実際の業務改革には至っていない。この「関心」と「実践」の間にある大きな溝こそが、私たちが解決すべき課題です。
-                </p>
-                <p>
-                  AIブームが叫ばれる一方で、現場では「何から始めればいいかわからない」「導入したが使いこなせない」という声が後を絶ちません。技術だけが先行し、実際のビジネス課題と結びついていない。そのギャップが、日本全体の競争力を蝕んでいます。
-                </p>
-                <p>
-                  clearAIは、誇張や流行に乗るのではなく、誠実かつ地に足のついたアプローチでAI活用を推進します。お客様のビジネスを深く理解し、技術を現場の言葉に翻訳し、長期的なパートナーとして伴走する——それが私たちの約束です。
-                </p>
-              </div>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
       {/* ─── 3. VISION 2030 ──────────────────────────────────────────────── */}
-      <section className="py-24 lg:py-32 bg-gray-950 relative overflow-hidden">
+      <section className="py-20 lg:py-28 bg-gray-950 relative overflow-hidden">
         <div className="relative max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
             <p className="text-xs font-semibold tracking-widest uppercase text-blue-400 mb-6">Vision 2030</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-white leading-tight tracking-tight mb-6 max-w-2xl">
+            <h2 className="text-3xl font-bold text-white leading-tight mb-6 max-w-2xl">
               2030年、関東圏で<br />最も信頼されるAIパートナーへ。
             </h2>
             <p className="text-base text-gray-400 leading-relaxed max-w-xl mb-16">
@@ -172,183 +143,12 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ─── 4. CORE VALUES ──────────────────────────────────────────────── */}
-      <section className="py-24 lg:py-32 bg-white">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
-          <Reveal>
-            <p className="text-xs font-semibold tracking-widest uppercase text-blue-600 mb-6">価値観</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight tracking-tight mb-16 max-w-xl">
-              私たちが大切にする、<br />4つの信条。
-            </h2>
-          </Reveal>
-
-          <div className="grid md:grid-cols-2 gap-6 auto-rows-fr">
-            {[
-              {
-                num: "01",
-                title: "誠実",
-                subtitle: "Integrity",
-                quote: "できないことは、できないと言う。",
-                desc: "AIは万能ではありません。誇張した提案で信頼を失うより、正直に限界を伝え、できることに全力を尽くす。それが長期的な関係の基盤です。",
-              },
-              {
-                num: "02",
-                title: "伴走",
-                subtitle: "Partnership",
-                quote: "納品して終わり、ではない。",
-                desc: "AIシステムを構築して終わりではなく、運用・改善・社内定着まで共に走り続けます。お客様の成功こそが、私たちの成功です。",
-              },
-              {
-                num: "03",
-                title: "翻訳",
-                subtitle: "Translation",
-                quote: "技術を、現場の言葉に変える。",
-                desc: "難解なAI用語を使わず、現場の方々が理解し、使いこなせる言葉で説明します。技術の民主化とは、誰もが使える言葉にすることから始まります。",
-              },
-              {
-                num: "04",
-                title: "長期視点",
-                subtitle: "Long-term View",
-                quote: "派手さより、10年続く仕組み。",
-                desc: "流行の技術を追いかけるのではなく、10年後も価値を発揮し続ける堅牢な仕組みを構築します。本質的な変革には、時間と根気が必要です。",
-              },
-            ].map((v, i) => (
-              <Reveal key={v.num} delay={i * 80} className="h-full">
-                <article className="group h-full border border-gray-200 rounded-2xl p-8 bg-white hover:border-blue-300 hover:shadow-lg transition-all duration-300 cursor-default">
-                  <div className="flex items-start gap-4 mb-5">
-                    <span className="text-4xl font-bold text-gray-100 leading-none select-none inline-block transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-2 group-hover:text-blue-500 group-hover:drop-shadow-[0_6px_12px_rgba(59,130,246,0.35)]">{v.num}</span>
-                    <div>
-                      <h3 className="text-xl font-bold text-gray-900">{v.title}</h3>
-                      <p className="text-xs text-gray-400 font-medium tracking-wide">{v.subtitle}</p>
-                    </div>
-                  </div>
-                  <p className="text-base font-bold text-blue-600 mb-3">{v.quote}</p>
-                  <p className="text-sm text-gray-600 leading-relaxed">{v.desc}</p>
-                </article>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ─── 5. WHY NOW ──────────────────────────────────────────────────── */}
-      <section className="py-24 lg:py-32 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
-          <Reveal>
-            <p className="text-xs font-semibold tracking-widest uppercase text-blue-600 mb-6">Why Now</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight tracking-tight mb-16 max-w-xl">
-              2026年、<br />日本のAI元年。
-            </h2>
-          </Reveal>
-
-          <div className="grid md:grid-cols-3 gap-6 auto-rows-fr">
-            {[
-              {
-                num: "01",
-                title: "生成AIによる生産性革命",
-                desc: "ChatGPTの登場から数年、生成AIは実験段階を超え、ビジネスの現場で実際の生産性向上を生み出す段階に入りました。今こそが、本格導入の最良のタイミングです。先手を打つ企業と出遅れる企業の差は、これから急速に拡大します。",
-              },
-              {
-                num: "02",
-                title: "労働人口減少という構造課題",
-                desc: "日本は世界有数の少子高齢化社会として、慢性的な労働力不足に直面しています。AIによる自動化・効率化は、もはや選択肢ではなく必須の経営戦略です。特に農業・製造業・サービス業での人手不足は深刻です。",
-              },
-              {
-                num: "03",
-                title: "海外との技術ギャップの拡大",
-                desc: "米国・中国・欧州のAI活用は日本を大きく上回るペースで進んでいます。このまま手をこまねいていれば、日本企業の国際競争力はさらに低下します。今すぐ動き出した企業だけが、次の10年を生き残れます。",
-              },
-            ].map((r, i) => (
-              <Reveal key={r.num} delay={i * 80} className="h-full">
-                <div className="group h-full bg-white border border-gray-200 rounded-2xl p-8 hover:border-blue-300 hover:shadow-lg transition-all duration-300 cursor-default">
-                  <span className="block text-5xl font-bold text-gray-100 mb-4 leading-none select-none transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-2 group-hover:text-blue-500 group-hover:drop-shadow-[0_8px_16px_rgba(59,130,246,0.35)]">{r.num}</span>
-                  <h3 className="text-lg font-bold text-gray-900 mb-4">{r.title}</h3>
-                  <p className="text-sm text-gray-600 leading-relaxed">{r.desc}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ─── 6. BUSINESS AREAS ───────────────────────────────────────────── */}
-      <section className="py-24 lg:py-32 bg-white">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
-          <Reveal>
-            <p className="text-xs font-semibold tracking-widest uppercase text-blue-600 mb-6">事業領域</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight tracking-tight mb-16 max-w-xl">
-              2つの事業で、<br />日本を変える。
-            </h2>
-          </Reveal>
-
-          <div className="grid md:grid-cols-2 gap-6">
-            <Reveal delay={0}>
-              <article className="border-2 border-blue-600 rounded-2xl p-8 md:p-10 flex flex-col h-full">
-                <div className="mb-6">
-                  <span className="inline-block text-xs font-semibold tracking-widest uppercase text-blue-600 border border-blue-200 bg-blue-50 rounded-full px-4 py-1.5 mb-4">事業 01</span>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">AIコンサルティング</h3>
-                  <p className="text-base font-semibold text-blue-600">戦略から実装まで、一気通貫で伴走する。</p>
-                </div>
-                <ul className="space-y-3 mb-8 flex-1">
-                  {[
-                    "AI戦略策定・ロードマップ設計",
-                    "業務自動化・プロセス変革の実装支援",
-                    "社内AI人材育成・研修プログラム",
-                    "導入後の継続的な改善・運用サポート",
-                  ].map((item) => (
-                    <li key={item} className="flex items-start gap-3 text-sm text-gray-600">
-                      <span className="mt-0.5 w-1.5 h-1.5 rounded-full bg-blue-600 shrink-0" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  href="/ai-consulting"
-                  className="inline-flex items-center gap-2 text-sm font-bold text-blue-600 hover:gap-3 transition-all duration-200"
-                >
-                  詳しく見る <span aria-hidden>→</span>
-                </Link>
-              </article>
-            </Reveal>
-
-            <Reveal delay={80}>
-              <article className="border-2 border-emerald-600 rounded-2xl p-8 md:p-10 flex flex-col h-full">
-                <div className="mb-6">
-                  <span className="inline-block text-xs font-semibold tracking-widest uppercase text-emerald-600 border border-emerald-200 bg-emerald-50 rounded-full px-4 py-1.5 mb-4">事業 02</span>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">農業×エンジニアリング</h3>
-                  <p className="text-base font-semibold text-emerald-600">エンジニアの力で、農家の経営を支える。</p>
-                </div>
-                <ul className="space-y-3 mb-8 flex-1">
-                  {[
-                    "農家向けEC・ネット販売サイト構築",
-                    "利益率改善コンサルティング",
-                    "受発注・顧客管理の業務効率化",
-                    "ブランディング・マーケティング支援",
-                  ].map((item) => (
-                    <li key={item} className="flex items-start gap-3 text-sm text-gray-600">
-                      <span className="mt-0.5 w-1.5 h-1.5 rounded-full bg-emerald-600 shrink-0" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  href="/ai-agriculture"
-                  className="inline-flex items-center gap-2 text-sm font-bold text-emerald-600 hover:gap-3 transition-all duration-200"
-                >
-                  詳しく見る <span aria-hidden>→</span>
-                </Link>
-              </article>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
       {/* ─── 7. LEADERSHIP MESSAGE ───────────────────────────────────────── */}
-      <section className="py-24 lg:py-32 bg-gray-50">
+      <section className="py-20 lg:py-28 bg-gray-50">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
             <p className="text-xs font-semibold tracking-widest uppercase text-blue-600 mb-6">Message</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight tracking-tight mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-12">
               代表取締役メッセージ
             </h2>
           </Reveal>
@@ -384,11 +184,11 @@ export default function AboutPage() {
       </section>
 
       {/* ─── 7.5 MEMBERS ─────────────────────────────────────────────────── */}
-      <section className="py-24 lg:py-32 bg-white">
+      <section className="py-20 lg:py-28 bg-white">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
             <p className="text-xs font-semibold tracking-widest uppercase text-blue-600 mb-6">Members</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight tracking-tight mb-6 max-w-xl">
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-6 max-w-xl">
               メンバー
             </h2>
             <p className="text-base text-gray-600 leading-relaxed max-w-2xl mb-16">
@@ -419,11 +219,11 @@ export default function AboutPage() {
       </section>
 
       {/* ─── 8. COMPANY INFORMATION ──────────────────────────────────────── */}
-      <section className="py-24 lg:py-32 bg-white border-t border-gray-100">
+      <section className="py-20 lg:py-28 bg-white border-t border-gray-100">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
             <p className="text-xs font-semibold tracking-widest uppercase text-blue-600 mb-6">Company</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight tracking-tight mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-12">
               企業情報
             </h2>
           </Reveal>
@@ -446,11 +246,11 @@ export default function AboutPage() {
       </section>
 
       {/* ─── 9. HISTORY / TIMELINE ───────────────────────────────────────── */}
-      <section className="py-24 lg:py-32 bg-gray-50">
+      <section className="py-20 lg:py-28 bg-gray-50">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
             <p className="text-xs font-semibold tracking-widest uppercase text-blue-600 mb-6">History</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight tracking-tight mb-16">
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-16">
               沿革
             </h2>
           </Reveal>
@@ -488,12 +288,12 @@ export default function AboutPage() {
       </section>
 
       {/* ─── 10. CTA ─────────────────────────────────────────────────────── */}
-      <section className="py-24 lg:py-32 bg-gray-950 relative overflow-hidden">
+      <section className="py-20 lg:py-28 bg-gray-950 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-950/40 to-gray-950 pointer-events-none" />
         <div className="relative max-w-6xl mx-auto px-6 lg:px-8 text-center">
           <Reveal>
             <p className="text-xs font-semibold tracking-widest uppercase text-blue-400 mb-6">Join Us</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-white leading-tight tracking-tight mb-6 max-w-2xl mx-auto">
+            <h2 className="text-3xl font-bold text-white leading-tight mb-6 max-w-2xl mx-auto">
               共に、未来をつくる<br />仲間を探しています。
             </h2>
             <p className="text-base text-gray-400 leading-relaxed max-w-lg mx-auto mb-12">

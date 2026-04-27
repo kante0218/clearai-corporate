@@ -81,7 +81,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
 
       {/* ═══ TRUST METRICS ═══ */}
       <section className="py-12 bg-white border-b border-gray-100">
-        <div className="max-w-5xl mx-auto px-6">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
             <div className="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-gray-200">
               {[
@@ -102,11 +102,11 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
 
       {/* ═══ VISION ═══ */}
       <section className="py-20 lg:py-28 bg-white">
-        <div className="max-w-5xl mx-auto px-6 lg:px-10">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-start">
             <Reveal>
               <SectionLabel>Our Vision</SectionLabel>
-              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-6">
+              <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-6">
                 AIを、日本の現場へ届ける。
               </h2>
             </Reveal>
@@ -143,10 +143,10 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
 
       {/* ═══ ENTRY PRODUCTS ═══ */}
       <section className="py-20 lg:py-28 bg-white border-t border-gray-100">
-        <div className="max-w-6xl mx-auto px-6 lg:px-10">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
             <SectionLabel>Get Started</SectionLabel>
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4">
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">
               まずは、小さく始められます。
             </h2>
             <p className="text-base text-gray-500 mb-14 max-w-2xl leading-relaxed">
@@ -211,10 +211,10 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
 
       {/* ═══ SERVICES ═══ */}
       <section id="services" className="py-20 lg:py-28 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
             <SectionLabel>Our Services</SectionLabel>
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4">
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">
               AIと農業で、日本の未来をつくる。
             </h2>
             <p className="text-base text-gray-500 mb-14 max-w-2xl leading-relaxed">
@@ -237,7 +237,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
               <Link href="/ai-consulting" className="group block h-full">
                 <div className="bg-white border border-gray-200 rounded-2xl p-8 lg:p-10 hover:border-blue-300 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
                   <span className="inline-block text-xs font-semibold tracking-widest uppercase text-blue-600 mb-4">AI 01</span>
-                  <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-4">AIコンサルティング</h3>
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">AIコンサルティング</h3>
                   <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">
                     戦略策定から実装・運用まで。日本企業のAI活用を、ヒアリングから定着まで一気通貫で伴走します。
                   </p>
@@ -257,7 +257,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
               <Link href="/contact?service=advisor" className="group block h-full">
                 <div className="bg-white border border-gray-200 rounded-2xl p-8 lg:p-10 hover:border-indigo-300 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
                   <span className="inline-block text-xs font-semibold tracking-widest uppercase text-indigo-600 mb-4">AI 02</span>
-                  <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-4">AI顧問 ＋ ウェブサイト監修</h3>
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">AI顧問 ＋ ウェブサイト監修</h3>
                   <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">
                     外部AI顧問として、月次で経営・業務・Web改善を伴走支援します。戦略の壁打ちから現場の改善提案まで、業務委託契約ベースで継続的に関与します。
                   </p>
@@ -283,7 +283,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
                     補助金 最大75%OFF
                   </span>
                   <span className="inline-block text-xs font-semibold tracking-widest uppercase text-amber-600 mb-4">AI 03</span>
-                  <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-4">AI導入・教育</h3>
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">AI導入・教育</h3>
                   <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">
                     現場で使えるAIリテラシーを組織に根付かせる。導入研修から部門別ワークショップ、実務適用まで、社員が主役になる学習プログラムを設計・提供します。
                   </p>
@@ -303,7 +303,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
               <Link href="/contact?service=ceo" className="group block h-full">
                 <div className="bg-white border border-gray-200 rounded-2xl p-8 lg:p-10 hover:border-violet-300 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
                   <span className="inline-block text-xs font-semibold tracking-widest uppercase text-violet-600 mb-4">AI 04</span>
-                  <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-4">CEO向けAI活用</h3>
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">CEO向けAI活用</h3>
                   <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">
                     経営判断のための情報整理・仮説整理・ドラフト作成を支援します。市場分析から戦略の壁打ち、役員会資料の下書きまで、CEOのインプットと意思決定を加速する専属サポートです。
                   </p>
@@ -323,7 +323,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
               <Link href="/contact?service=claude-code" className="group block h-full">
                 <div className="bg-white border border-gray-200 rounded-2xl p-8 lg:p-10 hover:border-orange-300 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
                   <span className="inline-block text-xs font-semibold tracking-widest uppercase text-orange-600 mb-4">AI 05</span>
-                  <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-4">Claude Code特化導入</h3>
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">Claude Code特化導入</h3>
                   <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">
                     開発組織の生産性を最大化するClaude Code導入支援。環境構築・社内ルール整備・MCP/サブエージェント設計・運用定着まで、エンジニアリング現場に特化して伴走します。
                   </p>
@@ -375,7 +375,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
               <Link href="/ai-agriculture" className="group block h-full">
                 <div className="bg-white border border-gray-200 rounded-2xl p-8 lg:p-10 hover:border-emerald-300 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
                   <span className="inline-block text-xs font-semibold tracking-widest uppercase text-emerald-600 mb-4">AGRI 01</span>
-                  <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-4">インフラ設備の自動化</h3>
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">インフラ設備の自動化</h3>
                   <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">
                     灌漑・換気・温度管理など農業インフラをIoTとソフトウェアで自動制御。人手に頼らず安定した栽培環境を実現し、省力化とコスト削減を両立します。
                   </p>
@@ -395,7 +395,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
               <Link href="/contact?service=agriculture-import" className="group block h-full">
                 <div className="bg-white border border-gray-200 rounded-2xl p-8 lg:p-10 hover:border-emerald-300 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
                   <span className="inline-block text-xs font-semibold tracking-widest uppercase text-emerald-600 mb-4">AGRI 02</span>
-                  <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-4">海外製部品の輸入・取り付け・保守</h3>
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">海外製部品の輸入・取り付け・保守</h3>
                   <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">
                     海外の先端農業機器・部品を調達し、現場への取り付けから運用・保守点検までワンストップで対応。国内では手に入りにくい高性能パーツを、安心の日本語サポート付きで提供します。
                   </p>
@@ -415,7 +415,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
               <Link href="/contact?service=agriculture-extreme" className="group block h-full">
                 <div className="bg-white border border-gray-200 rounded-2xl p-8 lg:p-10 hover:border-emerald-300 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
                   <span className="inline-block text-xs font-semibold tracking-widest uppercase text-emerald-600 mb-4">AGRI 03</span>
-                  <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-4">極限空間での栽培</h3>
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">極限空間での栽培</h3>
                   <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">
                     砂漠・寒冷地・都市部の地下空間など、従来不可能とされた環境での栽培を技術で実現。環境制御技術と独自ノウハウで、場所を選ばない食料生産の可能性を拓きます。
                   </p>
@@ -432,7 +432,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
               <Link href="/contact?service=agriculture-physical-ai" className="group block h-full">
                 <div className="bg-white border border-gray-200 rounded-2xl p-8 lg:p-10 hover:border-emerald-300 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
                   <span className="inline-block text-xs font-semibold tracking-widest uppercase text-emerald-600 mb-4">AGRI 04</span>
-                  <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-4">フィジカルAIによる自動化</h3>
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">フィジカルAIによる自動化</h3>
                   <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">
                     ロボティクスとAIを融合し、収穫・選別・搬送などの農作業を自動化。フィジカルAIが人手不足の現場を支え、生産性と品質の両面を飛躍的に向上させます。
                   </p>
@@ -511,10 +511,10 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
 
       {/* ═══ APPROACH ═══ */}
       <section className="py-20 lg:py-28 bg-white">
-        <div className="max-w-5xl mx-auto px-6 lg:px-10">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
             <SectionLabel>Our Approach</SectionLabel>
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-14">
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">
               私たちが大切にする3つのこと
             </h2>
           </Reveal>
@@ -538,10 +538,10 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
 
       {/* ═══ TEAM / 体制 ═══ */}
       <section className="py-20 lg:py-28 bg-white">
-        <div className="max-w-5xl mx-auto px-6 lg:px-10">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
             <SectionLabel>Our Team</SectionLabel>
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4">
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">
               戦略から実装・運用まで、<br className="hidden sm:inline" />信頼できるプロフェッショナルが担います。
             </h2>
             <p className="text-base text-gray-500 mb-14 max-w-2xl leading-relaxed">
@@ -585,10 +585,10 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
 
       {/* ═══ TECH STACK ═══ */}
       <section className="py-20 lg:py-28 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-6 lg:px-10">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
             <SectionLabel>Tech Stack</SectionLabel>
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">使用技術</h2>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">使用技術</h2>
             <p className="text-base text-gray-500 max-w-xl leading-relaxed mb-14">
               中小企業でも安心して導入できるよう、実績・安定性・サポート体制が確立された技術のみを採用しています。
             </p>
@@ -690,11 +690,11 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
 
       {/* ═══ NEWS / BLOG ═══ */}
       <section className="py-20 lg:py-28 bg-white">
-        <div className="max-w-5xl mx-auto px-6 lg:px-10">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="flex items-end justify-between mb-12">
             <div>
               <SectionLabel>News</SectionLabel>
-              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900">お知らせ</h2>
+              <h2 className="text-3xl font-bold text-gray-900 leading-tight">お知らせ</h2>
             </div>
             <Link href="/blog" className="hidden sm:inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:text-blue-700 transition-colors">
               一覧を見る →
@@ -713,7 +713,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
           <Reveal>
             <div className="text-center mb-12">
               <SectionLabel>Contact</SectionLabel>
-              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-6">
+              <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-6">
                 まずは、お話ししませんか。
               </h2>
               <p className="text-base text-gray-600 leading-relaxed max-w-lg mx-auto">
