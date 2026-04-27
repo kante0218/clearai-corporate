@@ -38,7 +38,7 @@ export default function Header() {
       href: "/ai-agriculture",
       children: [
         { label: h.navAgricultureEngineering, href: "/ai-agriculture", description: h.navAgricultureEngineeringDesc },
-        { label: h.navKawasemi, href: "/#kawasemi-project", description: h.navKawasemiDesc },
+        { label: h.navKawasemi, href: "/ai-agriculture/kawasemi", description: h.navKawasemiDesc },
       ],
     },
     { label: h.navSubsidy, href: "/subsidy" },
