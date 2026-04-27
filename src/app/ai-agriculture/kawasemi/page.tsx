@@ -48,7 +48,7 @@ export default function KawasemiPage() {
   return (
     <>
       {/* SECTION 1 — HERO */}
-      <section className="relative min-h-[92vh] flex items-center justify-center overflow-hidden bg-[#0a1410]">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0a1410]">
         {/* layered radial gradients to evoke清流・森 */}
         <div
           className="absolute inset-0 z-[1] pointer-events-none"
@@ -68,50 +68,43 @@ export default function KawasemiPage() {
 
         <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
           <span
-            className="inline-block rounded-full bg-emerald-500/10 ring-1 ring-emerald-300/40 backdrop-blur-sm text-emerald-200 px-4 py-1.5 text-xs font-semibold tracking-[0.2em] uppercase mb-8 transition-all duration-1000"
+            className="inline-block rounded-full bg-emerald-500/15 ring-1 ring-emerald-400/40 backdrop-blur-sm text-emerald-300 px-3 py-1 text-sm font-semibold mb-6 transition-all duration-700"
             style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "300ms" }}
           >
             Kawasemi Project
           </span>
           <h1
-            className="text-4xl md:text-6xl font-bold text-white leading-[1.2] mb-8 transition-all duration-1000 [text-shadow:0_2px_28px_rgba(0,0,0,0.7)]"
+            className="text-4xl md:text-5xl font-bold text-white leading-tight mb-6 transition-all duration-700 [text-shadow:0_2px_24px_rgba(0,0,0,0.6)]"
             style={{
               opacity: heroLoaded ? 1 : 0,
-              transform: heroLoaded ? "translateY(0)" : "translateY(28px)",
+              transform: heroLoaded ? "translateY(0)" : "translateY(24px)",
               transitionDelay: "500ms",
             }}
           >
             優秀な若者が、<br />一次産業の未来を継ぐ。
           </h1>
           <p
-            className="text-base md:text-lg text-gray-300 leading-[2] max-w-xl mx-auto mb-12 transition-all duration-1000 [text-shadow:0_1px_8px_rgba(0,0,0,0.5)]"
+            className="text-base text-gray-300 leading-relaxed max-w-lg mx-auto mb-10 transition-all duration-700 [text-shadow:0_1px_8px_rgba(0,0,0,0.5)]"
             style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "700ms" }}
           >
             農業、林業、漁業。<br />
-            この国の自然と地域を支えてきた仕事を、<br />
-            次の世代へ手渡すための実践型プロジェクト。
+            この国の自然と地域を支えてきた仕事を、次の世代へ手渡すための実践型プロジェクト。
           </p>
           <div
-            className="flex flex-wrap items-center justify-center gap-3 md:gap-4 transition-all duration-1000"
+            className="flex items-center justify-center gap-4 transition-all duration-700"
             style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "900ms" }}
           >
             <a
               href="#about"
-              className="rounded-lg bg-emerald-500 text-white font-semibold px-7 py-3.5 hover:bg-emerald-400 shadow-[0_0_40px_rgba(16,185,129,0.35)] transition-all duration-300"
+              className="rounded-lg bg-emerald-500 text-white font-semibold px-8 py-3.5 hover:bg-emerald-400 shadow-[0_0_40px_rgba(16,185,129,0.4)] transition-all duration-300"
             >
               プロジェクトについて知る
             </a>
             <a
               href="#join"
-              className="rounded-lg border border-emerald-300/40 text-emerald-100 font-semibold px-7 py-3.5 hover:bg-emerald-500/10 transition-all duration-300"
+              className="text-sm text-gray-300 font-semibold hover:text-white transition-colors duration-300"
             >
-              参加を検討する
-            </a>
-            <a
-              href="/contact"
-              className="rounded-lg text-sm text-gray-300 font-semibold px-4 py-3.5 hover:text-white transition-colors duration-300"
-            >
-              応援・連携する →
+              参加を検討する →
             </a>
           </div>
         </div>
