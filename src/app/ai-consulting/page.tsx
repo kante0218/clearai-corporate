@@ -257,27 +257,6 @@ export default function AiConsultingPage() {
                 { name: "WooCommerce", icon: "logos:woocommerce-icon" },
                 { name: "Amazon Pay", icon: "simple-icons:amazonpay", color: "FF9900" },
               ]},
-              { category: "DevOps", label: "DevOps・運用", items: [
-                { name: "GitHub", icon: "logos:github-icon" },
-                { name: "Actions", icon: "logos:github-actions" },
-                { name: "Terraform", icon: "logos:terraform-icon" },
-                { name: "Datadog", icon: "logos:datadog-icon" },
-                { name: "Sentry", icon: "logos:sentry-icon" },
-              ]},
-              { category: "Data / Analytics", label: "データ基盤・分析", items: [
-                { name: "Snowflake", icon: "logos:snowflake-icon" },
-                { name: "BigQuery", icon: "simple-icons:googlebigquery", color: "669DF6" },
-                { name: "Databricks", icon: "simple-icons:databricks", color: "FF3621" },
-                { name: "Kafka", icon: "logos:kafka-icon" },
-                { name: "Elasticsearch", icon: "logos:elasticsearch" },
-              ]},
-              { category: "Enterprise / Security", label: "エンタープライズ・セキュリティ", items: [
-                { name: "Azure", icon: "logos:microsoft-azure" },
-                { name: "Kubernetes", icon: "logos:kubernetes" },
-                { name: "Auth0", icon: "logos:auth0-icon" },
-                { name: "Okta", icon: "simple-icons:okta", color: "007DC1" },
-                { name: "Vault", icon: "logos:vault-icon" },
-              ]},
               { category: "Business Integrations", label: "業務連携・コラボレーション", items: [
                 { name: "Salesforce", icon: "logos:salesforce" },
                 { name: "Slack", icon: "logos:slack-icon" },

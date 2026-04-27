@@ -94,8 +94,8 @@ const timeline = [
   },
   {
     year: "2030年（目標）",
-    title: "売上500億円 / 支援企業120社 / 関東圏No.1ブティック",
-    description: "粗利率50%超・継続率95%の「質を伴う500億円」を達成。茨城発、AI×地域産業の専門ブティックとして関東圏での確固たる地位を築く。",
+    title: "売上1000億円 / 支援企業120社 / 関東圏No.1ブティック",
+    description: "粗利率50%超・継続率95%の「質を伴う1000億円」を達成。茨城発、AI×地域産業の専門ブティックとして関東圏での確固たる地位を築く。",
     future: true,
   },
 ];
@@ -149,9 +149,9 @@ export default function AboutPage() {
           <div className="grid md:grid-cols-3 gap-8">
             <Reveal delay={0}>
               <div className="border border-white/10 rounded-2xl p-8 bg-white/5">
-                <p className="text-4xl lg:text-5xl font-bold text-white mb-2">500億円</p>
+                <p className="text-4xl lg:text-5xl font-bold text-white mb-2">1000億円</p>
                 <p className="text-sm font-semibold text-blue-400 mb-3">目標売上高（2030年）</p>
-                <p className="text-sm text-gray-400 leading-relaxed">粗利率50%超・継続率95%の「質を伴う500億円」。派手な数字ではなく、一社一社の成功を積み重ねた結果としての売上です。</p>
+                <p className="text-sm text-gray-400 leading-relaxed">粗利率50%超・継続率95%の「質を伴う1000億円」。派手な数字ではなく、一社一社の成功を積み重ねた結果としての売上です。</p>
               </div>
             </Reveal>
             <Reveal delay={80}>

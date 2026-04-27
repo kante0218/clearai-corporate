@@ -568,7 +568,7 @@ export const about = {
     heroTitleLine2: "産業構造を、書き換える。",
     heroDescLine1: "clearAIは、人工知能の力を真に必要としている現場へ届けるため創業しました。",
     heroDescLine2: "大企業だけのものではない、すべての産業のためのAIを。",
-    heroStat1: "500億円",
+    heroStat1: "1000億円",
     heroStat1Label: "2030年 売上目標",
     heroStat2: "120社",
     heroStat2Label: "支援目標企業数",
@@ -589,9 +589,9 @@ export const about = {
       "派手な数字ではなく、一社一社の成功を積み重ねる。この3つの数字は、その結果として私たちが辿り着く約束です。",
     vision: [
       {
-        num: "500億円",
+        num: "1000億円",
         label: "目標売上高（2030年）",
-        desc: "粗利率50%超・継続率95%の「質を伴う500億円」。派手な数字ではなく、一社一社の成功を積み重ねた結果としての売上です。",
+        desc: "粗利率50%超・継続率95%の「質を伴う1000億円」。派手な数字ではなく、一社一社の成功を積み重ねた結果としての売上です。",
       },
       {
         num: "120社",
@@ -686,7 +686,7 @@ export const about = {
       "「なぜ農業なのか」と、よく聞かれます。",
       "私がAIと農業の掛け合わせに可能性を見出したのは、日本の農業現場が抱える課題の深刻さと、そこにあるテクノロジーへの渇望を目の当たりにしたからです。高齢化する農家の方々、引き継ぎ手のない農地、気候変動による収穫の不安定さ——これらの問題は、決して農業だけの話ではありません。日本の食の安全保障そのものです。",
       "同時に、日本の企業全体を見渡したとき、AI活用における途方もない機会損失が見えました。「AIは大企業のもの」「自分たちには難しすぎる」という思い込みが、多くの中堅・中小企業の可能性を閉ざしています。その壁を壊したい。",
-      "clearAIという名前には、「明確な（clear）AI」という意味を込めています。難解な技術を分かりやすく、誠実に、現場に根ざした形で届ける会社でありたい。2030年に売上500億円という目標は、決して小さくはありません。しかし、粗利率50%超・顧客継続率95%という「質を伴った500億円」は、無理に積み上げた数字ではなく、一社一社の成功の積み重ねとして達成する。次の1000億円、1兆円へと続く揺るぎない踏み台になると信じています。",
+      "clearAIという名前には、「明確な（clear）AI」という意味を込めています。難解な技術を分かりやすく、誠実に、現場に根ざした形で届ける会社でありたい。2030年に売上1000億円という目標は、決して小さくはありません。しかし、粗利率50%超・顧客継続率95%という「質を伴った1000億円」は、無理に積み上げた数字ではなく、一社一社の成功の積み重ねとして達成する。次の1兆円へと続く揺るぎない踏み台になると信じています。",
       "まだ小さな会社です。でも、大きなビジョンがあります。共に歩んでいただける仲間、パートナー、お客様を、心からお待ちしています。",
     ],
     messageSigTitle: "clearAI株式会社 代表取締役",
@@ -771,9 +771,9 @@ export const about = {
       },
       {
         year: "2030年（目標）",
-        title: "売上500億円 / 支援企業120社 / 関東圏No.1ブティック",
+        title: "売上1000億円 / 支援企業120社 / 関東圏No.1ブティック",
         description:
-          "粗利率50%超・継続率95%の「質を伴う500億円」を達成。茨城発、AI×地域産業の専門ブティックとして関東圏での確固たる地位を築く。",
+          "粗利率50%超・継続率95%の「質を伴う1000億円」を達成。茨城発、AI×地域産業の専門ブティックとして関東圏での確固たる地位を築く。",
         future: true,
       },
     ],
@@ -792,7 +792,7 @@ export const about = {
     heroDescLine1:
       "clearAI was founded to bring AI to the front lines that actually need it.",
     heroDescLine2: "AI for every industry — not just large enterprises.",
-    heroStat1: "JPY 50B",
+    heroStat1: "JPY 100B",
     heroStat1Label: "2030 revenue target",
     heroStat2: "120",
     heroStat2Label: "Target companies served",
@@ -813,9 +813,9 @@ export const about = {
       "Not flashy numbers — compounding wins, one company at a time. These three figures are the promise we'll reach by doing exactly that.",
     vision: [
       {
-        num: "JPY 50B",
+        num: "JPY 100B",
         label: "Revenue target (2030)",
-        desc: "A 'JPY 50 billion with quality': 50%+ gross margin, 95% retention. Not a number forced into a spreadsheet — the result of one-by-one customer success.",
+        desc: "A 'JPY 100 billion with quality': 50%+ gross margin, 95% retention. Not a number forced into a spreadsheet — the result of one-by-one customer success.",
       },
       {
         num: "120",
@@ -911,7 +911,7 @@ export const about = {
       "I'm often asked, 'Why agriculture?'",
       "I came to see the potential of AI × agriculture by standing on the ground — the depth of the problems Japanese farms face, and their thirst for technology. Aging farmers, fields with no successor, harvests destabilized by climate change — these aren't only about agriculture. They are Japan's food security itself.",
       "At the same time, looking across Japanese companies, I saw enormous opportunity cost in AI adoption. 'AI is for big companies.' 'It's too hard for us.' Those beliefs close the door on possibility for many mid-market and small businesses. I want to break that wall.",
-      "The name clearAI carries the meaning of 'clear AI.' We want to deliver difficult technology clearly, honestly, and grounded in the field. A JPY 50 billion revenue target by 2030 is not small. But 'JPY 50B with quality' — 50%+ gross margin, 95% retention — will be achieved by stacking one customer success on another. I believe it becomes an unshakeable springboard to the next JPY 100B and JPY 1T.",
+      "The name clearAI carries the meaning of 'clear AI.' We want to deliver difficult technology clearly, honestly, and grounded in the field. A JPY 100 billion revenue target by 2030 is not small. But 'JPY 100B with quality' — 50%+ gross margin, 95% retention — will be achieved by stacking one customer success on another. I believe it becomes an unshakeable springboard to the next JPY 1T.",
       "We're still a small company, but the vision is large. We warmly welcome teammates, partners, and customers who'd like to walk alongside us.",
     ],
     messageSigTitle: "clearAI Inc., CEO",
@@ -1003,9 +1003,9 @@ export const about = {
       },
       {
         year: "2030 (goal)",
-        title: "JPY 50B revenue / 120 clients / #1 boutique in Kanto",
+        title: "JPY 100B revenue / 120 clients / #1 boutique in Kanto",
         description:
-          "'JPY 50B with quality' at 50%+ gross margin and 95% retention. A Kanto-region boutique rooted in Ibaraki, leading at the intersection of AI and regional industry.",
+          "'JPY 100B with quality' at 50%+ gross margin and 95% retention. A Kanto-region boutique rooted in Ibaraki, leading at the intersection of AI and regional industry.",
         future: true,
       },
     ],
