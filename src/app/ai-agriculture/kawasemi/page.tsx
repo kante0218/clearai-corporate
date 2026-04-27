@@ -69,15 +69,6 @@ export default function KawasemiPage() {
               "linear-gradient(180deg, rgba(10,20,16,0.35) 0%, rgba(10,20,16,0.55) 55%, rgba(10,20,16,0.85) 100%)",
           }}
         />
-        {/* subtle grid texture */}
-        <div
-          className="absolute inset-0 z-[1] pointer-events-none opacity-[0.05]"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)",
-            backgroundSize: "64px 64px",
-          }}
-        />
 
         <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
           <span
