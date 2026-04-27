@@ -347,7 +347,7 @@ export default function SubsidyPage() {
             ].map((f, i) => (
               <Reveal key={f.step} delay={i * 60}>
                 <div className="bg-white rounded-2xl border border-gray-200 p-6 lg:p-8 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
-                  <div className="flex-shrink-0">
+                  <div className="flex-shrink-0 sm:w-40">
                     <span className="inline-block text-xs font-bold text-amber-600 tracking-widest mb-1">{f.step}</span>
                     <p className="text-xs text-gray-400">{f.duration}</p>
                   </div>
