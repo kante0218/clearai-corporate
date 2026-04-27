@@ -208,7 +208,7 @@ export default function AiConsultingPage() {
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>Tech Stack</Label>
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">使用技術</h2>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">使用技術</h2>
             <p className="text-base text-gray-500 max-w-xl leading-relaxed mb-14">
               中小企業でも安心して導入できるよう、実績・安定性・サポート体制が確立された技術のみを採用しています。
             </p>
