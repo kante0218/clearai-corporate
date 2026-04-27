@@ -583,7 +583,7 @@ export const about = {
     missionBody3:
       "clearAIは、誇張や流行に乗るのではなく、誠実かつ地に足のついたアプローチでAI活用を推進します。お客様のビジネスを深く理解し、技術を現場の言葉に翻訳し、長期的なパートナーとして伴走する——それが私たちの約束です。",
     visionLabel: "Vision 2030",
-    visionTitleLine1: "2030年、関東圏で",
+    visionTitleLine1: "2030年、関東・東北で",
     visionTitleLine2: "最も信頼されるAIパートナーへ。",
     visionDesc:
       "派手な数字ではなく、一社一社の成功を積み重ねる。この3つの数字は、その結果として私たちが辿り着く約束です。",
@@ -599,9 +599,9 @@ export const about = {
         desc: "うちAI顧問契約40社・継続支援60社。広く浅くではなく、深く長く伴走できる関係性を築きます。",
       },
       {
-        num: "関東圏",
+        num: "関東・東北",
         label: "事業展開エリア",
-        desc: "茨城発・関東圏No.1のAI×地域産業ブティックへ。その先に、2035年の全国展開と食料安全保障インフラとしての中堅テック企業を見据えます。",
+        desc: "茨城発・関東・東北No.1のAI×地域産業ブティックへ。その先に、2035年の全国展開と食料安全保障インフラとしての中堅テック企業を見据えます。",
       },
     ],
     valuesLabel: "価値観",
@@ -771,9 +771,9 @@ export const about = {
       },
       {
         year: "2030年（目標）",
-        title: "売上1000億円 / 支援企業120社 / 関東圏No.1ブティック",
+        title: "売上1000億円 / 支援企業120社 / 関東・東北No.1ブティック",
         description:
-          "粗利率50%超・継続率95%の「質を伴う1000億円」を達成。茨城発、AI×地域産業の専門ブティックとして関東圏での確固たる地位を築く。",
+          "粗利率50%超・継続率95%の「質を伴う1000億円」を達成。茨城発、AI×地域産業の専門ブティックとして関東・東北での確固たる地位を築く。",
         future: true,
       },
     ],
@@ -807,8 +807,8 @@ export const about = {
     missionBody3:
       "clearAI pursues AI adoption through honesty and grounded execution, not hype. Understand your business deeply, translate technology into the language of your workplace, and walk alongside you as a long-term partner — that's our commitment.",
     visionLabel: "Vision 2030",
-    visionTitleLine1: "By 2030, Japan's Kanto region's",
-    visionTitleLine2: "most trusted AI partner.",
+    visionTitleLine1: "By 2030, the most trusted AI partner",
+    visionTitleLine2: "across Kanto and Tohoku.",
     visionDesc:
       "Not flashy numbers — compounding wins, one company at a time. These three figures are the promise we'll reach by doing exactly that.",
     vision: [
@@ -823,9 +823,9 @@ export const about = {
         desc: "40 AI-advisor contracts and 60 ongoing engagements. Not broad-and-shallow — deep, long-term partnerships.",
       },
       {
-        num: "Kanto",
+        num: "Kanto & Tohoku",
         label: "Business area",
-        desc: "From Ibaraki, toward the #1 AI × regional-industry boutique in the Kanto region — then nationwide rollout by 2035 and a mid-sized tech company anchoring food-security infrastructure.",
+        desc: "From Ibaraki, toward the #1 AI × regional-industry boutique across Kanto and Tohoku — then nationwide rollout by 2035 and a mid-sized tech company anchoring food-security infrastructure.",
       },
     ],
     valuesLabel: "Values",
@@ -1003,9 +1003,9 @@ export const about = {
       },
       {
         year: "2030 (goal)",
-        title: "JPY 100B revenue / 120 clients / #1 boutique in Kanto",
+        title: "JPY 100B revenue / 120 clients / #1 boutique in Kanto & Tohoku",
         description:
-          "'JPY 100B with quality' at 50%+ gross margin and 95% retention. A Kanto-region boutique rooted in Ibaraki, leading at the intersection of AI and regional industry.",
+          "'JPY 100B with quality' at 50%+ gross margin and 95% retention. A boutique rooted in Ibaraki, leading at the intersection of AI and regional industry across Kanto and Tohoku.",
         future: true,
       },
     ],

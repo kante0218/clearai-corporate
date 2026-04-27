@@ -50,7 +50,7 @@ const members = [
     name: "髙橋 敢輝",
     nameEn: "Kanki Takahashi",
     role: "代表取締役 / Founder & CEO",
-    bio: "茨城県出身。AIと農業の交差点に日本の未来を見出し、2026年にclearAIを創業。誠実・伴走・翻訳・長期視点をコアバリューに、関東圏No.1のAI×地域産業ブティックを目指す。",
+    bio: "茨城県出身。AIと農業の交差点に日本の未来を見出し、2026年にclearAIを創業。誠実・伴走・翻訳・長期視点をコアバリューに、関東・東北No.1のAI×地域産業ブティックを目指す。",
     initial: "K",
   },
 ];
@@ -94,8 +94,8 @@ const timeline = [
   },
   {
     year: "2030年（目標）",
-    title: "売上1000億円 / 支援企業120社 / 関東圏No.1ブティック",
-    description: "粗利率50%超・継続率95%の「質を伴う1000億円」を達成。茨城発、AI×地域産業の専門ブティックとして関東圏での確固たる地位を築く。",
+    title: "売上1000億円 / 支援企業120社 / 関東・東北No.1ブティック",
+    description: "粗利率50%超・継続率95%の「質を伴う1000億円」を達成。茨城発、AI×地域産業の専門ブティックとして関東・東北での確固たる地位を築く。",
     future: true,
   },
 ];
@@ -110,33 +110,33 @@ export default function AboutPage() {
           <Reveal>
             <p className="text-xs font-semibold tracking-widest uppercase text-blue-400 mb-6">Vision 2030</p>
             <h2 className="text-3xl font-bold text-white leading-tight mb-6 max-w-2xl">
-              2030年、関東圏で<br />最も信頼されるAIパートナーへ。
+              2030年、関東・東北で<br />最も信頼されるAIパートナーへ。
             </h2>
             <p className="text-base text-gray-400 leading-relaxed max-w-xl mb-16">
               派手な数字ではなく、一社一社の成功を積み重ねる。この3つの数字は、その結果として私たちが辿り着く約束です。
             </p>
           </Reveal>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            <Reveal delay={0}>
-              <div className="border border-white/10 rounded-2xl p-8 bg-white/5">
+          <div className="grid md:grid-cols-3 gap-8 auto-rows-fr">
+            <Reveal delay={0} className="h-full">
+              <div className="h-full border border-white/10 rounded-2xl p-8 bg-white/5 flex flex-col">
                 <p className="text-4xl lg:text-5xl font-bold text-white mb-2">1000億円</p>
                 <p className="text-sm font-semibold text-blue-400 mb-3">目標売上高（2030年）</p>
                 <p className="text-sm text-gray-400 leading-relaxed">粗利率50%超・継続率95%の「質を伴う1000億円」。派手な数字ではなく、一社一社の成功を積み重ねた結果としての売上です。</p>
               </div>
             </Reveal>
-            <Reveal delay={80}>
-              <div className="border border-white/10 rounded-2xl p-8 bg-white/5">
+            <Reveal delay={80} className="h-full">
+              <div className="h-full border border-white/10 rounded-2xl p-8 bg-white/5 flex flex-col">
                 <p className="text-4xl lg:text-5xl font-bold text-white mb-2">120社</p>
                 <p className="text-sm font-semibold text-blue-400 mb-3">支援目標企業数</p>
                 <p className="text-sm text-gray-400 leading-relaxed">うちAI顧問契約40社・継続支援60社。広く浅くではなく、深く長く伴走できる関係性を築きます。</p>
               </div>
             </Reveal>
-            <Reveal delay={160}>
-              <div className="border border-white/10 rounded-2xl p-8 bg-white/5">
-                <p className="text-4xl lg:text-5xl font-bold text-white mb-2">関東圏</p>
+            <Reveal delay={160} className="h-full">
+              <div className="h-full border border-white/10 rounded-2xl p-8 bg-white/5 flex flex-col">
+                <p className="text-4xl lg:text-5xl font-bold text-white mb-2 whitespace-nowrap">関東・東北</p>
                 <p className="text-sm font-semibold text-blue-400 mb-3">事業展開エリア</p>
-                <p className="text-sm text-gray-400 leading-relaxed">茨城発・関東圏No.1のAI×地域産業ブティックへ。その先に、2035年の全国展開と食料安全保障インフラとしての中堅テック企業を見据えます。</p>
+                <p className="text-sm text-gray-400 leading-relaxed">茨城発・関東・東北No.1のAI×地域産業ブティックへ。その先に、2035年の全国展開と食料安全保障インフラとしての中堅テック企業を見据えます。</p>
               </div>
             </Reveal>
           </div>
