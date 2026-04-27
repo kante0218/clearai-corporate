@@ -168,11 +168,10 @@ export default function WebsitePage() {
               ページ数・機能要件・運用範囲により変動します。要件整理段階での無料お見積もりが可能です。
             </p>
           </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch max-w-4xl mx-auto">
             {[
-              { name: "LP / 1ページ", price: "50万円〜", unit: "/ 一式", desc: "サービスLP・キャンペーンLPに。", features: ["要件定義・構成設計", "デザイン・実装", "GA4・SEO初期設定", "公開後30日サポート"], featured: false },
-              { name: "コーポレート / 採用", price: "150万円〜", unit: "/ 一式", desc: "10〜20ページ規模のサイト。", features: ["情報設計・ワイヤー", "デザイン・実装", "Headless CMS構築", "SEO・構造化データ実装", "公開後60日サポート"], featured: true },
-              { name: "大規模・カスタム", price: "ご相談", unit: "", desc: "メディア・AI機能搭載サイトなど。", features: ["要件・技術選定コンサル", "独自機能・AI連携開発", "段階リリース計画", "運用体制構築", "保守・継続改善"], featured: false },
+              { name: "スタンダード", price: "50万円〜", unit: "/ 一式", desc: "コーポレートサイト・LP・採用サイトの標準プラン。", features: ["要件定義・構成設計", "デザイン・実装", "GA4・SEO初期設定", "Headless CMS構築（任意）", "公開後30日サポート"], featured: true },
+              { name: "カスタム", price: "ご相談", unit: "", desc: "大規模サイト・独自機能・AI連携をご希望の方へ。", features: ["要件・技術選定コンサル", "独自機能・AI連携開発", "段階リリース計画", "運用体制構築", "保守・継続改善"], featured: false },
             ].map((plan, i) => (
               <Reveal key={plan.name} delay={i * 100} className="flex">
                 <div className={`rounded-2xl p-8 lg:p-10 transition-all duration-300 flex flex-col w-full ${plan.featured ? "bg-sky-600 text-white shadow-xl" : "bg-white border border-gray-200 hover:shadow-lg"}`}>
