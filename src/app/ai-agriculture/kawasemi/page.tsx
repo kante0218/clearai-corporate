@@ -49,16 +49,29 @@ export default function KawasemiPage() {
     <>
       {/* SECTION 1 — HERO */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0a1410]">
-        {/* layered radial gradients to evoke清流・森 */}
+        {/* background video */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover z-0"
+        >
+          <source src="/videos/kawasemi-hero.mp4" type="video/mp4" />
+        </video>
+        {/* dim overlay for text readability */}
         <div
           className="absolute inset-0 z-[1] pointer-events-none"
           style={{
             background:
-              "radial-gradient(ellipse 80% 60% at 50% 35%, rgba(20,83,45,0.55) 0%, rgba(0,0,0,0) 65%), radial-gradient(circle at 18% 80%, rgba(45,212,191,0.18) 0%, transparent 45%), radial-gradient(circle at 82% 20%, rgba(110,231,183,0.12) 0%, transparent 50%)",
+              "linear-gradient(180deg, rgba(10,20,16,0.35) 0%, rgba(10,20,16,0.55) 55%, rgba(10,20,16,0.85) 100%)",
           }}
         />
+        {/* subtle grid texture */}
         <div
-          className="absolute inset-0 z-[1] pointer-events-none opacity-[0.06]"
+          className="absolute inset-0 z-[1] pointer-events-none opacity-[0.05]"
           style={{
             backgroundImage:
               "linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)",
