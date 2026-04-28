@@ -218,33 +218,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ─── 8. COMPANY INFORMATION ──────────────────────────────────────── */}
-      <section className="py-20 lg:py-28 bg-white border-t border-gray-100">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
-          <Reveal>
-            <p className="text-xs font-semibold tracking-widest uppercase text-blue-600 mb-6">Company</p>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-12">
-              企業情報
-            </h2>
-          </Reveal>
-
-          <div className="max-w-2xl">
-            {companyInfo.map((item, i) => (
-              <Reveal key={item.label} delay={i * 60}>
-                <div className="flex flex-col sm:flex-row sm:items-baseline py-5 border-b border-gray-100 last:border-0">
-                  <span className="sm:w-48 shrink-0 text-sm font-semibold text-gray-500 mb-1 sm:mb-0">
-                    {item.label}
-                  </span>
-                  <span className="text-base text-gray-900 font-medium">
-                    {item.value}
-                  </span>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ─── 9. HISTORY / TIMELINE ───────────────────────────────────────── */}
       <section className="py-20 lg:py-28 bg-gray-50">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
@@ -313,6 +286,33 @@ export default function AboutPage() {
               </Link>
             </div>
           </Reveal>
+        </div>
+      </section>
+
+      {/* ─── 11. COMPANY INFORMATION (moved below Join Us) ───────────────── */}
+      <section className="py-20 lg:py-28 bg-white">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <Reveal>
+            <p className="text-xs font-semibold tracking-widest uppercase text-blue-600 mb-6">Company</p>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-12">
+              企業情報
+            </h2>
+          </Reveal>
+
+          <div className="max-w-2xl">
+            {companyInfo.map((item, i) => (
+              <Reveal key={item.label} delay={i * 60}>
+                <div className="flex flex-col sm:flex-row sm:items-baseline py-5 border-b border-gray-100 last:border-0">
+                  <span className="sm:w-48 shrink-0 text-sm font-semibold text-gray-500 mb-1 sm:mb-0">
+                    {item.label}
+                  </span>
+                  <span className="text-base text-gray-900 font-medium">
+                    {item.value}
+                  </span>
+                </div>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
