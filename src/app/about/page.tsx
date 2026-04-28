@@ -106,37 +106,55 @@ export default function AboutPage() {
 
       {/* ─── 3. VISION 2030 ──────────────────────────────────────────────── */}
       <section className="py-40 lg:py-56 bg-gray-950 relative overflow-hidden">
-        <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover z-0"
+        >
+          <source src="/videos/vision-2030.mp4" type="video/mp4" />
+        </video>
+        <div
+          className="absolute inset-0 z-[1] pointer-events-none"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(3,7,18,0.55) 0%, rgba(3,7,18,0.7) 55%, rgba(3,7,18,0.85) 100%)",
+          }}
+        />
+        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
           <Reveal>
             <p className="text-xs font-semibold tracking-widest uppercase text-blue-400 mb-6">Vision 2030</p>
             <h2 className="text-3xl font-bold text-white leading-tight mb-6 max-w-2xl">
               2030年、関東・東北で<br />最も信頼されるAIパートナーへ。
             </h2>
-            <p className="text-base text-gray-400 leading-relaxed max-w-xl mb-16">
+            <p className="text-base text-gray-300 leading-relaxed max-w-xl mb-16">
               派手な数字ではなく、一社一社の成功を積み重ねる。この3つの数字は、その結果として私たちが辿り着く約束です。
             </p>
           </Reveal>
 
           <div className="grid md:grid-cols-3 gap-8 auto-rows-fr">
             <Reveal delay={0} className="h-full">
-              <div className="h-full border border-white/10 rounded-2xl p-10 lg:p-12 bg-white/5 flex flex-col">
+              <div className="h-full border border-white/10 rounded-2xl p-10 lg:p-12 bg-white/10 backdrop-blur-md flex flex-col">
                 <p className="text-4xl lg:text-5xl font-bold text-white mb-2">1000億円</p>
                 <p className="text-sm font-semibold text-blue-400 mb-3">目標売上高（2030年）</p>
-                <p className="text-sm text-gray-400 leading-relaxed">粗利率50%超・継続率95%の「質を伴う1000億円」。派手な数字ではなく、一社一社の成功を積み重ねた結果としての売上です。</p>
+                <p className="text-sm text-gray-300 leading-relaxed">粗利率50%超・継続率95%の「質を伴う1000億円」。派手な数字ではなく、一社一社の成功を積み重ねた結果としての売上です。</p>
               </div>
             </Reveal>
             <Reveal delay={80} className="h-full">
-              <div className="h-full border border-white/10 rounded-2xl p-10 lg:p-12 bg-white/5 flex flex-col">
+              <div className="h-full border border-white/10 rounded-2xl p-10 lg:p-12 bg-white/10 backdrop-blur-md flex flex-col">
                 <p className="text-4xl lg:text-5xl font-bold text-white mb-2">120社</p>
                 <p className="text-sm font-semibold text-blue-400 mb-3">支援目標企業数</p>
-                <p className="text-sm text-gray-400 leading-relaxed">うちAI顧問契約40社・継続支援60社。広く浅くではなく、深く長く伴走できる関係性を築きます。</p>
+                <p className="text-sm text-gray-300 leading-relaxed">うちAI顧問契約40社・継続支援60社。広く浅くではなく、深く長く伴走できる関係性を築きます。</p>
               </div>
             </Reveal>
             <Reveal delay={160} className="h-full">
-              <div className="h-full border border-white/10 rounded-2xl p-10 lg:p-12 bg-white/5 flex flex-col">
+              <div className="h-full border border-white/10 rounded-2xl p-10 lg:p-12 bg-white/10 backdrop-blur-md flex flex-col">
                 <p className="text-4xl lg:text-5xl font-bold text-white mb-2 whitespace-nowrap">関東・東北</p>
                 <p className="text-sm font-semibold text-blue-400 mb-3">事業展開エリア</p>
-                <p className="text-sm text-gray-400 leading-relaxed">茨城発・関東・東北No.1のAI×地域産業ブティックへ。その先に、2035年の全国展開と食料安全保障インフラとしての中堅テック企業を見据えます。</p>
+                <p className="text-sm text-gray-300 leading-relaxed">茨城発・関東・東北No.1のAI×地域産業ブティックへ。その先に、2035年の全国展開と食料安全保障インフラとしての中堅テック企業を見据えます。</p>
               </div>
             </Reveal>
           </div>
