@@ -165,10 +165,6 @@ export default function Header() {
             <div className="hidden lg:flex items-center gap-3">
               <span className="w-px h-5 bg-gray-200" aria-hidden="true" />
               <LanguageToggle variant="desktop" />
-              <Link href="/downloads"
-                className={`inline-flex items-center justify-center text-sm font-semibold px-4 py-2 rounded-lg border transition-all duration-300 ${contactOutlineClass}`}>
-                {h.docsDl}
-              </Link>
               <Link href="/contact"
                 className={`inline-flex items-center justify-center text-sm font-semibold px-4 py-2 rounded-lg border transition-all duration-300 ${contactOutlineClass}`}>
                 {h.contact}
@@ -249,11 +245,7 @@ export default function Header() {
                   </div>
                 );
               })}
-              <div className="grid grid-cols-2 gap-3 mt-6">
-                <Link href="/downloads" onClick={() => setIsOpen(false)}
-                  className={`block text-center px-4 py-3.5 rounded-lg text-sm font-semibold border transition-colors min-h-[44px] flex items-center justify-center ${contactOutlineClass}`}>
-                  {h.docsDl}
-                </Link>
+              <div className="mt-6">
                 <Link href="/contact" onClick={() => setIsOpen(false)}
                   className={`block text-center px-4 py-3.5 rounded-lg text-sm font-semibold transition-colors min-h-[44px] flex items-center justify-center ${contactFilledClass}`}>
                   {h.contact}
