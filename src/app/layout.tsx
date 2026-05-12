@@ -31,8 +31,8 @@ const ogDescription =
 export const metadata: Metadata = {
   metadataBase: new URL("https://clearai.jp"),
   title: {
-    default: "clearAI株式会社（クリアエーアイ） | AI導入コンサルティング & 農業×エンジニアリング",
-    template: "%s | clearAI株式会社（クリアエーアイ）",
+    default: "clearAI株式会社",
+    template: "%s | clearAI株式会社",
   },
   description: ogDescription,
   keywords: [
@@ -278,11 +278,28 @@ const brandFaqSchema = {
   ],
 };
 
+const siteNavigationSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "itemListElement": [
+    { "@type": "SiteNavigationElement", "position": 1, "name": "AIコンサルティング", "url": "https://clearai.jp/ai-consulting" },
+    { "@type": "SiteNavigationElement", "position": 2, "name": "AI顧問", "url": "https://clearai.jp/advisor" },
+    { "@type": "SiteNavigationElement", "position": 3, "name": "AI研修", "url": "https://clearai.jp/training" },
+    { "@type": "SiteNavigationElement", "position": 4, "name": "補助金サポート", "url": "https://clearai.jp/subsidy" },
+    { "@type": "SiteNavigationElement", "position": 5, "name": "Claude特化導入", "url": "https://clearai.jp/claude" },
+    { "@type": "SiteNavigationElement", "position": 6, "name": "農業×エンジニアリング", "url": "https://clearai.jp/ai-agriculture" },
+    { "@type": "SiteNavigationElement", "position": 7, "name": "私たちについて", "url": "https://clearai.jp/about" },
+    { "@type": "SiteNavigationElement", "position": 8, "name": "お問い合わせ", "url": "https://clearai.jp/contact" },
+    { "@type": "SiteNavigationElement", "position": 9, "name": "よくある質問", "url": "https://clearai.jp/faq" },
+    { "@type": "SiteNavigationElement", "position": 10, "name": "ブログ", "url": "https://clearai.jp/blog" },
+  ],
+};
+
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   "@id": "https://clearai.jp/#website",
-  "name": "clearAI株式会社（クリアエーアイ）",
+  "name": "clearAI株式会社",
   "alternateName": [
     "clearAI",
     "clear AI",
@@ -326,6 +343,12 @@ export default function RootLayout({
           type="application/ld+json"
           strategy="beforeInteractive"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
+        <Script
+          id="schema-site-navigation"
+          type="application/ld+json"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(siteNavigationSchema) }}
         />
         <Script
           id="schema-professionalservice"
