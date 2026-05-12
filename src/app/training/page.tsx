@@ -25,38 +25,17 @@ function Label({ children }: { children: ReactNode }) {
 }
 
 export default function TrainingPage() {
-  const [heroLoaded, setHeroLoaded] = useState(false);
-  useEffect(() => { setTimeout(() => setHeroLoaded(true), 100); }, []);
-
   return (
     <>
-      {/* HERO */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white">
-        <div className="absolute bottom-1/3 right-1/4 w-[1px] h-[1px] shadow-[0_0_300px_150px_rgba(56,189,248,0.10)]" />
-        <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
-          <span className="inline-block rounded-full bg-sky-50 text-sky-600 px-3 py-1 text-sm font-semibold mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "300ms" }}>AI Training</span>
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0)" : "translateY(24px)", transitionDelay: "500ms" }}>
-            AIを「使える」組織に、<br />研修で変える。
-          </h1>
-          <p className="text-base text-gray-600 leading-relaxed max-w-lg mx-auto mb-8 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "700ms" }}>
-            経営層から現場まで、階層別に設計したAI実務研修。<br />ツールを「知っている」ではなく「成果が出せる」状態へ引き上げます。
-          </p>
-
-          {/* 補助金バッジ */}
-          <div className="flex items-center justify-center mb-10 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "800ms" }}>
-            <a href="/subsidy" className="group inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-amber-50 to-sky-50 border border-amber-200 px-5 py-2.5 hover:shadow-md transition-all duration-300">
-              <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-amber-500 text-white text-xs font-bold">¥</span>
-              <span className="text-sm font-bold text-gray-900">
-                最大<span className="text-2xl text-amber-600 mx-1">75%</span>の研修費を助成金で削減
-              </span>
-              <span className="text-sm text-sky-600 font-semibold group-hover:translate-x-1 transition-transform">→</span>
-            </a>
-          </div>
-
-          <div className="flex items-center justify-center gap-4 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "900ms" }}>
-            <a href="/contact?service=education" className="rounded-lg bg-sky-600 text-white font-semibold px-8 py-3.5 hover:bg-sky-700 transition-colors duration-300">研修の相談をする</a>
-            <a href="#programs" className="text-sm text-gray-500 font-semibold hover:text-gray-900 transition-colors duration-300">プログラムを見る →</a>
-          </div>
+      {/* PAGE HEADER */}
+      <section className="pt-24 pb-12 lg:pt-32 lg:pb-16 bg-white border-b border-gray-100">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <p className="text-sm font-semibold text-sky-600 mb-3">AI Training</p>
+          <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4">AI研修</h1>
+          <p className="text-base text-gray-600 leading-relaxed max-w-2xl mb-5">経営層から現場まで、階層別に設計したAI実務研修。最大75%の研修費を助成金で削減可能。</p>
+          <a href="/subsidy" className="group inline-flex items-center gap-2 text-sm font-semibold text-amber-700 hover:text-amber-800 transition-colors duration-300">
+            助成金の活用について詳しく見る <span className="group-hover:translate-x-1 transition-transform">→</span>
+          </a>
         </div>
       </section>
 

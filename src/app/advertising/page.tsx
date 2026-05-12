@@ -25,27 +25,14 @@ function Label({ children }: { children: ReactNode }) {
 }
 
 export default function AdvertisingPage() {
-  const [heroLoaded, setHeroLoaded] = useState(false);
-  useEffect(() => { setTimeout(() => setHeroLoaded(true), 100); }, []);
-
   return (
     <>
-      {/* HERO */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white">
-        <div className="absolute bottom-1/3 right-1/4 w-[1px] h-[1px] shadow-[0_0_300px_150px_rgba(56,189,248,0.10)]" />
-        <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
-          <span className="inline-block rounded-full bg-sky-50 text-sky-600 px-3 py-1 text-sm font-semibold mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "300ms" }}>AI Advertising</span>
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0)" : "translateY(24px)", transitionDelay: "500ms" }}>
-            広告運用を、<br />AIネイティブに。
-          </h1>
-          <p className="text-base text-gray-600 leading-relaxed max-w-lg mx-auto mb-10 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "700ms" }}>
-            生成AIで、コピー・クリエイティブ・入札・分析までを高速に。<br />「人手で回す広告運用」から「AIで磨き続ける広告運用」へ。
-          </p>
-
-          <div className="flex items-center justify-center gap-4 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "900ms" }}>
-            <a href="/contact?service=advertising" className="rounded-lg bg-sky-600 text-white font-semibold px-8 py-3.5 hover:bg-sky-700 transition-colors duration-300">無料診断を申し込む</a>
-            <a href="#services" className="text-sm text-gray-500 font-semibold hover:text-gray-900 transition-colors duration-300">サービスを見る →</a>
-          </div>
+      {/* PAGE HEADER */}
+      <section className="pt-24 pb-12 lg:pt-32 lg:pb-16 bg-white border-b border-gray-100">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <p className="text-sm font-semibold text-sky-600 mb-3">AI Advertising</p>
+          <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4">AI広告運用</h1>
+          <p className="text-base text-gray-600 leading-relaxed max-w-2xl">生成AIで、コピー・クリエイティブ・入札・分析までを高速化。AIで磨き続ける広告運用へ転換するご支援を行います。</p>
         </div>
       </section>
 

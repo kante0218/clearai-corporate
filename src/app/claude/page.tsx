@@ -25,33 +25,18 @@ function Label({ children }: { children: ReactNode }) {
 }
 
 export default function ClaudePage() {
-  const [heroLoaded, setHeroLoaded] = useState(false);
-  useEffect(() => { setTimeout(() => setHeroLoaded(true), 100); }, []);
-
   return (
     <>
-      {/* HERO */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white">
-        <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
-          <span className="inline-block rounded-full bg-orange-50 text-orange-600 px-3 py-1 text-sm font-semibold mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "300ms" }}>Claude Specialized</span>
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0)" : "translateY(24px)", transitionDelay: "500ms" }}>
-            <span className="inline-flex items-center gap-3 md:gap-4 align-middle">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/images/claude-symbol.svg" alt="" aria-hidden="true" className="w-10 md:w-12 h-10 md:h-12 inline-block" />
-              <span>Claudeを、</span>
-            </span>
-            <br />経営の武器にする。
-          </h1>
-          <p className="text-base text-gray-600 leading-relaxed max-w-lg mx-auto mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "700ms" }}>
-            AnthropicのClaudeに特化した、国内屈指の専門支援。<br />経営者プライベートスクールと、企業向けオンライン導入支援の2本立てで、Claudeを成果に直結させます。
-          </p>
-          <p className="inline-flex items-center gap-2 text-xs font-semibold text-orange-700 bg-orange-50 border border-orange-100 rounded-full px-4 py-2 mb-10 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "800ms" }}>
-            <span className="w-1.5 h-1.5 rounded-full bg-orange-500" />使いこなせなかったら、全額返金保証
-          </p>
-          <div className="flex items-center justify-center gap-4 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "900ms" }}>
-            <a href="/contact" className="rounded-lg bg-orange-600 text-white font-semibold px-8 py-3.5 hover:bg-orange-700 transition-colors duration-300">無料相談を申し込む</a>
-            <a href="#services" className="text-sm text-gray-500 font-semibold hover:text-gray-900 transition-colors duration-300">サービスを見る →</a>
+      {/* PAGE HEADER */}
+      <section className="pt-24 pb-12 lg:pt-32 lg:pb-16 bg-white border-b border-gray-100">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <p className="text-sm font-semibold text-orange-600 mb-3">Claude Specialized</p>
+          <div className="flex items-center gap-3 mb-4">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/images/claude-symbol.svg" alt="" aria-hidden="true" className="w-8 h-8 lg:w-10 lg:h-10" />
+            <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight">Claude特化支援</h1>
           </div>
+          <p className="text-base text-gray-600 leading-relaxed max-w-2xl">AnthropicのClaudeに特化した、国内屈指の専門支援。経営者プライベートスクールと、企業向けオンライン導入支援の2本立てでご提供します。使いこなせなかったら全額返金保証。</p>
         </div>
       </section>
 

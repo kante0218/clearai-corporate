@@ -25,29 +25,14 @@ function Label({ children }: { children: ReactNode }) {
 }
 
 export default function AdvisorPage() {
-  const [heroLoaded, setHeroLoaded] = useState(false);
-  useEffect(() => { setTimeout(() => setHeroLoaded(true), 100); }, []);
-
   return (
     <>
-      {/* HERO */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white">
-        <div className="absolute bottom-1/3 right-1/4 w-[1px] h-[1px] shadow-[0_0_300px_150px_rgba(56,189,248,0.10)]" />
-        <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
-          <span className="inline-block rounded-full bg-sky-50 text-sky-600 px-3 py-1 text-sm font-semibold mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "300ms" }}>AI Advisor</span>
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0)" : "translateY(24px)", transitionDelay: "500ms" }}>
-            AI活用の判断を、<br />隣で支える顧問。
-          </h1>
-          <p className="text-base text-gray-600 leading-relaxed max-w-lg mx-auto mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "700ms" }}>
-            経営・現場の「これAIでできる？」に、即答できる相手がいる。<br />戦略から技術選定、PoC評価、社内教育まで継続的に伴走します。
-          </p>
-          <p className="inline-flex items-center gap-2 text-sm font-semibold text-sky-700 bg-sky-50 border border-sky-100 rounded-full px-4 py-2 mb-10 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "800ms" }}>
-            <span className="w-1.5 h-1.5 rounded-full bg-sky-500" />月5万円〜／最低契約期間なし
-          </p>
-          <div className="flex items-center justify-center gap-4 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "900ms" }}>
-            <a href="/contact" className="rounded-lg bg-sky-600 text-white font-semibold px-8 py-3.5 hover:bg-sky-700 transition-colors duration-300">無料相談を申し込む</a>
-            <a href="#plans" className="text-sm text-gray-500 font-semibold hover:text-gray-900 transition-colors duration-300">プランを見る →</a>
-          </div>
+      {/* PAGE HEADER */}
+      <section className="pt-24 pb-12 lg:pt-32 lg:pb-16 bg-white border-b border-gray-100">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <p className="text-sm font-semibold text-sky-600 mb-3">AI Advisor</p>
+          <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4">AI顧問</h1>
+          <p className="text-base text-gray-600 leading-relaxed max-w-2xl">月額契約で、AI活用の意思決定を継続的に伴走します。戦略から技術選定、PoC評価、社内教育まで。月5万円〜／最低契約期間なし。</p>
         </div>
       </section>
 
