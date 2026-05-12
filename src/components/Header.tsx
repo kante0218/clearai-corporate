@@ -31,6 +31,7 @@ export default function Header() {
         { label: h.navClaude, href: "/claude", description: h.navClaudeDesc },
         { label: h.navAdvertising, href: "/advertising", description: h.navAdvertisingDesc },
         { label: h.navWebsite, href: "/website", description: h.navWebsiteDesc },
+        { label: h.navSubsidy, href: "/subsidy", description: h.navSubsidyDesc },
       ],
     },
     {
@@ -41,7 +42,6 @@ export default function Header() {
         { label: h.navKawasemi, href: "/ai-agriculture/kawasemi", description: h.navKawasemiDesc },
       ],
     },
-    { label: h.navSubsidy, href: "/subsidy" },
     { label: h.navNews, href: "/blog" },
     { label: h.navAbout, href: "/about" },
   ];
