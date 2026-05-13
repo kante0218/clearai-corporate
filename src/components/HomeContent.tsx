@@ -135,23 +135,35 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
   return (
     <>
       {/* ═══ HERO ═══ */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white">
-        <div className="absolute bottom-1/3 right-1/4 w-[1px] h-[1px] shadow-[0_0_300px_150px_rgba(37,99,235,0.07)]" />
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#02030a]">
+        <video
+          className="absolute inset-0 w-full h-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          aria-hidden="true"
+        >
+          <source src="/videos/hero-mecha.webm" type="video/webm" />
+          <source src="/videos/hero-mecha.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/25 to-black/75" />
         <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
-          <span className="inline-block rounded-full bg-blue-50 text-blue-600 px-3 py-1 text-sm font-semibold mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "300ms" }}>
+          <span className="inline-block rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white px-3 py-1 text-sm font-semibold mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "300ms" }}>
             AI Consulting &amp; Agriculture Engineering
           </span>
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0)" : "translateY(24px)", transitionDelay: "500ms" }}>
+          <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-6 drop-shadow-[0_2px_24px_rgba(0,0,0,0.6)] transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0)" : "translateY(24px)", transitionDelay: "500ms" }}>
             中小企業と農業現場に、<br />使えるAIと実装力を。
           </h1>
-          <p className="text-base text-gray-600 leading-relaxed max-w-lg mx-auto mb-10 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "700ms" }}>
+          <p className="text-base text-white/85 leading-relaxed max-w-lg mx-auto mb-10 drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)] transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "700ms" }}>
             AI導入支援と農業自動化を、戦略から実装まで支援します。<br />コンサル・顧問・研修・Claude Code導入・広告・Web制作・補助金活用・農業自動化の8領域で、現場で動くものまで責任を持ちます。
           </p>
           <div className="flex items-center justify-center gap-4 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "900ms" }}>
             <Link href="/contact" className="rounded-lg bg-blue-600 text-white font-semibold px-8 py-3.5 hover:bg-blue-700 transition-colors duration-300">
               お問い合わせ
             </Link>
-            <Link href="#services" className="text-sm text-gray-500 font-semibold hover:text-gray-900 transition-colors duration-300">
+            <Link href="#services" className="text-sm text-white/70 font-semibold hover:text-white transition-colors duration-300">
               事業を見る →
             </Link>
           </div>
