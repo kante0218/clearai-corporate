@@ -45,7 +45,8 @@ export default function Header() {
     { label: h.navNews, href: "/blog" },
     { label: h.navAbout, href: "/about" },
   ];
-  const isAgriculture = pathname?.startsWith("/ai-agriculture");
+  const isHome = pathname === "/";
+  const isAgriculture = pathname?.startsWith("/ai-agriculture") || isHome;
   const isClaude = pathname?.startsWith("/claude");
   const isAiConsulting =
     pathname?.startsWith("/ai-consulting") ||

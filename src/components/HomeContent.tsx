@@ -30,7 +30,7 @@ function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; 
 type AiServiceColor = "blue" | "indigo" | "amber" | "orange" | "rose" | "sky";
 
 const aiServiceColorMap: Record<AiServiceColor, { hoverBorder: string; code: string; cta: string; ctaHover: string }> = {
-  blue:   { hoverBorder: "hover:border-blue-300",   code: "text-blue-600",   cta: "text-blue-600",   ctaHover: "group-hover:text-blue-700" },
+  blue:   { hoverBorder: "hover:border-green-300",   code: "text-green-600",   cta: "text-green-600",   ctaHover: "group-hover:text-green-700" },
   indigo: { hoverBorder: "hover:border-indigo-300", code: "text-indigo-600", cta: "text-indigo-600", ctaHover: "group-hover:text-indigo-700" },
   amber:  { hoverBorder: "hover:border-amber-300",  code: "text-amber-600",  cta: "text-amber-600",  ctaHover: "group-hover:text-amber-700" },
   orange: { hoverBorder: "hover:border-orange-300", code: "text-orange-600", cta: "text-orange-600", ctaHover: "group-hover:text-orange-700" },
@@ -108,7 +108,7 @@ const aiServices: {
 
 function SectionLabel({ children }: { children: ReactNode }) {
   return (
-    <p className="text-xs font-semibold tracking-widest uppercase text-blue-600 mb-4">{children}</p>
+    <p className="text-xs font-semibold tracking-widest uppercase text-green-600 mb-4">{children}</p>
   );
 }
 
@@ -139,25 +139,25 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
         <div className="relative z-10 w-full max-w-5xl mx-auto px-6 lg:px-8 py-24">
           <div className="flex flex-wrap gap-2 mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "200ms" }}>
             {["8領域で伴走", "戦略から実装まで", "中小企業＆農業特化"].map((tag) => (
-              <span key={tag} className="inline-flex items-center rounded-full bg-blue-50 text-blue-700 border border-blue-100 px-3 py-1 text-xs font-semibold">
+              <span key={tag} className="inline-flex items-center rounded-full bg-green-50 text-green-700 border border-green-100 px-3 py-1 text-xs font-semibold">
                 {tag}
               </span>
             ))}
           </div>
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-[1.15] tracking-tight mb-8 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0)" : "translateY(24px)", transitionDelay: "400ms" }}>
             中小企業と農業現場に、<br />
-            <span className="text-blue-600">使えるAI</span>と<span className="text-blue-600">実装力</span>を。
+            <span className="text-green-600">使えるAI</span>と<span className="text-green-600">実装力</span>を。
           </h1>
           <p className="text-base md:text-lg text-gray-600 leading-relaxed max-w-2xl mb-10 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "650ms" }}>
             AI導入支援と農業自動化を、戦略から実装まで支援します。<br className="hidden md:inline" />
             コンサル・顧問・研修・Claude Code導入・広告・Web制作・補助金活用・農業自動化の8領域で、現場で動くものまで責任を持ちます。
           </p>
           <div className="flex flex-wrap items-center gap-5 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "850ms" }}>
-            <Link href="/contact" className="inline-flex items-center gap-2 rounded-full bg-blue-600 text-white font-semibold px-7 py-3.5 hover:bg-blue-700 transition-colors duration-300 shadow-[0_8px_24px_-8px_rgba(37,99,235,0.5)]">
+            <Link href="/contact" className="inline-flex items-center gap-2 rounded-full bg-green-600 text-white font-semibold px-7 py-3.5 hover:bg-green-700 transition-colors duration-300 shadow-[0_8px_24px_-8px_rgba(22,163,74,0.5)]">
               まずは相談する
               <span aria-hidden>→</span>
             </Link>
-            <Link href="#services" className="inline-flex items-center gap-1.5 text-sm text-gray-700 font-semibold hover:text-blue-600 transition-colors duration-300">
+            <Link href="#services" className="inline-flex items-center gap-1.5 text-sm text-gray-700 font-semibold hover:text-green-600 transition-colors duration-300">
               事業を見る
               <span aria-hidden>→</span>
             </Link>
@@ -242,8 +242,8 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <Reveal delay={0}>
               <Link href="/contact?service=consulting" className="group block h-full">
-                <div className="bg-white border border-gray-200 rounded-2xl p-8 lg:p-10 hover:border-blue-300 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
-                  <span className="inline-block text-xs font-semibold tracking-widest uppercase text-blue-600 mb-4">STEP 01</span>
+                <div className="bg-white border border-gray-200 rounded-2xl p-8 lg:p-10 hover:border-green-300 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
+                  <span className="inline-block text-xs font-semibold tracking-widest uppercase text-green-600 mb-4">STEP 01</span>
                   <h3 className="text-xl font-bold text-gray-900 mb-3">無料AI診断（30分）</h3>
                   <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">
                     現状の業務・課題をヒアリングし、AI活用で効果の高そうな領域を1つ特定してお返しします。営業色の強い提案はしません。
@@ -253,7 +253,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
                     <li>・NDA締結のうえ、機密情報も扱えます</li>
                     <li>・その場で簡易レポートを口頭共有</li>
                   </ul>
-                  <span className="text-sm font-semibold text-blue-600 group-hover:text-blue-700 transition-colors">申し込む →</span>
+                  <span className="text-sm font-semibold text-green-600 group-hover:text-green-700 transition-colors">申し込む →</span>
                 </div>
               </Link>
             </Reveal>
@@ -311,8 +311,8 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
           {/* ── AI事業 ── */}
           <Reveal>
             <div className="flex items-center gap-3 mb-8">
-              <span className="inline-flex items-center gap-2 text-sm font-bold text-blue-700 bg-blue-50 border border-blue-200 rounded-full px-4 py-1.5 tracking-wide">
-                <span className="w-2 h-2 rounded-full bg-blue-600" />AI事業
+              <span className="inline-flex items-center gap-2 text-sm font-bold text-green-700 bg-green-50 border border-green-200 rounded-full px-4 py-1.5 tracking-wide">
+                <span className="w-2 h-2 rounded-full bg-green-600" />AI事業
               </span>
               <span className="flex-1 h-px bg-gray-200" />
             </div>
@@ -535,8 +535,8 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
               { num: "03", title: "現場に落とし込むこと", desc: "技術選定から運用設計まで、現場で使える形に落とし込みます。専門知識がなくても扱える、具体的な提案を。" },
             ].map((item, i) => (
               <Reveal key={item.num} delay={i * 80}>
-                <div className="border-t-2 border-blue-600 pt-6">
-                  <span className="text-xs font-semibold text-blue-600 tracking-widest">{item.num}</span>
+                <div className="border-t-2 border-green-600 pt-6">
+                  <span className="text-xs font-semibold text-green-600 tracking-widest">{item.num}</span>
                   <h3 className="text-lg font-bold text-gray-900 mt-2 mb-3">{item.title}</h3>
                   <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
                 </div>
@@ -562,7 +562,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
             <Reveal delay={0} className="h-full">
               <div className="bg-gray-50 border border-gray-200 rounded-2xl p-8 lg:p-10 h-full flex flex-col">
-                <span className="inline-block text-xs font-semibold tracking-widest uppercase text-blue-600 mb-4">Strategy &amp; DX</span>
+                <span className="inline-block text-xs font-semibold tracking-widest uppercase text-green-600 mb-4">Strategy &amp; DX</span>
                 <h3 className="text-xl font-bold text-gray-900 mb-4">業務改革・DX領域の監修</h3>
                 <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">
                   大手コンサルティングファーム出身のメンバーが、業務改革・DX推進の設計を監修。経営課題の構造化から全社展開のロードマップまで、上流の意思決定に耐える品質でご支援します。
@@ -659,7 +659,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
                 <div className="border-t border-gray-200 py-8">
                   <div className="grid lg:grid-cols-12 gap-6 items-center">
                     <div className="lg:col-span-2">
-                      <p className="text-[10px] font-semibold tracking-widest text-blue-600 uppercase">{group.category}</p>
+                      <p className="text-[10px] font-semibold tracking-widest text-green-600 uppercase">{group.category}</p>
                       <h3 className="text-sm font-bold text-gray-900 mt-0.5">{group.label}</h3>
                     </div>
                     <div className="lg:col-span-10">
@@ -681,8 +681,8 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
           <Reveal>
             <div className="mt-10 border-t border-gray-200 pt-8">
               <div className="bg-white border border-gray-200 rounded-2xl p-6 lg:p-8 flex flex-col lg:flex-row lg:items-center gap-4 lg:gap-6">
-                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center">
-                  <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-green-50 flex items-center justify-center">
+                  <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
                   </svg>
                 </div>
@@ -706,13 +706,13 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
               <SectionLabel>News</SectionLabel>
               <h2 className="text-3xl font-bold text-gray-900 leading-tight">お知らせ</h2>
             </div>
-            <Link href="/blog" className="hidden sm:inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:text-blue-700 transition-colors">
+            <Link href="/blog" className="hidden sm:inline-flex items-center gap-2 text-sm font-semibold text-green-600 hover:text-green-700 transition-colors">
               一覧を見る →
             </Link>
           </div>
           {newsSlot}
           <div className="text-center mt-8 sm:hidden">
-            <Link href="/blog" className="text-sm font-semibold text-blue-600">一覧を見る →</Link>
+            <Link href="/blog" className="text-sm font-semibold text-green-600">一覧を見る →</Link>
           </div>
         </div>
       </section>
@@ -743,9 +743,9 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
               <Reveal key={item.service} delay={i * 50}>
                 <Link
                   href={`/contact?service=${item.service}`}
-                  className="group block rounded-xl border border-gray-200 bg-white px-5 py-4 hover:border-blue-300 hover:shadow-md transition-all duration-300"
+                  className="group block rounded-xl border border-gray-200 bg-white px-5 py-4 hover:border-green-300 hover:shadow-md transition-all duration-300"
                 >
-                  <span className="block text-sm font-bold text-gray-900 group-hover:text-blue-700 transition-colors">
+                  <span className="block text-sm font-bold text-gray-900 group-hover:text-green-700 transition-colors">
                     {item.label}
                   </span>
                   <span className="block text-xs text-gray-400 mt-1">お問い合わせ →</span>
