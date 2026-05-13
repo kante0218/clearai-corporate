@@ -166,7 +166,15 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
               </div>
             </div>
             <div className="transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0)" : "translateY(24px)", transitionDelay: "500ms" }}>
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl ring-1 ring-black/5 aspect-video">
+              <div
+                className="relative mx-auto w-full max-w-[560px] aspect-[5/4]"
+                style={{
+                  WebkitMaskImage:
+                    "radial-gradient(ellipse 95% 92% at 50% 50%, #000 62%, transparent 100%)",
+                  maskImage:
+                    "radial-gradient(ellipse 95% 92% at 50% 50%, #000 62%, transparent 100%)",
+                }}
+              >
                 <video
                   src="/videos/hero-home.mp4"
                   autoPlay
