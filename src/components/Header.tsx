@@ -22,6 +22,14 @@ export default function Header() {
 
   const navItems: NavItem[] = [
     {
+      label: h.navAgriculture,
+      href: "/ai-agriculture",
+      children: [
+        { label: h.navAgricultureEngineering, href: "/ai-agriculture", description: h.navAgricultureEngineeringDesc },
+        { label: h.navKawasemi, href: "/ai-agriculture/kawasemi", description: h.navKawasemiDesc },
+      ],
+    },
+    {
       label: h.navAi,
       href: "/ai-consulting",
       children: [
@@ -32,14 +40,6 @@ export default function Header() {
         { label: h.navAdvertising, href: "/advertising", description: h.navAdvertisingDesc },
         { label: h.navWebsite, href: "/website", description: h.navWebsiteDesc },
         { label: h.navSubsidy, href: "/subsidy", description: h.navSubsidyDesc },
-      ],
-    },
-    {
-      label: h.navAgriculture,
-      href: "/ai-agriculture",
-      children: [
-        { label: h.navAgricultureEngineering, href: "/ai-agriculture", description: h.navAgricultureEngineeringDesc },
-        { label: h.navKawasemi, href: "/ai-agriculture/kawasemi", description: h.navKawasemiDesc },
       ],
     },
     { label: h.navNews, href: "/blog" },
