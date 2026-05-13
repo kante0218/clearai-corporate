@@ -137,7 +137,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       {/* ═══ HERO ═══ */}
       <section className="relative min-h-screen flex items-center overflow-hidden bg-white">
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-8 py-24">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <div className="grid lg:grid-cols-[1fr_1.15fr] gap-12 lg:gap-14 items-center">
             <div>
               <div className="flex flex-wrap gap-2 mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "200ms" }}>
                 {["8領域で伴走", "戦略から実装まで", "中小企業＆農業特化"].map((tag) => (
@@ -166,7 +166,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
               </div>
             </div>
             <div className="transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0)" : "translateY(24px)", transitionDelay: "500ms" }}>
-              <div className="relative mx-auto w-full max-w-[560px] aspect-[5/4]">
+              <div className="relative mx-auto w-full max-w-[720px] aspect-[5/4]">
                 <video
                   src="/videos/hero-home.mp4"
                   poster="/videos/hero-home-poster.jpg"
