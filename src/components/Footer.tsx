@@ -6,9 +6,8 @@ export default function Footer() {
     <footer className="bg-gray-950">
       <div className="max-w-5xl mx-auto px-6 lg:px-10 pt-16 pb-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
-          {/* Column 1: Company */}
           <div>
-            <Image src="/images/logo-white.png" alt="clearAI株式会社（クリアエーアイ）ロゴ" width={140} height={40} className="h-8 w-auto mb-4" />
+            <Image src="/images/logo-white.png" alt="clearAI株式会社（クリアエーアイ）ロゴ" width={140} height={40} className="h-8 w-auto mb-4 logo-green-filter" />
             <p className="text-sm text-white/40 leading-relaxed mb-2">
               中小企業と農業現場に、使えるAIと実装力を。戦略から実装まで一貫して支援します。
             </p>
@@ -17,7 +16,6 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Column 2: Services */}
           <div>
             <p className="text-xs font-semibold tracking-widest text-white/40 mb-4 uppercase">事業</p>
             <ul className="space-y-2.5">
@@ -38,7 +36,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 3: Company Info */}
           <div>
             <p className="text-xs font-semibold tracking-widest text-white/40 mb-4 uppercase">企業情報</p>
             <ul className="space-y-2.5">
@@ -55,7 +52,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 4: Legal & Contact */}
           <div>
             <p className="text-xs font-semibold tracking-widest text-white/40 mb-4 uppercase">その他</p>
             <ul className="space-y-2.5">
