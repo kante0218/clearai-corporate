@@ -136,31 +136,48 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
     <>
       {/* ═══ HERO ═══ */}
       <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-b from-gray-50 to-white">
-        <div className="relative z-10 w-full max-w-5xl mx-auto px-6 lg:px-8 py-24">
-          <div className="flex flex-wrap gap-2 mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "200ms" }}>
-            {["8領域で伴走", "戦略から実装まで", "中小企業＆農業特化"].map((tag) => (
-              <span key={tag} className="inline-flex items-center rounded-full bg-green-50 text-green-700 border border-green-100 px-3 py-1 text-xs font-semibold">
-                {tag}
-              </span>
-            ))}
-          </div>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-[1.15] tracking-tight mb-8 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0)" : "translateY(24px)", transitionDelay: "400ms" }}>
-            中小企業と農業現場に、<br />
-            <span className="text-green-600">使えるAI</span>と<span className="text-green-600">実装力</span>を。
-          </h1>
-          <p className="text-base md:text-lg text-gray-600 leading-relaxed max-w-2xl mb-10 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "650ms" }}>
-            AI導入支援と農業自動化を、戦略から実装まで支援します。<br className="hidden md:inline" />
-            コンサル・顧問・研修・Claude Code導入・広告・Web制作・補助金活用・農業自動化の8領域で、現場で動くものまで責任を持ちます。
-          </p>
-          <div className="flex flex-wrap items-center gap-5 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "850ms" }}>
-            <Link href="/contact" className="inline-flex items-center gap-2 rounded-full bg-green-600 text-white font-semibold px-7 py-3.5 hover:bg-green-700 transition-colors duration-300 shadow-[0_8px_24px_-8px_rgba(22,163,74,0.5)]">
-              まずは相談する
-              <span aria-hidden>→</span>
-            </Link>
-            <Link href="#services" className="inline-flex items-center gap-1.5 text-sm text-gray-700 font-semibold hover:text-green-600 transition-colors duration-300">
-              事業を見る
-              <span aria-hidden>→</span>
-            </Link>
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-8 py-24">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <div>
+              <div className="flex flex-wrap gap-2 mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "200ms" }}>
+                {["8領域で伴走", "戦略から実装まで", "中小企業＆農業特化"].map((tag) => (
+                  <span key={tag} className="inline-flex items-center rounded-full bg-green-50 text-green-700 border border-green-100 px-3 py-1 text-xs font-semibold">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-[1.15] tracking-tight mb-8 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0)" : "translateY(24px)", transitionDelay: "400ms" }}>
+                中小企業と農業現場に、<br />
+                <span className="text-green-600">使えるAI</span>と<span className="text-green-600">実装力</span>を。
+              </h1>
+              <p className="text-base md:text-lg text-gray-600 leading-relaxed max-w-xl mb-10 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "650ms" }}>
+                AI導入支援と農業自動化を、戦略から実装まで支援します。<br className="hidden md:inline" />
+                コンサル・顧問・研修・Claude Code導入・広告・Web制作・補助金活用・農業自動化の8領域で、現場で動くものまで責任を持ちます。
+              </p>
+              <div className="flex flex-wrap items-center gap-5 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "850ms" }}>
+                <Link href="/contact" className="inline-flex items-center gap-2 rounded-full bg-green-600 text-white font-semibold px-7 py-3.5 hover:bg-green-700 transition-colors duration-300 shadow-[0_8px_24px_-8px_rgba(22,163,74,0.5)]">
+                  まずは相談する
+                  <span aria-hidden>→</span>
+                </Link>
+                <Link href="#services" className="inline-flex items-center gap-1.5 text-sm text-gray-700 font-semibold hover:text-green-600 transition-colors duration-300">
+                  事業を見る
+                  <span aria-hidden>→</span>
+                </Link>
+              </div>
+            </div>
+            <div className="transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0)" : "translateY(24px)", transitionDelay: "500ms" }}>
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl ring-1 ring-black/5 aspect-video">
+                <video
+                  src="/videos/hero-home.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="metadata"
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
