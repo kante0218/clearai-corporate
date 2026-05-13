@@ -78,16 +78,16 @@ export default function Header() {
     ? "bg-white/95 backdrop-blur-xl border-b border-gray-200 shadow-sm"
     : "bg-white border-b border-gray-100";
 
-  const contactOutlineClass = isAgriculture
-    ? "border-green-600 text-green-600 hover:bg-green-600 hover:text-white"
-    : isClaude
+  const contactOutlineClass = isClaude
     ? "border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white"
-    : "border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white";
-  const contactFilledClass = isAgriculture
-    ? "bg-green-600 hover:bg-green-500 text-white"
-    : isClaude
+    : isAiConsulting
+    ? "border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white"
+    : "border-green-600 text-green-600 hover:bg-green-600 hover:text-white";
+  const contactFilledClass = isClaude
     ? "bg-orange-500 hover:bg-orange-400 text-white"
-    : "bg-blue-600 hover:bg-blue-500 text-white";
+    : isAiConsulting
+    ? "bg-blue-600 hover:bg-blue-500 text-white"
+    : "bg-green-600 hover:bg-green-500 text-white";
 
   return (
     <>
@@ -101,7 +101,7 @@ export default function Header() {
                 width={140}
                 height={40}
                 className={`h-8 w-auto transition-all duration-500 ${
-                  isAgriculture ? "logo-green-filter" : isClaude ? "logo-orange-filter" : ""
+                  isClaude ? "logo-orange-filter" : isAiConsulting ? "" : "logo-green-filter"
                 }`}
                 priority
               />
