@@ -136,58 +136,31 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
     <>
       {/* ═══ HERO ═══ */}
       <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-b from-gray-50 to-white">
-        <div className="relative z-10 w-full max-w-6xl mx-auto px-6 lg:px-8 py-24">
-          <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-            <div className="lg:col-span-7">
-              <div className="flex flex-wrap gap-2 mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "200ms" }}>
-                {["8領域で伴走", "戦略から実装まで", "中小企業＆農業特化"].map((tag) => (
-                  <span key={tag} className="inline-flex items-center rounded-full bg-blue-50 text-blue-700 border border-blue-100 px-3 py-1 text-xs font-semibold">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-[1.1] tracking-tight mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0)" : "translateY(24px)", transitionDelay: "400ms" }}>
-                AI for SMBs<br />and Farmers.
-              </h1>
-              <p className="text-lg md:text-xl text-gray-700 font-semibold leading-snug mb-3 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "550ms" }}>
-                中小企業と農業現場に、使えるAIと実装力を。
-              </p>
-              <p className="text-base text-gray-500 leading-relaxed max-w-xl mb-10 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "700ms" }}>
-                コンサル・顧問・研修・Claude Code導入・広告・Web制作・補助金活用・農業自動化の8領域で、現場で動くものまで責任を持ちます。
-              </p>
-              <div className="flex flex-wrap items-center gap-5 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "850ms" }}>
-                <Link href="/contact" className="inline-flex items-center gap-2 rounded-full bg-blue-600 text-white font-semibold px-7 py-3.5 hover:bg-blue-700 transition-colors duration-300 shadow-[0_8px_24px_-8px_rgba(37,99,235,0.5)]">
-                  まずは相談する
-                  <span aria-hidden>→</span>
-                </Link>
-                <Link href="#services" className="inline-flex items-center gap-1.5 text-sm text-gray-700 font-semibold hover:text-blue-600 transition-colors duration-300">
-                  事業を見る
-                  <span aria-hidden>→</span>
-                </Link>
-              </div>
-            </div>
-
-            <div className="lg:col-span-5 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0)" : "translateY(24px)", transitionDelay: "600ms" }}>
-              <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-[#02030a] shadow-[0_30px_60px_-20px_rgba(2,3,10,0.45)] ring-1 ring-black/5">
-                <video
-                  className="absolute inset-0 w-full h-full object-cover"
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="auto"
-                  aria-hidden="true"
-                >
-                  <source src="/videos/hero-mecha.webm" type="video/webm" />
-                  <source src="/videos/hero-mecha.mp4" type="video/mp4" />
-                </video>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
-                <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-white/90 px-2.5 py-1 text-[10px] font-semibold tracking-widest uppercase">
-                  <span className="block w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-                  AI × Implementation
-                </div>
-              </div>
-            </div>
+        <div className="relative z-10 w-full max-w-5xl mx-auto px-6 lg:px-8 py-24">
+          <div className="flex flex-wrap gap-2 mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "200ms" }}>
+            {["8領域で伴走", "戦略から実装まで", "中小企業＆農業特化"].map((tag) => (
+              <span key={tag} className="inline-flex items-center rounded-full bg-blue-50 text-blue-700 border border-blue-100 px-3 py-1 text-xs font-semibold">
+                {tag}
+              </span>
+            ))}
+          </div>
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-[1.15] tracking-tight mb-8 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0)" : "translateY(24px)", transitionDelay: "400ms" }}>
+            中小企業と農業現場に、<br />
+            <span className="text-blue-600">使えるAI</span>と<span className="text-blue-600">実装力</span>を。
+          </h1>
+          <p className="text-base md:text-lg text-gray-600 leading-relaxed max-w-2xl mb-10 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "650ms" }}>
+            AI導入支援と農業自動化を、戦略から実装まで支援します。<br className="hidden md:inline" />
+            コンサル・顧問・研修・Claude Code導入・広告・Web制作・補助金活用・農業自動化の8領域で、現場で動くものまで責任を持ちます。
+          </p>
+          <div className="flex flex-wrap items-center gap-5 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "850ms" }}>
+            <Link href="/contact" className="inline-flex items-center gap-2 rounded-full bg-blue-600 text-white font-semibold px-7 py-3.5 hover:bg-blue-700 transition-colors duration-300 shadow-[0_8px_24px_-8px_rgba(37,99,235,0.5)]">
+              まずは相談する
+              <span aria-hidden>→</span>
+            </Link>
+            <Link href="#services" className="inline-flex items-center gap-1.5 text-sm text-gray-700 font-semibold hover:text-blue-600 transition-colors duration-300">
+              事業を見る
+              <span aria-hidden>→</span>
+            </Link>
           </div>
         </div>
       </section>
