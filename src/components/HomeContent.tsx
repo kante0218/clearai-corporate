@@ -135,7 +135,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
   return (
     <>
       {/* ═══ HERO ═══ */}
-      <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-b from-gray-50 to-white">
+      <section className="relative min-h-screen flex items-center overflow-hidden bg-white">
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-8 py-24">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <div>
@@ -166,15 +166,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
               </div>
             </div>
             <div className="transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0)" : "translateY(24px)", transitionDelay: "500ms" }}>
-              <div
-                className="relative mx-auto w-full max-w-[560px] aspect-[5/4]"
-                style={{
-                  WebkitMaskImage:
-                    "radial-gradient(ellipse 95% 92% at 50% 50%, #000 62%, transparent 100%)",
-                  maskImage:
-                    "radial-gradient(ellipse 95% 92% at 50% 50%, #000 62%, transparent 100%)",
-                }}
-              >
+              <div className="relative mx-auto w-full max-w-[560px] aspect-[5/4]">
                 <video
                   src="/videos/hero-home.mp4"
                   poster="/videos/hero-home-poster.jpg"
