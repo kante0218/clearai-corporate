@@ -177,6 +177,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
               >
                 <video
                   src="/videos/hero-home.mp4"
+                  poster="/videos/hero-home-poster.jpg"
                   autoPlay
                   loop
                   muted
