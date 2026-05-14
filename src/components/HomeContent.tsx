@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 
@@ -167,15 +168,13 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
             </div>
             <div className="transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0)" : "translateY(24px)", transitionDelay: "500ms" }}>
               <div className="relative mx-auto w-full max-w-[720px] aspect-[5/4]">
-                <video
-                  src="/videos/hero-home.mp4"
-                  poster="/videos/hero-home-poster.jpg"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  preload="metadata"
-                  className="absolute inset-0 w-full h-full object-cover"
+                <Image
+                  src="/ai-agriculture-hero.png"
+                  alt="ドローン、ロボットアーム、センサー、ダッシュボードが連携するスマート農業のイメージ"
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-contain"
                 />
               </div>
             </div>
