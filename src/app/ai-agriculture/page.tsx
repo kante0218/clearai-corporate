@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import HeroBackground from "@/components/HeroBackground";
 
 function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -26,34 +25,14 @@ function Label({ children }: { children: ReactNode }) {
 }
 
 export default function AiAgriculturePage() {
-  const [heroLoaded, setHeroLoaded] = useState(false);
-  useEffect(() => { setTimeout(() => setHeroLoaded(true), 100); }, []);
-
   return (
     <>
-      {/* HERO */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
-        <HeroBackground />
-        {/* readability vignette over the dark scene */}
-        <div
-          className="absolute inset-0 z-[1] pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 60% 50% at 50% 50%, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.55) 40%, rgba(0,0,0,0.0) 80%)",
-          }}
-        />
-        <div className="relative z-10 max-w-3xl mx-auto px-6 text-center pointer-events-none">
-          <span className="inline-block rounded-full bg-emerald-500/15 ring-1 ring-emerald-400/40 backdrop-blur-sm text-emerald-300 px-3 py-1 text-sm font-semibold mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "300ms" }}>Engineering × Agriculture</span>
-          <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-6 transition-all duration-700 [text-shadow:0_2px_24px_rgba(0,0,0,0.6)]" style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0)" : "translateY(24px)", transitionDelay: "500ms" }}>
-            農業インフラから、<br />宇宙・防衛産業へ。
-          </h1>
-          <p className="text-base text-gray-300 leading-relaxed max-w-lg mx-auto mb-10 transition-all duration-700 [text-shadow:0_1px_8px_rgba(0,0,0,0.5)]" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "700ms" }}>
-            田んぼの水流管理や、ビニールハウスの自動化から。<br />農家の声に根差した技術を、未来の極限環境へ拡張する。
-          </p>
-          <div className="flex items-center justify-center gap-4 transition-all duration-700 pointer-events-auto" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "900ms" }}>
-            <a href="/contact" className="rounded-lg bg-emerald-500 text-white font-semibold px-8 py-3.5 hover:bg-emerald-400 shadow-[0_0_40px_rgba(16,185,129,0.4)] transition-all duration-300">無料相談を申し込む</a>
-            <a href="#services" className="text-sm text-gray-300 font-semibold hover:text-white transition-colors duration-300">ソリューションを見る →</a>
-          </div>
+      {/* PAGE HEADER */}
+      <section className="pt-24 pb-12 lg:pt-32 lg:pb-16 bg-white border-b border-gray-100">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <p className="text-sm font-semibold text-emerald-600 mb-3">Engineering × Agriculture</p>
+          <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4">農業インフラから、宇宙・防衛産業へ。</h1>
+          <p className="text-base text-gray-600 leading-relaxed max-w-2xl">田んぼの水流管理や、ビニールハウスの自動化から。農家の声に根差した技術を、未来の極限環境へ拡張する。</p>
         </div>
       </section>
 

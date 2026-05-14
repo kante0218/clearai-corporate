@@ -40,77 +40,14 @@ function Label({ children }: { children: ReactNode }) {
 }
 
 export default function KawasemiPage() {
-  const [heroLoaded, setHeroLoaded] = useState(false);
-  useEffect(() => {
-    setTimeout(() => setHeroLoaded(true), 100);
-  }, []);
-
   return (
     <>
-      {/* SECTION 1 — HERO */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0a1410]">
-        {/* background video */}
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover z-0"
-        >
-          <source src="/videos/kawasemi-hero.mp4" type="video/mp4" />
-        </video>
-        {/* dim overlay for text readability */}
-        <div
-          className="absolute inset-0 z-[1] pointer-events-none"
-          style={{
-            background:
-              "linear-gradient(180deg, rgba(10,20,16,0.35) 0%, rgba(10,20,16,0.55) 55%, rgba(10,20,16,0.85) 100%)",
-          }}
-        />
-
-        <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
-          <span
-            className="inline-block rounded-full bg-emerald-500/15 ring-1 ring-emerald-400/40 backdrop-blur-sm text-emerald-300 px-3 py-1 text-sm font-semibold mb-6 transition-all duration-700"
-            style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "300ms" }}
-          >
-            Kawasemi Project
-          </span>
-          <h1
-            className="text-4xl md:text-5xl font-bold text-white leading-tight mb-6 transition-all duration-700 [text-shadow:0_2px_24px_rgba(0,0,0,0.6)]"
-            style={{
-              opacity: heroLoaded ? 1 : 0,
-              transform: heroLoaded ? "translateY(0)" : "translateY(24px)",
-              transitionDelay: "500ms",
-            }}
-          >
-            優秀な若者が、<br />一次産業の未来を継ぐ。
-          </h1>
-          <p
-            className="text-base text-gray-300 leading-relaxed max-w-lg mx-auto mb-10 transition-all duration-700 [text-shadow:0_1px_8px_rgba(0,0,0,0.5)]"
-            style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "700ms" }}
-          >
-            農業、林業、漁業。<br />
-            この国の自然と地域を支えてきた仕事を、次の世代へ手渡すための実践型プロジェクト。
-          </p>
-          <div
-            className="flex items-center justify-center gap-4 transition-all duration-700"
-            style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "900ms" }}
-          >
-            <a
-              href="#about"
-              className="rounded-lg bg-emerald-500 text-white font-semibold px-8 py-3.5 hover:bg-emerald-400 shadow-[0_0_40px_rgba(16,185,129,0.4)] transition-all duration-300"
-            >
-              プロジェクトについて知る
-            </a>
-            <a
-              href="#join"
-              className="text-sm text-gray-300 font-semibold hover:text-white transition-colors duration-300"
-            >
-              参加を検討する →
-            </a>
-          </div>
+      {/* PAGE HEADER */}
+      <section className="pt-24 pb-12 lg:pt-32 lg:pb-16 bg-white border-b border-gray-100">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <p className="text-sm font-semibold text-emerald-600 mb-3">Kawasemi Project</p>
+          <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4">優秀な若者が、一次産業の未来を継ぐ。</h1>
+          <p className="text-base text-gray-600 leading-relaxed max-w-2xl">農業、林業、漁業。この国の自然と地域を支えてきた仕事を、次の世代へ手渡すための実践型プロジェクト。</p>
         </div>
       </section>
 
