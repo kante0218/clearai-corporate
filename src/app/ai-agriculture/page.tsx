@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 
 function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
@@ -30,9 +31,23 @@ export default function AiAgriculturePage() {
       {/* PAGE HEADER */}
       <section className="pt-24 pb-12 lg:pt-32 lg:pb-16 bg-white border-b border-gray-100">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
-          <p className="text-sm font-semibold text-emerald-600 mb-3">Engineering × Agriculture</p>
-          <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4">農業インフラから、宇宙・防衛産業へ。</h1>
-          <p className="text-base text-gray-600 leading-relaxed max-w-2xl">田んぼの水流管理や、ビニールハウスの自動化から。農家の声に根差した技術を、未来の極限環境へ拡張する。</p>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12 items-center">
+            <div>
+              <p className="text-sm font-semibold text-emerald-600 mb-3">Engineering × Agriculture</p>
+              <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4">農業インフラから、宇宙・防衛産業へ。</h1>
+              <p className="text-base text-gray-600 leading-relaxed">田んぼの水流管理や、ビニールハウスの自動化から。農家の声に根差した技術を、未来の極限環境へ拡張する。</p>
+            </div>
+            <div className="relative w-full aspect-[4/3] lg:aspect-[5/4]">
+              <Image
+                src="/ai-agriculture-hero.png"
+                alt="ドローン、ロボットアーム、センサー、ダッシュボードが連携するスマート農業のイメージ"
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-contain"
+              />
+            </div>
+          </div>
         </div>
       </section>
 
