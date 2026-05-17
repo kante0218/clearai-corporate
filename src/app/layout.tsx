@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { Noto_Sans_JP, Inter } from "next/font/google";
-import Script from "next/script";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -319,6 +318,34 @@ const websiteSchema = {
   },
 };
 
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "@id": "https://clearai.jp/#breadcrumb",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "ホーム", "item": "https://clearai.jp" },
+    { "@type": "ListItem", "position": 2, "name": "AIコンサルティング", "item": "https://clearai.jp/ai-consulting" },
+    { "@type": "ListItem", "position": 3, "name": "AI顧問", "item": "https://clearai.jp/advisor" },
+    { "@type": "ListItem", "position": 4, "name": "AI研修", "item": "https://clearai.jp/training" },
+    { "@type": "ListItem", "position": 5, "name": "Claude特化導入", "item": "https://clearai.jp/claude" },
+    { "@type": "ListItem", "position": 6, "name": "農業×エンジニアリング", "item": "https://clearai.jp/ai-agriculture" },
+    { "@type": "ListItem", "position": 7, "name": "補助金サポート", "item": "https://clearai.jp/subsidy" },
+    { "@type": "ListItem", "position": 8, "name": "お問い合わせ", "item": "https://clearai.jp/contact" },
+  ],
+};
+
+const jsonLdGraph = {
+  "@context": "https://schema.org",
+  "@graph": [
+    organizationSchema,
+    websiteSchema,
+    professionalServiceSchema,
+    siteNavigationSchema,
+    breadcrumbSchema,
+    brandFaqSchema,
+  ],
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -326,42 +353,18 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja" suppressHydrationWarning className={`${notoSansJP.variable} ${inter.variable}`}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdGraph) }}
+        />
+      </head>
       <body className="font-sans antialiased text-navy-950 bg-white">
         <LanguageProvider>
           <Header />
           <main className="min-h-screen">{children}</main>
           <Footer />
         </LanguageProvider>
-        <Script
-          id="schema-organization"
-          type="application/ld+json"
-          strategy="beforeInteractive"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
-        />
-        <Script
-          id="schema-website"
-          type="application/ld+json"
-          strategy="beforeInteractive"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
-        />
-        <Script
-          id="schema-site-navigation"
-          type="application/ld+json"
-          strategy="beforeInteractive"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(siteNavigationSchema) }}
-        />
-        <Script
-          id="schema-professionalservice"
-          type="application/ld+json"
-          strategy="beforeInteractive"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(professionalServiceSchema) }}
-        />
-        <Script
-          id="schema-brand-faq"
-          type="application/ld+json"
-          strategy="beforeInteractive"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(brandFaqSchema) }}
-        />
       </body>
     </html>
   );
