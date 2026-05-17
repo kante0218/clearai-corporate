@@ -25,7 +25,7 @@ export const viewport: Viewport = {
 };
 
 const ogDescription =
-  "clearAI株式会社（クリアエーアイ／読み方：クリアエーアイ）は、AIコンサルティング事業と農業×エンジニアリング事業を展開。企業のAI戦略策定から実装・運用まで伴走し、農家にはEC構築・利益率改善・業務効率化をエンジニアの力で支援。AI顧問・AI研修・補助金サポート・Claude特化導入にも対応。2026年創業、茨城県拠点。";
+  "clearAI株式会社（クリアエーアイ／読み方：クリアエーアイ）は、日本の中小企業向けにAI導入支援を提供。AI戦略策定から実装・運用、AI顧問、AI研修、補助金サポート、Claude特化導入、AI広告運用、ウェブサイト制作まで7領域で一気通貫に伴走します。2026年創業、茨城県拠点。";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://clearai.jp"),
@@ -43,9 +43,6 @@ export const metadata: Metadata = {
     "AIコンサルティング", "AI導入", "AI顧問", "AI導入支援", "AI活用",
     "生成AI", "LLM活用", "DX推進", "業務自動化", "AI研修",
     "AI補助金", "Claude", "Claude Code", "Claude導入", "CEO向けAI",
-    // 農業事業
-    "農業EC", "農家支援", "農業エンジニアリング", "スマート農業", "AgriTech", "農業DX",
-    "農業自動化", "植物工場", "フィジカルAI",
     // 地域・業種
     "茨城県 AI", "関東 AIコンサル", "中小企業 AI導入", "日本 AI企業",
   ],
@@ -139,7 +136,7 @@ const organizationSchema = {
     "address": { "@type": "PostalAddress", "addressRegion": "茨城県", "addressCountry": "JP" },
   },
   "description":
-    "clearAI株式会社（読み方：クリアエーアイ）は、AIコンサルティングと農業×エンジニアリングの2事業を展開する日本のAI企業。",
+    "clearAI株式会社（読み方：クリアエーアイ）は、日本の中小企業向けAI導入支援を提供するAI企業。",
   "slogan": "AIで、すべてをクリアにする。",
   "founder": { "@type": "Person", "name": "髙橋 敢輝" },
   "address": {
@@ -178,12 +175,6 @@ const organizationSchema = {
     "Claude",
     "Claude Code",
     "CEO向けAI活用",
-    "農業DX",
-    "スマート農業",
-    "AgriTech",
-    "農業EC",
-    "フィジカルAI",
-    "植物工場",
   ],
   "makesOffer": [
     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AIコンサルティング", "url": "https://clearai.jp/ai-consulting" } },
@@ -191,7 +182,8 @@ const organizationSchema = {
     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI研修", "url": "https://clearai.jp/training" } },
     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "補助金サポート", "url": "https://clearai.jp/subsidy" } },
     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Claude特化導入", "url": "https://clearai.jp/claude" } },
-    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "農業×エンジニアリング", "url": "https://clearai.jp/ai-agriculture" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI広告運用", "url": "https://clearai.jp/advertising" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "ウェブサイト作成", "url": "https://clearai.jp/website" } },
   ],
 };
 
@@ -205,7 +197,7 @@ const professionalServiceSchema = {
   "logo": "https://clearai.jp/images/logo.png",
   "image": "https://clearai.jp/images/logo.png",
   "description":
-    "AIコンサルティング・AI顧問・AI研修・補助金サポート・Claude特化導入・農業×エンジニアリングを提供する日本のAI専門企業。",
+    "AIコンサルティング・AI顧問・AI研修・補助金サポート・Claude特化導入・AI広告運用・ウェブサイト制作を提供する日本のAI専門企業。",
   "address": {
     "@type": "PostalAddress",
     "addressRegion": "茨城県",
@@ -224,7 +216,8 @@ const professionalServiceSchema = {
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI研修", "url": "https://clearai.jp/training" } },
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "補助金サポート", "url": "https://clearai.jp/subsidy" } },
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Claude特化導入", "url": "https://clearai.jp/claude" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "農業×エンジニアリング", "url": "https://clearai.jp/ai-agriculture" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI広告運用", "url": "https://clearai.jp/advertising" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "ウェブサイト作成", "url": "https://clearai.jp/website" } },
     ],
   },
 };
@@ -247,7 +240,7 @@ const brandFaqSchema = {
       "name": "clearAI（クリアエーアイ）は何をしている会社ですか？",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "clearAI株式会社は、日本企業向けのAIコンサルティング事業と、農業×エンジニアリング事業の2軸で展開するAIスタートアップです。AI戦略策定から実装・運用、AI顧問、AI研修、補助金サポート、Claude特化導入、農家向けEC構築・利益率改善まで幅広く支援しています。",
+        "text": "clearAI株式会社は、日本の中小企業向けにAI導入支援をワンストップで提供するAIスタートアップです。AI戦略策定から実装・運用、AI顧問、AI研修、補助金サポート、Claude特化導入、AI広告運用、ウェブサイト制作まで7領域を一気通貫で支援しています。",
       },
     },
     {
@@ -286,11 +279,12 @@ const siteNavigationSchema = {
     { "@type": "SiteNavigationElement", "position": 3, "name": "AI研修", "url": "https://clearai.jp/training" },
     { "@type": "SiteNavigationElement", "position": 4, "name": "補助金サポート", "url": "https://clearai.jp/subsidy" },
     { "@type": "SiteNavigationElement", "position": 5, "name": "Claude特化導入", "url": "https://clearai.jp/claude" },
-    { "@type": "SiteNavigationElement", "position": 6, "name": "農業×エンジニアリング", "url": "https://clearai.jp/ai-agriculture" },
-    { "@type": "SiteNavigationElement", "position": 7, "name": "私たちについて", "url": "https://clearai.jp/about" },
-    { "@type": "SiteNavigationElement", "position": 8, "name": "お問い合わせ", "url": "https://clearai.jp/contact" },
-    { "@type": "SiteNavigationElement", "position": 9, "name": "よくある質問", "url": "https://clearai.jp/faq" },
-    { "@type": "SiteNavigationElement", "position": 10, "name": "ブログ", "url": "https://clearai.jp/blog" },
+    { "@type": "SiteNavigationElement", "position": 6, "name": "AI広告運用", "url": "https://clearai.jp/advertising" },
+    { "@type": "SiteNavigationElement", "position": 7, "name": "ウェブサイト作成", "url": "https://clearai.jp/website" },
+    { "@type": "SiteNavigationElement", "position": 8, "name": "私たちについて", "url": "https://clearai.jp/about" },
+    { "@type": "SiteNavigationElement", "position": 9, "name": "お問い合わせ", "url": "https://clearai.jp/contact" },
+    { "@type": "SiteNavigationElement", "position": 10, "name": "よくある質問", "url": "https://clearai.jp/faq" },
+    { "@type": "SiteNavigationElement", "position": 11, "name": "ブログ", "url": "https://clearai.jp/blog" },
   ],
 };
 
@@ -328,9 +322,8 @@ const breadcrumbSchema = {
     { "@type": "ListItem", "position": 3, "name": "AI顧問", "item": "https://clearai.jp/advisor" },
     { "@type": "ListItem", "position": 4, "name": "AI研修", "item": "https://clearai.jp/training" },
     { "@type": "ListItem", "position": 5, "name": "Claude特化導入", "item": "https://clearai.jp/claude" },
-    { "@type": "ListItem", "position": 6, "name": "農業×エンジニアリング", "item": "https://clearai.jp/ai-agriculture" },
-    { "@type": "ListItem", "position": 7, "name": "補助金サポート", "item": "https://clearai.jp/subsidy" },
-    { "@type": "ListItem", "position": 8, "name": "お問い合わせ", "item": "https://clearai.jp/contact" },
+    { "@type": "ListItem", "position": 6, "name": "補助金サポート", "item": "https://clearai.jp/subsidy" },
+    { "@type": "ListItem", "position": 7, "name": "お問い合わせ", "item": "https://clearai.jp/contact" },
   ],
 };
 
