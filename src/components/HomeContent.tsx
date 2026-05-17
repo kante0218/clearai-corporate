@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 
@@ -115,69 +114,37 @@ function SectionLabel({ children }: { children: ReactNode }) {
 
 export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
   const [heroLoaded, setHeroLoaded] = useState(false);
-  const [kawasemiOpen, setKawasemiOpen] = useState(false);
   useEffect(() => { setTimeout(() => setHeroLoaded(true), 100); }, []);
-
-  useEffect(() => {
-    const openKawasemiFromHash = () => {
-      if (typeof window === "undefined") return;
-      if (window.location.hash !== "#kawasemi-project") return;
-      setKawasemiOpen(true);
-      window.requestAnimationFrame(() => {
-        const el = document.getElementById("kawasemi-project");
-        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-      });
-    };
-    openKawasemiFromHash();
-    window.addEventListener("hashchange", openKawasemiFromHash);
-    return () => window.removeEventListener("hashchange", openKawasemiFromHash);
-  }, []);
 
   return (
     <>
       {/* ═══ HERO ═══ */}
       <section className="relative min-h-screen flex items-center overflow-hidden bg-white">
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-8 py-24">
-          <div className="grid lg:grid-cols-[1fr_1.15fr] gap-12 lg:gap-14 items-center">
-            <div>
-              <div className="flex flex-wrap gap-2 mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "200ms" }}>
-                {["8領域で伴走", "戦略から実装まで", "中小企業＆農業特化"].map((tag) => (
-                  <span key={tag} className="inline-flex items-center rounded-full bg-green-50 text-green-700 border border-green-100 px-3 py-1 text-xs font-semibold">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-[1.15] tracking-tight mb-8 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0)" : "translateY(24px)", transitionDelay: "400ms" }}>
-                中小企業と農業現場に、<br />
-                <span className="text-green-600">使えるAI</span>と<span className="text-green-600">実装力</span>を。
-              </h1>
-              <p className="text-base md:text-lg text-gray-600 leading-relaxed max-w-xl mb-10 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "650ms" }}>
-                AI導入支援と農業自動化を、戦略から実装まで支援します。<br className="hidden md:inline" />
-                コンサル・顧問・研修・Claude Code導入・広告・Web制作・補助金活用・農業自動化の8領域で、現場で動くものまで責任を持ちます。
-              </p>
-              <div className="flex flex-wrap items-center gap-5 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "850ms" }}>
-                <Link href="/contact" className="inline-flex items-center gap-2 rounded-full bg-green-600 text-white font-semibold px-7 py-3.5 hover:bg-green-700 transition-colors duration-300 shadow-[0_8px_24px_-8px_rgba(22,163,74,0.5)]">
-                  まずは相談する
-                  <span aria-hidden>→</span>
-                </Link>
-                <Link href="#services" className="inline-flex items-center gap-1.5 text-sm text-gray-700 font-semibold hover:text-green-600 transition-colors duration-300">
-                  事業を見る
-                  <span aria-hidden>→</span>
-                </Link>
-              </div>
-            </div>
-            <div className="transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0)" : "translateY(24px)", transitionDelay: "500ms" }}>
-              <div className="relative mx-auto w-full max-w-[720px] aspect-[5/4]">
-                <Image
-                  src="/ai-agriculture-hero.png"
-                  alt="ドローン、ロボットアーム、センサー、ダッシュボードが連携するスマート農業のイメージ"
-                  fill
-                  priority
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="object-contain"
-                />
-              </div>
-            </div>
+        <div className="relative z-10 w-full max-w-5xl mx-auto px-6 lg:px-8 py-24 text-center">
+          <div className="flex flex-wrap justify-center gap-2 mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "200ms" }}>
+            {["7領域で伴走", "戦略から実装まで", "中小企業特化"].map((tag) => (
+              <span key={tag} className="inline-flex items-center rounded-full bg-green-50 text-green-700 border border-green-100 px-3 py-1 text-xs font-semibold">
+                {tag}
+              </span>
+            ))}
+          </div>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-[1.15] tracking-tight mb-8 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0)" : "translateY(24px)", transitionDelay: "400ms" }}>
+            日本の中小企業に、<br />
+            <span className="text-green-600">使えるAI</span>と<span className="text-green-600">実装力</span>を。
+          </h1>
+          <p className="text-base md:text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto mb-10 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "650ms" }}>
+            AI導入支援を、戦略から実装まで一気通貫で。<br className="hidden md:inline" />
+            コンサル・顧問・研修・Claude Code導入・広告・Web制作・補助金活用の7領域で、現場で動くものまで責任を持ちます。
+          </p>
+          <div className="flex flex-wrap justify-center items-center gap-5 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "850ms" }}>
+            <Link href="/contact" className="inline-flex items-center gap-2 rounded-full bg-green-600 text-white font-semibold px-7 py-3.5 hover:bg-green-700 transition-colors duration-300 shadow-[0_8px_24px_-8px_rgba(22,163,74,0.5)]">
+              まずは相談する
+              <span aria-hidden>→</span>
+            </Link>
+            <Link href="#services" className="inline-flex items-center gap-1.5 text-sm text-gray-700 font-semibold hover:text-green-600 transition-colors duration-300">
+              事業を見る
+              <span aria-hidden>→</span>
+            </Link>
           </div>
         </div>
       </section>
@@ -189,7 +156,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
             <div className="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-gray-200">
               {[
                 { value: "最大75%", label: "研修費助成対応" },
-                { value: "8領域", label: "AI × 農業" },
+                { value: "7領域", label: "AI活用ワンストップ" },
                 { value: "全国対応", label: "オンライン実施可" },
                 { value: "2営業日", label: "初回返信" },
               ].map((stat) => (
@@ -216,15 +183,15 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
             <Reveal delay={100}>
               <div className="space-y-5">
                 <p className="text-base text-gray-600 leading-relaxed">
-                  AIはまだ、多くの企業や生産者にとって遠い存在です。難しい、コストが高い、何から始めればいいかわからない——そんな声を何度も聞いてきました。
+                  AIはまだ、多くの企業にとって遠い存在です。難しい、コストが高い、何から始めればいいかわからない——そんな声を何度も聞いてきました。
                 </p>
                 <p className="text-base text-gray-600 leading-relaxed">
-                  私たちはそのギャップを埋めるために生まれました。最先端のAI技術をビジネスの言葉に翻訳し、エンジニアの力で農家の経営を支える。一社一社、一農家一農家に寄り添い、確かな価値を届けていきます。
+                  私たちはそのギャップを埋めるために生まれました。最先端のAI技術をビジネスの言葉に翻訳し、エンジニアの力で現場の経営を支える。一社一社に寄り添い、確かな価値を届けていきます。
                 </p>
                 <div className="h-px bg-gray-200 mt-6" />
                 <div className="flex items-center gap-8 pt-4">
                   <div>
-                    <p className="text-2xl font-bold text-gray-900">6<span className="text-sm text-gray-400 ml-1 font-normal">領域</span></p>
+                    <p className="text-2xl font-bold text-gray-900">7<span className="text-sm text-gray-400 ml-1 font-normal">領域</span></p>
                     <p className="text-xs text-gray-400 mt-1">展開中</p>
                   </div>
                   <div className="w-px h-10 bg-gray-200" />
@@ -318,24 +285,14 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
           <Reveal>
             <SectionLabel>Our Services</SectionLabel>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">
-              AIと農業で、日本の未来をつくる。
+              AIで、日本の未来をつくる。
             </h2>
             <p className="text-base text-gray-500 mb-14 max-w-2xl leading-relaxed">
-              2つの事業軸で、テクノロジーと一次産業の現場をつなぐ。それぞれの領域で確実に成果を届けます。
+              戦略から実装・運用まで、AI活用の各領域で確実に成果を届けます。
             </p>
           </Reveal>
 
-          {/* ── AI事業 ── */}
-          <Reveal>
-            <div className="flex items-center gap-3 mb-8">
-              <span className="inline-flex items-center gap-2 text-sm font-bold text-green-700 bg-green-50 border border-green-200 rounded-full px-4 py-1.5 tracking-wide">
-                <span className="w-2 h-2 rounded-full bg-green-600" />AI事業
-              </span>
-              <span className="flex-1 h-px bg-gray-200" />
-            </div>
-          </Reveal>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
             {aiServices.map((svc, i) => {
               const c = aiServiceColorMap[svc.color];
               return (
@@ -365,173 +322,6 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
                 </Reveal>
               );
             })}
-          </div>
-
-          {/* ── 農業事業 ── */}
-          <Reveal>
-            <div className="flex items-center gap-3 mb-8">
-              <span className="inline-flex items-center gap-2 text-sm font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-full px-4 py-1.5 tracking-wide">
-                <span className="w-2 h-2 rounded-full bg-emerald-600" />農業事業
-              </span>
-              <span className="flex-1 h-px bg-gray-200" />
-              <button
-                type="button"
-                onClick={() => setKawasemiOpen((v) => !v)}
-                aria-expanded={kawasemiOpen}
-                aria-controls="kawasemi-project"
-                aria-label={kawasemiOpen ? "翡翠プロジェクトを閉じる" : "翡翠プロジェクトを開く"}
-                className="group inline-flex items-center justify-center w-9 h-9 rounded-full border border-emerald-200 bg-white text-emerald-700 hover:bg-emerald-50 hover:border-emerald-300 hover:shadow-sm transition-all duration-300"
-              >
-                <svg
-                  width="14"
-                  height="14"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                  className="transition-transform duration-500 ease-out"
-                  style={{ transform: kawasemiOpen ? "rotate(180deg)" : "rotate(0deg)" }}
-                  aria-hidden="true"
-                >
-                  <path d="M4 6l4 4 4-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </button>
-            </div>
-          </Reveal>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
-            <Reveal delay={0} className="h-full">
-              <Link href="/ai-agriculture" className="group block h-full">
-                <div className="bg-white border border-gray-200 rounded-2xl p-8 lg:p-10 hover:border-emerald-300 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
-                  <span className="inline-block text-xs font-semibold tracking-widest uppercase text-emerald-600 mb-4">AGRI 01</span>
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">インフラ設備の自動化</h3>
-                  <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">
-                    灌漑・換気・温度管理など農業インフラをIoTとソフトウェアで自動制御。人手に頼らず安定した栽培環境を実現し、省力化とコスト削減を両立します。
-                  </p>
-                  <div className="flex items-center gap-3 flex-wrap mb-6">
-                    {["IoT制御", "環境モニタリング", "省力化", "遠隔管理"].map((tag) => (
-                      <span key={tag} className="text-xs text-gray-500 border border-gray-200 rounded px-2.5 py-1">{tag}</span>
-                    ))}
-                  </div>
-                  <span className="text-sm font-semibold text-emerald-600 group-hover:text-emerald-700 transition-colors">
-                    詳しく見る →
-                  </span>
-                </div>
-              </Link>
-            </Reveal>
-
-            <Reveal delay={80} className="h-full">
-              <Link href="/contact?service=agriculture-import" className="group block h-full">
-                <div className="bg-white border border-gray-200 rounded-2xl p-8 lg:p-10 hover:border-emerald-300 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
-                  <span className="inline-block text-xs font-semibold tracking-widest uppercase text-emerald-600 mb-4">AGRI 02</span>
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">海外製部品の輸入・取り付け・保守</h3>
-                  <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">
-                    海外の先端農業機器・部品を調達し、現場への取り付けから運用・保守点検までワンストップで対応。国内では手に入りにくい高性能パーツを、安心の日本語サポート付きで提供します。
-                  </p>
-                  <div className="flex items-center gap-3 flex-wrap mb-6">
-                    {["海外部品調達", "設置工事", "運用サポート", "保守点検"].map((tag) => (
-                      <span key={tag} className="text-xs text-gray-500 border border-gray-200 rounded px-2.5 py-1">{tag}</span>
-                    ))}
-                  </div>
-                  <span className="text-sm font-semibold text-emerald-600 group-hover:text-emerald-700 transition-colors">
-                    お問い合わせ →
-                  </span>
-                </div>
-              </Link>
-            </Reveal>
-
-            <Reveal delay={0} className="h-full">
-              <Link href="/contact?service=agriculture-extreme" className="group block h-full">
-                <div className="bg-white border border-gray-200 rounded-2xl p-8 lg:p-10 hover:border-emerald-300 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
-                  <span className="inline-block text-xs font-semibold tracking-widest uppercase text-emerald-600 mb-4">AGRI 03</span>
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">極限空間での栽培</h3>
-                  <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">
-                    砂漠・寒冷地・都市部の地下空間など、従来不可能とされた環境での栽培を技術で実現。環境制御技術と独自ノウハウで、場所を選ばない食料生産の可能性を拓きます。
-                  </p>
-                  <div className="flex items-center gap-3 flex-wrap">
-                    {["環境制御", "植物工場", "閉鎖空間栽培", "食料安全保障"].map((tag) => (
-                      <span key={tag} className="text-xs text-gray-500 border border-gray-200 rounded px-2.5 py-1">{tag}</span>
-                    ))}
-                  </div>
-                </div>
-              </Link>
-            </Reveal>
-
-            <Reveal delay={80} className="h-full">
-              <Link href="/contact?service=agriculture-physical-ai" className="group block h-full">
-                <div className="bg-white border border-gray-200 rounded-2xl p-8 lg:p-10 hover:border-emerald-300 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
-                  <span className="inline-block text-xs font-semibold tracking-widest uppercase text-emerald-600 mb-4">AGRI 04</span>
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">フィジカルAIによる自動化</h3>
-                  <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">
-                    ロボティクスとAIを融合し、収穫・選別・搬送などの農作業を自動化。フィジカルAIが人手不足の現場を支え、生産性と品質の両面を飛躍的に向上させます。
-                  </p>
-                  <div className="flex items-center gap-3 flex-wrap">
-                    {["農業ロボット", "自動収穫", "AI画像認識", "作業自動化"].map((tag) => (
-                      <span key={tag} className="text-xs text-gray-500 border border-gray-200 rounded px-2.5 py-1">{tag}</span>
-                    ))}
-                  </div>
-                </div>
-              </Link>
-            </Reveal>
-          </div>
-
-          {/* ── 翡翠プロジェクト (expandable) ── */}
-          <div
-            id="kawasemi-project"
-            className="overflow-hidden transition-all duration-700 ease-out"
-            style={{
-              maxHeight: kawasemiOpen ? "1800px" : "0px",
-              opacity: kawasemiOpen ? 1 : 0,
-              marginTop: kawasemiOpen ? "5rem" : "0px",
-            }}
-            aria-hidden={!kawasemiOpen}
-          >
-            <div className="flex items-center gap-3 mb-8">
-              <span className="inline-flex items-center gap-2 text-sm font-bold text-cyan-700 bg-cyan-50 border border-cyan-200 rounded-full px-4 py-1.5 tracking-wide">
-                <span className="w-2 h-2 rounded-full bg-cyan-600" />翡翠プロジェクト
-              </span>
-              <span className="flex-1 h-px bg-gray-200" />
-            </div>
-
-            <div className="relative bg-gradient-to-br from-cyan-50 via-white to-emerald-50 border border-cyan-100 rounded-3xl p-8 lg:p-12 overflow-hidden">
-              <div className="absolute -top-16 -right-16 w-64 h-64 rounded-full bg-cyan-200/30 blur-3xl pointer-events-none" />
-              <div className="absolute -bottom-20 -left-20 w-72 h-72 rounded-full bg-emerald-200/30 blur-3xl pointer-events-none" />
-
-              <div className="relative grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-center">
-                <div className="md:col-span-7">
-                  <span className="inline-block text-xs font-semibold tracking-[0.2em] uppercase text-cyan-600 mb-4">KAWASEMI PROJECT</span>
-                  <h3 className="text-2xl lg:text-3xl xl:text-4xl font-bold text-gray-900 mb-6 leading-tight">
-                    美しい自然に、<br />日本の優秀な人を還す。
-                  </h3>
-                  <p className="text-sm lg:text-base text-gray-700 leading-relaxed mb-4">
-                    翡翠（カワセミ）は、清らかで美しい場所にしか生息しない鳥です。日本にはたくさんの優秀で素晴らしい人材がいます。その力を、日本の美しい自然を守ることにつなげていきたい——それが翡翠プロジェクトです。
-                  </p>
-                  <p className="text-sm lg:text-base text-gray-700 leading-relaxed mb-6">
-                    clearAIがお仕事を一件いただくたびに、植樹をはじめとした自然のためになる活動を続けていきます。仕事の積み重ねが、そのまま日本の自然をより豊かにしていく流れをつくります。
-                  </p>
-                  <div className="flex items-center gap-2 flex-wrap">
-                    {["植樹", "自然保護", "人材還流", "地域共生", "持続可能性"].map((tag) => (
-                      <span key={tag} className="text-xs font-medium text-cyan-700 bg-white border border-cyan-200 rounded-full px-3 py-1">{tag}</span>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="md:col-span-5 flex items-center justify-center">
-                  <div className="relative w-full max-w-[280px] aspect-square">
-                    <div className="absolute inset-4 rounded-full bg-gradient-to-br from-cyan-300/40 via-emerald-200/30 to-transparent blur-2xl" />
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <span
-                        className="font-bold text-cyan-700/85 leading-none tracking-tight select-none"
-                        style={{ fontFamily: '"Hiragino Mincho ProN", "Yu Mincho", serif', fontSize: "clamp(6rem, 18vw, 9rem)" }}
-                      >
-                        翡翠
-                      </span>
-                    </div>
-                    <div className="absolute -top-2 right-6 w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-                    <div className="absolute bottom-8 -left-1 w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" style={{ animationDelay: "0.6s" }} />
-                    <div className="absolute top-1/2 right-2 w-1 h-1 rounded-full bg-cyan-300 animate-pulse" style={{ animationDelay: "1.2s" }} />
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </section>
@@ -744,7 +534,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
                 まずは、お話ししませんか。
               </h2>
               <p className="text-base text-gray-600 leading-relaxed max-w-lg mx-auto">
-                AIのことがわからなくても大丈夫です。<br />貴社・貴農園の状況に合わせて、一緒に考えます。
+                AIのことがわからなくても大丈夫です。<br />貴社の状況に合わせて、一緒に考えます。
               </p>
             </div>
           </Reveal>
@@ -752,10 +542,10 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
             {[
               { label: "AIコンサルティング", service: "consulting", color: "blue" },
               { label: "AI顧問 + ウェブサイト監修", service: "advisor", color: "indigo" },
-              { label: "農業×エンジニアリング", service: "agriculture", color: "emerald" },
               { label: "AI導入・教育", service: "education", color: "amber" },
               { label: "CEO向けAI活用", service: "ceo", color: "violet" },
               { label: "Claude Code特化導入", service: "claude-code", color: "orange" },
+              { label: "AI広告運用", service: "advertising", color: "rose" },
             ].map((item, i) => (
               <Reveal key={item.service} delay={i * 50}>
                 <Link
