@@ -71,12 +71,12 @@ export default function Header() {
     ? "border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white"
     : isAiConsulting
     ? "border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white"
-    : "border-green-600 text-green-600 hover:bg-green-600 hover:text-white";
+    : "border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white";
   const contactFilledClass = isClaude
     ? "bg-orange-500 hover:bg-orange-400 text-white"
     : isAiConsulting
     ? "bg-blue-600 hover:bg-blue-500 text-white"
-    : "bg-green-600 hover:bg-green-500 text-white";
+    : "bg-blue-600 hover:bg-blue-500 text-white";
 
   return (
     <>
@@ -90,7 +90,7 @@ export default function Header() {
                 width={140}
                 height={40}
                 className={`h-8 w-auto transition-all duration-500 ${
-                  isClaude ? "logo-orange-filter" : isAiConsulting ? "" : "logo-green-filter"
+                  isClaude ? "logo-orange-filter" : ""
                 }`}
                 priority
               />

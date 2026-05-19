@@ -47,10 +47,6 @@ html[data-theme="ai"] {
   --accent-solid: #2563eb;
   --accent-solid-hover: #1d4ed8;
 }
-html[data-theme="agriculture"] {
-  --accent-solid: #16a34a;       /* green-600                       */
-  --accent-solid-hover: #15803d; /* green-700                       */
-}
 html[data-theme="claude"] {
   --accent-solid: #f97316;       /* orange-500                      */
   --accent-solid-hover: #ea580c; /* orange-600                      */
@@ -422,11 +418,6 @@ details[open] summary {
   .animate-pulse-glow {
     animation: none !important;
   }
-}
-
-/* Header logo green tint for agriculture page */
-.logo-green-filter {
-  filter: hue-rotate(-100deg) saturate(1.4) brightness(0.95);
 }
 
 /* Header logo orange tint for claude page */
