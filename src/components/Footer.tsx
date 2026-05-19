@@ -9,7 +9,7 @@ export default function Footer() {
           <div>
             <Image src="/images/logo-white.png" alt="clearAI株式会社（クリアエーアイ）ロゴ" width={140} height={40} className="h-8 w-auto mb-4 logo-green-filter" />
             <p className="text-sm text-white/40 leading-relaxed mb-2">
-              中小企業と農業現場に、使えるAIと実装力を。戦略から実装まで一貫して支援します。
+              日本の中小企業に、使えるAIと実装力を。戦略から実装まで一貫して支援します。
             </p>
             <p className="text-xs text-white/25 leading-relaxed">
               clearAI株式会社（読み方：クリアエーアイ）<br />代表取締役 髙橋 敢輝<br />茨城県 / 2026年4月設立
@@ -27,7 +27,6 @@ export default function Footer() {
                 { label: "Claude特化", href: "/claude" },
                 { label: "AI広告運用", href: "/advertising" },
                 { label: "ウェブサイト作成", href: "/website" },
-                { label: "農業×エンジニアリング", href: "/ai-agriculture" },
               ].map((link) => (
                 <li key={link.label}>
                   <Link href={link.href} className="text-sm text-white/40 hover:text-white/80 transition-colors">{link.label}</Link>
