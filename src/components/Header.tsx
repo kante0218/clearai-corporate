@@ -22,14 +22,6 @@ export default function Header() {
 
   const navItems: NavItem[] = [
     {
-      label: h.navAgriculture,
-      href: "/ai-agriculture",
-      children: [
-        { label: h.navAgricultureEngineering, href: "/ai-agriculture", description: h.navAgricultureEngineeringDesc },
-        { label: h.navKawasemi, href: "/ai-agriculture/kawasemi", description: h.navKawasemiDesc },
-      ],
-    },
-    {
       label: h.navAi,
       href: "/ai-consulting",
       children: [
@@ -45,8 +37,6 @@ export default function Header() {
     { label: h.navNews, href: "/blog" },
     { label: h.navAbout, href: "/about" },
   ];
-  const isHome = pathname === "/";
-  const isAgriculture = pathname?.startsWith("/ai-agriculture") || isHome;
   const isClaude = pathname?.startsWith("/claude");
   const isAiConsulting =
     pathname?.startsWith("/ai-consulting") ||
@@ -66,11 +56,10 @@ export default function Header() {
 
   useEffect(() => {
     const root = document.documentElement;
-    if (isAgriculture) root.dataset.theme = "agriculture";
-    else if (isClaude) root.dataset.theme = "claude";
+    if (isClaude) root.dataset.theme = "claude";
     else if (isAiConsulting) root.dataset.theme = "ai";
     else delete root.dataset.theme;
-  }, [isAgriculture, isClaude, isAiConsulting]);
+  }, [isClaude, isAiConsulting]);
 
 
   const navColor = "text-gray-600 hover:text-gray-900";
