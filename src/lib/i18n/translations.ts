@@ -109,7 +109,7 @@ export const footer = {
     tagline:
       "Practical AI and engineering for SMEs and farms — from strategy to implementation.",
     companyLine1: "clearAI Inc. (Japanese name: clearAI Kabushiki Kaisha)",
-    companyLine2: "CEO: Kanki Takahashi",
+    companyLine2: "CEO: kante takahashi",
     companyLine3: "Ibaraki, Japan / Founded April 2026",
     servicesHeading: "Services",
     services: {
@@ -917,7 +917,7 @@ export const about = {
       "We're still a small company, but the vision is large. We warmly welcome teammates, partners, and customers who'd like to walk alongside us.",
     ],
     messageSigTitle: "clearAI Inc., CEO",
-    messageSigName: "Kanki Takahashi",
+    messageSigName: "kante takahashi",
     companyLabel: "Company",
     companyTitle: "Company Information",
     companyInfo: [
@@ -929,7 +929,7 @@ export const about = {
         value: "clear AI / Clear AI / クリアAI / クリア・エーアイ / クリアーエーアイ",
       },
       { label: "Founded", value: "April 2026" },
-      { label: "CEO", value: "Kanki Takahashi" },
+      { label: "CEO", value: "kante takahashi" },
       { label: "Location", value: "Ibaraki, Japan" },
       {
         label: "Business",

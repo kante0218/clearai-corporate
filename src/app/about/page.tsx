@@ -48,15 +48,9 @@ const companyInfo = [
 const members = [
   {
     name: "髙橋 敢輝",
-    nameEn: "Kanki Takahashi",
+    nameEn: "kante takahashi",
     role: "代表取締役 / Founder & CEO",
     bio: "茨城県出身。AIと農業の交差点に日本の未来を見出し、2026年にclearAIを創業。誠実・伴走・翻訳・長期視点をコアバリューに、関東・東北No.1のAI×地域産業ブティックを目指す。",
-  },
-  {
-    name: "大田 和寿",
-    nameEn: "Kazuhisa Ohta",
-    role: "コンサルティング部門 監修",
-    bio: "外資系大手コンサルティングファーム出身。UI/UXの観点からWeb領域のプロダクトマネジメントに従事。4年間プロのフットサル選手として活動した経験を持つ。",
   },
   {
     name: "伊藤 愛基",
@@ -185,9 +179,9 @@ export default function AboutPage() {
           <div className="grid md:grid-cols-3 gap-8 auto-rows-fr">
             <Reveal delay={0} className="h-full">
               <div className="h-full border border-white/10 rounded-2xl p-10 lg:p-12 bg-white/10 backdrop-blur-md flex flex-col">
-                <p className="text-4xl lg:text-5xl font-bold text-white mb-2">1000億円</p>
-                <p className="text-sm font-semibold text-blue-400 mb-3">目標売上高（2030年）</p>
-                <p className="text-sm text-gray-300 leading-relaxed">粗利率50%超・継続率95%の「質を伴う1000億円」。派手な数字ではなく、一社一社の成功を積み重ねた結果としての売上です。</p>
+                <p className="text-4xl lg:text-5xl font-bold text-white mb-2">1500億円</p>
+                <p className="text-sm font-semibold text-blue-400 mb-3">時価総額（2035年）</p>
+                <p className="text-sm text-gray-300 leading-relaxed">粗利率50%超・継続率95%の「質を伴う事業」を積み上げ、2035年に時価総額1500億円を目指します。派手な数字ではなく、一社一社の成功を積み重ねた結果としての企業価値です。</p>
               </div>
             </Reveal>
             <Reveal delay={80} className="h-full">
