@@ -149,19 +149,19 @@ const organizationSchema = {
     {
       "@type": "ContactPoint",
       "contactType": "customer service",
-      "email": "t.kante@clearai.jp",
+      "email": "info@clearai.jp",
       "availableLanguage": ["Japanese", "ja"],
       "areaServed": "JP",
     },
     {
       "@type": "ContactPoint",
       "contactType": "sales",
-      "email": "t.kante@clearai.jp",
+      "email": "info@clearai.jp",
       "availableLanguage": ["Japanese", "ja"],
       "areaServed": "JP",
     },
   ],
-  "email": "t.kante@clearai.jp",
+  "email": "info@clearai.jp",
   "sameAs": [],
   "knowsAbout": [
     "AIコンサルティング",
@@ -206,7 +206,7 @@ const professionalServiceSchema = {
   "areaServed": { "@type": "Country", "name": "日本" },
   "priceRange": "¥¥",
   "openingHours": "Mo-Fr 09:00-18:00",
-  "email": "t.kante@clearai.jp",
+  "email": "info@clearai.jp",
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "clearAI サービス一覧",
@@ -248,7 +248,7 @@ const brandFaqSchema = {
       "name": "clearAI（クリアエーアイ）はどこにありますか？",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "茨城県に本社を置く日本のAI企業で、2026年4月に設立されました。代表取締役は髙橋 敢輝。お問い合わせは t.kante@clearai.jp まで。",
+        "text": "茨城県に本社を置く日本のAI企業で、2026年4月に設立されました。代表取締役は髙橋 敢輝。お問い合わせは info@clearai.jp まで。",
       },
     },
     {

@@ -7,7 +7,7 @@ export const runtime = "nodejs";
 
 const JSON_HEADERS = { "Content-Type": "application/json" };
 
-const TO_EMAIL = process.env.CONTACT_TO_EMAIL ?? "t.kante@clearai.jp";
+const TO_EMAIL = process.env.CONTACT_TO_EMAIL ?? "info@clearai.jp";
 const FROM_EMAIL = process.env.CONTACT_FROM_EMAIL ?? "clearAI <onboarding@resend.dev>";
 
 const INQUIRY_LABEL: Record<InquiryType, string> = {

@@ -46,7 +46,7 @@ export default function PrivacyPage() {
           <div>
             <h2 className="text-lg font-bold text-gray-900 mb-3">6. お問い合わせ</h2>
             <p>個人情報の取り扱いに関するお問い合わせは、以下までご連絡ください。</p>
-            <p className="mt-2">clearAI株式会社<br />メール: t.kante@clearai.jp</p>
+            <p className="mt-2">clearAI株式会社<br />メール: info@clearai.jp</p>
           </div>
 
           <p className="text-sm text-gray-400 mt-8">制定日: 2025年1月1日</p>

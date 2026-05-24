@@ -1346,7 +1346,7 @@ export const contact = {
     infoHoursLabel: "営業時間",
     infoHoursValue: "平日 9:00–18:00",
     infoDirectLabel: "直接連絡",
-    infoDirectValue: "t.kante@clearai.jp",
+    infoDirectValue: "info@clearai.jp",
   },
   en: {
     label: "Contact",
@@ -1407,7 +1407,7 @@ export const contact = {
     infoHoursLabel: "Hours",
     infoHoursValue: "Weekdays 9:00–18:00",
     infoDirectLabel: "Direct email",
-    infoDirectValue: "t.kante@clearai.jp",
+    infoDirectValue: "info@clearai.jp",
   },
 } as const;
 
@@ -1445,7 +1445,7 @@ export const privacy = {
       {
         title: "6. お問い合わせ",
         body: "個人情報の取り扱いに関するお問い合わせは、以下までご連絡ください。",
-        extra: "clearAI株式会社\nメール: t.kante@clearai.jp",
+        extra: "clearAI株式会社\nメール: info@clearai.jp",
       },
     ],
     date: "制定日: 2025年1月1日",
@@ -1483,7 +1483,7 @@ export const privacy = {
       {
         title: "6. Contact",
         body: "Please direct inquiries regarding the handling of personal information to the address below.",
-        extra: "clearAI Inc.\nEmail: t.kante@clearai.jp",
+        extra: "clearAI Inc.\nEmail: info@clearai.jp",
       },
     ],
     date: "Effective date: January 1, 2025",

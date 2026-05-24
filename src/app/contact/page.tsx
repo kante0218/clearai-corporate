@@ -193,7 +193,7 @@ function ContactPageInner() {
           <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">お問い合わせ</h1>
           <p className="text-sm lg:text-base text-gray-600 leading-relaxed max-w-xl mx-auto">
             2営業日以内にご返信します。お急ぎの方は{" "}
-            <a href="mailto:t.kante@clearai.jp" className="text-blue-600 underline underline-offset-2">t.kante@clearai.jp</a>{" "}
+            <a href="mailto:info@clearai.jp" className="text-blue-600 underline underline-offset-2">info@clearai.jp</a>{" "}
             まで直接ご連絡ください。
           </p>
         </Reveal>
@@ -466,7 +466,7 @@ function ContactPageInner() {
                 { label: "返信目安", value: "2営業日以内" },
                 { label: "対応方法", value: "メール / オンライン" },
                 { label: "営業時間", value: "平日 9:00–18:00" },
-                { label: "直接連絡", value: "t.kante@clearai.jp" },
+                { label: "直接連絡", value: "info@clearai.jp" },
               ].map((item) => (
                 <div key={item.label} className="bg-white p-4 text-center">
                   <p className="text-[10px] font-semibold tracking-widest text-gray-400 uppercase mb-1">{item.label}</p>

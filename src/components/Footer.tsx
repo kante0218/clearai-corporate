@@ -66,8 +66,8 @@ export default function Footer() {
             </ul>
             <div className="mt-6 pt-4 border-t border-white/10">
               <p className="text-xs text-white/30 mb-1">お問い合わせ</p>
-              <a href="mailto:t.kante@clearai.jp" className="text-sm text-white/50 hover:text-white/80 transition-colors">
-                t.kante@clearai.jp
+              <a href="mailto:info@clearai.jp" className="text-sm text-white/50 hover:text-white/80 transition-colors">
+                info@clearai.jp
               </a>
             </div>
           </div>
