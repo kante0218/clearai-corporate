@@ -9,7 +9,7 @@ import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { header as headerDict } from "@/lib/i18n/translations";
 
 type NavChild = { label: string; href: string; description?: string };
-type NavItem = { label: string; href: string; children?: NavChild[] };
+type NavItem = { label: string; href: string; children?: NavChild[]; external?: boolean };
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,6 +34,7 @@ export default function Header() {
         { label: h.navSubsidy, href: "/subsidy", description: h.navSubsidyDesc },
       ],
     },
+    { label: h.navHumanoid, href: "https://robotics-nu.vercel.app", external: true },
     { label: h.navNews, href: "/blog" },
     { label: h.navAbout, href: "/about" },
   ];
@@ -107,24 +108,36 @@ export default function Header() {
                     onMouseEnter={() => hasChildren && setOpenMenu(item.label)}
                     onMouseLeave={() => hasChildren && setOpenMenu(null)}
                   >
-                    <Link
-                      href={item.href}
-                      className={`text-sm font-medium transition-all duration-300 relative group inline-flex items-center gap-1 ${navColor}`}
-                    >
-                      {item.label}
-                      {hasChildren && (
-                        <svg
-                          className={`w-3 h-3 transition-transform duration-300 ${isMenuOpen ? "rotate-180" : ""}`}
-                          viewBox="0 0 12 12"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="1.5"
-                        >
-                          <path d="M3 4.5L6 7.5L9 4.5" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                      )}
-                      <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-current group-hover:w-full transition-all duration-300" />
-                    </Link>
+                    {item.external ? (
+                      <a
+                        href={item.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`text-sm font-medium transition-all duration-300 relative group inline-flex items-center gap-1 ${navColor}`}
+                      >
+                        {item.label}
+                        <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-current group-hover:w-full transition-all duration-300" />
+                      </a>
+                    ) : (
+                      <Link
+                        href={item.href}
+                        className={`text-sm font-medium transition-all duration-300 relative group inline-flex items-center gap-1 ${navColor}`}
+                      >
+                        {item.label}
+                        {hasChildren && (
+                          <svg
+                            className={`w-3 h-3 transition-transform duration-300 ${isMenuOpen ? "rotate-180" : ""}`}
+                            viewBox="0 0 12 12"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="1.5"
+                          >
+                            <path d="M3 4.5L6 7.5L9 4.5" strokeLinecap="round" strokeLinejoin="round" />
+                          </svg>
+                        )}
+                        <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-current group-hover:w-full transition-all duration-300" />
+                      </Link>
+                    )}
                     {hasChildren && (
                       <div
                         className={`absolute top-full left-1/2 -translate-x-1/2 pt-3 transition-all duration-300 ${
@@ -186,13 +199,25 @@ export default function Header() {
                 return (
                   <div key={item.label} className="border-b border-gray-100" style={{ transitionDelay: `${i * 30}ms` }}>
                     <div className="flex items-center justify-between">
-                      <Link
-                        href={item.href}
-                        onClick={() => setIsOpen(false)}
-                        className="flex-1 block text-base text-gray-700 hover:text-gray-900 py-3.5 transition-colors font-medium"
-                      >
-                        {item.label}
-                      </Link>
+                      {item.external ? (
+                        <a
+                          href={item.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={() => setIsOpen(false)}
+                          className="flex-1 block text-base text-gray-700 hover:text-gray-900 py-3.5 transition-colors font-medium"
+                        >
+                          {item.label}
+                        </a>
+                      ) : (
+                        <Link
+                          href={item.href}
+                          onClick={() => setIsOpen(false)}
+                          className="flex-1 block text-base text-gray-700 hover:text-gray-900 py-3.5 transition-colors font-medium"
+                        >
+                          {item.label}
+                        </Link>
+                      )}
                       {hasChildren && (
                         <button
                           type="button"
