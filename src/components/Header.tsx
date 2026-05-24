@@ -34,7 +34,7 @@ export default function Header() {
         { label: h.navSubsidy, href: "/subsidy", description: h.navSubsidyDesc },
       ],
     },
-    { label: h.navHumanoid, href: "https://robotics-nu.vercel.app", external: true },
+    { label: h.navHumanoid, href: "/humanoid" },
     { label: h.navNews, href: "/blog" },
     { label: h.navAbout, href: "/about" },
   ];
