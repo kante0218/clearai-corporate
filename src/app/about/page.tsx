@@ -53,6 +53,12 @@ const members = [
     bio: "茨城県出身。AIと農業の交差点に日本の未来を見出し、2026年にclearAIを創業。誠実・伴走・翻訳・長期視点をコアバリューに、関東・東北No.1のAI×地域産業ブティックを目指す。",
   },
   {
+    name: "西村 吉正",
+    nameEn: "yoshimasa nishimura",
+    role: "Co-Founder & COO / オペレーション（東京大学）",
+    bio: "東京大学在学中。clearAIの共同創業者兼COOとして事業オペレーション全般を統括。現場と経営を繋ぐ実行力を強みに、組織のスケールを支える。",
+  },
+  {
     name: "伊藤 愛基",
     nameEn: "manaki ito",
     role: "アドバイザー / 技術・事業助言（筑波大学）",
