@@ -208,46 +208,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ─── 7. LEADERSHIP MESSAGE ───────────────────────────────────────── */}
-      <section className="py-20 lg:py-28 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
-          <Reveal>
-            <p className="text-xs font-semibold tracking-widest uppercase text-blue-600 mb-6">Message</p>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-12">
-              代表取締役メッセージ
-            </h2>
-          </Reveal>
-
-          <div className="max-w-3xl">
-            <Reveal delay={80}>
-              <blockquote className="border-l-4 border-blue-600 pl-8">
-                <div className="space-y-6 text-base text-gray-700 leading-relaxed">
-                  <p>
-                    「なぜ農業なのか」と、よく聞かれます。
-                  </p>
-                  <p>
-                    私がAIと農業の掛け合わせに可能性を見出したのは、日本の農業現場が抱える課題の深刻さと、そこにあるテクノロジーへの渇望を目の当たりにしたからです。高齢化する農家の方々、引き継ぎ手のない農地、気候変動による収穫の不安定さ——これらの問題は、決して農業だけの話ではありません。日本の食の安全保障そのものです。
-                  </p>
-                  <p>
-                    同時に、日本の企業全体を見渡したとき、AI活用における途方もない機会損失が見えました。「AIは大企業のもの」「自分たちには難しすぎる」という思い込みが、多くの中堅・中小企業の可能性を閉ざしています。その壁を壊したい。
-                  </p>
-                  <p>
-                    clearAIという名前には、「明確な（clear）AI」という意味を込めています。難解な技術を分かりやすく、誠実に、現場に根ざした形で届ける会社でありたい。2030年に売上500億円という目標は、決して小さくはありません。しかし、粗利率50%超・顧客継続率95%という「質を伴った500億円」は、無理に積み上げた数字ではなく、一社一社の成功の積み重ねとして達成する。次の1000億円、1兆円へと続く揺るぎない踏み台になると信じています。
-                  </p>
-                  <p>
-                    まだ小さな会社です。でも、大きなビジョンがあります。共に歩んでいただける仲間、パートナー、お客様を、心からお待ちしています。
-                  </p>
-                </div>
-                <footer className="mt-10 pt-8 border-t border-gray-200">
-                  <p className="text-sm text-gray-500">clearAI株式会社 代表取締役</p>
-                  <p className="text-base font-bold text-gray-900 mt-1">髙橋 敢輝</p>
-                </footer>
-              </blockquote>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
       {/* ─── 7.5 MEMBERS ─────────────────────────────────────────────────── */}
       <section className="py-20 lg:py-28 bg-white">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
