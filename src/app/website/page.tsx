@@ -163,7 +163,11 @@ export default function WebsitePage() {
             ].map((plan, i) => (
               <Reveal key={plan.name} delay={i * 100} className="flex">
                 <div className={`rounded-2xl p-8 lg:p-10 transition-all duration-300 flex flex-col w-full ${plan.featured ? "bg-sky-600 text-white shadow-xl" : "bg-white border border-gray-200 hover:shadow-lg"}`}>
-                  {plan.featured && <span className="inline-block rounded-full bg-white/20 text-white px-3 py-1 text-sm font-semibold mb-4 self-start">Popular</span>}
+                  {plan.featured ? (
+                    <span className="inline-block rounded-full bg-white/20 text-white px-3 py-1 text-sm font-semibold mb-4 self-start">Popular</span>
+                  ) : (
+                    <span aria-hidden="true" className="invisible inline-block rounded-full px-3 py-1 text-sm font-semibold mb-4 self-start">Popular</span>
+                  )}
                   <h3 className={`text-lg font-bold mb-2 ${plan.featured ? "text-white" : "text-gray-900"}`}>{plan.name}</h3>
                   <div className="mb-4 flex items-baseline gap-1">
                     <span className={`text-3xl font-bold ${plan.featured ? "text-white" : "text-gray-900"}`}>{plan.price}</span>
