@@ -36,7 +36,7 @@ export default function ClaudePage() {
             <img src="/images/claude-symbol.svg" alt="" aria-hidden="true" className="w-8 h-8 lg:w-10 lg:h-10" />
             <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight">Claude特化支援</h1>
           </div>
-          <p className="text-base text-gray-600 leading-relaxed max-w-2xl">AnthropicのClaudeに特化した、国内屈指の専門支援。経営者プライベートスクールと、企業向けオンライン導入支援の2本立てでご提供します。使いこなせなかったら全額返金保証。</p>
+          <p className="text-base text-gray-600 leading-relaxed max-w-2xl">AnthropicのClaudeに特化した、経営者向けマンツーマンスクール。月2回の対面指導（オフライン版10万円/月）と、SNSで気軽に質問できるオンライン版（5万円/月）の2形態でご提供します。使いこなせなかったら全額返金保証。</p>
         </div>
       </section>
 
@@ -75,26 +75,25 @@ export default function ClaudePage() {
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">2つのサービス</h2>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
-            {/* School */}
+            {/* Offline */}
             <Reveal>
               <div className="rounded-2xl border-2 border-orange-500 bg-gradient-to-br from-orange-50 to-white p-8 lg:p-10 h-full flex flex-col shadow-xl">
-                <span className="inline-block rounded-full bg-orange-600 text-white px-3 py-1 text-xs font-bold tracking-widest mb-6 self-start">FOR EXECUTIVES</span>
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">経営者向けプライベートスクール</h3>
-                <p className="text-sm text-gray-600 leading-relaxed mb-6">少人数・完全プライベート形式で、経営者自身が「自分の手でClaudeを使いこなせる」状態になるまで伴走します。経営判断・採用・事業開発に直結する使い方に特化。</p>
+                <span className="inline-block rounded-full bg-orange-600 text-white px-3 py-1 text-xs font-bold tracking-widest mb-6 self-start">OFFLINE / 対面</span>
+                <h3 className="text-2xl font-bold text-gray-900 mb-3">オフライン版（対面マンツーマン）</h3>
+                <p className="text-sm text-gray-600 leading-relaxed mb-6">月2回、経営者と直接お会いしてマンツーマンで指導。経営課題を題材に、その場で手を動かしてClaudeを使いこなせる状態まで引き上げます。</p>
                 <div className="bg-white rounded-xl border border-orange-100 p-5 mb-6">
                   <div className="flex items-baseline gap-1 mb-2">
-                    <span className="text-3xl font-bold text-gray-900">5万円</span>
+                    <span className="text-3xl font-bold text-gray-900">10万円</span>
                     <span className="text-sm text-gray-500">/ 月</span>
                   </div>
                   <p className="text-xs text-orange-700 font-semibold">使いこなせるようにならなかった場合、全額返金保証</p>
                 </div>
                 <ul className="space-y-3 mb-8 flex-1">
                   {[
-                    "経営者1名へのマンツーマン個別指導",
-                    "週1回のオンライン/対面セッション（60分）",
-                    "経営課題をテーマにした実務演習",
+                    "月2回の対面マンツーマンレッスン（各60分）",
+                    "経営課題をテーマにしたその場での実務演習",
                     "Claude Code・Projects・MCPなど高度機能の習熟",
-                    "いつでも質問できる専用Slackチャンネル",
+                    "セッション間もいつでも質問できる専用Slackチャンネル",
                     "3ヶ月経過時点で効果に満足できなければ全額返金",
                   ].map((f) => (
                     <li key={f} className="flex items-start gap-3">
@@ -103,30 +102,30 @@ export default function ClaudePage() {
                     </li>
                   ))}
                 </ul>
-                <a href="/contact" className="block text-center text-sm font-semibold py-3.5 rounded-lg bg-orange-600 text-white hover:bg-orange-700 transition-all duration-300 mt-auto">スクールの相談をする</a>
+                <a href="/contact" className="block text-center text-sm font-semibold py-3.5 rounded-lg bg-orange-600 text-white hover:bg-orange-700 transition-all duration-300 mt-auto">オフライン版の相談をする</a>
               </div>
             </Reveal>
 
-            {/* Online Implementation */}
+            {/* Online */}
             <Reveal delay={150}>
               <div className="rounded-2xl border border-gray-200 bg-white p-8 lg:p-10 h-full flex flex-col hover:shadow-lg transition-all duration-300">
-                <span className="inline-block rounded-full bg-orange-50 text-orange-600 px-3 py-1 text-xs font-bold tracking-widest mb-6 self-start">FOR TEAMS</span>
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">オンラインClaude導入支援</h3>
-                <p className="text-sm text-gray-600 leading-relaxed mb-6">企業・チーム向けに、Claudeを業務フローへ組み込むための導入支援をオンラインで提供。ライセンス設計・社内展開・運用定着までセットでお任せいただけます。</p>
+                <span className="inline-block rounded-full bg-orange-50 text-orange-600 px-3 py-1 text-xs font-bold tracking-widest mb-6 self-start">ONLINE / オンライン</span>
+                <h3 className="text-2xl font-bold text-gray-900 mb-3">オンライン版（SNSサポート）</h3>
+                <p className="text-sm text-gray-600 leading-relaxed mb-6">対面セッションなしで、初期セットアップガイド＋SNS/チャットでの継続サポートを提供。まずは自分のペースでClaudeを使いこなしたい経営者向けの軽量プラン。</p>
                 <div className="bg-gray-50 rounded-xl border border-gray-200 p-5 mb-6">
                   <div className="flex items-baseline gap-1 mb-2">
-                    <span className="text-3xl font-bold text-gray-900">ご相談</span>
+                    <span className="text-3xl font-bold text-gray-900">5万円</span>
+                    <span className="text-sm text-gray-500">/ 月</span>
                   </div>
-                  <p className="text-xs text-gray-500">プロジェクト規模・支援範囲に応じて個別お見積もり</p>
+                  <p className="text-xs text-gray-500">対面レッスンなし・サポートはオンラインのみ</p>
                 </div>
                 <ul className="space-y-3 mb-8 flex-1">
                   {[
-                    "Claude Team/Enterprise契約の選定・設定",
-                    "社内Projects・ナレッジベース設計",
-                    "Claude Code導入（エンジニア向け）",
-                    "MCP連携によるツール/データ接続",
-                    "社内ガイドライン・プロンプトテンプレ整備",
-                    "運用定着まで伴走（3ヶ月〜）",
+                    "初期セットアップガイド（環境構築・初期設定の伴走）",
+                    "SNS/チャットでの継続的なQ&Aサポート",
+                    "Claude Code・Projects・MCPなど主要機能の使い方解説",
+                    "実務テンプレ・プロンプト集の共有",
+                    "オフライン版へのアップグレードはいつでも可能",
                   ].map((f) => (
                     <li key={f} className="flex items-start gap-3">
                       <span className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 bg-orange-500" />
@@ -134,7 +133,7 @@ export default function ClaudePage() {
                     </li>
                   ))}
                 </ul>
-                <a href="/contact" className="block text-center text-sm font-semibold py-3.5 rounded-lg border border-orange-300 text-orange-700 hover:bg-orange-50 transition-all duration-300 mt-auto">導入支援の相談をする</a>
+                <a href="/contact" className="block text-center text-sm font-semibold py-3.5 rounded-lg border border-orange-300 text-orange-700 hover:bg-orange-50 transition-all duration-300 mt-auto">オンライン版の相談をする</a>
               </div>
             </Reveal>
           </div>
@@ -196,12 +195,12 @@ export default function ClaudePage() {
           </Reveal>
           <div className="max-w-3xl">
             {[
-              { q: "プライベートスクールは本当に月5万円だけですか？", a: "はい。初期費用・教材費などは不要で、月額5万円（税抜）のみです。Claude本体のサブスクリプション費用は別途、各社でご契約いただきます。" },
-              { q: "全額返金の条件を教えてください。", a: "開始から3ヶ月時点で、貴社が「実務で使いこなせている」と実感できない場合に全額返金します。ただし、毎週のセッションに出席いただくこと、所定の課題に取り組んでいただくことが条件です。" },
+              { q: "オフライン版とオンライン版の違いは？", a: "オフライン版（月10万円）は経営者ご本人と直接お会いして月2回のマンツーマン対面レッスンを行う、最も濃い形態です。オンライン版（月5万円）は対面セッションなしで、初期セットアップガイド＋SNS/チャットでの継続サポートをご提供します。途中でオフライン版にアップグレードすることもできます。" },
+              { q: "料金以外に費用はかかりますか？", a: "初期費用・教材費などは不要で、月額料金（税抜）のみです。Claude本体のサブスクリプション費用は別途、各社でご契約いただきます。" },
+              { q: "全額返金の条件を教えてください。", a: "オフライン版で、開始から3ヶ月時点で「実務で使いこなせている」と実感できない場合に全額返金します。所定の対面レッスンに出席いただくこと、課題に取り組んでいただくことが条件です。" },
               { q: "AI初心者でも大丈夫ですか？", a: "むしろ初心者の経営者が最も成長を実感します。ITに詳しくない方でも、マンツーマンで伴走するため安心です。" },
-              { q: "企業のチーム全体に展開できますか？", a: "可能です。スクール卒業後、または並行して「オンラインClaude導入支援」で組織展開をサポートします。" },
-              { q: "オフライン開催はありますか？", a: "原則オンラインですが、経営者スクールに限り、東京・大阪での対面実施も月1回目安で対応可能です。" },
-              { q: "他社のAI（ChatGPT等）も扱いますか？", a: "スクール内ではClaudeに集中しますが、比較観点での他社モデル解説は行います。組織導入時は中立的に選定支援が可能です。" },
+              { q: "オフライン版はどこで受けられますか？", a: "東京・水戸を中心に、経営者のご都合に合わせて月2回お伺いします。その他のエリアもご相談ください。" },
+              { q: "他社のAI（ChatGPT等）も扱いますか？", a: "スクール内ではClaudeに集中しますが、比較観点での他社モデル解説は行います。" },
             ].map((item, i) => (
               <Reveal key={i} delay={i * 80}>
                 <details className="border-b border-gray-100 py-5 group">
