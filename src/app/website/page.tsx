@@ -155,8 +155,9 @@ export default function WebsitePage() {
               ページ数・機能要件・運用範囲により変動します。要件整理段階での無料お見積もりが可能です。
             </p>
           </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
             {[
+              { name: "ライト", price: "15万円〜", unit: "/ 一式", desc: "LP1枚・小規模ページの最小構成プラン。", features: ["ヒアリング・構成設計", "デザイン・実装（1〜3ページ）", "スマホ対応", "公開後14日サポート"], featured: false },
               { name: "スタンダード", price: "50万円〜", unit: "/ 一式", desc: "コーポレートサイト・LP・採用サイトの標準プラン。", features: ["要件定義・構成設計", "デザイン・実装", "GA4・SEO初期設定", "Headless CMS構築（任意）", "公開後30日サポート"], featured: true },
               { name: "カスタム", price: "ご相談", unit: "", desc: "大規模サイト・独自機能・AI連携をご希望の方へ。", features: ["要件・技術選定コンサル", "独自機能・AI連携開発", "段階リリース計画", "運用体制構築", "保守・継続改善"], featured: false },
             ].map((plan, i) => (
