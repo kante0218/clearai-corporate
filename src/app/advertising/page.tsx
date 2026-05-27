@@ -154,9 +154,9 @@ export default function AdvertisingPage() {
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
             {[
-              { name: "スタート", price: "15万円〜", unit: "/ 月", desc: "1媒体・小規模スタートに。", features: ["1媒体運用", "週次レポート", "AIクリエイティブ生成（月10案）", "Slack質問対応"], featured: false },
-              { name: "グロース", price: "35万円〜", unit: "/ 月", desc: "複数媒体での本格運用。", features: ["3媒体まで運用", "日次ダッシュボード", "AIクリエイティブ生成（月30案）", "LP最適化提案", "月次戦略MTG"], featured: true },
-              { name: "エンタープライズ", price: "ご相談", unit: "", desc: "全社マーケティング統合。", features: ["媒体無制限", "専用ダッシュボード構築", "独自ツール開発", "事業KPIダッシュボード", "戦略コンサル込み"], featured: false },
+              { name: "スタート", price: "15万円〜", unit: "/ 月", desc: "1媒体・小規模スタートに。", features: ["1媒体運用", "週次レポート", "AIクリエイティブ生成（月10案）", "Slack質問対応"], featured: false, href: "https://buy.stripe.com/aFa8wIec4c6s56y89md7q04", cta: "申し込む" },
+              { name: "グロース", price: "35万円〜", unit: "/ 月", desc: "複数媒体での本格運用。", features: ["3媒体まで運用", "日次ダッシュボード", "AIクリエイティブ生成（月30案）", "LP最適化提案", "月次戦略MTG"], featured: true, href: "https://buy.stripe.com/14A28k9VO7QcdD40GUd7q05", cta: "申し込む" },
+              { name: "エンタープライズ", price: "ご相談", unit: "", desc: "全社マーケティング統合。", features: ["媒体無制限", "専用ダッシュボード構築", "独自ツール開発", "事業KPIダッシュボード", "戦略コンサル込み"], featured: false, href: "/contact?service=advertising", cta: "相談する" },
             ].map((plan, i) => (
               <Reveal key={plan.name} delay={i * 100} className="flex">
                 <div className={`rounded-2xl p-8 lg:p-10 transition-all duration-300 flex flex-col w-full ${plan.featured ? "bg-sky-600 text-white shadow-xl" : "bg-white border border-gray-200 hover:shadow-lg"}`}>
@@ -175,7 +175,7 @@ export default function AdvertisingPage() {
                       </li>
                     ))}
                   </ul>
-                  <a href="/contact?service=advertising" className={`block text-center text-sm font-semibold py-3 rounded-lg transition-all duration-300 mt-auto ${plan.featured ? "bg-white text-sky-600 hover:bg-sky-50" : "border border-gray-200 text-gray-600 hover:border-gray-400 hover:text-gray-900"}`}>申し込む</a>
+                  <a href={plan.href} className={`block text-center text-sm font-semibold py-3 rounded-lg transition-all duration-300 mt-auto ${plan.featured ? "bg-white text-sky-600 hover:bg-sky-50" : "border border-gray-200 text-gray-600 hover:border-gray-400 hover:text-gray-900"}`}>{plan.cta}</a>
                 </div>
               </Reveal>
             ))}
