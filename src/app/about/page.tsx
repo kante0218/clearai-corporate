@@ -59,6 +59,12 @@ const members = [
     bio: "東京大学在学中。clearAIの共同創業者兼COOとして事業オペレーション全般を統括。現場と経営を繋ぐ実行力を強みに、組織のスケールを支える。",
   },
   {
+    name: "國井 真帆",
+    nameEn: "maho kunii",
+    role: "CTO / 開発（茨城高専）",
+    bio: "茨城高専在学中のエンジニア。CTOとしてclearAIのプロダクト開発と技術基盤の構築を主導する。",
+  },
+  {
     name: "伊藤 愛基",
     nameEn: "manaki ito",
     role: "アドバイザー / 技術・事業助言（筑波大学）",
