@@ -180,7 +180,7 @@ export default function AiConsultingPage() {
                       </li>
                     ))}
                   </ul>
-                  <a href="/contact" className={`block text-center text-sm font-semibold py-3 rounded-lg transition-all duration-300 mt-auto ${plan.featured ? "bg-white text-blue-600 hover:bg-blue-50" : "border border-gray-200 text-gray-600 hover:border-gray-400 hover:text-gray-900"}`}>相談する</a>
+                  <a href="/contact" className={`block text-center text-sm font-semibold py-3 rounded-lg transition-all duration-300 mt-auto ${plan.featured ? "bg-white text-blue-600 hover:bg-blue-50" : "border border-gray-200 text-gray-600 hover:border-gray-400 hover:text-gray-900"}`}>申し込む</a>
                 </div>
               </Reveal>
             ))}

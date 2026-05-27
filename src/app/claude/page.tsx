@@ -102,7 +102,7 @@ export default function ClaudePage() {
                     </li>
                   ))}
                 </ul>
-                <a href="/contact" className="block text-center text-sm font-semibold py-3.5 rounded-lg bg-orange-600 text-white hover:bg-orange-700 transition-all duration-300 mt-auto">オフライン版の相談をする</a>
+                <a href="/contact" className="block text-center text-sm font-semibold py-3.5 rounded-lg bg-orange-600 text-white hover:bg-orange-700 transition-all duration-300 mt-auto">オフライン版に申し込む</a>
               </div>
             </Reveal>
 
@@ -133,7 +133,7 @@ export default function ClaudePage() {
                     </li>
                   ))}
                 </ul>
-                <a href="/contact" className="block text-center text-sm font-semibold py-3.5 rounded-lg border border-orange-300 text-orange-700 hover:bg-orange-50 transition-all duration-300 mt-auto">オンライン版の相談をする</a>
+                <a href="/contact" className="block text-center text-sm font-semibold py-3.5 rounded-lg border border-orange-300 text-orange-700 hover:bg-orange-50 transition-all duration-300 mt-auto">オンライン版に申し込む</a>
               </div>
             </Reveal>
           </div>
