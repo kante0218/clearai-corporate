@@ -102,6 +102,7 @@ export default function ClaudePage() {
                     </li>
                   ))}
                 </ul>
+                <p className="text-xs text-center text-orange-700 mb-3">※最低6ヶ月契約から</p>
                 <a href="https://buy.stripe.com/aFafZafg8daw8iKexKd7q02" className="block text-center text-sm font-semibold py-3.5 rounded-lg bg-orange-600 text-white hover:bg-orange-700 transition-all duration-300 mt-auto">オフライン版に申し込む</a>
               </div>
             </Reveal>
@@ -133,6 +134,7 @@ export default function ClaudePage() {
                     </li>
                   ))}
                 </ul>
+                <p className="text-xs text-center text-gray-500 mb-3">※最低6ヶ月契約から</p>
                 <a href="https://buy.stripe.com/14AfZa2tm5I4dD4gFSd7q03" className="block text-center text-sm font-semibold py-3.5 rounded-lg border border-orange-300 text-orange-700 hover:bg-orange-50 transition-all duration-300 mt-auto">オンライン版に申し込む</a>
               </div>
             </Reveal>

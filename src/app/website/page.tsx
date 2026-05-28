@@ -157,9 +157,9 @@ export default function WebsitePage() {
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
             {[
-              { name: "ライト", price: "15万円〜", unit: "/ 一式", desc: "LP1枚・小規模ページの最小構成プラン。", features: ["ヒアリング・構成設計", "デザイン・実装（1〜3ページ）", "スマホ対応", "公開後14日サポート"], featured: false },
-              { name: "スタンダード", price: "50万円〜", unit: "/ 一式", desc: "コーポレートサイト・LP・採用サイトの標準プラン。", features: ["要件定義・構成設計", "デザイン・実装", "GA4・SEO初期設定", "Headless CMS構築（任意）", "公開後30日サポート"], featured: true },
-              { name: "カスタム", price: "ご相談", unit: "", desc: "大規模サイト・独自機能・AI連携をご希望の方へ。", features: ["要件・技術選定コンサル", "独自機能・AI連携開発", "段階リリース計画", "運用体制構築", "保守・継続改善"], featured: false },
+              { name: "6ヶ月パック", price: "初期15万円", unit: "+ 月2万円", desc: "LP1枚〜小規模サイトの初期構築＋6ヶ月の運用サポート付きセット。", features: ["ヒアリング・構成設計", "デザイン・実装（1〜3ページ）", "スマホ対応", "月次運用サポート（6ヶ月）", "コンテンツ更新・改善提案"], featured: true, href: "https://buy.stripe.com/bJe00c9VOeeAgPgdtGd7q06", cta: "申し込む", bundleNote: "× 6ヶ月（合計¥270,000）" },
+              { name: "スタンダード", price: "50万円〜", unit: "/ 一式", desc: "コーポレートサイト・LP・採用サイトの標準プラン。", features: ["要件定義・構成設計", "デザイン・実装", "GA4・SEO初期設定", "Headless CMS構築（任意）", "公開後30日サポート"], featured: false, href: "/contact?service=website", cta: "相談する", bundleNote: "" },
+              { name: "カスタム", price: "ご相談", unit: "", desc: "大規模サイト・独自機能・AI連携をご希望の方へ。", features: ["要件・技術選定コンサル", "独自機能・AI連携開発", "段階リリース計画", "運用体制構築", "保守・継続改善"], featured: false, href: "/contact?service=website", cta: "相談する", bundleNote: "" },
             ].map((plan, i) => (
               <Reveal key={plan.name} delay={i * 100} className="flex">
                 <div className={`rounded-2xl p-8 lg:p-10 transition-all duration-300 flex flex-col w-full ${plan.featured ? "bg-sky-600 text-white shadow-xl" : "bg-white border border-gray-200 hover:shadow-lg"}`}>
@@ -169,9 +169,14 @@ export default function WebsitePage() {
                     <span aria-hidden="true" className="invisible inline-block rounded-full px-3 py-1 text-sm font-semibold mb-4 self-start">Popular</span>
                   )}
                   <h3 className={`text-lg font-bold mb-2 ${plan.featured ? "text-white" : "text-gray-900"}`}>{plan.name}</h3>
-                  <div className="mb-4 flex items-baseline gap-1">
-                    <span className={`text-3xl font-bold ${plan.featured ? "text-white" : "text-gray-900"}`}>{plan.price}</span>
-                    {plan.unit && <span className={`text-sm ${plan.featured ? "text-white/80" : "text-gray-500"}`}>{plan.unit}</span>}
+                  <div className="mb-4">
+                    <div className="flex items-baseline gap-1 flex-wrap">
+                      <span className={`text-3xl font-bold ${plan.featured ? "text-white" : "text-gray-900"}`}>{plan.price}</span>
+                      {plan.unit && <span className={`text-sm ${plan.featured ? "text-white/80" : "text-gray-500"}`}>{plan.unit}</span>}
+                    </div>
+                    {plan.bundleNote && (
+                      <p className={`text-xs mt-1 ${plan.featured ? "text-white/80" : "text-gray-500"}`}>{plan.bundleNote}</p>
+                    )}
                   </div>
                   <p className={`text-sm leading-relaxed mb-6 ${plan.featured ? "text-white/80" : "text-gray-600"}`}>{plan.desc}</p>
                   <ul className="space-y-3 mb-8 flex-1">
@@ -182,7 +187,7 @@ export default function WebsitePage() {
                       </li>
                     ))}
                   </ul>
-                  <a href="/contact?service=website" className={`block text-center text-sm font-semibold py-3 rounded-lg transition-all duration-300 mt-auto ${plan.featured ? "bg-white text-sky-600 hover:bg-sky-50" : "border border-gray-200 text-gray-600 hover:border-gray-400 hover:text-gray-900"}`}>申し込む</a>
+                  <a href={plan.href} className={`block text-center text-sm font-semibold py-3 rounded-lg transition-all duration-300 mt-auto ${plan.featured ? "bg-white text-sky-600 hover:bg-sky-50" : "border border-gray-200 text-gray-600 hover:border-gray-400 hover:text-gray-900"}`}>{plan.cta}</a>
                 </div>
               </Reveal>
             ))}

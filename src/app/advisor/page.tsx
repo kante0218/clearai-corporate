@@ -100,10 +100,11 @@ export default function AdvisorPage() {
                 price: "5万円",
                 unit: "/ 月",
                 desc: "Slack/メール相談中心。スタートアップ・小規模企業向け。",
-                features: ["Slack/メール相談（営業日内返信）", "月1回のオンライン定例（45分）", "最新AIニュース・モデル動向の共有", "最低契約期間なし"],
+                features: ["Slack/メール相談（営業日内返信）", "月1回のオンライン定例（45分）", "最新AIニュース・モデル動向の共有"],
                 featured: false,
                 href: "https://buy.stripe.com/bJe28kd803zWfLc2P2d7q00",
                 cta: "申し込む",
+                minTerm: "最低6ヶ月契約から",
               },
               {
                 name: "スタンダード",
@@ -114,6 +115,7 @@ export default function AdvisorPage() {
                 featured: true,
                 href: "https://buy.stripe.com/6oU4gs2tm1rO9mO4Xad7q01",
                 cta: "申し込む",
+                minTerm: "最低6ヶ月契約から",
               },
               {
                 name: "エグゼクティブ",
@@ -124,6 +126,7 @@ export default function AdvisorPage() {
                 featured: false,
                 href: "/contact",
                 cta: "相談する",
+                minTerm: "",
               },
             ].map((plan, i) => (
               <Reveal key={plan.name} delay={i * 100} className="flex">
@@ -143,6 +146,9 @@ export default function AdvisorPage() {
                       </li>
                     ))}
                   </ul>
+                  {plan.minTerm && (
+                    <p className={`text-xs text-center mb-3 ${plan.featured ? "text-white/80" : "text-gray-500"}`}>※{plan.minTerm}</p>
+                  )}
                   <a href={plan.href} className={`block text-center text-sm font-semibold py-3 rounded-lg transition-all duration-300 mt-auto ${plan.featured ? "bg-white text-sky-600 hover:bg-sky-50" : "border border-gray-200 text-gray-600 hover:border-gray-400 hover:text-gray-900"}`}>{plan.cta}</a>
                 </div>
               </Reveal>
