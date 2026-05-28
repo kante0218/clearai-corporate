@@ -21,19 +21,18 @@ export default function Header() {
   const h = headerDict[lang];
 
   const navItems: NavItem[] = [
+    { label: h.navAiConsulting, href: "/ai-consulting" },
+    { label: h.navAdvisor, href: "/advisor" },
     {
-      label: h.navAi,
-      href: "/ai-consulting",
+      label: h.navTraining,
+      href: "/training",
       children: [
-        { label: h.navAiConsulting, href: "/ai-consulting", description: h.navAiConsultingDesc },
-        { label: h.navAdvisor, href: "/advisor", description: h.navAdvisorDesc },
-        { label: h.navTraining, href: "/training", description: h.navTrainingDesc },
-        { label: h.navClaude, href: "/claude", description: h.navClaudeDesc },
-        { label: h.navAdvertising, href: "/advertising", description: h.navAdvertisingDesc },
-        { label: h.navWebsite, href: "/website", description: h.navWebsiteDesc },
         { label: h.navSubsidy, href: "/subsidy", description: h.navSubsidyDesc },
       ],
     },
+    { label: h.navClaude, href: "/claude" },
+    { label: h.navAdvertising, href: "/advertising" },
+    { label: h.navWebsite, href: "/website" },
     { label: h.navHumanoid, href: "/humanoid" },
     { label: h.navNews, href: "/blog" },
     { label: h.navAbout, href: "/about" },
@@ -97,7 +96,7 @@ export default function Header() {
               />
             </Link>
 
-            <nav className="hidden lg:flex items-center gap-6 absolute left-1/2 -translate-x-1/2">
+            <nav className="hidden xl:flex items-center gap-5">
               {navItems.map((item) => {
                 const hasChildren = item.children && item.children.length > 0;
                 const isMenuOpen = openMenu === item.label;
@@ -165,7 +164,7 @@ export default function Header() {
               })}
             </nav>
 
-            <div className="hidden lg:flex items-center gap-3">
+            <div className="hidden xl:flex items-center gap-3">
               <span className="w-px h-5 bg-gray-200" aria-hidden="true" />
               <LanguageToggle variant="desktop" />
               <Link href="/contact"
@@ -174,7 +173,7 @@ export default function Header() {
               </Link>
             </div>
 
-            <button onClick={() => setIsOpen(!isOpen)} className="lg:hidden p-2 z-10 min-h-[44px] min-w-[44px] flex items-center justify-center" aria-label={h.menuAria} aria-expanded={isOpen}>
+            <button onClick={() => setIsOpen(!isOpen)} className="xl:hidden p-2 z-10 min-h-[44px] min-w-[44px] flex items-center justify-center" aria-label={h.menuAria} aria-expanded={isOpen}>
               <div className="w-6 h-5 flex flex-col justify-between">
                 <span className={`w-full h-0.5 bg-gray-900 transition-all duration-300 ${
                   isOpen ? "rotate-45 translate-y-[9px]" : ""
@@ -190,7 +189,7 @@ export default function Header() {
           </div>
         </div>
 
-        <div className={`lg:hidden overflow-hidden transition-all duration-500 ${isOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"}`}>
+        <div className={`xl:hidden overflow-hidden transition-all duration-500 ${isOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"}`}>
           <div className="bg-white/98 backdrop-blur-xl border-t border-gray-100">
             <nav className="max-w-7xl mx-auto px-6 py-8 space-y-1">
               {navItems.map((item, i) => {
