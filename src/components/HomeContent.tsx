@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 /* Scroll-triggered reveal - simplified, up direction only */
 function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
@@ -26,84 +27,408 @@ function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; 
   );
 }
 
-/* Section label */
-type AiServiceColor = "blue" | "indigo" | "amber" | "orange" | "rose" | "sky";
+type SvcColor = "indigo" | "amber" | "sky" | "blue" | "rose" | "cyan";
 
-const aiServiceColorMap: Record<AiServiceColor, { hoverBorder: string; code: string; cta: string; ctaHover: string }> = {
-  blue:   { hoverBorder: "hover:border-blue-300",   code: "text-blue-600",   cta: "text-blue-600",   ctaHover: "group-hover:text-blue-700" },
+const colorMap: Record<SvcColor, { hoverBorder: string; code: string; cta: string; ctaHover: string }> = {
   indigo: { hoverBorder: "hover:border-indigo-300", code: "text-indigo-600", cta: "text-indigo-600", ctaHover: "group-hover:text-indigo-700" },
   amber:  { hoverBorder: "hover:border-amber-300",  code: "text-amber-600",  cta: "text-amber-600",  ctaHover: "group-hover:text-amber-700" },
-  orange: { hoverBorder: "hover:border-orange-300", code: "text-orange-600", cta: "text-orange-600", ctaHover: "group-hover:text-orange-700" },
-  rose:   { hoverBorder: "hover:border-rose-300",   code: "text-rose-600",   cta: "text-rose-600",   ctaHover: "group-hover:text-rose-700" },
   sky:    { hoverBorder: "hover:border-sky-300",    code: "text-sky-600",    cta: "text-sky-600",    ctaHover: "group-hover:text-sky-700" },
+  blue:   { hoverBorder: "hover:border-blue-300",   code: "text-blue-600",   cta: "text-blue-600",   ctaHover: "group-hover:text-blue-700" },
+  rose:   { hoverBorder: "hover:border-rose-300",   code: "text-rose-600",   cta: "text-rose-600",   ctaHover: "group-hover:text-rose-700" },
+  cyan:   { hoverBorder: "hover:border-cyan-300",   code: "text-cyan-600",   cta: "text-cyan-600",   ctaHover: "group-hover:text-cyan-700" },
 };
 
-// ヘッダーのAIメニューと並びを揃える(/ai-consulting, /advisor, /training, /claude, /advertising, /website)
-const aiServices: {
-  code: string;
-  title: string;
-  desc: string;
-  tags: string[];
-  href: string;
-  cta: string;
-  color: AiServiceColor;
-  badge?: string;
-}[] = [
-  {
-    code: "AI 01",
-    title: "コンサル・DX",
-    desc: "大手コンサル出身者が監修。戦略策定から実装・運用まで、日本企業のAI活用をヒアリングから定着まで一気通貫で伴走します。",
-    tags: ["AI戦略策定", "データ分析", "業務自動化", "生成AI活用"],
-    href: "/ai-consulting",
-    cta: "詳しく見る",
-    color: "blue",
+type Svc = {
+  code: string; title: string; desc: string; tags: string[];
+  href: string; cta: string; color: SvcColor; badge?: string; claudeNote?: string;
+};
+
+type HomeCopy = {
+  heroChips: string[];
+  heroTitle: ReactNode;
+  heroDesc: ReactNode;
+  heroPrimary: string;
+  heroSecondary: string;
+  trustStats: { value: string; label: string }[];
+  whyLabel: string; whyTitle: string; whyDesc: string;
+  why: { title: string; desc: string }[];
+  visionLabel: string; visionTitle: string; visionBody1: string; visionBody2: string;
+  visionStats: { value: string; label: string }[];
+  getStartedLabel: string; getStartedTitle: string; getStartedDesc: string;
+  steps: { step: string; title: string; desc: string; points: string[]; cta: string; href: string; color: SvcColor }[];
+  servicesLabel: string; servicesTitle: string; servicesDesc: string;
+  primaryHeading: string; secondaryHeading: string;
+  claudeBadge: string;
+  primaryServices: Svc[]; secondaryServices: Svc[];
+  approachLabel: string; approachTitle: string;
+  approach: { num: string; title: string; desc: string }[];
+  processLabel: string; processTitle: string; processDesc: string;
+  process: { num: string; title: string; desc: string }[];
+  teamLabel: string; teamTitle: ReactNode; teamDesc: string;
+  teamCard1Label: string; teamCard1Title: string; teamCard1Desc: string; teamCard1Tags: string[];
+  teamCard2Label: string; teamCard2Title: string; teamCard2Desc: string; teamCard2Tags: string[];
+  techLabel: string; techTitle: string; techDesc: string;
+  techGroups: { frontend: string; backend: string; aiml: string; database: string; cloud: string; ec: string; biz: string };
+  techMoreTitle: string; techMoreDesc: string;
+  faqLabel: string; faqTitle: string; faqDesc: string; faqCta: string;
+  faq: { q: string; a: string }[];
+  newsLabel: string; newsTitle: string; newsCta: string;
+  ctaLabel: string; ctaTitle: string; ctaDesc: ReactNode;
+  ctaCards: { label: string; service: string }[];
+  ctaCardAction: string; ctaOthers: string;
+};
+
+const COPY: Record<"ja" | "en", HomeCopy> = {
+  ja: {
+    heroChips: ["顧問・研修・Web制作", "戦略から実装まで", "中小企業特化"],
+    heroTitle: (
+      <>日本の中小企業に、<br /><span className="text-blue-600">使えるAI</span>と<span className="text-blue-600">実装力</span>を。</>
+    ),
+    heroDesc: (
+      <>AI顧問・社員研修・ウェブサイト制作を軸に、<br className="hidden md:inline" />
+      経営の意思決定から現場で動くものまで、責任を持って伴走します。</>
+    ),
+    heroPrimary: "まずは無料で相談する",
+    heroSecondary: "サービスを見る",
+    trustStats: [
+      { value: "最大75%", label: "研修費を助成金で削減" },
+      { value: "無料", label: "30分のAI診断" },
+      { value: "全国対応", label: "オンライン実施可" },
+      { value: "2営業日", label: "初回返信" },
+    ],
+    whyLabel: "Why clearAI",
+    whyTitle: "「提案で終わらない」を、約束します。",
+    whyDesc: "コンサルの戦略視点と、現場で鍛えたエンジニアリング。両方を一社で担えるから、絵に描いた餅では終わりません。",
+    why: [
+      { title: "実装まで責任を持つ", desc: "戦略提案だけでは終わりません。稼働するシステム・運用定着まで、エンジニアが手を動かして仕上げます。" },
+      { title: "中立な立場で伴走", desc: "特定ツールの売り込みはしません。Claude・ChatGPT・Geminiから、貴社の課題に本当に合うものを中立に選びます。" },
+      { title: "補助金をフル活用", desc: "人材開発支援助成金・IT導入補助金などを活用し、研修・導入コストを最大75%削減。実質負担を抑えて始められます。" },
+    ],
+    visionLabel: "Our Vision",
+    visionTitle: "AIを、日本の現場へ届ける。",
+    visionBody1: "AIはまだ、多くの企業にとって遠い存在です。難しい、コストが高い、何から始めればいいかわからない——そんな声を何度も聞いてきました。",
+    visionBody2: "私たちはそのギャップを埋めるために生まれました。最先端のAI技術をビジネスの言葉に翻訳し、エンジニアの力で現場の経営を支える。一社一社に寄り添い、確かな価値を届けていきます。",
+    visionStats: [
+      { value: "顧問・研修・Web", label: "3つの主力支援" },
+      { value: "日本", label: "市場特化" },
+      { value: "2026", label: "創業" },
+    ],
+    getStartedLabel: "Get Started",
+    getStartedTitle: "まずは、小さく始められます。",
+    getStartedDesc: "いきなりの大型契約は不要です。30分の無料診断と3分で読める資料から、貴社に合うかを見極めてください。",
+    steps: [
+      { step: "STEP 01", title: "無料AI診断（30分）", desc: "現状の業務・課題をヒアリングし、AI活用で効果の高そうな領域を1つ特定してお返しします。営業色の強い提案はしません。", points: ["Zoom / 対面いずれも可", "NDA締結のうえ、機密情報も扱えます", "その場で簡易レポートを口頭共有"], cta: "申し込む →", href: "/contact?service=advisor", color: "indigo" },
+      { step: "STEP 02", title: "3分でわかる会社資料", desc: "事業内容・代表的な支援パターン・料金レンジ・補助金活用例をまとめた1枚PDFを送付します。社内稟議用にどうぞ。", points: ["PDF 1ページ", "料金レンジと進め方の目安入り", "登録不要・当日返信"], cta: "資料をもらう →", href: "/contact?service=advisor&doc=company-deck", color: "amber" },
+      { step: "STEP 03", title: "1部署・1業務からのPoC", desc: "いきなり全社展開ではなく、最も効果が出そうな1部署・1業務に絞って小さく試行導入。効果が見えてから拡張します。", points: ["PoC期間 1〜2ヶ月", "成功基準を事前合意", "人材開発支援助成金の活用も可"], cta: "相談する →", href: "/contact?service=training", color: "sky" },
+    ],
+    servicesLabel: "Our Services",
+    servicesTitle: "AIで、日本の未来をつくる。",
+    servicesDesc: "AI顧問・社員研修・ウェブサイト制作を主力に、戦略から実装・運用まで確実に成果を届けます。",
+    primaryHeading: "主力サービス",
+    secondaryHeading: "その他の支援",
+    claudeBadge: "Claude対応",
+    primaryServices: [
+      {
+        code: "01", title: "AI顧問", color: "indigo",
+        desc: "月5万円〜、外部AI顧問として経営・業務・Web改善を月次で継続的に伴走。技術選定からPoC評価、社内教育まで業務委託契約ベースで支援します。",
+        tags: ["月額契約", "月次壁打ち", "経営伴走", "業務委託"],
+        href: "/advisor", cta: "顧問契約のご相談",
+        claudeNote: "Claude（Anthropic）の業務導入・運用定着まで、顧問として継続的に伴走します。",
+      },
+      {
+        code: "02", title: "AI研修", color: "amber", badge: "補助金 最大75%OFF",
+        desc: "チームのAIリテラシーを底上げ。導入研修から部門別ワークショップ、実務適用まで、社員が主役になる学習プログラムを設計・提供します。",
+        tags: ["社員研修", "部門別ワークショップ", "プロンプト設計", "業務適用"],
+        href: "/training", cta: "研修プログラムを見る",
+        claudeNote: "Claudeを実務で使いこなす実践研修も。現場のユースケースに即したプロンプト・運用ルールまで指南します。",
+      },
+      {
+        code: "03", title: "ウェブサイト作成", color: "sky",
+        desc: "AI時代に成果が出るサイトを高速制作。Next.js + Vercel + Headless CMSで、表示速度・SEO・運用しやすさを最高水準に。",
+        tags: ["Next.js", "Vercel", "SEO", "Headless CMS"],
+        href: "/website", cta: "詳しく見る",
+      },
+    ],
+    secondaryServices: [
+      {
+        code: "04", title: "コンサル・DX", color: "blue",
+        desc: "大手コンサル出身者が監修。戦略策定から実装・運用まで、AI活用を一気通貫で支援します。",
+        tags: ["AI戦略策定", "業務自動化", "生成AI活用"],
+        href: "/ai-consulting", cta: "詳しく見る",
+      },
+      {
+        code: "05", title: "AI広告運用", color: "rose",
+        desc: "AI活用で広告運用を最適化・自動化。クリエイティブ生成から効果検証までAIで効率化し、ROAS改善を伴走します。",
+        tags: ["広告運用", "クリエイティブ生成", "効果検証"],
+        href: "/advertising", cta: "詳しく見る",
+      },
+      {
+        code: "06", title: "ロボットレンタル", color: "cyan",
+        desc: "ヒューマノイドロボットの短期レンタル・PoC・実証実験・イベント活用。最新の人型ロボットを、導入前に現場で試せます。",
+        tags: ["ヒューマノイド", "PoC・実証", "イベント活用"],
+        href: "/robot-rental", cta: "詳しく見る",
+      },
+    ],
+    approachLabel: "Our Approach",
+    approachTitle: "私たちが大切にする3つのこと",
+    approach: [
+      { num: "01", title: "正直であること", desc: "実現可能性を率直に見極め、効果の高い領域から着実に進めます。過度な期待を煽らず、成果が出る順に一歩ずつ。" },
+      { num: "02", title: "伴走すること", desc: "導入して終わりではなく、運用が定着するまで。お客様のチームの一員として、ともに歩みます。" },
+      { num: "03", title: "現場に落とし込むこと", desc: "技術選定から運用設計まで、現場で使える形に落とし込みます。専門知識がなくても扱える、具体的な提案を。" },
+    ],
+    processLabel: "How It Works",
+    processTitle: "ご相談から導入までの流れ",
+    processDesc: "初回相談は無料。無理な営業はせず、貴社のペースに合わせて進めます。",
+    process: [
+      { num: "01", title: "無料相談・AI診断", desc: "現状の課題をヒアリングし、AI活用で効果の高い領域を一緒に特定します（30分・オンライン可）。" },
+      { num: "02", title: "ご提案・お見積り", desc: "顧問・研修・Web制作のうち、最適な進め方と料金・補助金活用をご提案します。" },
+      { num: "03", title: "スモールスタート", desc: "1部署・1業務に絞ったPoCや単発研修から開始。効果を確認しながら無理なく拡張します。" },
+      { num: "04", title: "継続伴走・定着", desc: "運用が現場に根付くまで継続的に伴走。成果と体制を定期的に見直します。" },
+    ],
+    teamLabel: "Our Team",
+    teamTitle: (<>戦略から実装・運用まで、<br className="hidden sm:inline" />信頼できるプロフェッショナルが担います。</>),
+    teamDesc: "経営コンサルの視座と、現場で鍛え上げたエンジニアリングの実装力。二つを掛け合わせ、提案だけで終わらせず、稼働するシステムと継続的な価値創出まで一貫して責任を持ちます。",
+    teamCard1Label: "Strategy & DX",
+    teamCard1Title: "業務改革・DX領域の監修",
+    teamCard1Desc: "大手コンサルティングファーム出身のメンバーが、業務改革・DX推進の設計を監修。経営課題の構造化から全社展開のロードマップまで、上流の意思決定に耐える品質でご支援します。",
+    teamCard1Tags: ["大手コンサルファーム出身", "業務改革", "DX戦略", "全社展開"],
+    teamCard2Label: "Engineering",
+    teamCard2Title: "開発・デプロイ・メンテナンス",
+    teamCard2Desc: "AIコンサルティング経験が豊富なエンジニア、シリコンバレーでバックエンド開発に従事した技術者、高専から筑波大学に進学し応用情報技術者を持つ情報技術者などが、ウェブアプリケーションの開発・デプロイ・運用保守を担当。リリース後の信頼性の担保まで一貫して責任を持ちます。",
+    teamCard2Tags: ["AIコンサル経験豊富", "シリコンバレー開発経験", "高専→筑波大学", "応用情報技術者"],
+    techLabel: "Tech Stack",
+    techTitle: "使用技術",
+    techDesc: "中小企業でも安心して導入できるよう、実績・安定性・サポート体制が確立された技術のみを採用しています。",
+    techGroups: { frontend: "フロントエンド", backend: "バックエンド", aiml: "AI・機械学習", database: "データベース", cloud: "クラウド・インフラ", ec: "EC・決済", biz: "業務連携・コラボレーション" },
+    techMoreTitle: "上記以外の技術にも対応可能",
+    techMoreDesc: "お客様の既存環境・社内標準・業界要件に合わせて、記載以外の言語・フレームワーク・クラウド・SaaS連携にも柔軟に対応いたします。まずはお気軽にご相談ください。",
+    faqLabel: "FAQ",
+    faqTitle: "よくあるご質問",
+    faqDesc: "ご相談前によく寄せられる質問をまとめました。",
+    faqCta: "すべての質問を見る →",
+    faq: [
+      { q: "AIの知識がなくても相談できますか？", a: "もちろんです。「何から始めればいいかわからない」という段階からのご相談を最も多くいただきます。専門用語を使わず、現場の言葉でご説明します。" },
+      { q: "小さく始めることはできますか？", a: "できます。単発の研修や、1部署・1業務に絞ったPoCなど、いきなり大型契約をせずに効果を確かめてから拡張いただけます。" },
+      { q: "補助金は使えますか？", a: "研修・AI導入では人材開発支援助成金やIT導入補助金などを活用でき、実質負担を最大75%削減できる場合があります。申請書類もサポートします。" },
+    ],
+    newsLabel: "News",
+    newsTitle: "お知らせ",
+    newsCta: "一覧を見る →",
+    ctaLabel: "Contact",
+    ctaTitle: "まずは、お話ししませんか。",
+    ctaDesc: (<>AIのことがわからなくても大丈夫です。<br />貴社の状況に合わせて、一緒に考えます。</>),
+    ctaCards: [
+      { label: "AI顧問", service: "advisor" },
+      { label: "AI研修・教育", service: "training" },
+      { label: "ウェブサイト作成", service: "website" },
+      { label: "コンサル・DX", service: "consulting" },
+      { label: "AI広告運用", service: "advertising" },
+      { label: "ロボットレンタル", service: "robot-rental" },
+    ],
+    ctaCardAction: "お問い合わせ →",
+    ctaOthers: "その他のお問い合わせはこちら →",
   },
-  {
-    code: "AI 02",
-    title: "顧問",
-    desc: "月5万円〜、外部AI顧問として月次で経営・業務・Web改善を業務委託契約ベースで継続的に伴走支援します。",
-    tags: ["月額契約", "月次壁打ち", "経営伴走", "業務委託"],
-    href: "/advisor",
-    cta: "顧問契約のご相談",
-    color: "indigo",
+  en: {
+    heroChips: ["Advisor · Training · Web", "Strategy to implementation", "Built for SMEs"],
+    heroTitle: (
+      <>Practical <span className="text-blue-600">AI</span> and real<br /><span className="text-blue-600">engineering</span>, for Japanese SMEs.</>
+    ),
+    heroDesc: (
+      <>Centered on AI advisory, employee training, and website production —<br className="hidden md:inline" />
+      we partner with you from management decisions to systems that actually run.</>
+    ),
+    heroPrimary: "Book a free consultation",
+    heroSecondary: "View services",
+    trustStats: [
+      { value: "Up to 75%", label: "Training cost cut by subsidies" },
+      { value: "Free", label: "30-min AI assessment" },
+      { value: "Nationwide", label: "Online delivery available" },
+      { value: "2 business days", label: "First reply" },
+    ],
+    whyLabel: "Why clearAI",
+    whyTitle: "We promise to never stop at a proposal.",
+    whyDesc: "A consultant's strategic view and field-forged engineering — both under one roof. So plans don't stay on paper.",
+    why: [
+      { title: "We own the implementation", desc: "We don't stop at strategy decks. Our engineers build working systems and see them through to real adoption." },
+      { title: "Neutral, on your side", desc: "No pushing a specific tool. From Claude, ChatGPT, and Gemini, we neutrally pick what truly fits your problem." },
+      { title: "Full use of subsidies", desc: "Using Japan's HR development and IT-introduction subsidies, we cut training and adoption costs by up to 75%, so you can start with minimal net cost." },
+    ],
+    visionLabel: "Our Vision",
+    visionTitle: "Bringing AI to Japan's front lines.",
+    visionBody1: "For most companies, AI still feels out of reach — too hard, too expensive, with no obvious place to start. We've heard that story many times.",
+    visionBody2: "We exist to close that gap. We translate state-of-the-art AI into the language of business and use engineering to support real operations — staying close to each company and delivering tangible value.",
+    visionStats: [
+      { value: "Advisor · Training · Web", label: "Three core services" },
+      { value: "Japan", label: "market focus" },
+      { value: "2026", label: "founded" },
+    ],
+    getStartedLabel: "Get Started",
+    getStartedTitle: "Start small. Scale when it works.",
+    getStartedDesc: "No big contract required. Start with a free 30-minute assessment and a 3-minute company deck, and see whether we're a fit.",
+    steps: [
+      { step: "STEP 01", title: "Free AI assessment (30 min)", desc: "We listen to your current workflows and challenges, then identify one high-impact area for AI. No hard sell.", points: ["Zoom or in-person", "NDA on request — we can handle confidential data", "Verbal summary on the spot"], cta: "Book a session →", href: "/contact?service=advisor", color: "indigo" },
+      { step: "STEP 02", title: "3-minute company deck", desc: "A one-page PDF summarizing our services, typical engagements, price ranges, and subsidy examples. Perfect for internal review.", points: ["1-page PDF", "Price ranges and engagement model included", "No signup, same-day delivery"], cta: "Get the deck →", href: "/contact?service=advisor&doc=company-deck", color: "amber" },
+      { step: "STEP 03", title: "PoC from a single team", desc: "No company-wide rollout upfront. We focus on the one team or workflow where AI is most likely to pay off, then expand from proven results.", points: ["1–2 month PoC", "Success criteria agreed up front", "Government training subsidies available"], cta: "Get in touch →", href: "/contact?service=training", color: "sky" },
+    ],
+    servicesLabel: "Our Services",
+    servicesTitle: "Building Japan's future with AI.",
+    servicesDesc: "Centered on AI advisory, employee training, and website production — delivering real outcomes from strategy to implementation and operation.",
+    primaryHeading: "Core services",
+    secondaryHeading: "Other support",
+    claudeBadge: "Claude-ready",
+    primaryServices: [
+      {
+        code: "01", title: "AI Advisor", color: "indigo",
+        desc: "From JPY 50K/month, as your outside AI advisor we partner monthly on management, operations, and web improvements — from tool selection to PoC review and internal training, on a contract basis.",
+        tags: ["Monthly contract", "Monthly sessions", "Management partner", "Contract basis"],
+        href: "/advisor", cta: "Discuss an advisory engagement",
+        claudeNote: "We support adopting and embedding Claude (Anthropic) into your operations — as an ongoing advisor.",
+      },
+      {
+        code: "02", title: "AI Training", color: "amber", badge: "Up to 75% subsidy",
+        desc: "Raise your team's AI literacy. From onboarding workshops to department-specific sessions and hands-on application — learning programs where employees take the lead.",
+        tags: ["Employee training", "Department workshops", "Prompt design", "Workflow application"],
+        href: "/training", cta: "View training programs",
+        claudeNote: "Hands-on Claude training too — prompts and operating rules tailored to your real use cases.",
+      },
+      {
+        code: "03", title: "Website Production", color: "sky",
+        desc: "Fast production of websites that perform in the AI era. Next.js + Vercel + Headless CMS for top-tier speed, SEO, and ease of operation.",
+        tags: ["Next.js", "Vercel", "SEO", "Headless CMS"],
+        href: "/website", cta: "Learn more",
+      },
+    ],
+    secondaryServices: [
+      {
+        code: "04", title: "Consulting & DX", color: "blue",
+        desc: "Overseen by ex-top-tier consultants. End-to-end support for AI adoption — from strategy through implementation and operation.",
+        tags: ["AI strategy", "Workflow automation", "Generative AI"],
+        href: "/ai-consulting", cta: "Learn more",
+      },
+      {
+        code: "05", title: "AI Advertising", color: "rose",
+        desc: "Optimize and automate ad operations with AI. From creative generation to measurement, we improve efficiency and partner on ROAS.",
+        tags: ["Ad operations", "Creative generation", "Measurement"],
+        href: "/advertising", cta: "Learn more",
+      },
+      {
+        code: "06", title: "Robot Rental", color: "cyan",
+        desc: "Short-term rental, PoC, demonstrations, and event use of humanoid robots. Try the latest humanoids on-site before you commit.",
+        tags: ["Humanoid", "PoC & demo", "Event use"],
+        href: "/robot-rental", cta: "Learn more",
+      },
+    ],
+    approachLabel: "Our Approach",
+    approachTitle: "Three things we stand for",
+    approach: [
+      { num: "01", title: "Honesty", desc: "We candidly judge what's feasible and move forward where impact is highest. No hype — progress in order of demonstrated results." },
+      { num: "02", title: "Partnership", desc: "Delivery isn't the finish line. We stay engaged until adoption takes root — walking alongside your team." },
+      { num: "03", title: "Grounded execution", desc: "From technology choice to operational design, we translate everything into a form your team can actually use." },
+    ],
+    processLabel: "How It Works",
+    processTitle: "From first call to adoption",
+    processDesc: "The first consultation is free. No hard sell — we move at your pace.",
+    process: [
+      { num: "01", title: "Free consult & AI assessment", desc: "We listen to your challenges and identify high-impact areas for AI together (30 min, online available)." },
+      { num: "02", title: "Proposal & quote", desc: "We propose the best path among advisory, training, and web production — with pricing and subsidy options." },
+      { num: "03", title: "Start small", desc: "Begin with a focused PoC or a one-off training. Expand at a comfortable pace as results show." },
+      { num: "04", title: "Ongoing partnership", desc: "We stay engaged until it sticks on the ground, reviewing outcomes and structure regularly." },
+    ],
+    teamLabel: "Our Team",
+    teamTitle: (<>From strategy to implementation and operation,<br className="hidden sm:inline" />trusted professionals see it through.</>),
+    teamDesc: "Management-consulting perspective combined with field-forged engineering execution. We don't stop at proposals — we own working systems and continuous value all the way through.",
+    teamCard1Label: "Strategy & DX",
+    teamCard1Title: "Business transformation & DX oversight",
+    teamCard1Desc: "Members with backgrounds at top-tier consulting firms oversee business-transformation and DX design — from structuring management issues to company-wide rollout roadmaps, at quality that stands up to upstream decision-making.",
+    teamCard1Tags: ["Top-tier consulting background", "Business transformation", "DX strategy", "Company-wide rollout"],
+    teamCard2Label: "Engineering",
+    teamCard2Title: "Development, deployment & maintenance",
+    teamCard2Desc: "Engineers with deep AI-consulting experience, backend developers who worked in Silicon Valley, and Applied Information Technology engineers (Kosen → University of Tsukuba) build, deploy, and maintain our web applications — owning reliability after release.",
+    teamCard2Tags: ["AI consulting experience", "Silicon Valley development", "Kosen → U. of Tsukuba", "Applied Information Technology"],
+    techLabel: "Tech Stack",
+    techTitle: "Technologies we use",
+    techDesc: "We only adopt technologies with proven track record, stability, and strong support — so SMEs can deploy with confidence.",
+    techGroups: { frontend: "Frontend", backend: "Backend", aiml: "AI / ML", database: "Database", cloud: "Cloud & Infrastructure", ec: "EC / Commerce", biz: "Business Integrations" },
+    techMoreTitle: "We also support technologies beyond this list",
+    techMoreDesc: "We flexibly support languages, frameworks, clouds, and SaaS integrations beyond this list — tailored to your environment, internal standards, and industry requirements. Please reach out.",
+    faqLabel: "FAQ",
+    faqTitle: "Frequently asked questions",
+    faqDesc: "A few questions we're often asked before getting started.",
+    faqCta: "See all questions →",
+    faq: [
+      { q: "Can we consult even without AI knowledge?", a: "Absolutely. 'We don't know where to start' is the most common starting point we hear. We explain in plain language, not jargon." },
+      { q: "Can we start small?", a: "Yes. With one-off training or a PoC scoped to a single team or workflow, you can verify results before any large commitment." },
+      { q: "Can we use subsidies?", a: "For training and AI adoption, programs like the HR Development Subsidy and IT Introduction Subsidy can cut your net cost by up to 75%. We support the paperwork too." },
+    ],
+    newsLabel: "News",
+    newsTitle: "News",
+    newsCta: "View all →",
+    ctaLabel: "Contact",
+    ctaTitle: "Let's start with a conversation.",
+    ctaDesc: (<>No AI expertise needed.<br />We'll think it through with you, tailored to your situation.</>),
+    ctaCards: [
+      { label: "AI Advisor", service: "advisor" },
+      { label: "AI Training & Education", service: "training" },
+      { label: "Website Production", service: "website" },
+      { label: "Consulting & DX", service: "consulting" },
+      { label: "AI Advertising", service: "advertising" },
+      { label: "Robot Rental", service: "robot-rental" },
+    ],
+    ctaCardAction: "Get in touch →",
+    ctaOthers: "Other inquiries →",
   },
-  {
-    code: "AI 03",
-    title: "研修",
-    desc: "チームのAIリテラシーを底上げ。導入研修から部門別ワークショップ、実務適用まで、社員が主役になる学習プログラムを設計・提供します。",
-    tags: ["社員研修", "部門別ワークショップ", "プロンプト設計", "業務適用"],
-    href: "/training",
-    cta: "研修プログラムを見る",
-    color: "amber",
-    badge: "補助金 最大75%OFF",
-  },
-  {
-    code: "AI 04",
-    title: "Claude特化",
-    desc: "Anthropic Claudeに特化した導入支援。環境構築・社内ルール整備・MCP/サブエージェント設計・運用定着まで、現場に特化して伴走します。",
-    tags: ["Claude Code", "環境構築", "MCP / Agents", "運用定着"],
-    href: "/claude",
-    cta: "詳しく見る",
-    color: "orange",
-  },
-  {
-    code: "AI 05",
-    title: "広告",
-    desc: "AI活用で広告運用を最適化・自動化。クリエイティブ生成からターゲティング、入札・効果検証までAIで効率化し、ROAS改善を伴走します。",
-    tags: ["広告運用", "クリエイティブ生成", "効果検証", "自動化"],
-    href: "/advertising",
-    cta: "詳しく見る",
-    color: "rose",
-  },
-  {
-    code: "AI 06",
-    title: "ウェブサイト作成",
-    desc: "AI時代に成果が出るサイトを高速制作。Next.js + Vercel + Headless CMSで、表示速度・SEO・運用しやすさを最高水準に。",
-    tags: ["Next.js", "Vercel", "SEO", "Headless CMS"],
-    href: "/website",
-    cta: "詳しく見る",
-    color: "sky",
-  },
+};
+
+const TECH_GROUPS: { key: keyof typeof COPY["ja"]["techGroups"]; items: { name: string; icon: string; color?: string }[] }[] = [
+  { key: "frontend", items: [
+    { name: "Next.js", icon: "logos:nextjs-icon" },
+    { name: "React", icon: "logos:react" },
+    { name: "TypeScript", icon: "logos:typescript-icon" },
+    { name: "Tailwind CSS", icon: "logos:tailwindcss-icon" },
+    { name: "Vite", icon: "logos:vitejs" },
+  ]},
+  { key: "backend" as const, items: [
+    { name: "Python", icon: "logos:python" },
+    { name: "Node.js", icon: "logos:nodejs-icon" },
+    { name: "FastAPI", icon: "logos:fastapi-icon" },
+    { name: "Go", icon: "simple-icons:go", color: "00ADD8" },
+    { name: "Rails", icon: "simple-icons:rubyonrails", color: "D30001" },
+  ]},
+  { key: "aiml" as const, items: [
+    { name: "Claude", icon: "simple-icons:anthropic", color: "D97757" },
+    { name: "OpenAI", icon: "simple-icons:openai", color: "000000" },
+    { name: "Gemini", icon: "simple-icons:googlegemini", color: "8E75B2" },
+    { name: "PyTorch", icon: "logos:pytorch-icon" },
+    { name: "LangChain", icon: "simple-icons:langchain", color: "1C3C3C" },
+  ]},
+  { key: "database" as const, items: [
+    { name: "PostgreSQL", icon: "logos:postgresql" },
+    { name: "MySQL", icon: "logos:mysql-icon" },
+    { name: "Redis", icon: "logos:redis" },
+    { name: "Supabase", icon: "logos:supabase-icon" },
+    { name: "Firebase", icon: "logos:firebase-icon" },
+  ]},
+  { key: "cloud" as const, items: [
+    { name: "AWS", icon: "logos:aws" },
+    { name: "Google Cloud", icon: "logos:google-cloud" },
+    { name: "Vercel", icon: "logos:vercel-icon" },
+    { name: "Cloudflare", icon: "logos:cloudflare-icon" },
+    { name: "Docker", icon: "logos:docker-icon" },
+  ]},
+  { key: "ec" as const, items: [
+    { name: "Shopify", icon: "logos:shopify" },
+    { name: "Stripe", icon: "simple-icons:stripe", color: "635BFF" },
+    { name: "Square", icon: "simple-icons:square", color: "000000" },
+    { name: "WooCommerce", icon: "logos:woocommerce-icon" },
+    { name: "Amazon Pay", icon: "simple-icons:amazonpay", color: "FF9900" },
+  ]},
+  { key: "biz" as const, items: [
+    { name: "Salesforce", icon: "logos:salesforce" },
+    { name: "Slack", icon: "logos:slack-icon" },
+    { name: "Microsoft 365", icon: "logos:microsoft-icon" },
+    { name: "Notion", icon: "logos:notion-icon" },
+    { name: "Jira", icon: "logos:jira" },
+  ]},
 ];
 
 function SectionLabel({ children }: { children: ReactNode }) {
@@ -112,7 +437,41 @@ function SectionLabel({ children }: { children: ReactNode }) {
   );
 }
 
+function ServiceCard({ svc, claudeBadge, compact }: { svc: Svc; claudeBadge: string; compact?: boolean }) {
+  const c = colorMap[svc.color];
+  return (
+    <Link href={svc.href} className="group block h-full">
+      <div className={`relative bg-white border border-gray-200 rounded-2xl ${compact ? "p-6 lg:p-7" : "p-8 lg:p-10"} ${c.hoverBorder} hover:shadow-lg transition-all duration-300 h-full flex flex-col`}>
+        {svc.badge && (
+          <span className="absolute top-4 right-4 inline-flex items-center gap-1 rounded-full bg-amber-500 text-white text-[10px] font-bold px-2.5 py-1 tracking-wide">
+            {svc.badge}
+          </span>
+        )}
+        <span className={`inline-block text-xs font-semibold tracking-widest uppercase ${c.code} mb-3`}>{svc.code}</span>
+        <h3 className={`${compact ? "text-lg" : "text-xl"} font-bold text-gray-900 mb-3`}>{svc.title}</h3>
+        <p className={`${compact ? "text-[13px]" : "text-sm"} text-gray-600 leading-relaxed mb-5 flex-1`}>{svc.desc}</p>
+        {svc.claudeNote && (
+          <div className="mb-5 rounded-lg bg-orange-50 border border-orange-100 px-3.5 py-2.5">
+            <span className="inline-flex items-center gap-1 text-[10px] font-bold text-orange-600 uppercase tracking-wide mb-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-orange-500" />{claudeBadge}
+            </span>
+            <p className="text-[12px] text-orange-900/80 leading-relaxed">{svc.claudeNote}</p>
+          </div>
+        )}
+        <div className="flex items-center gap-2 flex-wrap mb-5">
+          {svc.tags.map((tag) => (
+            <span key={tag} className="text-xs text-gray-500 border border-gray-200 rounded px-2.5 py-1">{tag}</span>
+          ))}
+        </div>
+        <span className={`text-sm font-semibold ${c.cta} ${c.ctaHover} transition-colors`}>{svc.cta} →</span>
+      </div>
+    </Link>
+  );
+}
+
 export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
+  const { lang } = useLanguage();
+  const t = COPY[lang];
   const [heroLoaded, setHeroLoaded] = useState(false);
   useEffect(() => { setTimeout(() => setHeroLoaded(true), 100); }, []);
 
@@ -122,27 +481,25 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       <section className="relative md:min-h-screen flex items-start md:items-center overflow-hidden bg-white">
         <div className="relative z-10 w-full max-w-5xl mx-auto px-6 lg:px-8 pt-28 pb-16 md:py-24 text-center">
           <div className="flex flex-wrap justify-center gap-2 mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "200ms" }}>
-            {["7領域で伴走", "戦略から実装まで", "中小企業特化"].map((tag) => (
+            {t.heroChips.map((tag) => (
               <span key={tag} className="inline-flex items-center rounded-full bg-blue-50 text-blue-700 border border-blue-100 px-3 py-1 text-xs font-semibold">
                 {tag}
               </span>
             ))}
           </div>
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-[1.15] tracking-tight mb-8 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0)" : "translateY(24px)", transitionDelay: "400ms" }}>
-            日本の中小企業に、<br />
-            <span className="text-blue-600">使えるAI</span>と<span className="text-blue-600">実装力</span>を。
+            {t.heroTitle}
           </h1>
           <p className="text-base md:text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto mb-10 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "650ms" }}>
-            AI導入支援を、戦略から実装まで一気通貫で。<br className="hidden md:inline" />
-            コンサル・顧問・研修・Claude Code導入・広告・Web制作・補助金活用の7領域で、現場で動くものまで責任を持ちます。
+            {t.heroDesc}
           </p>
           <div className="flex flex-wrap justify-center items-center gap-5 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "850ms" }}>
             <Link href="/contact" className="inline-flex items-center gap-2 rounded-full bg-blue-600 text-white font-semibold px-7 py-3.5 hover:bg-blue-700 transition-colors duration-300 shadow-[0_8px_24px_-8px_rgba(37,99,235,0.5)]">
-              まずは相談する
+              {t.heroPrimary}
               <span aria-hidden>→</span>
             </Link>
             <Link href="#services" className="inline-flex items-center gap-1.5 text-sm text-gray-700 font-semibold hover:text-blue-600 transition-colors duration-300">
-              事業を見る
+              {t.heroSecondary}
               <span aria-hidden>→</span>
             </Link>
           </div>
@@ -154,12 +511,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-y-8 gap-x-4 md:gap-0 md:divide-x divide-gray-200">
-              {[
-                { value: "最大75%", label: "研修費助成対応" },
-                { value: "7領域", label: "AI活用ワンストップ" },
-                { value: "全国対応", label: "オンライン実施可" },
-                { value: "2営業日", label: "初回返信" },
-              ].map((stat) => (
+              {t.trustStats.map((stat) => (
                 <div key={stat.label} className="flex flex-col items-center justify-center py-6 px-4 text-center">
                   <span className="text-lg font-bold text-gray-900">{stat.value}</span>
                   <span className="text-xs text-gray-500 mt-1">{stat.label}</span>
@@ -170,40 +522,51 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
         </div>
       </section>
 
-      {/* ═══ VISION ═══ */}
+      {/* ═══ WHY clearAI ═══ */}
       <section className="py-14 md:py-20 lg:py-28 bg-white">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <Reveal>
+            <SectionLabel>{t.whyLabel}</SectionLabel>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.whyTitle}</h2>
+            <p className="text-base text-gray-500 mb-14 max-w-2xl leading-relaxed">{t.whyDesc}</p>
+          </Reveal>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {t.why.map((item, i) => (
+              <Reveal key={item.title} delay={i * 80}>
+                <div className="bg-gray-50 border border-gray-200 rounded-2xl p-8 h-full">
+                  <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold mb-5">{i + 1}</div>
+                  <h3 className="text-lg font-bold text-gray-900 mb-3">{item.title}</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ VISION ═══ */}
+      <section className="py-14 md:py-20 lg:py-28 bg-gray-50">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-start">
             <Reveal>
-              <SectionLabel>Our Vision</SectionLabel>
-              <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-6">
-                AIを、日本の現場へ届ける。
-              </h2>
+              <SectionLabel>{t.visionLabel}</SectionLabel>
+              <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-6">{t.visionTitle}</h2>
             </Reveal>
             <Reveal delay={100}>
               <div className="space-y-5">
-                <p className="text-base text-gray-600 leading-relaxed">
-                  AIはまだ、多くの企業にとって遠い存在です。難しい、コストが高い、何から始めればいいかわからない——そんな声を何度も聞いてきました。
-                </p>
-                <p className="text-base text-gray-600 leading-relaxed">
-                  私たちはそのギャップを埋めるために生まれました。最先端のAI技術をビジネスの言葉に翻訳し、エンジニアの力で現場の経営を支える。一社一社に寄り添い、確かな価値を届けていきます。
-                </p>
+                <p className="text-base text-gray-600 leading-relaxed">{t.visionBody1}</p>
+                <p className="text-base text-gray-600 leading-relaxed">{t.visionBody2}</p>
                 <div className="h-px bg-gray-200 mt-6" />
-                <div className="flex items-center gap-8 pt-4">
-                  <div>
-                    <p className="text-2xl font-bold text-gray-900">7<span className="text-sm text-gray-400 ml-1 font-normal">領域</span></p>
-                    <p className="text-xs text-gray-400 mt-1">展開中</p>
-                  </div>
-                  <div className="w-px h-10 bg-gray-200" />
-                  <div>
-                    <p className="text-2xl font-bold text-gray-900">日本</p>
-                    <p className="text-xs text-gray-400 mt-1">市場特化</p>
-                  </div>
-                  <div className="w-px h-10 bg-gray-200" />
-                  <div>
-                    <p className="text-2xl font-bold text-gray-900">2026</p>
-                    <p className="text-xs text-gray-400 mt-1">創業</p>
-                  </div>
+                <div className="flex items-center gap-6 pt-4 flex-wrap">
+                  {t.visionStats.map((s, i) => (
+                    <div key={s.label} className="flex items-center gap-6">
+                      {i > 0 && <div className="w-px h-10 bg-gray-200 hidden sm:block" />}
+                      <div>
+                        <p className="text-lg font-bold text-gray-900">{s.value}</p>
+                        <p className="text-xs text-gray-400 mt-1">{s.label}</p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
             </Reveal>
@@ -215,108 +578,24 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       <section className="py-14 md:py-20 lg:py-28 bg-white border-t border-gray-100">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
-            <SectionLabel>Get Started</SectionLabel>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">
-              まずは、小さく始められます。
-            </h2>
-            <p className="text-base text-gray-500 mb-14 max-w-2xl leading-relaxed">
-              いきなりの大型契約は不要です。30分の無料診断と3分で読める資料から、貴社に合うかを見極めてください。
-            </p>
+            <SectionLabel>{t.getStartedLabel}</SectionLabel>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.getStartedTitle}</h2>
+            <p className="text-base text-gray-500 mb-14 max-w-2xl leading-relaxed">{t.getStartedDesc}</p>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <Reveal delay={0}>
-              <Link href="/contact?service=consulting" className="group block h-full">
-                <div className="bg-white border border-gray-200 rounded-2xl p-8 lg:p-10 hover:border-blue-300 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
-                  <span className="inline-block text-xs font-semibold tracking-widest uppercase text-blue-600 mb-4">STEP 01</span>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">無料AI診断（30分）</h3>
-                  <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">
-                    現状の業務・課題をヒアリングし、AI活用で効果の高そうな領域を1つ特定してお返しします。営業色の強い提案はしません。
-                  </p>
-                  <ul className="space-y-2 text-xs text-gray-500 mb-6">
-                    <li>・Zoom / 対面いずれも可</li>
-                    <li>・NDA締結のうえ、機密情報も扱えます</li>
-                    <li>・その場で簡易レポートを口頭共有</li>
-                  </ul>
-                  <span className="text-sm font-semibold text-blue-600 group-hover:text-blue-700 transition-colors">申し込む →</span>
-                </div>
-              </Link>
-            </Reveal>
-            <Reveal delay={80}>
-              <Link href="/contact?service=consulting&doc=company-deck" className="group block h-full">
-                <div className="bg-white border border-gray-200 rounded-2xl p-8 lg:p-10 hover:border-indigo-300 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
-                  <span className="inline-block text-xs font-semibold tracking-widest uppercase text-indigo-600 mb-4">STEP 02</span>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">3分でわかる会社資料</h3>
-                  <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">
-                    事業内容・代表的な支援パターン・料金レンジ・補助金活用例をまとめた1枚PDFを送付します。社内稟議用にどうぞ。
-                  </p>
-                  <ul className="space-y-2 text-xs text-gray-500 mb-6">
-                    <li>・PDF 1ページ</li>
-                    <li>・料金レンジと進め方の目安入り</li>
-                    <li>・登録不要・当日返信</li>
-                  </ul>
-                  <span className="text-sm font-semibold text-indigo-600 group-hover:text-indigo-700 transition-colors">資料をもらう →</span>
-                </div>
-              </Link>
-            </Reveal>
-            <Reveal delay={160}>
-              <Link href="/contact?service=consulting&doc=poc" className="group block h-full">
-                <div className="bg-white border border-gray-200 rounded-2xl p-8 lg:p-10 hover:border-amber-300 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
-                  <span className="inline-block text-xs font-semibold tracking-widest uppercase text-amber-600 mb-4">STEP 03</span>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">1部署・1業務からのPoC</h3>
-                  <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">
-                    いきなり全社展開ではなく、最も効果が出そうな1部署・1業務に絞って小さく試行導入。効果が見えてから拡張します。
-                  </p>
-                  <ul className="space-y-2 text-xs text-gray-500 mb-6">
-                    <li>・PoC期間 1〜2ヶ月</li>
-                    <li>・成功基準を事前合意</li>
-                    <li>・人材開発支援助成金の活用も可</li>
-                  </ul>
-                  <span className="text-sm font-semibold text-amber-600 group-hover:text-amber-700 transition-colors">相談する →</span>
-                </div>
-              </Link>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      {/* ═══ SERVICES ═══ */}
-      <section id="services" className="py-14 md:py-20 lg:py-28 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
-          <Reveal>
-            <SectionLabel>Our Services</SectionLabel>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">
-              AIで、日本の未来をつくる。
-            </h2>
-            <p className="text-base text-gray-500 mb-14 max-w-2xl leading-relaxed">
-              戦略から実装・運用まで、AI活用の各領域で確実に成果を届けます。
-            </p>
-          </Reveal>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
-            {aiServices.map((svc, i) => {
-              const c = aiServiceColorMap[svc.color];
+            {t.steps.map((step, i) => {
+              const c = colorMap[step.color];
               return (
-                <Reveal key={svc.code} delay={(i % 3) * 80} className="h-full">
-                  <Link href={svc.href} className="group block h-full">
-                    <div className={`relative bg-white border border-gray-200 rounded-2xl p-8 lg:p-10 ${c.hoverBorder} hover:shadow-lg transition-all duration-300 h-full flex flex-col`}>
-                      {svc.badge && (
-                        <span className="absolute top-4 right-4 inline-flex items-center gap-1 rounded-full bg-amber-500 text-white text-[10px] font-bold px-2.5 py-1 tracking-wide">
-                          {svc.badge}
-                        </span>
-                      )}
-                      <span className={`inline-block text-xs font-semibold tracking-widest uppercase ${c.code} mb-4`}>{svc.code}</span>
-                      <h3 className="text-xl font-bold text-gray-900 mb-4">{svc.title}</h3>
-                      <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">
-                        {svc.desc}
-                      </p>
-                      <div className="flex items-center gap-3 flex-wrap mb-6">
-                        {svc.tags.map((tag) => (
-                          <span key={tag} className="text-xs text-gray-500 border border-gray-200 rounded px-2.5 py-1">{tag}</span>
-                        ))}
-                      </div>
-                      <span className={`text-sm font-semibold ${c.cta} ${c.ctaHover} transition-colors`}>
-                        {svc.cta} →
-                      </span>
+                <Reveal key={step.step} delay={i * 80}>
+                  <Link href={step.href} className="group block h-full">
+                    <div className={`bg-white border border-gray-200 rounded-2xl p-8 lg:p-10 ${c.hoverBorder} hover:shadow-lg transition-all duration-300 h-full flex flex-col`}>
+                      <span className={`inline-block text-xs font-semibold tracking-widest uppercase ${c.code} mb-4`}>{step.step}</span>
+                      <h3 className="text-xl font-bold text-gray-900 mb-3">{step.title}</h3>
+                      <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">{step.desc}</p>
+                      <ul className="space-y-2 text-xs text-gray-500 mb-6">
+                        {step.points.map((p) => <li key={p}>・{p}</li>)}
+                      </ul>
+                      <span className={`text-sm font-semibold ${c.cta} ${c.ctaHover} transition-colors`}>{step.cta}</span>
                     </div>
                   </Link>
                 </Reveal>
@@ -326,21 +605,48 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
         </div>
       </section>
 
+      {/* ═══ SERVICES ═══ */}
+      <section id="services" className="py-14 md:py-20 lg:py-28 bg-gray-50">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <Reveal>
+            <SectionLabel>{t.servicesLabel}</SectionLabel>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.servicesTitle}</h2>
+            <p className="text-base text-gray-500 mb-12 max-w-2xl leading-relaxed">{t.servicesDesc}</p>
+          </Reveal>
+
+          <Reveal>
+            <p className="text-xs font-semibold tracking-widest uppercase text-gray-400 mb-5">{t.primaryHeading}</p>
+          </Reveal>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch mb-14">
+            {t.primaryServices.map((svc, i) => (
+              <Reveal key={svc.code} delay={(i % 3) * 80} className="h-full">
+                <ServiceCard svc={svc} claudeBadge={t.claudeBadge} />
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal>
+            <p className="text-xs font-semibold tracking-widest uppercase text-gray-400 mb-5">{t.secondaryHeading}</p>
+          </Reveal>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+            {t.secondaryServices.map((svc, i) => (
+              <Reveal key={svc.code} delay={(i % 3) * 80} className="h-full">
+                <ServiceCard svc={svc} claudeBadge={t.claudeBadge} compact />
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ═══ APPROACH ═══ */}
       <section className="py-14 md:py-20 lg:py-28 bg-white">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
-            <SectionLabel>Our Approach</SectionLabel>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">
-              私たちが大切にする3つのこと
-            </h2>
+            <SectionLabel>{t.approachLabel}</SectionLabel>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">{t.approachTitle}</h2>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              { num: "01", title: "正直であること", desc: "実現可能性を率直に見極め、効果の高い領域から着実に進めます。過度な期待を煽らず、成果が出る順に一歩ずつ。" },
-              { num: "02", title: "伴走すること", desc: "導入して終わりではなく、運用が定着するまで。お客様のチームの一員として、ともに歩みます。" },
-              { num: "03", title: "現場に落とし込むこと", desc: "技術選定から運用設計まで、現場で使える形に落とし込みます。専門知識がなくても扱える、具体的な提案を。" },
-            ].map((item, i) => (
+            {t.approach.map((item, i) => (
               <Reveal key={item.num} delay={i * 80}>
                 <div className="border-t-2 border-blue-600 pt-6">
                   <span className="text-xs font-semibold text-blue-600 tracking-widest">{item.num}</span>
@@ -353,44 +659,56 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
         </div>
       </section>
 
-      {/* ═══ TEAM / 体制 ═══ */}
+      {/* ═══ PROCESS ═══ */}
+      <section className="py-14 md:py-20 lg:py-28 bg-gray-50">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <Reveal>
+            <SectionLabel>{t.processLabel}</SectionLabel>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.processTitle}</h2>
+            <p className="text-base text-gray-500 mb-14 max-w-2xl leading-relaxed">{t.processDesc}</p>
+          </Reveal>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {t.process.map((step, i) => (
+              <Reveal key={step.num} delay={i * 80}>
+                <div className="relative bg-white border border-gray-200 rounded-2xl p-7 h-full">
+                  <span className="text-3xl font-bold text-blue-100">{step.num}</span>
+                  <h3 className="text-base font-bold text-gray-900 mt-2 mb-2">{step.title}</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed">{step.desc}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ TEAM ═══ */}
       <section className="py-14 md:py-20 lg:py-28 bg-white">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
-            <SectionLabel>Our Team</SectionLabel>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">
-              戦略から実装・運用まで、<br className="hidden sm:inline" />信頼できるプロフェッショナルが担います。
-            </h2>
-            <p className="text-base text-gray-500 mb-14 max-w-2xl leading-relaxed">
-              経営コンサルの視座と、現場で鍛え上げたエンジニアリングの実装力。二つを掛け合わせ、提案だけで終わらせず、稼働するシステムと継続的な価値創出まで一貫して責任を持ちます。
-            </p>
+            <SectionLabel>{t.teamLabel}</SectionLabel>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.teamTitle}</h2>
+            <p className="text-base text-gray-500 mb-14 max-w-2xl leading-relaxed">{t.teamDesc}</p>
           </Reveal>
-
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
             <Reveal delay={0} className="h-full">
               <div className="bg-gray-50 border border-gray-200 rounded-2xl p-8 lg:p-10 h-full flex flex-col">
-                <span className="inline-block text-xs font-semibold tracking-widest uppercase text-blue-600 mb-4">Strategy &amp; DX</span>
-                <h3 className="text-xl font-bold text-gray-900 mb-4">業務改革・DX領域の監修</h3>
-                <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">
-                  大手コンサルティングファーム出身のメンバーが、業務改革・DX推進の設計を監修。経営課題の構造化から全社展開のロードマップまで、上流の意思決定に耐える品質でご支援します。
-                </p>
+                <span className="inline-block text-xs font-semibold tracking-widest uppercase text-blue-600 mb-4">{t.teamCard1Label}</span>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">{t.teamCard1Title}</h3>
+                <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">{t.teamCard1Desc}</p>
                 <div className="flex items-center gap-2 flex-wrap">
-                  {["大手コンサルファーム出身", "業務改革", "DX戦略", "全社展開"].map((tag) => (
+                  {t.teamCard1Tags.map((tag) => (
                     <span key={tag} className="text-xs text-gray-600 bg-white border border-gray-200 rounded px-2.5 py-1">{tag}</span>
                   ))}
                 </div>
               </div>
             </Reveal>
-
             <Reveal delay={100} className="h-full">
               <div className="bg-gray-50 border border-gray-200 rounded-2xl p-8 lg:p-10 h-full flex flex-col">
-                <span className="inline-block text-xs font-semibold tracking-widest uppercase text-sky-600 mb-4">Engineering</span>
-                <h3 className="text-xl font-bold text-gray-900 mb-4">開発・デプロイ・メンテナンス</h3>
-                <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">
-                  AIコンサルティング経験が豊富なエンジニア、シリコンバレーでバックエンド開発に従事した技術者、高専から筑波大学に進学し応用情報技術者を持つ情報技術者などが、ウェブアプリケーションの開発・デプロイ・運用保守を担当。リリース後の信頼性の担保まで一貫して責任を持ちます。
-                </p>
+                <span className="inline-block text-xs font-semibold tracking-widest uppercase text-sky-600 mb-4">{t.teamCard2Label}</span>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">{t.teamCard2Title}</h3>
+                <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">{t.teamCard2Desc}</p>
                 <div className="flex items-center gap-2 flex-wrap">
-                  {["AIコンサル経験豊富", "シリコンバレー開発経験", "高専→筑波大学", "応用情報技術者"].map((tag) => (
+                  {t.teamCard2Tags.map((tag) => (
                     <span key={tag} className="text-xs text-gray-600 bg-white border border-gray-200 rounded px-2.5 py-1">{tag}</span>
                   ))}
                 </div>
@@ -404,77 +722,24 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       <section className="py-14 md:py-20 lg:py-28 bg-gray-50">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
-            <SectionLabel>Tech Stack</SectionLabel>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">使用技術</h2>
-            <p className="text-base text-gray-500 max-w-xl leading-relaxed mb-14">
-              中小企業でも安心して導入できるよう、実績・安定性・サポート体制が確立された技術のみを採用しています。
-            </p>
+            <SectionLabel>{t.techLabel}</SectionLabel>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.techTitle}</h2>
+            <p className="text-base text-gray-500 max-w-xl leading-relaxed mb-14">{t.techDesc}</p>
           </Reveal>
           <div className="space-y-0">
-            {[
-              { category: "Frontend", label: "フロントエンド", items: [
-                { name: "Next.js", icon: "logos:nextjs-icon" },
-                { name: "React", icon: "logos:react" },
-                { name: "TypeScript", icon: "logos:typescript-icon" },
-                { name: "Tailwind CSS", icon: "logos:tailwindcss-icon" },
-                { name: "Vite", icon: "logos:vitejs" },
-              ]},
-              { category: "Backend", label: "バックエンド", items: [
-                { name: "Python", icon: "logos:python" },
-                { name: "Node.js", icon: "logos:nodejs-icon" },
-                { name: "FastAPI", icon: "logos:fastapi-icon" },
-                { name: "Go", icon: "simple-icons:go", color: "00ADD8" },
-                { name: "Rails", icon: "simple-icons:rubyonrails", color: "D30001" },
-              ]},
-              { category: "AI / ML", label: "AI・機械学習", items: [
-                { name: "Claude", icon: "simple-icons:anthropic", color: "D97757" },
-                { name: "OpenAI", icon: "simple-icons:openai", color: "000000" },
-                { name: "Gemini", icon: "simple-icons:googlegemini", color: "8E75B2" },
-                { name: "PyTorch", icon: "logos:pytorch-icon" },
-                { name: "LangChain", icon: "simple-icons:langchain", color: "1C3C3C" },
-              ]},
-              { category: "Database", label: "データベース", items: [
-                { name: "PostgreSQL", icon: "logos:postgresql" },
-                { name: "MySQL", icon: "logos:mysql-icon" },
-                { name: "Redis", icon: "logos:redis" },
-                { name: "Supabase", icon: "logos:supabase-icon" },
-                { name: "Firebase", icon: "logos:firebase-icon" },
-              ]},
-              { category: "Cloud", label: "クラウド・インフラ", items: [
-                { name: "AWS", icon: "logos:aws" },
-                { name: "Google Cloud", icon: "logos:google-cloud" },
-                { name: "Vercel", icon: "logos:vercel-icon" },
-                { name: "Cloudflare", icon: "logos:cloudflare-icon" },
-                { name: "Docker", icon: "logos:docker-icon" },
-              ]},
-              { category: "EC / Commerce", label: "EC・決済", items: [
-                { name: "Shopify", icon: "logos:shopify" },
-                { name: "Stripe", icon: "simple-icons:stripe", color: "635BFF" },
-                { name: "Square", icon: "simple-icons:square", color: "000000" },
-                { name: "WooCommerce", icon: "logos:woocommerce-icon" },
-                { name: "Amazon Pay", icon: "simple-icons:amazonpay", color: "FF9900" },
-              ]},
-              { category: "Business Integrations", label: "業務連携・コラボレーション", items: [
-                { name: "Salesforce", icon: "logos:salesforce" },
-                { name: "Slack", icon: "logos:slack-icon" },
-                { name: "Microsoft 365", icon: "logos:microsoft-icon" },
-                { name: "Notion", icon: "logos:notion-icon" },
-                { name: "Jira", icon: "logos:jira" },
-              ]},
-            ].map((group, gi) => (
-              <Reveal key={group.category} delay={gi * 40}>
+            {TECH_GROUPS.map((group, gi) => (
+              <Reveal key={group.key} delay={gi * 40}>
                 <div className="border-t border-gray-200 py-8">
                   <div className="grid lg:grid-cols-12 gap-6 items-center">
                     <div className="lg:col-span-2">
-                      <p className="text-[10px] font-semibold tracking-widest text-blue-600 uppercase">{group.category}</p>
-                      <h3 className="text-sm font-bold text-gray-900 mt-0.5">{group.label}</h3>
+                      <h3 className="text-sm font-bold text-gray-900">{t.techGroups[group.key as keyof typeof t.techGroups]}</h3>
                     </div>
                     <div className="lg:col-span-10">
                       <div className="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-5 gap-2.5 sm:gap-3">
                         {group.items.map((tech) => (
                           <div key={tech.name} className="bg-white border border-gray-200 rounded-xl p-3 sm:p-5 flex flex-col items-center justify-center gap-2 sm:gap-3 hover:border-gray-300 hover:shadow-sm transition-all aspect-square">
                             {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img src={`https://api.iconify.design/${tech.icon}.svg${tech.color ? `?color=%23${tech.color}` : ''}`} alt={tech.name} className="w-7 h-7 sm:w-8 sm:h-8 object-contain" loading="lazy" />
+                            <img src={`https://api.iconify.design/${tech.icon}.svg${"color" in tech && tech.color ? `?color=%23${tech.color}` : ''}`} alt={tech.name} className="w-7 h-7 sm:w-8 sm:h-8 object-contain" loading="lazy" />
                             <p className="text-[11px] sm:text-xs font-medium text-gray-600 text-center leading-tight">{tech.name}</p>
                           </div>
                         ))}
@@ -494,10 +759,8 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
                   </svg>
                 </div>
                 <div className="flex-1">
-                  <p className="text-sm font-bold text-gray-900 mb-1">上記以外の技術にも対応可能</p>
-                  <p className="text-sm text-gray-600 leading-relaxed">
-                    お客様の既存環境・社内標準・業界要件に合わせて、記載以外の言語・フレームワーク・クラウド・SaaS連携にも柔軟に対応いたします。まずはお気軽にご相談ください。
-                  </p>
+                  <p className="text-sm font-bold text-gray-900 mb-1">{t.techMoreTitle}</p>
+                  <p className="text-sm text-gray-600 leading-relaxed">{t.techMoreDesc}</p>
                 </div>
               </div>
             </div>
@@ -505,48 +768,64 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
         </div>
       </section>
 
-      {/* ═══ NEWS / BLOG ═══ */}
+      {/* ═══ FAQ TEASER ═══ */}
       <section className="py-14 md:py-20 lg:py-28 bg-white">
+        <div className="max-w-3xl mx-auto px-6 lg:px-8">
+          <Reveal>
+            <SectionLabel>{t.faqLabel}</SectionLabel>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.faqTitle}</h2>
+            <p className="text-base text-gray-500 mb-10 leading-relaxed">{t.faqDesc}</p>
+          </Reveal>
+          <div className="mb-8">
+            {t.faq.map((item, i) => (
+              <Reveal key={i} delay={i * 70}>
+                <details className="border-b border-gray-100 py-5 group">
+                  <summary className="font-semibold text-gray-900 cursor-pointer list-none flex items-center justify-between gap-4">
+                    <span>{item.q}</span>
+                    <span className="text-gray-400 text-lg leading-none flex-shrink-0 transition-transform duration-300 group-open:rotate-45">+</span>
+                  </summary>
+                  <p className="text-gray-600 text-sm leading-relaxed mt-3">{item.a}</p>
+                </details>
+              </Reveal>
+            ))}
+          </div>
+          <Reveal delay={200}>
+            <Link href="/faq" className="text-sm font-semibold text-blue-600 hover:text-blue-700 transition-colors">{t.faqCta}</Link>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ═══ NEWS / BLOG ═══ */}
+      <section className="py-14 md:py-20 lg:py-28 bg-gray-50">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="flex items-end justify-between mb-12">
             <div>
-              <SectionLabel>News</SectionLabel>
-              <h2 className="text-3xl font-bold text-gray-900 leading-tight">お知らせ</h2>
+              <SectionLabel>{t.newsLabel}</SectionLabel>
+              <h2 className="text-3xl font-bold text-gray-900 leading-tight">{t.newsTitle}</h2>
             </div>
             <Link href="/blog" className="hidden sm:inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:text-blue-700 transition-colors">
-              一覧を見る →
+              {t.newsCta}
             </Link>
           </div>
           {newsSlot}
           <div className="text-center mt-8 sm:hidden">
-            <Link href="/blog" className="text-sm font-semibold text-blue-600">一覧を見る →</Link>
+            <Link href="/blog" className="text-sm font-semibold text-blue-600">{t.newsCta}</Link>
           </div>
         </div>
       </section>
 
       {/* ═══ CTA ═══ */}
-      <section className="py-14 md:py-20 lg:py-28 bg-gray-50">
+      <section className="py-14 md:py-20 lg:py-28 bg-white border-t border-gray-100">
         <div className="max-w-4xl mx-auto px-6">
           <Reveal>
             <div className="text-center mb-12">
-              <SectionLabel>Contact</SectionLabel>
-              <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-6">
-                まずは、お話ししませんか。
-              </h2>
-              <p className="text-base text-gray-600 leading-relaxed max-w-lg mx-auto">
-                AIのことがわからなくても大丈夫です。<br />貴社の状況に合わせて、一緒に考えます。
-              </p>
+              <SectionLabel>{t.ctaLabel}</SectionLabel>
+              <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-6">{t.ctaTitle}</h2>
+              <p className="text-base text-gray-600 leading-relaxed max-w-lg mx-auto">{t.ctaDesc}</p>
             </div>
           </Reveal>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-            {[
-              { label: "AIコンサルティング", service: "consulting", color: "blue" },
-              { label: "AI顧問 + ウェブサイト監修", service: "advisor", color: "indigo" },
-              { label: "AI導入・教育", service: "education", color: "amber" },
-              { label: "CEO向けAI活用", service: "ceo", color: "violet" },
-              { label: "Claude Code特化導入", service: "claude-code", color: "orange" },
-              { label: "AI広告運用", service: "advertising", color: "rose" },
-            ].map((item, i) => (
+            {t.ctaCards.map((item, i) => (
               <Reveal key={item.service} delay={i * 50}>
                 <Link
                   href={`/contact?service=${item.service}`}
@@ -555,7 +834,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
                   <span className="block text-sm font-bold text-gray-900 group-hover:text-blue-700 transition-colors">
                     {item.label}
                   </span>
-                  <span className="block text-xs text-gray-400 mt-1">お問い合わせ →</span>
+                  <span className="block text-xs text-gray-400 mt-1">{t.ctaCardAction}</span>
                 </Link>
               </Reveal>
             ))}
@@ -563,7 +842,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
           <Reveal delay={350}>
             <div className="text-center mt-8">
               <Link href="/contact" className="text-sm text-gray-500 hover:text-gray-700 transition-colors">
-                その他のお問い合わせはこちら →
+                {t.ctaOthers}
               </Link>
             </div>
           </Reveal>
