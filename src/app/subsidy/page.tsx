@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -30,7 +31,317 @@ function formatYen(n: number) {
   return "¥" + Math.round(n).toLocaleString("ja-JP");
 }
 
+type Copy = {
+  pageLabel: string;
+  pageTitle: string;
+  pageDesc: string;
+  programsLabel: string;
+  programsTitle: string;
+  programsDesc: string;
+  programs: {
+    tag: string;
+    title: string;
+    subtitle: string;
+    desc: string;
+    metrics: { label: string; value: string }[];
+    ideal: string;
+    idealLabel: string;
+  }[];
+  simulatorLabel: string;
+  simulatorTitle: string;
+  simulatorDesc: string;
+  simCondTitle: string;
+  simCompanySize: string;
+  simSmall: string;
+  simLarge: string;
+  simPeople: string;
+  simPeopleUnit: string;
+  simHours: string;
+  simHoursUnit: string;
+  simHoursWarning: string;
+  simHourlyFee: string;
+  simWage: string;
+  simResultTitle: string;
+  simRowTraining: string;
+  simRowExpense: (rate: string) => string;
+  simRowWage: (rate: string) => string;
+  simNetLabel: string;
+  simTotalLabel: string;
+  simNote: string;
+  simCta: string;
+  supportLabel: string;
+  supportTitle: string;
+  support: { num: string; title: string; desc: string }[];
+  supportDisclaimer: string;
+  supportDisclaimerBody: string;
+  flowLabel: string;
+  flowTitle: string;
+  flow: { step: string; title: string; desc: string; duration: string }[];
+  faqLabel: string;
+  faqTitle: string;
+  faq: { q: string; a: string }[];
+  ctaLabel: string;
+  ctaTitle: string;
+  ctaDesc: string;
+  ctaButton: string;
+  ctaSecondary: string;
+};
+
+const COPY: Record<"ja" | "en", Copy> = {
+  ja: {
+    pageLabel: "Subsidy Support",
+    pageTitle: "補助金サポート",
+    pageDesc: "人材開発支援助成金・IT導入補助金・茨城県独自の支援制度まで。研修費・AI導入費を最大75%削減できる制度を、計画策定から実施報告・支給申請までフルサポートします。",
+    programsLabel: "Programs",
+    programsTitle: "対応する3つの支援制度",
+    programsDesc: "AI研修・AI導入プロジェクトに最も適した制度を、貴社の事業ステージと目的に合わせてご提案します。",
+    programs: [
+      {
+        tag: "国",
+        title: "人材開発支援助成金",
+        subtitle: "事業展開等リスキリング支援コース",
+        desc: "新規事業・DX推進のための研修に使える厚労省の制度。AI・生成AI研修と極めて相性が良く、経費の最大75%と受講者の賃金を助成。",
+        metrics: [
+          { label: "経費助成（中小）", value: "75%" },
+          { label: "賃金助成", value: "960円/人・時間" },
+          { label: "1人あたり上限", value: "最大50万円" },
+        ],
+        ideal: "AI研修・プロンプト研修・DX人材育成",
+        idealLabel: "活用シーン：",
+      },
+      {
+        tag: "国",
+        title: "IT導入補助金",
+        subtitle: "通常枠 / インボイス対応枠 等",
+        desc: "AIツール・SaaS・業務自動化システムの導入費用を補助。clearAIのコンサル＋導入パッケージと組み合わせて活用可能。",
+        metrics: [
+          { label: "補助率", value: "最大 1/2〜3/4" },
+          { label: "補助額", value: "〜450万円" },
+          { label: "対象", value: "ソフトウェア・導入費" },
+        ],
+        ideal: "AIツール導入・業務自動化・RAG構築",
+        idealLabel: "活用シーン：",
+      },
+      {
+        tag: "県・市",
+        title: "茨城県・地方自治体支援",
+        subtitle: "DX推進／中小企業人材開発等",
+        desc: "茨城県および県内市町村が独自に実施するDX・生成AI活用・人材育成の助成制度。全国対応ですが、当社拠点の茨城県は特に精通しています。",
+        metrics: [
+          { label: "対象", value: "県内中小企業等" },
+          { label: "補助率", value: "制度により50〜75%" },
+          { label: "特徴", value: "国制度と併用可の場合あり" },
+        ],
+        ideal: "地元企業のDX支援・小規模導入",
+        idealLabel: "活用シーン：",
+      },
+    ],
+    simulatorLabel: "Simulator",
+    simulatorTitle: "実質負担額を、その場で計算。",
+    simulatorDesc: "受講人数・研修時間・企業規模を入れるだけ。人材開発支援助成金（事業展開等リスキリング支援コース）を前提にした概算が即座に表示されます。",
+    simCondTitle: "シミュレーション条件",
+    simCompanySize: "企業規模",
+    simSmall: "中小企業（75%）",
+    simLarge: "大企業（60%）",
+    simPeople: "受講者数",
+    simPeopleUnit: "人",
+    simHours: "研修時間（1人あたり）",
+    simHoursUnit: "時間",
+    simHoursWarning: "※ 助成金は研修時間10時間以上が要件です。",
+    simHourlyFee: "研修単価（1人・1時間）",
+    simWage: "受講者の平均時給",
+    simResultTitle: "試算結果",
+    simRowTraining: "研修費用（通常）",
+    simRowExpense: (rate) => `経費助成（${rate}%）`,
+    simRowWage: (rate) => `賃金助成（${rate}円/人・時間）`,
+    simNetLabel: "実質負担額",
+    simTotalLabel: "助成金総額",
+    simNote: "※ 本試算は「人材開発支援助成金・事業展開等リスキリング支援コース」を前提にした概算です。実際の支給額は労働局の審査により変動します。正確な見積もりは無料相談をご利用ください。",
+    simCta: "この条件で相談する →",
+    supportLabel: "Our Support",
+    supportTitle: "clearAIのサポート範囲",
+    support: [
+      { num: "01", title: "制度診断", desc: "事業規模・目的・実施予定からベストな助成金の組み合わせをご提案。" },
+      { num: "02", title: "訓練計画策定", desc: "カリキュラム・時間数・対象者を助成金要件に合致する形で設計。" },
+      { num: "03", title: "書類作成伴走", desc: "提携社労士と連携し、訓練計画届・実施報告・支給申請まで書類作成を支援。" },
+      { num: "04", title: "実施・記録", desc: "研修の実施から出席簿・賃金台帳までのエビデンス管理をサポート。" },
+    ],
+    supportDisclaimer: "書類の最終提出は事業主または提携社労士が行います",
+    supportDisclaimerBody: "clearAIは計画策定・研修実施・エビデンス管理までを責任を持って伴走。労働局への正式な申請手続きは有資格者である提携社労士がおこないます（紹介可）。",
+    flowLabel: "Flow",
+    flowTitle: "申請から受給までの流れ",
+    flow: [
+      { step: "STEP 1", title: "無料相談・制度診断", desc: "貴社の事業内容・目的・規模をヒアリングし、活用可能な助成金を特定します。", duration: "約30分" },
+      { step: "STEP 2", title: "訓練計画策定", desc: "助成金要件に適合したカリキュラム・時間数・対象者を設計します。", duration: "2〜3週間" },
+      { step: "STEP 3", title: "訓練計画届の提出", desc: "研修開始日の原則1ヶ月前までに、管轄の都道府県労働局へ提出します。", duration: "事前提出必須" },
+      { step: "STEP 4", title: "研修の実施", desc: "計画通りに研修を実施し、出席簿・賃金台帳等のエビデンスを整備します。", duration: "カリキュラムに応じる" },
+      { step: "STEP 5", title: "支給申請", desc: "研修終了日の翌日から2ヶ月以内に、支給申請書類を労働局へ提出します。", duration: "終了後2ヶ月以内" },
+      { step: "STEP 6", title: "助成金の受給", desc: "労働局の審査後、助成金が事業主の口座に振り込まれます。", duration: "申請後 数ヶ月" },
+    ],
+    faqLabel: "FAQ",
+    faqTitle: "よくあるご質問",
+    faq: [
+      {
+        q: "人材開発支援助成金は誰でも使えますか？",
+        a: "雇用保険適用事業所であり、一定の要件を満たす訓練計画を事前に労働局に届け出た上で、計画通り実施できれば受給可能です。中小企業は経費助成率が75%になります。",
+      },
+      {
+        q: "申請手続きはclearAIが代行してくれますか？",
+        a: "連携する社労士と共に、訓練計画届・実施報告・支給申請までの書類作成を伴走支援します。書類の最終提出は事業主または提携社労士が行います。",
+      },
+      {
+        q: "費用の立替は必要ですか？",
+        a: "助成金は後払い方式のため、研修費用は一旦お支払いいただき、実施後に助成金が支給される流れになります。資金繰りのご相談にも応じます。",
+      },
+      {
+        q: "どれくらいの期間で受給できますか？",
+        a: "訓練開始の1ヶ月前に計画届を提出し、研修終了後2ヶ月以内に支給申請。その後労働局の審査を経て支給となります。全体で4〜8ヶ月程度を見込んでください。",
+      },
+      {
+        q: "IT導入補助金と人材開発支援助成金は併用できますか？",
+        a: "基本的に同一費用の二重受給はできませんが、AIツール導入費はIT導入補助金、研修費は人材開発支援助成金、と分けて活用することは可能です。個別にご提案します。",
+      },
+      {
+        q: "茨城県内の企業向けの補助金はありますか？",
+        a: "茨城県独自のDX推進・人材育成関連助成金や、市町村単位での支援制度があります。clearAIは茨城県に拠点を置く企業として地域特有の制度にも精通しています。",
+      },
+    ],
+    ctaLabel: "Contact",
+    ctaTitle: "補助金を、損なく使い切る。",
+    ctaDesc: "「どの制度が合うかわからない」「書類作成に自信がない」——そんな段階からご相談いただけます。30分の無料診断から。",
+    ctaButton: "無料相談を予約する",
+    ctaSecondary: "研修プログラムを見る →",
+  },
+  en: {
+    pageLabel: "Subsidy Support",
+    pageTitle: "Subsidy Support",
+    pageDesc: "From the Human Resources Development Subsidy (人材開発支援助成金) and IT Introduction Subsidy (IT導入補助金) to Ibaraki Prefecture's own programs — clearAI provides full support from planning through reporting and grant application, helping you reduce training and AI implementation costs by up to 75%.",
+    programsLabel: "Programs",
+    programsTitle: "Three support programs we handle",
+    programsDesc: "We propose the best combination of subsidies matched to your company's stage and objectives for AI training and AI implementation projects.",
+    programs: [
+      {
+        tag: "National",
+        title: "Human Resources Development Subsidy",
+        subtitle: "Business Expansion / Reskilling Support Course (人材開発支援助成金)",
+        desc: "A Ministry of Health, Labour and Welfare program for training in new business and DX promotion. Highly compatible with AI and generative AI training — covering up to 75% of expenses plus participant wages.",
+        metrics: [
+          { label: "Expense subsidy (SME)", value: "75%" },
+          { label: "Wage subsidy", value: "¥960/person/hour" },
+          { label: "Cap per person", value: "up to ¥500,000" },
+        ],
+        ideal: "AI training, prompt engineering, DX talent development",
+        idealLabel: "Best for:",
+      },
+      {
+        tag: "National",
+        title: "IT Introduction Subsidy",
+        subtitle: "Standard / Invoice-compliance track, etc. (IT導入補助金)",
+        desc: "Subsidizes costs for AI tools, SaaS, and business automation systems. Combinable with clearAI's consulting and implementation packages.",
+        metrics: [
+          { label: "Subsidy rate", value: "up to 1/2–3/4" },
+          { label: "Subsidy amount", value: "up to ¥4,500,000" },
+          { label: "Eligible costs", value: "Software & implementation" },
+        ],
+        ideal: "AI tool adoption, workflow automation, RAG implementation",
+        idealLabel: "Best for:",
+      },
+      {
+        tag: "Pref. / City",
+        title: "Ibaraki Prefecture & Local Government Programs",
+        subtitle: "DX Promotion / SME Human Resource Development, etc.",
+        desc: "Subsidy programs independently run by Ibaraki Prefecture and its municipalities for DX, generative AI use, and talent development. We serve nationwide, but have deep expertise in Ibaraki-specific programs as our home base.",
+        metrics: [
+          { label: "Eligible", value: "Ibaraki-based SMEs" },
+          { label: "Subsidy rate", value: "50–75% (varies by program)" },
+          { label: "Feature", value: "May stack with national programs" },
+        ],
+        ideal: "Local business DX support, small-scale implementations",
+        idealLabel: "Best for:",
+      },
+    ],
+    simulatorLabel: "Simulator",
+    simulatorTitle: "Calculate your net cost on the spot.",
+    simulatorDesc: "Just enter headcount, training hours, and company size. An instant estimate based on the Human Resources Development Subsidy (Business Expansion / Reskilling Support Course) is displayed immediately.",
+    simCondTitle: "Simulation parameters",
+    simCompanySize: "Company size",
+    simSmall: "SME (75%)",
+    simLarge: "Large enterprise (60%)",
+    simPeople: "Number of trainees",
+    simPeopleUnit: " people",
+    simHours: "Training hours (per person)",
+    simHoursUnit: " hrs",
+    simHoursWarning: "* The subsidy requires at least 10 training hours.",
+    simHourlyFee: "Training unit cost (per person / hour)",
+    simWage: "Average hourly wage of trainees",
+    simResultTitle: "Estimate",
+    simRowTraining: "Training cost (standard)",
+    simRowExpense: (rate) => `Expense subsidy (${rate}%)`,
+    simRowWage: (rate) => `Wage subsidy (¥${rate}/person/hr)`,
+    simNetLabel: "Net cost",
+    simTotalLabel: "Total subsidy",
+    simNote: "* This estimate is based on the Human Resources Development Subsidy — Business Expansion / Reskilling Support Course. Actual grant amounts are subject to review by the Labour Bureau. Please use our free consultation for an accurate figure.",
+    simCta: "Consult on these parameters →",
+    supportLabel: "Our Support",
+    supportTitle: "What clearAI covers",
+    support: [
+      { num: "01", title: "Program diagnosis", desc: "We identify the best subsidy combination based on your business scale, goals, and planned activities." },
+      { num: "02", title: "Training plan design", desc: "We design curriculum, hours, and eligible participants in a form that meets subsidy requirements." },
+      { num: "03", title: "Documentation support", desc: "Working with our affiliated labor/social insurance consultant, we support all paperwork: training plan submission, implementation reports, and grant applications." },
+      { num: "04", title: "Implementation & records", desc: "We support evidence management from training delivery through attendance records and payroll ledgers." },
+    ],
+    supportDisclaimer: "Final document submission is made by the employer or an affiliated licensed consultant",
+    supportDisclaimerBody: "clearAI provides end-to-end support for planning, training delivery, and evidence management. Formal application to the Labour Bureau is handled by our affiliated licensed social insurance and labor consultant (referral available).",
+    flowLabel: "Flow",
+    flowTitle: "From application to grant receipt",
+    flow: [
+      { step: "STEP 1", title: "Free consultation & program diagnosis", desc: "We hear your business content, goals, and scale to identify applicable subsidies.", duration: "~30 min" },
+      { step: "STEP 2", title: "Training plan design", desc: "We design a curriculum, hours, and target participants that comply with subsidy requirements.", duration: "2–3 weeks" },
+      { step: "STEP 3", title: "Training plan submission", desc: "Filed with the prefectural Labour Bureau in principle at least one month before the training start date.", duration: "Prior submission required" },
+      { step: "STEP 4", title: "Training delivery", desc: "Training is conducted as planned, and evidence such as attendance records and payroll ledgers is prepared.", duration: "Per curriculum" },
+      { step: "STEP 5", title: "Grant application", desc: "Application documents are submitted to the Labour Bureau within two months of the training completion date.", duration: "Within 2 months of completion" },
+      { step: "STEP 6", title: "Grant receipt", desc: "After review by the Labour Bureau, the subsidy is transferred to the employer's account.", duration: "Several months after application" },
+    ],
+    faqLabel: "FAQ",
+    faqTitle: "Frequently asked questions",
+    faq: [
+      {
+        q: "Is the Human Resources Development Subsidy available to any company?",
+        a: "Any business covered by employment insurance that files a compliant training plan with the Labour Bureau in advance and carries it out as planned is eligible. SMEs qualify for a 75% expense subsidy rate.",
+      },
+      {
+        q: "Will clearAI handle the application process on our behalf?",
+        a: "Together with our affiliated labor/social insurance consultant, we provide hands-on support for all documentation — training plan filings, implementation reports, and grant applications. Final submission is made by the employer or the affiliated licensed consultant.",
+      },
+      {
+        q: "Do we need to front the costs?",
+        a: "Subsidies are paid after the fact, so training costs must be paid first and the grant is received after delivery. We can also discuss cash-flow concerns with you.",
+      },
+      {
+        q: "How long does it take to receive the grant?",
+        a: "Plan the filing one month before training starts, submit the grant application within two months of completion, then await Labour Bureau review. Expect roughly 4–8 months in total.",
+      },
+      {
+        q: "Can the IT Introduction Subsidy and Human Resources Development Subsidy be combined?",
+        a: "Double-claiming the same expense is not permitted, but it is possible to apply the IT Introduction Subsidy to AI tool adoption costs and the Human Resources Development Subsidy to training costs separately. We will propose an approach tailored to your situation.",
+      },
+      {
+        q: "Are there subsidies specifically for companies in Ibaraki Prefecture?",
+        a: "Yes — Ibaraki Prefecture and its municipalities offer their own DX promotion and talent development subsidies. As a company headquartered in Ibaraki, clearAI has deep expertise in local programs.",
+      },
+    ],
+    ctaLabel: "Contact",
+    ctaTitle: "Use every subsidy yen available to you.",
+    ctaDesc: "'Not sure which program fits us' or 'Not confident about the paperwork' — reach out at any stage. Start with a free 30-minute diagnosis.",
+    ctaButton: "Book a free consultation",
+    ctaSecondary: "View training programs →",
+  },
+};
+
 function Simulator() {
+  const { lang } = useLanguage();
+  const t = COPY[lang];
+
   const [people, setPeople] = useState(10);
   const [hours, setHours] = useState(40);
   const [hourlyFee, setHourlyFee] = useState(5000);
@@ -70,13 +381,13 @@ function Simulator() {
   return (
     <div className="bg-white rounded-3xl border border-amber-200 shadow-xl p-6 lg:p-10">
       <div className="grid lg:grid-cols-2 gap-10">
-        {/* 入力 */}
+        {/* Input */}
         <div>
-          <h3 className="text-xl font-bold text-gray-900 mb-6">シミュレーション条件</h3>
+          <h3 className="text-xl font-bold text-gray-900 mb-6">{t.simCondTitle}</h3>
           <div className="space-y-6">
             <div>
               <label className="flex items-center justify-between text-sm font-semibold text-gray-700 mb-2">
-                <span>企業規模</span>
+                <span>{t.simCompanySize}</span>
               </label>
               <div className="grid grid-cols-2 gap-2">
                 {(["small", "large"] as const).map((s) => (
@@ -90,7 +401,7 @@ function Simulator() {
                         : "bg-white text-gray-600 border border-gray-200 hover:border-amber-300"
                     }`}
                   >
-                    {s === "small" ? "中小企業（75%）" : "大企業（60%）"}
+                    {s === "small" ? t.simSmall : t.simLarge}
                   </button>
                 ))}
               </div>
@@ -98,26 +409,26 @@ function Simulator() {
 
             <div>
               <label className="flex items-center justify-between text-sm font-semibold text-gray-700 mb-2">
-                <span>受講者数</span>
-                <span className="text-amber-600">{people}人</span>
+                <span>{t.simPeople}</span>
+                <span className="text-amber-600">{people}{t.simPeopleUnit}</span>
               </label>
               <input type="range" min={1} max={100} value={people} onChange={(e) => setPeople(Number(e.target.value))} className="w-full accent-amber-500" />
             </div>
 
             <div>
               <label className="flex items-center justify-between text-sm font-semibold text-gray-700 mb-2">
-                <span>研修時間（1人あたり）</span>
-                <span className="text-amber-600">{hours}時間</span>
+                <span>{t.simHours}</span>
+                <span className="text-amber-600">{hours}{t.simHoursUnit}</span>
               </label>
               <input type="range" min={1} max={300} value={hours} onChange={(e) => setHours(Number(e.target.value))} className="w-full accent-amber-500" />
               {!result.hoursEligible && (
-                <p className="text-xs text-red-600 mt-2">※ 助成金は研修時間10時間以上が要件です。</p>
+                <p className="text-xs text-red-600 mt-2">{t.simHoursWarning}</p>
               )}
             </div>
 
             <div>
               <label className="flex items-center justify-between text-sm font-semibold text-gray-700 mb-2">
-                <span>研修単価（1人・1時間）</span>
+                <span>{t.simHourlyFee}</span>
                 <span className="text-amber-600">{formatYen(hourlyFee)}</span>
               </label>
               <input type="range" min={1000} max={20000} step={500} value={hourlyFee} onChange={(e) => setHourlyFee(Number(e.target.value))} className="w-full accent-amber-500" />
@@ -125,7 +436,7 @@ function Simulator() {
 
             <div>
               <label className="flex items-center justify-between text-sm font-semibold text-gray-700 mb-2">
-                <span>受講者の平均時給</span>
+                <span>{t.simWage}</span>
                 <span className="text-amber-600">{formatYen(wage)}</span>
               </label>
               <input type="range" min={1000} max={6000} step={100} value={wage} onChange={(e) => setWage(Number(e.target.value))} className="w-full accent-amber-500" />
@@ -133,34 +444,32 @@ function Simulator() {
           </div>
         </div>
 
-        {/* 結果 */}
+        {/* Result */}
         <div className="bg-gradient-to-br from-amber-50 to-sky-50 rounded-2xl p-6 lg:p-8 border border-amber-100">
-          <h3 className="text-xl font-bold text-gray-900 mb-6">試算結果</h3>
+          <h3 className="text-xl font-bold text-gray-900 mb-6">{t.simResultTitle}</h3>
           <div className="space-y-4">
             <div className="flex justify-between items-baseline border-b border-amber-200/60 pb-3">
-              <span className="text-sm text-gray-600">研修費用（通常）</span>
+              <span className="text-sm text-gray-600">{t.simRowTraining}</span>
               <span className="text-lg font-bold text-gray-900">{formatYen(result.totalTrainingCost)}</span>
             </div>
             <div className="flex justify-between items-baseline border-b border-amber-200/60 pb-3">
-              <span className="text-sm text-gray-600">経費助成（{size === "small" ? "75" : "60"}%）</span>
+              <span className="text-sm text-gray-600">{t.simRowExpense(size === "small" ? "75" : "60")}</span>
               <span className="text-lg font-bold text-amber-700">− {formatYen(result.expenseSubsidy)}</span>
             </div>
             <div className="flex justify-between items-baseline border-b border-amber-200/60 pb-3">
-              <span className="text-sm text-gray-600">賃金助成（{size === "small" ? "960" : "480"}円/人・時間）</span>
+              <span className="text-sm text-gray-600">{t.simRowWage(size === "small" ? "960" : "480")}</span>
               <span className="text-lg font-bold text-amber-700">+ {formatYen(result.wageSubsidy)}</span>
             </div>
             <div className="bg-white rounded-xl p-5 mt-6 border border-amber-300">
-              <p className="text-xs font-semibold text-gray-500 mb-1">実質負担額</p>
+              <p className="text-xs font-semibold text-gray-500 mb-1">{t.simNetLabel}</p>
               <p className="text-3xl lg:text-4xl font-bold text-gray-900">{formatYen(result.netCost)}</p>
               <p className="text-xs text-gray-500 mt-2">
-                助成金総額 <span className="font-semibold text-amber-700">{formatYen(result.totalSubsidy)}</span>（経費＋賃金合算）
+                {t.simTotalLabel} <span className="font-semibold text-amber-700">{formatYen(result.totalSubsidy)}</span>
               </p>
             </div>
-            <p className="text-xs text-gray-500 leading-relaxed mt-4">
-              ※ 本試算は「人材開発支援助成金・事業展開等リスキリング支援コース」を前提にした概算です。実際の支給額は労働局の審査により変動します。正確な見積もりは無料相談をご利用ください。
-            </p>
+            <p className="text-xs text-gray-500 leading-relaxed mt-4">{t.simNote}</p>
             <a href="/contact?service=subsidy" className="mt-4 block w-full text-center rounded-lg bg-amber-500 text-white font-semibold px-6 py-3.5 hover:bg-amber-600 transition-colors">
-              この条件で相談する →
+              {t.simCta}
             </a>
           </div>
         </div>
@@ -170,66 +479,30 @@ function Simulator() {
 }
 
 export default function SubsidyPage() {
+  const { lang } = useLanguage();
+  const t = COPY[lang];
+
   return (
     <>
       {/* PAGE HEADER */}
       <section className="pt-24 pb-12 lg:pt-32 lg:pb-16 bg-white border-b border-gray-100">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
-          <p className="text-sm font-semibold text-amber-600 mb-3">Subsidy Support</p>
-          <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4">補助金サポート</h1>
-          <p className="text-base text-gray-600 leading-relaxed max-w-2xl">人材開発支援助成金・IT導入補助金・茨城県独自の支援制度まで。研修費・AI導入費を最大75%削減できる制度を、計画策定から実施報告・支給申請までフルサポートします。</p>
+          <p className="text-sm font-semibold text-amber-600 mb-3">{t.pageLabel}</p>
+          <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4">{t.pageTitle}</h1>
+          <p className="text-base text-gray-600 leading-relaxed max-w-2xl">{t.pageDesc}</p>
         </div>
       </section>
 
-      {/* 3つの補助金 */}
+      {/* 3 programs */}
       <section className="py-20 lg:py-28 bg-white">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
-            <Label>Programs</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">対応する3つの支援制度</h2>
-            <p className="text-sm text-gray-500 mb-14 max-w-2xl leading-relaxed">
-              AI研修・AI導入プロジェクトに最も適した制度を、貴社の事業ステージと目的に合わせてご提案します。
-            </p>
+            <Label>{t.programsLabel}</Label>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.programsTitle}</h2>
+            <p className="text-sm text-gray-500 mb-14 max-w-2xl leading-relaxed">{t.programsDesc}</p>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              {
-                tag: "国",
-                title: "人材開発支援助成金",
-                subtitle: "事業展開等リスキリング支援コース",
-                desc: "新規事業・DX推進のための研修に使える厚労省の制度。AI・生成AI研修と極めて相性が良く、経費の最大75%と受講者の賃金を助成。",
-                metrics: [
-                  { label: "経費助成（中小）", value: "75%" },
-                  { label: "賃金助成", value: "960円/人・時間" },
-                  { label: "1人あたり上限", value: "最大50万円" },
-                ],
-                ideal: "AI研修・プロンプト研修・DX人材育成",
-              },
-              {
-                tag: "国",
-                title: "IT導入補助金",
-                subtitle: "通常枠 / インボイス対応枠 等",
-                desc: "AIツール・SaaS・業務自動化システムの導入費用を補助。clearAIのコンサル＋導入パッケージと組み合わせて活用可能。",
-                metrics: [
-                  { label: "補助率", value: "最大 1/2〜3/4" },
-                  { label: "補助額", value: "〜450万円" },
-                  { label: "対象", value: "ソフトウェア・導入費" },
-                ],
-                ideal: "AIツール導入・業務自動化・RAG構築",
-              },
-              {
-                tag: "県・市",
-                title: "茨城県・地方自治体支援",
-                subtitle: "DX推進／中小企業人材開発等",
-                desc: "茨城県および県内市町村が独自に実施するDX・生成AI活用・人材育成の助成制度。全国対応ですが、当社拠点の茨城県は特に精通しています。",
-                metrics: [
-                  { label: "対象", value: "県内中小企業等" },
-                  { label: "補助率", value: "制度により50〜75%" },
-                  { label: "特徴", value: "国制度と併用可の場合あり" },
-                ],
-                ideal: "地元企業のDX支援・小規模導入",
-              },
-            ].map((p, i) => (
+            {t.programs.map((p, i) => (
               <Reveal key={p.title} delay={i * 100}>
                 <div className="rounded-2xl border border-gray-200 bg-white p-8 h-full flex flex-col hover:border-amber-300 hover:shadow-lg transition-all duration-300">
                   <span className="inline-block text-xs font-bold tracking-widest text-amber-600 uppercase mb-3">{p.tag}</span>
@@ -245,7 +518,7 @@ export default function SubsidyPage() {
                     ))}
                   </div>
                   <div className="text-xs text-gray-500 bg-gray-50 rounded-lg px-3 py-2">
-                    <span className="font-semibold text-gray-700">活用シーン：</span>{p.ideal}
+                    <span className="font-semibold text-gray-700">{p.idealLabel}</span>{p.ideal}
                   </div>
                 </div>
               </Reveal>
@@ -258,11 +531,9 @@ export default function SubsidyPage() {
       <section id="simulator" className="py-20 lg:py-28 bg-gradient-to-br from-amber-50 via-white to-sky-50">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
-            <Label>Simulator</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">実質負担額を、その場で計算。</h2>
-            <p className="text-sm text-gray-500 mb-10 max-w-2xl leading-relaxed">
-              受講人数・研修時間・企業規模を入れるだけ。人材開発支援助成金（事業展開等リスキリング支援コース）を前提にした概算が即座に表示されます。
-            </p>
+            <Label>{t.simulatorLabel}</Label>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.simulatorTitle}</h2>
+            <p className="text-sm text-gray-500 mb-10 max-w-2xl leading-relaxed">{t.simulatorDesc}</p>
           </Reveal>
           <Reveal delay={150}>
             <Simulator />
@@ -270,22 +541,15 @@ export default function SubsidyPage() {
         </div>
       </section>
 
-      {/* サポート範囲 */}
+      {/* Support scope */}
       <section className="py-20 lg:py-28 bg-white">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
-            <Label>Our Support</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">
-              clearAIのサポート範囲
-            </h2>
+            <Label>{t.supportLabel}</Label>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">{t.supportTitle}</h2>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { num: "01", title: "制度診断", desc: "事業規模・目的・実施予定からベストな助成金の組み合わせをご提案。" },
-              { num: "02", title: "訓練計画策定", desc: "カリキュラム・時間数・対象者を助成金要件に合致する形で設計。" },
-              { num: "03", title: "書類作成伴走", desc: "提携社労士と連携し、訓練計画届・実施報告・支給申請まで書類作成を支援。" },
-              { num: "04", title: "実施・記録", desc: "研修の実施から出席簿・賃金台帳までのエビデンス管理をサポート。" },
-            ].map((item, i) => (
+            {t.support.map((item, i) => (
               <Reveal key={item.num} delay={i * 80}>
                 <div className="border-t-2 border-amber-500 pt-6">
                   <span className="text-xs font-semibold text-amber-600 tracking-widest">{item.num}</span>
@@ -303,10 +567,8 @@ export default function SubsidyPage() {
                 </svg>
               </div>
               <div className="flex-1">
-                <p className="text-sm font-bold text-gray-900 mb-1">書類の最終提出は事業主または提携社労士が行います</p>
-                <p className="text-sm text-gray-600 leading-relaxed">
-                  clearAIは計画策定・研修実施・エビデンス管理までを責任を持って伴走。労働局への正式な申請手続きは有資格者である提携社労士がおこないます（紹介可）。
-                </p>
+                <p className="text-sm font-bold text-gray-900 mb-1">{t.supportDisclaimer}</p>
+                <p className="text-sm text-gray-600 leading-relaxed">{t.supportDisclaimerBody}</p>
               </div>
             </div>
           </Reveal>
@@ -317,18 +579,11 @@ export default function SubsidyPage() {
       <section className="py-20 lg:py-28 bg-gray-50">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
-            <Label>Flow</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">申請から受給までの流れ</h2>
+            <Label>{t.flowLabel}</Label>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">{t.flowTitle}</h2>
           </Reveal>
           <div className="space-y-6">
-            {[
-              { step: "STEP 1", title: "無料相談・制度診断", desc: "貴社の事業内容・目的・規模をヒアリングし、活用可能な助成金を特定します。", duration: "約30分" },
-              { step: "STEP 2", title: "訓練計画策定", desc: "助成金要件に適合したカリキュラム・時間数・対象者を設計します。", duration: "2〜3週間" },
-              { step: "STEP 3", title: "訓練計画届の提出", desc: "研修開始日の原則1ヶ月前までに、管轄の都道府県労働局へ提出します。", duration: "事前提出必須" },
-              { step: "STEP 4", title: "研修の実施", desc: "計画通りに研修を実施し、出席簿・賃金台帳等のエビデンスを整備します。", duration: "カリキュラムに応じる" },
-              { step: "STEP 5", title: "支給申請", desc: "研修終了日の翌日から2ヶ月以内に、支給申請書類を労働局へ提出します。", duration: "終了後2ヶ月以内" },
-              { step: "STEP 6", title: "助成金の受給", desc: "労働局の審査後、助成金が事業主の口座に振り込まれます。", duration: "申請後 数ヶ月" },
-            ].map((f, i) => (
+            {t.flow.map((f, i) => (
               <Reveal key={f.step} delay={i * 60}>
                 <div className="bg-white rounded-2xl border border-gray-200 p-6 lg:p-8 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
                   <div className="flex-shrink-0 sm:w-40">
@@ -350,36 +605,11 @@ export default function SubsidyPage() {
       <section className="py-20 lg:py-28 bg-white">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
-            <Label>FAQ</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">よくあるご質問</h2>
+            <Label>{t.faqLabel}</Label>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">{t.faqTitle}</h2>
           </Reveal>
           <div className="max-w-3xl space-y-4">
-            {[
-              {
-                q: "人材開発支援助成金は誰でも使えますか？",
-                a: "雇用保険適用事業所であり、一定の要件を満たす訓練計画を事前に労働局に届け出た上で、計画通り実施できれば受給可能です。中小企業は経費助成率が75%になります。",
-              },
-              {
-                q: "申請手続きはclearAIが代行してくれますか？",
-                a: "連携する社労士と共に、訓練計画届・実施報告・支給申請までの書類作成を伴走支援します。書類の最終提出は事業主または提携社労士が行います。",
-              },
-              {
-                q: "費用の立替は必要ですか？",
-                a: "助成金は後払い方式のため、研修費用は一旦お支払いいただき、実施後に助成金が支給される流れになります。資金繰りのご相談にも応じます。",
-              },
-              {
-                q: "どれくらいの期間で受給できますか？",
-                a: "訓練開始の1ヶ月前に計画届を提出し、研修終了後2ヶ月以内に支給申請。その後労働局の審査を経て支給となります。全体で4〜8ヶ月程度を見込んでください。",
-              },
-              {
-                q: "IT導入補助金と人材開発支援助成金は併用できますか？",
-                a: "基本的に同一費用の二重受給はできませんが、AIツール導入費はIT導入補助金、研修費は人材開発支援助成金、と分けて活用することは可能です。個別にご提案します。",
-              },
-              {
-                q: "茨城県内の企業向けの補助金はありますか？",
-                a: "茨城県独自のDX推進・人材育成関連助成金や、市町村単位での支援制度があります。clearAIは茨城県に拠点を置く企業として地域特有の制度にも精通しています。",
-              },
-            ].map((f, i) => (
+            {t.faq.map((f, i) => (
               <Reveal key={f.q} delay={i * 40}>
                 <details className="group bg-white border border-gray-200 rounded-xl overflow-hidden">
                   <summary className="cursor-pointer list-none p-5 flex items-start justify-between gap-4 hover:bg-gray-50 transition-colors">
@@ -398,19 +628,15 @@ export default function SubsidyPage() {
       <section className="py-20 lg:py-28 bg-white">
         <div className="max-w-2xl mx-auto px-6 text-center">
           <Reveal>
-            <Label>Contact</Label>
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              補助金を、損なく使い切る。
-            </h2>
-            <p className="text-base text-gray-600 leading-relaxed mb-10">
-              「どの制度が合うかわからない」「書類作成に自信がない」——そんな段階からご相談いただけます。30分の無料診断から。
-            </p>
+            <Label>{t.ctaLabel}</Label>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">{t.ctaTitle}</h2>
+            <p className="text-base text-gray-600 leading-relaxed mb-10">{t.ctaDesc}</p>
             <div className="flex items-center justify-center gap-4 flex-wrap">
               <a href="/contact?service=subsidy" className="rounded-lg bg-amber-500 text-white font-semibold px-10 py-4 hover:bg-amber-600 transition-colors duration-300 inline-block">
-                無料相談を予約する
+                {t.ctaButton}
               </a>
               <a href="/training" className="text-sm text-gray-500 font-semibold hover:text-gray-900 transition-colors duration-300">
-                研修プログラムを見る →
+                {t.ctaSecondary}
               </a>
             </div>
           </Reveal>

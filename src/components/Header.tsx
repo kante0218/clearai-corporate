@@ -21,19 +21,19 @@ export default function Header() {
   const h = headerDict[lang];
 
   const navItems: NavItem[] = [
-    { label: h.navAiConsulting, href: "/ai-consulting" },
     { label: h.navAdvisor, href: "/advisor" },
     {
       label: h.navTraining,
       href: "/training",
       children: [
         { label: h.navSubsidy, href: "/subsidy", description: h.navSubsidyDesc },
+        { label: h.navClaude, href: "/claude", description: h.navClaudeDesc },
       ],
     },
-    { label: h.navClaude, href: "/claude" },
-    { label: h.navAdvertising, href: "/advertising" },
     { label: h.navWebsite, href: "/website" },
-    { label: h.navHumanoid, href: "/humanoid" },
+    { label: h.navAiConsulting, href: "/ai-consulting" },
+    { label: h.navAdvertising, href: "/advertising" },
+    { label: h.navRobotRental, href: "/robot-rental" },
     { label: h.navNews, href: "/blog" },
     { label: h.navAbout, href: "/about" },
   ];

@@ -17,6 +17,15 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: "/humanoid",
+        destination: "/robot-rental",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

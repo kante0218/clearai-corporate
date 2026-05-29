@@ -1,34 +1,55 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
+import { footer as footerDict } from "@/lib/i18n/translations";
 
 export default function Footer() {
+  const { lang } = useLanguage();
+  const f = footerDict[lang];
+
+  const services = [
+    { label: f.services.advisor, href: "/advisor" },
+    { label: f.services.training, href: "/training" },
+    { label: f.services.website, href: "/website" },
+    { label: f.services.aiConsulting, href: "/ai-consulting" },
+    { label: f.services.advertising, href: "/advertising" },
+    { label: f.services.robotRental, href: "/robot-rental" },
+    { label: f.services.subsidy, href: "/subsidy" },
+    { label: f.services.claude, href: "/claude" },
+  ];
+
+  const company = [
+    { label: f.company.about, href: "/about" },
+    { label: f.company.faq, href: "/faq" },
+    { label: f.company.blog, href: "/blog" },
+    { label: f.company.contact, href: "/contact" },
+  ];
+
+  const other = [
+    { label: f.other.privacy, href: "/privacy" },
+    { label: f.other.terms, href: "/terms" },
+    { label: f.other.sitemap, href: "/sitemap-page" },
+  ];
+
   return (
     <footer className="bg-gray-950">
       <div className="max-w-5xl mx-auto px-6 lg:px-10 pt-16 pb-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
           <div>
-            <Image src="/images/logo-white.png" alt="clearAI株式会社（クリアエーアイ）ロゴ" width={140} height={40} className="h-8 w-auto mb-4" />
-            <p className="text-sm text-white/40 leading-relaxed mb-2">
-              日本の中小企業に、使えるAIと実装力を。戦略から実装まで一貫して支援します。
-            </p>
+            <Image src="/images/logo-white.png" alt={f.logoAlt} width={140} height={40} className="h-8 w-auto mb-4" />
+            <p className="text-sm text-white/40 leading-relaxed mb-2">{f.tagline}</p>
             <p className="text-xs text-white/25 leading-relaxed">
-              clearAI株式会社（読み方：クリアエーアイ）<br />代表取締役 髙橋 敢輝<br />茨城県 / 2026年4月設立
+              {f.companyLine1}<br />{f.companyLine2}<br />{f.companyLine3}
             </p>
           </div>
 
           <div>
-            <p className="text-xs font-semibold tracking-widest text-white/40 mb-4 uppercase">事業</p>
+            <p className="text-xs font-semibold tracking-widest text-white/40 mb-4 uppercase">{f.servicesHeading}</p>
             <ul className="space-y-2.5">
-              {[
-                { label: "AIコンサルティング", href: "/ai-consulting" },
-                { label: "AI顧問", href: "/advisor" },
-                { label: "AI研修", href: "/training" },
-                { label: "補助金サポート", href: "/subsidy" },
-                { label: "Claude特化", href: "/claude" },
-                { label: "AI広告運用", href: "/advertising" },
-                { label: "ウェブサイト作成", href: "/website" },
-              ].map((link) => (
-                <li key={link.label}>
+              {services.map((link) => (
+                <li key={link.href}>
                   <Link href={link.href} className="text-sm text-white/40 hover:text-white/80 transition-colors">{link.label}</Link>
                 </li>
               ))}
@@ -36,15 +57,10 @@ export default function Footer() {
           </div>
 
           <div>
-            <p className="text-xs font-semibold tracking-widest text-white/40 mb-4 uppercase">企業情報</p>
+            <p className="text-xs font-semibold tracking-widest text-white/40 mb-4 uppercase">{f.companyHeading}</p>
             <ul className="space-y-2.5">
-              {[
-                { label: "会社概要", href: "/about" },
-                { label: "よくある質問", href: "/faq" },
-                { label: "お知らせ", href: "/blog" },
-                { label: "お問い合わせ", href: "/contact" },
-              ].map((link) => (
-                <li key={link.label}>
+              {company.map((link) => (
+                <li key={link.href}>
                   <Link href={link.href} className="text-sm text-white/40 hover:text-white/80 transition-colors">{link.label}</Link>
                 </li>
               ))}
@@ -52,20 +68,16 @@ export default function Footer() {
           </div>
 
           <div>
-            <p className="text-xs font-semibold tracking-widest text-white/40 mb-4 uppercase">その他</p>
+            <p className="text-xs font-semibold tracking-widest text-white/40 mb-4 uppercase">{f.otherHeading}</p>
             <ul className="space-y-2.5">
-              {[
-                { label: "プライバシーポリシー", href: "/privacy" },
-                { label: "利用規約", href: "/terms" },
-                { label: "サイトマップ", href: "/sitemap-page" },
-              ].map((link) => (
-                <li key={link.label}>
+              {other.map((link) => (
+                <li key={link.href}>
                   <Link href={link.href} className="text-sm text-white/40 hover:text-white/80 transition-colors">{link.label}</Link>
                 </li>
               ))}
             </ul>
             <div className="mt-6 pt-4 border-t border-white/10">
-              <p className="text-xs text-white/30 mb-1">お問い合わせ</p>
+              <p className="text-xs text-white/30 mb-1">{f.contactLabel}</p>
               <a href="mailto:info@clearai.jp" className="text-sm text-white/50 hover:text-white/80 transition-colors">
                 info@clearai.jp
               </a>
@@ -80,11 +92,11 @@ export default function Footer() {
 
       <div className="max-w-5xl mx-auto px-6 lg:px-10 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
         <p className="text-xs text-white/25">
-          &copy; {new Date().getFullYear()} clearAI Inc.（クリアエーアイ） All rights reserved.
+          &copy; {new Date().getFullYear()} {f.copyright}
         </p>
         <div className="flex items-center gap-6">
-          <Link href="/privacy" className="text-xs text-white/25 hover:text-white/50 transition-colors">Privacy Policy</Link>
-          <Link href="/terms" className="text-xs text-white/25 hover:text-white/50 transition-colors">Terms</Link>
+          <Link href="/privacy" className="text-xs text-white/25 hover:text-white/50 transition-colors">{f.privacyShort}</Link>
+          <Link href="/terms" className="text-xs text-white/25 hover:text-white/50 transition-colors">{f.termsShort}</Link>
         </div>
       </div>
     </footer>
