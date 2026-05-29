@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 
 const description =
-  "clearAIのヒューマノイドロボット レンタル・PoC（実証実験）・イベント活用支援。高額な人型ロボットを購入前に現場で試せます。搬入・セットアップ・オペレーター・AI連携まで一括対応。";
+  "【準備中／Coming Soon】clearAIのロボットレンタル。Unitree・AGIBOTなど海外の最先端ヒューマノイド／ロボットを輸入し、短期レンタル・導入前トライアル・イベント活用で提供予定。先行のご相談を承っています。";
 
 export const metadata: Metadata = {
   title: "ロボットレンタル | ヒューマノイドの短期レンタル・PoC・実証",
@@ -10,12 +10,12 @@ export const metadata: Metadata = {
   keywords: [
     "ロボットレンタル",
     "ヒューマノイドレンタル",
+    "Unitree レンタル",
+    "AGIBOT",
+    "Unitree G1",
     "人型ロボット レンタル",
-    "ロボット PoC",
-    "ロボット 実証実験",
+    "ロボット 輸入",
     "ヒューマノイド",
-    "イベント ロボット",
-    "ロボット 展示会",
     "AI ロボット",
     "ロボティクス",
   ],
