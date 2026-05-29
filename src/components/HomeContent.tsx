@@ -119,8 +119,8 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
   return (
     <>
       {/* ═══ HERO ═══ */}
-      <section className="relative min-h-screen flex items-center overflow-hidden bg-white">
-        <div className="relative z-10 w-full max-w-5xl mx-auto px-6 lg:px-8 py-24 text-center">
+      <section className="relative md:min-h-screen flex items-start md:items-center overflow-hidden bg-white">
+        <div className="relative z-10 w-full max-w-5xl mx-auto px-6 lg:px-8 pt-28 pb-16 md:py-24 text-center">
           <div className="flex flex-wrap justify-center gap-2 mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "200ms" }}>
             {["7領域で伴走", "戦略から実装まで", "中小企業特化"].map((tag) => (
               <span key={tag} className="inline-flex items-center rounded-full bg-blue-50 text-blue-700 border border-blue-100 px-3 py-1 text-xs font-semibold">
@@ -128,7 +128,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
               </span>
             ))}
           </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-[1.15] tracking-tight mb-8 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0)" : "translateY(24px)", transitionDelay: "400ms" }}>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-[1.15] tracking-tight mb-8 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0)" : "translateY(24px)", transitionDelay: "400ms" }}>
             日本の中小企業に、<br />
             <span className="text-blue-600">使えるAI</span>と<span className="text-blue-600">実装力</span>を。
           </h1>
@@ -153,7 +153,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       <section className="py-12 bg-white border-b border-gray-100">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
-            <div className="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-gray-200">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-y-8 gap-x-4 md:gap-0 md:divide-x divide-gray-200">
               {[
                 { value: "最大75%", label: "研修費助成対応" },
                 { value: "7領域", label: "AI活用ワンストップ" },
@@ -171,7 +171,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       </section>
 
       {/* ═══ VISION ═══ */}
-      <section className="py-20 lg:py-28 bg-white">
+      <section className="py-14 md:py-20 lg:py-28 bg-white">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-start">
             <Reveal>
@@ -212,7 +212,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       </section>
 
       {/* ═══ ENTRY PRODUCTS ═══ */}
-      <section className="py-20 lg:py-28 bg-white border-t border-gray-100">
+      <section className="py-14 md:py-20 lg:py-28 bg-white border-t border-gray-100">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
             <SectionLabel>Get Started</SectionLabel>
@@ -280,7 +280,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       </section>
 
       {/* ═══ SERVICES ═══ */}
-      <section id="services" className="py-20 lg:py-28 bg-gray-50">
+      <section id="services" className="py-14 md:py-20 lg:py-28 bg-gray-50">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
             <SectionLabel>Our Services</SectionLabel>
@@ -327,7 +327,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       </section>
 
       {/* ═══ APPROACH ═══ */}
-      <section className="py-20 lg:py-28 bg-white">
+      <section className="py-14 md:py-20 lg:py-28 bg-white">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
             <SectionLabel>Our Approach</SectionLabel>
@@ -354,7 +354,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       </section>
 
       {/* ═══ TEAM / 体制 ═══ */}
-      <section className="py-20 lg:py-28 bg-white">
+      <section className="py-14 md:py-20 lg:py-28 bg-white">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
             <SectionLabel>Our Team</SectionLabel>
@@ -401,7 +401,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       </section>
 
       {/* ═══ TECH STACK ═══ */}
-      <section className="py-20 lg:py-28 bg-gray-50">
+      <section className="py-14 md:py-20 lg:py-28 bg-gray-50">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <Reveal>
             <SectionLabel>Tech Stack</SectionLabel>
@@ -470,12 +470,12 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
                       <h3 className="text-sm font-bold text-gray-900 mt-0.5">{group.label}</h3>
                     </div>
                     <div className="lg:col-span-10">
-                      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+                      <div className="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-5 gap-2.5 sm:gap-3">
                         {group.items.map((tech) => (
-                          <div key={tech.name} className="bg-white border border-gray-200 rounded-xl p-5 flex flex-col items-center justify-center gap-3 hover:border-gray-300 hover:shadow-sm transition-all aspect-square">
+                          <div key={tech.name} className="bg-white border border-gray-200 rounded-xl p-3 sm:p-5 flex flex-col items-center justify-center gap-2 sm:gap-3 hover:border-gray-300 hover:shadow-sm transition-all aspect-square">
                             {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img src={`https://api.iconify.design/${tech.icon}.svg${tech.color ? `?color=%23${tech.color}` : ''}`} alt={tech.name} className="w-8 h-8 object-contain" loading="lazy" />
-                            <p className="text-xs font-medium text-gray-600 text-center leading-tight">{tech.name}</p>
+                            <img src={`https://api.iconify.design/${tech.icon}.svg${tech.color ? `?color=%23${tech.color}` : ''}`} alt={tech.name} className="w-7 h-7 sm:w-8 sm:h-8 object-contain" loading="lazy" />
+                            <p className="text-[11px] sm:text-xs font-medium text-gray-600 text-center leading-tight">{tech.name}</p>
                           </div>
                         ))}
                       </div>
@@ -506,7 +506,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       </section>
 
       {/* ═══ NEWS / BLOG ═══ */}
-      <section className="py-20 lg:py-28 bg-white">
+      <section className="py-14 md:py-20 lg:py-28 bg-white">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="flex items-end justify-between mb-12">
             <div>
@@ -525,7 +525,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       </section>
 
       {/* ═══ CTA ═══ */}
-      <section className="py-20 lg:py-28 bg-gray-50">
+      <section className="py-14 md:py-20 lg:py-28 bg-gray-50">
         <div className="max-w-4xl mx-auto px-6">
           <Reveal>
             <div className="text-center mb-12">
