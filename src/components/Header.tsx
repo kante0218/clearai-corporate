@@ -30,9 +30,15 @@ export default function Header() {
         { label: h.navClaude, href: "/claude", description: h.navClaudeDesc },
       ],
     },
-    { label: h.navWebsite, href: "/website" },
-    { label: h.navAiConsulting, href: "/ai-consulting" },
-    { label: h.navAdvertising, href: "/advertising" },
+    {
+      label: h.navAiConsulting,
+      href: "/ai-consulting",
+      children: [
+        { label: h.navWebsite, href: "/website", description: h.navWebsiteDesc },
+        { label: h.navAdvertising, href: "/advertising", description: h.navAdvertisingDesc },
+        { label: h.navSns, href: "/sns", description: h.navSnsDesc },
+      ],
+    },
     { label: h.navRobotRental, href: "/robot-rental" },
     { label: h.navNews, href: "/blog" },
     { label: h.navAbout, href: "/about" },
@@ -44,7 +50,8 @@ export default function Header() {
     pathname?.startsWith("/training") ||
     pathname?.startsWith("/subsidy") ||
     pathname?.startsWith("/advertising") ||
-    pathname?.startsWith("/website");
+    pathname?.startsWith("/website") ||
+    pathname?.startsWith("/sns");
 
   useEffect(() => {
     const onScroll = () => {

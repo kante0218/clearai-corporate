@@ -41,6 +41,7 @@ const COPY = {
     serviceClaudeCode: "Claude特化",
     serviceAdvertising: "AI広告運用",
     serviceWebsite: "ウェブサイト作成",
+    serviceSns: "SNS運用代行",
     serviceAgriculture: "農業×AI",
     serviceCeo: "経営者向けAI活用",
     serviceRobotRental: "ロボットレンタル",
@@ -143,6 +144,7 @@ const COPY = {
     serviceClaudeCode: "Claude-Focused",
     serviceAdvertising: "AI Ad Operations",
     serviceWebsite: "Website Creation",
+    serviceSns: "SNS Management",
     serviceAgriculture: "Agriculture × AI",
     serviceCeo: "AI for Executives",
     serviceRobotRental: "Robot Rental",
@@ -242,7 +244,7 @@ function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; 
 type InquiryType = "business" | "engineer" | "other";
 
 // Extended service key that includes robot-rental (not in validators SERVICE_KEYS)
-type ExtendedServiceKey = ServiceKey | "robot-rental";
+type ExtendedServiceKey = ServiceKey | "robot-rental" | "sns";
 
 const INQUIRY_ICONS: Record<InquiryType, ReactNode> = {
   business: (
@@ -265,11 +267,11 @@ const INQUIRY_ICONS: Record<InquiryType, ReactNode> = {
 const INQUIRY_TYPE_KEYS: InquiryType[] = ["business", "engineer", "other"];
 const SERVICE_OPTION_KEYS: ExtendedServiceKey[] = [
   "consulting", "advisor", "education", "subsidy", "claude-code",
-  "advertising", "website", "agriculture", "ceo", "robot-rental",
+  "advertising", "website", "sns", "agriculture", "ceo", "robot-rental",
 ];
 
-// Extended SERVICE_KEYS including robot-rental for query-param handling
-const EXTENDED_SERVICE_KEYS: readonly string[] = [...(SERVICE_KEYS as readonly string[]), "robot-rental"];
+// Extended SERVICE_KEYS including robot-rental and sns for query-param handling
+const EXTENDED_SERVICE_KEYS: readonly string[] = [...(SERVICE_KEYS as readonly string[]), "robot-rental", "sns"];
 
 const EMPTY_FORM = {
   inquiryType: "business" as InquiryType,
@@ -405,6 +407,7 @@ function ContactPageInner() {
       "claude-code": t.serviceClaudeCode,
       advertising: t.serviceAdvertising,
       website: t.serviceWebsite,
+      sns: t.serviceSns,
       agriculture: t.serviceAgriculture,
       ceo: t.serviceCeo,
       "robot-rental": t.serviceRobotRental,

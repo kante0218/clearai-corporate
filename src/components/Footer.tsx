@@ -12,9 +12,10 @@ export default function Footer() {
   const services = [
     { label: f.services.advisor, href: "/advisor" },
     { label: f.services.training, href: "/training" },
-    { label: f.services.website, href: "/website" },
     { label: f.services.aiConsulting, href: "/ai-consulting" },
+    { label: f.services.website, href: "/website" },
     { label: f.services.advertising, href: "/advertising" },
+    { label: f.services.sns, href: "/sns" },
     { label: f.services.robotRental, href: "/robot-rental" },
     { label: f.services.subsidy, href: "/subsidy" },
     { label: f.services.claude, href: "/claude" },
