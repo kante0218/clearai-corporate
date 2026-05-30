@@ -63,7 +63,7 @@ type Copy = {
 const COPY: Record<"ja" | "en", Copy> = {
   ja: {
     visionLabel: "Vision 2030",
-    visionTitle: "2030年、関東・東北で\n最も信頼されるAIパートナーへ。",
+    visionTitle: "2030年、日本で\n最も信頼されるAIパートナーへ。",
     visionDesc: "派手な数字ではなく、一社一社の成功を積み重ねる。この3つの数字は、その結果として私たちが辿り着く約束です。",
     vision: [
       {
@@ -77,9 +77,9 @@ const COPY: Record<"ja" | "en", Copy> = {
         desc: "うちAI顧問契約40社・継続支援60社。広く浅くではなく、深く長く伴走できる関係性を築きます。",
       },
       {
-        num: "関東・東北",
+        num: "日本全国",
         label: "事業展開エリア",
-        desc: "茨城発・関東・東北No.1のAI活用支援ブティックへ。その先に、2035年の全国展開とフィジカルAI・ロボットを組み合わせた中堅テック企業を見据えます。",
+        desc: "茨城発・日本No.1のAI活用支援ブティックへ。エリアを絞らず全国の中小企業に伴走し、その先にフィジカルAI・ロボットを組み合わせた中堅テック企業を見据えます。",
       },
     ],
     membersLabel: "Members",
@@ -90,7 +90,7 @@ const COPY: Record<"ja" | "en", Copy> = {
         name: "髙橋 敢輝",
         nameEn: "kante takahashi",
         role: "代表取締役 CEO / 事業開発（茨城高専）",
-        bio: "茨城県出身。日本の中小企業にAIを届けることを使命に、2026年にclearAIを創業。誠実・伴走・翻訳・長期視点をコアバリューに、AI活用支援とフィジカルAI・ロボットで関東・東北No.1のAIパートナーを目指す。",
+        bio: "茨城県出身。日本の中小企業にAIを届けることを使命に、2026年にclearAIを創業。誠実・伴走・翻訳・長期視点をコアバリューに、AI活用支援とフィジカルAI・ロボットで日本一信頼されるAIパートナーを目指す。",
       },
       {
         name: "西村 吉正",
@@ -182,8 +182,8 @@ const COPY: Record<"ja" | "en", Copy> = {
       },
       {
         year: "2030年（目標）",
-        title: "時価総額1000億円 / 支援企業120社 / 関東・東北No.1ブティック",
-        description: "粗利率50%超・継続率95%の「質を伴う時価総額1000億円」を達成。茨城発、AI×地域産業の専門ブティックとして関東・東北での確固たる地位を築く。",
+        title: "時価総額1000億円 / 支援企業120社 / 日本No.1ブティック",
+        description: "粗利率50%超・継続率95%の「質を伴う時価総額1000億円」を達成。茨城発、AI×地域産業の専門ブティックとして日本全国で確固たる地位を築く。",
         future: true,
       },
     ],
@@ -208,7 +208,7 @@ const COPY: Record<"ja" | "en", Copy> = {
   },
   en: {
     visionLabel: "Vision 2030",
-    visionTitle: "By 2030, the most trusted AI partner\nacross Kanto and Tohoku.",
+    visionTitle: "By 2030, the most trusted AI partner\nacross Japan.",
     visionDesc: "Not flashy numbers — compounding wins, one company at a time. These three figures are the promise we'll reach by doing exactly that.",
     vision: [
       {
@@ -222,9 +222,9 @@ const COPY: Record<"ja" | "en", Copy> = {
         desc: "40 AI-advisor contracts and 60 ongoing engagements. Not broad-and-shallow — deep, long-term partnerships.",
       },
       {
-        num: "Kanto & Tohoku",
+        num: "Nationwide",
         label: "Business area",
-        desc: "From Ibaraki, toward the #1 AI adoption boutique across Kanto and Tohoku — then nationwide rollout by 2035, expanding from software AI into physical AI and robotics.",
+        desc: "From Ibaraki, toward the #1 AI adoption boutique across Japan — serving SMEs nationwide without regional limits, and on toward a mid-tier tech company combining software AI with physical AI and robotics.",
       },
     ],
     membersLabel: "Members",
@@ -235,7 +235,7 @@ const COPY: Record<"ja" | "en", Copy> = {
         name: "髙橋 敢輝",
         nameEn: "kante takahashi",
         role: "CEO / Business Development (Ibaraki KOSEN)",
-        bio: "From Ibaraki. Founded clearAI in 2026 with a mission to bring AI to Japanese SMEs. Guides the company with core values of integrity, partnership, translation, and long-term thinking — aiming to be the most trusted AI partner across Kanto and Tohoku, combining AI advisory with physical AI and robotics.",
+        bio: "From Ibaraki. Founded clearAI in 2026 with a mission to bring AI to Japanese SMEs. Guides the company with core values of integrity, partnership, translation, and long-term thinking — aiming to be the most trusted AI partner across Japan, combining AI advisory with physical AI and robotics.",
       },
       {
         name: "西村 吉正",
@@ -327,8 +327,8 @@ const COPY: Record<"ja" | "en", Copy> = {
       },
       {
         year: "2030 (goal)",
-        title: "JPY 100B market cap / 120 clients / #1 boutique in Kanto & Tohoku",
-        description: "'JPY 100B market cap with quality' at 50%+ gross margin and 95% retention. A boutique rooted in Ibaraki, leading at the intersection of AI and regional industry across Kanto and Tohoku.",
+        title: "JPY 100B market cap / 120 clients / #1 boutique in Japan",
+        description: "'JPY 100B market cap with quality' at 50%+ gross margin and 95% retention. A boutique rooted in Ibaraki, leading at the intersection of AI and industry across Japan.",
         future: true,
       },
     ],
