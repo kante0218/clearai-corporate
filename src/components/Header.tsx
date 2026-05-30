@@ -41,6 +41,9 @@ export default function Header() {
         { label: h.navSns, href: "/sns", description: h.navSnsDesc },
       ],
     },
+  ];
+
+  const utilityItems: { label: string; href: string }[] = [
     { label: h.navNews, href: "/blog" },
     { label: h.navAbout, href: "/about" },
   ];
@@ -174,6 +177,17 @@ export default function Header() {
             </nav>
 
             <div className="hidden xl:flex items-center gap-3">
+              <div className="flex items-center gap-3">
+                {utilityItems.map((u) => (
+                  <Link
+                    key={u.label}
+                    href={u.href}
+                    className="text-xs font-medium text-gray-500 hover:text-gray-900 transition-colors duration-300"
+                  >
+                    {u.label}
+                  </Link>
+                ))}
+              </div>
               <span className="w-px h-5 bg-gray-200" aria-hidden="true" />
               <LanguageToggle variant="desktop" />
               <Link href="/contact"
@@ -268,7 +282,19 @@ export default function Header() {
                   </div>
                 );
               })}
-              <div className="mt-6">
+              <div className="mt-6 flex items-center justify-center gap-5">
+                {utilityItems.map((u) => (
+                  <Link
+                    key={u.label}
+                    href={u.href}
+                    onClick={() => setIsOpen(false)}
+                    className="text-xs font-medium text-gray-500 hover:text-gray-900 transition-colors duration-300"
+                  >
+                    {u.label}
+                  </Link>
+                ))}
+              </div>
+              <div className="mt-4">
                 <Link href="/contact" onClick={() => setIsOpen(false)}
                   className={`block text-center px-4 py-3.5 rounded-lg text-sm font-semibold transition-colors min-h-[44px] flex items-center justify-center ${contactFilledClass}`}>
                   {h.contact}

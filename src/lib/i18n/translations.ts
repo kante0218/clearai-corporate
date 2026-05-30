@@ -9,11 +9,11 @@
 export const header = {
   ja: {
     navAi: "AI",
-    navAiConsulting: "コンサル・DX",
+    navAiConsulting: "AIコンサル・DX",
     navAiConsultingDesc: "大手コンサル出身者が監修する戦略〜実装支援",
     navAdvisor: "AI顧問",
     navAdvisorDesc: "月5万円〜、継続的にAI活用を伴走",
-    navTraining: "研修",
+    navTraining: "AI研修",
     navTrainingDesc: "チームのAIリテラシーを底上げ",
     navClaude: "Claude特化",
     navClaudeDesc: "Anthropic Claudeに特化した導入支援",
@@ -39,11 +39,11 @@ export const header = {
   },
   en: {
     navAi: "AI",
-    navAiConsulting: "Consulting & DX",
+    navAiConsulting: "AI Consulting & DX",
     navAiConsultingDesc: "Strategy to implementation, led by ex-Big 4 consultants",
     navAdvisor: "AI Advisor",
     navAdvisorDesc: "From JPY 50K/month. Ongoing AI advisory.",
-    navTraining: "Training",
+    navTraining: "AI Training",
     navTrainingDesc: "Raise your team's AI literacy.",
     navClaude: "Claude Specialized",
     navClaudeDesc: "Specialized support for Anthropic Claude",
