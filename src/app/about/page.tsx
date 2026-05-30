@@ -182,8 +182,8 @@ const COPY: Record<"ja" | "en", Copy> = {
       },
       {
         year: "2030年（目標）",
-        title: "売上1000億円 / 支援企業120社 / 関東・東北No.1ブティック",
-        description: "粗利率50%超・継続率95%の「質を伴う1000億円」を達成。茨城発、AI×地域産業の専門ブティックとして関東・東北での確固たる地位を築く。",
+        title: "時価総額1000億円 / 支援企業120社 / 関東・東北No.1ブティック",
+        description: "粗利率50%超・継続率95%の「質を伴う時価総額1000億円」を達成。茨城発、AI×地域産業の専門ブティックとして関東・東北での確固たる地位を築く。",
         future: true,
       },
     ],
@@ -327,8 +327,8 @@ const COPY: Record<"ja" | "en", Copy> = {
       },
       {
         year: "2030 (goal)",
-        title: "JPY 100B revenue / 120 clients / #1 boutique in Kanto & Tohoku",
-        description: "'JPY 100B with quality' at 50%+ gross margin and 95% retention. A boutique rooted in Ibaraki, leading at the intersection of AI and regional industry across Kanto and Tohoku.",
+        title: "JPY 100B market cap / 120 clients / #1 boutique in Kanto & Tohoku",
+        description: "'JPY 100B market cap with quality' at 50%+ gross margin and 95% retention. A boutique rooted in Ibaraki, leading at the intersection of AI and regional industry across Kanto and Tohoku.",
         future: true,
       },
     ],
