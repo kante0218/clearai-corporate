@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
-import PageHero from "@/components/PageHero";
 
 function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -219,16 +218,16 @@ export default function TrainingPage() {
   return (
     <>
       {/* PAGE HEADER */}
-      <PageHero
-        kicker={t.heroKicker}
-        title={t.heroTitle}
-        desc={t.heroDesc}
-        primaryLabel={lang === "ja" ? "無料で相談する" : "Book a free consultation"}
-        primaryHref="/contact?service=training"
-        secondaryLabel={t.heroSubsidyLink}
-        secondaryHref="/subsidy"
-        accent="amber"
-      />
+      <section className="pt-24 pb-12 lg:pt-32 lg:pb-16 bg-white border-b border-gray-100">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
+          <p className="text-sm font-semibold text-sky-600 mb-3">{t.heroKicker}</p>
+          <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4">{t.heroTitle}</h1>
+          <p className="text-base text-gray-600 leading-relaxed max-w-2xl mb-5">{t.heroDesc}</p>
+          <a href="/subsidy" className="group inline-flex items-center gap-2 text-sm font-semibold text-amber-700 hover:text-amber-800 transition-colors duration-300">
+            {t.heroSubsidyLink} <span className="group-hover:translate-x-1 transition-transform">→</span>
+          </a>
+        </div>
+      </section>
 
       {/* TARGET */}
       <section className="py-20 lg:py-28 bg-white">

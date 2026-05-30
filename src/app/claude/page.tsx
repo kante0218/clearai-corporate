@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
-import PageHero from "@/components/PageHero";
 
 function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -227,20 +226,17 @@ export default function ClaudePage() {
   return (
     <>
       {/* PAGE HEADER */}
-      <PageHero
-        kicker={t.pageKicker}
-        title={
-          <span className="inline-flex items-center justify-center gap-3 lg:gap-4 flex-wrap">
+      <section className="pt-24 pb-12 lg:pt-32 lg:pb-16 bg-white border-b border-gray-100">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
+          <p className="text-sm font-semibold text-orange-600 mb-3">{t.pageKicker}</p>
+          <div className="flex items-center gap-3 mb-4">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/images/claude-symbol.svg" alt={t.pageImgAlt} aria-hidden="true" className="w-9 h-9 lg:w-14 lg:h-14" />
-            {t.pageTitle}
-          </span>
-        }
-        desc={t.pageDesc}
-        primaryLabel={lang === "ja" ? "無料で相談する" : "Book a free consultation"}
-        primaryHref="/contact?service=claude"
-        accent="orange"
-      />
+            <img src="/images/claude-symbol.svg" alt={t.pageImgAlt} aria-hidden="true" className="w-8 h-8 lg:w-10 lg:h-10" />
+            <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight">{t.pageTitle}</h1>
+          </div>
+          <p className="text-base text-gray-600 leading-relaxed max-w-2xl">{t.pageDesc}</p>
+        </div>
+      </section>
 
       {/* WHY CLAUDE */}
       <section className="py-20 lg:py-28 bg-white">
