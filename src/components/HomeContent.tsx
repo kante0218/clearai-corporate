@@ -80,12 +80,12 @@ type HomeCopy = {
 
 const COPY: Record<"ja" | "en", HomeCopy> = {
   ja: {
-    heroChips: ["顧問・研修・Web制作", "戦略から実装まで", "中小企業特化"],
+    heroChips: ["ロボットレンタル × AIコンサル", "戦略から現場実装まで", "中小企業特化"],
     heroTitle: (
-      <>日本の中小企業に、<br /><span className="text-blue-600">使えるAI</span>と<span className="text-blue-600">実装力</span>を。</>
+      <>日本の中小企業に、<br /><span className="text-blue-600">ロボット</span>と<span className="text-blue-600">AI</span>を。</>
     ),
     heroDesc: (
-      <>AI顧問・社員研修・ウェブサイト制作を軸に、<br className="hidden md:inline" />
+      <>ヒューマノイド・ロボットのレンタルとAIコンサルティングを軸に、<br className="hidden md:inline" />
       経営の意思決定から現場で動くものまで、責任を持って伴走します。</>
     ),
     heroPrimary: "まずは無料で相談する",
@@ -229,13 +229,13 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
     ctaOthers: "その他のお問い合わせはこちら →",
   },
   en: {
-    heroChips: ["Advisor · Training · Web", "Strategy to implementation", "Built for SMEs"],
+    heroChips: ["Robot Rental × AI Consulting", "Strategy to deployment", "Built for SMEs"],
     heroTitle: (
-      <>Practical <span className="text-blue-600">AI</span> and real<br /><span className="text-blue-600">engineering</span>, for Japanese SMEs.</>
+      <><span className="text-blue-600">Robots</span> and <span className="text-blue-600">AI</span><br />for Japanese SMEs.</>
     ),
     heroDesc: (
-      <>Centered on AI advisory, employee training, and website production —<br className="hidden md:inline" />
-      we partner with you from management decisions to systems that actually run.</>
+      <>Centered on humanoid robot rental and AI consulting —<br className="hidden md:inline" />
+      we partner with you from management decisions to systems that actually run on the floor.</>
     ),
     heroPrimary: "Book a free consultation",
     heroSecondary: "View services",
