@@ -193,6 +193,43 @@ export default function SnsPage() {
         </div>
       </section>
 
+      {/* PRICING */}
+      <section className="py-20 lg:py-28 bg-gray-50">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
+          <Reveal>
+            <Label>{t.pricingLabel}</Label>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">{t.pricingTitle}</h2>
+          </Reveal>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+            {t.plans.map((plan, i) => (
+              <Reveal key={plan.name} delay={i * 100} className="flex">
+                <div className={`rounded-2xl p-8 lg:p-10 transition-all duration-300 flex flex-col w-full ${plan.featured ? "bg-sky-600 text-white shadow-xl" : "bg-white border border-gray-200 hover:shadow-lg"}`}>
+                  {plan.featured && plan.badge && <span className="inline-block rounded-full bg-white/20 text-white px-3 py-1 text-sm font-semibold mb-4 self-start">{plan.badge}</span>}
+                  <h3 className={`text-lg font-bold mb-2 ${plan.featured ? "text-white" : "text-gray-900"}`}>{plan.name}</h3>
+                  <div className="mb-4 flex items-baseline gap-1">
+                    <span className={`text-3xl font-bold ${plan.featured ? "text-white" : "text-gray-900"}`}>{plan.price}</span>
+                    {plan.unit && <span className={`text-sm ${plan.featured ? "text-white/80" : "text-gray-500"}`}>{plan.unit}</span>}
+                  </div>
+                  <p className={`text-sm leading-relaxed mb-6 ${plan.featured ? "text-white/80" : "text-gray-600"}`}>{plan.desc}</p>
+                  <ul className="space-y-3 mb-8 flex-1">
+                    {plan.features.map((f) => (
+                      <li key={f} className="flex items-start gap-3">
+                        <span className={`mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 ${plan.featured ? "bg-white/40" : "bg-sky-500"}`} />
+                        <span className={`text-sm ${plan.featured ? "text-white/90" : "text-gray-600"}`}>{f}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <a href="/contact?service=sns" className={`block text-center text-sm font-semibold py-3 rounded-lg transition-all duration-300 mt-auto ${plan.featured ? "bg-white text-sky-600 hover:bg-sky-50" : "border border-gray-200 text-gray-600 hover:border-gray-400 hover:text-gray-900"}`}>{t.planCta}</a>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+          <Reveal delay={300}>
+            <p className="text-xs text-gray-500 text-center mt-8">{t.pricingNote}</p>
+          </Reveal>
+        </div>
+      </section>
+
       {/* WHY */}
       <section className="py-20 lg:py-28 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
@@ -300,43 +337,6 @@ export default function SnsPage() {
               </div>
             </Reveal>
           ))}
-        </div>
-      </section>
-
-      {/* PRICING */}
-      <section className="py-20 lg:py-28 bg-gray-50">
-        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <Reveal>
-            <Label>{t.pricingLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">{t.pricingTitle}</h2>
-          </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
-            {t.plans.map((plan, i) => (
-              <Reveal key={plan.name} delay={i * 100} className="flex">
-                <div className={`rounded-2xl p-8 lg:p-10 transition-all duration-300 flex flex-col w-full ${plan.featured ? "bg-sky-600 text-white shadow-xl" : "bg-white border border-gray-200 hover:shadow-lg"}`}>
-                  {plan.featured && plan.badge && <span className="inline-block rounded-full bg-white/20 text-white px-3 py-1 text-sm font-semibold mb-4 self-start">{plan.badge}</span>}
-                  <h3 className={`text-lg font-bold mb-2 ${plan.featured ? "text-white" : "text-gray-900"}`}>{plan.name}</h3>
-                  <div className="mb-4 flex items-baseline gap-1">
-                    <span className={`text-3xl font-bold ${plan.featured ? "text-white" : "text-gray-900"}`}>{plan.price}</span>
-                    {plan.unit && <span className={`text-sm ${plan.featured ? "text-white/80" : "text-gray-500"}`}>{plan.unit}</span>}
-                  </div>
-                  <p className={`text-sm leading-relaxed mb-6 ${plan.featured ? "text-white/80" : "text-gray-600"}`}>{plan.desc}</p>
-                  <ul className="space-y-3 mb-8 flex-1">
-                    {plan.features.map((f) => (
-                      <li key={f} className="flex items-start gap-3">
-                        <span className={`mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 ${plan.featured ? "bg-white/40" : "bg-sky-500"}`} />
-                        <span className={`text-sm ${plan.featured ? "text-white/90" : "text-gray-600"}`}>{f}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <a href="/contact?service=sns" className={`block text-center text-sm font-semibold py-3 rounded-lg transition-all duration-300 mt-auto ${plan.featured ? "bg-white text-sky-600 hover:bg-sky-50" : "border border-gray-200 text-gray-600 hover:border-gray-400 hover:text-gray-900"}`}>{t.planCta}</a>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-          <Reveal delay={300}>
-            <p className="text-xs text-gray-500 text-center mt-8">{t.pricingNote}</p>
-          </Reveal>
         </div>
       </section>
 

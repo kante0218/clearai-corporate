@@ -238,27 +238,6 @@ export default function ClaudePage() {
         </div>
       </section>
 
-      {/* WHY CLAUDE */}
-      <section className="py-20 lg:py-28 bg-white">
-        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <Reveal>
-            <Label>{t.whyLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-snug mb-6 max-w-2xl">{t.whyTitle}</h2>
-            <p className="text-base text-gray-600 leading-relaxed max-w-3xl mb-14">{t.whyDesc}</p>
-          </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {t.whyCards.map((item, i) => (
-              <Reveal key={item.title} delay={i * 100}>
-                <div className="rounded-2xl border border-gray-200 bg-white p-8 hover:border-orange-200 hover:shadow-lg transition-all duration-300 h-full">
-                  <h3 className="text-lg font-bold text-gray-900 mb-3">{item.title}</h3>
-                  <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* SERVICES */}
       <section id="services" className="py-20 lg:py-28 bg-gray-50">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
@@ -318,6 +297,27 @@ export default function ClaudePage() {
                 <a href="https://buy.stripe.com/14AfZa2tm5I4dD4gFSd7q03" className="block text-center text-sm font-semibold py-3.5 rounded-lg border border-orange-300 text-orange-700 hover:bg-orange-50 transition-all duration-300 mt-auto">{t.onlineCta}</a>
               </div>
             </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* WHY CLAUDE */}
+      <section className="py-20 lg:py-28 bg-white">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
+          <Reveal>
+            <Label>{t.whyLabel}</Label>
+            <h2 className="text-3xl font-bold text-gray-900 leading-snug mb-6 max-w-2xl">{t.whyTitle}</h2>
+            <p className="text-base text-gray-600 leading-relaxed max-w-3xl mb-14">{t.whyDesc}</p>
+          </Reveal>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {t.whyCards.map((item, i) => (
+              <Reveal key={item.title} delay={i * 100}>
+                <div className="rounded-2xl border border-gray-200 bg-white p-8 hover:border-orange-200 hover:shadow-lg transition-all duration-300 h-full">
+                  <h3 className="text-lg font-bold text-gray-900 mb-3">{item.title}</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
+                </div>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
