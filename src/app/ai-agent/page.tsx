@@ -296,7 +296,7 @@ export default function AiAgentPage() {
     <>
       {/* PAGE HEADER */}
       <section className="pt-24 pb-12 lg:pt-32 lg:pb-16 bg-white border-b border-gray-100">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
           <p className="text-sm font-semibold text-sky-600 mb-3">{t.heroKicker}</p>
           <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4">{t.heroTitle}</h1>
           <p className="text-base text-gray-600 leading-relaxed max-w-2xl">{t.heroDesc}</p>
@@ -305,7 +305,7 @@ export default function AiAgentPage() {
 
       {/* WHY */}
       <section className="py-20 lg:py-28 bg-white">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.whyLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-snug mb-6 max-w-3xl">{t.whyTitle}</h2>
@@ -327,7 +327,7 @@ export default function AiAgentPage() {
 
       {/* TYPES */}
       <section className="py-20 lg:py-28 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.typesLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.typesTitle}</h2>
@@ -357,7 +357,7 @@ export default function AiAgentPage() {
 
       {/* PROCESS */}
       <section className="py-20 lg:py-28 bg-white">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.processLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.processTitle}</h2>
@@ -381,7 +381,7 @@ export default function AiAgentPage() {
 
       {/* DELIVERABLES */}
       <section className="py-20 lg:py-28 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.deliverablesLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.deliverablesTitle}</h2>
@@ -402,7 +402,7 @@ export default function AiAgentPage() {
 
       {/* TECH */}
       <section className="py-20 lg:py-28 bg-white">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.techLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.techTitle}</h2>
@@ -430,7 +430,7 @@ export default function AiAgentPage() {
 
       {/* PRICING */}
       <section id="pricing" className="py-20 lg:py-28 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.pricingLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.pricingTitle}</h2>
@@ -471,7 +471,7 @@ export default function AiAgentPage() {
 
       {/* FAQ */}
       <section className="py-20 lg:py-28 bg-white">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.faqLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">{t.faqTitle}</h2>

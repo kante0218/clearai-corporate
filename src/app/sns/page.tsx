@@ -186,7 +186,7 @@ export default function SnsPage() {
     <>
       {/* PAGE HEADER */}
       <section className="pt-24 pb-12 lg:pt-32 lg:pb-16 bg-white border-b border-gray-100">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
           <p className="text-sm font-semibold text-sky-600 mb-3">{t.heroKicker}</p>
           <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4">{t.heroTitle}</h1>
           <p className="text-base text-gray-600 leading-relaxed max-w-2xl">{t.heroDesc}</p>
@@ -195,7 +195,7 @@ export default function SnsPage() {
 
       {/* WHY */}
       <section className="py-20 lg:py-28 bg-white">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.whyLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-snug mb-14 max-w-2xl">{t.whyTitle}</h2>
@@ -215,7 +215,7 @@ export default function SnsPage() {
 
       {/* WHAT WE DO */}
       <section className="py-20 lg:py-28 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.whatLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">{t.whatTitle}</h2>
@@ -236,7 +236,7 @@ export default function SnsPage() {
 
       {/* PLATFORMS */}
       <section className="py-20 lg:py-28 bg-white">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.platformsLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.platformsTitle}</h2>
@@ -256,7 +256,7 @@ export default function SnsPage() {
 
       {/* AI-POWERED */}
       <section className="py-20 lg:py-28 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
           <div className="rounded-3xl border border-sky-100 bg-gradient-to-br from-sky-50 to-white p-8 lg:p-12">
             <div className="grid lg:grid-cols-2 gap-10 items-start">
               <Reveal>
@@ -283,7 +283,7 @@ export default function SnsPage() {
 
       {/* PROCESS */}
       <section className="py-20 lg:py-28 bg-white">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.processLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">{t.processTitle}</h2>
@@ -305,7 +305,7 @@ export default function SnsPage() {
 
       {/* PRICING */}
       <section className="py-20 lg:py-28 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.pricingLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">{t.pricingTitle}</h2>
@@ -342,7 +342,7 @@ export default function SnsPage() {
 
       {/* FAQ */}
       <section className="py-20 lg:py-28 bg-white">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.faqLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">{t.faqTitle}</h2>

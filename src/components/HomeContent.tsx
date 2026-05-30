@@ -508,7 +508,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
 
       {/* ═══ TRUST METRICS ═══ */}
       <section className="py-12 bg-white border-b border-gray-100">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
           <Reveal>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-y-8 gap-x-4 md:gap-0 md:divide-x divide-gray-200">
               {t.trustStats.map((stat) => (
@@ -524,7 +524,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
 
       {/* ═══ WHY clearAI ═══ */}
       <section className="py-14 md:py-20 lg:py-28 bg-white">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
           <Reveal>
             <SectionLabel>{t.whyLabel}</SectionLabel>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.whyTitle}</h2>
@@ -546,7 +546,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
 
       {/* ═══ VISION ═══ */}
       <section className="py-14 md:py-20 lg:py-28 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-start">
             <Reveal>
               <SectionLabel>{t.visionLabel}</SectionLabel>
@@ -576,7 +576,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
 
       {/* ═══ ENTRY PRODUCTS ═══ */}
       <section className="py-14 md:py-20 lg:py-28 bg-white border-t border-gray-100">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
           <Reveal>
             <SectionLabel>{t.getStartedLabel}</SectionLabel>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.getStartedTitle}</h2>
@@ -607,7 +607,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
 
       {/* ═══ SERVICES ═══ */}
       <section id="services" className="py-14 md:py-20 lg:py-28 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
           <Reveal>
             <SectionLabel>{t.servicesLabel}</SectionLabel>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.servicesTitle}</h2>
@@ -640,7 +640,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
 
       {/* ═══ APPROACH ═══ */}
       <section className="py-14 md:py-20 lg:py-28 bg-white">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
           <Reveal>
             <SectionLabel>{t.approachLabel}</SectionLabel>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">{t.approachTitle}</h2>
@@ -661,7 +661,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
 
       {/* ═══ PROCESS ═══ */}
       <section className="py-14 md:py-20 lg:py-28 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
           <Reveal>
             <SectionLabel>{t.processLabel}</SectionLabel>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.processTitle}</h2>
@@ -683,7 +683,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
 
       {/* ═══ TEAM ═══ */}
       <section className="py-14 md:py-20 lg:py-28 bg-white">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
           <Reveal>
             <SectionLabel>{t.teamLabel}</SectionLabel>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.teamTitle}</h2>
@@ -720,7 +720,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
 
       {/* ═══ TECH STACK ═══ */}
       <section className="py-14 md:py-20 lg:py-28 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
           <Reveal>
             <SectionLabel>{t.techLabel}</SectionLabel>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.techTitle}</h2>
@@ -797,7 +797,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
 
       {/* ═══ NEWS / BLOG ═══ */}
       <section className="py-14 md:py-20 lg:py-28 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
           <div className="flex items-end justify-between mb-12">
             <div>
               <SectionLabel>{t.newsLabel}</SectionLabel>

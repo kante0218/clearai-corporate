@@ -241,7 +241,7 @@ export default function WebsitePage() {
     <>
       {/* PAGE HEADER */}
       <section className="pt-24 pb-12 lg:pt-32 lg:pb-16 bg-white border-b border-gray-100">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
           <p className="text-sm font-semibold text-sky-600 mb-3">{t.pageKicker}</p>
           <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4">{t.pageTitle}</h1>
           <p className="text-base text-gray-600 leading-relaxed max-w-2xl">{t.pageDesc}</p>
@@ -250,7 +250,7 @@ export default function WebsitePage() {
 
       {/* WHY */}
       <section className="py-20 lg:py-28 bg-white">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>Why Now</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-snug mb-14 max-w-2xl">{t.whyTitle}</h2>
@@ -270,7 +270,7 @@ export default function WebsitePage() {
 
       {/* TYPES */}
       <section id="types" className="py-20 lg:py-28 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>Types</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.typesTitle}</h2>
@@ -294,7 +294,7 @@ export default function WebsitePage() {
 
       {/* STACK */}
       <section className="py-20 lg:py-28 bg-white">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>Tech Stack</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">{t.stackTitle}</h2>
@@ -317,7 +317,7 @@ export default function WebsitePage() {
 
       {/* PROCESS */}
       <section className="py-20 lg:py-28 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>Process</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">{t.processTitle}</h2>
@@ -338,7 +338,7 @@ export default function WebsitePage() {
 
       {/* PRICING */}
       <section className="py-20 lg:py-28 bg-white">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>Pricing</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.pricingTitle}</h2>

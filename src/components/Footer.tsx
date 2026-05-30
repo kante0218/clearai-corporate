@@ -37,7 +37,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-gray-950">
-      <div className="max-w-5xl mx-auto px-6 lg:px-10 pt-16 pb-12">
+      <div className="max-w-[1440px] mx-auto px-6 lg:px-10 pt-16 pb-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
           <div>
             <Image src="/images/logo-white.png" alt={f.logoAlt} width={140} height={40} className="h-8 w-auto mb-4" />
@@ -88,11 +88,11 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="max-w-5xl mx-auto px-6 lg:px-10">
+      <div className="max-w-[1440px] mx-auto px-6 lg:px-10">
         <div className="h-px bg-white/10" />
       </div>
 
-      <div className="max-w-5xl mx-auto px-6 lg:px-10 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div className="max-w-[1440px] mx-auto px-6 lg:px-10 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
         <p className="text-xs text-white/25">
           &copy; {new Date().getFullYear()} {f.copyright}
         </p>

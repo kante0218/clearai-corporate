@@ -486,7 +486,7 @@ export default function SubsidyPage() {
     <>
       {/* PAGE HEADER */}
       <section className="pt-24 pb-12 lg:pt-32 lg:pb-16 bg-white border-b border-gray-100">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
           <p className="text-sm font-semibold text-amber-600 mb-3">{t.pageLabel}</p>
           <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4">{t.pageTitle}</h1>
           <p className="text-base text-gray-600 leading-relaxed max-w-2xl">{t.pageDesc}</p>
@@ -495,7 +495,7 @@ export default function SubsidyPage() {
 
       {/* 3 programs */}
       <section className="py-20 lg:py-28 bg-white">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.programsLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.programsTitle}</h2>
@@ -529,7 +529,7 @@ export default function SubsidyPage() {
 
       {/* Simulator */}
       <section id="simulator" className="py-20 lg:py-28 bg-gradient-to-br from-amber-50 via-white to-sky-50">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.simulatorLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.simulatorTitle}</h2>
@@ -543,7 +543,7 @@ export default function SubsidyPage() {
 
       {/* Support scope */}
       <section className="py-20 lg:py-28 bg-white">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.supportLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">{t.supportTitle}</h2>
@@ -577,7 +577,7 @@ export default function SubsidyPage() {
 
       {/* FLOW */}
       <section className="py-20 lg:py-28 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.flowLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">{t.flowTitle}</h2>
@@ -603,7 +603,7 @@ export default function SubsidyPage() {
 
       {/* FAQ */}
       <section className="py-20 lg:py-28 bg-white">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.faqLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">{t.faqTitle}</h2>
