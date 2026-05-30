@@ -227,7 +227,7 @@ export default function ClaudePage() {
     <>
       {/* PAGE HEADER */}
       <section className="pt-24 pb-12 lg:pt-32 lg:pb-16 bg-white border-b border-gray-100">
-        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <p className="text-sm font-semibold text-orange-600 mb-3">{t.pageKicker}</p>
           <div className="flex items-center gap-3 mb-4">
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -240,7 +240,7 @@ export default function ClaudePage() {
 
       {/* WHY CLAUDE */}
       <section className="py-20 lg:py-28 bg-white">
-        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.whyLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-snug mb-6 max-w-2xl">{t.whyTitle}</h2>
@@ -261,7 +261,7 @@ export default function ClaudePage() {
 
       {/* SERVICES */}
       <section id="services" className="py-20 lg:py-28 bg-gray-50">
-        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.servicesLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">{t.servicesTitle}</h2>
@@ -342,7 +342,7 @@ export default function ClaudePage() {
 
       {/* CURRICULUM */}
       <section className="py-20 lg:py-28 bg-gray-50">
-        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.curriculumLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">{t.curriculumTitle}</h2>
@@ -364,7 +364,7 @@ export default function ClaudePage() {
 
       {/* FAQ */}
       <section className="py-20 lg:py-28 bg-white">
-        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.faqLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">{t.faqTitle}</h2>

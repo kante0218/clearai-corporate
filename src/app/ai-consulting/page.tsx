@@ -298,7 +298,7 @@ export default function AiConsultingPage() {
     <>
       {/* PAGE HEADER */}
       <section className="pt-24 pb-12 lg:pt-32 lg:pb-16 bg-white border-b border-gray-100">
-        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <p className="text-sm font-semibold text-blue-600 mb-3">{t.heroKicker}</p>
           <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4">{t.heroTitle}</h1>
           <p className="text-base text-gray-600 leading-relaxed max-w-2xl">{t.heroDesc}</p>
@@ -307,7 +307,7 @@ export default function AiConsultingPage() {
 
       {/* TRUST */}
       <section className="py-12 bg-white border-y border-gray-100">
-        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <div className="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-gray-200">
               {t.stats.map((stat) => (
@@ -323,7 +323,7 @@ export default function AiConsultingPage() {
 
       {/* INTRO */}
       <section className="py-20 lg:py-28 bg-white">
-        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.aboutLabel}</Label>
             <div className="max-w-3xl">
@@ -342,7 +342,7 @@ export default function AiConsultingPage() {
 
       {/* SERVICE AREAS */}
       <section id="services" className="py-20 lg:py-28 bg-gray-50">
-        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.servicesLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">{t.servicesTitle}</h2>
@@ -363,7 +363,7 @@ export default function AiConsultingPage() {
 
       {/* DIFFERENTIATION */}
       <section className="py-20 lg:py-28 bg-white">
-        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.whyLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">{t.whyTitle}</h2>
@@ -384,7 +384,7 @@ export default function AiConsultingPage() {
 
       {/* PROCESS */}
       <section className="py-20 lg:py-28 bg-gray-50">
-        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.processLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">{t.processTitle}</h2>
@@ -406,7 +406,7 @@ export default function AiConsultingPage() {
 
       {/* PRICING */}
       <section className="py-20 lg:py-28 bg-white">
-        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.pricingLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">{t.pricingTitle}</h2>
@@ -439,7 +439,7 @@ export default function AiConsultingPage() {
 
       {/* TECH STACK */}
       <section className="py-20 lg:py-28 bg-white">
-        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.techLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.techTitle}</h2>
@@ -477,7 +477,7 @@ export default function AiConsultingPage() {
 
       {/* FAQ */}
       <section className="py-20 lg:py-28 bg-white">
-        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.faqLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">{t.faqTitle}</h2>

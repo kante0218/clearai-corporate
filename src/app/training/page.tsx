@@ -219,7 +219,7 @@ export default function TrainingPage() {
     <>
       {/* PAGE HEADER */}
       <section className="pt-24 pb-12 lg:pt-32 lg:pb-16 bg-white border-b border-gray-100">
-        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <p className="text-sm font-semibold text-sky-600 mb-3">{t.heroKicker}</p>
           <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4">{t.heroTitle}</h1>
           <p className="text-base text-gray-600 leading-relaxed max-w-2xl mb-5">{t.heroDesc}</p>
@@ -231,7 +231,7 @@ export default function TrainingPage() {
 
       {/* TARGET */}
       <section className="py-20 lg:py-28 bg-white">
-        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.forLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-snug mb-14 max-w-2xl">{t.forTitle}</h2>
@@ -252,7 +252,7 @@ export default function TrainingPage() {
 
       {/* PROGRAMS */}
       <section id="programs" className="py-20 lg:py-28 bg-gray-50">
-        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.programsLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.programsTitle}</h2>
@@ -277,7 +277,7 @@ export default function TrainingPage() {
 
       {/* CLAUDE INTEGRATION */}
       <section className="py-20 lg:py-28 bg-white">
-        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <div className="rounded-3xl border border-orange-100 bg-gradient-to-br from-orange-50 to-white p-8 lg:p-12">
             <Reveal>
               <p className="inline-flex items-center gap-2 text-sm font-semibold text-orange-600 mb-4">
@@ -302,7 +302,7 @@ export default function TrainingPage() {
 
       {/* FORMATS */}
       <section className="py-20 lg:py-28 bg-gray-50">
-        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.formatsLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">{t.formatsTitle}</h2>
@@ -325,7 +325,7 @@ export default function TrainingPage() {
 
       {/* FEATURES */}
       <section className="py-20 lg:py-28 bg-white">
-        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.featuresLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">{t.featuresTitle}</h2>
@@ -385,7 +385,7 @@ export default function TrainingPage() {
 
       {/* PRICING */}
       <section className="py-20 lg:py-28 bg-gray-50">
-        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.pricingLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.pricingTitle}</h2>

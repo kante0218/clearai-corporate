@@ -93,7 +93,7 @@ export default function Header() {
   return (
     <>
       <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${headerBg}`}>
-        <div className="max-w-[1440px] mx-auto px-6 lg:px-10">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-10">
           <div className="relative flex items-center justify-between h-18 lg:h-20">
             <Link href="/" className="flex items-center group">
               <Image
@@ -212,7 +212,7 @@ export default function Header() {
 
         <div className={`xl:hidden overflow-hidden transition-all duration-500 ${isOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"}`}>
           <div className="bg-white/98 backdrop-blur-xl border-t border-gray-100">
-            <nav className="max-w-[1440px] mx-auto px-6 py-8 space-y-1">
+            <nav className="max-w-[1800px] mx-auto px-6 py-8 space-y-1">
               {navItems.map((item, i) => {
                 const hasChildren = item.children && item.children.length > 0;
                 const expanded = mobileExpanded === item.label;

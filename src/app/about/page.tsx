@@ -380,7 +380,7 @@ export default function AboutPage() {
               "linear-gradient(180deg, rgba(3,7,18,0.55) 0%, rgba(3,7,18,0.7) 55%, rgba(3,7,18,0.85) 100%)",
           }}
         />
-        <div className="relative z-10 max-w-[1440px] mx-auto px-6 lg:px-8">
+        <div className="relative z-10 max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <p className="text-xs font-semibold tracking-widest uppercase text-blue-400 mb-6">{t.visionLabel}</p>
             <h2 className="text-3xl font-bold text-white leading-tight mb-6 max-w-2xl whitespace-pre-line">
@@ -407,7 +407,7 @@ export default function AboutPage() {
 
       {/* ─── 7.5 MEMBERS ─────────────────────────────────────────────────── */}
       <section className="py-20 lg:py-28 bg-white">
-        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <p className="text-xs font-semibold tracking-widest uppercase text-blue-600 mb-6">{t.membersLabel}</p>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-6 max-w-xl">
@@ -437,7 +437,7 @@ export default function AboutPage() {
 
       {/* ─── 9. HISTORY / TIMELINE ───────────────────────────────────────── */}
       <section className="py-20 lg:py-28 bg-gray-50">
-        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <p className="text-xs font-semibold tracking-widest uppercase text-blue-600 mb-6">{t.historyLabel}</p>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-16">
@@ -480,7 +480,7 @@ export default function AboutPage() {
       {/* ─── 10. CTA ─────────────────────────────────────────────────────── */}
       <section className="py-20 lg:py-28 bg-gray-950 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-950/40 to-gray-950 pointer-events-none" />
-        <div className="relative max-w-[1440px] mx-auto px-6 lg:px-8 text-center">
+        <div className="relative max-w-[1800px] mx-auto px-6 lg:px-8 text-center">
           <Reveal>
             <p className="text-xs font-semibold tracking-widest uppercase text-blue-400 mb-6">{t.joinLabel}</p>
             <h2 className="text-3xl font-bold text-white leading-tight mb-6 max-w-2xl mx-auto whitespace-pre-line">
@@ -508,7 +508,7 @@ export default function AboutPage() {
 
       {/* ─── 11. COMPANY INFORMATION (moved below Join Us) ───────────────── */}
       <section className="py-20 lg:py-28 bg-white">
-        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <p className="text-xs font-semibold tracking-widest uppercase text-blue-600 mb-6">{t.companyLabel}</p>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-12">

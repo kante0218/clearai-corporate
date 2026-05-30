@@ -168,7 +168,7 @@ export default function AdvertisingPage() {
     <>
       {/* PAGE HEADER */}
       <section className="pt-24 pb-12 lg:pt-32 lg:pb-16 bg-white border-b border-gray-100">
-        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <p className="text-sm font-semibold text-sky-600 mb-3">{t.headerKicker}</p>
           <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4">{t.headerTitle}</h1>
           <p className="text-base text-gray-600 leading-relaxed max-w-2xl">{t.headerDesc}</p>
@@ -177,7 +177,7 @@ export default function AdvertisingPage() {
 
       {/* CHALLENGES */}
       <section className="py-20 lg:py-28 bg-white">
-        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.challengesLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-snug mb-14 max-w-2xl">{t.challengesTitle}</h2>
@@ -197,7 +197,7 @@ export default function AdvertisingPage() {
 
       {/* SERVICES */}
       <section id="services" className="py-20 lg:py-28 bg-gray-50">
-        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.servicesLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.servicesTitle}</h2>
@@ -221,7 +221,7 @@ export default function AdvertisingPage() {
 
       {/* CHANNELS */}
       <section className="py-20 lg:py-28 bg-white">
-        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.channelsLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">{t.channelsTitle}</h2>
@@ -241,7 +241,7 @@ export default function AdvertisingPage() {
 
       {/* FEATURES */}
       <section className="py-20 lg:py-28 bg-gray-50">
-        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.featuresLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">{t.featuresTitle}</h2>
@@ -262,7 +262,7 @@ export default function AdvertisingPage() {
 
       {/* PRICING */}
       <section className="py-20 lg:py-28 bg-white">
-        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.pricingLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.pricingTitle}</h2>

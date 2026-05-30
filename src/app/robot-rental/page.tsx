@@ -137,7 +137,7 @@ export default function RobotRentalPage() {
     <>
       {/* PAGE HEADER */}
       <section className="pt-24 pb-12 lg:pt-32 lg:pb-16 bg-white border-b border-gray-100">
-        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <div className="flex items-center gap-3 mb-3">
             <p className="text-sm font-semibold text-sky-600">{t.heroKicker}</p>
             <span className="inline-flex items-center rounded-full bg-sky-50 text-sky-700 border border-sky-200 px-3 py-1 text-xs font-bold tracking-wide">
@@ -172,7 +172,7 @@ export default function RobotRentalPage() {
 
       {/* LINEUP */}
       <section className="py-20 lg:py-28 bg-gray-50">
-        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.lineupLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.lineupTitle}</h2>
@@ -215,7 +215,7 @@ export default function RobotRentalPage() {
 
       {/* PLAN */}
       <section className="py-20 lg:py-28 bg-white">
-        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.planLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.planTitle}</h2>
@@ -237,7 +237,7 @@ export default function RobotRentalPage() {
 
       {/* USE CASES */}
       <section className="py-20 lg:py-28 bg-gray-50">
-        <div className="max-w-[1440px] mx-auto px-6 lg:px-8">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.useLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.useTitle}</h2>
