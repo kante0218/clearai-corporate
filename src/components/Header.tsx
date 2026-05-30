@@ -94,44 +94,47 @@ export default function Header() {
     <>
       <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${headerBg}`}>
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
-          <div className="relative flex items-center justify-between h-16 lg:h-18">
+          <div className="relative flex items-center justify-between h-18 lg:h-20">
             <Link href="/" className="flex items-center group">
               <Image
                 src="/images/logo.png"
                 alt="clearAI株式会社（クリアエーアイ）"
                 width={140}
                 height={40}
-                className={`h-8 w-auto transition-all duration-500 ${
+                className={`h-9 lg:h-10 w-auto transition-all duration-500 ${
                   isClaude ? "logo-orange-filter" : ""
                 }`}
                 priority
               />
             </Link>
 
-            <nav className="hidden xl:flex items-center gap-1">
-              {navItems.map((item) => {
+            <nav className="hidden xl:flex items-center">
+              {navItems.map((item, idx) => {
                 const hasChildren = item.children && item.children.length > 0;
                 const isMenuOpen = openMenu === item.label;
                 return (
-                  <div
-                    key={item.label}
-                    className="relative"
-                    onMouseEnter={() => hasChildren && setOpenMenu(item.label)}
-                    onMouseLeave={() => hasChildren && setOpenMenu(null)}
-                  >
+                  <div key={item.label} className="flex items-center">
+                    {idx > 0 && (
+                      <span className="w-px h-4 bg-gray-300 mx-1" aria-hidden="true" />
+                    )}
+                    <div
+                      className="relative"
+                      onMouseEnter={() => hasChildren && setOpenMenu(item.label)}
+                      onMouseLeave={() => hasChildren && setOpenMenu(null)}
+                    >
                     {item.external ? (
                       <a
                         href={item.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={`text-base font-semibold px-4 py-2 rounded-full transition-colors duration-200 inline-flex items-center gap-1 hover:bg-gray-100 ${navColor}`}
+                        className={`text-sm font-semibold tracking-wide px-3 py-2 transition-colors duration-200 inline-flex items-center gap-1 ${navColor}`}
                       >
                         {item.label}
                       </a>
                     ) : (
                       <Link
                         href={item.href}
-                        className={`text-base font-semibold px-4 py-2 rounded-full transition-colors duration-200 inline-flex items-center gap-1 hover:bg-gray-100 ${navColor}`}
+                        className={`text-sm font-semibold tracking-wide px-3 py-2 transition-colors duration-200 inline-flex items-center gap-1 ${navColor}`}
                       >
                         {item.label}
                         {hasChildren && (
@@ -169,6 +172,7 @@ export default function Header() {
                         </div>
                       </div>
                     )}
+                    </div>
                   </div>
                 );
               })}
@@ -186,8 +190,24 @@ export default function Header() {
                   </Link>
                 ))}
               </div>
+              <Link
+                href="/sitemap-page"
+                aria-label={lang === "ja" ? "サイト内検索・サイトマップ" : "Site search / Sitemap"}
+                className="p-2 rounded-full text-gray-500 hover:text-gray-900 hover:bg-gray-100 transition-colors duration-300"
+              >
+                <svg className="w-4 h-4" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.8">
+                  <circle cx="9" cy="9" r="6" strokeLinecap="round" />
+                  <path d="M14 14L17 17" strokeLinecap="round" />
+                </svg>
+              </Link>
               <span className="w-px h-5 bg-gray-200" aria-hidden="true" />
-              <LanguageToggle variant="desktop" />
+              <span className="inline-flex items-center gap-1.5">
+                <svg className="w-4 h-4 text-gray-500" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true">
+                  <circle cx="10" cy="10" r="7.5" />
+                  <path d="M2.5 10h15M10 2.5c2.5 3 2.5 12 0 15M10 2.5c-2.5 3-2.5 12 0 15" strokeLinecap="round" />
+                </svg>
+                <LanguageToggle variant="desktop" />
+              </span>
               <Link href="/contact"
                 className={`inline-flex items-center justify-center text-sm font-semibold px-4 py-2 rounded-lg border transition-all duration-300 ${contactOutlineClass}`}>
                 {h.contact}
