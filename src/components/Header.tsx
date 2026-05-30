@@ -79,16 +79,15 @@ export default function Header() {
     ? "bg-white/95 backdrop-blur-xl border-b border-gray-200 shadow-sm"
     : "bg-white border-b border-gray-100";
 
-  const contactOutlineClass = isClaude
-    ? "border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white"
-    : isAiConsulting
-    ? "border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white"
-    : "border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white";
   const contactFilledClass = isClaude
     ? "bg-orange-500 hover:bg-orange-400 text-white"
     : isAiConsulting
     ? "bg-blue-600 hover:bg-blue-500 text-white"
     : "bg-blue-600 hover:bg-blue-500 text-white";
+  // Stylish filled pill CTA for the desktop header (solid + soft glow + hover lift)
+  const contactBtnClass = isClaude
+    ? "bg-orange-500 hover:bg-orange-600 shadow-[0_6px_20px_-6px_rgba(249,115,22,0.55)] hover:shadow-[0_12px_28px_-6px_rgba(249,115,22,0.7)]"
+    : "bg-blue-600 hover:bg-blue-700 shadow-[0_6px_20px_-6px_rgba(37,99,235,0.55)] hover:shadow-[0_12px_28px_-6px_rgba(37,99,235,0.7)]";
 
   return (
     <>
@@ -181,7 +180,7 @@ export default function Header() {
                   <Link
                     key={u.label}
                     href={u.href}
-                    className="text-xs font-medium text-gray-500 hover:text-gray-900 transition-colors duration-300"
+                    className="text-sm font-semibold tracking-wide text-gray-600 hover:text-gray-900 transition-colors duration-300"
                   >
                     {u.label}
                   </Link>
@@ -189,8 +188,9 @@ export default function Header() {
               </div>
               <LanguageToggle variant="desktop" />
               <Link href="/contact"
-                className={`inline-flex items-center justify-center text-sm font-semibold px-4 py-2 rounded-lg border transition-all duration-300 ${contactOutlineClass}`}>
+                className={`group inline-flex items-center justify-center gap-1.5 text-sm font-semibold text-white px-5 py-2.5 rounded-full transition-all duration-300 hover:-translate-y-0.5 ${contactBtnClass}`}>
                 {h.contact}
+                <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-0.5">→</span>
               </Link>
             </div>
 
