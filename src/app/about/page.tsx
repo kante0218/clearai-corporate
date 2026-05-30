@@ -137,7 +137,7 @@ const COPY: Record<"ja" | "en", Copy> = {
       {
         name: "鈴木 隆生",
         nameEn: "ryusei suzuki",
-        role: "共同研究者",
+        role: "チーフエンジニア",
         bio: "茨城県出身。茨城高専情報系在学中。高専でPythonやC言語を学びながら、地元日立を創生することを目指し、日本中の田舎のリサーチ業務に従事。地元の自然を守ることを目指し、今後共同で研究を進める。",
       },
       {
@@ -288,7 +288,7 @@ const COPY: Record<"ja" | "en", Copy> = {
       {
         name: "鈴木 隆生",
         nameEn: "ryusei suzuki",
-        role: "Research Collaborator",
+        role: "Chief Engineer",
         bio: "From Ibaraki. Currently in the information systems program at Ibaraki KOSEN. Studies Python and C at KOSEN while conducting research on rural communities across Japan with the goal of revitalizing his hometown Hitachi. Aims to protect the local natural environment through ongoing collaborative research.",
       },
       {
