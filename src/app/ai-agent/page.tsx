@@ -52,7 +52,7 @@ type Copy = {
   pricingLabel: string;
   pricingTitle: string;
   pricingDesc: string;
-  plans: { name: string; price: string; unit: string; desc: string; features: string[]; featured: boolean }[];
+  plans: { name: string; price: string; unit: string; desc: string; features: string[]; featured: boolean; href: string; cta: string; minTerm: string }[];
   pricingNote: string;
   faqLabel: string;
   faqTitle: string;
@@ -131,6 +131,9 @@ const COPY: Record<"ja" | "en", Copy> = {
         desc: "業務理解〜エージェント設計〜PoC構築・検証まで。本番化前の意思決定に最適。",
         features: ["業務ヒアリング・現状可視化", "エージェント設計書納品", "プロトタイプ実装（最大3ユースケース）", "20-50ケース評価レポート", "本番化判断のための投資対効果試算"],
         featured: false,
+        href: "https://buy.stripe.com/aFa7sE3xqdaw2Yq75id7q07",
+        cta: "申し込む",
+        minTerm: "",
       },
       {
         name: "本番開発パック",
@@ -139,17 +142,23 @@ const COPY: Record<"ja" | "en", Copy> = {
         desc: "PoCを踏まえた本番実装・既存システム統合・運用基盤構築まで。3〜4ヶ月で本番リリース。",
         features: ["既存システム / API 連携実装", "認証・権限・監視・ログ整備", "Runbook・教育コンテンツ作成", "本番リリース立ち会い", "リリース後1ヶ月のハイパーケア"],
         featured: true,
+        href: "/contact?service=ai-agent",
+        cta: "相談する",
+        minTerm: "",
       },
       {
         name: "運用支援",
-        price: "30万円〜",
+        price: "30万円",
         unit: "/ 月",
         desc: "本番稼働後の品質モニタリング、プロンプト/ツールチューニング、新ユースケース追加を継続支援。",
         features: ["週次品質モニタリング", "プロンプト・ツール継続改善", "LLMコスト最適化", "新ユースケース追加（月1件目安）", "Slack/メール無制限相談"],
         featured: false,
+        href: "https://buy.stripe.com/00w5kw8RKb2o6aCblyd7q08",
+        cta: "申し込む",
+        minTerm: "最低6ヶ月契約から",
       },
     ],
-    pricingNote: "表示価格は税抜。難易度・スコープにより個別見積もりとなる場合があります。成果連動型（解決1件 ¥XXX、商談獲得1件 ¥XXX など）の設計も対応可能。",
+    pricingNote: "表示価格は税抜。本番開発パックは難易度・スコープにより個別見積もり（600万〜3,000万円目安）。成果連動型（解決1件・商談獲得1件・売上連動など）の契約設計もご相談可能です。",
     faqLabel: "FAQ",
     faqTitle: "よくあるご質問",
     faq: [
@@ -233,6 +242,9 @@ const COPY: Record<"ja" | "en", Copy> = {
         desc: "Discovery to design to PoC build and validation. Ideal for pre-production decisions.",
         features: ["Discovery/current-state mapping", "Design document delivery", "Prototype (up to 3 use cases)", "20-50 case eval report", "Production-readiness ROI estimate"],
         featured: false,
+        href: "https://buy.stripe.com/aFa7sE3xqdaw2Yq75id7q07",
+        cta: "Apply now",
+        minTerm: "",
       },
       {
         name: "Production Build",
@@ -241,17 +253,23 @@ const COPY: Record<"ja" | "en", Copy> = {
         desc: "Production implementation building on PoC. Systems integration and ops infra. 3-4 months to launch.",
         features: ["System/API integration", "Auth, permissions, monitoring, logs", "Runbook and training content", "Launch support", "1-month hypercare post-launch"],
         featured: true,
+        href: "/contact?service=ai-agent",
+        cta: "Get a quote",
+        minTerm: "",
       },
       {
         name: "Operations Support",
-        price: "From JPY 300K",
+        price: "JPY 300K",
         unit: "/ month",
         desc: "Post-launch quality monitoring, prompt/tool tuning, and new use-case rollout.",
         features: ["Weekly quality monitoring", "Ongoing prompt/tool improvement", "LLM cost optimization", "New use cases (~1/month)", "Unlimited Slack/email consultation"],
         featured: false,
+        href: "https://buy.stripe.com/00w5kw8RKb2o6aCblyd7q08",
+        cta: "Apply now",
+        minTerm: "6-month minimum",
       },
     ],
-    pricingNote: "Prices exclude tax. Final pricing varies by difficulty and scope. Outcome-based contracts (per resolved ticket, per booked meeting, etc.) are also supported.",
+    pricingNote: "Prices exclude tax. Production Build varies by scope (typically JPY 6M to 30M). Outcome-based contracts (per resolved ticket, per booked meeting, revenue share, etc.) are also supported.",
     faqLabel: "FAQ",
     faqTitle: "FAQ",
     faq: [
@@ -443,7 +461,10 @@ export default function AiAgentPage() {
                       </li>
                     ))}
                   </ul>
-                  <a href="/contact?service=ai-agent" className={`block text-center text-sm font-semibold py-3 rounded-lg transition-all duration-300 mt-auto ${plan.featured ? "bg-white text-blue-600 hover:bg-blue-50" : "border border-gray-200 text-gray-600 hover:border-gray-400 hover:text-gray-900"}`}>相談する</a>
+                  {plan.minTerm && (
+                    <p className={`text-xs text-center mb-3 ${plan.featured ? "text-white/80" : "text-gray-500"}`}>※{plan.minTerm}</p>
+                  )}
+                  <a href={plan.href} className={`block text-center text-sm font-semibold py-3 rounded-lg transition-all duration-300 mt-auto ${plan.featured ? "bg-white text-blue-600 hover:bg-blue-50" : "border border-gray-200 text-gray-600 hover:border-gray-400 hover:text-gray-900"}`}>{plan.cta}</a>
                 </div>
               </Reveal>
             ))}
