@@ -67,9 +67,9 @@ const COPY: Record<"ja" | "en", Copy> = {
     visionDesc: "派手な数字ではなく、一社一社の成功を積み重ねる。この3つの数字は、その結果として私たちが辿り着く約束です。",
     vision: [
       {
-        num: "1500億円",
-        label: "時価総額（2035年）",
-        desc: "粗利率50%超・継続率95%の「質を伴う事業」を積み上げ、2035年に時価総額1500億円を目指します。派手な数字ではなく、一社一社の成功を積み重ねた結果としての企業価値です。",
+        num: "1000億円",
+        label: "時価総額（2030年）",
+        desc: "粗利率50%超・継続率95%の「質を伴う事業」を積み上げ、2030年に時価総額1000億円を目指します。派手な数字ではなく、一社一社の成功を積み重ねた結果としての企業価値です。",
       },
       {
         num: "120社",
@@ -212,9 +212,9 @@ const COPY: Record<"ja" | "en", Copy> = {
     visionDesc: "Not flashy numbers — compounding wins, one company at a time. These three figures are the promise we'll reach by doing exactly that.",
     vision: [
       {
-        num: "JPY 150B",
-        label: "Market cap (2035)",
-        desc: "Building quality operations with 50%+ gross margin and 95% retention, targeting a JPY 150B market cap by 2035. Not a forced number — enterprise value earned one customer success at a time.",
+        num: "JPY 100B",
+        label: "Market cap (2030)",
+        desc: "Building quality operations with 50%+ gross margin and 95% retention, targeting a JPY 100B market cap by 2030. Not a forced number — enterprise value earned one customer success at a time.",
       },
       {
         num: "120",
