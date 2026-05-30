@@ -108,7 +108,7 @@ export default function Header() {
               />
             </Link>
 
-            <nav className="hidden xl:flex items-center gap-5">
+            <nav className="hidden xl:flex items-center gap-1">
               {navItems.map((item) => {
                 const hasChildren = item.children && item.children.length > 0;
                 const isMenuOpen = openMenu === item.label;
@@ -124,20 +124,19 @@ export default function Header() {
                         href={item.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={`text-sm font-medium transition-all duration-300 relative group inline-flex items-center gap-1 ${navColor}`}
+                        className={`text-base font-semibold px-4 py-2 rounded-full transition-colors duration-200 inline-flex items-center gap-1 hover:bg-gray-100 ${navColor}`}
                       >
                         {item.label}
-                        <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-current group-hover:w-full transition-all duration-300" />
                       </a>
                     ) : (
                       <Link
                         href={item.href}
-                        className={`text-sm font-medium transition-all duration-300 relative group inline-flex items-center gap-1 ${navColor}`}
+                        className={`text-base font-semibold px-4 py-2 rounded-full transition-colors duration-200 inline-flex items-center gap-1 hover:bg-gray-100 ${navColor}`}
                       >
                         {item.label}
                         {hasChildren && (
                           <svg
-                            className={`w-3 h-3 transition-transform duration-300 ${isMenuOpen ? "rotate-180" : ""}`}
+                            className={`w-4 h-4 transition-transform duration-300 ${isMenuOpen ? "rotate-180" : ""}`}
                             viewBox="0 0 12 12"
                             fill="none"
                             stroke="currentColor"
@@ -146,7 +145,6 @@ export default function Header() {
                             <path d="M3 4.5L6 7.5L9 4.5" strokeLinecap="round" strokeLinejoin="round" />
                           </svg>
                         )}
-                        <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-current group-hover:w-full transition-all duration-300" />
                       </Link>
                     )}
                     {hasChildren && (
