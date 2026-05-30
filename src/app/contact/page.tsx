@@ -390,8 +390,6 @@ function ContactPageInner() {
     setErrors({});
   };
 
-  const selectService = (s: ExtendedServiceKey | "") => setForm({ ...form, service: s });
-
   const isBusiness = form.inquiryType === "business";
   const isEngineer = form.inquiryType === "engineer";
 
@@ -425,7 +423,7 @@ function ContactPageInner() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-gray-50/50 to-white">
       {/* Header */}
-      <section className="max-w-3xl mx-auto px-6 pt-32 lg:pt-40 pb-10 lg:pb-12 text-center">
+      <section className="max-w-3xl mx-auto px-6 pt-28 lg:pt-32 pb-8 lg:pb-10 text-center">
         <Reveal>
           <p className="text-xs font-semibold tracking-[0.2em] text-blue-600 uppercase mb-4">{t.headerKicker}</p>
           <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">{t.headerTitle}</h1>
@@ -458,7 +456,7 @@ function ContactPageInner() {
           </Reveal>
         ) : (
           <Reveal>
-            <form onSubmit={handleSubmit} noValidate className="bg-white border border-gray-200 rounded-3xl p-6 sm:p-10 shadow-sm space-y-10">
+            <form onSubmit={handleSubmit} noValidate className="bg-white border border-gray-200 rounded-3xl p-6 sm:p-10 shadow-sm space-y-8">
               {/* Honeypot */}
               <input type="text" name="website" value={form.website} onChange={handleChange}
                 tabIndex={-1} autoComplete="off" aria-hidden="true"
@@ -470,7 +468,7 @@ function ContactPageInner() {
                   <span className="text-xs font-bold text-blue-600">01</span>
                   <h2 className="text-sm font-semibold text-gray-900">{t.step1Title}</h2>
                 </div>
-                <div className="grid grid-cols-3 gap-2 sm:gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3">
                   {INQUIRY_TYPE_KEYS.map((key) => {
                     const active = form.inquiryType === key;
                     const labelKey = key === "business" ? "inquiryBusiness" : key === "engineer" ? "inquiryEngineer" : "inquiryOther";
@@ -478,14 +476,16 @@ function ContactPageInner() {
                     return (
                       <button key={key} type="button" onClick={() => selectInquiry(key)}
                         aria-pressed={active}
-                        className={`text-center rounded-2xl border px-3 py-4 sm:py-5 transition-all duration-200 ${
+                        className={`flex sm:flex-col items-center sm:text-center gap-3 sm:gap-0 rounded-2xl border px-4 py-3.5 sm:py-5 transition-all duration-200 ${
                           active ? "border-blue-600 bg-blue-50/70 ring-2 ring-blue-600/20" : "border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50/50"
                         }`}>
-                        <div className={`mx-auto mb-2 w-9 h-9 rounded-full flex items-center justify-center transition-colors ${
+                        <div className={`shrink-0 sm:mx-auto sm:mb-2 w-9 h-9 rounded-full flex items-center justify-center transition-colors ${
                           active ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-500"
                         }`}>{INQUIRY_ICONS[key]}</div>
-                        <span className={`block text-xs sm:text-sm font-bold ${active ? "text-blue-700" : "text-gray-900"}`}>{t[labelKey]}</span>
-                        <span className="hidden sm:block text-[11px] text-gray-500 mt-1 leading-snug">{t[descKey]}</span>
+                        <div className="min-w-0">
+                          <span className={`block text-sm font-bold leading-tight ${active ? "text-blue-700" : "text-gray-900"}`}>{t[labelKey]}</span>
+                          <span className="block text-[11px] text-gray-500 mt-0.5 sm:mt-1 leading-snug">{t[descKey]}</span>
+                        </div>
                       </button>
                     );
                   })}
@@ -499,21 +499,13 @@ function ContactPageInner() {
                     <span className="text-xs font-bold text-blue-600">02</span>
                     <h2 className="text-sm font-semibold text-gray-900">{t.step2Title} <span className="font-normal text-gray-400">{t.step2Optional}</span></h2>
                   </div>
-                  <div className="flex flex-wrap gap-2">
-                    {SERVICE_OPTION_KEYS.map((key) => {
-                      const active = form.service === key;
-                      return (
-                        <button key={key} type="button"
-                          onClick={() => selectService(active ? "" : key)}
-                          aria-pressed={active}
-                          className={`rounded-full border px-4 py-2 text-sm font-medium transition-all duration-200 ${
-                            active ? "border-blue-600 bg-blue-600 text-white" : "border-gray-200 bg-white text-gray-700 hover:border-gray-400 hover:text-gray-900"
-                          }`}>
-                          {getServiceLabel(key)}
-                        </button>
-                      );
-                    })}
-                  </div>
+                  <select id="service" name="service" value={form.service} onChange={handleChange}
+                    className={`${inputClass("service")} appearance-none cursor-pointer pr-10 bg-[url('data:image/svg+xml;utf8,<svg%20xmlns=%22http://www.w3.org/2000/svg%22%20width=%2212%22%20height=%2212%22%20viewBox=%220%200%2012%2012%22%20fill=%22none%22%20stroke=%22%23999%22%20stroke-width=%221.5%22%20stroke-linecap=%22round%22%20stroke-linejoin=%22round%22><path%20d=%22M3%204.5L6%207.5L9%204.5%22/></svg>')] bg-no-repeat bg-[right_1rem_center]`}>
+                    <option value="">{t.selectDefault}</option>
+                    {SERVICE_OPTION_KEYS.map((key) => (
+                      <option key={key} value={key}>{getServiceLabel(key)}</option>
+                    ))}
+                  </select>
                 </div>
               )}
 
