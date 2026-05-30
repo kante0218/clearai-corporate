@@ -28,15 +28,15 @@ export default function HeroMechaPreviewPage() {
 
         <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
           <span className="inline-block rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white px-3 py-1 text-sm font-semibold mb-6">
-            AI Consulting &amp; Agriculture Engineering
+            AI Consulting &amp; Robotics
           </span>
           <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight mb-6 drop-shadow-[0_2px_24px_rgba(0,0,0,0.6)]">
-            中小企業と農業現場に、
+            日本の中小企業に、
             <br />
             使えるAIと実装力を。
           </h1>
           <p className="text-base md:text-lg text-white/85 leading-relaxed max-w-lg mx-auto mb-10 drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]">
-            AI導入支援と農業自動化を、戦略から実装まで支援します。
+            AI顧問・研修・コンサルからロボットレンタルまで、戦略から実装まで支援します。
           </p>
           <div className="flex items-center justify-center gap-4">
             <Link

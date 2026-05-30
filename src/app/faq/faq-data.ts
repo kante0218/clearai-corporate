@@ -86,12 +86,12 @@ export const faqItems: FaqItem[] = [
   },
   {
     q: {
-      ja: "農業事業とAI事業はなぜ同じ会社でやっているのですか？",
-      en: "Why are agricultural operations and AI services under the same company?",
+      ja: "AIコンサル・研修からロボットレンタルまで、なぜ幅広く手がけているのですか？",
+      en: "Why do you cover everything from AI consulting and training to robot rental?",
     },
     a: {
-      ja: "私たちは「技術を、現場が使える形に落とし込む」ことを事業のコアにしています。AI導入も、農業インフラ自動化も、本質は同じ——現場の課題を聞き、エンジニアリングで解くこと。むしろAI事業で培った技術翻訳力が、農業現場の自動化でも活きています。",
-      en: "Our core mission is translating technology into something the field can actually use. AI adoption and agricultural infrastructure automation share the same essence — listening to on-site challenges and solving them through engineering. In fact, the technology-translation capability we've built in our AI practice directly fuels our agricultural automation work.",
+      ja: "私たちは「技術を、現場が使える形に落とし込む」ことを事業のコアにしています。AI顧問・研修・コンサルも、最新ロボットのレンタルも、本質は同じ——現場の課題を聞き、エンジニアリングで解くこと。AIで培った技術翻訳力を活かし、ソフトからフィジカルな現場まで一貫して支援します。",
+      en: "Our core mission is translating technology into something the field can actually use. AI advisory, training, and consulting — and renting the latest robots — share the same essence: listening to on-site challenges and solving them through engineering. We apply the technology-translation capability built through AI across both software and physical front lines.",
     },
   },
   {

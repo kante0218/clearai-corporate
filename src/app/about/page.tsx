@@ -79,7 +79,7 @@ const COPY: Record<"ja" | "en", Copy> = {
       {
         num: "関東・東北",
         label: "事業展開エリア",
-        desc: "茨城発・関東・東北No.1のAI×地域産業ブティックへ。その先に、2035年の全国展開と食料安全保障インフラとしての中堅テック企業を見据えます。",
+        desc: "茨城発・関東・東北No.1のAI活用支援ブティックへ。その先に、2035年の全国展開とフィジカルAI・ロボットを組み合わせた中堅テック企業を見据えます。",
       },
     ],
     membersLabel: "Members",
@@ -90,7 +90,7 @@ const COPY: Record<"ja" | "en", Copy> = {
         name: "髙橋 敢輝",
         nameEn: "kante takahashi",
         role: "代表取締役 CEO / 事業開発（茨城高専）",
-        bio: "茨城県出身。AIと農業の交差点に日本の未来を見出し、2026年にclearAIを創業。誠実・伴走・翻訳・長期視点をコアバリューに、関東・東北No.1のAI×地域産業ブティックを目指す。",
+        bio: "茨城県出身。日本の中小企業にAIを届けることを使命に、2026年にclearAIを創業。誠実・伴走・翻訳・長期視点をコアバリューに、AI活用支援とフィジカルAI・ロボットで関東・東北No.1のAIパートナーを目指す。",
       },
       {
         name: "西村 吉正",
@@ -137,7 +137,7 @@ const COPY: Record<"ja" | "en", Copy> = {
       {
         name: "郷 由稀斗",
         nameEn: "Yukito Go",
-        role: "AI導入コンサルタント / 農業分野共同参画者・アドバイザー",
+        role: "AI導入コンサルタント / アドバイザー",
         bio: "福岡県出身。筑波大学情報メディア創生学類在学中。EQパートナーズ株式会社CAIO、Queue株式会社PMや複数社でのエンジニア/CTO経験を経て、金融機関・エンプラ等の大規模案件や地方自治体向けイベントアプリの立ち上げを統括。「誰もが『創りたい』を創れる社会を創る」を掲げ、AIの民主化を推進中。",
       },
     ],
@@ -153,7 +153,7 @@ const COPY: Record<"ja" | "en", Copy> = {
       {
         year: "2026年4月",
         title: "clearAI株式会社 設立",
-        description: "定款認証を経て、AIの力を日本の企業と農業現場に届けるというミッションのもと茨城県にて創業。",
+        description: "定款認証を経て、AIの力を日本の中小企業に届けるというミッションのもと茨城県にて創業。",
         future: false,
       },
       {
@@ -164,20 +164,20 @@ const COPY: Record<"ja" | "en", Copy> = {
       },
       {
         year: "2026年",
-        title: "農業×エンジニアリング事業 開始",
-        description: "EC運営と輸入事業を軸に、農家・エンジニアと共同で農業の研究開発を進める。",
+        title: "ロボットレンタル事業 開始（Coming Soon）",
+        description: "UnitreeやAGIBOTのヒューマノイド・ロボットを輸入・レンタル提供。フィジカルAIで中小企業の現場課題を解決する新事業を立ち上げ。",
         future: false,
       },
       {
         year: "2026年度中",
-        title: "AI顧問10社 / 農業事業 単月黒字化",
-        description: "紹介・金融機関提携・士業ネットワークを通じてAI顧問契約を10社まで拡大。農業事業はEC運用代行で月額MRR化し、単月黒字を達成。",
+        title: "AI顧問10社 / ロボットレンタル 正式ローンチ",
+        description: "紹介・金融機関提携・士業ネットワークを通じてAI顧問契約を10社まで拡大。ロボットレンタル事業を正式ローンチし、初期レンタル案件を獲得。",
         future: true,
       },
       {
         year: "2027年（予定）",
-        title: "AI顧問20社 / 農業事業 通期黒字",
-        description: "代表の卒業に合わせ経営フルコミット。顧問契約20社・農業事業の通期黒字化を実現し、仕組みで回る組織へ。",
+        title: "AI顧問20社 / ロボットレンタル 通期黒字",
+        description: "代表の卒業に合わせ経営フルコミット。顧問契約20社・ロボットレンタル事業の通期黒字化を実現し、AI＋フィジカルAIの両輪で仕組みで回る組織へ。",
         future: true,
       },
       {
@@ -200,7 +200,7 @@ const COPY: Record<"ja" | "en", Copy> = {
       { label: "設立", value: "2026年4月" },
       { label: "代表取締役", value: "髙橋 敢輝" },
       { label: "所在地", value: "茨城県" },
-      { label: "事業内容", value: "AIコンサルティング事業 / 農業×エンジニアリング事業" },
+      { label: "事業内容", value: "AI顧問・研修・コンサル / Web制作・SNS運用 / ロボットレンタル" },
       { label: "資本金", value: "非公開" },
       { label: "主要取引銀行", value: "非公開" },
       { label: "URL", value: "https://clearai.jp" },
@@ -224,7 +224,7 @@ const COPY: Record<"ja" | "en", Copy> = {
       {
         num: "Kanto & Tohoku",
         label: "Business area",
-        desc: "From Ibaraki, toward the #1 AI × regional-industry boutique across Kanto and Tohoku — then nationwide rollout by 2035 and a mid-sized tech company anchoring food-security infrastructure.",
+        desc: "From Ibaraki, toward the #1 AI adoption boutique across Kanto and Tohoku — then nationwide rollout by 2035, expanding from software AI into physical AI and robotics.",
       },
     ],
     membersLabel: "Members",
@@ -235,7 +235,7 @@ const COPY: Record<"ja" | "en", Copy> = {
         name: "髙橋 敢輝",
         nameEn: "kante takahashi",
         role: "CEO / Business Development (Ibaraki KOSEN)",
-        bio: "From Ibaraki. Founded clearAI in 2026 after seeing Japan's future at the intersection of AI and agriculture. Guides the company with core values of integrity, partnership, translation, and long-term thinking — aiming for the #1 AI × regional-industry boutique in Kanto and Tohoku.",
+        bio: "From Ibaraki. Founded clearAI in 2026 with a mission to bring AI to Japanese SMEs. Guides the company with core values of integrity, partnership, translation, and long-term thinking — aiming to be the most trusted AI partner across Kanto and Tohoku, combining AI advisory with physical AI and robotics.",
       },
       {
         name: "西村 吉正",
@@ -282,7 +282,7 @@ const COPY: Record<"ja" | "en", Copy> = {
       {
         name: "郷 由稀斗",
         nameEn: "Yukito Go",
-        role: "AI Adoption Consultant / Agriculture Co-participant & Advisor",
+        role: "AI Adoption Consultant / Advisor",
         bio: "From Fukuoka. Currently in the information media creation program at University of Tsukuba. After CAIO at EQ Partners and PM at Queue, plus engineer/CTO roles at multiple companies, has led large-scale financial and enterprise projects and local-government event app launches. Champions AI democratization under the motto 'Create a society where anyone can build what they want to build.'",
       },
     ],
@@ -298,7 +298,7 @@ const COPY: Record<"ja" | "en", Copy> = {
       {
         year: "April 2026",
         title: "clearAI Inc. founded",
-        description: "After incorporation, launched in Ibaraki on the mission of bringing AI to Japanese companies and farms.",
+        description: "After incorporation, launched in Ibaraki on the mission of bringing AI to Japanese SMEs.",
         future: false,
       },
       {
@@ -309,20 +309,20 @@ const COPY: Record<"ja" | "en", Copy> = {
       },
       {
         year: "2026",
-        title: "Agriculture × Engineering business launched",
-        description: "Joint R&D with farmers and engineers, anchored in e-commerce operations and import business.",
+        title: "Robot rental business launched (Coming Soon)",
+        description: "Importing and renting humanoid robots and autonomous machines (Unitree, AGIBOT) to solve on-site challenges for SMEs. Physical AI as clearAI's second pillar.",
         future: false,
       },
       {
         year: "FY2026",
-        title: "10 AI advisor clients / Agriculture cash-flow positive",
-        description: "Expand AI-advisor contracts to 10 companies via referrals, financial-institution partnerships, and professional networks. Make the agriculture business MRR-based through e-commerce operations and achieve monthly break-even.",
+        title: "10 AI advisor clients / Robot rental officially launched",
+        description: "Expand AI-advisor contracts to 10 companies via referrals, financial-institution partnerships, and professional networks. Officially launch the robot rental service and close initial rental deals.",
         future: true,
       },
       {
         year: "2027 (planned)",
-        title: "20 AI advisors / Agriculture profitable full year",
-        description: "Founder commits full-time to management. 20 advisor contracts and a full-year-profitable agriculture business — an organization that runs on process.",
+        title: "20 AI advisors / Robot rental profitable full year",
+        description: "Founder commits full-time to management. 20 advisor contracts and a full-year-profitable robot rental business — AI advisory and physical AI running as two complementary pillars.",
         future: true,
       },
       {
@@ -345,7 +345,7 @@ const COPY: Record<"ja" | "en", Copy> = {
       { label: "Founded", value: "April 2026" },
       { label: "CEO", value: "kante takahashi" },
       { label: "Location", value: "Ibaraki, Japan" },
-      { label: "Business", value: "AI Consulting / Agriculture × Engineering" },
+      { label: "Business", value: "AI Advisory & Training & Consulting / Web & SNS / Robot Rental" },
       { label: "Capital", value: "Private" },
       { label: "Main bank", value: "Private" },
       { label: "URL", value: "https://clearai.jp" },

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 
 const description =
-  "clearAI株式会社（クリアエーアイ／読み方：クリアエーアイ）の会社概要。2026年4月設立、茨城県拠点、代表取締役 髙橋 敢輝。AIコンサルティング事業と農業×エンジニアリング事業を通じて、企業のDXと日本の一次産業の課題解決に取り組むAIスタートアップ。英文表記は clearAI Inc.。";
+  "clearAI株式会社（クリアエーアイ／読み方：クリアエーアイ）の会社概要。2026年4月設立、茨城県拠点、代表取締役 髙橋 敢輝。AI顧問・AI研修・AIコンサル/DX・ウェブ制作・ロボットレンタルを通じて、日本の中小企業のAI活用とDXを支援するAIスタートアップ。英文表記は clearAI Inc.。";
 
 export const metadata: Metadata = {
   title: "会社概要（clearAI / クリアエーアイ）",

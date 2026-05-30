@@ -47,13 +47,6 @@ const COPY: Record<"ja" | "en", Copy> = {
         ],
       },
       {
-        title: "農業×エンジニアリング事業",
-        links: [
-          { label: "農業×エンジニアリング", href: "/ai-agriculture" },
-          { label: "農業分野のお問い合わせ", href: "/contact?service=agriculture" },
-        ],
-      },
-      {
         title: "その他",
         links: [
           { label: "プライバシーポリシー", href: "/privacy" },
@@ -92,13 +85,6 @@ const COPY: Record<"ja" | "en", Copy> = {
           { label: "Website Production", href: "/website" },
           { label: "SNS Management", href: "/sns" },
           { label: "Robot Rental", href: "/robot-rental" },
-        ],
-      },
-      {
-        title: "Agriculture × Engineering",
-        links: [
-          { label: "Agriculture × Engineering", href: "/ai-agriculture" },
-          { label: "Agriculture inquiry", href: "/contact?service=agriculture" },
         ],
       },
       {

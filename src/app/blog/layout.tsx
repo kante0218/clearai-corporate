@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 
 const description =
-  "clearAI株式会社のお知らせ・ブログ。AI活用、生成AI、DX推進、農業×エンジニアリングに関する最新情報や導入事例、技術ナレッジを発信しています。";
+  "clearAI株式会社のお知らせ・ブログ。AI活用、生成AI、DX推進、AI研修・顧問、ロボットレンタルに関する最新情報や導入事例、技術ナレッジを発信しています。";
 
 export const metadata: Metadata = {
   title: "お知らせ・ブログ",

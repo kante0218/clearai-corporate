@@ -28,7 +28,7 @@ const COPY = {
     step4TitleEngineer: "自己紹介・志望動機",
     // Inquiry type options
     inquiryBusiness: "サービス相談",
-    inquiryBusinessDesc: "AI導入・顧問・研修・農業など",
+    inquiryBusinessDesc: "AI顧問・研修・コンサル・ロボットレンタルなど",
     inquiryEngineer: "エンジニア採用",
     inquiryEngineerDesc: "チームに参加したい方",
     inquiryOther: "その他",
@@ -42,7 +42,6 @@ const COPY = {
     serviceAdvertising: "AI広告運用",
     serviceWebsite: "ウェブサイト作成",
     serviceSns: "SNS運用代行",
-    serviceAgriculture: "農業×AI",
     serviceCeo: "経営者向けAI活用",
     serviceRobotRental: "ロボットレンタル",
     // Field labels
@@ -145,7 +144,6 @@ const COPY = {
     serviceAdvertising: "AI Ad Operations",
     serviceWebsite: "Website Creation",
     serviceSns: "SNS Management",
-    serviceAgriculture: "Agriculture × AI",
     serviceCeo: "AI for Executives",
     serviceRobotRental: "Robot Rental",
     // Field labels
@@ -266,8 +264,8 @@ const INQUIRY_ICONS: Record<InquiryType, ReactNode> = {
 
 const INQUIRY_TYPE_KEYS: InquiryType[] = ["business", "engineer", "other"];
 const SERVICE_OPTION_KEYS: ExtendedServiceKey[] = [
-  "consulting", "advisor", "education", "subsidy", "claude-code",
-  "advertising", "website", "sns", "agriculture", "ceo", "robot-rental",
+  "advisor", "education", "consulting", "website", "advertising", "sns",
+  "robot-rental", "subsidy", "claude-code", "ceo",
 ];
 
 // Extended SERVICE_KEYS including robot-rental and sns for query-param handling
@@ -408,7 +406,6 @@ function ContactPageInner() {
       advertising: t.serviceAdvertising,
       website: t.serviceWebsite,
       sns: t.serviceSns,
-      agriculture: t.serviceAgriculture,
       ceo: t.serviceCeo,
       "robot-rental": t.serviceRobotRental,
     };

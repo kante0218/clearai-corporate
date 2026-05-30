@@ -10,7 +10,8 @@ export type InquiryType = (typeof INQUIRY_TYPES)[number];
 export const SERVICE_KEYS = [
   "consulting",
   "advisor",
-  "agriculture",
+  "robot-rental",
+  "sns",
   "education",
   "ceo",
   "claude-code",
@@ -23,7 +24,8 @@ export type ServiceKey = (typeof SERVICE_KEYS)[number];
 export const SERVICE_LABELS: Record<ServiceKey, string> = {
   consulting: "AIコンサル・DX",
   advisor: "AI顧問",
-  agriculture: "農業×AI",
+  "robot-rental": "ロボットレンタル",
+  sns: "SNS運用代行",
   education: "AI研修",
   ceo: "経営者向けAI活用",
   "claude-code": "Claude特化（スクール／導入支援）",

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 
 const description =
-  "clearAI株式会社（クリアエーアイ）へのお問い合わせ。AI導入コンサルティング、AI顧問、AI研修、補助金サポート、Claude特化導入、農業×エンジニアリングなど、無料相談・お見積もりのご依頼はこちらから。メール・オンライン面談で全国対応、平日9:00〜18:00。";
+  "clearAI株式会社（クリアエーアイ）へのお問い合わせ。AI顧問、AI研修、AIコンサル・DX、ウェブサイト作成、SNS運用代行、ロボットレンタル、補助金サポートなど、無料相談・お見積もりのご依頼はこちらから。メール・オンライン面談で全国対応、平日9:00〜18:00。";
 
 export const metadata: Metadata = {
   title: "お問い合わせ | 無料相談受付中",
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     "AI顧問 相談",
     "AIコンサル 見積もり",
     "AI研修 問い合わせ",
-    "農業 EC 構築 相談",
+    "ロボットレンタル 相談",
   ],
   alternates: { canonical: "https://clearai.jp/contact" },
   openGraph: {
