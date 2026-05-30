@@ -27,6 +27,8 @@ export const header = {
     navSubsidyDesc: "研修・AI導入費を助成金で最大75%削減",
     navRobotRental: "ロボットレンタル",
     navRobotRentalDesc: "ヒューマノイドの短期レンタル・PoC・実証",
+    navAiAgent: "AIエージェント開発",
+    navAiAgentDesc: "業務を任せられる自律型AIエージェントを設計・開発・運用",
     navCases: "導入事例",
     navNews: "お知らせ",
     navAbout: "会社概要",
@@ -55,6 +57,8 @@ export const header = {
     navSubsidyDesc: "Cut training and AI rollout costs by up to 75% with subsidies",
     navRobotRental: "Robot Rental",
     navRobotRentalDesc: "Short-term humanoid rental, PoC & demos",
+    navAiAgent: "AI Agent Development",
+    navAiAgentDesc: "Design, build, and operate autonomous AI agents you can delegate work to",
     navCases: "Case Studies",
     navNews: "News",
     navAbout: "About",
@@ -77,6 +81,7 @@ export const footer = {
     services: {
       aiConsulting: "AIコンサルティング",
       advisor: "AI顧問",
+      aiAgent: "AIエージェント開発",
       training: "AI研修",
       subsidy: "補助金サポート",
       claude: "Claude特化",
@@ -114,6 +119,7 @@ export const footer = {
     services: {
       aiConsulting: "AI Consulting",
       advisor: "AI Advisor",
+      aiAgent: "AI Agent Development",
       training: "AI Training",
       subsidy: "Subsidy Support",
       claude: "Claude Specialized",

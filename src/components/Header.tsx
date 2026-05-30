@@ -23,6 +23,7 @@ export default function Header() {
   const navItems: NavItem[] = [
     { label: h.navRobotRental, href: "/robot-rental" },
     { label: h.navAdvisor, href: "/advisor" },
+    { label: h.navAiAgent, href: "/ai-agent" },
     {
       label: h.navTraining,
       href: "/training",
@@ -47,6 +48,7 @@ export default function Header() {
   const isAiConsulting =
     pathname?.startsWith("/ai-consulting") ||
     pathname?.startsWith("/advisor") ||
+    pathname?.startsWith("/ai-agent") ||
     pathname?.startsWith("/training") ||
     pathname?.startsWith("/subsidy") ||
     pathname?.startsWith("/advertising") ||

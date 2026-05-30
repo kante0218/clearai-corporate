@@ -11,6 +11,7 @@ export default function Footer() {
 
   const services = [
     { label: f.services.advisor, href: "/advisor" },
+    { label: f.services.aiAgent, href: "/ai-agent" },
     { label: f.services.training, href: "/training" },
     { label: f.services.aiConsulting, href: "/ai-consulting" },
     { label: f.services.website, href: "/website" },

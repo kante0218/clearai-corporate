@@ -9,6 +9,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: "https://clearai.jp/training", lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
     { url: "https://clearai.jp/subsidy", lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
     { url: "https://clearai.jp/advisor", lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
+    { url: "https://clearai.jp/ai-agent", lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
     { url: "https://clearai.jp/claude", lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
     { url: "https://clearai.jp/advertising", lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
     { url: "https://clearai.jp/website", lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
