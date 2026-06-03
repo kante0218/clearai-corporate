@@ -26,13 +26,22 @@ function Label({ children }: { children: ReactNode }) {
   return <p className="text-sm font-semibold text-sky-600 mb-4">{children}</p>;
 }
 
+// 本番ライブ Stripe Payment Link（日額レンタル・数量＝日数）。
+// 空文字の機体は「Coming Soon」表示のまま（予約ボタンを出さない）。
+const PAY = {
+  go2: "https://buy.stripe.com/9B66oA3xqfiE56y89md7q09",    // Unitree Go2  ¥10,000 / 日（税込）
+  g1: "https://buy.stripe.com/fZu7sE2tmfiE7eGgFSd7q0a",     // Unitree G1   ¥100,000 / 日（税込）
+  agibot: "https://buy.stripe.com/4gM3co3xq0nK8iK3T6d7q0b", // AGIBOT       ¥100,000 / 日（税込）
+} as const;
+
 type Copy = {
   heroKicker: string; comingSoon: string; heroTitle: string; heroDesc: string;
   heroCta: string; heroNote: string;
   bannerTitle: string; bannerDesc: string;
   lineupLabel: string; lineupTitle: string; lineupDesc: string;
-  lineup: { name: string; type: string; desc: string; image?: string }[];
+  lineup: { name: string; type: string; desc: string; image?: string; price?: string; priceUnit?: string; buyUrl?: string }[];
   lineupFootnote: string;
+  reserveCta: string; availableBadge: string;
   planLabel: string; planTitle: string; planDesc: string;
   plans: { title: string; desc: string }[];
   useLabel: string; useTitle: string; useDesc: string;
@@ -47,20 +56,22 @@ const COPY: Record<"ja" | "en", Copy> = {
     heroTitle: "ロボットレンタル",
     heroDesc: "Unitree・AGIBOT など、海外の最先端ヒューマノイド／ロボットを輸入し、レンタルで提供するサービスを準備中です。高額な機体を購入する前に、自社の現場で試せる選択肢を間もなくお届けします。",
     heroCta: "先行してご相談する",
-    heroNote: "正式リリースに向けて準備を進めています",
-    bannerTitle: "サービス準備中（Coming Soon）",
-    bannerDesc: "ロボットレンタルは現在ローンチ準備中です。機体ラインナップ・料金・提供開始時期は順次公開します。導入をご検討の方には、先行してご相談・先行ご案内を承っています。",
+    heroNote: "一部機体は予約受付を開始しました",
+    bannerTitle: "一部機体の予約受付を開始しました",
+    bannerDesc: "Unitree Go2・G1・AGIBOT は、本ページから日額で予約・お申し込みいただけます（決済画面で利用日数を選択）。その他の機体・料金・提供開始時期は順次公開します。導入のご相談も引き続き承っています。",
     lineupLabel: "Lineup",
     lineupTitle: "導入予定のロボット",
     lineupDesc: "海外の最先端メーカーから輸入予定。ラインナップは順次拡大していきます。",
     lineup: [
-      { name: "Unitree G1", type: "ヒューマノイド", desc: "コンパクトな人型ロボット。研究・実証・展示など幅広い用途を想定。", image: "/images/robot-rental/g1.jpg" },
-      { name: "Unitree Go2", type: "四足歩行ロボット", desc: "機動性の高い四足歩行型。点検・巡回・イベント演出などに。", image: "/images/robot-rental/go2.webp" },
+      { name: "Unitree G1", type: "ヒューマノイド", desc: "コンパクトな人型ロボット。研究・実証・展示など幅広い用途を想定。", image: "/images/robot-rental/g1.jpg", price: "¥100,000", priceUnit: "/ 日（税込）", buyUrl: PAY.g1 },
+      { name: "Unitree Go2", type: "四足歩行ロボット", desc: "機動性の高い四足歩行型。点検・巡回・イベント演出などに。", image: "/images/robot-rental/go2.webp", price: "¥10,000", priceUnit: "/ 日（税込）", buyUrl: PAY.go2 },
       { name: "Unitree R1", type: "ヒューマノイド", desc: "鮮やかなカラーリングが特徴の中型ヒューマノイド。接客・展示・撮影など視認性が求められる現場に。", image: "/images/robot-rental/r1.webp" },
       { name: "Unitree H1", type: "ヒューマノイド", desc: "高い運動性能を持つ大型人型ロボット。先進的なデモ・実証向け。", image: "/images/robot-rental/h1.png" },
-      { name: "AGIBOT", type: "ヒューマノイド", desc: "中国発の次世代ヒューマノイド。作業・接客系ユースケースを想定。" },
+      { name: "AGIBOT", type: "ヒューマノイド", desc: "中国発の次世代ヒューマノイド。作業・接客系ユースケースを想定。", price: "¥100,000", priceUnit: "/ 日（税込）", buyUrl: PAY.agibot },
     ],
-    lineupFootnote: "※ 機種名は導入予定の一例です。最終的なラインナップ・仕様は変更となる場合があります。",
+    lineupFootnote: "※ 機種名は導入予定の一例です。最終的なラインナップ・仕様は変更となる場合があります。料金は税込・1日あたり。決済画面で日数（数量）を選択できます。",
+    reserveCta: "予約する",
+    availableBadge: "予約受付中",
     planLabel: "Plan",
     planTitle: "提供予定の内容",
     planDesc: "「買う前に試す」を軸に、現場で価値を確かめられる形で提供予定です。",
@@ -90,20 +101,22 @@ const COPY: Record<"ja" | "en", Copy> = {
     heroTitle: "Robot Rental",
     heroDesc: "We're preparing a service to import and rent cutting-edge humanoids and robots from overseas — such as Unitree and AGIBOT. Soon you'll be able to try them on-site before committing to an expensive purchase.",
     heroCta: "Get an early consultation",
-    heroNote: "We're getting ready for the official launch",
-    bannerTitle: "Service coming soon",
-    bannerDesc: "Robot Rental is currently preparing to launch. The lineup, pricing, and availability will be announced progressively. If you're considering adoption, we're happy to take early inquiries and add you to the early-access list.",
+    heroNote: "Booking is now open for select units",
+    bannerTitle: "Booking is now open for select units",
+    bannerDesc: "Unitree Go2, G1, and AGIBOT can be booked and paid for by the day right on this page (choose the number of rental days at checkout). Other units, pricing, and availability will be announced progressively. We're also happy to take adoption inquiries.",
     lineupLabel: "Lineup",
     lineupTitle: "Robots planned for the lineup",
     lineupDesc: "Planned for import from leading overseas makers. The lineup will expand over time.",
     lineup: [
-      { name: "Unitree G1", type: "Humanoid", desc: "A compact humanoid robot, intended for research, PoC, and exhibitions.", image: "/images/robot-rental/g1.jpg" },
-      { name: "Unitree Go2", type: "Quadruped", desc: "A highly agile quadruped — for inspection, patrol, and event production.", image: "/images/robot-rental/go2.webp" },
+      { name: "Unitree G1", type: "Humanoid", desc: "A compact humanoid robot, intended for research, PoC, and exhibitions.", image: "/images/robot-rental/g1.jpg", price: "JPY 100,000", priceUnit: "/ day (tax incl.)", buyUrl: PAY.g1 },
+      { name: "Unitree Go2", type: "Quadruped", desc: "A highly agile quadruped — for inspection, patrol, and event production.", image: "/images/robot-rental/go2.webp", price: "JPY 10,000", priceUnit: "/ day (tax incl.)", buyUrl: PAY.go2 },
       { name: "Unitree R1", type: "Humanoid", desc: "A mid-size humanoid with a striking color scheme — ideal for hospitality, exhibition, and photo-shoot settings where presence matters.", image: "/images/robot-rental/r1.webp" },
       { name: "Unitree H1", type: "Humanoid", desc: "A larger humanoid with high mobility — for advanced demos and proof of concept.", image: "/images/robot-rental/h1.png" },
-      { name: "AGIBOT", type: "Humanoid", desc: "A next-generation humanoid from China, aimed at task and hospitality use cases." },
+      { name: "AGIBOT", type: "Humanoid", desc: "A next-generation humanoid from China, aimed at task and hospitality use cases.", price: "JPY 100,000", priceUnit: "/ day (tax incl.)", buyUrl: PAY.agibot },
     ],
-    lineupFootnote: "* Model names are examples planned for import. The final lineup and specs may change.",
+    lineupFootnote: "* Model names are examples planned for import. The final lineup and specs may change. Prices are per day, tax included. Choose the number of days (quantity) at checkout.",
+    reserveCta: "Reserve",
+    availableBadge: "Booking open",
     planLabel: "Plan",
     planTitle: "What we plan to offer",
     planDesc: "Centered on 'try before you buy,' offered so you can verify value on-site.",
@@ -179,9 +192,11 @@ export default function RobotRentalPage() {
             <p className="text-sm text-gray-500 mb-14 max-w-2xl leading-relaxed">{t.lineupDesc}</p>
           </Reveal>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {t.lineup.map((item, i) => (
+            {t.lineup.map((item, i) => {
+              const available = Boolean(item.buyUrl);
+              return (
               <Reveal key={item.name} delay={i * 80}>
-                <div className="relative h-full rounded-2xl border border-gray-200 bg-white overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col">
+                <div className={`relative h-full rounded-2xl border bg-white overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col ${available ? "border-sky-200" : "border-gray-200"}`}>
                   <div className="relative aspect-square bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
                     {item.image ? (
                       <Image
@@ -194,18 +209,41 @@ export default function RobotRentalPage() {
                     ) : (
                       <span className="text-xs font-bold tracking-widest text-gray-400 uppercase">Image Coming Soon</span>
                     )}
-                    <span className="absolute top-3 right-3 inline-flex items-center rounded-full bg-white/90 backdrop-blur text-gray-500 px-2.5 py-0.5 text-[10px] font-bold tracking-wide border border-gray-200">
-                      {t.comingSoon}
-                    </span>
+                    {available ? (
+                      <span className="absolute top-3 right-3 inline-flex items-center gap-1.5 rounded-full bg-sky-600 text-white px-2.5 py-0.5 text-[10px] font-bold tracking-wide shadow-sm">
+                        <span className="w-1.5 h-1.5 rounded-full bg-white" />{t.availableBadge}
+                      </span>
+                    ) : (
+                      <span className="absolute top-3 right-3 inline-flex items-center rounded-full bg-white/90 backdrop-blur text-gray-500 px-2.5 py-0.5 text-[10px] font-bold tracking-wide border border-gray-200">
+                        {t.comingSoon}
+                      </span>
+                    )}
                   </div>
                   <div className="p-6 flex-1 flex flex-col">
                     <span className="inline-block text-xs font-bold tracking-widest text-sky-600 uppercase mb-3">{item.type}</span>
                     <h3 className="text-lg font-bold text-gray-900 mb-2">{item.name}</h3>
                     <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
+                    {available && (
+                      <div className="mt-auto pt-5">
+                        <div className="flex items-baseline gap-1.5 mb-3">
+                          <span className="text-2xl font-bold text-gray-900">{item.price}</span>
+                          <span className="text-xs text-gray-500">{item.priceUnit}</span>
+                        </div>
+                        <a
+                          href={item.buyUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="block w-full text-center rounded-lg bg-sky-600 text-white font-semibold px-6 py-3 hover:bg-sky-700 transition-colors duration-300"
+                        >
+                          {t.reserveCta}
+                        </a>
+                      </div>
+                    )}
                   </div>
                 </div>
               </Reveal>
-            ))}
+              );
+            })}
           </div>
           <Reveal delay={200}>
             <p className="text-xs text-gray-400 mt-8">{t.lineupFootnote}</p>
