@@ -86,13 +86,13 @@ const COPY: Record<"ja" | "en", Copy> = {
         name: "ライト", price: "10万円", unit: "/ 月",
         desc: "従業員5名以下の小規模企業・スタートアップ向け。Slack/メール相談中心。",
         features: ["従業員5名以下の企業向け", "Slack/メール相談（営業日内返信）", "月1回のオンライン定例（45分）", "最新AIニュース・モデル動向の共有"],
-        featured: false, href: "https://buy.stripe.com/bJe28kd803zWfLc2P2d7q00", cta: "申し込む", minTerm: "最低6ヶ月契約から",
+        featured: false, href: "https://buy.stripe.com/5kQdR2aZS8Ug8iKdtGd7q0c", cta: "申し込む", minTerm: "最低6ヶ月契約から",
       },
       {
         name: "スタンダード", price: "20万円", unit: "/ 月",
         desc: "従業員6名以上の企業向け。定例会議＋PoC評価で本格推進。",
         features: ["従業員6名以上の企業向け", "ライトプランの全内容を含む", "月2回のオンライン定例（各60分）", "Slack/メール無制限相談（当日返信目安）", "PoC・導入プロジェクトの定期レビュー", "業務フロー別のAI活用設計・技術選定ドキュメント作成", "部署横断のAI活用ロードマップ作成", "社内勉強会（年4回まで）", "導入効果の月次レポーティング"],
-        featured: true, href: "https://buy.stripe.com/6oU4gs2tm1rO9mO4Xad7q01", cta: "申し込む", minTerm: "最低6ヶ月契約から",
+        featured: true, href: "https://buy.stripe.com/aFa3coaZS1rO6aCdtGd7q0d", cta: "申し込む", minTerm: "最低6ヶ月契約から",
       },
       {
         name: "エグゼクティブ", price: "30万円〜", unit: "/ 月",
@@ -160,13 +160,13 @@ const COPY: Record<"ja" | "en", Copy> = {
         name: "Light", price: "JPY 100K", unit: "/ mo",
         desc: "For small companies and startups with 5 or fewer employees. Mainly Slack/email support.",
         features: ["For companies with 5 or fewer employees", "Slack/email support (reply within business days)", "Monthly online session (45 min)", "Latest AI news & model trends"],
-        featured: false, href: "https://buy.stripe.com/bJe28kd803zWfLc2P2d7q00", cta: "Get started", minTerm: "6-month minimum",
+        featured: false, href: "https://buy.stripe.com/5kQdR2aZS8Ug8iKdtGd7q0c", cta: "Get started", minTerm: "6-month minimum",
       },
       {
         name: "Standard", price: "JPY 200K", unit: "/ mo",
         desc: "For companies with 6 or more employees. Regular sessions + PoC review for serious rollout.",
         features: ["For companies with 6 or more employees", "Everything in Light", "2 online sessions/month (60 min each)", "Unlimited Slack/email support (same-day reply)", "Regular PoC & rollout project reviews", "Per-workflow AI design & tool-selection docs", "Cross-department AI adoption roadmap", "Internal study sessions (up to 4/year)", "Monthly impact reporting"],
-        featured: true, href: "https://buy.stripe.com/6oU4gs2tm1rO9mO4Xad7q01", cta: "Get started", minTerm: "6-month minimum",
+        featured: true, href: "https://buy.stripe.com/aFa3coaZS1rO6aCdtGd7q0d", cta: "Get started", minTerm: "6-month minimum",
       },
       {
         name: "Executive", price: "From JPY 300K", unit: "/ mo",
