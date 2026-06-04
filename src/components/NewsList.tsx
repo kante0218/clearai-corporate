@@ -40,8 +40,8 @@ export default async function NewsList() {
           className="group flex items-start gap-4 py-5 hover:bg-gray-50 -mx-4 px-4 rounded-lg transition-colors"
         >
           <span className="text-xs text-gray-400 font-medium whitespace-nowrap pt-0.5">{post.date}</span>
-          <span className="text-xs font-semibold text-blue-600 bg-blue-50 px-2 py-0.5 rounded whitespace-nowrap">{post.category}</span>
-          <h3 className="text-sm font-medium text-gray-900 group-hover:text-blue-600 transition-colors leading-relaxed">
+          <span className="text-xs font-semibold text-sky-600 bg-sky-50 px-2 py-0.5 rounded whitespace-nowrap">{post.category}</span>
+          <h3 className="text-sm font-medium text-gray-900 group-hover:text-sky-600 transition-colors leading-relaxed">
             {post.title}
           </h3>
         </Link>

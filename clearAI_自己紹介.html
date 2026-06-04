@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>髙橋 敢輝 / clearAI 自己紹介</title>
+<style>
+  @page { size: 1920px 1080px; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+    color: #1a1a1a;
+    -webkit-font-smoothing: antialiased;
+  }
+  .slide {
+    width: 1920px;
+    height: 1080px;
+    padding: 110px 140px;
+    page-break-after: always;
+    position: relative;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .slide:last-child { page-break-after: auto; }
+
+  h1.title {
+    font-size: 96px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin-bottom: 40px;
+  }
+  h2 {
+    font-size: 74px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    margin-bottom: 60px;
+    border-bottom: 6px solid #1e90ff;
+    padding-bottom: 20px;
+    display: inline-block;
+  }
+  h3 {
+    font-size: 44px;
+    font-weight: 700;
+    margin-bottom: 18px;
+    color: #0a2540;
+  }
+  p, li { font-size: 34px; line-height: 1.65; font-weight: 400; }
+  .small { font-size: 28px; color: #555; }
+
+  /* Slide 1: Cover */
+  .cover { justify-content: center; align-items: flex-start; background: linear-gradient(135deg,#f7fbff 0%, #eaf4ff 100%); }
+  .cover .hello { font-size: 140px; font-weight: 900; line-height: 1.1; letter-spacing: -0.03em; }
+  .cover .sub { font-size: 48px; margin-top: 30px; color: #333; font-weight: 500;}
+  .cover .name { margin-top: 90px; font-size: 68px; font-weight: 800; }
+  .cover .role { font-size: 34px; margin-top: 14px; color: #444; }
+  .cover .brand { position:absolute; bottom:110px; right:140px; font-size:56px; font-weight:900; color:#1e90ff; letter-spacing:-0.02em;}
+  .cover .brand span { color:#0a2540; }
+  .cover .accent { position:absolute; top:0; right:0; width:600px; height:600px; background: radial-gradient(circle at center, #1e90ff22, transparent 70%); }
+
+  /* Slide 2: Profile */
+  .profile-grid { display:grid; grid-template-columns: 260px 1fr; row-gap: 32px; column-gap: 48px; margin-top: 20px;}
+  .profile-grid .label { font-size: 30px; color: #1e90ff; font-weight: 700; padding-top: 10px;}
+  .profile-grid .val { font-size: 42px; font-weight: 600;}
+  .tagline { margin-top: 60px; font-size: 40px; font-style: italic; color:#0a2540; border-left: 8px solid #1e90ff; padding-left: 30px;}
+
+  /* Slide: three-column */
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 50px; margin-top: 30px; }
+  .card { background: #f5faff; border-radius: 24px; padding: 50px 42px; border-top: 8px solid #1e90ff; }
+  .card h3 { font-size: 40px; margin-bottom: 24px; }
+  .card p { font-size: 28px; line-height: 1.6; }
+
+  /* Reasons slide */
+  .reason { display:flex; gap:40px; margin-bottom: 38px; align-items: flex-start;}
+  .reason .num { font-size: 96px; font-weight: 900; color:#1e90ff; line-height: 0.9; min-width: 130px;}
+  .reason .body { flex:1; }
+  .reason h3 { font-size: 40px; margin-bottom: 12px;}
+  .reason p { font-size: 28px; line-height:1.55; color:#333;}
+
+  /* Vision slide */
+  .phase { padding: 36px 44px; border-radius: 20px; margin-bottom: 28px; }
+  .phase.short { background: #eaf4ff; border-left: 12px solid #1e90ff;}
+  .phase.long { background: #0a2540; color:#fff; border-left: 12px solid #1e90ff;}
+  .phase h3 { font-size: 38px; margin-bottom: 10px;}
+  .phase.long h3 { color: #7dd3fc; }
+  .phase p { font-size: 28px; line-height:1.55;}
+
+  /* Goals */
+  .goal { display:flex; align-items: flex-start; gap: 36px; margin-bottom: 40px;}
+  .goal .flag { font-size: 64px; color:#1e90ff; }
+  .goal h3 { font-size: 40px; margin-bottom: 8px; border-bottom: 3px solid #1e90ff; display:inline-block; padding-bottom: 6px;}
+  .goal p { font-size: 28px; line-height:1.55; margin-top: 14px;}
+
+  /* Closing */
+  .closing { justify-content: center; background: linear-gradient(135deg,#0a2540 0%, #1e3a5f 100%); color:#fff; }
+  .closing h1 { font-size: 110px; font-weight:900; line-height:1.1; letter-spacing:-0.02em;}
+  .closing .lead { font-size: 38px; margin-top: 40px; line-height:1.65; max-width: 1400px;}
+  .closing .sign { margin-top: 80px; font-size: 44px; font-weight:700;}
+  .closing .brand-bottom { position:absolute; bottom:80px; right:140px; font-size:44px; font-weight:900; color:#7dd3fc;}
+
+  .footer { position:absolute; bottom:50px; left:140px; font-size:22px; color:#888;}
+  .page-num { position:absolute; bottom:50px; right:140px; font-size:22px; color:#888;}
+</style>
+</head>
+<body>
+
+<!-- Slide 1: Cover -->
+<section class="slide cover">
+  <div class="accent"></div>
+  <div class="hello">はじめまして。</div>
+  <div class="sub">18歳・高専生起業家。AI × 農業で、日本の次の100年をつくります。</div>
+  <div class="name">髙橋 敢輝 <span style="font-size:40px; color:#555; font-weight:500;">Kante Takahashi</span></div>
+  <div class="role">clearAI株式会社 代表取締役 / 2026年4月創業</div>
+  <div class="brand">clear<span>AI</span></div>
+</section>
+
+<!-- Slide 2: Profile -->
+<section class="slide">
+  <h2>プロフィール</h2>
+  <div class="profile-grid">
+    <div class="label">氏名</div><div class="val">髙橋 敢輝（たかはし かんて） / Kante Takahashi</div>
+    <div class="label">生年月日</div><div class="val">2007年2月18日（18歳）</div>
+    <div class="label">出身</div><div class="val">茨城県 水戸市</div>
+    <div class="label">所属</div><div class="val">茨城工業高等専門学校 機械システム工学科 4年</div>
+    <div class="label">MBTI</div><div class="val">ENFP</div>
+  </div>
+  <div class="tagline">何が起きても、諦めない。変化を、恐れない。</div>
+  <div class="footer">clearAI株式会社 代表取締役</div>
+  <div class="page-num">02</div>
+</section>
+
+<!-- Slide 3: Why unique -->
+<section class="slide">
+  <h2>私が「唯一無二」である3つの理由</h2>
+  <div class="reason">
+    <div class="num">01</div>
+    <div class="body">
+      <h3>総資産150億円の実業家の「隣」で経営を学んだ18歳</h3>
+      <p>サウジアラビアの実業家ご夫妻の訪日秘書として、不動産取引の通訳・高級車の運行管理・渡航スケジュール全般を一人で担当。超富裕層の意思決定を、10代で間近に体験しました。</p>
+    </div>
+  </div>
+  <div class="reason">
+    <div class="num">02</div>
+    <div class="body">
+      <h3>「語る」ではなく「作れる」高校生起業家</h3>
+      <p>Claudeをはじめ生成AIを駆使し、ベンチャー企業へアプリ・Webサイト・Chrome拡張機能を開発・納品。自社アプリは既に3社のVCからフィードバックを受け、App Storeリリース調整中です。</p>
+    </div>
+  </div>
+  <div class="reason">
+    <div class="num">03</div>
+    <div class="body">
+      <h3>茨城の農家に通い詰めた、地に足のついた原体験</h3>
+      <p>水管理・人手不足・後継者問題——現場の声を聞き続ける中で「エンジニアの力を日本の農業に返す義務がある」と確信。clearAIはこの原体験から生まれました。</p>
+    </div>
+  </div>
+  <div class="page-num">03</div>
+</section>
+
+<!-- Slide 4: Strengths -->
+<section class="slide">
+  <h2>得意なこと</h2>
+  <div class="three-col">
+    <div class="card">
+      <h3>デザイン & 実装</h3>
+      <p>Webサイト制作の受託経験を通じて磨いた、"泥臭さ" と "美しさ" を両立させる実行力。構想から納品まで一貫して完遂します。</p>
+    </div>
+    <div class="card">
+      <h3>市場分析</h3>
+      <p>AIを駆使して、あらゆる市場を高速かつ徹底的にリサーチ。数字と現場の声、両面から意思決定の材料を揃えます。</p>
+    </div>
+    <div class="card">
+      <h3>対話 & 吸収</h3>
+      <p>人と話すことが何より好き。相手の良いところを吸収し、信頼関係の中から協力を引き出すことを強みとしています。</p>
+    </div>
+  </div>
+  <div class="page-num">04</div>
+</section>
+
+<!-- Slide 5: Career -->
+<section class="slide">
+  <h2>これまでの経歴</h2>
+  <div class="reason">
+    <div class="num">◆</div>
+    <div class="body">
+      <h3>総資産150億円・サウジアラビア実業家の訪日秘書</h3>
+      <p>ご夫妻の日本滞在におけるビジネス・プライベート両面のサポートを一任。不動産取引の通訳、高級車の運行、スケジュール管理まで、超富裕層の現場を間近に経験しました。</p>
+    </div>
+  </div>
+  <div class="reason">
+    <div class="num">◆</div>
+    <div class="body">
+      <h3>AIを駆使したアプリ・Webサイト・Chrome拡張機能の開発</h3>
+      <p>Claude等の生成AIを活用し、ベンチャー企業へ納品実績多数。自社開発アプリについては、既に3社のVCからフィードバックを頂戴し、App Storeリリースへ向けて最終調整中です。</p>
+    </div>
+  </div>
+  <div class="reason">
+    <div class="num">◆</div>
+    <div class="body">
+      <h3>ピアノ10年 / サッカー12年</h3>
+      <p>継続する力と、チームで勝ちに行く姿勢は、幼少期から培ってきた習慣です。</p>
+    </div>
+  </div>
+  <div class="page-num">05</div>
+</section>
+
+<!-- Slide 6: Why clearAI -->
+<section class="slide">
+  <h2>clearAIを創った理由</h2>
+  <div class="phase short">
+    <h3>① 個の力を、組織の力へ</h3>
+    <p>私の周囲には、個人で高単価AIコンサルを担う優秀な人材が複数います。これを組織化し、2年以内に市場シェアを獲得する——これが事業の最短最速のエンジンです。</p>
+  </div>
+  <div class="phase long">
+    <h3>② 未来に必ず残る産業、農業へフルコミット</h3>
+    <p>多くの農家さんの声を聞く中で、自分の必要性と、エンジニアとして日本を良い方向へ導く義務を痛感しました。AIコンサルで得たキャッシュと知見を、本丸である "AI × 農業" に投下します。</p>
+  </div>
+  <div class="page-num">06</div>
+</section>
+
+<!-- Slide 7: Goals -->
+<section class="slide">
+  <h2>今後の目標</h2>
+  <div class="goal">
+    <div class="flag">▶</div>
+    <div class="body">
+      <h3>チームを作り、ユニコーン企業を必ず達成する</h3>
+      <p>「まっすぐ進めば必ず成功できる」と思える優秀なメンバーが既に集まっています。一人一人に寄り添い、最高のチームで世界へ挑みます。</p>
+    </div>
+  </div>
+  <div class="goal">
+    <div class="flag">▶</div>
+    <div class="body">
+      <h3>マイルストーン主義で、着実に前進する</h3>
+      <p>農業では「水の管理」から。AIコンサルでは「社内ナレッジの共有基盤」から。小さな目標を積み上げ、全て達成します。</p>
+    </div>
+  </div>
+  <div class="goal">
+    <div class="flag">▶</div>
+    <div class="body">
+      <h3>興味の対象から、信頼される存在へ成長する</h3>
+      <p>周囲の能力と協力を引き出せる人間になる。それが事業成功の前提条件だと考えています。</p>
+    </div>
+  </div>
+  <div class="page-num">07</div>
+</section>
+
+<!-- Slide 8: Closing -->
+<section class="slide closing">
+  <h1>熱意と実行力を、<br>直接ご覧ください。</h1>
+  <div class="lead">
+    資金調達だけが目的ではありません。私の熱意とチームの実力を直接見ていただき、長期にわたって伴走してくださる方と出会いたい——それが、今日お時間を頂戴した理由です。<br><br>
+    事業計画書の数字だけでは伝わらない「なぜ私がやるのか」「なぜ今なのか」を、直接お話しさせてください。<br>何卒よろしくお願い申し上げます。
+  </div>
+  <div class="sign">髙橋 敢輝 / clearAI株式会社 代表取締役</div>
+  <div class="brand-bottom">clearAI</div>
+</section>
+
+</body>
+</html>

@@ -82,12 +82,12 @@ export default function Header() {
   const contactFilledClass = isClaude
     ? "bg-orange-500 hover:bg-orange-400 text-white"
     : isAiConsulting
-    ? "bg-blue-600 hover:bg-blue-500 text-white"
-    : "bg-blue-600 hover:bg-blue-500 text-white";
+    ? "bg-sky-600 hover:bg-sky-500 text-white"
+    : "bg-sky-600 hover:bg-sky-500 text-white";
   // Stylish filled pill CTA for the desktop header (solid + soft glow + hover lift)
   const contactBtnClass = isClaude
     ? "bg-orange-500 hover:bg-orange-600 shadow-[0_6px_20px_-6px_rgba(249,115,22,0.55)] hover:shadow-[0_12px_28px_-6px_rgba(249,115,22,0.7)]"
-    : "bg-blue-600 hover:bg-blue-700 shadow-[0_6px_20px_-6px_rgba(37,99,235,0.55)] hover:shadow-[0_12px_28px_-6px_rgba(37,99,235,0.7)]";
+    : "bg-sky-600 hover:bg-sky-700 shadow-[0_6px_20px_-6px_rgba(37,99,235,0.55)] hover:shadow-[0_12px_28px_-6px_rgba(37,99,235,0.7)]";
 
   return (
     <>

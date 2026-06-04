@@ -126,7 +126,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <div className="max-w-5xl mx-auto px-6 pt-40">
-        <Link href="/blog" className="inline-block text-sm font-semibold text-blue-600 hover:text-blue-800 transition-colors duration-300 mb-10">
+        <Link href="/blog" className="inline-block text-sm font-semibold text-sky-600 hover:text-sky-800 transition-colors duration-300 mb-10">
           ← お知らせ一覧
         </Link>
 
@@ -145,7 +145,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
         <div className="flex items-center gap-3 mb-5">
           {post.category && (
-            <span className="inline-block rounded-lg px-3 py-1 text-xs font-semibold text-blue-600 bg-blue-50">
+            <span className="inline-block rounded-lg px-3 py-1 text-xs font-semibold text-sky-600 bg-sky-50">
               {post.category.name}
             </span>
           )}
@@ -164,7 +164,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
       <div className="max-w-5xl mx-auto px-6 pb-20 lg:pb-28">
         <div className="border-t border-gray-200 pt-8">
-          <Link href="/blog" className="text-sm font-semibold text-blue-600 hover:text-blue-800 transition-colors duration-300">
+          <Link href="/blog" className="text-sm font-semibold text-sky-600 hover:text-sky-800 transition-colors duration-300">
             ← お知らせ一覧に戻る
           </Link>
         </div>

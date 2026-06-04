@@ -37,7 +37,7 @@ export const blogPosts: BlogPost[] = [
     date: "2026-03-15",
     readTime: "5分",
     author: "clearAI編集部",
-    thumbnail: "#3b82f6",
+    thumbnail: "#0ea5e9",
   },
   {
     slug: "enterprise-ai-implementation-guide",

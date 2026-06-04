@@ -137,7 +137,7 @@ export default function HtmlSitemapPage() {
       />
 
       <section className="max-w-5xl mx-auto px-6 lg:px-10 pt-40 pb-24">
-        <p className="text-xs font-semibold tracking-widest uppercase text-blue-600 mb-4">
+        <p className="text-xs font-semibold tracking-widest uppercase text-sky-600 mb-4">
           {t.label}
         </p>
         <h1 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight mb-6">
@@ -158,7 +158,7 @@ export default function HtmlSitemapPage() {
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-sm text-gray-700 hover:text-blue-600 transition-colors"
+                      className="text-sm text-gray-700 hover:text-sky-600 transition-colors"
                     >
                       → {link.label}
                     </Link>
@@ -179,7 +179,7 @@ export default function HtmlSitemapPage() {
                 <li key={p.id}>
                   <Link
                     href={`/blog/${p.id}`}
-                    className="text-sm text-gray-700 hover:text-blue-600 transition-colors"
+                    className="text-sm text-gray-700 hover:text-sky-600 transition-colors"
                   >
                     → {p.title}
                   </Link>
@@ -194,7 +194,7 @@ export default function HtmlSitemapPage() {
             {t.xmlNoteA}{" "}
             <a
               href="/sitemap.xml"
-              className="text-blue-600 hover:text-blue-700 underline"
+              className="text-sky-600 hover:text-sky-700 underline"
             >
               /sitemap.xml
             </a>{" "}

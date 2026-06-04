@@ -381,7 +381,7 @@ function ContactPageInner() {
   };
 
   const inputClass = (field: string) =>
-    `w-full rounded-xl border bg-white px-4 py-3.5 text-base text-gray-900 placeholder-gray-400 outline-none transition-all duration-200 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 ${
+    `w-full rounded-xl border bg-white px-4 py-3.5 text-base text-gray-900 placeholder-gray-400 outline-none transition-all duration-200 focus:border-sky-600 focus:ring-2 focus:ring-sky-100 ${
       errors[field] ? "border-red-300 bg-red-50/30" : "border-gray-200 hover:border-gray-300"
     }`;
 
@@ -425,11 +425,11 @@ function ContactPageInner() {
       {/* Header */}
       <section className="max-w-3xl mx-auto px-6 pt-28 lg:pt-32 pb-8 lg:pb-10 text-center">
         <Reveal>
-          <p className="text-xs font-semibold tracking-[0.2em] text-blue-600 uppercase mb-4">{t.headerKicker}</p>
+          <p className="text-xs font-semibold tracking-[0.2em] text-sky-600 uppercase mb-4">{t.headerKicker}</p>
           <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">{t.headerTitle}</h1>
           <p className="text-sm lg:text-base text-gray-600 leading-relaxed max-w-xl mx-auto">
             {t.headerDesc}{" "}
-            <a href="mailto:info@clearai.jp" className="text-blue-600 underline underline-offset-2">info@clearai.jp</a>{" "}
+            <a href="mailto:info@clearai.jp" className="text-sky-600 underline underline-offset-2">info@clearai.jp</a>{" "}
             {t.headerDescEmail}
           </p>
         </Reveal>
@@ -439,8 +439,8 @@ function ContactPageInner() {
         {status === "success" ? (
           <Reveal>
             <div className="bg-white border border-gray-200 rounded-3xl px-8 py-16 text-center shadow-sm">
-              <div className="w-14 h-14 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-6">
-                <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24">
+              <div className="w-14 h-14 bg-sky-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                <svg className="w-6 h-6 text-sky-600" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
               </div>
@@ -465,7 +465,7 @@ function ContactPageInner() {
               {/* STEP 1: Inquiry type */}
               <div>
                 <div className="flex items-baseline gap-3 mb-4">
-                  <span className="text-xs font-bold text-blue-600">01</span>
+                  <span className="text-xs font-bold text-sky-600">01</span>
                   <h2 className="text-sm font-semibold text-gray-900">{t.step1Title}</h2>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3">
@@ -477,13 +477,13 @@ function ContactPageInner() {
                       <button key={key} type="button" onClick={() => selectInquiry(key)}
                         aria-pressed={active}
                         className={`flex sm:flex-col items-center sm:text-center gap-3 sm:gap-0 rounded-2xl border px-4 py-3.5 sm:py-5 transition-all duration-200 ${
-                          active ? "border-blue-600 bg-blue-50/70 ring-2 ring-blue-600/20" : "border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50/50"
+                          active ? "border-sky-600 bg-sky-50/70 ring-2 ring-sky-600/20" : "border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50/50"
                         }`}>
                         <div className={`shrink-0 sm:mx-auto sm:mb-2 w-9 h-9 rounded-full flex items-center justify-center transition-colors ${
-                          active ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-500"
+                          active ? "bg-sky-600 text-white" : "bg-gray-100 text-gray-500"
                         }`}>{INQUIRY_ICONS[key]}</div>
                         <div className="min-w-0">
-                          <span className={`block text-sm font-bold leading-tight ${active ? "text-blue-700" : "text-gray-900"}`}>{t[labelKey]}</span>
+                          <span className={`block text-sm font-bold leading-tight ${active ? "text-sky-700" : "text-gray-900"}`}>{t[labelKey]}</span>
                           <span className="block text-[11px] text-gray-500 mt-0.5 sm:mt-1 leading-snug">{t[descKey]}</span>
                         </div>
                       </button>
@@ -496,7 +496,7 @@ function ContactPageInner() {
               {isBusiness && (
                 <div>
                   <div className="flex items-baseline gap-3 mb-4">
-                    <span className="text-xs font-bold text-blue-600">02</span>
+                    <span className="text-xs font-bold text-sky-600">02</span>
                     <h2 className="text-sm font-semibold text-gray-900">{t.step2Title} <span className="font-normal text-gray-400">{t.step2Optional}</span></h2>
                   </div>
                   <select id="service" name="service" value={form.service} onChange={handleChange}
@@ -512,7 +512,7 @@ function ContactPageInner() {
               {/* STEP 3: Basic info */}
               <div>
                 <div className="flex items-baseline gap-3 mb-4">
-                  <span className="text-xs font-bold text-blue-600">{isBusiness ? "03" : "02"}</span>
+                  <span className="text-xs font-bold text-sky-600">{isBusiness ? "03" : "02"}</span>
                   <h2 className="text-sm font-semibold text-gray-900">{t.step3Title}</h2>
                 </div>
                 <div className="space-y-5">
@@ -636,7 +636,7 @@ function ContactPageInner() {
               {/* STEP 4: Message */}
               <div>
                 <div className="flex items-baseline gap-3 mb-4">
-                  <span className="text-xs font-bold text-blue-600">{isBusiness ? "04" : "03"}</span>
+                  <span className="text-xs font-bold text-sky-600">{isBusiness ? "04" : "03"}</span>
                   <h2 className="text-sm font-semibold text-gray-900">
                     {isEngineer ? t.step4TitleEngineer : t.step4TitleBusiness}
                   </h2>
@@ -658,7 +658,7 @@ function ContactPageInner() {
               {/* Submit */}
               <div className="pt-2 space-y-4">
                 <button type="submit" disabled={status === "submitting"}
-                  className={`w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 text-white font-semibold px-10 py-4 hover:bg-blue-700 active:bg-blue-800 transition-all duration-200 shadow-sm hover:shadow-md ${
+                  className={`w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-sky-600 text-white font-semibold px-10 py-4 hover:bg-sky-700 active:bg-sky-800 transition-all duration-200 shadow-sm hover:shadow-md ${
                     status === "submitting" ? "opacity-60 cursor-not-allowed" : ""
                   }`}>
                   {status === "submitting" && (

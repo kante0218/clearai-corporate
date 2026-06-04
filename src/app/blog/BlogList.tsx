@@ -43,7 +43,7 @@ export default function BlogList({ posts, categories }: { posts: Blog[]; categor
     <main className="min-h-screen bg-white">
       <section className="max-w-5xl mx-auto px-6 pt-40 pb-16">
         <Reveal>
-          <p className="text-xs font-semibold tracking-widest uppercase text-blue-600 mb-4">News</p>
+          <p className="text-xs font-semibold tracking-widest uppercase text-sky-600 mb-4">News</p>
           <h1 className="text-3xl font-bold text-gray-900">お知らせ</h1>
         </Reveal>
       </section>
@@ -91,10 +91,10 @@ export default function BlogList({ posts, categories }: { posts: Blog[]; categor
                     <div className="flex items-center gap-3 mb-1.5">
                       <time className="text-xs text-gray-400 font-medium">{formatDate(post.publishedAt!)}</time>
                       {post.category && (
-                        <span className="text-xs font-semibold text-blue-600 bg-blue-50 px-2 py-0.5 rounded">{post.category.name}</span>
+                        <span className="text-xs font-semibold text-sky-600 bg-sky-50 px-2 py-0.5 rounded">{post.category.name}</span>
                       )}
                     </div>
-                    <h2 className="text-base font-medium text-gray-900 group-hover:text-blue-600 transition-colors leading-relaxed">
+                    <h2 className="text-base font-medium text-gray-900 group-hover:text-sky-600 transition-colors leading-relaxed">
                       {post.title}
                     </h2>
                   </div>
