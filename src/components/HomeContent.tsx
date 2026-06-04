@@ -130,7 +130,7 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
     primaryServices: [
       {
         code: "01", title: "AI顧問", color: "indigo",
-        desc: "月5万円〜、外部AI顧問として経営・業務・Web改善を月次で継続的に伴走。技術選定からPoC評価、社内教育まで業務委託契約ベースで支援します。",
+        desc: "月10万円〜、外部AI顧問として経営・業務・Web改善を月次で継続的に伴走。技術選定からPoC評価、社内教育まで業務委託契約ベースで支援します。",
         tags: ["月額契約", "月次壁打ち", "経営伴走", "業務委託"],
         href: "/advisor", cta: "顧問契約のご相談",
         claudeNote: "Claude（Anthropic）の業務導入・運用定着まで、顧問として継続的に伴走します。",
@@ -279,7 +279,7 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
     primaryServices: [
       {
         code: "01", title: "AI Advisor", color: "indigo",
-        desc: "From JPY 50K/month, as your outside AI advisor we partner monthly on management, operations, and web improvements — from tool selection to PoC review and internal training, on a contract basis.",
+        desc: "From JPY 100K/month, as your outside AI advisor we partner monthly on management, operations, and web improvements — from tool selection to PoC review and internal training, on a contract basis.",
         tags: ["Monthly contract", "Monthly sessions", "Management partner", "Contract basis"],
         href: "/advisor", cta: "Discuss an advisory engagement",
         claudeNote: "We support adopting and embedding Claude (Anthropic) into your operations — as an ongoing advisor.",

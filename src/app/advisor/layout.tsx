@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import Script from "next/script";
 
 const description =
-  "clearAIのAI顧問サービス。月5万円〜、大手コンサル出身のAIアドバイザーが貴社の意思決定と現場実装に継続伴走。戦略相談・技術選定・PoC評価・社内教育まで、自走できる体制づくりを支援します。";
+  "clearAIのAI顧問サービス。月10万円〜、大手コンサル出身のAIアドバイザーが貴社の意思決定と現場実装に継続伴走。戦略相談・技術選定・PoC評価・社内教育まで、自走できる体制づくりを支援します。";
 
 export const metadata: Metadata = {
-  title: "AI顧問 | 月5万円〜、AI活用を継続伴走するアドバイザー",
+  title: "AI顧問 | 月10万円〜、AI活用を継続伴走するアドバイザー",
   description,
   keywords: [
     "AI顧問",

@@ -20,8 +20,8 @@ export const faqItems: FaqItem[] = [
       en: "What does AI consulting cost?",
     },
     a: {
-      ja: "スポット相談・AI顧問（月5万円〜）・PoC導入（1〜2ヶ月）・全社展開プロジェクト（3ヶ月〜）でレンジが異なります。ご予算感に応じて、どの入口から始めるのが最適かをご提案します。初回ヒアリングで料金レンジの目安までお伝えします。",
-      en: "Pricing varies by engagement type: spot consultation, AI advisor retainer (from JPY 50,000/month), PoC rollout (1–2 months), and company-wide deployment projects (3 months+). We'll recommend the best starting point for your budget and share an indicative price range at the first hearing.",
+      ja: "スポット相談・AI顧問（月10万円〜）・PoC導入（1〜2ヶ月）・全社展開プロジェクト（3ヶ月〜）でレンジが異なります。ご予算感に応じて、どの入口から始めるのが最適かをご提案します。初回ヒアリングで料金レンジの目安までお伝えします。",
+      en: "Pricing varies by engagement type: spot consultation, AI advisor retainer (from JPY 100,000/month), PoC rollout (1–2 months), and company-wide deployment projects (3 months+). We'll recommend the best starting point for your budget and share an indicative price range at the first hearing.",
     },
   },
   {
