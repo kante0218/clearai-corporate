@@ -149,37 +149,38 @@ export default function RobotRentalPage() {
   return (
     <>
       {/* PAGE HEADER */}
-      <section className="pt-24 pb-12 lg:pt-32 lg:pb-16 bg-white border-b border-gray-100">
+      <section className="pt-24 pb-16 lg:pt-32 lg:pb-24 bg-white border-b border-gray-100">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <div className="flex items-center gap-3 mb-3">
-            <p className="text-sm font-semibold text-sky-600">{t.heroKicker}</p>
-            <span className="inline-flex items-center rounded-full bg-sky-50 text-sky-700 border border-sky-200 px-3 py-1 text-xs font-bold tracking-wide">
-              {t.comingSoon}
-            </span>
-          </div>
-          <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4">{t.heroTitle}</h1>
-          <p className="text-base text-gray-600 leading-relaxed max-w-2xl mb-8">{t.heroDesc}</p>
-          <div className="flex items-center gap-4 flex-wrap">
-            <a href="/contact?service=robot-rental" className="rounded-lg bg-sky-600 text-white font-semibold px-8 py-3.5 hover:bg-sky-700 transition-colors duration-300 inline-block">
-              {t.heroCta}
-            </a>
-            <span className="text-sm text-gray-400">{t.heroNote}</span>
-          </div>
-        </div>
-      </section>
-
-      {/* COMING SOON BANNER */}
-      <section className="py-20 lg:py-28 bg-white">
-        <div className="max-w-5xl mx-auto px-6 lg:px-8">
-          <Reveal>
-            <div className="rounded-3xl border border-sky-100 bg-gradient-to-br from-sky-50 to-white p-8 lg:p-12 text-center">
-              <span className="inline-flex items-center gap-2 rounded-full bg-white border border-sky-200 px-4 py-1.5 text-xs font-bold tracking-widest uppercase text-sky-600 mb-5">
-                <span className="w-2 h-2 rounded-full bg-sky-500" />{t.comingSoon}
-              </span>
-              <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 leading-snug mb-4">{t.bannerTitle}</h2>
-              <p className="text-base text-gray-600 leading-relaxed max-w-2xl mx-auto">{t.bannerDesc}</p>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
+            {/* LEFT: hero copy */}
+            <div>
+              <div className="flex items-center gap-3 mb-3">
+                <p className="text-sm font-semibold text-sky-600">{t.heroKicker}</p>
+                <span className="inline-flex items-center rounded-full bg-sky-50 text-sky-700 border border-sky-200 px-3 py-1 text-xs font-bold tracking-wide">
+                  {t.comingSoon}
+                </span>
+              </div>
+              <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4">{t.heroTitle}</h1>
+              <p className="text-base text-gray-600 leading-relaxed max-w-2xl mb-8">{t.heroDesc}</p>
+              <div className="flex items-center gap-4 flex-wrap">
+                <a href="/contact?service=robot-rental" className="rounded-lg bg-sky-600 text-white font-semibold px-8 py-3.5 hover:bg-sky-700 transition-colors duration-300 inline-block">
+                  {t.heroCta}
+                </a>
+                <span className="text-sm text-gray-400">{t.heroNote}</span>
+              </div>
             </div>
-          </Reveal>
+
+            {/* RIGHT: coming soon banner card */}
+            <Reveal delay={120}>
+              <div className="rounded-3xl border border-sky-100 bg-gradient-to-br from-sky-50 to-white p-8 lg:p-12 text-center">
+                <span className="inline-flex items-center gap-2 rounded-full bg-white border border-sky-200 px-4 py-1.5 text-xs font-bold tracking-widest uppercase text-sky-600 mb-5">
+                  <span className="w-2 h-2 rounded-full bg-sky-500" />{t.comingSoon}
+                </span>
+                <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 leading-snug mb-4">{t.bannerTitle}</h2>
+                <p className="text-base text-gray-600 leading-relaxed">{t.bannerDesc}</p>
+              </div>
+            </Reveal>
+          </div>
         </div>
       </section>
 
