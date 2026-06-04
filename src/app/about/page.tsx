@@ -93,10 +93,16 @@ const COPY: Record<"ja" | "en", Copy> = {
         bio: "茨城県出身。日本の中小企業にAIを届けることを使命に、2026年にclearAIを創業。誠実・伴走・翻訳・長期視点をコアバリューに、AI活用支援とフィジカルAI・ロボットで日本一信頼されるAIパートナーを目指す。",
       },
       {
+        name: "石嶋 悠一",
+        nameEn: "yuichi ishijima",
+        role: "Co-Founder & COO / 事業開発・営業（慶應義塾大学）",
+        bio: "慶應義塾大学経済学部2年次在学中。経済学で培った定量的な視点を強みに、市場分析から新規開拓・営業までを担当。お客様の経営課題を事業成長につなげる提案で、clearAIのビジネス基盤拡大を推進する。",
+      },
+      {
         name: "西村 吉正",
         nameEn: "yoshimasa nishimura",
-        role: "Co-Founder & COO / オペレーション（東京大学）",
-        bio: "東京大学在学中。clearAIの共同創業者兼COOとして事業オペレーション全般を統括。現場と経営を繋ぐ実行力を強みに、組織のスケールを支える。",
+        role: "Co-Founder & CSO / オペレーション（東京大学）",
+        bio: "東京大学在学中。clearAIの共同創業者兼CSOとして事業オペレーション全般を統括。現場と経営を繋ぐ実行力を強みに、組織のスケールを支える。",
       },
       {
         name: "國井 真帆",
@@ -115,12 +121,6 @@ const COPY: Record<"ja" | "en", Copy> = {
         nameEn: "Shintaro Akaike",
         role: "CMO / マーケティング（名古屋大学）",
         bio: "愛知県出身。名古屋大学経済学部在学中。マーケティング会社でのインターンを経験しながら、PMや新規事業立ち上げに従事。名古屋と東京の二拠点生活をしながら、新しい経験を求め奔走中。",
-      },
-      {
-        name: "石嶋 悠一",
-        nameEn: "yuichi ishijima",
-        role: "事業開発 / 営業（慶應義塾大学）",
-        bio: "慶應義塾大学経済学部2年次在学中。経済学で培った定量的な視点を強みに、市場分析から新規開拓・営業までを担当。お客様の経営課題を事業成長につなげる提案で、clearAIのビジネス基盤拡大を推進する。",
       },
       {
         name: "菊池 秀弥",
@@ -244,10 +244,16 @@ const COPY: Record<"ja" | "en", Copy> = {
         bio: "From Ibaraki. Founded clearAI in 2026 with a mission to bring AI to Japanese SMEs. Guides the company with core values of integrity, partnership, translation, and long-term thinking — aiming to be the most trusted AI partner across Japan, combining AI advisory with physical AI and robotics.",
       },
       {
+        name: "石嶋 悠一",
+        nameEn: "yuichi ishijima",
+        role: "Co-Founder & COO / Business Development & Sales (Keio University)",
+        bio: "A second-year economics student at Keio University. Leveraging the quantitative perspective honed through economics, he covers everything from market analysis to new business development and sales, driving the expansion of clearAI's business foundation by turning clients' management challenges into growth.",
+      },
+      {
         name: "西村 吉正",
         nameEn: "yoshimasa nishimura",
-        role: "Co-Founder & COO / Operations (University of Tokyo)",
-        bio: "Currently enrolled at the University of Tokyo. As Co-Founder and COO, oversees all business operations. Strengths lie in bridging the field and management, supporting organizational scale.",
+        role: "Co-Founder & CSO / Operations (University of Tokyo)",
+        bio: "Currently enrolled at the University of Tokyo. As Co-Founder and CSO, oversees all business operations. Strengths lie in bridging the field and management, supporting organizational scale.",
       },
       {
         name: "國井 真帆",
@@ -266,12 +272,6 @@ const COPY: Record<"ja" | "en", Copy> = {
         nameEn: "Shintaro Akaike",
         role: "CMO / Marketing (Nagoya University)",
         bio: "From Aichi. Currently studying economics at Nagoya University. Gained marketing internship experience while leading PM and new-business initiatives. Lives across Nagoya and Tokyo, pursuing fresh challenges.",
-      },
-      {
-        name: "石嶋 悠一",
-        nameEn: "yuichi ishijima",
-        role: "Business Development / Sales (Keio University)",
-        bio: "A second-year economics student at Keio University. Leveraging the quantitative perspective honed through economics, he covers everything from market analysis to new business development and sales, driving the expansion of clearAI's business foundation by turning clients' management challenges into growth.",
       },
       {
         name: "菊池 秀弥",
