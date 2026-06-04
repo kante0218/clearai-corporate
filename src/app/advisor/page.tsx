@@ -53,9 +53,9 @@ const COPY: Record<"ja" | "en", Copy> = {
   ja: {
     heroKicker: "AI Advisor",
     heroTitle: "AI顧問",
-    heroDesc: "月額契約で、AI活用の意思決定を継続的に伴走します。戦略から技術選定、PoC評価、社内教育まで。月5万円〜／最低契約期間なし。",
+    heroDesc: "月額契約で、AI活用の意思決定を継続的に伴走します。戦略から技術選定、PoC評価、社内教育まで。月10万円〜／最低契約期間なし。",
     whyLabel: "Why Advisor",
-    whyTitle: "こんなお悩みに、月5万円からお応えします。",
+    whyTitle: "こんなお悩みに、月10万円からお応えします。",
     why: [
       { title: "誰に聞けばいいかわからない", desc: "社内にAI人材がいない、外部ベンダーに聞くと売り込みに変わる。中立な相談相手が欲しい。" },
       { title: "情報の陳腐化が早すぎる", desc: "生成AIは毎月のように新機能が出る。何を試すべきか、何を無視していいかを選別してほしい。" },
@@ -83,13 +83,13 @@ const COPY: Record<"ja" | "en", Copy> = {
     recommended: "Recommended",
     plans: [
       {
-        name: "ライト", price: "5万円", unit: "/ 月",
+        name: "ライト", price: "10万円", unit: "/ 月",
         desc: "従業員5名以下の小規模企業・スタートアップ向け。Slack/メール相談中心。",
         features: ["従業員5名以下の企業向け", "Slack/メール相談（営業日内返信）", "月1回のオンライン定例（45分）", "最新AIニュース・モデル動向の共有"],
         featured: false, href: "https://buy.stripe.com/bJe28kd803zWfLc2P2d7q00", cta: "申し込む", minTerm: "最低6ヶ月契約から",
       },
       {
-        name: "スタンダード", price: "15万円", unit: "/ 月",
+        name: "スタンダード", price: "20万円", unit: "/ 月",
         desc: "従業員6名以上の企業向け。定例会議＋PoC評価で本格推進。",
         features: ["従業員6名以上の企業向け", "ライトプランの全内容を含む", "月2回のオンライン定例（各60分）", "Slack/メール無制限相談（当日返信目安）", "PoC・導入プロジェクトの定期レビュー", "業務フロー別のAI活用設計・技術選定ドキュメント作成", "部署横断のAI活用ロードマップ作成", "社内勉強会（年4回まで）", "導入効果の月次レポーティング"],
         featured: true, href: "https://buy.stripe.com/6oU4gs2tm1rO9mO4Xad7q01", cta: "申し込む", minTerm: "最低6ヶ月契約から",
@@ -120,16 +120,16 @@ const COPY: Record<"ja" | "en", Copy> = {
       { q: "オンサイト対応はありますか？", a: "エグゼクティブプランでは月1回を目安に訪問可能です。他プランでも追加料金で対応できます。" },
     ],
     ctaLabel: "Contact",
-    ctaTitle: "月5万円から、AIの相談相手を。",
+    ctaTitle: "月10万円から、AIの相談相手を。",
     ctaDesc: "まずは30分の無料相談で、貴社にフィットするかをご確認ください。",
     ctaButton: "無料で相談する",
   },
   en: {
     heroKicker: "AI Advisor",
     heroTitle: "AI Advisor",
-    heroDesc: "A monthly engagement that supports your AI decisions on an ongoing basis — from strategy and tool selection to PoC review and internal training. From JPY 50K/month, with no minimum commitment.",
+    heroDesc: "A monthly engagement that supports your AI decisions on an ongoing basis — from strategy and tool selection to PoC review and internal training. From JPY 100K/month, with no minimum commitment.",
     whyLabel: "Why Advisor",
-    whyTitle: "We answer these concerns — from JPY 50K/month.",
+    whyTitle: "We answer these concerns — from JPY 100K/month.",
     why: [
       { title: "We don't know who to ask", desc: "No AI talent in-house, and asking a vendor turns into a sales pitch. You want a neutral sounding board." },
       { title: "Information goes stale too fast", desc: "Generative AI ships new features almost monthly. You want someone to sort what's worth trying from what to ignore." },
@@ -157,13 +157,13 @@ const COPY: Record<"ja" | "en", Copy> = {
     recommended: "Recommended",
     plans: [
       {
-        name: "Light", price: "JPY 50K", unit: "/ mo",
+        name: "Light", price: "JPY 100K", unit: "/ mo",
         desc: "For small companies and startups with 5 or fewer employees. Mainly Slack/email support.",
         features: ["For companies with 5 or fewer employees", "Slack/email support (reply within business days)", "Monthly online session (45 min)", "Latest AI news & model trends"],
         featured: false, href: "https://buy.stripe.com/bJe28kd803zWfLc2P2d7q00", cta: "Get started", minTerm: "6-month minimum",
       },
       {
-        name: "Standard", price: "JPY 150K", unit: "/ mo",
+        name: "Standard", price: "JPY 200K", unit: "/ mo",
         desc: "For companies with 6 or more employees. Regular sessions + PoC review for serious rollout.",
         features: ["For companies with 6 or more employees", "Everything in Light", "2 online sessions/month (60 min each)", "Unlimited Slack/email support (same-day reply)", "Regular PoC & rollout project reviews", "Per-workflow AI design & tool-selection docs", "Cross-department AI adoption roadmap", "Internal study sessions (up to 4/year)", "Monthly impact reporting"],
         featured: true, href: "https://buy.stripe.com/6oU4gs2tm1rO9mO4Xad7q01", cta: "Get started", minTerm: "6-month minimum",
@@ -194,7 +194,7 @@ const COPY: Record<"ja" | "en", Copy> = {
       { q: "Do you offer on-site support?", a: "The Executive plan includes roughly monthly visits. Other plans can add visits for an extra fee." },
     ],
     ctaLabel: "Contact",
-    ctaTitle: "An AI sounding board — from JPY 50K/month.",
+    ctaTitle: "An AI sounding board — from JPY 100K/month.",
     ctaDesc: "Start with a free 30-minute consultation to see if we're a fit.",
     ctaButton: "Book a free consultation",
   },
