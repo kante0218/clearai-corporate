@@ -2,3 +2,30 @@ node_modules
 .next
 .env*
 .vercel
+
+# OS / editor / tooling junk
+.DS_Store
+.claude/
+.omc/
+
+# Local working docs & generated office assets (not part of the web app)
+DESIGN.md
+*.docx
+*.pptx
+*.xlsx
+*.pdf
+clearAI_自己紹介.html
+名称未設定のデザイン.png
+agriculture_budget.xlsx
+
+# One-off generation scripts (not used by the Next.js build)
+scripts/
+
+# Orphan / WIP components not imported anywhere
+src/app/claude/PixelClaude.tsx
+src/components/ChatWidget.tsx
+
+# Unreferenced design source images (workskin-hero-tricolor.png IS used and stays tracked)
+public/images/humanoid/workskin-industry-editions.png
+public/images/humanoid/workskin-parts-color.png
+public/images/humanoid/workskin-parts-wireframe.png
