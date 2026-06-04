@@ -96,8 +96,8 @@ const COPY: Record<"ja" | "en", Copy> = {
     pricingTitle: "料金の目安",
     pricingDesc: "月額固定＋広告費に対する成果報酬の組み合わせも可能です。詳しくはお気軽にご相談ください。",
     plans: [
-      { name: "スタート", price: "15万円〜", unit: "/ 月", desc: "1媒体・小規模スタートに。", features: ["1媒体運用", "週次レポート", "AIクリエイティブ生成（月10案）", "Slack質問対応"], featured: false, href: "https://buy.stripe.com/aFa8wIec4c6s56y89md7q04", cta: "申し込む", minTerm: "最低6ヶ月契約から" },
-      { name: "グロース", price: "35万円〜", unit: "/ 月", desc: "複数媒体での本格運用。", features: ["3媒体まで運用", "日次ダッシュボード", "AIクリエイティブ生成（月30案）", "LP最適化提案", "月次戦略MTG"], featured: true, href: "https://buy.stripe.com/14A28k9VO7QcdD40GUd7q05", cta: "申し込む", minTerm: "最低6ヶ月契約から" },
+      { name: "スタート", price: "15万円〜", unit: "/ 月", desc: "1媒体・小規模スタートに。", features: ["1媒体運用", "週次レポート", "AIクリエイティブ生成（月10案）", "Slack質問対応"], featured: false, href: "https://buy.stripe.com/aFa8wIec4c6s56y89md7q04", cta: "申し込む", minTerm: "最低3ヶ月契約から" },
+      { name: "グロース", price: "35万円〜", unit: "/ 月", desc: "複数媒体での本格運用。", features: ["3媒体まで運用", "日次ダッシュボード", "AIクリエイティブ生成（月30案）", "LP最適化提案", "月次戦略MTG"], featured: true, href: "https://buy.stripe.com/14A28k9VO7QcdD40GUd7q05", cta: "申し込む", minTerm: "最低3ヶ月契約から" },
       { name: "エンタープライズ", price: "ご相談", unit: "", desc: "全社マーケティング統合。", features: ["媒体無制限", "専用ダッシュボード構築", "独自ツール開発", "事業KPIダッシュボード", "戦略コンサル込み"], featured: false, href: "/contact?service=advertising", cta: "相談する", minTerm: "" },
     ],
     pricingNote: "表示価格は税抜。広告費は別途。業種・媒体構成により個別見積もりとなる場合があります。",
@@ -148,8 +148,8 @@ const COPY: Record<"ja" | "en", Copy> = {
     pricingTitle: "Pricing overview",
     pricingDesc: "A combination of fixed monthly fee and performance-based fee on ad spend is also available. Feel free to reach out for details.",
     plans: [
-      { name: "Starter", price: "¥150,000+", unit: "/ mo", desc: "For single-channel small-scale starts.", features: ["1 channel", "Weekly reports", "AI creative generation (10 concepts/mo)", "Slack Q&A support"], featured: false, href: "https://buy.stripe.com/aFa8wIec4c6s56y89md7q04", cta: "Get started", minTerm: "Minimum 6-month contract" },
-      { name: "Growth", price: "¥350,000+", unit: "/ mo", desc: "Full-scale operations across multiple channels.", features: ["Up to 3 channels", "Daily dashboard", "AI creative generation (30 concepts/mo)", "LP optimization proposals", "Monthly strategy MTG"], featured: true, href: "https://buy.stripe.com/14A28k9VO7QcdD40GUd7q05", cta: "Get started", minTerm: "Minimum 6-month contract" },
+      { name: "Starter", price: "¥150,000+", unit: "/ mo", desc: "For single-channel small-scale starts.", features: ["1 channel", "Weekly reports", "AI creative generation (10 concepts/mo)", "Slack Q&A support"], featured: false, href: "https://buy.stripe.com/aFa8wIec4c6s56y89md7q04", cta: "Get started", minTerm: "Minimum 3-month contract" },
+      { name: "Growth", price: "¥350,000+", unit: "/ mo", desc: "Full-scale operations across multiple channels.", features: ["Up to 3 channels", "Daily dashboard", "AI creative generation (30 concepts/mo)", "LP optimization proposals", "Monthly strategy MTG"], featured: true, href: "https://buy.stripe.com/14A28k9VO7QcdD40GUd7q05", cta: "Get started", minTerm: "Minimum 3-month contract" },
       { name: "Enterprise", price: "Custom", unit: "", desc: "Company-wide marketing integration.", features: ["Unlimited channels", "Custom dashboard build", "Proprietary tool development", "Business KPI dashboard", "Strategy consulting included"], featured: false, href: "/contact?service=advertising", cta: "Talk to us", minTerm: "" },
     ],
     pricingNote: "Prices exclude tax. Ad spend is billed separately. Custom quotes may apply depending on industry and channel mix.",
