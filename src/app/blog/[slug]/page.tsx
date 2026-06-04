@@ -125,7 +125,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <div className="max-w-3xl mx-auto px-6 pt-40">
+      <div className="max-w-5xl mx-auto px-6 pt-40">
         <Link href="/blog" className="inline-block text-sm font-semibold text-blue-600 hover:text-blue-800 transition-colors duration-300 mb-10">
           ← お知らせ一覧
         </Link>
@@ -152,15 +152,17 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           <time className="text-sm text-gray-400">{formatDate(post.publishedAt!)}</time>
         </div>
 
-        <h1 className="text-2xl font-bold text-gray-900 leading-snug mb-8">{post.title}</h1>
+        <h1 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight mb-8">{post.title}</h1>
       </div>
 
-      <article
-        className="max-w-3xl mx-auto px-6 py-12 prose prose-gray"
-        dangerouslySetInnerHTML={{ __html: post.content }}
-      />
+      <div className="max-w-5xl mx-auto px-6 py-12">
+        <article
+          className="prose prose-lg lg:prose-xl prose-gray max-w-none"
+          dangerouslySetInnerHTML={{ __html: post.content }}
+        />
+      </div>
 
-      <div className="max-w-3xl mx-auto px-6 pb-20 lg:pb-28">
+      <div className="max-w-5xl mx-auto px-6 pb-20 lg:pb-28">
         <div className="border-t border-gray-200 pt-8">
           <Link href="/blog" className="text-sm font-semibold text-blue-600 hover:text-blue-800 transition-colors duration-300">
             ← お知らせ一覧に戻る
