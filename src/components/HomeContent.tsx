@@ -796,7 +796,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       </section>
 
       {/* ═══ NEWS / BLOG ═══ */}
-      <section className="py-14 md:py-20 lg:py-28 bg-gray-50">
+      <section className="pt-8 pb-14 md:pt-10 md:pb-20 lg:pt-12 lg:pb-28 bg-gray-50">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <div className="flex items-end justify-between mb-12">
             <div>
