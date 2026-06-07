@@ -34,12 +34,28 @@ const PAY = {
   agibot: "https://buy.stripe.com/4gM3co3xq0nK8iK3T6d7q0b", // AGIBOT       ¥100,000 / 日（税込）
 } as const;
 
+type RobotItem = {
+  name: string;
+  type: string;
+  desc: string;
+  image?: string;
+  price?: string;
+  priceUnit?: string;
+  buyUrl?: string;
+  status?: "booking" | "candidate";
+};
+
+type RobotCompany = {
+  company: string;
+  summary: string;
+  robots: RobotItem[];
+};
+
 type Copy = {
-  heroKicker: string; comingSoon: string; heroTitle: string; heroDesc: string;
+  heroKicker: string; comingSoon: string; inquiryBadge: string; heroTitle: string; heroDesc: string;
   heroCta: string; heroNote: string;
-  bannerTitle: string; bannerDesc: string;
   lineupLabel: string; lineupTitle: string; lineupDesc: string;
-  lineup: { name: string; type: string; desc: string; image?: string; price?: string; priceUnit?: string; buyUrl?: string }[];
+  lineupGroups: RobotCompany[];
   lineupFootnote: string;
   reserveCta: string; availableBadge: string;
   planLabel: string; planTitle: string; planDesc: string;
@@ -53,23 +69,74 @@ const COPY: Record<"ja" | "en", Copy> = {
   ja: {
     heroKicker: "Robot Rental",
     comingSoon: "Coming Soon",
+    inquiryBadge: "導入相談受付中",
     heroTitle: "ロボットレンタル",
-    heroDesc: "Unitree・AGIBOT など、海外の最先端ヒューマノイド／ロボットを輸入し、レンタルで提供するサービスを準備中です。高額な機体を購入する前に、自社の現場で試せる選択肢を間もなくお届けします。",
+    heroDesc: "Unitree・Boston Dynamics・AGIBOT・JAKA・PUDU など、海外の最先端ヒューマノイド／四足歩行ロボット／協働ロボットを輸入し、レンタルで提供するサービスを準備中です。高額な機体を購入する前に、自社の現場で試せる選択肢を増やしていきます。",
     heroCta: "先行してご相談する",
     heroNote: "一部機体は予約受付を開始しました",
-    bannerTitle: "一部機体の予約受付を開始しました",
-    bannerDesc: "Unitree Go2・G1・AGIBOT は、本ページから日額で予約・お申し込みいただけます（決済画面で利用日数を選択）。その他の機体・料金・提供開始時期は順次公開します。導入のご相談も引き続き承っています。",
     lineupLabel: "Lineup",
-    lineupTitle: "導入予定のロボット",
-    lineupDesc: "海外の最先端メーカーから輸入予定。ラインナップは順次拡大していきます。",
-    lineup: [
-      { name: "Unitree G1", type: "ヒューマノイド", desc: "コンパクトな人型ロボット。研究・実証・展示など幅広い用途を想定。", image: "/images/robot-rental/g1.jpg", price: "¥100,000", priceUnit: "/ 日（税込）", buyUrl: PAY.g1 },
-      { name: "Unitree Go2", type: "四足歩行ロボット", desc: "機動性の高い四足歩行型。点検・巡回・イベント演出などに。", image: "/images/robot-rental/go2.webp", price: "¥10,000", priceUnit: "/ 日（税込）", buyUrl: PAY.go2 },
-      { name: "Unitree R1", type: "ヒューマノイド", desc: "鮮やかなカラーリングが特徴の中型ヒューマノイド。接客・展示・撮影など視認性が求められる現場に。", image: "/images/robot-rental/r1.webp" },
-      { name: "Unitree H1", type: "ヒューマノイド", desc: "高い運動性能を持つ大型人型ロボット。先進的なデモ・実証向け。", image: "/images/robot-rental/h1.png" },
-      { name: "AGIBOT", type: "ヒューマノイド", desc: "中国発の次世代ヒューマノイド。作業・接客系ユースケースを想定。", price: "¥100,000", priceUnit: "/ 日（税込）", buyUrl: PAY.agibot },
+    lineupTitle: "導入予定・導入候補のロボット",
+    lineupDesc: "予約受付中の機体に加えて、産業・接客・展示・研究用途に合わせた候補機を順次追加していきます。",
+    lineupGroups: [
+      {
+        company: "Unitree",
+        summary: "ヒューマノイドから四足歩行型まで、展示・研究・巡回・点検用途で扱いやすい候補群。",
+        robots: [
+          { name: "Unitree G1", type: "ヒューマノイド", desc: "コンパクトな人型ロボット。研究・実証・展示など幅広い用途を想定。", image: "/images/robot-rental/g1.jpg", price: "¥100,000", priceUnit: "/ 日（税込）", buyUrl: PAY.g1, status: "booking" },
+          { name: "Unitree Go2", type: "四足歩行ロボット", desc: "機動性の高い四足歩行型。点検・巡回・イベント演出などに。", image: "/images/robot-rental/go2.webp", price: "¥10,000", priceUnit: "/ 日（税込）", buyUrl: PAY.go2, status: "booking" },
+          { name: "Unitree R1", type: "ヒューマノイド", desc: "鮮やかなカラーリングが特徴の中型ヒューマノイド。接客・展示・撮影など視認性が求められる現場に。", image: "/images/robot-rental/r1.webp" },
+          { name: "Unitree H1", type: "ヒューマノイド", desc: "高い運動性能を持つ大型人型ロボット。先進的なデモ・実証向け。", image: "/images/robot-rental/h1.png" },
+          { name: "Unitree H2", type: "ヒューマノイド", desc: "より大型の次世代ヒューマノイド。研究開発・先進デモ・メディア露出を伴う実証向け。" },
+          { name: "Unitree B2", type: "産業用四足歩行ロボット", desc: "高い積載・走破性を重視した産業向け四足歩行型。巡回・点検・屋外実証に。" },
+          { name: "Unitree A2", type: "産業用四足歩行ロボット", desc: "長時間稼働と拡張性を重視した四足歩行型。物流・工場・災害対応PoCに。" },
+          { name: "Unitree As2", type: "小型産業用四足歩行ロボット", desc: "Go2より産業用途に寄せた小型機。持ち運びや短期デモをしやすい候補機。" },
+        ],
+      },
+      {
+        company: "Boston Dynamics",
+        summary: "商用導入実績のある四足歩行・物流ロボットと、次世代産業ヒューマノイドを候補化。",
+        robots: [
+          { name: "Spot", type: "四足歩行ロボット", desc: "施設巡回・点検・遠隔監視に強い商用四足歩行型。産業現場の自動巡回PoC向け。" },
+          { name: "Spot Arm", type: "モバイルマニピュレーション", desc: "Spot にアームを組み合わせた構成。扉・バルブ・軽作業など操作系デモの候補。" },
+          { name: "Stretch", type: "物流ロボット", desc: "倉庫でのケース荷役・トラック荷下ろし向け。物流自動化の実証候補。" },
+          { name: "Atlas", type: "産業用ヒューマノイド", desc: "製造・マテリアルハンドリング領域を見据えた次世代ヒューマノイド候補。" },
+        ],
+      },
+      {
+        company: "AgiBot",
+        summary: "フルサイズヒューマノイド、車輪型作業ロボット、四足歩行型、清掃ロボットまで幅広く候補化。",
+        robots: [
+          { name: "AgiBot A2", type: "フルサイズヒューマノイド", desc: "商用実証・接客・展示・作業デモ向けのフルサイズ人型ロボット候補。", price: "¥100,000", priceUnit: "/ 日（税込）", buyUrl: PAY.agibot, status: "booking" },
+          { name: "AgiBot A2-W", type: "車輪型ヒューマノイド", desc: "移動安定性と上半身作業を組み合わせた車輪型。施設案内・軽作業実証の候補。" },
+          { name: "AgiBot A2 Lite", type: "ヒューマノイド", desc: "パフォーマンス・展示・商業施設での演出用途を想定した候補機。" },
+          { name: "AgiBot X1", type: "オープンソースロボット", desc: "研究開発・教育・ソフトウェア検証に使いやすいフルスタック開発向け候補。" },
+          { name: "AgiBot X2", type: "ヒューマノイド", desc: "俊敏性と知能化を重視したヒューマノイド。先進デモ・研究用途の候補。" },
+          { name: "AgiBot G1", type: "汎用 embodied AI ロボット", desc: "Genie 系の汎用ロボット。施設内作業・接客・研究実証の候補。" },
+          { name: "AgiBot G2", type: "汎用 embodied AI ロボット", desc: "産業グレードの embodied AI ロボット。作業自動化PoCの候補。" },
+          { name: "AgiBot D1", type: "四足歩行ロボット", desc: "D1 Pro / Edu / Ultra / Max 系を含む四足歩行型。巡回・教育・産業点検の候補。" },
+          { name: "AgiBot C5", type: "清掃ロボット", desc: "商業施設・オフィス・店舗での清掃自動化実証に向いた候補機。" },
+        ],
+      },
+      {
+        company: "JAKA",
+        summary: "中小製造業の実証に使いやすい協働ロボット。組立・検査・梱包・研磨・ねじ締めなどに対応。",
+        robots: [
+          { name: "JAKA Zu Series", type: "協働ロボットアーム", desc: "3kgから30kg級まで展開する汎用協働ロボット。搬送・組立・検査・梱包PoCに。" },
+          { name: "JAKA S Series", type: "力制御協働ロボット", desc: "高精度な力覚制御を重視したシリーズ。研磨・嵌合・繊細な組立の候補。" },
+          { name: "JAKA Pro Series", type: "高耐環境協働ロボット", desc: "油・粉じん・水に強いIP68系。金属加工・食品・屋外に近い現場の実証向け。" },
+          { name: "JAKA Mini Series", type: "小型協働ロボット", desc: "小型・低コストの導入候補。教育・省スペース工程・店舗デモに。" },
+          { name: "JAKA Lens 2D", type: "ビジョンシステム", desc: "JAKA ロボットと組み合わせる2Dビジョン。検査・位置決め・ピッキング実証向け。" },
+        ],
+      },
+      {
+        company: "PUDU",
+        summary: "サービスロボットと半ヒューマノイド領域の候補。施設・店舗・工場内の移動作業を想定。",
+        robots: [
+          { name: "PUDU D7", type: "半ヒューマノイド", desc: "産業・サービス現場向けの半ヒューマノイド。搬送・案内・施設内作業の候補。" },
+        ],
+      },
     ],
-    lineupFootnote: "※ 機種名は導入予定の一例です。最終的なラインナップ・仕様は変更となる場合があります。料金は税込・1日あたり。決済画面で日数（数量）を選択できます。",
+    lineupFootnote: "※ 機種名は導入予定・導入候補の一例です。最終的なラインナップ・仕様・提供可否は変更となる場合があります。料金は税込・1日あたり。決済画面で日数（数量）を選択できます。",
     reserveCta: "予約する",
     availableBadge: "予約受付中",
     planLabel: "Plan",
@@ -98,23 +165,74 @@ const COPY: Record<"ja" | "en", Copy> = {
   en: {
     heroKicker: "Robot Rental",
     comingSoon: "Coming Soon",
+    inquiryBadge: "Inquiry open",
     heroTitle: "Robot Rental",
-    heroDesc: "We're preparing a service to import and rent cutting-edge humanoids and robots from overseas — such as Unitree and AGIBOT. Soon you'll be able to try them on-site before committing to an expensive purchase.",
+    heroDesc: "We're preparing a service to import and rent cutting-edge humanoids, quadrupeds, and collaborative robots from overseas, including Unitree, Boston Dynamics, AGIBOT, JAKA, and PUDU. The lineup will keep expanding so teams can try advanced robots on-site before committing to an expensive purchase.",
     heroCta: "Get an early consultation",
     heroNote: "Booking is now open for select units",
-    bannerTitle: "Booking is now open for select units",
-    bannerDesc: "Unitree Go2, G1, and AGIBOT can be booked and paid for by the day right on this page (choose the number of rental days at checkout). Other units, pricing, and availability will be announced progressively. We're also happy to take adoption inquiries.",
     lineupLabel: "Lineup",
-    lineupTitle: "Robots planned for the lineup",
-    lineupDesc: "Planned for import from leading overseas makers. The lineup will expand over time.",
-    lineup: [
-      { name: "Unitree G1", type: "Humanoid", desc: "A compact humanoid robot, intended for research, PoC, and exhibitions.", image: "/images/robot-rental/g1.jpg", price: "JPY 100,000", priceUnit: "/ day (tax incl.)", buyUrl: PAY.g1 },
-      { name: "Unitree Go2", type: "Quadruped", desc: "A highly agile quadruped — for inspection, patrol, and event production.", image: "/images/robot-rental/go2.webp", price: "JPY 10,000", priceUnit: "/ day (tax incl.)", buyUrl: PAY.go2 },
-      { name: "Unitree R1", type: "Humanoid", desc: "A mid-size humanoid with a striking color scheme — ideal for hospitality, exhibition, and photo-shoot settings where presence matters.", image: "/images/robot-rental/r1.webp" },
-      { name: "Unitree H1", type: "Humanoid", desc: "A larger humanoid with high mobility — for advanced demos and proof of concept.", image: "/images/robot-rental/h1.png" },
-      { name: "AGIBOT", type: "Humanoid", desc: "A next-generation humanoid from China, aimed at task and hospitality use cases.", price: "JPY 100,000", priceUnit: "/ day (tax incl.)", buyUrl: PAY.agibot },
+    lineupTitle: "Planned and candidate robots",
+    lineupDesc: "In addition to units already open for booking, we will keep adding candidates for industrial, hospitality, exhibition, and research use cases.",
+    lineupGroups: [
+      {
+        company: "Unitree",
+        summary: "A practical candidate range across humanoids and quadrupeds for exhibitions, R&D, patrol, and inspection.",
+        robots: [
+          { name: "Unitree G1", type: "Humanoid", desc: "A compact humanoid robot, intended for research, PoC, and exhibitions.", image: "/images/robot-rental/g1.jpg", price: "JPY 100,000", priceUnit: "/ day (tax incl.)", buyUrl: PAY.g1, status: "booking" },
+          { name: "Unitree Go2", type: "Quadruped", desc: "A highly agile quadruped for inspection, patrol, and event production.", image: "/images/robot-rental/go2.webp", price: "JPY 10,000", priceUnit: "/ day (tax incl.)", buyUrl: PAY.go2, status: "booking" },
+          { name: "Unitree R1", type: "Humanoid", desc: "A mid-size humanoid with a striking color scheme, ideal where visual presence matters.", image: "/images/robot-rental/r1.webp" },
+          { name: "Unitree H1", type: "Humanoid", desc: "A larger humanoid with high mobility for advanced demos and proof-of-concept work.", image: "/images/robot-rental/h1.png" },
+          { name: "Unitree H2", type: "Humanoid", desc: "A next-generation larger humanoid candidate for R&D, advanced demos, and media-facing PoC work." },
+          { name: "Unitree B2", type: "Industrial quadruped", desc: "An industrial quadruped candidate focused on payload, terrain handling, patrol, and inspection use cases." },
+          { name: "Unitree A2", type: "Industrial quadruped", desc: "A long-runtime, extensible quadruped candidate for logistics, factory, and emergency-response PoCs." },
+          { name: "Unitree As2", type: "Compact industrial quadruped", desc: "A compact industrial candidate positioned above Go2 for portable demonstrations and field trials." },
+        ],
+      },
+      {
+        company: "Boston Dynamics",
+        summary: "Commercially proven mobile robots plus the next generation of industrial humanoid candidates.",
+        robots: [
+          { name: "Spot", type: "Quadruped", desc: "A commercial quadruped for facility patrol, inspection, and remote monitoring PoCs." },
+          { name: "Spot Arm", type: "Mobile manipulation", desc: "A Spot configuration with an integrated arm for doors, valves, and light manipulation demos." },
+          { name: "Stretch", type: "Warehouse robot", desc: "A logistics robot for case handling and trailer unloading in warehouse automation trials." },
+          { name: "Atlas", type: "Industrial humanoid", desc: "A next-generation humanoid candidate for manufacturing and material handling workflows." },
+        ],
+      },
+      {
+        company: "AgiBot",
+        summary: "A broad embodied AI portfolio spanning full-size humanoids, wheeled work robots, quadrupeds, and cleaning robots.",
+        robots: [
+          { name: "AgiBot A2", type: "Full-size humanoid", desc: "A full-size humanoid candidate for commercial PoCs, hospitality, exhibitions, and task demos.", price: "JPY 100,000", priceUnit: "/ day (tax incl.)", buyUrl: PAY.agibot, status: "booking" },
+          { name: "AgiBot A2-W", type: "Wheeled humanoid", desc: "A wheeled humanoid candidate combining stable mobility with upper-body task execution." },
+          { name: "AgiBot A2 Lite", type: "Humanoid", desc: "A candidate for performances, exhibitions, and commercial presentation settings." },
+          { name: "AgiBot X1", type: "Open-source robot", desc: "A full-stack development candidate for R&D, education, and software validation." },
+          { name: "AgiBot X2", type: "Humanoid", desc: "An agile humanoid candidate for advanced demonstrations and research use." },
+          { name: "AgiBot G1", type: "General embodied AI robot", desc: "A Genie-series general robot candidate for indoor tasks, hospitality, and research PoCs." },
+          { name: "AgiBot G2", type: "General embodied AI robot", desc: "An industrial-grade embodied AI robot candidate for task automation PoCs." },
+          { name: "AgiBot D1", type: "Quadruped", desc: "A quadruped family candidate for patrol, education, and industrial inspection trials." },
+          { name: "AgiBot C5", type: "Cleaning robot", desc: "A candidate for cleaning automation in commercial facilities, offices, and stores." },
+        ],
+      },
+      {
+        company: "JAKA",
+        summary: "Collaborative robots suited to SME manufacturing trials, including assembly, inspection, packing, polishing, and screwdriving.",
+        robots: [
+          { name: "JAKA Zu Series", type: "Collaborative robot arm", desc: "A general cobot range from 3kg to 30kg classes for handling, assembly, inspection, and packing PoCs." },
+          { name: "JAKA S Series", type: "Force-control cobot", desc: "A force-control series candidate for polishing, fitting, and delicate assembly tasks." },
+          { name: "JAKA Pro Series", type: "Rugged cobot", desc: "An IP68-oriented rugged series for demanding sites such as metalworking, food, and harsher environments." },
+          { name: "JAKA Mini Series", type: "Compact cobot", desc: "A compact and affordable candidate for education, space-constrained production, and store demos." },
+          { name: "JAKA Lens 2D", type: "Vision system", desc: "A 2D vision option for inspection, positioning, and picking PoCs with JAKA robots." },
+        ],
+      },
+      {
+        company: "PUDU",
+        summary: "Service robots and semi-humanoid candidates for facilities, stores, and indoor industrial workflows.",
+        robots: [
+          { name: "PUDU D7", type: "Semi-humanoid", desc: "A semi-humanoid candidate for industrial and service environments, including indoor operations and guidance." },
+        ],
+      },
     ],
-    lineupFootnote: "* Model names are examples planned for import. The final lineup and specs may change. Prices are per day, tax included. Choose the number of days (quantity) at checkout.",
+    lineupFootnote: "* Model names are examples planned or under consideration for import. The final lineup, specs, and availability may change. Prices are per day, tax included. Choose the number of days (quantity) at checkout.",
     reserveCta: "Reserve",
     availableBadge: "Booking open",
     planLabel: "Plan",
@@ -151,35 +269,21 @@ export default function RobotRentalPage() {
       {/* PAGE HEADER */}
       <section className="pt-24 pb-16 lg:pt-32 lg:pb-24 bg-white border-b border-gray-100">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-            {/* LEFT: hero copy */}
-            <div>
-              <div className="flex items-center gap-3 mb-3">
-                <p className="text-sm font-semibold text-sky-600">{t.heroKicker}</p>
-                <span className="inline-flex items-center rounded-full bg-sky-50 text-sky-700 border border-sky-200 px-3 py-1 text-xs font-bold tracking-wide">
-                  {t.comingSoon}
-                </span>
-              </div>
-              <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4">{t.heroTitle}</h1>
-              <p className="text-base text-gray-600 leading-relaxed max-w-2xl mb-8">{t.heroDesc}</p>
-              <div className="flex items-center gap-4 flex-wrap">
-                <a href="/contact?service=robot-rental" className="rounded-lg bg-sky-600 text-white font-semibold px-8 py-3.5 hover:bg-sky-700 transition-colors duration-300 inline-block">
-                  {t.heroCta}
-                </a>
-                <span className="text-sm text-gray-400">{t.heroNote}</span>
-              </div>
+          <div className="max-w-4xl">
+            <div className="flex items-center gap-3 mb-3">
+              <p className="text-sm font-semibold text-sky-600">{t.heroKicker}</p>
+              <span className="inline-flex items-center rounded-full bg-sky-50 text-sky-700 border border-sky-200 px-3 py-1 text-xs font-bold tracking-wide">
+                {t.comingSoon}
+              </span>
             </div>
-
-            {/* RIGHT: coming soon banner card */}
-            <Reveal delay={120}>
-              <div className="rounded-3xl border border-sky-100 bg-gradient-to-br from-sky-50 to-white p-8 lg:p-12 text-center">
-                <span className="inline-flex items-center gap-2 rounded-full bg-white border border-sky-200 px-4 py-1.5 text-xs font-bold tracking-widest uppercase text-sky-600 mb-5">
-                  <span className="w-2 h-2 rounded-full bg-sky-500" />{t.comingSoon}
-                </span>
-                <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 leading-snug mb-4">{t.bannerTitle}</h2>
-                <p className="text-base text-gray-600 leading-relaxed">{t.bannerDesc}</p>
-              </div>
-            </Reveal>
+            <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4">{t.heroTitle}</h1>
+            <p className="text-base text-gray-600 leading-relaxed max-w-2xl mb-8">{t.heroDesc}</p>
+            <div className="flex items-center gap-4 flex-wrap">
+              <a href="/contact?service=robot-rental" className="rounded-lg bg-sky-600 text-white font-semibold px-8 py-3.5 hover:bg-sky-700 transition-colors duration-300 inline-block">
+                {t.heroCta}
+              </a>
+              <span className="text-sm text-gray-400">{t.heroNote}</span>
+            </div>
           </div>
         </div>
       </section>
@@ -192,59 +296,83 @@ export default function RobotRentalPage() {
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.lineupTitle}</h2>
             <p className="text-sm text-gray-500 mb-14 max-w-2xl leading-relaxed">{t.lineupDesc}</p>
           </Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {t.lineup.map((item, i) => {
-              const available = Boolean(item.buyUrl);
-              return (
-              <Reveal key={item.name} delay={i * 80}>
-                <div className={`relative h-full rounded-2xl border bg-white overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col ${available ? "border-sky-200" : "border-gray-200"}`}>
-                  <div className="relative aspect-square bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
-                    {item.image ? (
-                      <Image
-                        src={item.image}
-                        alt={item.name}
-                        fill
-                        sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                        className="object-contain p-6"
-                      />
-                    ) : (
-                      <span className="text-xs font-bold tracking-widest text-gray-400 uppercase">Image Coming Soon</span>
-                    )}
-                    {available ? (
-                      <span className="absolute top-3 right-3 inline-flex items-center gap-1.5 rounded-full bg-sky-600 text-white px-2.5 py-0.5 text-[10px] font-bold tracking-wide shadow-sm">
-                        <span className="w-1.5 h-1.5 rounded-full bg-white" />{t.availableBadge}
-                      </span>
-                    ) : (
-                      <span className="absolute top-3 right-3 inline-flex items-center rounded-full bg-white/90 backdrop-blur text-gray-500 px-2.5 py-0.5 text-[10px] font-bold tracking-wide border border-gray-200">
-                        {t.comingSoon}
-                      </span>
-                    )}
+          <div className="space-y-12">
+            {t.lineupGroups.map((group, groupIndex) => (
+              <Reveal key={group.company} delay={groupIndex * 80}>
+                <div className="border-t border-gray-200 pt-8">
+                  <div className="mb-6 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+                    <div>
+                      <p className="text-xs font-bold tracking-widest text-sky-600 uppercase mb-2">Maker</p>
+                      <h3 className="text-2xl font-bold text-gray-900">{group.company}</h3>
+                    </div>
+                    <p className="text-sm text-gray-500 leading-relaxed max-w-3xl">{group.summary}</p>
                   </div>
-                  <div className="p-6 flex-1 flex flex-col">
-                    <span className="inline-block text-xs font-bold tracking-widest text-sky-600 uppercase mb-3">{item.type}</span>
-                    <h3 className="text-lg font-bold text-gray-900 mb-2">{item.name}</h3>
-                    <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
-                    {available && (
-                      <div className="mt-auto pt-5">
-                        <div className="flex items-baseline gap-1.5 mb-3">
-                          <span className="text-2xl font-bold text-gray-900">{item.price}</span>
-                          <span className="text-xs text-gray-500">{item.priceUnit}</span>
-                        </div>
-                        <a
-                          href={item.buyUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="block w-full text-center rounded-lg bg-sky-600 text-white font-semibold px-6 py-3 hover:bg-sky-700 transition-colors duration-300"
-                        >
-                          {t.reserveCta}
-                        </a>
-                      </div>
-                    )}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                    {group.robots.map((item, i) => {
+                      const available = item.status === "booking" || Boolean(item.buyUrl);
+                      return (
+                        <Reveal key={item.name} delay={i * 60}>
+                          <div className={`relative h-full rounded-2xl border bg-white overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col ${available ? "border-sky-200" : "border-gray-200"}`}>
+                            <div className="relative aspect-square bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
+                              {item.image ? (
+                                <Image
+                                  src={item.image}
+                                  alt={item.name}
+                                  fill
+                                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                                  className="object-contain p-6"
+                                />
+                              ) : (
+                                <span className="text-xs font-bold tracking-widest text-gray-400 uppercase">Image Coming Soon</span>
+                              )}
+                              {available ? (
+                                <span className="absolute top-3 right-3 inline-flex items-center gap-1.5 rounded-full bg-sky-600 text-white px-2.5 py-0.5 text-[10px] font-bold tracking-wide shadow-sm">
+                                  <span className="w-1.5 h-1.5 rounded-full bg-white" />{t.availableBadge}
+                                </span>
+                              ) : (
+                                <span className="absolute top-3 right-3 inline-flex items-center rounded-full bg-white/90 backdrop-blur text-gray-500 px-2.5 py-0.5 text-[10px] font-bold tracking-wide border border-gray-200">
+                                  {t.inquiryBadge}
+                                </span>
+                              )}
+                            </div>
+                            <div className="p-6 flex-1 flex flex-col">
+                              <span className="inline-block text-xs font-bold tracking-widest text-sky-600 uppercase mb-3">{item.type}</span>
+                              <h4 className="text-lg font-bold text-gray-900 mb-2">{item.name}</h4>
+                              <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
+                              {available ? (
+                                <div className="mt-auto pt-5">
+                                  <div className="flex items-baseline gap-1.5 mb-3">
+                                    <span className="text-2xl font-bold text-gray-900">{item.price}</span>
+                                    <span className="text-xs text-gray-500">{item.priceUnit}</span>
+                                  </div>
+                                  <a
+                                    href={item.buyUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="block w-full text-center rounded-lg bg-sky-600 text-white font-semibold px-6 py-3 hover:bg-sky-700 transition-colors duration-300"
+                                  >
+                                    {t.reserveCta}
+                                  </a>
+                                </div>
+                              ) : (
+                                <div className="mt-auto pt-5">
+                                  <a
+                                    href={`/contact?service=robot-rental&maker=${encodeURIComponent(group.company)}&robot=${encodeURIComponent(item.name)}`}
+                                    className="block w-full text-center rounded-lg border border-sky-200 text-sky-700 font-semibold px-6 py-3 hover:bg-sky-50 transition-colors duration-300"
+                                  >
+                                    {t.heroCta}
+                                  </a>
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        </Reveal>
+                      );
+                    })}
                   </div>
                 </div>
               </Reveal>
-              );
-            })}
+            ))}
           </div>
           <Reveal delay={200}>
             <p className="text-xs text-gray-400 mt-8">{t.lineupFootnote}</p>

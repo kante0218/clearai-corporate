@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 
 const description =
-  "【準備中／Coming Soon】clearAIのロボットレンタル。Unitree・AGIBOTなど海外の最先端ヒューマノイド／ロボットを輸入し、短期レンタル・導入前トライアル・イベント活用で提供予定。先行のご相談を承っています。";
+  "【準備中／Coming Soon】clearAIのロボットレンタル。Unitree・Boston Dynamics・AGIBOT・JAKA・PUDUなど海外の最先端ヒューマノイド／四足歩行ロボット／協働ロボットを輸入し、短期レンタル・導入前トライアル・イベント活用で提供予定。先行のご相談を承っています。";
 
 export const metadata: Metadata = {
   title: "ロボットレンタル | ヒューマノイドの短期レンタル・PoC・実証",
@@ -13,7 +13,20 @@ export const metadata: Metadata = {
     "Unitree レンタル",
     "AGIBOT",
     "Unitree G1",
+    "Unitree Go2",
+    "Unitree H2",
+    "Unitree B2",
+    "Unitree A2",
+    "PUDU D7",
+    "AgiBot A2-W",
+    "Boston Dynamics Spot",
+    "Boston Dynamics Atlas",
+    "Boston Dynamics Stretch",
+    "JAKA ロボット",
+    "JAKA 協働ロボット",
     "人型ロボット レンタル",
+    "四足歩行ロボット レンタル",
+    "協働ロボット レンタル",
     "ロボット 輸入",
     "ヒューマノイド",
     "AI ロボット",
