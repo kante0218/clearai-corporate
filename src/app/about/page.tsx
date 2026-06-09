@@ -9,13 +9,14 @@ const CREST_BY_NAME: Record<string, string> = {
   "髙橋 敢輝": "/images/crests/kosen.png",
   "國井 真帆": "/images/crests/kosen.png",
   "鈴木 隆生": "/images/crests/kosen.png",
-  "石嶋 悠一": "/images/crests/keio.png",
-  "西村 吉正": "/images/crests/tokyo.png",
-  "吉次 優太": "/images/crests/tokyo.png",
+  "アニ": "/images/crests/kosen.png",
+  "石嶋 悠一": "/images/crests/keio.svg",
+  "西村 吉正": "/images/crests/tokyo.svg",
+  "吉次 優太": "/images/crests/tokyo.svg",
   "赤池 心太朗": "/images/crests/nagoya.png",
-  "菊池 秀弥": "/images/crests/aoyama.png",
-  "郷 由稀斗": "/images/crests/tsukuba.png",
-  "伊藤 愛基": "/images/crests/tsukuba.png",
+  "菊池 秀弥": "/images/crests/aoyama.svg",
+  "郷 由稀斗": "/images/crests/tsukuba.svg",
+  "伊藤 愛基": "/images/crests/tsukuba.svg",
 };
 
 function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
