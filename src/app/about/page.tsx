@@ -111,12 +111,6 @@ const COPY: Record<"ja" | "en", Copy> = {
         bio: "茨城高専在学中のエンジニア。CTOとしてclearAIのプロダクト開発と技術基盤の構築を主導する。",
       },
       {
-        name: "伊藤 愛基",
-        nameEn: "manaki ito",
-        role: "アドバイザー / 技術・事業助言（筑波大学）",
-        bio: "茨城県出身。茨城高専卒業後、筑波大学へ編入。Web開発歴6年以上。MIXIグループ「ラブグラフ」やシリコンバレー発スタートアップで立ち上げから運用までを一貫して担当。起業経験に基づくビジネス視点と長期的な拡張性を見据えた設計を強みとする。",
-      },
-      {
         name: "赤池 心太朗",
         nameEn: "Shintaro Akaike",
         role: "CMO / マーケティング（名古屋大学）",
@@ -145,6 +139,18 @@ const COPY: Record<"ja" | "en", Copy> = {
         nameEn: "Yukito Go",
         role: "AI導入コンサルタント / アドバイザー",
         bio: "福岡県出身。筑波大学情報メディア創生学類在学中。EQパートナーズ株式会社CAIO、Queue株式会社PMや複数社でのエンジニア/CTO経験を経て、金融機関・エンプラ等の大規模案件や地方自治体向けイベントアプリの立ち上げを統括。「誰もが『創りたい』を創れる社会を創る」を掲げ、AIの民主化を推進中。",
+      },
+      {
+        name: "伊藤 愛基",
+        nameEn: "manaki ito",
+        role: "アドバイザー / 技術・事業助言（筑波大学）",
+        bio: "茨城県出身。茨城高専卒業後、筑波大学へ編入。Web開発歴6年以上。MIXIグループ「ラブグラフ」やシリコンバレー発スタートアップで立ち上げから運用までを一貫して担当。起業経験に基づくビジネス視点と長期的な拡張性を見据えた設計を強みとする。",
+      },
+      {
+        name: "吉次 優太",
+        nameEn: "Yoshitsugu Yuta",
+        role: "パートナー / 事業開発",
+        bio: "外資系製薬企業、ZSHK Japanの立ち上げに参画。その後M&A仲介会社でのインサイドセールス業務に携わり、セールス領域でのAI活用の必要性を感じてDiaL Shiftを創業。同事業の売却を経て、clearAIのパートナーとして事業開発を支援する。",
       },
     ],
     historyLabel: "History",
@@ -262,12 +268,6 @@ const COPY: Record<"ja" | "en", Copy> = {
         bio: "Engineer currently enrolled at Ibaraki KOSEN. As CTO, leads clearAI's product development and technical foundation.",
       },
       {
-        name: "伊藤 愛基",
-        nameEn: "manaki ito",
-        role: "Advisor / Technology & Business (University of Tsukuba)",
-        bio: "From Ibaraki. Transferred to University of Tsukuba after Ibaraki KOSEN. 6+ years in web development. Worked end-to-end on MIXI Group's Lovegraph and a Silicon Valley startup. Strong in business perspective grounded in entrepreneurial experience and scalable system design.",
-      },
-      {
         name: "赤池 心太朗",
         nameEn: "Shintaro Akaike",
         role: "CMO / Marketing (Nagoya University)",
@@ -296,6 +296,18 @@ const COPY: Record<"ja" | "en", Copy> = {
         nameEn: "Yukito Go",
         role: "AI Adoption Consultant / Advisor",
         bio: "From Fukuoka. Currently in the information media creation program at University of Tsukuba. After CAIO at EQ Partners and PM at Queue, plus engineer/CTO roles at multiple companies, has led large-scale financial and enterprise projects and local-government event app launches. Champions AI democratization under the motto 'Create a society where anyone can build what they want to build.'",
+      },
+      {
+        name: "伊藤 愛基",
+        nameEn: "manaki ito",
+        role: "Advisor / Technology & Business (University of Tsukuba)",
+        bio: "From Ibaraki. Transferred to University of Tsukuba after Ibaraki KOSEN. 6+ years in web development. Worked end-to-end on MIXI Group's Lovegraph and a Silicon Valley startup. Strong in business perspective grounded in entrepreneurial experience and scalable system design.",
+      },
+      {
+        name: "吉次 優太",
+        nameEn: "Yoshitsugu Yuta",
+        role: "Partner / Business Development",
+        bio: "Joined the launch of ZSHK Japan, a foreign pharmaceutical company. Later worked in inside sales at an M&A advisory firm, where he recognized the need for AI in sales and founded DiaL Shift. Following the sale of that business, he joined clearAI as a partner supporting business development.",
       },
     ],
     historyLabel: "History",
