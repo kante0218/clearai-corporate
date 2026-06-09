@@ -23,7 +23,7 @@ function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; 
 }
 
 function Label({ children }: { children: ReactNode }) {
-  return <p className="text-sm font-semibold text-sky-600 mb-4">{children}</p>;
+  return <p className="text-sm font-semibold text-neutral-900 mb-4">{children}</p>;
 }
 
 // 本番ライブ Stripe Payment Link（日額レンタル・数量＝日数）。
@@ -269,17 +269,17 @@ export default function RobotRentalPage() {
       {/* PAGE HEADER */}
       <section className="pt-24 pb-16 lg:pt-32 lg:pb-24 bg-white border-b border-gray-100">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <div className="max-w-4xl">
+          <div>
             <div className="flex items-center gap-3 mb-3">
-              <p className="text-sm font-semibold text-sky-600">{t.heroKicker}</p>
-              <span className="inline-flex items-center rounded-full bg-sky-50 text-sky-700 border border-sky-200 px-3 py-1 text-xs font-bold tracking-wide">
+              <p className="text-sm font-semibold text-neutral-900">{t.heroKicker}</p>
+              <span className="inline-flex items-center rounded-md bg-neutral-50 text-neutral-900 border border-neutral-200 px-3 py-1 text-xs font-bold tracking-wide">
                 {t.comingSoon}
               </span>
             </div>
             <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4">{t.heroTitle}</h1>
-            <p className="text-base text-gray-600 leading-relaxed max-w-2xl mb-8">{t.heroDesc}</p>
+            <p className="text-base text-gray-600 leading-relaxed w-full mb-8">{t.heroDesc}</p>
             <div className="flex items-center gap-4 flex-wrap">
-              <a href="/contact?service=robot-rental" className="rounded-lg bg-sky-600 text-white font-semibold px-8 py-3.5 hover:bg-sky-700 transition-colors duration-300 inline-block">
+              <a href="/contact?service=robot-rental" className="rounded-lg bg-neutral-900 text-white font-semibold px-8 py-3.5 hover:bg-neutral-800 transition-colors duration-300 inline-block">
                 {t.heroCta}
               </a>
               <span className="text-sm text-gray-400">{t.heroNote}</span>
@@ -294,7 +294,7 @@ export default function RobotRentalPage() {
           <Reveal>
             <Label>{t.lineupLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.lineupTitle}</h2>
-            <p className="text-sm text-gray-500 mb-14 max-w-2xl leading-relaxed">{t.lineupDesc}</p>
+            <p className="text-sm text-gray-500 mb-14 w-full leading-relaxed">{t.lineupDesc}</p>
           </Reveal>
           <div className="space-y-12">
             {t.lineupGroups.map((group, groupIndex) => (
@@ -302,17 +302,17 @@ export default function RobotRentalPage() {
                 <div className="border-t border-gray-200 pt-8">
                   <div className="mb-6 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
                     <div>
-                      <p className="text-xs font-bold tracking-widest text-sky-600 uppercase mb-2">Maker</p>
+                      <p className="text-xs font-bold tracking-widest text-neutral-900 uppercase mb-2">Maker</p>
                       <h3 className="text-2xl font-bold text-gray-900">{group.company}</h3>
                     </div>
-                    <p className="text-sm text-gray-500 leading-relaxed max-w-3xl">{group.summary}</p>
+                    <p className="text-sm text-gray-500 leading-relaxed w-full">{group.summary}</p>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                     {group.robots.map((item, i) => {
                       const available = item.status === "booking" || Boolean(item.buyUrl);
                       return (
                         <Reveal key={item.name} delay={i * 60}>
-                          <div className={`relative h-full rounded-2xl border bg-white overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col ${available ? "border-sky-200" : "border-gray-200"}`}>
+                          <div className={`relative h-full rounded-lg border bg-white overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col ${available ? "border-neutral-300" : "border-gray-200"}`}>
                             <div className="relative aspect-square bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
                               {item.image ? (
                                 <Image
@@ -326,7 +326,7 @@ export default function RobotRentalPage() {
                                 <span className="text-xs font-bold tracking-widest text-gray-400 uppercase">Image Coming Soon</span>
                               )}
                               {available ? (
-                                <span className="absolute top-3 right-3 inline-flex items-center gap-1.5 rounded-full bg-sky-600 text-white px-2.5 py-0.5 text-[10px] font-bold tracking-wide shadow-sm">
+                                <span className="absolute top-3 right-3 inline-flex items-center gap-1.5 rounded-md bg-neutral-900 text-white px-2.5 py-0.5 text-[10px] font-bold tracking-wide shadow-sm">
                                   <span className="w-1.5 h-1.5 rounded-full bg-white" />{t.availableBadge}
                                 </span>
                               ) : (
@@ -336,7 +336,7 @@ export default function RobotRentalPage() {
                               )}
                             </div>
                             <div className="p-6 flex-1 flex flex-col">
-                              <span className="inline-block text-xs font-bold tracking-widest text-sky-600 uppercase mb-3">{item.type}</span>
+                              <span className="inline-block text-xs font-bold tracking-widest text-neutral-900 uppercase mb-3">{item.type}</span>
                               <h4 className="text-lg font-bold text-gray-900 mb-2">{item.name}</h4>
                               <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
                               {available ? (
@@ -349,7 +349,7 @@ export default function RobotRentalPage() {
                                     href={item.buyUrl}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="block w-full text-center rounded-lg bg-sky-600 text-white font-semibold px-6 py-3 hover:bg-sky-700 transition-colors duration-300"
+                                    className="block w-full text-center rounded-lg bg-neutral-900 text-white font-semibold px-6 py-3 hover:bg-neutral-800 transition-colors duration-300"
                                   >
                                     {t.reserveCta}
                                   </a>
@@ -358,7 +358,7 @@ export default function RobotRentalPage() {
                                 <div className="mt-auto pt-5">
                                   <a
                                     href={`/contact?service=robot-rental&maker=${encodeURIComponent(group.company)}&robot=${encodeURIComponent(item.name)}`}
-                                    className="block w-full text-center rounded-lg border border-sky-200 text-sky-700 font-semibold px-6 py-3 hover:bg-sky-50 transition-colors duration-300"
+                                    className="block w-full text-center rounded-lg border border-neutral-200 text-neutral-900 font-semibold px-6 py-3 hover:bg-neutral-50 transition-colors duration-300"
                                   >
                                     {t.heroCta}
                                   </a>
@@ -386,13 +386,13 @@ export default function RobotRentalPage() {
           <Reveal>
             <Label>{t.planLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.planTitle}</h2>
-            <p className="text-sm text-gray-500 mb-14 max-w-2xl leading-relaxed">{t.planDesc}</p>
+            <p className="text-sm text-gray-500 mb-14 w-full leading-relaxed">{t.planDesc}</p>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {t.plans.map((item, i) => (
               <Reveal key={item.title} delay={i * 100}>
-                <div className="bg-white rounded-2xl border border-gray-200 p-8 hover:border-sky-200 hover:shadow-lg transition-all duration-300">
-                  <span className="text-sm font-bold text-sky-600">{String(i + 1).padStart(2, "0")}</span>
+                <div className="bg-white rounded-lg border border-gray-200 p-8 hover:border-neutral-300 hover:shadow-lg transition-all duration-300">
+                  <span className="text-sm font-bold text-neutral-900">{String(i + 1).padStart(2, "0")}</span>
                   <h3 className="text-xl font-bold text-gray-900 mt-3 mb-3">{item.title}</h3>
                   <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
                 </div>
@@ -408,12 +408,12 @@ export default function RobotRentalPage() {
           <Reveal>
             <Label>{t.useLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.useTitle}</h2>
-            <p className="text-sm text-gray-500 mb-14 max-w-2xl leading-relaxed">{t.useDesc}</p>
+            <p className="text-sm text-gray-500 mb-14 w-full leading-relaxed">{t.useDesc}</p>
           </Reveal>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {t.useCases.map((item, i) => (
               <Reveal key={item.name} delay={i * 80}>
-                <div className="h-full rounded-2xl border border-gray-200 bg-white p-6">
+                <div className="h-full rounded-lg border border-gray-200 bg-white p-6">
                   <h3 className="text-lg font-bold text-gray-900 mb-2">{item.name}</h3>
                   <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
                 </div>
@@ -430,7 +430,7 @@ export default function RobotRentalPage() {
             <Label>{t.ctaLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 mb-4">{t.ctaTitle}</h2>
             <p className="text-base text-gray-600 leading-relaxed mb-10">{t.ctaDesc}</p>
-            <a href="/contact?service=robot-rental" className="rounded-lg bg-sky-600 text-white font-semibold px-10 py-4 hover:bg-sky-700 transition-colors duration-300 inline-block">{t.ctaButton}</a>
+            <a href="/contact?service=robot-rental" className="rounded-lg bg-neutral-900 text-white font-semibold px-10 py-4 hover:bg-neutral-800 transition-colors duration-300 inline-block">{t.ctaButton}</a>
           </Reveal>
         </div>
       </section>

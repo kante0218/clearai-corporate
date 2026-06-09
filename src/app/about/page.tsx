@@ -394,11 +394,11 @@ export default function AboutPage() {
         />
         <div className="relative z-10 max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
-            <p className="text-xs font-semibold tracking-widest uppercase text-sky-400 mb-6">{t.visionLabel}</p>
-            <h2 className="text-3xl font-bold text-white leading-tight mb-6 max-w-2xl whitespace-pre-line">
+            <p className="text-xs font-semibold tracking-widest uppercase text-neutral-300 mb-6">{t.visionLabel}</p>
+            <h2 className="text-3xl font-bold text-white leading-tight mb-6 w-full whitespace-pre-line">
               {t.visionTitle}
             </h2>
-            <p className="text-base text-gray-300 leading-relaxed max-w-xl mb-16">
+            <p className="text-base text-gray-300 leading-relaxed w-full mb-16">
               {t.visionDesc}
             </p>
           </Reveal>
@@ -406,9 +406,9 @@ export default function AboutPage() {
           <div className="grid md:grid-cols-3 gap-8 auto-rows-fr">
             {t.vision.map((item, i) => (
               <Reveal key={item.label} delay={i * 80} className="h-full">
-                <div className="h-full border border-white/10 rounded-2xl p-10 lg:p-12 bg-white/10 backdrop-blur-md flex flex-col">
+                <div className="h-full border border-white/10 rounded-lg p-10 lg:p-12 bg-white/10 backdrop-blur-md flex flex-col">
                   <p className="text-4xl lg:text-5xl font-bold text-white mb-2">{item.num}</p>
-                  <p className="text-sm font-semibold text-sky-400 mb-3">{item.label}</p>
+                  <p className="text-sm font-semibold text-neutral-300 mb-3">{item.label}</p>
                   <p className="text-sm text-gray-300 leading-relaxed">{item.desc}</p>
                 </div>
               </Reveal>
@@ -421,11 +421,11 @@ export default function AboutPage() {
       <section className="py-20 lg:py-28 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
-            <p className="text-xs font-semibold tracking-widest uppercase text-sky-600 mb-6">{t.membersLabel}</p>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-6 max-w-xl">
+            <p className="text-xs font-semibold tracking-widest uppercase text-neutral-900 mb-6">{t.membersLabel}</p>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-6 w-full">
               {t.membersTitle}
             </h2>
-            <p className="text-base text-gray-600 leading-relaxed max-w-2xl mb-16">
+            <p className="text-base text-gray-600 leading-relaxed w-full mb-16">
               {t.membersDesc}
             </p>
           </Reveal>
@@ -433,12 +433,12 @@ export default function AboutPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
             {t.members.map((m, i) => (
               <Reveal key={m.nameEn} delay={i * 80} className="h-full">
-                <article className="group h-full border border-gray-200 rounded-2xl p-8 bg-white hover:border-sky-300 hover:shadow-lg transition-all duration-300">
+                <article className="group h-full border border-gray-200 rounded-lg p-8 bg-white hover:border-neutral-300 hover:shadow-lg transition-all duration-300">
                   <div className="mb-6">
                     <h3 className="text-lg font-bold text-gray-900 leading-tight">{m.name}</h3>
                     <p className="text-xs text-gray-400 font-medium tracking-wide mt-0.5">{m.nameEn}</p>
                   </div>
-                  <p className="text-sm font-semibold text-sky-600 mb-3">{m.role}</p>
+                  <p className="text-sm font-semibold text-neutral-900 mb-3">{m.role}</p>
                   <p className="text-sm text-gray-600 leading-relaxed">{m.bio}</p>
                 </article>
               </Reveal>
@@ -451,7 +451,7 @@ export default function AboutPage() {
       <section className="py-20 lg:py-28 bg-gray-50">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
-            <p className="text-xs font-semibold tracking-widest uppercase text-sky-600 mb-6">{t.historyLabel}</p>
+            <p className="text-xs font-semibold tracking-widest uppercase text-neutral-900 mb-6">{t.historyLabel}</p>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-16">
               {t.historyTitle}
             </h2>
@@ -467,12 +467,12 @@ export default function AboutPage() {
                   <div className="relative pl-12">
                     {/* Dot — filled for past, outlined for future */}
                     {item.future ? (
-                      <div className="absolute left-0 top-1.5 w-[11px] h-[11px] rounded-full border-2 border-sky-300 bg-white" />
+                      <div className="absolute left-0 top-1.5 w-[11px] h-[11px] rounded-full border-2 border-neutral-300 bg-white" />
                     ) : (
-                      <div className="absolute left-0 top-1.5 w-[11px] h-[11px] rounded-full bg-sky-600" />
+                      <div className="absolute left-0 top-1.5 w-[11px] h-[11px] rounded-full bg-neutral-900" />
                     )}
 
-                    <span className={`block text-xs font-bold tracking-wide mb-1.5 ${item.future ? "text-sky-300" : "text-sky-600"}`}>
+                    <span className={`block text-xs font-bold tracking-wide mb-1.5 ${item.future ? "text-neutral-300" : "text-neutral-900"}`}>
                       {item.year}
                     </span>
                     <h3 className={`text-base font-bold mb-2 ${item.future ? "text-gray-400" : "text-gray-900"}`}>
@@ -491,10 +491,10 @@ export default function AboutPage() {
 
       {/* ─── 10. CTA ─────────────────────────────────────────────────────── */}
       <section className="py-20 lg:py-28 bg-gray-950 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-sky-950/40 to-gray-950 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-br from-neutral-900/40 to-gray-950 pointer-events-none" />
         <div className="relative max-w-[1800px] mx-auto px-6 lg:px-8 text-center">
           <Reveal>
-            <p className="text-xs font-semibold tracking-widest uppercase text-sky-400 mb-6">{t.joinLabel}</p>
+            <p className="text-xs font-semibold tracking-widest uppercase text-neutral-300 mb-6">{t.joinLabel}</p>
             <h2 className="text-3xl font-bold text-white leading-tight mb-6 max-w-2xl mx-auto whitespace-pre-line">
               {t.joinTitle}
             </h2>
@@ -506,7 +506,7 @@ export default function AboutPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center gap-2 bg-sky-600 hover:bg-sky-700 text-white font-bold text-base rounded-lg px-8 py-4 transition-colors duration-200"
+                className="inline-flex items-center justify-center gap-2 bg-neutral-900 hover:bg-neutral-800 text-white font-bold text-base rounded-lg px-8 py-4 transition-colors duration-200"
               >
                 {t.joinCta}
               </Link>
@@ -522,7 +522,7 @@ export default function AboutPage() {
       <section className="py-20 lg:py-28 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
-            <p className="text-xs font-semibold tracking-widest uppercase text-sky-600 mb-6">{t.companyLabel}</p>
+            <p className="text-xs font-semibold tracking-widest uppercase text-neutral-900 mb-6">{t.companyLabel}</p>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-12">
               {t.companyTitle}
             </h2>

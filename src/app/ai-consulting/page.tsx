@@ -22,7 +22,7 @@ function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; 
 }
 
 function Label({ children }: { children: ReactNode }) {
-  return <p className="text-sm font-semibold text-sky-600 mb-4">{children}</p>;
+  return <p className="text-sm font-semibold text-neutral-900 mb-4">{children}</p>;
 }
 
 type Copy = {
@@ -76,10 +76,10 @@ const COPY: Record<"ja" | "en", Copy> = {
     servicesLabel: "Service Areas",
     servicesTitle: "4つの支援領域",
     services: [
-      { num: "01", title: "AI戦略策定", desc: "現状分析から導入ロードマップの策定まで。ROIを試算し、優先度の高い領域から着手する実行可能な計画を立案します。", hoverBg: "hover:bg-sky-50" },
-      { num: "02", title: "データ分析・活用", desc: "社内データの棚卸しと分析基盤の構築。散在するデータを統合し、AIが活用できる形に整備します。", hoverBg: "hover:bg-emerald-50" },
-      { num: "03", title: "業務自動化", desc: "繰り返しの多い業務をAIで自動化。カスタマーサポート、文書処理、データ入力など、人がやらなくていい仕事を見つけ出します。", hoverBg: "hover:bg-amber-50" },
-      { num: "04", title: "生成AI活用", desc: "ChatGPT・Claudeなどの生成AIを業務フローに組み込むご支援。社内ナレッジベースとの連携やカスタムチャットボットの構築も。", hoverBg: "hover:bg-cyan-50" },
+      { num: "01", title: "AI戦略策定", desc: "現状分析から導入ロードマップの策定まで。ROIを試算し、優先度の高い領域から着手する実行可能な計画を立案します。", hoverBg: "hover:bg-neutral-50" },
+      { num: "02", title: "データ分析・活用", desc: "社内データの棚卸しと分析基盤の構築。散在するデータを統合し、AIが活用できる形に整備します。", hoverBg: "hover:bg-neutral-50" },
+      { num: "03", title: "業務自動化", desc: "繰り返しの多い業務をAIで自動化。カスタマーサポート、文書処理、データ入力など、人がやらなくていい仕事を見つけ出します。", hoverBg: "hover:bg-neutral-50" },
+      { num: "04", title: "生成AI活用", desc: "ChatGPT・Claudeなどの生成AIを業務フローに組み込むご支援。社内ナレッジベースとの連携やカスタムチャットボットの構築も。", hoverBg: "hover:bg-neutral-50" },
     ],
     whyLabel: "Why Us",
     whyTitle: "なぜclearAIが選ばれるのか",
@@ -120,13 +120,13 @@ const COPY: Record<"ja" | "en", Copy> = {
         { name: "Python", icon: "logos:python" },
         { name: "Node.js", icon: "logos:nodejs-icon" },
         { name: "FastAPI", icon: "logos:fastapi-icon" },
-        { name: "Go", icon: "simple-icons:go", color: "00ADD8" },
-        { name: "Rails", icon: "simple-icons:rubyonrails", color: "D30001" },
+        { name: "Go", icon: "simple-icons:go", color: "111827" },
+        { name: "Rails", icon: "simple-icons:rubyonrails", color: "111827" },
       ]},
       { category: "AI / ML", label: "AI・機械学習", items: [
-        { name: "Claude", icon: "simple-icons:anthropic", color: "D97757" },
+        { name: "Claude", icon: "simple-icons:anthropic", color: "111827" },
         { name: "OpenAI", icon: "simple-icons:openai", color: "000000" },
-        { name: "Gemini", icon: "simple-icons:googlegemini", color: "8E75B2" },
+        { name: "Gemini", icon: "simple-icons:googlegemini", color: "111827" },
         { name: "PyTorch", icon: "logos:pytorch-icon" },
         { name: "LangChain", icon: "simple-icons:langchain", color: "1C3C3C" },
       ]},
@@ -146,10 +146,10 @@ const COPY: Record<"ja" | "en", Copy> = {
       ]},
       { category: "EC / Commerce", label: "EC・決済", items: [
         { name: "Shopify", icon: "logos:shopify" },
-        { name: "Stripe", icon: "simple-icons:stripe", color: "635BFF" },
+        { name: "Stripe", icon: "simple-icons:stripe", color: "111827" },
         { name: "Square", icon: "simple-icons:square", color: "000000" },
         { name: "WooCommerce", icon: "logos:woocommerce-icon" },
-        { name: "Amazon Pay", icon: "simple-icons:amazonpay", color: "FF9900" },
+        { name: "Amazon Pay", icon: "simple-icons:amazonpay", color: "111827" },
       ]},
       { category: "Business Integrations", label: "業務連携・コラボレーション", items: [
         { name: "Salesforce", icon: "logos:salesforce" },
@@ -190,10 +190,10 @@ const COPY: Record<"ja" | "en", Copy> = {
     servicesLabel: "Service Areas",
     servicesTitle: "Four areas of support",
     services: [
-      { num: "01", title: "AI strategy", desc: "From current-state analysis to roadmap development. We calculate ROI and draft an actionable plan that starts with the highest-priority areas.", hoverBg: "hover:bg-sky-50" },
-      { num: "02", title: "Data analytics & activation", desc: "Auditing internal data and building an analytics foundation. We consolidate scattered data into a form AI can actually use.", hoverBg: "hover:bg-emerald-50" },
-      { num: "03", title: "Process automation", desc: "Automating repetitive tasks with AI — customer support, document processing, data entry. We identify the work that doesn't need a human.", hoverBg: "hover:bg-amber-50" },
-      { num: "04", title: "Generative AI integration", desc: "Embedding generative AI such as ChatGPT and Claude into your workflows. Including internal knowledge-base integration and custom chatbot development.", hoverBg: "hover:bg-cyan-50" },
+      { num: "01", title: "AI strategy", desc: "From current-state analysis to roadmap development. We calculate ROI and draft an actionable plan that starts with the highest-priority areas.", hoverBg: "hover:bg-neutral-50" },
+      { num: "02", title: "Data analytics & activation", desc: "Auditing internal data and building an analytics foundation. We consolidate scattered data into a form AI can actually use.", hoverBg: "hover:bg-neutral-50" },
+      { num: "03", title: "Process automation", desc: "Automating repetitive tasks with AI — customer support, document processing, data entry. We identify the work that doesn't need a human.", hoverBg: "hover:bg-neutral-50" },
+      { num: "04", title: "Generative AI integration", desc: "Embedding generative AI such as ChatGPT and Claude into your workflows. Including internal knowledge-base integration and custom chatbot development.", hoverBg: "hover:bg-neutral-50" },
     ],
     whyLabel: "Why Us",
     whyTitle: "Why companies choose clearAI",
@@ -234,13 +234,13 @@ const COPY: Record<"ja" | "en", Copy> = {
         { name: "Python", icon: "logos:python" },
         { name: "Node.js", icon: "logos:nodejs-icon" },
         { name: "FastAPI", icon: "logos:fastapi-icon" },
-        { name: "Go", icon: "simple-icons:go", color: "00ADD8" },
-        { name: "Rails", icon: "simple-icons:rubyonrails", color: "D30001" },
+        { name: "Go", icon: "simple-icons:go", color: "111827" },
+        { name: "Rails", icon: "simple-icons:rubyonrails", color: "111827" },
       ]},
       { category: "AI / ML", label: "AI / ML", items: [
-        { name: "Claude", icon: "simple-icons:anthropic", color: "D97757" },
+        { name: "Claude", icon: "simple-icons:anthropic", color: "111827" },
         { name: "OpenAI", icon: "simple-icons:openai", color: "000000" },
-        { name: "Gemini", icon: "simple-icons:googlegemini", color: "8E75B2" },
+        { name: "Gemini", icon: "simple-icons:googlegemini", color: "111827" },
         { name: "PyTorch", icon: "logos:pytorch-icon" },
         { name: "LangChain", icon: "simple-icons:langchain", color: "1C3C3C" },
       ]},
@@ -260,10 +260,10 @@ const COPY: Record<"ja" | "en", Copy> = {
       ]},
       { category: "EC / Commerce", label: "E-commerce & Payments", items: [
         { name: "Shopify", icon: "logos:shopify" },
-        { name: "Stripe", icon: "simple-icons:stripe", color: "635BFF" },
+        { name: "Stripe", icon: "simple-icons:stripe", color: "111827" },
         { name: "Square", icon: "simple-icons:square", color: "000000" },
         { name: "WooCommerce", icon: "logos:woocommerce-icon" },
-        { name: "Amazon Pay", icon: "simple-icons:amazonpay", color: "FF9900" },
+        { name: "Amazon Pay", icon: "simple-icons:amazonpay", color: "111827" },
       ]},
       { category: "Business Integrations", label: "Business Integrations", items: [
         { name: "Salesforce", icon: "logos:salesforce" },
@@ -299,9 +299,9 @@ export default function AiConsultingPage() {
       {/* PAGE HEADER */}
       <section className="pt-24 pb-12 lg:pt-32 lg:pb-16 bg-white border-b border-gray-100">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <p className="text-sm font-semibold text-sky-600 mb-3">{t.heroKicker}</p>
+          <p className="text-sm font-semibold text-neutral-900 mb-3">{t.heroKicker}</p>
           <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4">{t.heroTitle}</h1>
-          <p className="text-base text-gray-600 leading-relaxed max-w-2xl">{t.heroDesc}</p>
+          <p className="text-base text-gray-600 leading-relaxed w-full">{t.heroDesc}</p>
         </div>
       </section>
 
@@ -315,8 +315,8 @@ export default function AiConsultingPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
             {t.plans.map((plan, i) => (
               <Reveal key={plan.name} delay={i * 100} className="flex">
-                <div className={`rounded-2xl p-8 lg:p-10 transition-all duration-300 flex flex-col w-full ${plan.featured ? "bg-sky-600 text-white shadow-xl" : "bg-white border border-gray-200 hover:shadow-lg"}`}>
-                  {plan.featured && <span className="inline-block rounded-full bg-white/20 text-white px-3 py-1 text-sm font-semibold mb-4 self-start">Recommended</span>}
+                <div className={`rounded-lg p-8 lg:p-10 transition-all duration-300 flex flex-col w-full ${plan.featured ? "bg-neutral-900 text-white shadow-xl" : "bg-white border border-gray-200 hover:shadow-lg"}`}>
+                  {plan.featured && <span className="inline-block rounded-md bg-white/20 text-white px-3 py-1 text-sm font-semibold mb-4 self-start">Recommended</span>}
                   <h3 className={`text-lg font-bold mb-2 ${plan.featured ? "text-white" : "text-gray-900"}`}>{plan.name}</h3>
                   <div className="mb-4">
                     <span className={`text-2xl font-bold ${plan.featured ? "text-white" : "text-gray-900"}`}>{plan.price}</span>
@@ -325,12 +325,12 @@ export default function AiConsultingPage() {
                   <ul className="space-y-3 mb-8 flex-1">
                     {plan.features.map((f) => (
                       <li key={f} className="flex items-start gap-3">
-                        <span className={`mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 ${plan.featured ? "bg-white/40" : "bg-sky-600"}`} />
+                        <span className={`mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 ${plan.featured ? "bg-white/40" : "bg-neutral-900"}`} />
                         <span className={`text-sm ${plan.featured ? "text-white/90" : "text-gray-600"}`}>{f}</span>
                       </li>
                     ))}
                   </ul>
-                  <a href="/contact" className={`block text-center text-sm font-semibold py-3 rounded-lg transition-all duration-300 mt-auto ${plan.featured ? "bg-white text-sky-600 hover:bg-sky-50" : "border border-gray-200 text-gray-600 hover:border-gray-400 hover:text-gray-900"}`}>{t.planCta}</a>
+                  <a href="/contact" className={`block text-center text-sm font-semibold py-3 rounded-lg transition-all duration-300 mt-auto ${plan.featured ? "bg-white text-neutral-900 hover:bg-neutral-50" : "border border-gray-200 text-gray-600 hover:border-gray-400 hover:text-gray-900"}`}>{t.planCta}</a>
                 </div>
               </Reveal>
             ))}
@@ -383,8 +383,8 @@ export default function AiConsultingPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {t.services.map((item, i) => (
               <Reveal key={item.num} delay={i * 100}>
-                <div className={`bg-white rounded-2xl border border-gray-200 p-8 transition-all duration-300 cursor-default group ${item.hoverBg} hover:shadow-lg`}>
-                  <span className="text-sm font-bold text-sky-600">{item.num}</span>
+                <div className={`bg-white rounded-lg border border-gray-200 p-8 transition-all duration-300 cursor-default group ${item.hoverBg} hover:shadow-lg`}>
+                  <span className="text-sm font-bold text-neutral-900">{item.num}</span>
                   <h3 className="text-xl font-bold text-gray-900 mt-3 mb-4">{item.title}</h3>
                   <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
                 </div>
@@ -404,8 +404,8 @@ export default function AiConsultingPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
             {t.why.map((item, i) => (
               <Reveal key={item.title} delay={i * 100} className="h-full">
-                <div className="rounded-2xl border border-gray-200 bg-white p-8 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
-                  <span className="text-xs font-semibold text-sky-600 tracking-widest">{item.num}</span>
+                <div className="rounded-lg border border-gray-200 bg-white p-8 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
+                  <span className="text-xs font-semibold text-neutral-900 tracking-widest">{item.num}</span>
                   <h3 className="text-lg font-bold text-gray-900 mt-2 mb-3">{item.title}</h3>
                   <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
                 </div>
@@ -425,7 +425,7 @@ export default function AiConsultingPage() {
           {t.process.map((step, i) => (
             <Reveal key={step.num} delay={i * 100}>
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 py-10 border-b border-gray-100 last:border-0">
-                <div className="lg:col-span-1"><span className="text-sm font-bold text-sky-600">{step.num}</span></div>
+                <div className="lg:col-span-1"><span className="text-sm font-bold text-neutral-900">{step.num}</span></div>
                 <div className="lg:col-span-3">
                   <h3 className="text-xl font-bold text-gray-900">{step.title}</h3>
                   <p className="text-sm text-gray-400 mt-1">{step.en}</p>
@@ -443,7 +443,7 @@ export default function AiConsultingPage() {
           <Reveal>
             <Label>{t.techLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.techTitle}</h2>
-            <p className="text-base text-gray-500 max-w-xl leading-relaxed mb-14">
+            <p className="text-base text-gray-500 w-full leading-relaxed mb-14">
               {t.techDesc}
             </p>
           </Reveal>
@@ -453,7 +453,7 @@ export default function AiConsultingPage() {
                 <div className="border-t border-gray-200 py-8">
                   <div className="grid lg:grid-cols-12 gap-6 items-center">
                     <div className="lg:col-span-2">
-                      <p className="text-[10px] font-semibold tracking-widest text-sky-600 uppercase">{group.category}</p>
+                      <p className="text-[10px] font-semibold tracking-widest text-neutral-900 uppercase">{group.category}</p>
                       <h3 className="text-sm font-bold text-gray-900 mt-0.5">{group.label}</h3>
                     </div>
                     <div className="lg:col-span-10">
@@ -509,7 +509,7 @@ export default function AiConsultingPage() {
                 <span key={i}>{line}{i < arr.length - 1 && <br />}</span>
               ))}
             </p>
-            <a href="/contact" className="rounded-lg bg-sky-600 text-white font-semibold px-10 py-4 hover:bg-sky-700 transition-colors duration-300 inline-block">{t.ctaButton}</a>
+            <a href="/contact" className="rounded-lg bg-neutral-900 text-white font-semibold px-10 py-4 hover:bg-neutral-800 transition-colors duration-300 inline-block">{t.ctaButton}</a>
           </Reveal>
         </div>
       </section>

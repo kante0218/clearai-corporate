@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Noto_Sans_JP, Inter } from "next/font/google";
+import { Noto_Sans_JP, Geist } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -11,17 +11,18 @@ const notoSansJP = Noto_Sans_JP({
   variable: "--font-noto",
 });
 
-const inter = Inter({
+// Latin display/UI face — neo-grotesque (liquid.ai / OpenAI aesthetic)
+const geist = Geist({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-inter",
+  variable: "--font-geist",
 });
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
-  themeColor: "#0284c7",
+  themeColor: "#111827",
 };
 
 const ogDescription =
@@ -345,7 +346,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ja" suppressHydrationWarning className={`${notoSansJP.variable} ${inter.variable}`}>
+    <html lang="ja" suppressHydrationWarning className={`${notoSansJP.variable} ${geist.variable}`}>
       <head>
         <script
           type="application/ld+json"

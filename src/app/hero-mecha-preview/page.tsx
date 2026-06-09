@@ -41,7 +41,7 @@ export default function HeroMechaPreviewPage() {
           <div className="flex items-center justify-center gap-4">
             <Link
               href="/contact"
-              className="rounded-lg bg-sky-600 text-white font-semibold px-8 py-3.5 hover:bg-sky-700 transition-colors duration-300"
+              className="rounded-lg bg-neutral-900 text-white font-semibold px-8 py-3.5 hover:bg-neutral-800 transition-colors duration-300"
             >
               お問い合わせ
             </Link>

@@ -30,12 +30,12 @@ function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; 
 type SvcColor = "indigo" | "amber" | "sky" | "blue" | "rose" | "cyan";
 
 const colorMap: Record<SvcColor, { hoverBorder: string; code: string; cta: string; ctaHover: string }> = {
-  indigo: { hoverBorder: "hover:border-indigo-300", code: "text-indigo-600", cta: "text-indigo-600", ctaHover: "group-hover:text-indigo-700" },
-  amber:  { hoverBorder: "hover:border-amber-300",  code: "text-amber-600",  cta: "text-amber-600",  ctaHover: "group-hover:text-amber-700" },
-  sky:    { hoverBorder: "hover:border-sky-300",    code: "text-sky-600",    cta: "text-sky-600",    ctaHover: "group-hover:text-sky-700" },
-  blue:   { hoverBorder: "hover:border-sky-300",   code: "text-sky-600",   cta: "text-sky-600",   ctaHover: "group-hover:text-sky-700" },
-  rose:   { hoverBorder: "hover:border-rose-300",   code: "text-rose-600",   cta: "text-rose-600",   ctaHover: "group-hover:text-rose-700" },
-  cyan:   { hoverBorder: "hover:border-cyan-300",   code: "text-cyan-600",   cta: "text-cyan-600",   ctaHover: "group-hover:text-cyan-700" },
+  indigo: { hoverBorder: "hover:border-neutral-300", code: "text-neutral-900", cta: "text-neutral-900", ctaHover: "group-hover:text-neutral-700" },
+  amber:  { hoverBorder: "hover:border-neutral-300", code: "text-neutral-900", cta: "text-neutral-900", ctaHover: "group-hover:text-neutral-700" },
+  sky:    { hoverBorder: "hover:border-neutral-300", code: "text-neutral-900", cta: "text-neutral-900", ctaHover: "group-hover:text-neutral-700" },
+  blue:   { hoverBorder: "hover:border-neutral-300", code: "text-neutral-900", cta: "text-neutral-900", ctaHover: "group-hover:text-neutral-700" },
+  rose:   { hoverBorder: "hover:border-neutral-300", code: "text-neutral-900", cta: "text-neutral-900", ctaHover: "group-hover:text-neutral-700" },
+  cyan:   { hoverBorder: "hover:border-neutral-300", code: "text-neutral-900", cta: "text-neutral-900", ctaHover: "group-hover:text-neutral-700" },
 };
 
 type Svc = {
@@ -82,7 +82,7 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
   ja: {
     heroChips: ["ロボットレンタル × AIコンサル", "戦略から現場実装まで", "中小企業特化"],
     heroTitle: (
-      <>日本の中小企業に、<br /><span className="text-sky-600">ロボット</span>と<span className="text-sky-600">AI</span>を。</>
+      <>日本の中小企業に、<br /><span className="text-neutral-900">ロボット</span>と<span className="text-neutral-900">AI</span>を。</>
     ),
     heroDesc: (
       <>ヒューマノイド・ロボットのレンタルとAIコンサルティングを軸に、<br className="hidden md:inline" />
@@ -231,7 +231,7 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
   en: {
     heroChips: ["Robot Rental × AI Consulting", "Strategy to deployment", "Built for SMEs"],
     heroTitle: (
-      <><span className="text-sky-600">Robots</span> and <span className="text-sky-600">AI</span><br />for Japanese SMEs.</>
+      <><span className="text-neutral-900">Robots</span> and <span className="text-neutral-900">AI</span><br />for Japanese SMEs.</>
     ),
     heroDesc: (
       <>Centered on humanoid robot rental and AI consulting —<br className="hidden md:inline" />
@@ -391,13 +391,13 @@ const TECH_GROUPS: { key: keyof typeof COPY["ja"]["techGroups"]; items: { name: 
     { name: "Python", icon: "logos:python" },
     { name: "Node.js", icon: "logos:nodejs-icon" },
     { name: "FastAPI", icon: "logos:fastapi-icon" },
-    { name: "Go", icon: "simple-icons:go", color: "00ADD8" },
-    { name: "Rails", icon: "simple-icons:rubyonrails", color: "D30001" },
+    { name: "Go", icon: "simple-icons:go", color: "111827" },
+    { name: "Rails", icon: "simple-icons:rubyonrails", color: "111827" },
   ]},
   { key: "aiml" as const, items: [
-    { name: "Claude", icon: "simple-icons:anthropic", color: "D97757" },
+    { name: "Claude", icon: "simple-icons:anthropic", color: "111827" },
     { name: "OpenAI", icon: "simple-icons:openai", color: "000000" },
-    { name: "Gemini", icon: "simple-icons:googlegemini", color: "8E75B2" },
+    { name: "Gemini", icon: "simple-icons:googlegemini", color: "111827" },
     { name: "PyTorch", icon: "logos:pytorch-icon" },
     { name: "LangChain", icon: "simple-icons:langchain", color: "1C3C3C" },
   ]},
@@ -417,10 +417,10 @@ const TECH_GROUPS: { key: keyof typeof COPY["ja"]["techGroups"]; items: { name: 
   ]},
   { key: "ec" as const, items: [
     { name: "Shopify", icon: "logos:shopify" },
-    { name: "Stripe", icon: "simple-icons:stripe", color: "635BFF" },
+    { name: "Stripe", icon: "simple-icons:stripe", color: "111827" },
     { name: "Square", icon: "simple-icons:square", color: "000000" },
     { name: "WooCommerce", icon: "logos:woocommerce-icon" },
-    { name: "Amazon Pay", icon: "simple-icons:amazonpay", color: "FF9900" },
+    { name: "Amazon Pay", icon: "simple-icons:amazonpay", color: "111827" },
   ]},
   { key: "biz" as const, items: [
     { name: "Salesforce", icon: "logos:salesforce" },
@@ -433,7 +433,7 @@ const TECH_GROUPS: { key: keyof typeof COPY["ja"]["techGroups"]; items: { name: 
 
 function SectionLabel({ children }: { children: ReactNode }) {
   return (
-    <p className="text-xs font-semibold tracking-widest uppercase text-sky-600 mb-4">{children}</p>
+    <p className="text-xs font-semibold tracking-widest uppercase text-neutral-900 mb-4">{children}</p>
   );
 }
 
@@ -441,9 +441,9 @@ function ServiceCard({ svc, claudeBadge, compact }: { svc: Svc; claudeBadge: str
   const c = colorMap[svc.color];
   return (
     <Link href={svc.href} className="group block h-full">
-      <div className={`relative bg-white border border-gray-200 rounded-2xl ${compact ? "p-6 lg:p-7" : "p-8 lg:p-10"} ${c.hoverBorder} hover:shadow-lg transition-all duration-300 h-full flex flex-col`}>
+      <div className={`relative bg-white border border-gray-200 rounded-lg ${compact ? "p-6 lg:p-7" : "p-8 lg:p-10"} ${c.hoverBorder} hover:shadow-lg transition-all duration-300 h-full flex flex-col`}>
         {svc.badge && (
-          <span className="absolute top-4 right-4 inline-flex items-center gap-1 rounded-full bg-amber-500 text-white text-[10px] font-bold px-2.5 py-1 tracking-wide">
+          <span className="absolute top-4 right-4 inline-flex items-center gap-1 rounded-md bg-neutral-900 text-white text-[10px] font-bold px-2.5 py-1 tracking-wide">
             {svc.badge}
           </span>
         )}
@@ -451,11 +451,11 @@ function ServiceCard({ svc, claudeBadge, compact }: { svc: Svc; claudeBadge: str
         <h3 className={`${compact ? "text-lg" : "text-xl"} font-bold text-gray-900 mb-3`}>{svc.title}</h3>
         <p className={`${compact ? "text-[13px]" : "text-sm"} text-gray-600 leading-relaxed mb-5 flex-1`}>{svc.desc}</p>
         {svc.claudeNote && (
-          <div className="mb-5 rounded-lg bg-orange-50 border border-orange-100 px-3.5 py-2.5">
-            <span className="inline-flex items-center gap-1 text-[10px] font-bold text-orange-600 uppercase tracking-wide mb-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-orange-500" />{claudeBadge}
+          <div className="mb-5 rounded-lg bg-neutral-50 border border-neutral-200 px-3.5 py-2.5">
+            <span className="inline-flex items-center gap-1 text-[10px] font-bold text-neutral-900 uppercase tracking-wide mb-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-neutral-900" />{claudeBadge}
             </span>
-            <p className="text-[12px] text-orange-900/80 leading-relaxed">{svc.claudeNote}</p>
+            <p className="text-[12px] text-neutral-700 leading-relaxed">{svc.claudeNote}</p>
           </div>
         )}
         <div className="flex items-center gap-2 flex-wrap mb-5">
@@ -482,7 +482,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
         <div className="relative z-10 w-full max-w-5xl mx-auto px-6 lg:px-8 pt-28 pb-16 md:py-24 text-center">
           <div className="flex flex-wrap justify-center gap-2 mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "200ms" }}>
             {t.heroChips.map((tag) => (
-              <span key={tag} className="inline-flex items-center rounded-full bg-sky-50 text-sky-700 border border-sky-100 px-3 py-1 text-xs font-semibold">
+              <span key={tag} className="inline-flex items-center rounded-md bg-neutral-100 text-neutral-900 border border-neutral-200 px-3 py-1 text-xs font-semibold">
                 {tag}
               </span>
             ))}
@@ -494,11 +494,11 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
             {t.heroDesc}
           </p>
           <div className="flex flex-wrap justify-center items-center gap-5 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "850ms" }}>
-            <Link href="/contact" className="inline-flex items-center gap-2 rounded-full bg-sky-600 text-white font-semibold px-7 py-3.5 hover:bg-sky-700 transition-colors duration-300 shadow-[0_8px_24px_-8px_rgba(2,132,199,0.5)]">
+            <Link href="/contact" className="inline-flex items-center gap-2 rounded-md bg-neutral-900 text-white font-semibold px-7 py-3.5 hover:bg-neutral-800 transition-colors duration-300 shadow-[0_8px_24px_-8px_rgba(0,0,0,0.3)]">
               {t.heroPrimary}
               <span aria-hidden>→</span>
             </Link>
-            <Link href="#services" className="inline-flex items-center gap-1.5 text-sm text-gray-700 font-semibold hover:text-sky-600 transition-colors duration-300">
+            <Link href="#services" className="inline-flex items-center gap-1.5 text-sm text-gray-700 font-semibold hover:text-neutral-900 transition-colors duration-300">
               {t.heroSecondary}
               <span aria-hidden>→</span>
             </Link>
@@ -514,13 +514,13 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
               <SectionLabel>{t.newsLabel}</SectionLabel>
               <h2 className="text-3xl font-bold text-gray-900 leading-tight">{t.newsTitle}</h2>
             </div>
-            <Link href="/blog" className="hidden sm:inline-flex items-center gap-2 text-sm font-semibold text-sky-600 hover:text-sky-700 transition-colors">
+            <Link href="/blog" className="hidden sm:inline-flex items-center gap-2 text-sm font-semibold text-neutral-900 hover:text-neutral-700 transition-colors">
               {t.newsCta}
             </Link>
           </div>
           {newsSlot}
           <div className="text-center mt-8 sm:hidden">
-            <Link href="/blog" className="text-sm font-semibold text-sky-600">{t.newsCta}</Link>
+            <Link href="/blog" className="text-sm font-semibold text-neutral-900">{t.newsCta}</Link>
           </div>
         </div>
       </section>
@@ -552,8 +552,8 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {t.why.map((item, i) => (
               <Reveal key={item.title} delay={i * 80}>
-                <div className="bg-gray-50 border border-gray-200 rounded-2xl p-8 h-full">
-                  <div className="w-10 h-10 rounded-full bg-sky-600 text-white flex items-center justify-center font-bold mb-5">{i + 1}</div>
+                <div className="bg-gray-50 border border-gray-200 rounded-lg p-8 h-full">
+                  <div className="w-10 h-10 rounded-full bg-neutral-900 text-white flex items-center justify-center font-bold mb-5">{i + 1}</div>
                   <h3 className="text-lg font-bold text-gray-900 mb-3">{item.title}</h3>
                   <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
                 </div>
@@ -607,7 +607,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
               return (
                 <Reveal key={step.step} delay={i * 80}>
                   <Link href={step.href} className="group block h-full">
-                    <div className={`bg-white border border-gray-200 rounded-2xl p-8 lg:p-10 ${c.hoverBorder} hover:shadow-lg transition-all duration-300 h-full flex flex-col`}>
+                    <div className={`bg-white border border-gray-200 rounded-lg p-8 lg:p-10 ${c.hoverBorder} hover:shadow-lg transition-all duration-300 h-full flex flex-col`}>
                       <span className={`inline-block text-xs font-semibold tracking-widest uppercase ${c.code} mb-4`}>{step.step}</span>
                       <h3 className="text-xl font-bold text-gray-900 mb-3">{step.title}</h3>
                       <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">{step.desc}</p>
@@ -667,8 +667,8 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {t.approach.map((item, i) => (
               <Reveal key={item.num} delay={i * 80}>
-                <div className="border-t-2 border-sky-600 pt-6">
-                  <span className="text-xs font-semibold text-sky-600 tracking-widest">{item.num}</span>
+                <div className="border-t-2 border-neutral-900 pt-6">
+                  <span className="text-xs font-semibold text-neutral-900 tracking-widest">{item.num}</span>
                   <h3 className="text-lg font-bold text-gray-900 mt-2 mb-3">{item.title}</h3>
                   <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
                 </div>
@@ -689,8 +689,8 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {t.process.map((step, i) => (
               <Reveal key={step.num} delay={i * 80}>
-                <div className="relative bg-white border border-gray-200 rounded-2xl p-7 h-full">
-                  <span className="text-3xl font-bold text-sky-100">{step.num}</span>
+                <div className="relative bg-white border border-gray-200 rounded-lg p-7 h-full">
+                  <span className="text-3xl font-bold text-neutral-200">{step.num}</span>
                   <h3 className="text-base font-bold text-gray-900 mt-2 mb-2">{step.title}</h3>
                   <p className="text-sm text-gray-600 leading-relaxed">{step.desc}</p>
                 </div>
@@ -710,8 +710,8 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
             <Reveal delay={0} className="h-full">
-              <div className="bg-gray-50 border border-gray-200 rounded-2xl p-8 lg:p-10 h-full flex flex-col">
-                <span className="inline-block text-xs font-semibold tracking-widest uppercase text-sky-600 mb-4">{t.teamCard1Label}</span>
+              <div className="bg-gray-50 border border-gray-200 rounded-lg p-8 lg:p-10 h-full flex flex-col">
+                <span className="inline-block text-xs font-semibold tracking-widest uppercase text-neutral-900 mb-4">{t.teamCard1Label}</span>
                 <h3 className="text-xl font-bold text-gray-900 mb-4">{t.teamCard1Title}</h3>
                 <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">{t.teamCard1Desc}</p>
                 <div className="flex items-center gap-2 flex-wrap">
@@ -722,8 +722,8 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
               </div>
             </Reveal>
             <Reveal delay={100} className="h-full">
-              <div className="bg-gray-50 border border-gray-200 rounded-2xl p-8 lg:p-10 h-full flex flex-col">
-                <span className="inline-block text-xs font-semibold tracking-widest uppercase text-sky-600 mb-4">{t.teamCard2Label}</span>
+              <div className="bg-gray-50 border border-gray-200 rounded-lg p-8 lg:p-10 h-full flex flex-col">
+                <span className="inline-block text-xs font-semibold tracking-widest uppercase text-neutral-900 mb-4">{t.teamCard2Label}</span>
                 <h3 className="text-xl font-bold text-gray-900 mb-4">{t.teamCard2Title}</h3>
                 <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">{t.teamCard2Desc}</p>
                 <div className="flex items-center gap-2 flex-wrap">
@@ -771,9 +771,9 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
           </div>
           <Reveal>
             <div className="mt-10 border-t border-gray-200 pt-8">
-              <div className="bg-white border border-gray-200 rounded-2xl p-6 lg:p-8 flex flex-col lg:flex-row lg:items-center gap-4 lg:gap-6">
-                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-sky-50 flex items-center justify-center">
-                  <svg className="w-6 h-6 text-sky-600" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+              <div className="bg-white border border-gray-200 rounded-lg p-6 lg:p-8 flex flex-col lg:flex-row lg:items-center gap-4 lg:gap-6">
+                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-neutral-100 flex items-center justify-center">
+                  <svg className="w-6 h-6 text-neutral-900" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
                   </svg>
                 </div>
@@ -809,7 +809,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
             ))}
           </div>
           <Reveal delay={200}>
-            <Link href="/faq" className="text-sm font-semibold text-sky-600 hover:text-sky-700 transition-colors">{t.faqCta}</Link>
+            <Link href="/faq" className="text-sm font-semibold text-neutral-900 hover:text-neutral-700 transition-colors">{t.faqCta}</Link>
           </Reveal>
         </div>
       </section>
@@ -829,9 +829,9 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
               <Reveal key={item.service} delay={i * 50}>
                 <Link
                   href={`/contact?service=${item.service}`}
-                  className="group block rounded-xl border border-gray-200 bg-white px-5 py-4 hover:border-sky-300 hover:shadow-md transition-all duration-300"
+                  className="group block rounded-lg border border-gray-200 bg-white px-5 py-4 hover:border-neutral-300 hover:shadow-md transition-all duration-300"
                 >
-                  <span className="block text-sm font-bold text-gray-900 group-hover:text-sky-700 transition-colors">
+                  <span className="block text-sm font-bold text-gray-900 group-hover:text-neutral-700 transition-colors">
                     {item.label}
                   </span>
                   <span className="block text-xs text-gray-400 mt-1">{t.ctaCardAction}</span>

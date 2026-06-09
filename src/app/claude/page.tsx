@@ -22,7 +22,7 @@ function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; 
 }
 
 function Label({ children }: { children: ReactNode }) {
-  return <p className="text-sm font-semibold text-orange-600 mb-4">{children}</p>;
+  return <p className="text-sm font-semibold text-neutral-900 mb-4">{children}</p>;
 }
 
 type Copy = {
@@ -228,13 +228,13 @@ export default function ClaudePage() {
       {/* PAGE HEADER */}
       <section className="pt-24 pb-12 lg:pt-32 lg:pb-16 bg-white border-b border-gray-100">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <p className="text-sm font-semibold text-orange-600 mb-3">{t.pageKicker}</p>
+          <p className="text-sm font-semibold text-neutral-900 mb-3">{t.pageKicker}</p>
           <div className="flex items-center gap-3 mb-4">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/images/claude-symbol.svg" alt={t.pageImgAlt} aria-hidden="true" className="w-8 h-8 lg:w-10 lg:h-10" />
             <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight">{t.pageTitle}</h1>
           </div>
-          <p className="text-base text-gray-600 leading-relaxed max-w-2xl">{t.pageDesc}</p>
+          <p className="text-base text-gray-600 leading-relaxed w-full">{t.pageDesc}</p>
         </div>
       </section>
 
@@ -248,34 +248,34 @@ export default function ClaudePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
             {/* Offline */}
             <Reveal>
-              <div className="rounded-2xl border-2 border-orange-500 bg-gradient-to-br from-orange-50 to-white p-8 lg:p-10 h-full flex flex-col shadow-xl">
-                <span className="inline-block rounded-full bg-orange-600 text-white px-3 py-1 text-xs font-bold tracking-widest mb-6 self-start">{t.offlineTag}</span>
+              <div className="rounded-lg border-2 border-neutral-900 bg-neutral-50 p-8 lg:p-10 h-full flex flex-col shadow-xl">
+                <span className="inline-block rounded-md bg-neutral-900 text-white px-3 py-1 text-xs font-bold tracking-widest mb-6 self-start">{t.offlineTag}</span>
                 <h3 className="text-2xl font-bold text-gray-900 mb-3">{t.offlineTitle}</h3>
                 <p className="text-sm text-gray-600 leading-relaxed mb-6">{t.offlineDesc}</p>
-                <div className="bg-white rounded-xl border border-orange-100 p-5 mb-6">
+                <div className="bg-white rounded-lg border border-neutral-200 p-5 mb-6">
                   <div className="flex items-baseline gap-1 mb-2">
                     <span className="text-3xl font-bold text-gray-900">{t.offlinePrice}</span>
                     <span className="text-sm text-gray-500">{t.offlinePriceUnit}</span>
                   </div>
-                  <p className="text-xs text-orange-700 font-semibold">{t.offlineGuaranteeNote}</p>
+                  <p className="text-xs text-neutral-900 font-semibold">{t.offlineGuaranteeNote}</p>
                 </div>
                 <ul className="space-y-3 mb-8 flex-1">
                   {t.offlineFeatures.map((f) => (
                     <li key={f} className="flex items-start gap-3">
-                      <span className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 bg-orange-500" />
+                      <span className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 bg-neutral-900" />
                       <span className="text-sm text-gray-700">{f}</span>
                     </li>
                   ))}
                 </ul>
-                <p className="text-xs text-center text-orange-700 mb-3">{t.offlineMinNote}</p>
-                <a href="https://buy.stripe.com/aFafZafg8daw8iKexKd7q02" className="block text-center text-sm font-semibold py-3.5 rounded-lg bg-orange-600 text-white hover:bg-orange-700 transition-all duration-300 mt-auto">{t.offlineCta}</a>
+                <p className="text-xs text-center text-neutral-900 mb-3">{t.offlineMinNote}</p>
+                <a href="https://buy.stripe.com/aFafZafg8daw8iKexKd7q02" className="block text-center text-sm font-semibold py-3.5 rounded-lg bg-neutral-900 text-white hover:bg-neutral-800 transition-all duration-300 mt-auto">{t.offlineCta}</a>
               </div>
             </Reveal>
 
             {/* Online */}
             <Reveal delay={150}>
-              <div className="rounded-2xl border border-gray-200 bg-white p-8 lg:p-10 h-full flex flex-col hover:shadow-lg transition-all duration-300">
-                <span className="inline-block rounded-full bg-orange-50 text-orange-600 px-3 py-1 text-xs font-bold tracking-widest mb-6 self-start">{t.onlineTag}</span>
+              <div className="rounded-lg border border-gray-200 bg-white p-8 lg:p-10 h-full flex flex-col hover:shadow-lg transition-all duration-300">
+                <span className="inline-block rounded-md bg-neutral-100 text-neutral-900 px-3 py-1 text-xs font-bold tracking-widest mb-6 self-start">{t.onlineTag}</span>
                 <h3 className="text-2xl font-bold text-gray-900 mb-3">{t.onlineTitle}</h3>
                 <p className="text-sm text-gray-600 leading-relaxed mb-6">{t.onlineDesc}</p>
                 <div className="bg-gray-50 rounded-xl border border-gray-200 p-5 mb-6">
@@ -288,13 +288,13 @@ export default function ClaudePage() {
                 <ul className="space-y-3 mb-8 flex-1">
                   {t.onlineFeatures.map((f) => (
                     <li key={f} className="flex items-start gap-3">
-                      <span className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 bg-orange-500" />
+                      <span className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 bg-neutral-900" />
                       <span className="text-sm text-gray-700">{f}</span>
                     </li>
                   ))}
                 </ul>
                 <p className="text-xs text-center text-gray-500 mb-3">{t.onlineMinNote}</p>
-                <a href="https://buy.stripe.com/14AfZa2tm5I4dD4gFSd7q03" className="block text-center text-sm font-semibold py-3.5 rounded-lg border border-orange-300 text-orange-700 hover:bg-orange-50 transition-all duration-300 mt-auto">{t.onlineCta}</a>
+                <a href="https://buy.stripe.com/14AfZa2tm5I4dD4gFSd7q03" className="block text-center text-sm font-semibold py-3.5 rounded-lg border border-neutral-300 text-neutral-900 hover:bg-neutral-50 transition-all duration-300 mt-auto">{t.onlineCta}</a>
               </div>
             </Reveal>
           </div>
@@ -306,13 +306,13 @@ export default function ClaudePage() {
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.whyLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-snug mb-6 max-w-2xl">{t.whyTitle}</h2>
-            <p className="text-base text-gray-600 leading-relaxed max-w-3xl mb-14">{t.whyDesc}</p>
+            <h2 className="text-3xl font-bold text-gray-900 leading-snug mb-6 w-full">{t.whyTitle}</h2>
+            <p className="text-base text-gray-600 leading-relaxed w-full mb-14">{t.whyDesc}</p>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {t.whyCards.map((item, i) => (
               <Reveal key={item.title} delay={i * 100}>
-                <div className="rounded-2xl border border-gray-200 bg-white p-8 hover:border-orange-200 hover:shadow-lg transition-all duration-300 h-full">
+                <div className="rounded-lg border border-gray-200 bg-white p-8 hover:border-neutral-300 hover:shadow-lg transition-all duration-300 h-full">
                   <h3 className="text-lg font-bold text-gray-900 mb-3">{item.title}</h3>
                   <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
                 </div>
@@ -326,7 +326,7 @@ export default function ClaudePage() {
       <section className="py-20 lg:py-28 bg-white">
         <div className="max-w-4xl mx-auto px-6 lg:px-8">
           <Reveal>
-            <div className="rounded-3xl bg-gradient-to-br from-orange-500 to-amber-500 text-white p-10 lg:p-14 relative overflow-hidden">
+            <div className="rounded-lg bg-neutral-900 text-white p-10 lg:p-14 relative overflow-hidden">
               <div className="absolute -top-20 -right-20 w-60 h-60 rounded-full bg-white/10 blur-3xl" />
               <div className="absolute -bottom-20 -left-20 w-60 h-60 rounded-full bg-white/10 blur-3xl" />
               <div className="relative">
@@ -350,7 +350,7 @@ export default function ClaudePage() {
           {t.curriculum.map((step, i) => (
             <Reveal key={step.num} delay={i * 100}>
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 py-10 border-b border-gray-200 last:border-0">
-                <div className="lg:col-span-1"><span className="text-sm font-bold text-orange-600">{step.num}</span></div>
+                <div className="lg:col-span-1"><span className="text-sm font-bold text-neutral-900">{step.num}</span></div>
                 <div className="lg:col-span-3">
                   <h3 className="text-xl font-bold text-gray-900">{step.title}</h3>
                   <p className="text-sm text-gray-400 mt-1">{step.en}</p>
@@ -392,7 +392,7 @@ export default function ClaudePage() {
             <Label>{t.ctaLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 mb-4">{t.ctaTitle}</h2>
             <p className="text-base text-gray-600 leading-relaxed mb-10">{t.ctaDesc}</p>
-            <a href="/contact" className="rounded-lg bg-orange-600 text-white font-semibold px-10 py-4 hover:bg-orange-700 transition-colors duration-300 inline-block">{t.ctaButton}</a>
+            <a href="/contact" className="rounded-lg bg-neutral-900 text-white font-semibold px-10 py-4 hover:bg-neutral-800 transition-colors duration-300 inline-block">{t.ctaButton}</a>
           </Reveal>
         </div>
       </section>

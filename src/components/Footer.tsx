@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
+import Logo from "@/components/Logo";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { footer as footerDict } from "@/lib/i18n/translations";
 
@@ -40,7 +40,10 @@ export default function Footer() {
       <div className="max-w-[1800px] mx-auto px-6 lg:px-10 pt-16 pb-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
           <div>
-            <Image src="/images/logo-white.png" alt={f.logoAlt} width={140} height={40} className="h-8 w-auto mb-4" />
+            <div className="flex items-center gap-2.5 mb-4" aria-label={f.logoAlt}>
+              <Logo size={28} white className="h-7 w-auto" />
+              <span className="text-lg font-semibold tracking-tight text-white">clearAI</span>
+            </div>
             <p className="text-sm text-white/40 leading-relaxed mb-2">{f.tagline}</p>
             <p className="text-xs text-white/25 leading-relaxed">
               {f.companyLine1}<br />{f.companyLine2}<br />{f.companyLine3}

@@ -22,14 +22,14 @@ export default function LanguageToggle({ variant = "desktop", className = "" }: 
 
   return (
     <div
-      className={`relative inline-flex items-center rounded-full bg-gray-100 ring-1 ring-gray-200/70 p-0.5 font-semibold select-none ${className}`}
+      className={`relative inline-flex items-center rounded-md bg-gray-100 ring-1 ring-gray-200/70 p-0.5 font-semibold select-none ${className}`}
       role="group"
       aria-label={t.switchTo}
       style={{ opacity: mounted ? 1 : 0.7 }}
     >
       <span
         aria-hidden="true"
-        className={`absolute top-0.5 left-0.5 ${thumbSize} rounded-full shadow-sm transition-transform duration-300 ease-out`}
+        className={`absolute top-0.5 left-0.5 ${thumbSize} rounded-md shadow-sm transition-transform duration-300 ease-out`}
         style={{
           background: "var(--accent-solid)",
           transform: isJa ? "translateX(0)" : "translateX(100%)",
@@ -39,7 +39,7 @@ export default function LanguageToggle({ variant = "desktop", className = "" }: 
         type="button"
         onClick={() => setLang("ja")}
         aria-pressed={isJa}
-        className={`relative z-10 inline-flex items-center justify-center ${buttonSize} rounded-full tracking-wider transition-colors duration-300 ${
+        className={`relative z-10 inline-flex items-center justify-center ${buttonSize} rounded-md tracking-wider transition-colors duration-300 ${
           isJa ? "text-white" : "text-gray-500 hover:text-gray-800"
         }`}
       >
@@ -49,7 +49,7 @@ export default function LanguageToggle({ variant = "desktop", className = "" }: 
         type="button"
         onClick={() => setLang("en")}
         aria-pressed={!isJa}
-        className={`relative z-10 inline-flex items-center justify-center ${buttonSize} rounded-full tracking-wider transition-colors duration-300 ${
+        className={`relative z-10 inline-flex items-center justify-center ${buttonSize} rounded-md tracking-wider transition-colors duration-300 ${
           !isJa ? "text-white" : "text-gray-500 hover:text-gray-800"
         }`}
       >

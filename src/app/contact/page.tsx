@@ -381,8 +381,8 @@ function ContactPageInner() {
   };
 
   const inputClass = (field: string) =>
-    `w-full rounded-xl border bg-white px-4 py-3.5 text-base text-gray-900 placeholder-gray-400 outline-none transition-all duration-200 focus:border-sky-600 focus:ring-2 focus:ring-sky-100 ${
-      errors[field] ? "border-red-300 bg-red-50/30" : "border-gray-200 hover:border-gray-300"
+    `w-full rounded-xl border bg-white px-4 py-3.5 text-base text-gray-900 placeholder-gray-400 outline-none transition-all duration-200 focus:border-neutral-900 focus:ring-2 focus:ring-neutral-200 ${
+      errors[field] ? "border-neutral-300 bg-neutral-50" : "border-gray-200 hover:border-gray-300"
     }`;
 
   const selectInquiry = (type: InquiryType) => {
@@ -421,15 +421,15 @@ function ContactPageInner() {
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-gray-50/50 to-white">
+    <main className="min-h-screen bg-white">
       {/* Header */}
       <section className="max-w-3xl mx-auto px-6 pt-28 lg:pt-32 pb-8 lg:pb-10 text-center">
         <Reveal>
-          <p className="text-xs font-semibold tracking-[0.2em] text-sky-600 uppercase mb-4">{t.headerKicker}</p>
+          <p className="text-xs font-semibold tracking-[0.2em] text-neutral-900 uppercase mb-4">{t.headerKicker}</p>
           <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">{t.headerTitle}</h1>
           <p className="text-sm lg:text-base text-gray-600 leading-relaxed max-w-xl mx-auto">
             {t.headerDesc}{" "}
-            <a href="mailto:info@clearai.jp" className="text-sky-600 underline underline-offset-2">info@clearai.jp</a>{" "}
+            <a href="mailto:info@clearai.jp" className="text-neutral-900 underline underline-offset-2">info@clearai.jp</a>{" "}
             {t.headerDescEmail}
           </p>
         </Reveal>
@@ -438,9 +438,9 @@ function ContactPageInner() {
       <section className="max-w-3xl mx-auto px-6 pb-20 lg:pb-28">
         {status === "success" ? (
           <Reveal>
-            <div className="bg-white border border-gray-200 rounded-3xl px-8 py-16 text-center shadow-sm">
-              <div className="w-14 h-14 bg-sky-50 rounded-full flex items-center justify-center mx-auto mb-6">
-                <svg className="w-6 h-6 text-sky-600" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24">
+            <div className="bg-white border border-gray-200 rounded-lg px-8 py-16 text-center shadow-sm">
+              <div className="w-14 h-14 bg-neutral-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <svg className="w-6 h-6 text-neutral-900" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
               </div>
@@ -456,7 +456,7 @@ function ContactPageInner() {
           </Reveal>
         ) : (
           <Reveal>
-            <form onSubmit={handleSubmit} noValidate className="bg-white border border-gray-200 rounded-3xl p-6 sm:p-10 shadow-sm space-y-8">
+            <form onSubmit={handleSubmit} noValidate className="bg-white border border-gray-200 rounded-lg p-6 sm:p-10 shadow-sm space-y-8">
               {/* Honeypot */}
               <input type="text" name="website" value={form.website} onChange={handleChange}
                 tabIndex={-1} autoComplete="off" aria-hidden="true"
@@ -465,7 +465,7 @@ function ContactPageInner() {
               {/* STEP 1: Inquiry type */}
               <div>
                 <div className="flex items-baseline gap-3 mb-4">
-                  <span className="text-xs font-bold text-sky-600">01</span>
+                  <span className="text-xs font-bold text-neutral-900">01</span>
                   <h2 className="text-sm font-semibold text-gray-900">{t.step1Title}</h2>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3">
@@ -476,14 +476,14 @@ function ContactPageInner() {
                     return (
                       <button key={key} type="button" onClick={() => selectInquiry(key)}
                         aria-pressed={active}
-                        className={`flex sm:flex-col items-center sm:text-center gap-3 sm:gap-0 rounded-2xl border px-4 py-3.5 sm:py-5 transition-all duration-200 ${
-                          active ? "border-sky-600 bg-sky-50/70 ring-2 ring-sky-600/20" : "border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50/50"
+                        className={`flex sm:flex-col items-center sm:text-center gap-3 sm:gap-0 rounded-lg border px-4 py-3.5 sm:py-5 transition-all duration-200 ${
+                          active ? "border-neutral-900 bg-neutral-50 ring-2 ring-neutral-300" : "border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50/50"
                         }`}>
                         <div className={`shrink-0 sm:mx-auto sm:mb-2 w-9 h-9 rounded-full flex items-center justify-center transition-colors ${
-                          active ? "bg-sky-600 text-white" : "bg-gray-100 text-gray-500"
+                          active ? "bg-neutral-900 text-white" : "bg-gray-100 text-gray-500"
                         }`}>{INQUIRY_ICONS[key]}</div>
                         <div className="min-w-0">
-                          <span className={`block text-sm font-bold leading-tight ${active ? "text-sky-700" : "text-gray-900"}`}>{t[labelKey]}</span>
+                          <span className={`block text-sm font-bold leading-tight ${active ? "text-neutral-900" : "text-gray-900"}`}>{t[labelKey]}</span>
                           <span className="block text-[11px] text-gray-500 mt-0.5 sm:mt-1 leading-snug">{t[descKey]}</span>
                         </div>
                       </button>
@@ -496,7 +496,7 @@ function ContactPageInner() {
               {isBusiness && (
                 <div>
                   <div className="flex items-baseline gap-3 mb-4">
-                    <span className="text-xs font-bold text-sky-600">02</span>
+                    <span className="text-xs font-bold text-neutral-900">02</span>
                     <h2 className="text-sm font-semibold text-gray-900">{t.step2Title} <span className="font-normal text-gray-400">{t.step2Optional}</span></h2>
                   </div>
                   <select id="service" name="service" value={form.service} onChange={handleChange}
@@ -512,40 +512,40 @@ function ContactPageInner() {
               {/* STEP 3: Basic info */}
               <div>
                 <div className="flex items-baseline gap-3 mb-4">
-                  <span className="text-xs font-bold text-sky-600">{isBusiness ? "03" : "02"}</span>
+                  <span className="text-xs font-bold text-neutral-900">{isBusiness ? "03" : "02"}</span>
                   <h2 className="text-sm font-semibold text-gray-900">{t.step3Title}</h2>
                 </div>
                 <div className="space-y-5">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div>
                       <label htmlFor="name" className="block text-xs font-semibold text-gray-600 mb-1.5">
-                        {isEngineer ? t.labelNameEngineer : t.labelName} <span className="text-red-500">{t.labelRequired}</span>
+                        {isEngineer ? t.labelNameEngineer : t.labelName} <span className="text-neutral-900">{t.labelRequired}</span>
                       </label>
                       <input id="name" type="text" name="name" value={form.name} onChange={handleChange}
                         placeholder={t.placeholderName} autoComplete="name"
                         aria-invalid={!!errors.name} className={inputClass("name")} />
-                      {errors.name && <p className="mt-1.5 text-xs text-red-500">{errors.name}</p>}
+                      {errors.name && <p className="mt-1.5 text-xs text-neutral-900 font-medium">{errors.name}</p>}
                     </div>
                     <div>
                       <label htmlFor="email" className="block text-xs font-semibold text-gray-600 mb-1.5">
-                        {t.labelEmail} <span className="text-red-500">{t.labelRequired}</span>
+                        {t.labelEmail} <span className="text-neutral-900">{t.labelRequired}</span>
                       </label>
                       <input id="email" type="email" name="email" value={form.email} onChange={handleChange}
                         placeholder={t.placeholderEmail} autoComplete="email"
                         aria-invalid={!!errors.email} className={inputClass("email")} />
-                      {errors.email && <p className="mt-1.5 text-xs text-red-500">{errors.email}</p>}
+                      {errors.email && <p className="mt-1.5 text-xs text-neutral-900 font-medium">{errors.email}</p>}
                     </div>
                   </div>
 
                   {isBusiness && (
                     <div>
                       <label htmlFor="company" className="block text-xs font-semibold text-gray-600 mb-1.5">
-                        {t.labelCompany} <span className="text-red-500">{t.labelRequired}</span>
+                        {t.labelCompany} <span className="text-neutral-900">{t.labelRequired}</span>
                       </label>
                       <input id="company" type="text" name="company" value={form.company} onChange={handleChange}
                         placeholder={t.placeholderCompany} autoComplete="organization"
                         aria-invalid={!!errors.company} className={inputClass("company")} />
-                      {errors.company && <p className="mt-1.5 text-xs text-red-500">{errors.company}</p>}
+                      {errors.company && <p className="mt-1.5 text-xs text-neutral-900 font-medium">{errors.company}</p>}
                     </div>
                   )}
 
@@ -554,7 +554,7 @@ function ContactPageInner() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                       <div>
                         <label htmlFor="position" className="block text-xs font-semibold text-gray-600 mb-1.5">
-                          {t.labelPosition} <span className="text-red-500">{t.labelRequired}</span>
+                          {t.labelPosition} <span className="text-neutral-900">{t.labelRequired}</span>
                         </label>
                         <select id="position" name="position" value={form.position} onChange={handleChange}
                           aria-invalid={!!errors.position} className={`${inputClass("position")} appearance-none cursor-pointer pr-10 bg-[url('data:image/svg+xml;utf8,<svg%20xmlns=%22http://www.w3.org/2000/svg%22%20width=%2212%22%20height=%2212%22%20viewBox=%220%200%2012%2012%22%20fill=%22none%22%20stroke=%22%23999%22%20stroke-width=%221.5%22%20stroke-linecap=%22round%22%20stroke-linejoin=%22round%22><path%20d=%22M3%204.5L6%207.5L9%204.5%22/></svg>')] bg-no-repeat bg-[right_1rem_center]`}>
@@ -567,7 +567,7 @@ function ContactPageInner() {
                           <option value="AI/ML">{t.positionAiMl}</option>
                           <option value="その他">{t.positionOther}</option>
                         </select>
-                        {errors.position && <p className="mt-1.5 text-xs text-red-500">{errors.position}</p>}
+                        {errors.position && <p className="mt-1.5 text-xs text-neutral-900 font-medium">{errors.position}</p>}
                       </div>
                       <div>
                         <label htmlFor="experience" className="block text-xs font-semibold text-gray-600 mb-1.5">{t.labelExperience} <span className="font-normal text-gray-400">{t.labelOptional}</span></label>
@@ -602,7 +602,7 @@ function ContactPageInner() {
                                 <label htmlFor="phone" className="block text-xs font-semibold text-gray-600 mb-1.5">{t.labelPhone}</label>
                                 <input id="phone" type="tel" name="phone" value={form.phone} onChange={handleChange}
                                   placeholder={t.placeholderPhone} autoComplete="tel" className={inputClass("phone")} />
-                                {errors.phone && <p className="mt-1.5 text-xs text-red-500">{errors.phone}</p>}
+                                {errors.phone && <p className="mt-1.5 text-xs text-neutral-900 font-medium">{errors.phone}</p>}
                               </div>
                               <div>
                                 <label htmlFor="size" className="block text-xs font-semibold text-gray-600 mb-1.5">{t.labelSize}</label>
@@ -623,7 +623,7 @@ function ContactPageInner() {
                               <label htmlFor="portfolio" className="block text-xs font-semibold text-gray-600 mb-1.5">{t.labelPortfolio}</label>
                               <input id="portfolio" type="url" name="portfolio" value={form.portfolio} onChange={handleChange}
                                 placeholder={t.placeholderPortfolioUrl} autoComplete="url" className={inputClass("portfolio")} />
-                              {errors.portfolio && <p className="mt-1.5 text-xs text-red-500">{errors.portfolio}</p>}
+                              {errors.portfolio && <p className="mt-1.5 text-xs text-neutral-900 font-medium">{errors.portfolio}</p>}
                             </div>
                           )}
                         </div>
@@ -636,7 +636,7 @@ function ContactPageInner() {
               {/* STEP 4: Message */}
               <div>
                 <div className="flex items-baseline gap-3 mb-4">
-                  <span className="text-xs font-bold text-sky-600">{isBusiness ? "04" : "03"}</span>
+                  <span className="text-xs font-bold text-neutral-900">{isBusiness ? "04" : "03"}</span>
                   <h2 className="text-sm font-semibold text-gray-900">
                     {isEngineer ? t.step4TitleEngineer : t.step4TitleBusiness}
                   </h2>
@@ -645,20 +645,20 @@ function ContactPageInner() {
                   placeholder={getMessagePlaceholder()}
                   aria-invalid={!!errors.message}
                   className={`${inputClass("message")} resize-none min-h-[150px]`} />
-                {errors.message && <p className="mt-1.5 text-xs text-red-500">{errors.message}</p>}
+                {errors.message && <p className="mt-1.5 text-xs text-neutral-900 font-medium">{errors.message}</p>}
               </div>
 
               {/* Server error */}
               <div aria-live="polite">
                 {serverError && (
-                  <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-xl px-4 py-3">{serverError}</p>
+                  <p className="text-sm text-neutral-900 bg-neutral-100 border border-neutral-300 rounded-lg px-4 py-3">{serverError}</p>
                 )}
               </div>
 
               {/* Submit */}
               <div className="pt-2 space-y-4">
                 <button type="submit" disabled={status === "submitting"}
-                  className={`w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-sky-600 text-white font-semibold px-10 py-4 hover:bg-sky-700 active:bg-sky-800 transition-all duration-200 shadow-sm hover:shadow-md ${
+                  className={`w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg bg-neutral-900 text-white font-semibold px-10 py-4 hover:bg-neutral-800 active:bg-neutral-900 transition-all duration-200 shadow-sm hover:shadow-md ${
                     status === "submitting" ? "opacity-60 cursor-not-allowed" : ""
                   }`}>
                   {status === "submitting" && (
@@ -687,7 +687,7 @@ function ContactPageInner() {
       {status !== "success" && (
         <section className="max-w-3xl mx-auto px-6 pb-24">
           <Reveal>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-px bg-gray-200 rounded-2xl overflow-hidden">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-px bg-gray-200 rounded-lg overflow-hidden">
               {[
                 { label: t.infoReplyLabel, value: t.infoReplyValue },
                 { label: t.infoMethodLabel, value: t.infoMethodValue },

@@ -23,7 +23,7 @@ function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; 
 }
 
 function Label({ children }: { children: ReactNode }) {
-  return <p className="text-sm font-semibold text-sky-600 mb-4">{children}</p>;
+  return <p className="text-sm font-semibold text-neutral-900 mb-4">{children}</p>;
 }
 
 type Copy = {
@@ -79,9 +79,9 @@ export default function FaqPage() {
     <>
       {/* HERO */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white">
-        <div className="absolute bottom-1/3 right-1/4 w-[1px] h-[1px] shadow-[0_0_300px_150px_rgba(37,99,235,0.08)]" />
+        <div className="absolute bottom-1/3 right-1/4 w-[1px] h-[1px] shadow-[0_0_300px_150px_rgba(0,0,0,0.04)]" />
         <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
-          <span className="inline-block rounded-full bg-sky-50 text-sky-600 px-3 py-1 text-sm font-semibold mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "300ms" }}>{t.heroChip}</span>
+          <span className="inline-block rounded-md bg-neutral-100 text-neutral-900 px-3 py-1 text-sm font-semibold mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "300ms" }}>{t.heroChip}</span>
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0)" : "translateY(24px)", transitionDelay: "500ms" }}>
             {t.heroTitle}
           </h1>
@@ -91,7 +91,7 @@ export default function FaqPage() {
             ))}
           </p>
           <div className="flex items-center justify-center gap-4 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "900ms" }}>
-            <a href="#list" className="rounded-lg bg-sky-600 text-white font-semibold px-8 py-3.5 hover:bg-sky-700 transition-colors duration-300">{t.heroBtnPrimary}</a>
+            <a href="#list" className="rounded-lg bg-neutral-900 text-white font-semibold px-8 py-3.5 hover:bg-neutral-800 transition-colors duration-300">{t.heroBtnPrimary}</a>
             <a href="/contact" className="text-sm text-gray-500 font-semibold hover:text-gray-900 transition-colors duration-300">{t.heroBtnSecondary}</a>
           </div>
         </div>
@@ -110,7 +110,7 @@ export default function FaqPage() {
                 <details className="group bg-white border border-gray-200 rounded-xl overflow-hidden">
                   <summary className="cursor-pointer list-none p-5 flex items-start justify-between gap-4 hover:bg-gray-50 transition-colors">
                     <span className="text-sm lg:text-base font-semibold text-gray-900">{f.q[lang]}</span>
-                    <span className="flex-shrink-0 text-sky-600 text-xl transition-transform group-open:rotate-45">+</span>
+                    <span className="flex-shrink-0 text-neutral-900 text-xl transition-transform group-open:rotate-45">+</span>
                   </summary>
                   <div className="px-5 pb-5 text-sm text-gray-600 leading-relaxed">{f.a[lang]}</div>
                 </details>
@@ -131,7 +131,7 @@ export default function FaqPage() {
                 <span key={i}>{line}{i < arr.length - 1 && <br />}</span>
               ))}
             </p>
-            <a href="/contact" className="rounded-lg bg-sky-600 text-white font-semibold px-10 py-4 hover:bg-sky-700 transition-colors duration-300 inline-block">{t.ctaButton}</a>
+            <a href="/contact" className="rounded-lg bg-neutral-900 text-white font-semibold px-10 py-4 hover:bg-neutral-800 transition-colors duration-300 inline-block">{t.ctaButton}</a>
           </Reveal>
         </div>
       </section>

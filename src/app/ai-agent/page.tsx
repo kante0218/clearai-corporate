@@ -22,7 +22,7 @@ function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; 
 }
 
 function Label({ children }: { children: ReactNode }) {
-  return <p className="text-sm font-semibold text-sky-600 mb-4">{children}</p>;
+  return <p className="text-sm font-semibold text-neutral-900 mb-4">{children}</p>;
 }
 
 type Copy = {
@@ -297,9 +297,9 @@ export default function AiAgentPage() {
       {/* PAGE HEADER */}
       <section className="pt-24 pb-12 lg:pt-32 lg:pb-16 bg-white border-b border-gray-100">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <p className="text-sm font-semibold text-sky-600 mb-3">{t.heroKicker}</p>
+          <p className="text-sm font-semibold text-neutral-900 mb-3">{t.heroKicker}</p>
           <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4">{t.heroTitle}</h1>
-          <p className="text-base text-gray-600 leading-relaxed max-w-2xl">{t.heroDesc}</p>
+          <p className="text-base text-gray-600 leading-relaxed w-full">{t.heroDesc}</p>
         </div>
       </section>
 
@@ -309,13 +309,13 @@ export default function AiAgentPage() {
           <Reveal>
             <Label>{t.pricingLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.pricingTitle}</h2>
-            <p className="text-sm text-gray-500 mb-14 max-w-3xl leading-relaxed">{t.pricingDesc}</p>
+            <p className="text-sm text-gray-500 mb-14 w-full leading-relaxed">{t.pricingDesc}</p>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
             {t.plans.map((plan, i) => (
               <Reveal key={plan.name} delay={i * 100} className="flex">
-                <div className={`rounded-2xl p-8 lg:p-10 transition-all duration-300 flex flex-col w-full ${plan.featured ? "bg-sky-600 text-white shadow-xl" : "bg-white border border-gray-200 hover:shadow-lg"}`}>
-                  {plan.featured && <span className="inline-block rounded-full bg-white/20 text-white px-3 py-1 text-sm font-semibold mb-4 self-start">Recommended</span>}
+                <div className={`rounded-lg p-8 lg:p-10 transition-all duration-300 flex flex-col w-full ${plan.featured ? "bg-neutral-900 text-white shadow-xl" : "bg-white border border-gray-200 hover:shadow-lg"}`}>
+                  {plan.featured && <span className="inline-block rounded-md bg-white/20 text-white px-3 py-1 text-sm font-semibold mb-4 self-start">Recommended</span>}
                   <h3 className={`text-lg font-bold mb-2 ${plan.featured ? "text-white" : "text-gray-900"}`}>{plan.name}</h3>
                   <div className="mb-4 flex items-baseline gap-1">
                     <span className={`text-3xl font-bold ${plan.featured ? "text-white" : "text-gray-900"}`}>{plan.price}</span>
@@ -325,7 +325,7 @@ export default function AiAgentPage() {
                   <ul className="space-y-3 mb-8 flex-1">
                     {plan.features.map((f) => (
                       <li key={f} className="flex items-start gap-3">
-                        <span className={`mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 ${plan.featured ? "bg-white/40" : "bg-sky-500"}`} />
+                        <span className={`mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 ${plan.featured ? "bg-white/40" : "bg-neutral-900"}`} />
                         <span className={`text-sm ${plan.featured ? "text-white/90" : "text-gray-600"}`}>{f}</span>
                       </li>
                     ))}
@@ -333,7 +333,7 @@ export default function AiAgentPage() {
                   {plan.minTerm && (
                     <p className={`text-xs text-center mb-3 ${plan.featured ? "text-white/80" : "text-gray-500"}`}>※{plan.minTerm}</p>
                   )}
-                  <a href={plan.href} className={`block text-center text-sm font-semibold py-3 rounded-lg transition-all duration-300 mt-auto ${plan.featured ? "bg-white text-sky-600 hover:bg-sky-50" : "border border-gray-200 text-gray-600 hover:border-gray-400 hover:text-gray-900"}`}>{plan.cta}</a>
+                  <a href={plan.href} className={`block text-center text-sm font-semibold py-3 rounded-md transition-all duration-300 mt-auto ${plan.featured ? "bg-white text-neutral-900 hover:bg-neutral-100" : "border border-gray-200 text-gray-600 hover:border-gray-400 hover:text-gray-900"}`}>{plan.cta}</a>
                 </div>
               </Reveal>
             ))}
@@ -349,14 +349,14 @@ export default function AiAgentPage() {
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.whyLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-snug mb-6 max-w-3xl">{t.whyTitle}</h2>
-            <p className="text-sm text-gray-500 mb-14 max-w-3xl leading-relaxed">{t.whyDesc}</p>
+            <h2 className="text-3xl font-bold text-gray-900 leading-snug mb-6 w-full">{t.whyTitle}</h2>
+            <p className="text-sm text-gray-500 mb-14 w-full leading-relaxed">{t.whyDesc}</p>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {t.why.map((item, i) => (
               <Reveal key={item.num} delay={i * 100}>
-                <div className="rounded-2xl border border-gray-200 bg-white p-8 hover:shadow-lg transition-all duration-300 h-full">
-                  <span className="text-sm font-bold text-sky-600">{item.num}</span>
+                <div className="rounded-lg border border-gray-200 bg-white p-8 hover:shadow-lg transition-all duration-300 h-full">
+                  <span className="text-sm font-bold text-neutral-900">{item.num}</span>
                   <h3 className="text-xl font-bold text-gray-900 mt-3 mb-3">{item.title}</h3>
                   <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
                 </div>
@@ -372,19 +372,19 @@ export default function AiAgentPage() {
           <Reveal>
             <Label>{t.typesLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.typesTitle}</h2>
-            <p className="text-sm text-gray-500 mb-14 max-w-3xl leading-relaxed">{t.typesDesc}</p>
+            <p className="text-sm text-gray-500 mb-14 w-full leading-relaxed">{t.typesDesc}</p>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {t.types.map((item, i) => (
               <Reveal key={item.title} delay={i * 80}>
-                <div className="h-full rounded-2xl border border-gray-200 bg-white p-6 lg:p-7 hover:shadow-lg transition-all duration-300 flex flex-col">
-                  <span className="inline-block text-[10px] font-bold tracking-widest text-sky-600 uppercase mb-3 self-start rounded-full bg-sky-50 px-2.5 py-1">{item.tag}</span>
+                <div className="h-full rounded-lg border border-gray-200 bg-white p-6 lg:p-7 hover:shadow-lg transition-all duration-300 flex flex-col">
+                  <span className="inline-block text-[10px] font-bold tracking-widest text-neutral-900 uppercase mb-3 self-start rounded-md bg-neutral-100 px-2.5 py-1">{item.tag}</span>
                   <h3 className="text-lg font-bold text-gray-900 mb-3">{item.title}</h3>
                   <p className="text-sm text-gray-600 leading-relaxed mb-4">{item.desc}</p>
                   <ul className="space-y-2 mt-auto">
                     {item.examples.map((ex) => (
                       <li key={ex} className="flex items-start gap-2 text-xs text-gray-500">
-                        <span className="mt-1.5 w-1 h-1 rounded-full flex-shrink-0 bg-sky-400" />
+                        <span className="mt-1.5 w-1 h-1 rounded-full flex-shrink-0 bg-neutral-900" />
                         <span>{ex}</span>
                       </li>
                     ))}
@@ -402,16 +402,16 @@ export default function AiAgentPage() {
           <Reveal>
             <Label>{t.processLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.processTitle}</h2>
-            <p className="text-sm text-gray-500 mb-14 max-w-3xl leading-relaxed">{t.processDesc}</p>
+            <p className="text-sm text-gray-500 mb-14 w-full leading-relaxed">{t.processDesc}</p>
           </Reveal>
           {t.process.map((step, i) => (
             <Reveal key={step.num} delay={i * 100}>
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 py-8 border-b border-gray-100 last:border-0">
-                <div className="lg:col-span-1"><span className="text-sm font-bold text-sky-600">{step.num}</span></div>
+                <div className="lg:col-span-1"><span className="text-sm font-bold text-neutral-900">{step.num}</span></div>
                 <div className="lg:col-span-3">
                   <h3 className="text-xl font-bold text-gray-900">{step.title}</h3>
                   <p className="text-sm text-gray-400 mt-1">{step.en}</p>
-                  <p className="inline-block text-xs font-semibold text-sky-600 bg-sky-50 rounded-full px-2.5 py-1 mt-2">{step.duration}</p>
+                  <p className="inline-block text-xs font-semibold text-neutral-900 bg-neutral-100 rounded-md px-2.5 py-1 mt-2">{step.duration}</p>
                 </div>
                 <div className="lg:col-span-8"><p className="text-sm text-gray-600 leading-relaxed">{step.desc}</p></div>
               </div>
@@ -426,12 +426,12 @@ export default function AiAgentPage() {
           <Reveal>
             <Label>{t.deliverablesLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.deliverablesTitle}</h2>
-            <p className="text-sm text-gray-500 mb-14 max-w-3xl leading-relaxed">{t.deliverablesDesc}</p>
+            <p className="text-sm text-gray-500 mb-14 w-full leading-relaxed">{t.deliverablesDesc}</p>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {t.deliverables.map((item, i) => (
               <Reveal key={item.title} delay={i * 80}>
-                <div className="h-full rounded-2xl border border-gray-200 bg-white p-6 lg:p-7">
+                <div className="h-full rounded-lg border border-gray-200 bg-white p-6 lg:p-7">
                   <h3 className="text-base font-bold text-gray-900 mb-2">{item.title}</h3>
                   <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
                 </div>
@@ -447,17 +447,17 @@ export default function AiAgentPage() {
           <Reveal>
             <Label>{t.techLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.techTitle}</h2>
-            <p className="text-sm text-gray-500 mb-14 max-w-3xl leading-relaxed">{t.techDesc}</p>
+            <p className="text-sm text-gray-500 mb-14 w-full leading-relaxed">{t.techDesc}</p>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {t.tech.map((item, i) => (
               <Reveal key={item.category} delay={i * 80}>
-                <div className="h-full rounded-2xl border border-gray-200 bg-gray-50 p-6">
-                  <h3 className="text-xs font-bold tracking-widest text-sky-600 uppercase mb-4">{item.category}</h3>
+                <div className="h-full rounded-lg border border-gray-200 bg-gray-50 p-6">
+                  <h3 className="text-xs font-bold tracking-widest text-neutral-900 uppercase mb-4">{item.category}</h3>
                   <ul className="space-y-2">
                     {item.items.map((s) => (
                       <li key={s} className="flex items-start gap-2 text-sm text-gray-700">
-                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 bg-sky-500" />
+                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 bg-neutral-900" />
                         <span>{s}</span>
                       </li>
                     ))}
@@ -499,7 +499,7 @@ export default function AiAgentPage() {
             <Label>{t.ctaLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 mb-4">{t.ctaTitle}</h2>
             <p className="text-base text-gray-600 leading-relaxed mb-10">{t.ctaDesc}</p>
-            <a href="/contact?service=ai-agent" className="rounded-lg bg-sky-600 text-white font-semibold px-10 py-4 hover:bg-sky-700 transition-colors duration-300 inline-block">{t.ctaButton}</a>
+            <a href="/contact?service=ai-agent" className="rounded-md bg-neutral-900 text-white font-semibold px-10 py-4 hover:bg-neutral-800 transition-colors duration-300 inline-block">{t.ctaButton}</a>
           </Reveal>
         </div>
       </section>

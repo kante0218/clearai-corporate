@@ -22,7 +22,7 @@ function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; 
 }
 
 function Label({ children }: { children: ReactNode }) {
-  return <p className="text-sm font-semibold text-sky-600 mb-4">{children}</p>;
+  return <p className="text-sm font-semibold text-neutral-900 mb-4">{children}</p>;
 }
 
 type Plan = {
@@ -209,9 +209,9 @@ export default function AdvisorPage() {
       {/* PAGE HEADER */}
       <section className="pt-24 pb-12 lg:pt-32 lg:pb-16 bg-white border-b border-gray-100">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <p className="text-sm font-semibold text-sky-600 mb-3">{t.heroKicker}</p>
+          <p className="text-sm font-semibold text-neutral-900 mb-3">{t.heroKicker}</p>
           <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4">{t.heroTitle}</h1>
-          <p className="text-base text-gray-600 leading-relaxed max-w-2xl">{t.heroDesc}</p>
+          <p className="text-base text-gray-600 leading-relaxed w-full">{t.heroDesc}</p>
         </div>
       </section>
 
@@ -225,8 +225,8 @@ export default function AdvisorPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
             {t.plans.map((plan, i) => (
               <Reveal key={plan.name} delay={i * 100} className="flex">
-                <div className={`rounded-2xl p-8 lg:p-10 transition-all duration-300 flex flex-col w-full ${plan.featured ? "bg-sky-600 text-white shadow-xl" : "bg-white border border-gray-200 hover:shadow-lg"}`}>
-                  {plan.featured && <span className="inline-block rounded-full bg-white/20 text-white px-3 py-1 text-sm font-semibold mb-4 self-start">{t.recommended}</span>}
+                <div className={`rounded-lg p-8 lg:p-10 transition-all duration-300 flex flex-col w-full ${plan.featured ? "bg-neutral-900 text-white shadow-xl" : "bg-white border border-gray-200 hover:shadow-lg"}`}>
+                  {plan.featured && <span className="inline-block rounded-md bg-white/20 text-white px-3 py-1 text-sm font-semibold mb-4 self-start">{t.recommended}</span>}
                   <h3 className={`text-lg font-bold mb-2 ${plan.featured ? "text-white" : "text-gray-900"}`}>{plan.name}</h3>
                   <div className="mb-4 flex items-baseline gap-1">
                     <span className={`text-3xl font-bold ${plan.featured ? "text-white" : "text-gray-900"}`}>{plan.price}</span>
@@ -236,7 +236,7 @@ export default function AdvisorPage() {
                   <ul className="space-y-3 mb-8 flex-1">
                     {plan.features.map((f) => (
                       <li key={f} className="flex items-start gap-3">
-                        <span className={`mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 ${plan.featured ? "bg-white/40" : "bg-sky-500"}`} />
+                        <span className={`mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 ${plan.featured ? "bg-white/40" : "bg-neutral-900"}`} />
                         <span className={`text-sm ${plan.featured ? "text-white/90" : "text-gray-600"}`}>{f}</span>
                       </li>
                     ))}
@@ -244,7 +244,7 @@ export default function AdvisorPage() {
                   {plan.minTerm && (
                     <p className={`text-xs text-center mb-3 ${plan.featured ? "text-white/80" : "text-gray-500"}`}>※{plan.minTerm}</p>
                   )}
-                  <a href={plan.href} className={`block text-center text-sm font-semibold py-3 rounded-lg transition-all duration-300 mt-auto ${plan.featured ? "bg-white text-sky-600 hover:bg-sky-50" : "border border-gray-200 text-gray-600 hover:border-gray-400 hover:text-gray-900"}`}>{plan.cta}</a>
+                  <a href={plan.href} className={`block text-center text-sm font-semibold py-3 rounded-md transition-all duration-300 mt-auto ${plan.featured ? "bg-white text-neutral-900 hover:bg-neutral-100" : "border border-gray-200 text-gray-600 hover:border-gray-400 hover:text-gray-900"}`}>{plan.cta}</a>
                 </div>
               </Reveal>
             ))}
@@ -260,12 +260,12 @@ export default function AdvisorPage() {
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.whyLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-snug mb-6 max-w-2xl">{t.whyTitle}</h2>
+            <h2 className="text-3xl font-bold text-gray-900 leading-snug mb-6 w-full">{t.whyTitle}</h2>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {t.why.map((item, i) => (
               <Reveal key={item.title} delay={i * 100}>
-                <div className="rounded-2xl border border-gray-200 bg-white p-8 hover:shadow-lg transition-all duration-300 h-full">
+                <div className="rounded-lg border border-gray-200 bg-white p-8 hover:shadow-lg transition-all duration-300 h-full">
                   <h3 className="text-lg font-bold text-gray-900 mb-3">{item.title}</h3>
                   <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
                 </div>
@@ -285,8 +285,8 @@ export default function AdvisorPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {t.what.map((item, i) => (
               <Reveal key={item.num} delay={i * 100}>
-                <div className="bg-white rounded-2xl border border-gray-200 p-8 hover:border-sky-200 hover:shadow-lg transition-all duration-300">
-                  <span className="text-sm font-bold text-sky-600">{item.num}</span>
+                <div className="bg-white rounded-lg border border-gray-200 p-8 hover:border-neutral-300 hover:shadow-lg transition-all duration-300">
+                  <span className="text-sm font-bold text-neutral-900">{item.num}</span>
                   <h3 className="text-xl font-bold text-gray-900 mt-3 mb-4">{item.title}</h3>
                   <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
                 </div>
@@ -299,11 +299,11 @@ export default function AdvisorPage() {
       {/* CLAUDE INTEGRATION */}
       <section className="py-20 lg:py-28 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <div className="rounded-3xl border border-orange-100 bg-gradient-to-br from-orange-50 to-white p-8 lg:p-12">
+          <div className="rounded-lg border border-neutral-200 bg-neutral-50 p-8 lg:p-12">
             <div className="grid lg:grid-cols-2 gap-10 items-start">
               <Reveal>
-                <p className="inline-flex items-center gap-2 text-sm font-semibold text-orange-600 mb-4">
-                  <span className="w-2 h-2 rounded-full bg-orange-500" />{t.claudeLabel}
+                <p className="inline-flex items-center gap-2 text-sm font-semibold text-neutral-900 mb-4">
+                  <span className="w-2 h-2 rounded-full bg-neutral-900" />{t.claudeLabel}
                 </p>
                 <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 leading-snug mb-5">{t.claudeTitle}</h2>
                 <p className="text-sm text-gray-600 leading-relaxed">{t.claudeDesc}</p>
@@ -311,8 +311,8 @@ export default function AdvisorPage() {
               <Reveal delay={120}>
                 <ul className="space-y-3">
                   {t.claudePoints.map((p) => (
-                    <li key={p} className="flex items-start gap-3 rounded-xl bg-white border border-orange-100 p-4">
-                      <svg className="w-5 h-5 text-orange-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                    <li key={p} className="flex items-start gap-3 rounded-lg bg-white border border-neutral-200 p-4">
+                      <svg className="w-5 h-5 text-neutral-900 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                       </svg>
                       <span className="text-sm font-medium text-gray-800 leading-snug">{p}</span>
@@ -335,7 +335,7 @@ export default function AdvisorPage() {
           {t.process.map((step, i) => (
             <Reveal key={step.num} delay={i * 100}>
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 py-10 border-b border-gray-100 last:border-0">
-                <div className="lg:col-span-1"><span className="text-sm font-bold text-sky-600">{step.num}</span></div>
+                <div className="lg:col-span-1"><span className="text-sm font-bold text-neutral-900">{step.num}</span></div>
                 <div className="lg:col-span-3">
                   <h3 className="text-xl font-bold text-gray-900">{step.title}</h3>
                   <p className="text-sm text-gray-400 mt-1">{step.en}</p>
@@ -377,7 +377,7 @@ export default function AdvisorPage() {
             <Label>{t.ctaLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 mb-4">{t.ctaTitle}</h2>
             <p className="text-base text-gray-600 leading-relaxed mb-10">{t.ctaDesc}</p>
-            <a href="/contact?service=advisor" className="rounded-lg bg-sky-600 text-white font-semibold px-10 py-4 hover:bg-sky-700 transition-colors duration-300 inline-block">{t.ctaButton}</a>
+            <a href="/contact?service=advisor" className="rounded-md bg-neutral-900 text-white font-semibold px-10 py-4 hover:bg-neutral-800 transition-colors duration-300 inline-block">{t.ctaButton}</a>
           </Reveal>
         </div>
       </section>

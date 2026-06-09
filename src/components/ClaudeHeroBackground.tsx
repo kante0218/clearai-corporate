@@ -14,18 +14,18 @@ import { useEffect, useState, type CSSProperties } from "react";
  *   - Props:  bridge, river, chest, sword, windmill, wooden sign
  */
 
-const OL = "#3E2A1E";
-const NAVY_BOX = "#1E2B5C";
-const NAVY_DEEP = "#16204A";
-const YELLOW = "#F4C54A";
-const YELLOW_BRIGHT = "#FFD966";
+const OL = "#2F2F2F";
+const NAVY_BOX = "#2D2D2D";
+const NAVY_DEEP = "#222222";
+const YELLOW = "#C5C5C5";
+const YELLOW_BRIGHT = "#D7D7D7";
 const WHITE = "#FFFFFF";
-const Y1 = "#FFE9A6", Y2 = "#F4C54A", Y3 = "#C48C1D", Y4 = "#7A5100";
-const R = "#E23B3B", RH = "#FF7E7E";
-const B = "#3B82C4", BH = "#87B8E8", BD = "#1E4A7D", BL = "#6FB6F5";
-const G = "#3F8A4B", GH = "#87D397";
-const W1 = "#A97143", W2 = "#7F4E33", W3 = "#4B2A0F";
-const CAPE_MAIN = "#6B46C1", CAPE_HI = "#8B5CF6", CAPE_SH = "#4C1D95", CAPE_DEEP = "#2E1065";
+const Y1 = "#E8E8E8", Y2 = "#C5C5C5", Y3 = "#909090", Y4 = "#545454";
+const R = "#6D6D6D", RH = "#A5A5A5";
+const B = "#747474", BH = "#AFAFAF", BD = "#434343", BL = "#A8A8A8";
+const G = "#6C6C6C", GH = "#B5B5B5";
+const W1 = "#7C7C7C", W2 = "#5A5A5A", W3 = "#313131";
+const CAPE_MAIN = "#5F5F5F", CAPE_HI = "#7C7C7C", CAPE_SH = "#393939", CAPE_DEEP = "#232323";
 
 const FONT_STACK = '"DotGothic16", "Press Start 2P", "Noto Sans JP", "MS Gothic", monospace';
 const baseText: CSSProperties = {
@@ -81,7 +81,7 @@ const POSITIONS = {
 function MenuBoxTop() {
   const wrap: CSSProperties = { ...baseText, width: 220, padding: "16px 18px", fontSize: 14, display: "grid", gridTemplateColumns: "1fr 1fr", columnGap: 16, rowGap: 6, alignItems: "center" };
   const item: CSSProperties = { position: "relative", paddingLeft: 16 };
-  const cursor: CSSProperties = { position: "absolute", left: 0, top: "50%", transform: "translateY(-50%)", color: YELLOW_BRIGHT, fontSize: 13, lineHeight: 1 };
+  const cursor: CSSProperties = { position: "absolute", left: 0, top: "50%", transform: "translateY(-50%)", color: "#ffffff", fontSize: 13, lineHeight: 1 };
   return (
     <div className="rpg-frame" style={wrap}>
       <div style={item}><span className="rpg-cursor" style={cursor}>▶</span>はなす</div>
@@ -96,9 +96,9 @@ function MenuBoxTop() {
 
 function StatsBox() {
   const wrap: CSSProperties = { ...baseText, width: 200, padding: "14px 16px 16px", fontSize: 13, display: "flex", flexDirection: "column" };
-  const title: CSSProperties = { fontSize: 18, textAlign: "center", color: YELLOW_BRIGHT, letterSpacing: "0.08em", paddingBottom: 8, marginBottom: 10, borderBottom: `2px solid ${YELLOW}`, textShadow: `2px 2px 0 ${NAVY_DEEP}` };
+  const title: CSSProperties = { fontSize: 18, textAlign: "center", color: "#ffffff", letterSpacing: "0.08em", paddingBottom: 8, marginBottom: 10, borderBottom: "2px solid #cccccc", textShadow: "2px 2px 0 #000000" };
   const row: CSSProperties = { display: "flex", justifyContent: "space-between", alignItems: "baseline", padding: "2px 0" };
-  const value: CSSProperties = { color: YELLOW_BRIGHT, fontVariantNumeric: "tabular-nums", minWidth: 40, textAlign: "right" };
+  const value: CSSProperties = { color: "#ffffff", fontVariantNumeric: "tabular-nums", minWidth: 40, textAlign: "right" };
   const stats: Array<[string, string]> = [["Lv", "99"], ["HP", "999"], ["MP", "999"], ["こうげき力", "999"], ["しゅび力", "999"], ["ちりょく", "999"], ["すばやさ", "999"]];
   return (
     <div className="rpg-frame" style={wrap}>
@@ -113,7 +113,7 @@ function StatsBox() {
 function DialogueBox() {
   const wrap: CSSProperties = { ...baseText, width: 460, padding: "18px 24px 22px", fontSize: 14, position: "relative" };
   const line: CSSProperties = { display: "block", padding: "2px 0" };
-  const next: CSSProperties = { position: "absolute", right: 16, bottom: 10, color: YELLOW_BRIGHT, fontSize: 13, lineHeight: 1 };
+  const next: CSSProperties = { position: "absolute", right: 16, bottom: 10, color: "#ffffff", fontSize: 13, lineHeight: 1 };
   return (
     <div className="rpg-frame" style={wrap}>
       <span style={line}>*&nbsp;&nbsp;Claude が あらわれた！</span>
@@ -127,7 +127,7 @@ function BattleMenu() {
   const wrap: CSSProperties = { ...baseText, width: 290, padding: "18px 24px", fontSize: 15, display: "grid", gridTemplateColumns: "1fr 1fr", columnGap: 22, rowGap: 8, alignItems: "center" };
   const item: CSSProperties = { position: "relative", paddingLeft: 20 };
   const muted: CSSProperties = { ...item, color: "rgba(255,255,255,0.45)" };
-  const cursor: CSSProperties = { position: "absolute", left: 0, top: "50%", transform: "translateY(-50%)", color: YELLOW_BRIGHT, fontSize: 14, lineHeight: 1 };
+  const cursor: CSSProperties = { position: "absolute", left: 0, top: "50%", transform: "translateY(-50%)", color: "#ffffff", fontSize: 14, lineHeight: 1 };
   return (
     <div className="rpg-frame" style={wrap}>
       <div style={item}><span className="rpg-cursor" style={cursor}>▶</span>たたかう</div>
@@ -145,7 +145,7 @@ function KingClaudeMascot() {
       {/* Aura */}
       <div className="kc-aura" style={{
         position: "absolute", inset: "-18%", borderRadius: "50%",
-        background: "radial-gradient(circle, rgba(244,197,74,0.38) 0%, rgba(217,119,87,0.25) 35%, rgba(139,92,246,0.14) 55%, transparent 72%)",
+        background: "radial-gradient(circle, rgba(200,200,200,0.38) 0%, rgba(150,150,150,0.25) 35%, rgba(100,100,100,0.14) 55%, transparent 72%)",
         zIndex: 0, pointerEvents: "none",
       }} />
 
@@ -197,7 +197,7 @@ function KingClaudeMascot() {
 
       {/* Claude body */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src="/images/claudecode-color.svg" alt="" className="pixelated" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", zIndex: 1 }} />
+      <img src="/images/claudecode-color.svg" alt="" className="pixelated" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", zIndex: 1, filter: "grayscale(1)" }} />
 
       {/* Black eyes */}
       <div className="kc-eye" style={{ position: "absolute", left: "25%", top: "33.75%", width: "6.25%", height: "11.67%", background: "#000", zIndex: 2 }} />
@@ -298,7 +298,7 @@ function KingClaudeMascot() {
         <rect x={12} y={16} width={1} height={2} fill={OL} />
         <rect x={9}  y={16} width={1} height={1} fill={WHITE} />
         <rect x={10} y={16} width={2} height={1} fill={R} />
-        <rect x={9}  y={17} width={3} height={1} fill="#8E1A1A" />
+        <rect x={9}  y={17} width={3} height={1} fill="#3D3D3D" />
 
         <rect x={25} y={15} width={3} height={1} fill={OL} />
         <rect x={25} y={18} width={3} height={1} fill={OL} />
@@ -314,7 +314,7 @@ function KingClaudeMascot() {
         <rect x={45} y={16} width={1} height={2} fill={OL} />
         <rect x={42} y={16} width={1} height={1} fill={WHITE} />
         <rect x={43} y={16} width={2} height={1} fill={G} />
-        <rect x={42} y={17} width={3} height={1} fill="#1F5229" />
+        <rect x={42} y={17} width={3} height={1} fill="#3E3E3E" />
       </svg>
 
       {/* Staff blue orb on top */}
@@ -364,7 +364,7 @@ export default function ClaudeHeroBackground() {
   return (
     <div aria-hidden="true" className="absolute inset-0 overflow-hidden pointer-events-none" style={{ zIndex: 0 }}>
       {/* ── Sky fallback ── */}
-      <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, #7EB8E8 0%, #B8D8F0 40%, #D4E8F5 70%, #A8D4B8 100%)" }} />
+      <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, #555555 0%, #888888 40%, #aaaaaa 70%, #cccccc 100%)" }} />
 
       {/* ── Layer 1: Background ── */}
       <div className="pixelated hero-back-pan" style={{ position: "absolute", inset: 0, backgroundImage: "url('/images/hero-back.png')", backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat", ...fadeIn(100) }} />
@@ -483,7 +483,7 @@ export default function ClaudeHeroBackground() {
       }} />
 
       {/* ── h1 halo ── */}
-      <div style={{ position: "absolute", top: "2%", left: "50%", transform: "translateX(-50%)", width: "min(820px, 64vw)", height: "min(520px, 58vh)", borderRadius: "50%", background: "radial-gradient(ellipse at 50% 42%, rgba(255,253,244,0.78) 0%, rgba(255,253,244,0.52) 32%, rgba(255,247,215,0.28) 55%, transparent 78%)" }} />
+      <div style={{ position: "absolute", top: "2%", left: "50%", transform: "translateX(-50%)", width: "min(820px, 64vw)", height: "min(520px, 58vh)", borderRadius: "50%", background: "radial-gradient(ellipse at 50% 42%, rgba(255,255,255,0.78) 0%, rgba(255,255,255,0.52) 32%, rgba(220,220,220,0.28) 55%, transparent 78%)" }} />
 
       {/* ── King Claude (BIG + prominent) ── */}
       <div
@@ -509,7 +509,7 @@ export default function ClaudeHeroBackground() {
       {/* ── Sparkles ── */}
       <div className="absolute inset-0 pointer-events-none">
         {SPARKLES.map((s, i) => (
-          <div key={i} className="hero-twinkle pixelated" style={{ position: "absolute", top: s.top, left: s.left, width: "4px", height: "4px", background: WHITE, boxShadow: "0 0 6px rgba(255,248,200,0.9)", animationDelay: `${s.delay}s` }} />
+          <div key={i} className="hero-twinkle pixelated" style={{ position: "absolute", top: s.top, left: s.left, width: "4px", height: "4px", background: WHITE, boxShadow: "0 0 6px rgba(255,255,255,0.9)", animationDelay: `${s.delay}s` }} />
         ))}
       </div>
 
@@ -539,8 +539,8 @@ export default function ClaudeHeroBackground() {
         .hero-chest-bob { animation: heroChestBob 2.6s ease-in-out infinite; }
 
         @keyframes heroSwordShine {
-          0%,100% { transform: translateY(0); filter: drop-shadow(0 6px 4px rgba(0,0,0,0.3)) drop-shadow(0 0 3px rgba(135,184,232,0.3)) brightness(1); }
-          50%     { transform: translateY(-5px); filter: drop-shadow(0 6px 4px rgba(0,0,0,0.3)) drop-shadow(0 0 14px rgba(135,184,232,0.9)) brightness(1.18); }
+          0%,100% { transform: translateY(0); filter: drop-shadow(0 6px 4px rgba(0,0,0,0.3)) drop-shadow(0 0 3px rgba(200,200,200,0.3)) brightness(1); }
+          50%     { transform: translateY(-5px); filter: drop-shadow(0 6px 4px rgba(0,0,0,0.3)) drop-shadow(0 0 14px rgba(200,200,200,0.9)) brightness(1.18); }
         }
         .hero-sword-shine { animation: heroSwordShine 2.8s ease-in-out infinite; }
 
@@ -571,27 +571,27 @@ export default function ClaudeHeroBackground() {
         /* RPG frames */
         .rpg-frame {
           position: relative;
-          background: ${NAVY_BOX};
+          background: #181818;
           color: ${WHITE};
-          border: 3px solid ${YELLOW};
+          border: 3px solid #cccccc;
           border-radius: 8px;
-          box-shadow: 0 0 0 2px ${NAVY_DEEP} inset, 0 6px 0 0 rgba(0,0,0,0.35), 0 10px 24px -4px rgba(0,0,0,0.55);
+          box-shadow: 0 0 0 2px #000000 inset, 0 6px 0 0 rgba(0,0,0,0.35), 0 10px 24px -4px rgba(0,0,0,0.55);
           pointer-events: auto;
         }
         .rpg-frame::before {
           content: "";
           position: absolute;
           inset: 5px;
-          border: 1px solid ${YELLOW};
+          border: 1px solid #cccccc;
           border-radius: 3px;
           opacity: 0.85;
           pointer-events: none;
           z-index: 0;
         }
         .rpg-frame > * { position: relative; z-index: 1; }
-        .rpg-cursor { display: inline-block; animation: rpg-cursor-blink 0.5s steps(2, end) infinite; text-shadow: 1px 1px 0 ${NAVY_DEEP}; }
+        .rpg-cursor { display: inline-block; animation: rpg-cursor-blink 0.5s steps(2, end) infinite; text-shadow: 1px 1px 0 #000000; }
         @keyframes rpg-cursor-blink { 0%{opacity:1;} 50%{opacity:0;} 100%{opacity:1;} }
-        .rpg-next { display: inline-block; animation: rpg-next-bounce 0.8s steps(2, end) infinite; text-shadow: 1px 1px 0 ${NAVY_DEEP}; }
+        .rpg-next { display: inline-block; animation: rpg-next-bounce 0.8s steps(2, end) infinite; text-shadow: 1px 1px 0 #000000; }
         @keyframes rpg-next-bounce { 0%{transform:translateY(0);opacity:1;} 50%{transform:translateY(3px);opacity:0.45;} 100%{transform:translateY(0);opacity:1;} }
 
         @media (prefers-reduced-motion: reduce) {

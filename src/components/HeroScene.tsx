@@ -42,20 +42,20 @@ const SCALES: Record<VeggieKey, number> = {
 };
 
 const LINE_COLORS: Record<VeggieKey, string> = {
-  Broccoli:    "#7fd06c",
-  Apple:       "#ff6452",
-  Lemon:       "#ffe460",
-  Strawberry:  "#ff5078",
-  NapaCabbage: "#c8e898",
-  Pumpkin:     "#ff8a3a",
-  Tomato:      "#ff5a3c",
-  Peach:       "#ffb898",
-  Grapes:      "#b48cff",
-  Onion:       "#ffd49a",
+  Broccoli:    "#aaaaaa",
+  Apple:       "#888888",
+  Lemon:       "#cccccc",
+  Strawberry:  "#999999",
+  NapaCabbage: "#bbbbbb",
+  Pumpkin:     "#888888",
+  Tomato:      "#888888",
+  Peach:       "#cccccc",
+  Grapes:      "#aaaaaa",
+  Onion:       "#cccccc",
 };
 
-const ACCENT  = "#34d399";
-const PRIMARY = "#10b981";
+const ACCENT  = "#aaaaaa";
+const PRIMARY = "#888888";
 
 /* ── powder shader: per-grain colour read from the source texture ─── */
 const powderVertex = /* glsl */ `
@@ -527,7 +527,7 @@ function Scene() {
       <ProceduralEnv />
       <ambientLight intensity={0.40} />
       <directionalLight position={[6, 7, 5]} intensity={1.15} color="#ffffff" />
-      <directionalLight position={[-6, -2, -3]} intensity={0.55} color="#9ec3ff" />
+      <directionalLight position={[-6, -2, -3]} intensity={0.55} color="#ffffff" />
 
       <group ref={camRig}>
         <Starfield />

@@ -102,7 +102,7 @@ export default function PrivacyPage() {
   return (
     <main className="min-h-screen bg-white">
       <section className="max-w-3xl mx-auto px-6 pt-40 pb-20">
-        <p className="text-sm font-semibold text-sky-600 mb-4">{t.label}</p>
+        <p className="text-sm font-semibold text-neutral-900 mb-4">{t.label}</p>
         <h1 className="text-3xl font-bold text-gray-900 mb-12">{t.title}</h1>
 
         <div className="prose text-gray-600 leading-relaxed space-y-8">

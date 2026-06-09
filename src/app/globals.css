@@ -1,8 +1,9 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", YuGothic, Meiryo, "MS PGothic", "Inter", system-ui, sans-serif;
-  --font-display: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", YuGothic, Meiryo, "MS PGothic", "Inter", system-ui, sans-serif;
+  /* Latin → Geist (liquid.ai / OpenAI-style neo-grotesque); Japanese → Noto Sans JP */
+  --font-sans: var(--font-geist), "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", YuGothic, Meiryo, "MS PGothic", system-ui, sans-serif;
+  --font-display: var(--font-geist), "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", YuGothic, Meiryo, "MS PGothic", system-ui, sans-serif;
 
   --color-navy-950: #111827;
   --color-navy-900: #1f2937;
@@ -10,13 +11,14 @@
   --color-navy-700: #4b5563;
   --color-navy-600: #6b7280;
 
-  --color-primary: #0284c7;
-  --color-primary-light: #60a5fa;
-  --color-primary-dark: #0369a1;
+  /* Monochrome brand — black/white/gray only */
+  --color-primary: #111827;
+  --color-primary-light: #6b7280;
+  --color-primary-dark: #000000;
 
-  --color-accent: #06b6d4;
-  --color-accent-light: #22d3ee;
-  --color-accent-dark: #0891b2;
+  --color-accent: #111827;
+  --color-accent-light: #6b7280;
+  --color-accent-dark: #000000;
 }
 
 /* Yu Gothic Windows weight fix */
@@ -40,16 +42,16 @@ html {
 
   /* Per-section accent colour. Consumed by the language toggle and any
      other widget that should adapt to the current page context. */
-  --accent-solid: #0284c7;       /* sky-600  — default / AI        */
-  --accent-solid-hover: #0369a1; /* sky-700                        */
+  --accent-solid: #111827;       /* near-black — default            */
+  --accent-solid-hover: #000000; /* black                          */
 }
 html[data-theme="ai"] {
-  --accent-solid: #0284c7;
-  --accent-solid-hover: #0369a1;
+  --accent-solid: #111827;
+  --accent-solid-hover: #000000;
 }
 html[data-theme="claude"] {
-  --accent-solid: #f97316;       /* orange-500                      */
-  --accent-solid-hover: #ea580c; /* orange-600                      */
+  --accent-solid: #111827;
+  --accent-solid-hover: #000000;
 }
 
 body {
@@ -81,7 +83,7 @@ h1, h2, h3, h4, h5, h6 {
   top: 0;
   left: 0;
   height: 2px;
-  background: linear-gradient(90deg, #0369a1, #0284c7, #06b6d4);
+  background: linear-gradient(90deg, #000000, #111827, #4b5563);
   z-index: 9997;
   transition: width 0.1s linear;
 }
@@ -92,7 +94,7 @@ h1, h2, h3, h4, h5, h6 {
 ::-webkit-scrollbar-thumb { background: var(--accent-solid); border-radius: 2px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--accent-solid-hover); }
 
-::selection { background: #0284c7; color: white; }
+::selection { background: #111827; color: white; }
 
 /* ── Base animations ── */
 @keyframes fadeUp {
@@ -159,8 +161,8 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ── Pulse glow ── */
 @keyframes pulseGlow {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
-  50% { box-shadow: 0 0 0 8px rgba(37, 99, 235, 0.15); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(17, 24, 39, 0); }
+  50% { box-shadow: 0 0 0 8px rgba(17, 24, 39, 0.12); }
 }
 
 /* ── Grid fade-in ── */
@@ -211,7 +213,7 @@ h1, h2, h3, h4, h5, h6 {
   position: absolute;
   inset: -1px;
   border-radius: inherit;
-  background: linear-gradient(135deg, transparent 40%, rgba(37,99,235,0.3) 60%, transparent 70%);
+  background: linear-gradient(135deg, transparent 40%, rgba(17,24,39,0.28) 60%, transparent 70%);
   opacity: 0;
   transition: opacity 0.5s;
   z-index: -1;
@@ -222,7 +224,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ── Video section overlay ── */
 .video-overlay {
-  background: linear-gradient(135deg, rgba(15,10,40,0.85) 0%, rgba(20,15,60,0.7) 50%, rgba(15,10,40,0.85) 100%);
+  background: linear-gradient(135deg, rgba(10,10,10,0.85) 0%, rgba(20,20,20,0.7) 50%, rgba(10,10,10,0.85) 100%);
 }
 
 /* ── Text balance ── */
@@ -272,11 +274,12 @@ h2 { line-height: 1.25; }
   margin-bottom: 0.5rem;
 }
 .prose a {
-  color: #0284c7;
+  color: #111827;
   text-decoration: underline;
+  text-underline-offset: 2px;
 }
 .prose a:hover {
-  color: #0369a1;
+  color: #000000;
 }
 .prose img {
   max-width: 100%;
@@ -334,7 +337,7 @@ h2 { line-height: 1.25; }
   left: -9999px;
   top: 0;
   z-index: 9999;
-  background: #0284c7;
+  background: #111827;
   color: white;
   padding: 12px 20px;
   font-weight: 600;
@@ -347,7 +350,7 @@ h2 { line-height: 1.25; }
 
 /* ── Focus-visible for keyboard navigation ── */
 :focus-visible {
-  outline: 2px solid #0284c7;
+  outline: 2px solid #111827;
   outline-offset: 3px;
   border-radius: 4px;
 }
@@ -356,7 +359,7 @@ a:focus-visible,
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible {
-  outline: 2px solid #0284c7;
+  outline: 2px solid #111827;
   outline-offset: 2px;
 }
 
@@ -370,7 +373,7 @@ textarea:focus-visible {
 
 /* ── Brand gradient text ── */
 .text-gradient-brand {
-  background: linear-gradient(135deg, #0369a1 0%, #0284c7 50%, #06b6d4 100%);
+  background: linear-gradient(135deg, #000000 0%, #1f2937 50%, #6b7280 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -418,9 +421,4 @@ details[open] summary {
   .animate-pulse-glow {
     animation: none !important;
   }
-}
-
-/* Header logo orange tint for claude page */
-.logo-orange-filter {
-  filter: hue-rotate(190deg) saturate(2.2) brightness(1.12);
 }

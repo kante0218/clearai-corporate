@@ -22,7 +22,7 @@ function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; 
 }
 
 function Label({ children }: { children: ReactNode }) {
-  return <p className="text-sm font-semibold text-amber-600 mb-4">{children}</p>;
+  return <p className="text-sm font-semibold text-neutral-900 mb-4">{children}</p>;
 }
 
 type CompanySize = "small" | "large";
@@ -379,7 +379,7 @@ function Simulator() {
   }, [people, hours, hourlyFee, wage, size]);
 
   return (
-    <div className="bg-white rounded-3xl border border-amber-200 shadow-xl p-6 lg:p-10">
+    <div className="bg-white rounded-lg border border-neutral-200 shadow-xl p-6 lg:p-10">
       <div className="grid lg:grid-cols-2 gap-10">
         {/* Input */}
         <div>
@@ -395,10 +395,10 @@ function Simulator() {
                     key={s}
                     type="button"
                     onClick={() => setSize(s)}
-                    className={`py-3 rounded-lg text-sm font-semibold transition-all ${
+                    className={`py-3 rounded-md text-sm font-semibold transition-all ${
                       size === s
-                        ? "bg-amber-500 text-white border border-amber-500"
-                        : "bg-white text-gray-600 border border-gray-200 hover:border-amber-300"
+                        ? "bg-neutral-900 text-white border border-neutral-900"
+                        : "bg-white text-gray-600 border border-gray-200 hover:border-neutral-300"
                     }`}
                   >
                     {s === "small" ? t.simSmall : t.simLarge}
@@ -410,65 +410,65 @@ function Simulator() {
             <div>
               <label className="flex items-center justify-between text-sm font-semibold text-gray-700 mb-2">
                 <span>{t.simPeople}</span>
-                <span className="text-amber-600">{people}{t.simPeopleUnit}</span>
+                <span className="text-neutral-900">{people}{t.simPeopleUnit}</span>
               </label>
-              <input type="range" min={1} max={100} value={people} onChange={(e) => setPeople(Number(e.target.value))} className="w-full accent-amber-500" />
+              <input type="range" min={1} max={100} value={people} onChange={(e) => setPeople(Number(e.target.value))} className="w-full accent-neutral-900" />
             </div>
 
             <div>
               <label className="flex items-center justify-between text-sm font-semibold text-gray-700 mb-2">
                 <span>{t.simHours}</span>
-                <span className="text-amber-600">{hours}{t.simHoursUnit}</span>
+                <span className="text-neutral-900">{hours}{t.simHoursUnit}</span>
               </label>
-              <input type="range" min={1} max={300} value={hours} onChange={(e) => setHours(Number(e.target.value))} className="w-full accent-amber-500" />
+              <input type="range" min={1} max={300} value={hours} onChange={(e) => setHours(Number(e.target.value))} className="w-full accent-neutral-900" />
               {!result.hoursEligible && (
-                <p className="text-xs text-red-600 mt-2">{t.simHoursWarning}</p>
+                <p className="text-xs text-neutral-900 mt-2">{t.simHoursWarning}</p>
               )}
             </div>
 
             <div>
               <label className="flex items-center justify-between text-sm font-semibold text-gray-700 mb-2">
                 <span>{t.simHourlyFee}</span>
-                <span className="text-amber-600">{formatYen(hourlyFee)}</span>
+                <span className="text-neutral-900">{formatYen(hourlyFee)}</span>
               </label>
-              <input type="range" min={1000} max={20000} step={500} value={hourlyFee} onChange={(e) => setHourlyFee(Number(e.target.value))} className="w-full accent-amber-500" />
+              <input type="range" min={1000} max={20000} step={500} value={hourlyFee} onChange={(e) => setHourlyFee(Number(e.target.value))} className="w-full accent-neutral-900" />
             </div>
 
             <div>
               <label className="flex items-center justify-between text-sm font-semibold text-gray-700 mb-2">
                 <span>{t.simWage}</span>
-                <span className="text-amber-600">{formatYen(wage)}</span>
+                <span className="text-neutral-900">{formatYen(wage)}</span>
               </label>
-              <input type="range" min={1000} max={6000} step={100} value={wage} onChange={(e) => setWage(Number(e.target.value))} className="w-full accent-amber-500" />
+              <input type="range" min={1000} max={6000} step={100} value={wage} onChange={(e) => setWage(Number(e.target.value))} className="w-full accent-neutral-900" />
             </div>
           </div>
         </div>
 
         {/* Result */}
-        <div className="bg-gradient-to-br from-amber-50 to-sky-50 rounded-2xl p-6 lg:p-8 border border-amber-100">
+        <div className="bg-neutral-50 rounded-lg p-6 lg:p-8 border border-neutral-200">
           <h3 className="text-xl font-bold text-gray-900 mb-6">{t.simResultTitle}</h3>
           <div className="space-y-4">
-            <div className="flex justify-between items-baseline border-b border-amber-200/60 pb-3">
+            <div className="flex justify-between items-baseline border-b border-neutral-200 pb-3">
               <span className="text-sm text-gray-600">{t.simRowTraining}</span>
               <span className="text-lg font-bold text-gray-900">{formatYen(result.totalTrainingCost)}</span>
             </div>
-            <div className="flex justify-between items-baseline border-b border-amber-200/60 pb-3">
+            <div className="flex justify-between items-baseline border-b border-neutral-200 pb-3">
               <span className="text-sm text-gray-600">{t.simRowExpense(size === "small" ? "75" : "60")}</span>
-              <span className="text-lg font-bold text-amber-700">− {formatYen(result.expenseSubsidy)}</span>
+              <span className="text-lg font-bold text-neutral-900">− {formatYen(result.expenseSubsidy)}</span>
             </div>
-            <div className="flex justify-between items-baseline border-b border-amber-200/60 pb-3">
+            <div className="flex justify-between items-baseline border-b border-neutral-200 pb-3">
               <span className="text-sm text-gray-600">{t.simRowWage(size === "small" ? "960" : "480")}</span>
-              <span className="text-lg font-bold text-amber-700">+ {formatYen(result.wageSubsidy)}</span>
+              <span className="text-lg font-bold text-neutral-900">+ {formatYen(result.wageSubsidy)}</span>
             </div>
-            <div className="bg-white rounded-xl p-5 mt-6 border border-amber-300">
+            <div className="bg-white rounded-lg p-5 mt-6 border border-neutral-300">
               <p className="text-xs font-semibold text-gray-500 mb-1">{t.simNetLabel}</p>
               <p className="text-3xl lg:text-4xl font-bold text-gray-900">{formatYen(result.netCost)}</p>
               <p className="text-xs text-gray-500 mt-2">
-                {t.simTotalLabel} <span className="font-semibold text-amber-700">{formatYen(result.totalSubsidy)}</span>
+                {t.simTotalLabel} <span className="font-semibold text-neutral-900">{formatYen(result.totalSubsidy)}</span>
               </p>
             </div>
             <p className="text-xs text-gray-500 leading-relaxed mt-4">{t.simNote}</p>
-            <a href="/contact?service=subsidy" className="mt-4 block w-full text-center rounded-lg bg-amber-500 text-white font-semibold px-6 py-3.5 hover:bg-amber-600 transition-colors">
+            <a href="/contact?service=subsidy" className="mt-4 block w-full text-center rounded-md bg-neutral-900 text-white font-semibold px-6 py-3.5 hover:bg-neutral-800 transition-colors">
               {t.simCta}
             </a>
           </div>
@@ -487,9 +487,9 @@ export default function SubsidyPage() {
       {/* PAGE HEADER */}
       <section className="pt-24 pb-12 lg:pt-32 lg:pb-16 bg-white border-b border-gray-100">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <p className="text-sm font-semibold text-amber-600 mb-3">{t.pageLabel}</p>
+          <p className="text-sm font-semibold text-neutral-900 mb-3">{t.pageLabel}</p>
           <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4">{t.pageTitle}</h1>
-          <p className="text-base text-gray-600 leading-relaxed max-w-2xl">{t.pageDesc}</p>
+          <p className="text-base text-gray-600 leading-relaxed w-full">{t.pageDesc}</p>
         </div>
       </section>
 
@@ -499,13 +499,13 @@ export default function SubsidyPage() {
           <Reveal>
             <Label>{t.programsLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.programsTitle}</h2>
-            <p className="text-sm text-gray-500 mb-14 max-w-2xl leading-relaxed">{t.programsDesc}</p>
+            <p className="text-sm text-gray-500 mb-14 w-full leading-relaxed">{t.programsDesc}</p>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {t.programs.map((p, i) => (
               <Reveal key={p.title} delay={i * 100}>
-                <div className="rounded-2xl border border-gray-200 bg-white p-8 h-full flex flex-col hover:border-amber-300 hover:shadow-lg transition-all duration-300">
-                  <span className="inline-block text-xs font-bold tracking-widest text-amber-600 uppercase mb-3">{p.tag}</span>
+                <div className="rounded-lg border border-gray-200 bg-white p-8 h-full flex flex-col hover:border-neutral-300 hover:shadow-lg transition-all duration-300">
+                  <span className="inline-block text-xs font-bold tracking-widest text-neutral-900 uppercase mb-3">{p.tag}</span>
                   <h3 className="text-xl font-bold text-gray-900 mb-1">{p.title}</h3>
                   <p className="text-xs text-gray-500 mb-4">{p.subtitle}</p>
                   <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">{p.desc}</p>
@@ -528,12 +528,12 @@ export default function SubsidyPage() {
       </section>
 
       {/* Simulator */}
-      <section id="simulator" className="py-20 lg:py-28 bg-gradient-to-br from-amber-50 via-white to-sky-50">
+      <section id="simulator" className="py-20 lg:py-28 bg-neutral-50">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.simulatorLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.simulatorTitle}</h2>
-            <p className="text-sm text-gray-500 mb-10 max-w-2xl leading-relaxed">{t.simulatorDesc}</p>
+            <p className="text-sm text-gray-500 mb-10 w-full leading-relaxed">{t.simulatorDesc}</p>
           </Reveal>
           <Reveal delay={150}>
             <Simulator />
@@ -551,8 +551,8 @@ export default function SubsidyPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {t.support.map((item, i) => (
               <Reveal key={item.num} delay={i * 80}>
-                <div className="border-t-2 border-amber-500 pt-6">
-                  <span className="text-xs font-semibold text-amber-600 tracking-widest">{item.num}</span>
+                <div className="border-t-2 border-neutral-900 pt-6">
+                  <span className="text-xs font-semibold text-neutral-900 tracking-widest">{item.num}</span>
                   <h3 className="text-lg font-bold text-gray-900 mt-2 mb-3">{item.title}</h3>
                   <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
                 </div>
@@ -560,8 +560,8 @@ export default function SubsidyPage() {
             ))}
           </div>
           <Reveal delay={400}>
-            <div className="mt-12 bg-amber-50 border border-amber-200 rounded-2xl p-6 lg:p-8 flex flex-col lg:flex-row lg:items-center gap-4 lg:gap-6">
-              <div className="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500 flex items-center justify-center">
+            <div className="mt-12 bg-neutral-50 border border-neutral-200 rounded-lg p-6 lg:p-8 flex flex-col lg:flex-row lg:items-center gap-4 lg:gap-6">
+              <div className="flex-shrink-0 w-12 h-12 rounded-full bg-neutral-900 flex items-center justify-center">
                 <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
                 </svg>
@@ -585,9 +585,9 @@ export default function SubsidyPage() {
           <div className="space-y-6">
             {t.flow.map((f, i) => (
               <Reveal key={f.step} delay={i * 60}>
-                <div className="bg-white rounded-2xl border border-gray-200 p-6 lg:p-8 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
+                <div className="bg-white rounded-lg border border-gray-200 p-6 lg:p-8 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
                   <div className="flex-shrink-0 sm:w-40">
-                    <span className="inline-block text-xs font-bold text-amber-600 tracking-widest mb-1">{f.step}</span>
+                    <span className="inline-block text-xs font-bold text-neutral-900 tracking-widest mb-1">{f.step}</span>
                     <p className="text-xs text-gray-400">{f.duration}</p>
                   </div>
                   <div className="flex-1 sm:border-l sm:border-gray-200 sm:pl-6">
@@ -614,7 +614,7 @@ export default function SubsidyPage() {
                 <details className="group bg-white border border-gray-200 rounded-xl overflow-hidden">
                   <summary className="cursor-pointer list-none p-5 flex items-start justify-between gap-4 hover:bg-gray-50 transition-colors">
                     <span className="text-sm lg:text-base font-semibold text-gray-900">{f.q}</span>
-                    <span className="flex-shrink-0 text-amber-500 text-xl transition-transform group-open:rotate-45">+</span>
+                    <span className="flex-shrink-0 text-neutral-900 text-xl transition-transform group-open:rotate-45">+</span>
                   </summary>
                   <div className="px-5 pb-5 text-sm text-gray-600 leading-relaxed">{f.a}</div>
                 </details>
@@ -632,7 +632,7 @@ export default function SubsidyPage() {
             <h2 className="text-3xl font-bold text-gray-900 mb-4">{t.ctaTitle}</h2>
             <p className="text-base text-gray-600 leading-relaxed mb-10">{t.ctaDesc}</p>
             <div className="flex items-center justify-center gap-4 flex-wrap">
-              <a href="/contact?service=subsidy" className="rounded-lg bg-amber-500 text-white font-semibold px-10 py-4 hover:bg-amber-600 transition-colors duration-300 inline-block">
+              <a href="/contact?service=subsidy" className="rounded-md bg-neutral-900 text-white font-semibold px-10 py-4 hover:bg-neutral-800 transition-colors duration-300 inline-block">
                 {t.ctaButton}
               </a>
               <a href="/training" className="text-sm text-gray-500 font-semibold hover:text-gray-900 transition-colors duration-300">

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
+import Logo from "@/components/Logo";
 import { usePathname } from "next/navigation";
 import LanguageToggle from "@/components/LanguageToggle";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
@@ -22,8 +22,8 @@ export default function Header() {
 
   const navItems: NavItem[] = [
     { label: h.navRobotRental, href: "/robot-rental" },
-    { label: h.navAdvisor, href: "/advisor" },
     { label: h.navAiAgent, href: "/ai-agent" },
+    { label: h.navAdvisor, href: "/advisor" },
     {
       label: h.navTraining,
       href: "/training",
@@ -79,32 +79,19 @@ export default function Header() {
     ? "bg-white/95 backdrop-blur-xl border-b border-gray-200 shadow-sm"
     : "bg-white border-b border-gray-100";
 
-  const contactFilledClass = isClaude
-    ? "bg-orange-500 hover:bg-orange-400 text-white"
-    : isAiConsulting
-    ? "bg-sky-600 hover:bg-sky-500 text-white"
-    : "bg-sky-600 hover:bg-sky-500 text-white";
-  // Stylish filled pill CTA for the desktop header (solid + soft glow + hover lift)
-  const contactBtnClass = isClaude
-    ? "bg-orange-500 hover:bg-orange-600 shadow-[0_6px_20px_-6px_rgba(249,115,22,0.55)] hover:shadow-[0_12px_28px_-6px_rgba(249,115,22,0.7)]"
-    : "bg-sky-600 hover:bg-sky-700 shadow-[0_6px_20px_-6px_rgba(37,99,235,0.55)] hover:shadow-[0_12px_28px_-6px_rgba(37,99,235,0.7)]";
+  const contactFilledClass = "bg-neutral-900 hover:bg-neutral-800 text-white";
+  // Filled CTA for the desktop header (solid + soft neutral shadow + hover lift)
+  const contactBtnClass =
+    "bg-neutral-900 hover:bg-black shadow-[0_6px_20px_-6px_rgba(0,0,0,0.45)] hover:shadow-[0_12px_28px_-6px_rgba(0,0,0,0.6)]";
 
   return (
     <>
       <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${headerBg}`}>
         <div className="max-w-[1800px] mx-auto px-6 lg:px-10">
           <div className="relative flex items-center justify-between h-18 lg:h-20">
-            <Link href="/" className="flex items-center group">
-              <Image
-                src="/images/logo.png"
-                alt="clearAI株式会社（クリアエーアイ）"
-                width={140}
-                height={40}
-                className={`h-9 lg:h-10 w-auto transition-all duration-500 ${
-                  isClaude ? "logo-orange-filter" : ""
-                }`}
-                priority
-              />
+            <Link href="/" className="flex items-center gap-2.5 group" aria-label="clearAI株式会社（クリアエーアイ）">
+              <Logo size={36} className="h-8 lg:h-9 w-auto transition-transform duration-500 group-hover:rotate-12" />
+              <span className="text-xl lg:text-2xl font-semibold tracking-tight text-neutral-900">clearAI</span>
             </Link>
 
             <nav className="hidden xl:flex items-center gap-1">
@@ -152,7 +139,7 @@ export default function Header() {
                           isMenuOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-1"
                         }`}
                       >
-                        <div className="bg-white border border-gray-200 rounded-xl shadow-xl py-2 min-w-[260px]">
+                        <div className="bg-white border border-gray-200 rounded-lg shadow-xl py-2 min-w-[260px]">
                           {item.children!.map((child) => (
                             <Link
                               key={child.label}
@@ -188,7 +175,7 @@ export default function Header() {
               </div>
               <LanguageToggle variant="desktop" />
               <Link href="/contact"
-                className={`group inline-flex items-center justify-center gap-1.5 text-sm font-semibold text-white px-5 py-2.5 rounded-full transition-all duration-300 hover:-translate-y-0.5 ${contactBtnClass}`}>
+                className={`group inline-flex items-center justify-center gap-1.5 text-sm font-semibold text-white px-5 py-2.5 rounded-md transition-all duration-300 hover:-translate-y-0.5 ${contactBtnClass}`}>
                 {h.contact}
                 <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-0.5">→</span>
               </Link>

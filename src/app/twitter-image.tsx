@@ -17,7 +17,7 @@ export default async function TwitterImage() {
           justifyContent: "space-between",
           padding: "80px",
           background:
-            "linear-gradient(135deg, #0f172a 0%, #0c4a6e 55%, #075985 100%)",
+            "linear-gradient(135deg, #0a0a0a 0%, #1f2937 60%, #000000 100%)",
           color: "white",
           fontFamily: "sans-serif",
         }}
@@ -28,14 +28,14 @@ export default async function TwitterImage() {
               width: 14,
               height: 14,
               borderRadius: 999,
-              background: "#60a5fa",
+              background: "#ffffff",
             }}
           />
           <span
             style={{
               fontSize: 22,
               letterSpacing: 6,
-              color: "#93c5fd",
+              color: "#9ca3af",
               textTransform: "uppercase",
             }}
           >
