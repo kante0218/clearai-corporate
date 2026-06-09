@@ -9,6 +9,7 @@ const CREST_BY_NAME: Record<string, string> = {
   "髙橋 敢輝": "/images/crests/kosen.png",
   "國井 真帆": "/images/crests/kosen.png",
   "鈴木 隆生": "/images/crests/kosen.png",
+  "飯島 聡太": "/images/crests/kosen.png",
   "アニ": "/images/crests/kosen.png",
   "石嶋 悠一": "/images/crests/keio.svg",
   "西村 吉正": "/images/crests/tokyo.svg",
@@ -121,7 +122,7 @@ const COPY: Record<"ja" | "en", Copy> = {
       },
       {
         name: "國井 真帆",
-        nameEn: "maho kunii",
+        nameEn: "mahan kunii",
         role: "CTO / 開発（茨城高専）",
         bio: "茨城高専在学中のエンジニア。CTOとしてclearAIのプロダクト開発と技術基盤の構築を主導する。",
       },
@@ -148,6 +149,12 @@ const COPY: Record<"ja" | "en", Copy> = {
         nameEn: "ryusei suzuki",
         role: "チーフエンジニア",
         bio: "茨城県出身。茨城高専情報系在学中。高専でPythonやC言語を学びながら、地元日立を創生することを目指し、日本中の田舎のリサーチ業務に従事。地元の自然を守ることを目指し、今後共同で研究を進める。",
+      },
+      {
+        name: "飯島 聡太",
+        nameEn: "souta iijima",
+        role: "ロボティクスエンジニア（茨城高専）",
+        bio: "茨城高専在学中のエンジニア。Unityを用いたゲーム開発・プログラミングで豊富な実装経験を積む。その技術力をヒューマノイド・ロボティクス分野に注ぎ、シミュレーション環境の構築から実機制御まで、ロボットを現場で動かすソフトウェア開発を担う。",
       },
       {
         name: "郷 由稀斗",
@@ -278,7 +285,7 @@ const COPY: Record<"ja" | "en", Copy> = {
       },
       {
         name: "國井 真帆",
-        nameEn: "maho kunii",
+        nameEn: "mahan kunii",
         role: "CTO / Engineering (Ibaraki KOSEN)",
         bio: "Engineer currently enrolled at Ibaraki KOSEN. As CTO, leads clearAI's product development and technical foundation.",
       },
@@ -305,6 +312,12 @@ const COPY: Record<"ja" | "en", Copy> = {
         nameEn: "ryusei suzuki",
         role: "Chief Engineer",
         bio: "From Ibaraki. Currently in the information systems program at Ibaraki KOSEN. Studies Python and C at KOSEN while conducting research on rural communities across Japan with the goal of revitalizing his hometown Hitachi. Aims to protect the local natural environment through ongoing collaborative research.",
+      },
+      {
+        name: "飯島 聡太",
+        nameEn: "souta iijima",
+        role: "Robotics Engineer (Ibaraki KOSEN)",
+        bio: "An engineer currently at Ibaraki KOSEN. Brings rich hands-on experience in game development and programming with Unity, channeling that engineering skill into humanoid and robotics — from building simulation environments to real-hardware control, owning the software that makes robots work in the field.",
       },
       {
         name: "郷 由稀斗",
