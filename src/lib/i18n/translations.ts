@@ -29,6 +29,8 @@ export const header = {
     navRobotRentalDesc: "ヒューマノイドの短期レンタル・PoC・実証",
     navAiAgent: "AIエージェント開発",
     navAiAgentDesc: "業務を任せられる自律型AIエージェントを設計・開発・運用",
+    navResearch: "研究開発",
+    navResearchDesc: "産業特化ロボットOS・模倣学習・機械学習の研究開発",
     navCases: "導入事例",
     navNews: "お知らせ",
     navAbout: "会社概要",
@@ -59,6 +61,8 @@ export const header = {
     navRobotRentalDesc: "Short-term humanoid rental, PoC & demos",
     navAiAgent: "AI Agent Development",
     navAiAgentDesc: "Design, build, and operate autonomous AI agents you can delegate work to",
+    navResearch: "R&D",
+    navResearchDesc: "R&D in industry-specific robot OS, imitation learning & ML",
     navCases: "Case Studies",
     navNews: "News",
     navAbout: "About",
@@ -89,6 +93,7 @@ export const footer = {
       website: "ウェブサイト作成",
       sns: "SNS運用代行",
       robotRental: "ロボットレンタル",
+      research: "研究開発",
     },
     companyHeading: "企業情報",
     company: {
@@ -127,6 +132,7 @@ export const footer = {
       website: "Website Production",
       sns: "SNS Management",
       robotRental: "Robot Rental",
+      research: "Research & Development",
     },
     companyHeading: "Company",
     company: {

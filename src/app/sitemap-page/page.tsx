@@ -44,6 +44,7 @@ const COPY: Record<"ja" | "en", Copy> = {
           { label: "ウェブサイト作成", href: "/website" },
           { label: "SNS運用代行", href: "/sns" },
           { label: "ロボットレンタル", href: "/robot-rental" },
+          { label: "研究開発", href: "/research" },
         ],
       },
       {
@@ -85,6 +86,7 @@ const COPY: Record<"ja" | "en", Copy> = {
           { label: "Website Production", href: "/website" },
           { label: "SNS Management", href: "/sns" },
           { label: "Robot Rental", href: "/robot-rental" },
+          { label: "Research & Development", href: "/research" },
         ],
       },
       {

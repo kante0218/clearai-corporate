@@ -18,6 +18,7 @@ export default function Footer() {
     { label: f.services.advertising, href: "/advertising" },
     { label: f.services.sns, href: "/sns" },
     { label: f.services.robotRental, href: "/robot-rental" },
+    { label: f.services.research, href: "/research" },
     { label: f.services.subsidy, href: "/subsidy" },
     { label: f.services.claude, href: "/claude" },
   ];
