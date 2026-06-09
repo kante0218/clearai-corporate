@@ -373,17 +373,18 @@ export default function AboutPage() {
     <main className="min-h-screen bg-white">
 
       {/* ─── 3. VISION 2030 ──────────────────────────────────────────────── */}
-      <section className="py-40 lg:py-56 bg-gray-950 relative overflow-hidden">
+      <section className="py-40 lg:py-56 bg-neutral-950 relative overflow-hidden">
         <video
           autoPlay
           loop
           muted
           playsInline
           preload="auto"
+          poster="/videos/vision-bg-poster.jpg"
           aria-hidden="true"
           className="absolute inset-0 w-full h-full object-cover z-0"
         >
-          <source src="/videos/vision-2030.mp4" type="video/mp4" />
+          <source src="/videos/vision-bg.mp4" type="video/mp4" />
         </video>
         <div
           className="absolute inset-0 z-[1] pointer-events-none"
@@ -418,7 +419,7 @@ export default function AboutPage() {
       </section>
 
       {/* ─── 7.5 MEMBERS ─────────────────────────────────────────────────── */}
-      <section className="py-20 lg:py-28 bg-white">
+      <section className="py-14 lg:py-20 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <p className="text-xs font-semibold tracking-widest uppercase text-neutral-900 mb-6">{t.membersLabel}</p>
@@ -448,7 +449,7 @@ export default function AboutPage() {
       </section>
 
       {/* ─── 9. HISTORY / TIMELINE ───────────────────────────────────────── */}
-      <section className="py-20 lg:py-28 bg-gray-50">
+      <section className="py-14 lg:py-20 bg-gray-50">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <p className="text-xs font-semibold tracking-widest uppercase text-neutral-900 mb-6">{t.historyLabel}</p>
@@ -490,7 +491,7 @@ export default function AboutPage() {
       </section>
 
       {/* ─── 10. CTA ─────────────────────────────────────────────────────── */}
-      <section className="py-20 lg:py-28 bg-gray-950 relative overflow-hidden">
+      <section className="py-14 lg:py-20 bg-neutral-950 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-neutral-900/40 to-gray-950 pointer-events-none" />
         <div className="relative max-w-[1800px] mx-auto px-6 lg:px-8 text-center">
           <Reveal>
@@ -519,7 +520,7 @@ export default function AboutPage() {
       </section>
 
       {/* ─── 11. COMPANY INFORMATION (moved below Join Us) ───────────────── */}
-      <section className="py-20 lg:py-28 bg-white">
+      <section className="py-14 lg:py-20 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <p className="text-xs font-semibold tracking-widest uppercase text-neutral-900 mb-6">{t.companyLabel}</p>

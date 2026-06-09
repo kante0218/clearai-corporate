@@ -207,7 +207,7 @@ export default function AdvisorPage() {
   return (
     <>
       {/* PAGE HEADER */}
-      <section className="pt-24 pb-12 lg:pt-32 lg:pb-16 bg-white border-b border-gray-100">
+      <section className="pt-24 pb-10 lg:pt-28 lg:pb-12 bg-white border-b border-gray-100">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <p className="text-sm font-semibold text-neutral-900 mb-3">{t.heroKicker}</p>
           <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4">{t.heroTitle}</h1>
@@ -216,11 +216,11 @@ export default function AdvisorPage() {
       </section>
 
       {/* PLANS */}
-      <section id="plans" className="py-20 lg:py-28 bg-gray-50">
+      <section id="plans" className="py-14 lg:py-20 bg-gray-50">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.plansLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">{t.plansTitle}</h2>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-8">{t.plansTitle}</h2>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
             {t.plans.map((plan, i) => (
@@ -256,7 +256,7 @@ export default function AdvisorPage() {
       </section>
 
       {/* WHY */}
-      <section className="py-20 lg:py-28 bg-white">
+      <section className="py-14 lg:py-20 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.whyLabel}</Label>
@@ -276,11 +276,11 @@ export default function AdvisorPage() {
       </section>
 
       {/* SERVICES */}
-      <section className="py-20 lg:py-28 bg-gray-50">
+      <section className="py-14 lg:py-20 bg-gray-50">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.whatLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">{t.whatTitle}</h2>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-8">{t.whatTitle}</h2>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {t.what.map((item, i) => (
@@ -297,7 +297,7 @@ export default function AdvisorPage() {
       </section>
 
       {/* CLAUDE INTEGRATION */}
-      <section className="py-20 lg:py-28 bg-white">
+      <section className="py-14 lg:py-20 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <div className="rounded-lg border border-neutral-200 bg-neutral-50 p-8 lg:p-12">
             <div className="grid lg:grid-cols-2 gap-10 items-start">
@@ -326,11 +326,11 @@ export default function AdvisorPage() {
       </section>
 
       {/* PROCESS */}
-      <section className="py-20 lg:py-28 bg-white">
+      <section className="py-14 lg:py-20 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.processLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">{t.processTitle}</h2>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-8">{t.processTitle}</h2>
           </Reveal>
           {t.process.map((step, i) => (
             <Reveal key={step.num} delay={i * 100}>
@@ -348,11 +348,11 @@ export default function AdvisorPage() {
       </section>
 
       {/* FAQ */}
-      <section className="py-20 lg:py-28 bg-gray-50">
+      <section className="py-14 lg:py-20 bg-gray-50">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.faqLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">{t.faqTitle}</h2>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-8">{t.faqTitle}</h2>
           </Reveal>
           <div className="max-w-3xl">
             {t.faq.map((item, i) => (
@@ -371,7 +371,7 @@ export default function AdvisorPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 lg:py-28 bg-white">
+      <section className="py-14 lg:py-20 bg-white">
         <div className="max-w-2xl mx-auto px-6 text-center">
           <Reveal>
             <Label>{t.ctaLabel}</Label>

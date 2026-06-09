@@ -289,12 +289,12 @@ export default function RobotRentalPage() {
       </section>
 
       {/* LINEUP */}
-      <section className="py-20 lg:py-28 bg-gray-50">
+      <section className="py-14 lg:py-20 bg-gray-50">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.lineupLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.lineupTitle}</h2>
-            <p className="text-sm text-gray-500 mb-14 w-full leading-relaxed">{t.lineupDesc}</p>
+            <p className="text-sm text-gray-500 mb-8 w-full leading-relaxed">{t.lineupDesc}</p>
           </Reveal>
           <div className="space-y-12">
             {t.lineupGroups.map((group, groupIndex) => (
@@ -381,12 +381,12 @@ export default function RobotRentalPage() {
       </section>
 
       {/* PLAN */}
-      <section className="py-20 lg:py-28 bg-white">
+      <section className="py-14 lg:py-20 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.planLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.planTitle}</h2>
-            <p className="text-sm text-gray-500 mb-14 w-full leading-relaxed">{t.planDesc}</p>
+            <p className="text-sm text-gray-500 mb-8 w-full leading-relaxed">{t.planDesc}</p>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {t.plans.map((item, i) => (
@@ -403,12 +403,12 @@ export default function RobotRentalPage() {
       </section>
 
       {/* USE CASES */}
-      <section className="py-20 lg:py-28 bg-gray-50">
+      <section className="py-14 lg:py-20 bg-gray-50">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.useLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.useTitle}</h2>
-            <p className="text-sm text-gray-500 mb-14 w-full leading-relaxed">{t.useDesc}</p>
+            <p className="text-sm text-gray-500 mb-8 w-full leading-relaxed">{t.useDesc}</p>
           </Reveal>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {t.useCases.map((item, i) => (
@@ -424,7 +424,7 @@ export default function RobotRentalPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 lg:py-28 bg-white">
+      <section className="py-14 lg:py-20 bg-white">
         <div className="max-w-2xl mx-auto px-6 text-center">
           <Reveal>
             <Label>{t.ctaLabel}</Label>

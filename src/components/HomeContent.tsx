@@ -478,30 +478,32 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
   return (
     <>
       {/* ═══ HERO ═══ */}
-      <section className="relative md:min-h-screen flex items-start md:items-center overflow-hidden bg-white">
-        <div className="relative z-10 w-full max-w-5xl mx-auto px-6 lg:px-8 pt-28 pb-16 md:py-24 text-center">
-          <div className="flex flex-wrap justify-center gap-2 mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "200ms" }}>
-            {t.heroChips.map((tag) => (
-              <span key={tag} className="inline-flex items-center rounded-md bg-neutral-100 text-neutral-900 border border-neutral-200 px-3 py-1 text-xs font-semibold">
-                {tag}
-              </span>
-            ))}
-          </div>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-[1.15] tracking-tight mb-8 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0)" : "translateY(24px)", transitionDelay: "400ms" }}>
-            {t.heroTitle}
-          </h1>
-          <p className="text-base md:text-lg text-gray-600 leading-relaxed w-full mx-auto mb-10 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "650ms" }}>
-            {t.heroDesc}
-          </p>
-          <div className="flex flex-wrap justify-center items-center gap-5 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "850ms" }}>
-            <Link href="/contact" className="inline-flex items-center gap-2 rounded-md bg-neutral-900 text-white font-semibold px-7 py-3.5 hover:bg-neutral-800 transition-colors duration-300 shadow-[0_8px_24px_-8px_rgba(0,0,0,0.3)]">
-              {t.heroPrimary}
-              <span aria-hidden>→</span>
-            </Link>
-            <Link href="#services" className="inline-flex items-center gap-1.5 text-sm text-gray-700 font-semibold hover:text-neutral-900 transition-colors duration-300">
-              {t.heroSecondary}
-              <span aria-hidden>→</span>
-            </Link>
+      <section className="relative min-h-[88svh] md:min-h-screen flex items-center overflow-hidden bg-white">
+        <div className="relative z-10 w-full max-w-[1800px] mx-auto px-6 lg:px-10 pt-28 pb-16 md:py-24">
+          <div className="max-w-2xl lg:max-w-3xl text-left">
+            <div className="flex flex-wrap justify-start gap-2 mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "200ms" }}>
+              {t.heroChips.map((tag) => (
+                <span key={tag} className="inline-flex items-center rounded-md bg-neutral-100 text-neutral-900 border border-neutral-200 px-3 py-1 text-xs font-semibold">
+                  {tag}
+                </span>
+              ))}
+            </div>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-[1.12] tracking-tight mb-8 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0)" : "translateY(24px)", transitionDelay: "400ms" }}>
+              {t.heroTitle}
+            </h1>
+            <p className="text-base md:text-lg text-gray-600 leading-relaxed max-w-xl mb-10 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "650ms" }}>
+              {t.heroDesc}
+            </p>
+            <div className="flex flex-wrap justify-start items-center gap-5 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "850ms" }}>
+              <Link href="/contact" className="inline-flex items-center gap-2 rounded-md bg-neutral-900 text-white font-semibold px-7 py-3.5 hover:bg-neutral-800 transition-colors duration-300 shadow-[0_8px_24px_-8px_rgba(0,0,0,0.3)]">
+                {t.heroPrimary}
+                <span aria-hidden>→</span>
+              </Link>
+              <Link href="#services" className="inline-flex items-center gap-1.5 text-sm text-gray-700 font-semibold hover:text-neutral-900 transition-colors duration-300">
+                {t.heroSecondary}
+                <span aria-hidden>→</span>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -689,8 +691,8 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {t.process.map((step, i) => (
               <Reveal key={step.num} delay={i * 80}>
-                <div className="relative bg-white border border-gray-200 rounded-lg p-7 h-full">
-                  <span className="text-3xl font-bold text-neutral-200">{step.num}</span>
+                <div className="group relative bg-white border border-gray-200 rounded-lg p-7 h-full transition-colors duration-300 hover:border-gray-300">
+                  <span className="text-3xl font-bold text-neutral-200 transition-colors duration-300 group-hover:text-neutral-900">{step.num}</span>
                   <h3 className="text-base font-bold text-gray-900 mt-2 mb-2">{step.title}</h3>
                   <p className="text-sm text-gray-600 leading-relaxed">{step.desc}</p>
                 </div>

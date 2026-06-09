@@ -98,11 +98,11 @@ export default function FaqPage() {
       </section>
 
       {/* LIST */}
-      <section id="list" className="py-20 lg:py-28 bg-gray-50">
+      <section id="list" className="py-14 lg:py-20 bg-gray-50">
         <div className="max-w-3xl mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.listLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">{t.listTitle}</h2>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-8">{t.listTitle}</h2>
           </Reveal>
           <div className="space-y-3">
             {faqItems.map((f, i) => (
@@ -121,7 +121,7 @@ export default function FaqPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 lg:py-28 bg-white">
+      <section className="py-14 lg:py-20 bg-white">
         <div className="max-w-2xl mx-auto px-6 text-center">
           <Reveal>
             <Label>{t.ctaLabel}</Label>

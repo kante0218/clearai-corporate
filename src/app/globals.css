@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 @theme {
-  /* Latin → Geist (liquid.ai / OpenAI-style neo-grotesque); Japanese → Noto Sans JP */
-  --font-sans: var(--font-geist), "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", YuGothic, Meiryo, "MS PGothic", system-ui, sans-serif;
-  --font-display: var(--font-geist), "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", YuGothic, Meiryo, "MS PGothic", system-ui, sans-serif;
+  /* Latin → Helvetica (≈ Helvetica Now Text); Japanese → Zen Kaku Gothic New (≈ 筑紫ゴシック) — mount.jp style */
+  --font-sans: "Helvetica Neue", Helvetica, Arial, var(--font-zen), "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", YuGothic, Meiryo, system-ui, sans-serif;
+  --font-display: "Helvetica Neue", Helvetica, Arial, var(--font-zen), "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", YuGothic, Meiryo, system-ui, sans-serif;
 
   --color-navy-950: #111827;
   --color-navy-900: #1f2937;

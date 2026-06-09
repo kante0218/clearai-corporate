@@ -1,21 +1,17 @@
 import type { Metadata, Viewport } from "next";
-import { Noto_Sans_JP, Geist } from "next/font/google";
+import { Zen_Kaku_Gothic_New } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import IntroLoader from "@/components/IntroLoader";
 import { LanguageProvider } from "@/lib/i18n/LanguageContext";
 
-const notoSansJP = Noto_Sans_JP({
+// Japanese face — refined humanist gothic, closest free match to 筑紫ゴシック (mount.jp).
+// Latin uses a system Helvetica stack (≈ Helvetica Now Text) set in globals.css @theme.
+const zenKaku = Zen_Kaku_Gothic_New({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-noto",
-});
-
-// Latin display/UI face — neo-grotesque (liquid.ai / OpenAI aesthetic)
-const geist = Geist({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-geist",
+  weight: ["400", "500", "700", "900"],
+  variable: "--font-zen",
 });
 
 export const viewport: Viewport = {
@@ -346,14 +342,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ja" suppressHydrationWarning className={`${notoSansJP.variable} ${geist.variable}`}>
+    <html lang="ja" suppressHydrationWarning className={`${zenKaku.variable}`}>
       <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdGraph) }}
         />
       </head>
-      <body className="font-sans antialiased text-navy-950 bg-white">
+      <body className="font-sans antialiased text-neutral-900 bg-white">
+        <IntroLoader />
         <LanguageProvider>
           <Header />
           <main className="min-h-screen">{children}</main>

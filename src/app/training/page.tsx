@@ -218,7 +218,7 @@ export default function TrainingPage() {
   return (
     <>
       {/* PAGE HEADER */}
-      <section className="pt-24 pb-12 lg:pt-32 lg:pb-16 bg-white border-b border-gray-100">
+      <section className="pt-24 pb-10 lg:pt-28 lg:pb-12 bg-white border-b border-gray-100">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <p className="text-sm font-semibold text-neutral-900 mb-3">{t.heroKicker}</p>
           <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4">{t.heroTitle}</h1>
@@ -230,12 +230,12 @@ export default function TrainingPage() {
       </section>
 
       {/* PRICING */}
-      <section className="py-20 lg:py-28 bg-gray-50">
+      <section className="py-14 lg:py-20 bg-gray-50">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.pricingLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.pricingTitle}</h2>
-            <p className="text-sm text-gray-500 mb-14 w-full leading-relaxed">
+            <p className="text-sm text-gray-500 mb-8 w-full leading-relaxed">
               {t.pricingDescA}<a href="/subsidy" className="text-neutral-900 font-semibold hover:underline">{t.pricingSim}</a>{t.pricingDescB}
             </p>
           </Reveal>
@@ -270,11 +270,11 @@ export default function TrainingPage() {
       </section>
 
       {/* TARGET */}
-      <section className="py-20 lg:py-28 bg-white">
+      <section className="py-14 lg:py-20 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.forLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-snug mb-14 w-full">{t.forTitle}</h2>
+            <h2 className="text-3xl font-bold text-gray-900 leading-snug mb-8 w-full">{t.forTitle}</h2>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {t.targets.map((item, i) => (
@@ -291,12 +291,12 @@ export default function TrainingPage() {
       </section>
 
       {/* PROGRAMS */}
-      <section id="programs" className="py-20 lg:py-28 bg-gray-50">
+      <section id="programs" className="py-14 lg:py-20 bg-gray-50">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.programsLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.programsTitle}</h2>
-            <p className="text-sm text-gray-500 mb-14 w-full leading-relaxed">{t.programsDesc}</p>
+            <p className="text-sm text-gray-500 mb-8 w-full leading-relaxed">{t.programsDesc}</p>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {t.programs.map((item, i) => (
@@ -316,7 +316,7 @@ export default function TrainingPage() {
       </section>
 
       {/* CLAUDE INTEGRATION */}
-      <section className="py-20 lg:py-28 bg-white">
+      <section className="py-14 lg:py-20 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <div className="rounded-lg border border-neutral-200 bg-neutral-50 p-8 lg:p-12">
             <Reveal>
@@ -341,11 +341,11 @@ export default function TrainingPage() {
       </section>
 
       {/* FORMATS */}
-      <section className="py-20 lg:py-28 bg-gray-50">
+      <section className="py-14 lg:py-20 bg-gray-50">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.formatsLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">{t.formatsTitle}</h2>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-8">{t.formatsTitle}</h2>
           </Reveal>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {t.formats.map((f, i) => (
@@ -364,11 +364,11 @@ export default function TrainingPage() {
       </section>
 
       {/* FEATURES */}
-      <section className="py-20 lg:py-28 bg-white">
+      <section className="py-14 lg:py-20 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.featuresLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">{t.featuresTitle}</h2>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-8">{t.featuresTitle}</h2>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {t.features.map((item, i) => (
@@ -385,7 +385,7 @@ export default function TrainingPage() {
       </section>
 
       {/* 補助金 CTA SECTION */}
-      <section className="py-20 lg:py-28 bg-neutral-50">
+      <section className="py-14 lg:py-20 bg-neutral-50">
         <div className="max-w-5xl mx-auto px-6 lg:px-8">
           <Reveal>
             <div className="text-center mb-10">
@@ -424,7 +424,7 @@ export default function TrainingPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 lg:py-28 bg-white">
+      <section className="py-14 lg:py-20 bg-white">
         <div className="max-w-2xl mx-auto px-6 text-center">
           <Reveal>
             <Label>{t.ctaLabel}</Label>

@@ -240,7 +240,7 @@ export default function WebsitePage() {
   return (
     <>
       {/* PAGE HEADER */}
-      <section className="pt-24 pb-12 lg:pt-32 lg:pb-16 bg-white border-b border-gray-100">
+      <section className="pt-24 pb-10 lg:pt-28 lg:pb-12 bg-white border-b border-gray-100">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <p className="text-sm font-semibold text-neutral-900 mb-3">{t.pageKicker}</p>
           <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4">{t.pageTitle}</h1>
@@ -249,12 +249,12 @@ export default function WebsitePage() {
       </section>
 
       {/* PRICING */}
-      <section className="py-20 lg:py-28 bg-white">
+      <section className="py-14 lg:py-20 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>Pricing</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.pricingTitle}</h2>
-            <p className="text-sm text-gray-500 mb-14 w-full leading-relaxed">
+            <p className="text-sm text-gray-500 mb-8 w-full leading-relaxed">
               {t.pricingDesc}
             </p>
           </Reveal>
@@ -298,11 +298,11 @@ export default function WebsitePage() {
       </section>
 
       {/* WHY */}
-      <section className="py-20 lg:py-28 bg-white">
+      <section className="py-14 lg:py-20 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>Why Now</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-snug mb-14 w-full">{t.whyTitle}</h2>
+            <h2 className="text-3xl font-bold text-gray-900 leading-snug mb-8 w-full">{t.whyTitle}</h2>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {t.whyItems.map((item, i) => (
@@ -318,12 +318,12 @@ export default function WebsitePage() {
       </section>
 
       {/* TYPES */}
-      <section id="types" className="py-20 lg:py-28 bg-gray-50">
+      <section id="types" className="py-14 lg:py-20 bg-gray-50">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>Types</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.typesTitle}</h2>
-            <p className="text-sm text-gray-500 mb-14 w-full leading-relaxed">
+            <p className="text-sm text-gray-500 mb-8 w-full leading-relaxed">
               {t.typesDesc}
             </p>
           </Reveal>
@@ -342,11 +342,11 @@ export default function WebsitePage() {
       </section>
 
       {/* STACK */}
-      <section className="py-20 lg:py-28 bg-white">
+      <section className="py-14 lg:py-20 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>Tech Stack</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">{t.stackTitle}</h2>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-8">{t.stackTitle}</h2>
           </Reveal>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {t.stackItems.map((f, i) => (
@@ -365,11 +365,11 @@ export default function WebsitePage() {
       </section>
 
       {/* PROCESS */}
-      <section className="py-20 lg:py-28 bg-gray-50">
+      <section className="py-14 lg:py-20 bg-gray-50">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>Process</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">{t.processTitle}</h2>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-8">{t.processTitle}</h2>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {t.processItems.map((item, i) => (
@@ -386,7 +386,7 @@ export default function WebsitePage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 lg:py-28 bg-gray-50">
+      <section className="py-14 lg:py-20 bg-gray-50">
         <div className="max-w-2xl mx-auto px-6 text-center">
           <Reveal>
             <Label>Contact</Label>

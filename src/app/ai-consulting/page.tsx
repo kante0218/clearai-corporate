@@ -297,7 +297,7 @@ export default function AiConsultingPage() {
   return (
     <>
       {/* PAGE HEADER */}
-      <section className="pt-24 pb-12 lg:pt-32 lg:pb-16 bg-white border-b border-gray-100">
+      <section className="pt-24 pb-10 lg:pt-28 lg:pb-12 bg-white border-b border-gray-100">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <p className="text-sm font-semibold text-neutral-900 mb-3">{t.heroKicker}</p>
           <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4">{t.heroTitle}</h1>
@@ -306,11 +306,11 @@ export default function AiConsultingPage() {
       </section>
 
       {/* PRICING */}
-      <section className="py-20 lg:py-28 bg-white">
+      <section className="py-14 lg:py-20 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.pricingLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">{t.pricingTitle}</h2>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-8">{t.pricingTitle}</h2>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
             {t.plans.map((plan, i) => (
@@ -355,7 +355,7 @@ export default function AiConsultingPage() {
       </section>
 
       {/* INTRO */}
-      <section className="py-20 lg:py-28 bg-white">
+      <section className="py-14 lg:py-20 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.aboutLabel}</Label>
@@ -374,11 +374,11 @@ export default function AiConsultingPage() {
       </section>
 
       {/* SERVICE AREAS */}
-      <section id="services" className="py-20 lg:py-28 bg-gray-50">
+      <section id="services" className="py-14 lg:py-20 bg-gray-50">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.servicesLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">{t.servicesTitle}</h2>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-8">{t.servicesTitle}</h2>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {t.services.map((item, i) => (
@@ -395,11 +395,11 @@ export default function AiConsultingPage() {
       </section>
 
       {/* DIFFERENTIATION */}
-      <section className="py-20 lg:py-28 bg-white">
+      <section className="py-14 lg:py-20 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.whyLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">{t.whyTitle}</h2>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-8">{t.whyTitle}</h2>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
             {t.why.map((item, i) => (
@@ -416,11 +416,11 @@ export default function AiConsultingPage() {
       </section>
 
       {/* PROCESS */}
-      <section className="py-20 lg:py-28 bg-gray-50">
+      <section className="py-14 lg:py-20 bg-gray-50">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.processLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">{t.processTitle}</h2>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-8">{t.processTitle}</h2>
           </Reveal>
           {t.process.map((step, i) => (
             <Reveal key={step.num} delay={i * 100}>
@@ -438,12 +438,12 @@ export default function AiConsultingPage() {
       </section>
 
       {/* TECH STACK */}
-      <section className="py-20 lg:py-28 bg-white">
+      <section className="py-14 lg:py-20 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.techLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.techTitle}</h2>
-            <p className="text-base text-gray-500 w-full leading-relaxed mb-14">
+            <p className="text-base text-gray-500 w-full leading-relaxed mb-8">
               {t.techDesc}
             </p>
           </Reveal>
@@ -476,11 +476,11 @@ export default function AiConsultingPage() {
       </section>
 
       {/* FAQ */}
-      <section className="py-20 lg:py-28 bg-white">
+      <section className="py-14 lg:py-20 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.faqLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">{t.faqTitle}</h2>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-8">{t.faqTitle}</h2>
           </Reveal>
           <div className="max-w-3xl">
             {t.faq.map((item, i) => (
@@ -499,7 +499,7 @@ export default function AiConsultingPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 lg:py-28 bg-gray-50">
+      <section className="py-14 lg:py-20 bg-gray-50">
         <div className="max-w-2xl mx-auto px-6 text-center">
           <Reveal>
             <Label>{t.ctaKicker}</Label>
