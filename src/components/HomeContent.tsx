@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
+import HeroParticlesBg from "@/components/HeroParticlesBg";
 
 /* Scroll-triggered reveal - simplified, up direction only */
 function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
@@ -479,8 +480,9 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
     <>
       {/* ═══ HERO ═══ */}
       <section className="relative min-h-[88svh] md:min-h-screen flex items-center overflow-hidden bg-white">
-        <div className="relative z-10 w-full max-w-[1800px] mx-auto px-6 lg:px-10 pt-28 pb-16 md:py-24">
-          <div className="max-w-2xl lg:max-w-3xl text-left">
+        <HeroParticlesBg />
+        <div className="relative z-10 w-full max-w-[1800px] mx-auto px-6 lg:px-10 pt-28 pb-16 md:py-24 pointer-events-none">
+          <div className="max-w-2xl lg:max-w-3xl text-left pointer-events-auto">
             <div className="flex flex-wrap justify-start gap-2 mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "200ms" }}>
               {t.heroChips.map((tag) => (
                 <span key={tag} className="inline-flex items-center rounded-md bg-neutral-100 text-neutral-900 border border-neutral-200 px-3 py-1 text-xs font-semibold">
