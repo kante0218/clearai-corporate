@@ -4,6 +4,20 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import Link from "next/link";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
+// 出身校の紋章（名前の横に表示）— キーはメンバーの日本語名
+const CREST_BY_NAME: Record<string, string> = {
+  "髙橋 敢輝": "/images/crests/kosen.png",
+  "國井 真帆": "/images/crests/kosen.png",
+  "鈴木 隆生": "/images/crests/kosen.png",
+  "石嶋 悠一": "/images/crests/keio.png",
+  "西村 吉正": "/images/crests/tokyo.png",
+  "吉次 優太": "/images/crests/tokyo.png",
+  "赤池 心太朗": "/images/crests/nagoya.png",
+  "菊池 秀弥": "/images/crests/aoyama.png",
+  "郷 由稀斗": "/images/crests/tsukuba.png",
+  "伊藤 愛基": "/images/crests/tsukuba.png",
+};
+
 function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
@@ -447,9 +461,20 @@ export default function AboutPage() {
             {t.members.map((m, i) => (
               <Reveal key={m.nameEn} delay={i * 80} className="h-full">
                 <article className="group h-full border border-gray-200 rounded-lg p-8 bg-white hover:border-neutral-300 hover:shadow-lg transition-all duration-300">
-                  <div className="mb-6">
-                    <h3 className="text-lg font-bold text-gray-900 leading-tight">{m.name}</h3>
-                    <p className="text-xs text-gray-400 font-medium tracking-wide mt-0.5">{m.nameEn}</p>
+                  <div className="mb-6 flex items-start justify-between gap-3">
+                    <div>
+                      <h3 className="text-lg font-bold text-gray-900 leading-tight">{m.name}</h3>
+                      <p className="text-xs text-gray-400 font-medium tracking-wide mt-0.5">{m.nameEn}</p>
+                    </div>
+                    {CREST_BY_NAME[m.name] && (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={CREST_BY_NAME[m.name]}
+                        alt=""
+                        aria-hidden="true"
+                        className="w-10 h-10 lg:w-11 lg:h-11 object-contain shrink-0 mt-0.5"
+                      />
+                    )}
                   </div>
                   <p className="text-sm font-semibold text-neutral-900 mb-3">{m.role}</p>
                   <p className="text-sm text-gray-600 leading-relaxed">{m.bio}</p>
