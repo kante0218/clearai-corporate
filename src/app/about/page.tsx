@@ -15,9 +15,9 @@ const CREST_BY_NAME: Record<string, string> = {
   "西村 吉正": "/images/crests/tokyo.svg",
   "吉次 優太": "/images/crests/tokyo.svg",
   "赤池 心太朗": "/images/crests/nagoya.png",
-  "菊池 秀弥": "/images/crests/aoyama.svg",
-  "郷 由稀斗": "/images/crests/tsukuba.svg",
-  "伊藤 愛基": "/images/crests/tsukuba.svg",
+  "菊池 秀弥": "/images/crests/aoyama-fit.svg",
+  "郷 由稀斗": "/images/crests/tsukuba-fit.svg",
+  "伊藤 愛基": "/images/crests/tsukuba-fit.svg",
 };
 
 function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
@@ -152,7 +152,7 @@ const COPY: Record<"ja" | "en", Copy> = {
       },
       {
         name: "飯島 聡太",
-        nameEn: "souta iijima",
+        nameEn: "sota iijima",
         role: "ロボティクスエンジニア（茨城高専）",
         bio: "茨城高専在学中のエンジニア。Unityを用いたゲーム開発・プログラミングで豊富な実装経験を積む。その技術力をヒューマノイド・ロボティクス分野に注ぎ、シミュレーション環境の構築から実機制御まで、ロボットを現場で動かすソフトウェア開発を担う。",
       },
@@ -315,7 +315,7 @@ const COPY: Record<"ja" | "en", Copy> = {
       },
       {
         name: "飯島 聡太",
-        nameEn: "souta iijima",
+        nameEn: "sota iijima",
         role: "Robotics Engineer (Ibaraki KOSEN)",
         bio: "An engineer currently at Ibaraki KOSEN. Brings rich hands-on experience in game development and programming with Unity, channeling that engineering skill into humanoid and robotics — from building simulation environments to real-hardware control, owning the software that makes robots work in the field.",
       },
