@@ -490,11 +490,11 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-[1.15] tracking-tight mb-8 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0)" : "translateY(24px)", transitionDelay: "400ms" }}>
             {t.heroTitle}
           </h1>
-          <p className="text-base md:text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto mb-10 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "650ms" }}>
+          <p className="text-base md:text-lg text-gray-600 leading-relaxed w-full mx-auto mb-10 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "650ms" }}>
             {t.heroDesc}
           </p>
           <div className="flex flex-wrap justify-center items-center gap-5 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "850ms" }}>
-            <Link href="/contact" className="inline-flex items-center gap-2 rounded-full bg-sky-600 text-white font-semibold px-7 py-3.5 hover:bg-sky-700 transition-colors duration-300 shadow-[0_8px_24px_-8px_rgba(37,99,235,0.5)]">
+            <Link href="/contact" className="inline-flex items-center gap-2 rounded-full bg-sky-600 text-white font-semibold px-7 py-3.5 hover:bg-sky-700 transition-colors duration-300 shadow-[0_8px_24px_-8px_rgba(2,132,199,0.5)]">
               {t.heroPrimary}
               <span aria-hidden>→</span>
             </Link>
@@ -502,6 +502,25 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
               {t.heroSecondary}
               <span aria-hidden>→</span>
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ NEWS / BLOG ═══ */}
+      <section className="pt-8 pb-14 md:pt-10 md:pb-20 lg:pt-12 lg:pb-28 bg-gray-50">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
+          <div className="flex items-end justify-between mb-12">
+            <div>
+              <SectionLabel>{t.newsLabel}</SectionLabel>
+              <h2 className="text-3xl font-bold text-gray-900 leading-tight">{t.newsTitle}</h2>
+            </div>
+            <Link href="/blog" className="hidden sm:inline-flex items-center gap-2 text-sm font-semibold text-sky-600 hover:text-sky-700 transition-colors">
+              {t.newsCta}
+            </Link>
+          </div>
+          {newsSlot}
+          <div className="text-center mt-8 sm:hidden">
+            <Link href="/blog" className="text-sm font-semibold text-sky-600">{t.newsCta}</Link>
           </div>
         </div>
       </section>
@@ -528,7 +547,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
           <Reveal>
             <SectionLabel>{t.whyLabel}</SectionLabel>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.whyTitle}</h2>
-            <p className="text-base text-gray-500 mb-14 max-w-2xl leading-relaxed">{t.whyDesc}</p>
+            <p className="text-base text-gray-500 mb-14 w-full leading-relaxed">{t.whyDesc}</p>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {t.why.map((item, i) => (
@@ -580,7 +599,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
           <Reveal>
             <SectionLabel>{t.getStartedLabel}</SectionLabel>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.getStartedTitle}</h2>
-            <p className="text-base text-gray-500 mb-14 max-w-2xl leading-relaxed">{t.getStartedDesc}</p>
+            <p className="text-base text-gray-500 mb-14 w-full leading-relaxed">{t.getStartedDesc}</p>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {t.steps.map((step, i) => {
@@ -611,7 +630,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
           <Reveal>
             <SectionLabel>{t.servicesLabel}</SectionLabel>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.servicesTitle}</h2>
-            <p className="text-base text-gray-500 mb-12 max-w-2xl leading-relaxed">{t.servicesDesc}</p>
+            <p className="text-base text-gray-500 mb-12 w-full leading-relaxed">{t.servicesDesc}</p>
           </Reveal>
 
           <Reveal>
@@ -665,7 +684,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
           <Reveal>
             <SectionLabel>{t.processLabel}</SectionLabel>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.processTitle}</h2>
-            <p className="text-base text-gray-500 mb-14 max-w-2xl leading-relaxed">{t.processDesc}</p>
+            <p className="text-base text-gray-500 mb-14 w-full leading-relaxed">{t.processDesc}</p>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {t.process.map((step, i) => (
@@ -687,7 +706,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
           <Reveal>
             <SectionLabel>{t.teamLabel}</SectionLabel>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.teamTitle}</h2>
-            <p className="text-base text-gray-500 mb-14 max-w-2xl leading-relaxed">{t.teamDesc}</p>
+            <p className="text-base text-gray-500 mb-14 w-full leading-relaxed">{t.teamDesc}</p>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
             <Reveal delay={0} className="h-full">
@@ -724,7 +743,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
           <Reveal>
             <SectionLabel>{t.techLabel}</SectionLabel>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.techTitle}</h2>
-            <p className="text-base text-gray-500 max-w-xl leading-relaxed mb-14">{t.techDesc}</p>
+            <p className="text-base text-gray-500 w-full leading-relaxed mb-14">{t.techDesc}</p>
           </Reveal>
           <div className="space-y-0">
             {TECH_GROUPS.map((group, gi) => (
@@ -792,25 +811,6 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
           <Reveal delay={200}>
             <Link href="/faq" className="text-sm font-semibold text-sky-600 hover:text-sky-700 transition-colors">{t.faqCta}</Link>
           </Reveal>
-        </div>
-      </section>
-
-      {/* ═══ NEWS / BLOG ═══ */}
-      <section className="pt-8 pb-14 md:pt-10 md:pb-20 lg:pt-12 lg:pb-28 bg-gray-50">
-        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <div className="flex items-end justify-between mb-12">
-            <div>
-              <SectionLabel>{t.newsLabel}</SectionLabel>
-              <h2 className="text-3xl font-bold text-gray-900 leading-tight">{t.newsTitle}</h2>
-            </div>
-            <Link href="/blog" className="hidden sm:inline-flex items-center gap-2 text-sm font-semibold text-sky-600 hover:text-sky-700 transition-colors">
-              {t.newsCta}
-            </Link>
-          </div>
-          {newsSlot}
-          <div className="text-center mt-8 sm:hidden">
-            <Link href="/blog" className="text-sm font-semibold text-sky-600">{t.newsCta}</Link>
-          </div>
         </div>
       </section>
 
