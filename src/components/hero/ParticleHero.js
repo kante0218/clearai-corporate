@@ -622,10 +622,12 @@ export class ParticleHero {
     const m = this.models[this.current];
     m?.mixer?.update(dt);                            // baked animation (butterfly node)
     if (m?.spin) m.pivot.rotation.y += m.spin * dt;  // slow spin (jupiter)
-    if (m?.pulse) {                                  // gentle jellyfish pulse + bob
-      const s = 1 + 0.05 * Math.sin(t * 1.4);
-      m.pivot.scale.set(s, 1 + 0.07 * Math.sin(t * 1.4), s);
-      m.pivot.position.y = 0.12 * Math.sin(t * 0.7);
+    if (m?.pulse) {                                  // jellyfish swim: bell propulsion + drift
+      const contract = Math.sin(t * 1.9);            // bell contraction cycle
+      // squash vertically while bulging horizontally (anti-phase) — clear propulsion
+      m.pivot.scale.set(1 + 0.16 * contract, 1 - 0.14 * contract, 1 + 0.16 * contract);
+      // visible up/down swim drift, slightly behind the contraction
+      m.pivot.position.y = 0.45 * Math.sin(t * 0.95 - 0.6);
     }
 
     this.controls.update();
