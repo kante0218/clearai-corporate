@@ -44,6 +44,8 @@ const YWEIGHT = [null, null, null];
 // sample only land (skip ocean) — for the earth, so seas are blank and only the
 // continents are drawn as dots.
 const LAND_ONLY = [true, false, false];
+// per-model vertical nudge (normalized units, TARGET_EXTENT=4.6). butterfly sits lower.
+const YOFFSET = [0, 0, -0.8];
 // explicit texture to read for classification (earth's material uses the
 // spec-gloss extension, so its texture isn't on material.map).
 const TEX_OVERRIDE = ['/models/hero/earth_diffuse.jpg', null, null];
@@ -270,6 +272,7 @@ export class ParticleHero {
       pivot.add(this._buildSampledPoints(cloud, gMax));
       pulse = !!gltf.animations?.length; // jellyfish lost its morph → gentle procedural pulse
     }
+    pivot.position.y += YOFFSET[i] ?? 0;  // lower the butterfly a touch
     this.scene.add(pivot);
 
     return { pivot, mixer, spin: SPIN[i] ?? 0, pulse };
