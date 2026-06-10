@@ -170,6 +170,21 @@ export class ParticleHero {
     this.scene = new THREE.Scene();
     this.camera = new THREE.PerspectiveCamera(42, w / h, 0.1, 100);
     this.camera.position.set(0, 0, 9);
+    this._fitCamera(w, h);
+  }
+
+  /** Dolly the camera out when the canvas is narrow so the widest model
+   *  (butterfly wings ≈ 7.6 world units) never clips at the canvas edge. */
+  _fitCamera(w, h) {
+    // 6.7 ≈ the visible width at the tuned desktop view (z=9, aspect ~0.97), so
+    // wide screens keep the exact tuned framing and only narrow canvases dolly out.
+    const NEED_W = 6.7;
+    const halfTan = Math.tan((42 * Math.PI) / 360); // vertical fov 42°
+    const aspect = w / h;
+    const zForWidth = NEED_W / (2 * halfTan * Math.max(aspect, 0.01));
+    const z = Math.max(9, zForWidth);
+    this.camera.position.z = z;
+    if (this.controls) this.controls.maxDistance = Math.max(16, z + 1);
   }
 
   _initControls() {
@@ -201,6 +216,7 @@ export class ParticleHero {
     this._onResize = () => {
       const { w, h } = this._size();
       this.camera.aspect = w / h;
+      this._fitCamera(w, h);
       this.camera.updateProjectionMatrix();
       this.renderer.setSize(w, h);
       this.composer.setSize(w, h);
