@@ -46,6 +46,8 @@ const YWEIGHT = [null, null, null];
 const LAND_ONLY = [true, false, false];
 // per-model vertical nudge (normalized units, TARGET_EXTENT=4.6). butterfly sits lower.
 const YOFFSET = [0, 0, -0.8];
+// per-model size multiplier on top of TARGET_EXTENT normalization. jellyfish reads small.
+const SCALE_MUL = [1, 1.35, 1];
 // explicit texture to read for classification (earth's material uses the
 // spec-gloss extension, so its texture isn't on material.map).
 const TEX_OVERRIDE = ['/models/hero/earth_diffuse.jpg', null, null];
@@ -245,7 +247,7 @@ export class ParticleHero {
     const box = new THREE.Box3().setFromObject(root);
     const center = box.getCenter(new THREE.Vector3());
     const size = box.getSize(new THREE.Vector3());
-    const scale = TARGET_EXTENT / (Math.max(size.x, size.y, size.z) || 1);
+    const scale = (TARGET_EXTENT / (Math.max(size.x, size.y, size.z) || 1)) * (SCALE_MUL[i] ?? 1);
     const gMax = GMAX[i] ?? 0.6;
     const useSample = !gltf.animations?.length || SAMPLE_OVERRIDE[i];
 
