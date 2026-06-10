@@ -25,17 +25,19 @@ const TARGET_EXTENT = 4.6;   // normalized model size
 const MORPH_DURATION = 2.8;  // seconds per tap-transition
 const DARK = 0.34;           // sand output multiplier → black on white
 
+// rotation order: butterfly first, then jellyfish, then earth.
+// every per-model array below is indexed [butterfly, jellyfish, earth].
 const MODEL_URLS = [
-  '/models/hero/earth.glb',
-  '/models/hero/jellyfish.glb',
   '/models/hero/butterfly.glb',
+  '/models/hero/jellyfish.glb',
+  '/models/hero/earth.glb',
 ];
-const ANIM_SPEED = [1.0, 1.0, 0.25];      // butterfly flaps slowly
-const SPIN = [0.12, 0.0, 0.0];            // jupiter (static) gets a slow Y spin
+const ANIM_SPEED = [0.25, 1.0, 1.0];      // butterfly flaps slowly
+const SPIN = [0.0, 0.0, 0.12];            // earth gets a slow Y spin
 const DOT_SIZE = 0.025;                   // unified dot size for every model (matched to jellyfish)
 // max grey per model (lower = darker/more visible). Jellyfish texture is bright,
 // so cap it darker so its dots don't wash out on the white background.
-const GMAX = [0.6, 0.34, 0.36];
+const GMAX = [0.36, 0.34, 0.6];
 // force these models to use surface sampling instead of mesh vertices
 const SAMPLE_OVERRIDE = [false, false, false];
 // height bias for sampling (bottom vs top weight). Jellyfish: denser bell (top),
@@ -43,14 +45,16 @@ const SAMPLE_OVERRIDE = [false, false, false];
 const YWEIGHT = [null, null, null];
 // sample only land (skip ocean) — for the earth, so seas are blank and only the
 // continents are drawn as dots.
-const LAND_ONLY = [true, false, false];
+const LAND_ONLY = [false, false, true];
 // per-model vertical nudge (normalized units, TARGET_EXTENT=4.6). butterfly sits lower.
-const YOFFSET = [0, 0, -0.8];
-// per-model size multiplier on top of TARGET_EXTENT normalization. jellyfish reads small.
-const SCALE_MUL = [1, 1.35, 1];
+const YOFFSET = [-0.8, 0, 0];
+// per-model size multiplier on top of TARGET_EXTENT normalization. jellyfish reads
+// small — scale it up to match the butterfly's visual presence (1.5 ≈ full canvas
+// height at camera z=9 / fov 42°; beyond that it clips).
+const SCALE_MUL = [1, 1.5, 1];
 // explicit texture to read for classification (earth's material uses the
 // spec-gloss extension, so its texture isn't on material.map).
-const TEX_OVERRIDE = ['/models/hero/earth_diffuse.jpg', null, null];
+const TEX_OVERRIDE = [null, null, '/models/hero/earth_diffuse.jpg'];
 
 const GrayscaleShader = {
   uniforms: { tDiffuse: { value: null }, contrast: { value: 0.98 } },
