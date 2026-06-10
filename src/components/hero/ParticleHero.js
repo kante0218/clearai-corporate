@@ -39,12 +39,14 @@ const DOT_SIZE = 0.025;                   // unified dot size for every model (m
 // so cap it darker so its dots don't wash out on the white background.
 const GMAX = [0.36, 0.34, 0.6];
 // force these models to use surface sampling instead of mesh vertices.
-// jellyfish: sampled so we get a DENSE, fine grain cloud (its mesh only has ~6.9k
-// verts, too sparse to read). trade-off: tentacle morph → gentle procedural pulse.
-const SAMPLE_OVERRIDE = [false, true, false];
-// per-model point-count multiplier (sampled path). jellyfish denser so small grains
-// still read clearly.
-const COUNT_MUL = [1, 2.6, 1];
+const SAMPLE_OVERRIDE = [false, false, false];
+// per-model point-count multiplier (sampled path).
+const COUNT_MUL = [1, 1, 1];
+// densify the morph-animated mesh: surface-sample N points and carry each model's
+// morph-target deltas via barycentric interpolation, so the cloud is DENSE yet
+// driven by the ORIGINAL baked animation. 0 = use raw mesh vertices.
+// jellyfish mesh is only ~6.9k verts (too sparse) → resample to a dense cloud.
+const MORPH_DENSIFY = [0, 20000, 0];
 // height bias for sampling (bottom vs top weight). Jellyfish: denser bell (top),
 // sparser tentacles (bottom).
 const YWEIGHT = [null, null, null];
@@ -267,7 +269,7 @@ export class ParticleHero {
     if (!useSample) {
       // VERTEX path (butterfly node anim): render live mesh vertices as points so
       // the original baked animation drives them.
-      this._meshesToPoints(root, gMax, DOT_MUL[i] ?? 1);
+      this._meshesToPoints(root, gMax, DOT_MUL[i] ?? 1, MORPH_DENSIFY[i] ?? 0);
       mixer = new THREE.AnimationMixer(root);
       gltf.animations.forEach((c) => mixer.clipAction(c).play());
       mixer.timeScale = ANIM_SPEED[i] ?? 1.0;
@@ -298,13 +300,15 @@ export class ParticleHero {
    *  influences. The Points, as a child, inherits the mesh's animated node
    *  transform (moon/butterfly) and renders the shared morph weights (jellyfish).
    */
-  _meshesToPoints(root, gMax, sizeMul = 1) {
+  _meshesToPoints(root, gMax, sizeMul = 1, densify = 0) {
     const meshes = [];
     root.traverse((o) => { if (o.isMesh && o.geometry?.attributes?.position) meshes.push(o); });
 
     // decimate to ~REST_COUNT points total across the whole model
     const vTotal = meshes.reduce((s, m) => s + m.geometry.attributes.position.count, 0);
     const stride = Math.max(1, Math.round(vTotal / REST_COUNT));
+    // when densifying, split the target count across this model's meshes
+    const perMesh = densify > 0 ? Math.max(1, Math.round(densify / meshes.length)) : 0;
 
     const mat = this._makeRestMaterial(sizeMul);
 
@@ -313,12 +317,91 @@ export class ParticleHero {
       // hide the solid mesh without removing it (keeps animation binding alive)
       m.material = new THREE.MeshBasicMaterial({ colorWrite: false, depthWrite: false });
 
-      const geom = this._decimate(m.geometry, stride, tex, gMax);
+      const geom = perMesh
+        ? this._sampleMorphPoints(m.geometry, perMesh, gMax)
+        : this._decimate(m.geometry, stride, tex, gMax);
       const p = new THREE.Points(geom, mat);
       if (m.morphTargetDictionary) p.morphTargetDictionary = m.morphTargetDictionary;
       if (m.morphTargetInfluences) p.morphTargetInfluences = m.morphTargetInfluences; // SHARE ref
       m.add(p); // child → inherits animated transform; shares morph weights
     }
+  }
+
+  /** Densify a morph-animated mesh: area-weighted surface-sample `n` points and
+   *  carry every morph-target delta by barycentric interpolation of the triangle's
+   *  three vertices. The resulting Points share the mesh's morphTargetInfluences,
+   *  so the ORIGINAL baked animation drives a dense cloud (not just ~mesh verts). */
+  _sampleMorphPoints(geo, n, gMax) {
+    const posA = geo.attributes.position;
+    const index = geo.index ? geo.index.array : null;
+    const morphs = geo.morphAttributes?.position || [];
+    const M = morphs.length;
+    const triCount = index ? (index.length / 3) : (posA.count / 3);
+    const tri = (t) => index
+      ? [index[t * 3], index[t * 3 + 1], index[t * 3 + 2]]
+      : [t * 3, t * 3 + 1, t * 3 + 2];
+
+    const A = new THREE.Vector3(), B = new THREE.Vector3(), C = new THREE.Vector3();
+    const AB = new THREE.Vector3(), AC = new THREE.Vector3(), FN = new THREE.Vector3();
+
+    // cumulative triangle areas for uniform surface sampling
+    const cum = new Float32Array(triCount);
+    let total = 0;
+    for (let t = 0; t < triCount; t++) {
+      const [a, b, c] = tri(t);
+      A.fromBufferAttribute(posA, a); B.fromBufferAttribute(posA, b); C.fromBufferAttribute(posA, c);
+      AB.subVectors(B, A); AC.subVectors(C, A);
+      total += FN.crossVectors(AB, AC).length() * 0.5;
+      cum[t] = total;
+    }
+
+    const pos = new Float32Array(n * 3);
+    const nrm = new Float32Array(n * 3);
+    const col = new Float32Array(n * 3);
+    const siz = new Float32Array(n);
+    const mData = []; for (let mi = 0; mi < M; mi++) mData.push(new Float32Array(n * 3));
+    const { g, s } = this._albToGreySize(0.5, gMax); // no texture → uniform grain
+    const mA = new THREE.Vector3(), mB = new THREE.Vector3(), mC = new THREE.Vector3();
+
+    for (let k = 0; k < n; k++) {
+      // pick a triangle weighted by area (binary search on cumulative areas)
+      const r = Math.random() * total;
+      let lo = 0, hi = triCount - 1;
+      while (lo < hi) { const mid = (lo + hi) >> 1; if (cum[mid] < r) lo = mid + 1; else hi = mid; }
+      const [a, b, c] = tri(lo);
+      // uniform barycentric coords
+      let u = Math.random(), v = Math.random();
+      if (u + v > 1) { u = 1 - u; v = 1 - v; }
+      const w0 = 1 - u - v, w1 = u, w2 = v;
+
+      A.fromBufferAttribute(posA, a); B.fromBufferAttribute(posA, b); C.fromBufferAttribute(posA, c);
+      pos[k * 3]     = A.x * w0 + B.x * w1 + C.x * w2;
+      pos[k * 3 + 1] = A.y * w0 + B.y * w1 + C.y * w2;
+      pos[k * 3 + 2] = A.z * w0 + B.z * w1 + C.z * w2;
+      AB.subVectors(B, A); AC.subVectors(C, A); FN.crossVectors(AB, AC).normalize();
+      nrm[k * 3] = FN.x; nrm[k * 3 + 1] = FN.y; nrm[k * 3 + 2] = FN.z;
+      col[k * 3] = g; col[k * 3 + 1] = g; col[k * 3 + 2] = g;
+      siz[k] = s;
+
+      for (let mi = 0; mi < M; mi++) {
+        const ma = morphs[mi];
+        mA.fromBufferAttribute(ma, a); mB.fromBufferAttribute(ma, b); mC.fromBufferAttribute(ma, c);
+        mData[mi][k * 3]     = mA.x * w0 + mB.x * w1 + mC.x * w2;
+        mData[mi][k * 3 + 1] = mA.y * w0 + mB.y * w1 + mC.y * w2;
+        mData[mi][k * 3 + 2] = mA.z * w0 + mB.z * w1 + mC.z * w2;
+      }
+    }
+
+    const out = new THREE.BufferGeometry();
+    out.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+    out.setAttribute('aNormal', new THREE.BufferAttribute(nrm, 3));
+    out.setAttribute('color', new THREE.BufferAttribute(col, 3));
+    out.setAttribute('aSize', new THREE.BufferAttribute(siz, 1));
+    if (M) {
+      out.morphAttributes.position = mData.map((d) => new THREE.BufferAttribute(d, 3));
+      out.morphTargetsRelative = geo.morphTargetsRelative;
+    }
+    return out;
   }
 
   /** PointsMaterial that (a) culls back-facing grains so the surface pattern
