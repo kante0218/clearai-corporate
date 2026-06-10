@@ -52,6 +52,9 @@ const YOFFSET = [-0.8, 0, 0];
 // small — scale it up to match the butterfly's visual presence (1.5 ≈ full canvas
 // height at camera z=9 / fov 42°; beyond that it clips).
 const SCALE_MUL = [1, 1.5, 1];
+// per-model dot (grain) size multiplier. jellyfish has fewer mesh verts and is
+// scaled up, so its grains read tiny — enlarge them to match the butterfly.
+const DOT_MUL = [1, 1.8, 1];
 // explicit texture to read for classification (earth's material uses the
 // spec-gloss extension, so its texture isn't on material.map).
 const TEX_OVERRIDE = [null, null, '/models/hero/earth_diffuse.jpg'];
@@ -259,7 +262,7 @@ export class ParticleHero {
     if (!useSample) {
       // VERTEX path (butterfly node anim): render live mesh vertices as points so
       // the original baked animation drives them.
-      this._meshesToPoints(root, gMax);
+      this._meshesToPoints(root, gMax, DOT_MUL[i] ?? 1);
       mixer = new THREE.AnimationMixer(root);
       gltf.animations.forEach((c) => mixer.clipAction(c).play());
       mixer.timeScale = ANIM_SPEED[i] ?? 1.0;
@@ -289,7 +292,7 @@ export class ParticleHero {
    *  influences. The Points, as a child, inherits the mesh's animated node
    *  transform (moon/butterfly) and renders the shared morph weights (jellyfish).
    */
-  _meshesToPoints(root, gMax) {
+  _meshesToPoints(root, gMax, sizeMul = 1) {
     const meshes = [];
     root.traverse((o) => { if (o.isMesh && o.geometry?.attributes?.position) meshes.push(o); });
 
@@ -297,7 +300,7 @@ export class ParticleHero {
     const vTotal = meshes.reduce((s, m) => s + m.geometry.attributes.position.count, 0);
     const stride = Math.max(1, Math.round(vTotal / REST_COUNT));
 
-    const mat = this._makeRestMaterial();
+    const mat = this._makeRestMaterial(sizeMul);
 
     for (const m of meshes) {
       const tex = this._readTexture(m);
@@ -315,8 +318,8 @@ export class ParticleHero {
   /** PointsMaterial that (a) culls back-facing grains so the surface pattern
    *  reads as a solid face, and (b) scales each grain by a per-vertex `aSize`
    *  (dark texture areas → bigger grains) so the pattern shows through dot size. */
-  _makeRestMaterial() {
-    const mat = new THREE.PointsMaterial({ vertexColors: true, size: DOT_SIZE, sizeAttenuation: true });
+  _makeRestMaterial(sizeMul = 1) {
+    const mat = new THREE.PointsMaterial({ vertexColors: true, size: DOT_SIZE * sizeMul, sizeAttenuation: true });
     mat.onBeforeCompile = (shader) => {
       shader.vertexShader = 'attribute vec3 aNormal;\nattribute float aSize;\nvarying float vFace;\n' + shader.vertexShader;
       shader.vertexShader = shader.vertexShader.replace(
