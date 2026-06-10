@@ -38,8 +38,13 @@ const DOT_SIZE = 0.025;                   // unified dot size for every model (m
 // max grey per model (lower = darker/more visible). Jellyfish texture is bright,
 // so cap it darker so its dots don't wash out on the white background.
 const GMAX = [0.36, 0.34, 0.6];
-// force these models to use surface sampling instead of mesh vertices
-const SAMPLE_OVERRIDE = [false, false, false];
+// force these models to use surface sampling instead of mesh vertices.
+// jellyfish: sampled so we get a DENSE, fine grain cloud (its mesh only has ~6.9k
+// verts, too sparse to read). trade-off: tentacle morph → gentle procedural pulse.
+const SAMPLE_OVERRIDE = [false, true, false];
+// per-model point-count multiplier (sampled path). jellyfish denser so small grains
+// still read clearly.
+const COUNT_MUL = [1, 2.6, 1];
 // height bias for sampling (bottom vs top weight). Jellyfish: denser bell (top),
 // sparser tentacles (bottom).
 const YWEIGHT = [null, null, null];
@@ -52,9 +57,9 @@ const YOFFSET = [-0.8, 0, 0];
 // small — scale it up to match the butterfly's visual presence (1.5 ≈ full canvas
 // height at camera z=9 / fov 42°; beyond that it clips).
 const SCALE_MUL = [1, 1.5, 1];
-// per-model dot (grain) size multiplier. jellyfish has fewer mesh verts and is
-// scaled up, so its grains read tiny — enlarge them to match the butterfly.
-const DOT_MUL = [1, 1.8, 1];
+// per-model dot (grain) size multiplier. grains kept at the base size; jellyfish
+// visibility comes from density (COUNT_MUL) instead of bigger grains.
+const DOT_MUL = [1, 1, 1];
 // explicit texture to read for classification (earth's material uses the
 // spec-gloss extension, so its texture isn't on material.map).
 const TEX_OVERRIDE = [null, null, '/models/hero/earth_diffuse.jpg'];
@@ -274,11 +279,12 @@ export class ParticleHero {
       // SAMPLED path (jupiter, + jellyfish with height bias): surface-sample so we
       // control density (handles low-poly jupiter & lets the jellyfish be denser
       // at the top / sparser at the bottom).
+      const count = Math.round(REST_COUNT * (COUNT_MUL[i] ?? 1));
       const cloud = LAND_ONLY[i]
-        ? this._sampleLandCloud(root, REST_COUNT, center, scale, texOverride)
-        : this._sampleCloud(root, REST_COUNT, center, scale, YWEIGHT[i]);
+        ? this._sampleLandCloud(root, count, center, scale, texOverride)
+        : this._sampleCloud(root, count, center, scale, YWEIGHT[i]);
       pivot = new THREE.Group();
-      pivot.add(this._buildSampledPoints(cloud, gMax));
+      pivot.add(this._buildSampledPoints(cloud, gMax, DOT_MUL[i] ?? 1));
       pulse = !!gltf.animations?.length; // jellyfish lost its morph → gentle procedural pulse
     }
     pivot.position.y += YOFFSET[i] ?? 0;  // lower the butterfly a touch
@@ -355,7 +361,7 @@ export class ParticleHero {
   }
 
   /** Build a Points object from an evenly surface-sampled cloud (static models). */
-  _buildSampledPoints(cloud, gMax) {
+  _buildSampledPoints(cloud, gMax, sizeMul = 1) {
     const n = cloud.pos.length / 3;
     const geom = new THREE.BufferGeometry();
     const col = new Float32Array(n * 3);
@@ -369,7 +375,7 @@ export class ParticleHero {
     geom.setAttribute('aNormal', new THREE.BufferAttribute(cloud.nrm, 3));
     geom.setAttribute('color', new THREE.BufferAttribute(col, 3));
     geom.setAttribute('aSize', new THREE.BufferAttribute(siz, 1));
-    return new THREE.Points(geom, this._makeRestMaterial());
+    return new THREE.Points(geom, this._makeRestMaterial(sizeMul));
   }
 
   /** Build a reduced-vertex geometry (every `stride`-th vertex), carrying morph
