@@ -66,12 +66,12 @@ const COPY: Record<"ja" | "en", Copy> = {
   ja: {
     heroKicker: "Research & Development",
     heroTitle: "研究開発",
-    heroDesc: "ヒューマノイドや産業用ロボットを「現場で使えるもの」にするための、ソフトウェアの研究開発を行います。特定産業に特化したロボット内部OS、模倣学習（Imitation Learning）、強化学習をはじめとする機械学習を軸に、シミュレーションから実機（Sim2Real）までを一気通貫で扱います。ハードウェアそのものではなく、ロボットを賢く・安全に・現場業務に適応させる「頭脳と神経系」の層をつくることに集中します。",
+    heroDesc: "ヒューマノイドや産業用ロボットを「現場で使えるもの」にするための、ソフトウェアとハードウェアの研究開発を行います。特定産業に特化したロボット内部OS、模倣学習（Imitation Learning）、強化学習をはじめとする機械学習を軸に、シミュレーションから実機（Sim2Real）までを一気通貫で扱います。さらに、ヒューマノイドの外装・筐体といったハードウェアも自社で開発し、ロボットを賢く・安全に・現場業務に適応させる「頭脳と神経系」から「身体」までを一貫してつくります。",
     whyLabel: "Why R&D",
     whyTitle: "なぜ、clearAIが研究開発をやるのか。",
-    whyDesc: "汎用ロボットの時代が来ても、「自分の現場の業務」をそのまま任せられる賢さは、既製品には入っていません。産業ごとの暗黙知を学習させ、実機で安全に動かすソフトウェア層こそが、これからの最大の参入障壁になると考えています。",
+    whyDesc: "汎用ロボットの時代が来ても、「自分の現場の業務」をそのまま任せられる賢さは、既製品には入っていません。産業ごとの暗黙知を学習させ、実機で安全に動かすソフトウェアと、現場に最適化したハードウェアの両方こそが、これからの最大の参入障壁になると考えています。",
     why: [
-      { num: "01", title: "ハードでは戦わない", desc: "機体は世界の優れたプラットフォームを活用します。私たちが磨くのは、機体に依存しない制御・学習・運用のソフトウェア層。ハード競争ではなく、現場適応の知能で差別化します。" },
+      { num: "01", title: "ソフトとハードの両輪で挑む", desc: "ベースとなる駆動機構は世界の優れたプラットフォームを活用しつつ、ヒューマノイドの外装・筐体といったハードウェアと、機体に依存しない制御・学習・運用のソフトウェアの両方を自社で開発します。現場適応の知能とハードの作り込みの両輪で差別化します。" },
       { num: "02", title: "産業特化が堀になる", desc: "汎用モデルは「だいたいできる」止まり。エネルギー点検・製造・物流など、特定産業の業務手順と安全要件を学習し切ったロボットOSは、後発が簡単に追いつけない資産になります。" },
       { num: "03", title: "教示コストを下げる", desc: "1動作ずつプログラムする時代を終わらせます。人の動きを見せる・少数のデモを与えるだけで業務を覚える模倣学習で、ロボット導入の最大のボトルネックである「教える手間」を圧縮します。" },
       { num: "04", title: "シミュレーションで先に失敗する", desc: "実機を壊さず、危険な状況も含めて仮想環境で大量に学習・検証してから現場へ。Sim2Real の橋渡しを内製し、安全とスピードを両立させます。" },
@@ -130,7 +130,7 @@ const COPY: Record<"ja" | "en", Copy> = {
     faqLabel: "FAQ",
     faqTitle: "よくあるご質問",
     faq: [
-      { q: "ロボット本体（ハードウェア）も開発するのですか？", a: "いいえ、私たちが研究開発するのはソフトウェアの層です。機体は世界の優れたプラットフォーム（Unitree など）を活用し、その上で動く制御・学習・運用のソフトウェアに集中します。ハードに依存しない抽象化レイヤーを設計するため、特定の機体に縛られません。" },
+      { q: "ロボット本体（ハードウェア）も開発するのですか？", a: "はい。私たちはソフトウェアに加えて、ヒューマノイドの外装・筐体などのハードウェアも研究開発します。駆動機構などベースとなる部分は世界の優れたプラットフォーム（Unitree など）を活用しつつ、その上で動く制御・学習・運用のソフトウェアと、現場・用途に最適化したハードウェアの両方を自社で手がけます。あわせて機体に依存しない抽象化レイヤーも設計するため、特定の機体に縛られることもありません。" },
       { q: "「産業特化ロボットOS」とは具体的に何ですか？", a: "特定の産業（例：エネルギー設備の点検、製造、物流）の業務手順・安全基準・現場制約を組み込んだ、ロボットの内部ソフトウェア基盤です。機体を抽象化したレイヤーの上に業種別のワークフローを載せることで、その産業の現場でそのまま使えるロボットを実現します。" },
       { q: "模倣学習とは何ですか？通常のプログラミングと何が違いますか？", a: "模倣学習は、人のデモンストレーションや少数の試行例からロボットに作業を学習させる手法です。1動作ずつプログラムを書く代わりに「やって見せる／少数のデモを与える」だけで業務を覚えさせられるため、ロボット導入の最大のボトルネックである教示コストを大幅に下げられます。" },
       { q: "シミュレーションで学習したものが、実機でちゃんと動くのですか？", a: "そこが Sim2Real の核心です。ドメインランダム化（仮想環境のパラメータを意図的にばらつかせて頑健性を上げる）や物理パラメータの同定・補正で、シミュレーションと現実のギャップを埋めます。実機では安全管理下で段階的にバリデーションを行い、確認しながら展開します。" },
@@ -145,12 +145,12 @@ const COPY: Record<"ja" | "en", Copy> = {
   en: {
     heroKicker: "Research & Development",
     heroTitle: "Research & Development",
-    heroDesc: "We do the software R&D that makes humanoids and industrial robots usable on real sites. Centered on industry-specific robot operating systems, imitation learning, and reinforcement learning, we cover everything from simulation to real hardware (Sim2Real). Rather than the hardware itself, we focus on the \"brain and nervous system\" layer that makes robots smart, safe, and adapted to real work.",
+    heroDesc: "We do the software and hardware R&D that makes humanoids and industrial robots usable on real sites. Centered on industry-specific robot operating systems, imitation learning, and reinforcement learning, we cover everything from simulation to real hardware (Sim2Real). We also develop hardware in-house — humanoid exteriors and enclosures — building the full stack from the \"brain and nervous system\" to the \"body\" that makes robots smart, safe, and adapted to real work.",
     whyLabel: "Why R&D",
     whyTitle: "Why clearAI does R&D.",
-    whyDesc: "Even as general-purpose robots arrive, off-the-shelf products don't come with the intelligence to take over your specific site's work. The software layer that learns each industry's tacit knowledge and runs safely on real hardware will be the biggest barrier to entry going forward.",
+    whyDesc: "Even as general-purpose robots arrive, off-the-shelf products don't come with the intelligence to take over your specific site's work. Both the software that learns each industry's tacit knowledge and runs safely on real hardware, and the hardware optimized for the site, will be the biggest barrier to entry going forward.",
     why: [
-      { num: "01", title: "We don't compete on hardware", desc: "We use the world's best robot platforms for the body. What we sharpen is the body-agnostic software layer for control, learning, and operations — differentiating on site-adaptation intelligence, not hardware." },
+      { num: "01", title: "Software and hardware, together", desc: "We use the world's best platforms for the base drivetrain, while developing both the hardware — humanoid exteriors and enclosures — and the body-agnostic software for control, learning, and operations in-house. We differentiate on the combination of site-adaptation intelligence and hardware craftsmanship." },
       { num: "02", title: "Verticalization is the moat", desc: "General models only get you to \"roughly works.\" A robot OS that fully learns a specific industry's procedures and safety requirements — energy inspection, manufacturing, logistics — becomes an asset latecomers can't easily catch." },
       { num: "03", title: "Lower the cost of teaching", desc: "We end the era of programming motion-by-motion. With imitation learning that absorbs work from demonstrations, we compress the biggest bottleneck in robot adoption: the effort of teaching." },
       { num: "04", title: "Fail first in simulation", desc: "Train and validate massively in virtual environments — including dangerous scenarios — before touching real hardware. We build the Sim2Real bridge in-house to balance safety and speed." },
@@ -209,7 +209,7 @@ const COPY: Record<"ja" | "en", Copy> = {
     faqLabel: "FAQ",
     faqTitle: "FAQ",
     faq: [
-      { q: "Do you develop the robot hardware too?", a: "No — what we research and develop is the software layer. We use the world's best platforms (such as Unitree) for the body and focus on the control, learning, and operations software that runs on top. Because we design a body-agnostic abstraction layer, we're not locked to a specific machine." },
+      { q: "Do you develop the robot hardware too?", a: "Yes. Beyond software, we also research and develop hardware — humanoid exteriors and enclosures. We use the world's best platforms (such as Unitree) for the base drivetrain, and develop in-house both the control/learning/operations software that runs on top and the hardware optimized for each site and use case. We also design a body-agnostic abstraction layer, so we're not locked to a specific machine." },
       { q: "What exactly is an \"industry-specific robot OS\"?", a: "It's the internal software foundation of a robot, embedding a specific industry's procedures, safety standards, and site constraints (e.g., energy-facility inspection, manufacturing, logistics). By layering vertical workflows on a body-agnostic abstraction, we deliver robots usable as-is on that industry's sites." },
       { q: "What is imitation learning and how is it different from programming?", a: "Imitation learning teaches robots tasks from human demonstrations or a few example trials. Instead of writing code motion-by-motion, you \"show it\" or give a few demos, dramatically lowering the teaching cost that is the biggest bottleneck in robot adoption." },
       { q: "Will something trained in simulation actually work on real hardware?", a: "That's the heart of Sim2Real. We close the gap with domain randomization (deliberately varying simulation parameters to build robustness) and physics parameter identification/correction. On real hardware we validate in stages under safety controls, confirming as we deploy." },
