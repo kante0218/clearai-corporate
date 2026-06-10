@@ -55,6 +55,7 @@ type Copy = {
   heroKicker: string; comingSoon: string; inquiryBadge: string; heroTitle: string; heroDesc: string;
   heroCta: string; heroNote: string;
   lineupLabel: string; lineupTitle: string; lineupDesc: string;
+  lineupAll: string;
   lineupGroups: RobotCompany[];
   lineupFootnote: string;
   reserveCta: string; availableBadge: string;
@@ -77,6 +78,7 @@ const COPY: Record<"ja" | "en", Copy> = {
     lineupLabel: "Lineup",
     lineupTitle: "導入予定・導入候補のロボット",
     lineupDesc: "予約受付中の機体に加えて、産業・接客・展示・研究用途に合わせた候補機を順次追加していきます。",
+    lineupAll: "すべて",
     lineupGroups: [
       {
         company: "Unitree",
@@ -173,6 +175,7 @@ const COPY: Record<"ja" | "en", Copy> = {
     lineupLabel: "Lineup",
     lineupTitle: "Planned and candidate robots",
     lineupDesc: "In addition to units already open for booking, we will keep adding candidates for industrial, hospitality, exhibition, and research use cases.",
+    lineupAll: "All",
     lineupGroups: [
       {
         company: "Unitree",
@@ -263,6 +266,8 @@ const COPY: Record<"ja" | "en", Copy> = {
 export default function RobotRentalPage() {
   const { lang } = useLanguage();
   const t = COPY[lang];
+  const [maker, setMaker] = useState<string>("all");
+  const visibleGroups = t.lineupGroups.filter((g) => maker === "all" || g.company === maker);
 
   return (
     <>
@@ -296,9 +301,29 @@ export default function RobotRentalPage() {
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.lineupTitle}</h2>
             <p className="text-sm text-gray-500 mb-8 w-full leading-relaxed">{t.lineupDesc}</p>
           </Reveal>
+          {/* MAKER TABS */}
+          <Reveal>
+            <div className="mb-10 flex flex-wrap gap-2">
+              {[{ key: "all", label: t.lineupAll }, ...t.lineupGroups.map((g) => ({ key: g.company, label: g.company }))].map((tab) => (
+                <button
+                  key={tab.key}
+                  type="button"
+                  onClick={() => setMaker(tab.key)}
+                  aria-pressed={maker === tab.key}
+                  className={`rounded-md px-4 py-2 text-sm font-semibold transition-colors duration-200 ${
+                    maker === tab.key
+                      ? "bg-neutral-900 text-white shadow-sm"
+                      : "bg-white border border-gray-200 text-gray-600 hover:border-gray-400 hover:text-gray-900"
+                  }`}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+          </Reveal>
           <div className="space-y-12">
-            {t.lineupGroups.map((group, groupIndex) => (
-              <Reveal key={group.company} delay={groupIndex * 80}>
+            {visibleGroups.map((group, groupIndex) => (
+              <Reveal key={`${maker}-${group.company}`} delay={groupIndex * 80}>
                 <div className="border-t border-gray-200 pt-8">
                   <div className="mb-6 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
                     <div>
