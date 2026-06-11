@@ -332,7 +332,7 @@ export default function RobotRentalPage() {
                     </div>
                     <p className="text-sm text-gray-500 leading-relaxed w-full">{group.summary}</p>
                   </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                  <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5">
                     {group.robots.map((item, i) => {
                       const available = item.status === "booking" || Boolean(item.buyUrl);
                       return (
@@ -345,7 +345,7 @@ export default function RobotRentalPage() {
                                   alt={item.name}
                                   fill
                                   sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                                  className="object-contain p-6"
+                                  className="object-contain p-4 sm:p-6"
                                 />
                               ) : (
                                 <span className="text-xs font-bold tracking-widest text-gray-400 uppercase">Image Coming Soon</span>
@@ -360,21 +360,21 @@ export default function RobotRentalPage() {
                                 </span>
                               )}
                             </div>
-                            <div className="p-6 flex-1 flex flex-col">
-                              <span className="inline-block text-xs font-bold tracking-widest text-neutral-900 uppercase mb-3">{item.type}</span>
-                              <h4 className="text-lg font-bold text-gray-900 mb-2">{item.name}</h4>
+                            <div className="p-4 sm:p-6 flex-1 flex flex-col">
+                              <span className="inline-block text-xs font-bold tracking-widest text-neutral-900 uppercase mb-2 sm:mb-3">{item.type}</span>
+                              <h4 className="text-base sm:text-lg font-bold text-gray-900 mb-2">{item.name}</h4>
                               <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
                               {available ? (
                                 <div className="mt-auto pt-5">
-                                  <div className="flex items-baseline gap-1.5 mb-3">
-                                    <span className="text-2xl font-bold text-gray-900">{item.price}</span>
+                                  <div className="flex items-baseline flex-wrap gap-x-1.5 mb-3">
+                                    <span className="text-xl sm:text-2xl font-bold text-gray-900">{item.price}</span>
                                     <span className="text-xs text-gray-500">{item.priceUnit}</span>
                                   </div>
                                   <a
                                     href={item.buyUrl}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="block w-full text-center rounded-lg bg-neutral-900 text-white font-semibold px-6 py-3 hover:bg-neutral-800 transition-colors duration-300"
+                                    className="block w-full text-center rounded-lg bg-neutral-900 text-white font-semibold px-3 sm:px-6 py-3 hover:bg-neutral-800 transition-colors duration-300"
                                   >
                                     {t.reserveCta}
                                   </a>
@@ -383,7 +383,7 @@ export default function RobotRentalPage() {
                                 <div className="mt-auto pt-5">
                                   <a
                                     href={`/contact?service=robot-rental&maker=${encodeURIComponent(group.company)}&robot=${encodeURIComponent(item.name)}`}
-                                    className="block w-full text-center rounded-lg border border-neutral-200 text-neutral-900 font-semibold px-6 py-3 hover:bg-neutral-50 transition-colors duration-300"
+                                    className="block w-full text-center rounded-lg border border-neutral-200 text-neutral-900 font-semibold px-3 sm:px-6 py-3 hover:bg-neutral-50 transition-colors duration-300"
                                   >
                                     {t.heroCta}
                                   </a>

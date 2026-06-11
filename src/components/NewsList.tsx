@@ -37,11 +37,13 @@ export default async function NewsList() {
         <Link
           key={post.slug}
           href={`/blog/${post.slug}`}
-          className="group flex items-start gap-4 py-5 hover:bg-gray-50 -mx-4 px-4 rounded-lg transition-colors"
+          className="group flex flex-col gap-1.5 sm:flex-row sm:items-start sm:gap-4 py-5 hover:bg-gray-50 -mx-4 px-4 rounded-lg transition-colors"
         >
-          <span className="text-xs text-gray-400 font-medium whitespace-nowrap pt-0.5">{post.date}</span>
-          <span className="text-xs font-semibold text-neutral-900 bg-neutral-100 px-2 py-0.5 rounded whitespace-nowrap">{post.category}</span>
-          <h3 className="text-sm font-medium text-gray-900 group-hover:text-neutral-700 transition-colors leading-relaxed">
+          <div className="flex items-center gap-2.5 shrink-0">
+            <span className="text-xs text-gray-400 font-medium whitespace-nowrap pt-0.5">{post.date}</span>
+            <span className="text-xs font-semibold text-neutral-900 bg-neutral-100 px-2 py-0.5 rounded whitespace-nowrap">{post.category}</span>
+          </div>
+          <h3 className="flex-1 min-w-0 text-sm font-medium text-gray-900 group-hover:text-neutral-700 transition-colors leading-relaxed">
             {post.title}
           </h3>
         </Link>
