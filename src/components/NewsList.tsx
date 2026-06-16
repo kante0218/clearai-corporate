@@ -23,7 +23,7 @@ export default async function NewsList() {
   }
 
   if (posts.length === 0) {
-    posts = blogPosts.slice(0, 5).map((p) => ({
+    posts = blogPosts.slice(0, 3).map((p) => ({
       slug: p.slug,
       title: p.title,
       date: p.date,
@@ -33,7 +33,7 @@ export default async function NewsList() {
 
   return (
     <div className="divide-y divide-gray-100">
-      {posts.slice(0, 5).map((post) => (
+      {posts.slice(0, 3).map((post) => (
         <Link
           key={post.slug}
           href={`/blog/${post.slug}`}
