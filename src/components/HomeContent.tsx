@@ -81,15 +81,15 @@ type HomeCopy = {
 
 const COPY: Record<"ja" | "en", HomeCopy> = {
   ja: {
-    heroChips: ["ロボットレンタル × AIコンサル", "戦略から現場実装まで", "中小企業特化"],
+    heroChips: ["AI研修 × AI顧問 × 業務自動化", "補助金で最大75%オフ", "中小企業 × Claude特化"],
     heroTitle: (
-      <>日本の中小企業に、<br /><span className="text-neutral-900">ロボット</span>と<span className="text-neutral-900">AI</span>を。</>
+      <>補助金を使って、<br /><span className="text-neutral-900">AI</span>を現場に。</>
     ),
     heroDesc: (
-      <>ヒューマノイド・ロボットのレンタルとAIコンサルティングを軸に、<br className="hidden md:inline" />
-      経営の意思決定から現場で動くものまで、責任を持って伴走します。</>
+      <>AI研修・AI顧問・業務自動化を、補助金で最大75%オフで導入。<br className="hidden md:inline" />
+      ChatGPT・Claudeの使い方から内製化まで、責任を持って伴走します。</>
     ),
-    heroPrimary: "まずは無料で相談する",
+    heroPrimary: "補助金を使った導入を相談する（無料）",
     heroSecondary: "サービスを見る",
     trustStats: [
       { value: "最大75%", label: "研修費を助成金で削減" },
@@ -230,15 +230,15 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
     ctaOthers: "その他のお問い合わせはこちら →",
   },
   en: {
-    heroChips: ["Robot Rental × AI Consulting", "Strategy to deployment", "Built for SMEs"],
+    heroChips: ["AI Training × Advisory × Automation", "Up to 75% off via subsidies", "SMEs × Claude-focused"],
     heroTitle: (
-      <><span className="text-neutral-900">Robots</span> and <span className="text-neutral-900">AI</span><br />for Japanese SMEs.</>
+      <>Bring <span className="text-neutral-900">AI</span> to your team —<br />up to 75% off.</>
     ),
     heroDesc: (
-      <>Centered on humanoid robot rental and AI consulting —<br className="hidden md:inline" />
-      we partner with you from management decisions to systems that actually run on the floor.</>
+      <>AI training, AI advisory, and workflow automation, with subsidies covering up to 75%.<br className="hidden md:inline" />
+      From first steps with ChatGPT &amp; Claude to full in-house capability — we partner with you the whole way.</>
     ),
-    heroPrimary: "Book a free consultation",
+    heroPrimary: "Get a free subsidy consultation",
     heroSecondary: "View services",
     trustStats: [
       { value: "Up to 75%", label: "Training cost cut by subsidies" },
