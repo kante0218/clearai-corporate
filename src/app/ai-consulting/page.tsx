@@ -45,7 +45,7 @@ type Copy = {
   process: { num: string; title: string; en: string; desc: string }[];
   pricingLabel: string;
   pricingTitle: string;
-  plans: { name: string; price: string; desc: string; features: string[]; featured: boolean }[];
+  plans: { name: string; price: string; unit: string; desc: string; features: string[]; featured: boolean }[];
   planCta: string;
   techLabel: string;
   techTitle: string;
@@ -101,9 +101,9 @@ const COPY: Record<"ja" | "en", Copy> = {
     pricingLabel: "Pricing",
     pricingTitle: "料金プラン",
     plans: [
-      { name: "スポットコンサル", price: "ご相談", desc: "現状分析とAI活用の方向性をご提案。", features: ["現状ヒアリング（2時間）", "AI活用レポート作成", "導入ロードマップ素案", "2週間のメールサポート"], featured: false },
-      { name: "スタンダード", price: "ご相談", desc: "PoC〜本番実装まで。伴走型の導入支援。", features: ["月次ヒアリング・進捗会議", "AI戦略策定・設計", "PoC開発・検証", "本番実装・テスト", "社内トレーニング"], featured: true },
-      { name: "エンタープライズ", price: "ご相談", desc: "大規模導入・複数部署展開に対応。", features: ["専任コンサルタント配置", "複数部署への横展開", "カスタムAI開発", "24/7サポート", "KPI計測・改善サイクル"], featured: false },
+      { name: "スポットコンサル", price: "50万円〜", unit: "/ 回", desc: "現状分析とAI活用の方向性をご提案。", features: ["現状ヒアリング（2時間）", "AI活用レポート作成", "導入ロードマップ素案", "2週間のメールサポート"], featured: false },
+      { name: "スタンダード", price: "150万円〜", unit: "/ 月", desc: "PoC〜本番実装まで。伴走型の導入支援。", features: ["月次ヒアリング・進捗会議", "AI戦略策定・設計", "PoC開発・検証", "本番実装・テスト", "社内トレーニング"], featured: true },
+      { name: "エンタープライズ", price: "要相談", unit: "", desc: "大規模導入・複数部署展開に対応。", features: ["専任コンサルタント配置", "複数部署への横展開", "カスタムAI開発", "24/7サポート", "KPI計測・改善サイクル"], featured: false },
     ],
     planCta: "申し込む",
     techLabel: "Tech Stack",
@@ -215,9 +215,9 @@ const COPY: Record<"ja" | "en", Copy> = {
     pricingLabel: "Pricing",
     pricingTitle: "Pricing plans",
     plans: [
-      { name: "Spot Consult", price: "Contact us", desc: "Current-state analysis and AI direction proposal.", features: ["Discovery session (2 hrs)", "AI utilization report", "Roadmap draft", "2-week email support"], featured: false },
-      { name: "Standard", price: "Contact us", desc: "PoC through full implementation. Hands-on adoption support.", features: ["Monthly check-ins & progress reviews", "AI strategy & design", "PoC development & validation", "Production implementation & testing", "Internal training"], featured: true },
-      { name: "Enterprise", price: "Contact us", desc: "Large-scale rollout and multi-department expansion.", features: ["Dedicated consultant", "Cross-department rollout", "Custom AI development", "24/7 support", "KPI tracking & improvement cycle"], featured: false },
+      { name: "Spot Consult", price: "JPY 500K~", unit: "/ session", desc: "Current-state analysis and AI direction proposal.", features: ["Discovery session (2 hrs)", "AI utilization report", "Roadmap draft", "2-week email support"], featured: false },
+      { name: "Standard", price: "JPY 1.5M~", unit: "/ mo", desc: "PoC through full implementation. Hands-on adoption support.", features: ["Monthly check-ins & progress reviews", "AI strategy & design", "PoC development & validation", "Production implementation & testing", "Internal training"], featured: true },
+      { name: "Enterprise", price: "Contact us", unit: "", desc: "Large-scale rollout and multi-department expansion.", features: ["Dedicated consultant", "Cross-department rollout", "Custom AI development", "24/7 support", "KPI tracking & improvement cycle"], featured: false },
     ],
     planCta: "Get started",
     techLabel: "Tech Stack",
@@ -319,8 +319,9 @@ export default function AiConsultingPage() {
                 <div className={`rounded-lg p-8 lg:p-10 transition-all duration-300 flex flex-col w-full ${plan.featured ? "bg-neutral-900 text-white shadow-xl" : "bg-white border border-gray-200 hover:shadow-lg"}`}>
                   {plan.featured && <span className="inline-block rounded-md bg-white/20 text-white px-3 py-1 text-sm font-semibold mb-4 self-start">Recommended</span>}
                   <h3 className={`text-lg font-bold mb-2 ${plan.featured ? "text-white" : "text-gray-900"}`}>{plan.name}</h3>
-                  <div className="mb-4">
+                  <div className="mb-4 flex items-baseline gap-1">
                     <span className={`text-2xl font-bold ${plan.featured ? "text-white" : "text-gray-900"}`}>{plan.price}</span>
+                    {plan.unit && <span className={`text-sm ${plan.featured ? "text-white/80" : "text-gray-500"}`}>{plan.unit}</span>}
                   </div>
                   <p className={`text-sm leading-relaxed mb-6 ${plan.featured ? "text-white/80" : "text-gray-600"}`}>{plan.desc}</p>
                   <ul className="space-y-3 mb-8 flex-1">
