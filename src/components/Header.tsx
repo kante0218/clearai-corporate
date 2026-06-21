@@ -21,9 +21,6 @@ export default function Header() {
   const h = headerDict[lang];
 
   const navItems: NavItem[] = [
-    { label: h.navRobotRental, href: "/robot-rental" },
-    { label: h.navAiAgent, href: "/ai-agent" },
-    { label: h.navAdvisor, href: "/advisor" },
     {
       label: h.navTraining,
       href: "/training",
@@ -32,6 +29,8 @@ export default function Header() {
         { label: h.navClaude, href: "/claude", description: h.navClaudeDesc },
       ],
     },
+    { label: h.navAdvisor, href: "/advisor" },
+    { label: h.navAiAgent, href: "/ai-agent" },
     {
       label: h.navAiConsulting,
       href: "/ai-consulting",
@@ -42,6 +41,7 @@ export default function Header() {
       ],
     },
     { label: h.navResearch, href: "/research" },
+    { label: h.navRobotRental, href: "/robot-rental" },
   ];
 
   const utilityItems: { label: string; href: string }[] = [
