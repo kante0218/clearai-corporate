@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import HeroParticlesBg from "@/components/HeroParticlesBg";
@@ -73,7 +74,7 @@ type HomeCopy = {
   techMoreTitle: string; techMoreDesc: string;
   faqLabel: string; faqTitle: string; faqDesc: string; faqCta: string;
   faq: { q: string; a: string }[];
-  newsLabel: string; newsTitle: string; newsCta: string;
+  newsLabel: string; newsTitle: string; newsCta: string; clientLogosLabel: string;
   ctaLabel: string; ctaTitle: string; ctaDesc: ReactNode;
   ctaCards: { label: string; service: string }[];
   ctaCardAction: string; ctaOthers: string;
@@ -131,8 +132,8 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
     primaryServices: [
       {
         code: "01", title: "AI顧問", color: "indigo",
-        desc: "月10万円〜、外部AI顧問として経営・業務・Web改善を月次で継続的に伴走。技術選定からPoC評価、社内教育まで業務委託契約ベースで支援します。",
-        tags: ["月額契約", "月次壁打ち", "経営伴走", "業務委託"],
+        desc: "月2.5万円〜、外部AI顧問としてチャット相談・会議参加・内製化支援まで継続伴走。技術選定からPoC評価、IT全般の相談まで支援します。",
+        tags: ["月額契約", "限定10社枠", "経営伴走", "内製化支援"],
         href: "/advisor", cta: "顧問契約のご相談",
         claudeNote: "Claude（Anthropic）の業務導入・運用定着まで、顧問として継続的に伴走します。",
       },
@@ -215,6 +216,7 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
     newsLabel: "News",
     newsTitle: "お知らせ",
     newsCta: "一覧を見る →",
+    clientLogosLabel: "実績企業",
     ctaLabel: "Contact",
     ctaTitle: "まずは、お話ししませんか。",
     ctaDesc: (<>AIのことがわからなくても大丈夫です。<br />貴社の状況に合わせて、一緒に考えます。</>),
@@ -280,8 +282,8 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
     primaryServices: [
       {
         code: "01", title: "AI Advisor", color: "indigo",
-        desc: "From JPY 100K/month, as your outside AI advisor we partner monthly on management, operations, and web improvements — from tool selection to PoC review and internal training, on a contract basis.",
-        tags: ["Monthly contract", "Monthly sessions", "Management partner", "Contract basis"],
+        desc: "From JPY 25K/month, as your outside AI advisor we provide chat support, meeting participation, and in-house enablement — from tool selection to PoC review and broader IT advice.",
+        tags: ["Monthly contract", "Limited slots", "Management partner", "In-house enablement"],
         href: "/advisor", cta: "Discuss an advisory engagement",
         claudeNote: "We support adopting and embedding Claude (Anthropic) into your operations — as an ongoing advisor.",
       },
@@ -364,6 +366,7 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
     newsLabel: "News",
     newsTitle: "News",
     newsCta: "View all →",
+    clientLogosLabel: "Client Work",
     ctaLabel: "Contact",
     ctaTitle: "Let's start with a conversation.",
     ctaDesc: (<>No AI expertise needed.<br />We'll think it through with you, tailored to your situation.</>),
@@ -379,6 +382,23 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
     ctaOthers: "Other inquiries →",
   },
 };
+
+// 各ロゴはコンテンツにタイトクロップした透過PNG（実寸）。表示は固定高さ＋等間隔gapで、
+// ロゴ同士の距離が全て均一になるようにする。
+const CLIENT_LOGOS = [
+  { name: "JASO", src: "/images/clients/jaso.png", width: 1007, height: 424 },
+  { name: "MIG", src: "/images/clients/mig.png", width: 337, height: 175 },
+  { name: "TicketMe", src: "/images/clients/ticketme.png", width: 1200, height: 426 },
+  { name: "エンジニアのミカタ", src: "/images/clients/engineer-no-mikata.png", width: 991, height: 143 },
+  { name: "Gugen", src: "/images/clients/gugen.png", width: 1111, height: 346 },
+  { name: "DiaL Shift", src: "/images/clients/dial-shift.png", width: 1950, height: 342 },
+  { name: "EDUCAI", src: "/images/clients/educai.png", width: 556, height: 540 },
+  { name: "ノイアーエーテル", src: "/images/clients/noir-aether.png", width: 656, height: 686 },
+  { name: "Wave Leaf", src: "/images/clients/wave-leaf.png", width: 1164, height: 324 },
+  { name: "AT", src: "/images/clients/at.png", width: 1030, height: 838 },
+  { name: "Crew Robotics", src: "/images/clients/crew-robotics.png", width: 1791, height: 261 },
+  { name: "ICONIQ", src: "/images/clients/iconiq.png", width: 1436, height: 304 },
+];
 
 const TECH_GROUPS: { key: keyof typeof COPY["ja"]["techGroups"]; items: { name: string; icon: string; color?: string }[] }[] = [
   { key: "frontend", items: [
@@ -435,6 +455,35 @@ const TECH_GROUPS: { key: keyof typeof COPY["ja"]["techGroups"]; items: { name: 
 function SectionLabel({ children }: { children: ReactNode }) {
   return (
     <p className="text-xs font-semibold tracking-widest uppercase text-neutral-900 mb-4">{children}</p>
+  );
+}
+
+function ClientLogoMarquee({ label }: { label: string }) {
+  const logos = [...CLIENT_LOGOS, ...CLIENT_LOGOS];
+
+  return (
+    <div className="mt-12 border-t border-gray-200 pt-10 overflow-hidden">
+      <p className="text-[11px] font-semibold tracking-[0.22em] uppercase text-gray-400 mb-7">
+        {label}
+      </p>
+      <div className="relative -mx-6 lg:-mx-8">
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-white to-transparent md:w-28" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-white to-transparent md:w-28" />
+        <div className="flex w-max items-center gap-14 animate-[marquee_38s_linear_infinite] hover:[animation-play-state:paused] md:gap-20">
+          {logos.map((logo, index) => (
+            <Image
+              key={`${logo.name}-${index}`}
+              src={logo.src}
+              alt={`${logo.name} logo`}
+              width={logo.width}
+              height={logo.height}
+              className="h-9 w-auto shrink-0 object-contain opacity-90 transition duration-300 hover:opacity-100 md:h-11"
+              sizes="(max-width: 768px) 160px, 220px"
+            />
+          ))}
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -497,7 +546,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
               {t.heroDesc}
             </p>
             <div className="flex flex-wrap justify-start items-center gap-5 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "850ms" }}>
-              <Link href="/contact" className="inline-flex items-center gap-2 rounded-md bg-neutral-900 text-white font-semibold px-7 py-3.5 hover:bg-neutral-800 transition-colors duration-300 shadow-[0_8px_24px_-8px_rgba(0,0,0,0.3)]">
+              <Link href="/reserve" className="inline-flex items-center gap-2 rounded-md bg-neutral-900 text-white font-semibold px-7 py-3.5 hover:bg-neutral-800 transition-colors duration-300 shadow-[0_8px_24px_-8px_rgba(0,0,0,0.3)]">
                 {t.heroPrimary}
                 <span aria-hidden>→</span>
               </Link>
@@ -542,6 +591,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
               ))}
             </div>
           </Reveal>
+          <ClientLogoMarquee label={t.clientLogosLabel} />
         </div>
       </section>
 
