@@ -30,6 +30,123 @@ type Plan = {
   featured: boolean; href: string; cta: string; minTerm: string;
 };
 
+/* Pricing plans: 3-up grid on desktop, swipeable + auto-advancing carousel on mobile (SP). */
+function PlansCarousel({ plans, recommended }: { plans: Plan[]; recommended: string }) {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState(0);
+  const pausedRef = useRef(false);
+  const resumeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const indexFromScroll = (el: HTMLDivElement) => {
+    const cards = Array.from(el.querySelectorAll<HTMLElement>("[data-plan-card]"));
+    const center = el.scrollLeft + el.clientWidth / 2;
+    let best = 0, bestDist = Infinity;
+    cards.forEach((c, i) => {
+      const cc = c.offsetLeft + c.offsetWidth / 2;
+      const d = Math.abs(cc - center);
+      if (d < bestDist) { bestDist = d; best = i; }
+    });
+    return best;
+  };
+
+  const goTo = (i: number) => {
+    const el = trackRef.current;
+    if (!el) return;
+    const card = el.querySelectorAll<HTMLElement>("[data-plan-card]")[i];
+    if (!card) return;
+    el.scrollTo({ left: card.offsetLeft - (el.clientWidth - card.clientWidth) / 2, behavior: "smooth" });
+  };
+
+  // Track the active card as the user scrolls.
+  useEffect(() => {
+    const el = trackRef.current;
+    if (!el) return;
+    let raf = 0;
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => setActive(indexFromScroll(el)));
+    };
+    el.addEventListener("scroll", onScroll, { passive: true });
+    return () => { el.removeEventListener("scroll", onScroll); cancelAnimationFrame(raf); };
+  }, []);
+
+  // Auto-advance on mobile only, paused on interaction / when off-screen / reduced motion.
+  useEffect(() => {
+    const el = trackRef.current;
+    if (!el) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let visible = true;
+    const io = new IntersectionObserver(([e]) => { visible = e.isIntersecting; }, { threshold: 0.3 });
+    io.observe(el);
+    const isMobile = () => window.matchMedia("(max-width: 767px)").matches;
+    const id = setInterval(() => {
+      if (pausedRef.current || !visible || !isMobile()) return;
+      const cards = el.querySelectorAll<HTMLElement>("[data-plan-card]");
+      if (cards.length < 2) return;
+      goTo((indexFromScroll(el) + 1) % cards.length);
+    }, 3500);
+    return () => { clearInterval(id); io.disconnect(); };
+  }, []);
+
+  const pause = () => { pausedRef.current = true; if (resumeTimer.current) clearTimeout(resumeTimer.current); };
+  const resumeLater = () => {
+    if (resumeTimer.current) clearTimeout(resumeTimer.current);
+    resumeTimer.current = setTimeout(() => { pausedRef.current = false; }, 5000);
+  };
+
+  return (
+    <>
+      <div
+        ref={trackRef}
+        onPointerDown={pause}
+        onPointerUp={resumeLater}
+        onMouseEnter={pause}
+        onMouseLeave={resumeLater}
+        className="flex md:grid md:grid-cols-3 gap-5 md:gap-6 items-stretch overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none -mx-6 px-6 md:mx-0 md:px-0 pb-4 md:pb-0 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+      >
+        {plans.map((plan) => (
+          <div key={plan.name} data-plan-card className="snap-center shrink-0 w-[82%] sm:w-[60%] md:w-full flex">
+            <div className={`rounded-lg p-8 lg:p-10 transition-all duration-300 flex flex-col w-full ${plan.featured ? "bg-neutral-900 text-white shadow-xl" : "bg-white border border-gray-200 hover:shadow-lg"}`}>
+              {plan.featured && <span className="inline-block rounded-md bg-white/20 text-white px-3 py-1 text-sm font-semibold mb-4 self-start">{recommended}</span>}
+              <h3 className={`text-lg font-bold mb-2 ${plan.featured ? "text-white" : "text-gray-900"}`}>{plan.name}</h3>
+              <div className="mb-4 flex items-baseline gap-1">
+                <span className={`text-3xl font-bold ${plan.featured ? "text-white" : "text-gray-900"}`}>{plan.price}</span>
+                <span className={`text-sm ${plan.featured ? "text-white/80" : "text-gray-500"}`}>{plan.unit}</span>
+              </div>
+              <p className={`text-sm leading-relaxed mb-6 ${plan.featured ? "text-white/80" : "text-gray-600"}`}>{plan.desc}</p>
+              <ul className="space-y-3 mb-8 flex-1">
+                {plan.features.map((f) => (
+                  <li key={f} className="flex items-start gap-3">
+                    <span className={`mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 ${plan.featured ? "bg-white/40" : "bg-neutral-900"}`} />
+                    <span className={`text-sm ${plan.featured ? "text-white/90" : "text-gray-600"}`}>{f}</span>
+                  </li>
+                ))}
+              </ul>
+              {plan.minTerm && (
+                <p className={`text-xs text-center mb-3 ${plan.featured ? "text-white/80" : "text-gray-500"}`}>※{plan.minTerm}</p>
+              )}
+              <a href={plan.href} className={`block text-center text-sm font-semibold py-3 rounded-md transition-all duration-300 mt-auto ${plan.featured ? "bg-white text-neutral-900 hover:bg-neutral-100" : "border border-gray-200 text-gray-600 hover:border-gray-400 hover:text-gray-900"}`}>{plan.cta}</a>
+            </div>
+          </div>
+        ))}
+      </div>
+      {/* Pagination dots (mobile only) */}
+      <div className="flex md:hidden justify-center gap-2 mt-6">
+        {plans.map((plan, i) => (
+          <button
+            key={plan.name}
+            type="button"
+            aria-label={`${plan.name}を表示`}
+            aria-current={active === i}
+            onClick={() => { pause(); goTo(i); resumeLater(); }}
+            className={`h-2 rounded-full transition-all duration-300 ${active === i ? "w-6 bg-neutral-900" : "w-2 bg-gray-300"}`}
+          />
+        ))}
+      </div>
+    </>
+  );
+}
+
 type Copy = {
   heroKicker: string; heroTitle: string; heroDesc: string;
   whyLabel: string; whyTitle: string;
@@ -53,9 +170,9 @@ const COPY: Record<"ja" | "en", Copy> = {
   ja: {
     heroKicker: "AI Advisor",
     heroTitle: "AI顧問",
-    heroDesc: "月額契約で、AI活用の意思決定を継続的に伴走します。戦略から技術選定、PoC評価、社内教育まで。月10万円〜／最低契約期間なし。",
+    heroDesc: "月額契約で、AI活用の意思決定を継続的に伴走します。チャット相談から内製化支援、IT・テクノロジー全般の相談まで。月2.5万円〜／ライトは限定10社。",
     whyLabel: "Why Advisor",
-    whyTitle: "こんなお悩みに、月10万円からお応えします。",
+    whyTitle: "こんなお悩みに、月2.5万円からお応えします。",
     why: [
       { title: "誰に聞けばいいかわからない", desc: "社内にAI人材がいない、外部ベンダーに聞くと売り込みに変わる。中立な相談相手が欲しい。" },
       { title: "情報の陳腐化が早すぎる", desc: "生成AIは毎月のように新機能が出る。何を試すべきか、何を無視していいかを選別してほしい。" },
@@ -83,22 +200,22 @@ const COPY: Record<"ja" | "en", Copy> = {
     recommended: "Recommended",
     plans: [
       {
-        name: "ライト", price: "10万円", unit: "/ 月",
-        desc: "従業員5名以下の小規模企業・スタートアップ向け。Slack/メール相談中心。",
-        features: ["従業員5名以下の企業向け", "Slack/メール相談（営業日内返信）", "月1回のオンライン定例（45分）", "最新AIニュース・モデル動向の共有"],
-        featured: false, href: "https://buy.stripe.com/5kQdR2aZS8Ug8iKdtGd7q0c", cta: "申し込む", minTerm: "最低3ヶ月契約から",
+        name: "ライト", price: "2.5万円", unit: "/ 月",
+        desc: "まず相談先を持ちたい小規模企業向け。LINE・Slack・Discord等で日常相談を受け付けます。",
+        features: ["限定10社", "LINE / Slack / Discord などでのサポート", "月2回以上のミーティング参加", "AIツール選定・使い方の相談", "最新AIニュース・モデル動向の共有"],
+        featured: false, href: "https://buy.stripe.com/4gM8wI0legmI6aCexKd7q0e", cta: "限定枠に申し込む", minTerm: "限定10社",
       },
       {
-        name: "スタンダード", price: "20万円", unit: "/ 月",
-        desc: "従業員6名以上の企業向け。定例会議＋PoC評価で本格推進。",
-        features: ["従業員6名以上の企業向け", "ライトプランの全内容を含む", "月2回のオンライン定例（各60分）", "Slack/メール無制限相談（当日返信目安）", "PoC・導入プロジェクトの定期レビュー", "業務フロー別のAI活用設計・技術選定ドキュメント作成", "部署横断のAI活用ロードマップ作成", "社内勉強会（年4回まで）", "導入効果の月次レポーティング"],
-        featured: true, href: "https://buy.stripe.com/aFa3coaZS1rO6aCdtGd7q0d", cta: "申し込む", minTerm: "最低3ヶ月契約から",
+        name: "スタンダード", price: "10万円", unit: "/ 月",
+        desc: "AI活用を社内に根付かせたい企業向け。実地・オンラインを組み合わせて内製化を支援します。",
+        features: ["ライトプランの全内容を含む", "内製化に向けた実地・オンライン伴走", "業務フロー別のAI活用設計", "PoC・導入プロジェクトのレビュー", "社内勉強会・運用ルール整備", "IT・テクノロジー全般の相談対応"],
+        featured: true, href: "https://buy.stripe.com/5kQdR2aZS8Ug8iKdtGd7q0c", cta: "申し込む", minTerm: "最低3ヶ月契約から",
       },
       {
-        name: "エグゼクティブ", price: "30万円〜", unit: "/ 月",
-        desc: "経営層直下で意思決定に参画。戦略〜実装を横断。",
-        features: ["週次定例＋必要に応じてオンサイト", "経営会議への同席（月1回）", "AI戦略ロードマップ策定", "複数部署の横断アドバイザリー", "外部ベンダー選定同席"],
-        featured: false, href: "/contact?service=advisor", cta: "相談する", minTerm: "",
+        name: "エンタープライズ", price: "20万円", unit: "/ 月",
+        desc: "大企業・エンタープライズ向け。複数部署・経営層をまたぐAI/IT活用を支援します。",
+        features: ["スタンダードプランの全内容を含む", "複数部署の横断アドバイザリー", "経営会議・重要会議への参加", "AI/IT戦略ロードマップ策定", "外部ベンダー選定・要件整理の支援", "セキュリティ・ガバナンス観点の壁打ち"],
+        featured: false, href: "https://buy.stripe.com/aFa3coaZS1rO6aCdtGd7q0d", cta: "申し込む", minTerm: "大企業・エンプラ向け",
       },
     ],
     plansNote: "表示価格は税抜。業種・業態により個別見積もりとなる場合があります。",
@@ -107,29 +224,29 @@ const COPY: Record<"ja" | "en", Copy> = {
     process: [
       { num: "01", title: "無料相談", en: "Consultation", desc: "貴社の現状と、顧問に期待したい役割をお伺いします（30〜45分）。" },
       { num: "02", title: "プラン提案", en: "Proposal", desc: "お話を踏まえ、最適なプランと担当顧問をご提案します。" },
-      { num: "03", title: "契約・キックオフ", en: "Kickoff", desc: "契約締結後、Slackチャンネル開設と初回オンサイト訪問を実施。" },
+      { num: "03", title: "契約・キックオフ", en: "Kickoff", desc: "契約締結後、連絡チャンネルを整備し、初回キックオフで支援範囲と進め方を確定します。" },
       { num: "04", title: "継続伴走", en: "Ongoing", desc: "定例会議＋日常相談。成果と運用体制を定期的に見直します。" },
     ],
     faqLabel: "FAQ",
     faqTitle: "よくあるご質問",
     faq: [
       { q: "顧問とコンサルの違いは？", a: "コンサルが「特定プロジェクトの提案・実装」であるのに対し、顧問は「継続的な相談相手」です。必要に応じてコンサルプランとの併用も可能です。" },
-      { q: "契約期間の縛りはありますか？", a: "ありません。月単位で更新可能で、合わないと感じた場合はいつでも解約いただけます。" },
+      { q: "契約期間の縛りはありますか？", a: "ライトは限定10社の月額制、スタンダード以上は最低3ヶ月契約からとなります。以降は月単位で更新可能です。" },
       { q: "誰が担当してくれますか？", a: "大手コンサルティングファーム出身者、もしくはAI実装経験豊富なエンジニアが担当します。事前の面談で相性をご確認ください。" },
       { q: "NDAには対応していますか？", a: "もちろんです。顧問契約締結時に相互NDAを結びます。" },
-      { q: "オンサイト対応はありますか？", a: "エグゼクティブプランでは月1回を目安に訪問可能です。他プランでも追加料金で対応できます。" },
+      { q: "オンサイト対応はありますか？", a: "エンタープライズプランでは重要会議への参加など対面対応が可能です。他プランでも追加料金で対応できます。" },
     ],
     ctaLabel: "Contact",
-    ctaTitle: "月10万円から、AIの相談相手を。",
+    ctaTitle: "月2.5万円から、AIの相談相手を。",
     ctaDesc: "まずは30分の無料相談で、貴社にフィットするかをご確認ください。",
     ctaButton: "無料で相談する",
   },
   en: {
     heroKicker: "AI Advisor",
     heroTitle: "AI Advisor",
-    heroDesc: "A monthly engagement that supports your AI decisions on an ongoing basis — from strategy and tool selection to PoC review and internal training. From JPY 100K/month, with no minimum commitment.",
+    heroDesc: "A monthly engagement that supports your AI decisions on an ongoing basis — from chat consultation to internalization and IT/technology advice. From JPY 25K/month; Light is limited to 10 companies.",
     whyLabel: "Why Advisor",
-    whyTitle: "We answer these concerns — from JPY 100K/month.",
+    whyTitle: "We answer these concerns — from JPY 25K/month.",
     why: [
       { title: "We don't know who to ask", desc: "No AI talent in-house, and asking a vendor turns into a sales pitch. You want a neutral sounding board." },
       { title: "Information goes stale too fast", desc: "Generative AI ships new features almost monthly. You want someone to sort what's worth trying from what to ignore." },
@@ -157,22 +274,22 @@ const COPY: Record<"ja" | "en", Copy> = {
     recommended: "Recommended",
     plans: [
       {
-        name: "Light", price: "JPY 100K", unit: "/ mo",
-        desc: "For small companies and startups with 5 or fewer employees. Mainly Slack/email support.",
-        features: ["For companies with 5 or fewer employees", "Slack/email support (reply within business days)", "Monthly online session (45 min)", "Latest AI news & model trends"],
-        featured: false, href: "https://buy.stripe.com/5kQdR2aZS8Ug8iKdtGd7q0c", cta: "Get started", minTerm: "3-month minimum",
+        name: "Light", price: "JPY 25K", unit: "/ mo",
+        desc: "For small companies wanting a first point of contact. Daily support via LINE/Slack/Discord.",
+        features: ["Limited to 10 companies", "Support via LINE / Slack / Discord", "2+ meetings per month", "AI tool selection & usage advice", "Latest AI news & model trends"],
+        featured: false, href: "https://buy.stripe.com/4gM8wI0legmI6aCexKd7q0e", cta: "Apply for a limited slot", minTerm: "Limited to 10 companies",
       },
       {
-        name: "Standard", price: "JPY 200K", unit: "/ mo",
-        desc: "For companies with 6 or more employees. Regular sessions + PoC review for serious rollout.",
-        features: ["For companies with 6 or more employees", "Everything in Light", "2 online sessions/month (60 min each)", "Unlimited Slack/email support (same-day reply)", "Regular PoC & rollout project reviews", "Per-workflow AI design & tool-selection docs", "Cross-department AI adoption roadmap", "Internal study sessions (up to 4/year)", "Monthly impact reporting"],
-        featured: true, href: "https://buy.stripe.com/aFa3coaZS1rO6aCdtGd7q0d", cta: "Get started", minTerm: "3-month minimum",
+        name: "Standard", price: "JPY 100K", unit: "/ mo",
+        desc: "For companies embedding AI in-house. On-site + online support to drive internalization.",
+        features: ["Everything in Light", "On-site & online support for internalization", "Per-workflow AI adoption design", "PoC & rollout project reviews", "Internal study sessions & operating rules", "IT & technology general consultation"],
+        featured: true, href: "https://buy.stripe.com/5kQdR2aZS8Ug8iKdtGd7q0c", cta: "Get started", minTerm: "3-month minimum",
       },
       {
-        name: "Executive", price: "From JPY 300K", unit: "/ mo",
-        desc: "Engaged directly with leadership in decision-making. Strategy to implementation.",
-        features: ["Weekly sessions + on-site as needed", "Board-meeting attendance (monthly)", "AI strategy roadmap", "Cross-department advisory", "Vendor-selection support"],
-        featured: false, href: "/contact?service=advisor", cta: "Get in touch", minTerm: "",
+        name: "Enterprise", price: "JPY 200K", unit: "/ mo",
+        desc: "For large/enterprise companies. Supports cross-department, executive-level AI/IT adoption.",
+        features: ["Everything in Standard", "Cross-department advisory", "Board & key-meeting attendance", "AI/IT strategy roadmap", "Vendor selection & requirements support", "Security & governance sparring"],
+        featured: false, href: "https://buy.stripe.com/aFa3coaZS1rO6aCdtGd7q0d", cta: "Get started", minTerm: "For large enterprises",
       },
     ],
     plansNote: "Prices exclude tax. Custom quotes may apply depending on industry and business type.",
@@ -181,20 +298,20 @@ const COPY: Record<"ja" | "en", Copy> = {
     process: [
       { num: "01", title: "Free consultation", en: "Consultation", desc: "We learn about your current state and the role you'd want an advisor to play (30–45 min)." },
       { num: "02", title: "Plan proposal", en: "Proposal", desc: "Based on the conversation, we propose the best plan and your assigned advisor." },
-      { num: "03", title: "Contract & kickoff", en: "Kickoff", desc: "After signing, we open a Slack channel and run the first on-site visit." },
+      { num: "03", title: "Contract & kickoff", en: "Kickoff", desc: "After signing, we set up communication channels and run the first kickoff to define scope and approach." },
       { num: "04", title: "Ongoing partnership", en: "Ongoing", desc: "Regular sessions plus day-to-day support, reviewing outcomes and structure regularly." },
     ],
     faqLabel: "FAQ",
     faqTitle: "Frequently asked questions",
     faq: [
       { q: "How is an advisor different from consulting?", a: "Consulting is 'proposing and implementing a specific project,' while an advisor is 'an ongoing sounding board.' The two can be combined as needed." },
-      { q: "Is there a lock-in period?", a: "No. It renews monthly, and you can cancel anytime if it isn't a fit." },
+      { q: "Is there a lock-in period?", a: "Light is a monthly plan limited to 10 companies; Standard and above start with a 3-month minimum, then renew monthly." },
       { q: "Who will be in charge?", a: "An ex-top-tier consultant or an engineer with deep AI implementation experience. Check the fit in an upfront meeting." },
       { q: "Do you handle NDAs?", a: "Of course. We sign a mutual NDA when the advisory contract begins." },
-      { q: "Do you offer on-site support?", a: "The Executive plan includes roughly monthly visits. Other plans can add visits for an extra fee." },
+      { q: "Do you offer on-site support?", a: "The Enterprise plan includes in-person support such as key-meeting attendance. Other plans can add visits for an extra fee." },
     ],
     ctaLabel: "Contact",
-    ctaTitle: "An AI sounding board — from JPY 100K/month.",
+    ctaTitle: "An AI sounding board — from JPY 25K/month.",
     ctaDesc: "Start with a free 30-minute consultation to see if we're a fit.",
     ctaButton: "Book a free consultation",
   },
@@ -222,33 +339,7 @@ export default function AdvisorPage() {
             <Label>{t.plansLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-8">{t.plansTitle}</h2>
           </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
-            {t.plans.map((plan, i) => (
-              <Reveal key={plan.name} delay={i * 100} className="flex">
-                <div className={`rounded-lg p-8 lg:p-10 transition-all duration-300 flex flex-col w-full ${plan.featured ? "bg-neutral-900 text-white shadow-xl" : "bg-white border border-gray-200 hover:shadow-lg"}`}>
-                  {plan.featured && <span className="inline-block rounded-md bg-white/20 text-white px-3 py-1 text-sm font-semibold mb-4 self-start">{t.recommended}</span>}
-                  <h3 className={`text-lg font-bold mb-2 ${plan.featured ? "text-white" : "text-gray-900"}`}>{plan.name}</h3>
-                  <div className="mb-4 flex items-baseline gap-1">
-                    <span className={`text-3xl font-bold ${plan.featured ? "text-white" : "text-gray-900"}`}>{plan.price}</span>
-                    <span className={`text-sm ${plan.featured ? "text-white/80" : "text-gray-500"}`}>{plan.unit}</span>
-                  </div>
-                  <p className={`text-sm leading-relaxed mb-6 ${plan.featured ? "text-white/80" : "text-gray-600"}`}>{plan.desc}</p>
-                  <ul className="space-y-3 mb-8 flex-1">
-                    {plan.features.map((f) => (
-                      <li key={f} className="flex items-start gap-3">
-                        <span className={`mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 ${plan.featured ? "bg-white/40" : "bg-neutral-900"}`} />
-                        <span className={`text-sm ${plan.featured ? "text-white/90" : "text-gray-600"}`}>{f}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  {plan.minTerm && (
-                    <p className={`text-xs text-center mb-3 ${plan.featured ? "text-white/80" : "text-gray-500"}`}>※{plan.minTerm}</p>
-                  )}
-                  <a href={plan.href} className={`block text-center text-sm font-semibold py-3 rounded-md transition-all duration-300 mt-auto ${plan.featured ? "bg-white text-neutral-900 hover:bg-neutral-100" : "border border-gray-200 text-gray-600 hover:border-gray-400 hover:text-gray-900"}`}>{plan.cta}</a>
-                </div>
-              </Reveal>
-            ))}
-          </div>
+          <PlansCarousel plans={t.plans} recommended={t.recommended} />
           <Reveal delay={300}>
             <p className="text-xs text-gray-500 text-center mt-8">{t.plansNote}</p>
           </Reveal>
