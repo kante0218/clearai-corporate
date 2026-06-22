@@ -3,18 +3,24 @@
 import { Children, useEffect, useRef, useState, type ReactNode } from "react";
 
 /*
- * 汎用カード横スクロール。
- * - SP: 横スワイプ(snap)＋ドット。縦スクロール量を減らす。
- * - PC(md+): 従来どおり3カラムのグリッド。
- * 自動送りなし(手動スワイプ)。childrenは1枚=1カード。
+ * カード横スクロール（SP専用、PCは従来グリッド）。
+ * - カードが4枚以上: SPでは「2×2の正方形（左上1/右上2/左下3/右下4）」を1ページとして横スワイプ。
+ * - 3枚以下: SPでは1枚ずつ横スワイプ。
+ * - PC(md+): gridClass の従来グリッドのまま（変更なし）。
+ * 縦には動かず横のみ。childrenは1枚=1カード。
  */
 export default function CardCarousel({ children, className = "", gridClass = "md:grid-cols-3" }: { children: ReactNode; className?: string; gridClass?: string }) {
   const trackRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(0);
   const items = Children.toArray(children);
+  const grid2x2 = items.length >= 4;
+  const slides: ReactNode[][] = grid2x2
+    ? Array.from({ length: Math.ceil(items.length / 4) }, (_, i) => items.slice(i * 4, i * 4 + 4))
+    : items.map((it) => [it]);
+  const single = slides.length <= 1;
 
   const indexFromScroll = (el: HTMLDivElement) => {
-    const cards = Array.from(el.querySelectorAll<HTMLElement>("[data-cc-card]"));
+    const cards = Array.from(el.querySelectorAll<HTMLElement>("[data-cc-slide]"));
     const center = el.scrollLeft + el.clientWidth / 2;
     let best = 0, bestDist = Infinity;
     cards.forEach((c, i) => {
@@ -28,9 +34,9 @@ export default function CardCarousel({ children, className = "", gridClass = "md
   const goTo = (i: number) => {
     const el = trackRef.current;
     if (!el) return;
-    const card = el.querySelectorAll<HTMLElement>("[data-cc-card]")[i];
-    if (!card) return;
-    el.scrollTo({ left: card.offsetLeft - (el.clientWidth - card.clientWidth) / 2, behavior: "smooth" });
+    const s = el.querySelectorAll<HTMLElement>("[data-cc-slide]")[i];
+    if (!s) return;
+    el.scrollTo({ left: s.offsetLeft - (el.clientWidth - s.clientWidth) / 2, behavior: "smooth" });
   };
 
   useEffect(() => {
@@ -47,28 +53,44 @@ export default function CardCarousel({ children, className = "", gridClass = "md
 
   return (
     <div className={className}>
-      <div
-        ref={trackRef}
-        className={`flex md:grid ${gridClass} gap-4 md:gap-6 items-stretch overflow-x-auto md:overflow-visible snap-x snap-proximity md:snap-none -mx-6 px-6 md:mx-0 md:px-0 pb-4 md:pb-0 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden`}
-      >
-        {items.map((child, i) => (
-          <div key={i} data-cc-card className="snap-center shrink-0 w-[80%] sm:w-[55%] md:w-full flex [&>*]:w-full">{child}</div>
-        ))}
-      </div>
-      {items.length > 1 && (
-        <div className="flex md:hidden justify-center gap-2 mt-4">
-          {items.map((_, i) => (
-            <button
-              key={i}
-              type="button"
-              aria-label={`${i + 1}枚目を表示`}
-              aria-current={active === i}
-              onClick={() => goTo(i)}
-              className={`h-2 rounded-full transition-all duration-300 ${active === i ? "w-6 bg-neutral-900" : "w-2 bg-gray-300"}`}
-            />
+      {/* SP: 横スワイプ（4枚以上は2×2、3枚以下は1枚ずつ） */}
+      <div className="md:hidden">
+        <div
+          ref={trackRef}
+          className="flex gap-4 overflow-x-auto snap-x snap-proximity -mx-6 px-6 pb-4 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+        >
+          {slides.map((slide, si) => (
+            <div
+              key={si}
+              data-cc-slide
+              className={`snap-center shrink-0 ${single ? "w-full" : grid2x2 ? "w-[92%]" : "w-[80%]"} ${grid2x2 ? "grid grid-cols-2 gap-3 items-stretch" : "flex"}`}
+            >
+              {slide.map((card, ci) => (
+                <div key={ci} data-cc-card className="flex [&>*]:w-full">{card}</div>
+              ))}
+            </div>
           ))}
         </div>
-      )}
+        {slides.length > 1 && (
+          <div className="flex justify-center gap-2 mt-4">
+            {slides.map((_, i) => (
+              <button
+                key={i}
+                type="button"
+                aria-label={`${i + 1}番目を表示`}
+                aria-current={active === i}
+                onClick={() => goTo(i)}
+                className={`h-2 rounded-full transition-all duration-300 ${active === i ? "w-6 bg-neutral-900" : "w-2 bg-gray-300"}`}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* PC(md+): 従来グリッド（変更なし） */}
+      <div className={`hidden md:grid ${gridClass} gap-6 items-stretch`}>
+        {items}
+      </div>
     </div>
   );
 }
