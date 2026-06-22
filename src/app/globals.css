@@ -501,3 +501,14 @@ details[open] summary {
     opacity: 1 !important;
   }
 }
+
+/* SP(〜639px): フォントを全体的に2〜3px小さく（sm:以上のPC指定は別レンジなので不変） */
+@media (max-width: 639px) {
+  .text-sm   { font-size: 0.8125rem !important; line-height: 1.25rem  !important; }
+  .text-base { font-size: 0.875rem  !important; line-height: 1.375rem !important; }
+  .text-lg   { font-size: 1rem      !important; line-height: 1.5rem   !important; }
+  .text-xl   { font-size: 1.125rem  !important; line-height: 1.6rem   !important; }
+  .text-2xl  { font-size: 1.3125rem !important; line-height: 1.75rem  !important; }
+  .text-3xl  { font-size: 1.625rem  !important; line-height: 2rem     !important; }
+  .text-4xl  { font-size: 2rem      !important; line-height: 2.25rem  !important; }
+}
