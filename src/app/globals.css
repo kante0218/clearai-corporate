@@ -492,3 +492,12 @@ details[open] summary {
   .gap-y-6 { row-gap: 1rem !important; }
   .gap-y-8 { row-gap: 1rem !important; }
 }
+
+/* SP: カルーセル内カードの登場アニメ(上下移動)を無効化し、横移動のみに固定 */
+@media (max-width: 767px) {
+  [data-cc-card] > *,
+  [data-plan-card] > * {
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
