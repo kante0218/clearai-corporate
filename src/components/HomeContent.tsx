@@ -550,13 +550,13 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
   return (
     <>
       {/* ═══ HERO ═══ */}
-      <section className="relative min-h-[88svh] md:min-h-screen flex items-center overflow-hidden bg-white">
+      <section className="relative min-h-[88svh] md:min-h-screen flex items-start md:items-center overflow-hidden bg-white">
         <HeroParticlesBg />
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/images/hero-robot.png"
           alt="clearAI ヒューマノイドロボットと四足歩行ロボット"
-          className="pointer-events-none select-none absolute bottom-0 right-0 z-0 h-[74%] sm:h-[90%] w-auto object-contain object-bottom md:hidden"
+          className="pointer-events-none select-none absolute bottom-0 right-0 z-0 h-[88%] sm:h-[94%] w-auto object-contain object-bottom md:hidden"
           style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateX(0)" : "translateX(24px)", transition: "opacity 1s ease 300ms, transform 1s ease 300ms" }}
         />
         {/* White fade so the headline stays readable where it overlaps the robot */}
