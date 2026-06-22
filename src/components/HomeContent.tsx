@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import HeroParticlesBg from "@/components/HeroParticlesBg";
+import CardCarousel from "@/components/CardCarousel";
 
 /* Scroll-triggered reveal - simplified, up direction only */
 function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
@@ -653,7 +654,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.whyTitle}</h2>
             <p className="text-base text-gray-500 mb-7 md:mb-14 w-full leading-relaxed">{t.whyDesc}</p>
           </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <CardCarousel>
             {t.why.map((item, i) => (
               <Reveal key={item.title} delay={i * 80}>
                 <div className="bg-gray-50 border border-gray-200 rounded-lg p-8 h-full">
@@ -663,7 +664,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
                 </div>
               </Reveal>
             ))}
-          </div>
+          </CardCarousel>
         </div>
       </section>
 
@@ -705,7 +706,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.getStartedTitle}</h2>
             <p className="text-base text-gray-500 mb-7 md:mb-14 w-full leading-relaxed">{t.getStartedDesc}</p>
           </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <CardCarousel>
             {t.steps.map((step, i) => {
               const c = colorMap[step.color];
               return (
@@ -724,7 +725,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
                 </Reveal>
               );
             })}
-          </div>
+          </CardCarousel>
         </div>
       </section>
 
@@ -740,24 +741,24 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
           <Reveal>
             <p className="text-xs font-semibold tracking-widest uppercase text-gray-400 mb-5">{t.primaryHeading}</p>
           </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch mb-7 md:mb-14">
+          <CardCarousel className="mb-7 md:mb-14">
             {t.primaryServices.map((svc, i) => (
               <Reveal key={svc.code} delay={(i % 3) * 80} className="h-full">
                 <ServiceCard svc={svc} claudeBadge={t.claudeBadge} />
               </Reveal>
             ))}
-          </div>
+          </CardCarousel>
 
           <Reveal>
             <p className="text-xs font-semibold tracking-widest uppercase text-gray-400 mb-5">{t.secondaryHeading}</p>
           </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+          <CardCarousel>
             {t.secondaryServices.map((svc, i) => (
               <Reveal key={svc.code} delay={(i % 3) * 80} className="h-full">
                 <ServiceCard svc={svc} claudeBadge={t.claudeBadge} compact />
               </Reveal>
             ))}
-          </div>
+          </CardCarousel>
         </div>
       </section>
 
