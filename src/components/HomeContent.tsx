@@ -556,7 +556,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
         <img
           src="/images/hero-robot.png"
           alt="clearAI ヒューマノイドロボットと四足歩行ロボット"
-          className="pointer-events-none select-none absolute bottom-[6%] right-0 z-0 h-[70%] sm:h-[88%] w-auto object-contain object-bottom md:hidden"
+          className="pointer-events-none select-none absolute bottom-0 right-0 z-0 h-[76%] sm:h-[90%] w-auto object-contain object-bottom md:hidden"
           style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateX(0)" : "translateX(24px)", transition: "opacity 1s ease 300ms, transform 1s ease 300ms" }}
         />
         {/* White fade so the headline stays readable where it overlaps the robot */}
@@ -594,13 +594,13 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       <section className="relative z-20 -mt-8 bg-transparent md:hidden">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
-            <div className="rounded-2xl border border-gray-200 bg-white shadow-[0_10px_40px_-15px_rgba(0,0,0,0.18)] grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-gray-100 overflow-hidden">
+            <div className="rounded-2xl border border-gray-200 bg-white shadow-[0_10px_40px_-15px_rgba(0,0,0,0.18)] grid grid-cols-3 divide-x divide-gray-100 overflow-hidden">
               {heroFeatures.map((f, i) => (
-                <div key={f.title} className="flex items-center gap-3.5 px-6 py-5">
-                  <span className="flex-shrink-0 text-neutral-900">{heroFeatureIcons[i]}</span>
-                  <div>
-                    <div className="text-sm font-bold text-gray-900 leading-tight">{f.title}</div>
-                    <div className="text-xs text-gray-500 mt-0.5">{f.sub}</div>
+                <div key={f.title} className="flex items-center gap-2 px-2.5 py-4 sm:gap-3.5 sm:px-6 sm:py-5">
+                  <span className="flex-shrink-0 text-neutral-900 [&>svg]:w-5 [&>svg]:h-5 sm:[&>svg]:w-[26px] sm:[&>svg]:h-[26px]">{heroFeatureIcons[i]}</span>
+                  <div className="min-w-0">
+                    <div className="text-[11px] sm:text-sm font-bold text-gray-900 leading-tight">{f.title}</div>
+                    <div className="text-[9px] sm:text-xs text-gray-500 mt-0.5 leading-tight">{f.sub}</div>
                   </div>
                 </div>
               ))}
