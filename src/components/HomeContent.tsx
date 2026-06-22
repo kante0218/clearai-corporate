@@ -556,13 +556,13 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
         <img
           src="/images/hero-robot.png"
           alt="clearAI ヒューマノイドロボットと四足歩行ロボット"
-          className="pointer-events-none select-none absolute bottom-0 right-0 z-0 h-[60%] sm:h-[78%] md:h-[94%] lg:h-full w-auto object-contain object-bottom"
+          className="pointer-events-none select-none absolute bottom-0 right-0 z-0 h-[60%] sm:h-[78%] w-auto object-contain object-bottom md:hidden"
           style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateX(0)" : "translateX(24px)", transition: "opacity 1s ease 300ms, transform 1s ease 300ms" }}
         />
         {/* White fade so the headline stays readable where it overlaps the robot */}
-        <div className="pointer-events-none absolute inset-0 z-[5] bg-gradient-to-r from-white via-white/85 to-transparent md:via-white/60" />
+        <div className="pointer-events-none absolute inset-0 z-[5] bg-gradient-to-r from-white via-white/85 to-transparent md:hidden" />
         <div className="relative z-10 w-full max-w-[1800px] mx-auto px-6 lg:px-10 pt-28 pb-16 md:py-24 pointer-events-none">
-          <div className="max-w-[19rem] sm:max-w-md md:max-w-lg lg:max-w-2xl text-left pointer-events-auto">
+          <div className="max-w-[19rem] sm:max-w-md md:max-w-2xl lg:max-w-3xl text-left pointer-events-auto">
             <div className="flex flex-wrap justify-start gap-2 mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "200ms" }}>
               {t.heroChips.map((tag) => (
                 <span key={tag} className="inline-flex items-center rounded-md bg-neutral-100 text-neutral-900 border border-neutral-200 px-3 py-1 text-xs font-semibold">
@@ -573,7 +573,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
             <h1 className="text-[1.9rem] sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-[1.12] tracking-tight mb-8 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0)" : "translateY(24px)", transitionDelay: "400ms" }}>
               {t.heroTitle}
             </h1>
-            <p className="text-base md:text-lg text-gray-600 leading-relaxed max-w-[17rem] sm:max-w-sm md:max-w-md lg:max-w-xl mb-10 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "650ms" }}>
+            <p className="text-base md:text-lg text-gray-600 leading-relaxed max-w-[17rem] sm:max-w-sm md:max-w-xl mb-10 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "650ms" }}>
               {t.heroDesc}
             </p>
             <div className="flex flex-wrap justify-start items-center gap-5 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "850ms" }}>
@@ -591,7 +591,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       </section>
 
       {/* ═══ HERO TRUST CARD ═══ */}
-      <section className="relative z-20 -mt-8 md:-mt-14 bg-transparent">
+      <section className="relative z-20 -mt-8 bg-transparent md:hidden">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <div className="rounded-2xl border border-gray-200 bg-white shadow-[0_10px_40px_-15px_rgba(0,0,0,0.18)] grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-gray-100 overflow-hidden">
