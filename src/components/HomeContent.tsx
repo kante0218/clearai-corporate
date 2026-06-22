@@ -556,11 +556,11 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
         <img
           src="/images/hero-robot.png"
           alt="clearAI ヒューマノイドロボットと四足歩行ロボット"
-          className="pointer-events-none select-none absolute bottom-0 right-0 z-0 h-[60%] sm:h-[78%] w-auto object-contain object-bottom md:hidden"
+          className="pointer-events-none select-none absolute bottom-[6%] right-0 z-0 h-[70%] sm:h-[88%] w-auto object-contain object-bottom md:hidden"
           style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateX(0)" : "translateX(24px)", transition: "opacity 1s ease 300ms, transform 1s ease 300ms" }}
         />
         {/* White fade so the headline stays readable where it overlaps the robot */}
-        <div className="pointer-events-none absolute inset-0 z-[5] bg-gradient-to-r from-white via-white/85 to-transparent md:hidden" />
+        <div className="pointer-events-none absolute inset-0 z-[5] bg-gradient-to-r from-white via-white/45 via-40% to-transparent to-75% md:hidden" />
         <div className="relative z-10 w-full max-w-[1800px] mx-auto px-6 lg:px-10 pt-28 pb-16 md:py-24 pointer-events-none">
           <div className="max-w-[19rem] sm:max-w-md md:max-w-2xl lg:max-w-3xl text-left pointer-events-auto">
             <div className="flex flex-wrap justify-start gap-2 mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "200ms" }}>
