@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import PricingCarousel from "@/components/PricingCarousel";
+import CardCarousel from "@/components/CardCarousel";
 
 function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -226,16 +227,16 @@ export default function AdvertisingPage() {
             <Label>{t.challengesLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-snug mb-8 w-full">{t.challengesTitle}</h2>
           </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <CardCarousel gridClass="md:grid-cols-3">
             {t.challenges.map((item, i) => (
-              <Reveal key={item.title} delay={i * 100}>
-                <div className="rounded-lg border border-gray-200 bg-white p-8 hover:shadow-lg transition-all duration-300 h-full">
+              <Reveal key={item.title} delay={i * 100} className="flex">
+                <div className="rounded-lg border border-gray-200 bg-white p-8 hover:shadow-lg transition-all duration-300 h-full w-full">
                   <h3 className="text-lg font-bold text-gray-900 mb-3">{item.title}</h3>
                   <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
                 </div>
               </Reveal>
             ))}
-          </div>
+          </CardCarousel>
         </div>
       </section>
 
@@ -249,17 +250,17 @@ export default function AdvertisingPage() {
               {t.servicesDesc}
             </p>
           </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <CardCarousel gridClass="md:grid-cols-2">
             {t.services.map((item, i) => (
-              <Reveal key={item.num} delay={i * 80}>
-                <div className="bg-white rounded-lg border border-gray-200 p-8 hover:border-neutral-300 hover:shadow-lg transition-all duration-300 h-full">
+              <Reveal key={item.num} delay={i * 80} className="flex">
+                <div className="bg-white rounded-lg border border-gray-200 p-8 hover:border-neutral-300 hover:shadow-lg transition-all duration-300 h-full w-full">
                   <span className="text-sm font-bold text-neutral-900 mb-3 inline-block">{item.num}</span>
                   <h3 className="text-xl font-bold text-gray-900 mb-4">{item.title}</h3>
                   <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
                 </div>
               </Reveal>
             ))}
-          </div>
+          </CardCarousel>
         </div>
       </section>
 
@@ -270,16 +271,16 @@ export default function AdvertisingPage() {
             <Label>{t.channelsLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-8">{t.channelsTitle}</h2>
           </Reveal>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <CardCarousel gridClass="md:grid-cols-4">
             {t.channels.map((f, i) => (
-              <Reveal key={f.title} delay={i * 80}>
-                <div className="rounded-xl border border-gray-200 bg-white p-5 h-full">
+              <Reveal key={f.title} delay={i * 80} className="flex">
+                <div className="rounded-xl border border-gray-200 bg-white p-5 h-full w-full">
                   <h3 className="text-sm font-bold text-gray-900 mb-2">{f.title}</h3>
                   <p className="text-xs text-gray-600 leading-relaxed">{f.desc}</p>
                 </div>
               </Reveal>
             ))}
-          </div>
+          </CardCarousel>
         </div>
       </section>
 
@@ -290,17 +291,17 @@ export default function AdvertisingPage() {
             <Label>{t.featuresLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-8">{t.featuresTitle}</h2>
           </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <CardCarousel gridClass="md:grid-cols-2">
             {t.features.map((item, i) => (
-              <Reveal key={item.title} delay={i * 100}>
-                <div className="rounded-lg border border-gray-200 bg-white p-8 hover:shadow-lg transition-all duration-300 h-full">
+              <Reveal key={item.title} delay={i * 100} className="flex">
+                <div className="rounded-lg border border-gray-200 bg-white p-8 hover:shadow-lg transition-all duration-300 h-full w-full">
                   <span className="text-xs font-semibold text-neutral-900 tracking-widest">{item.num}</span>
                   <h3 className="text-lg font-bold text-gray-900 mt-2 mb-3">{item.title}</h3>
                   <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
                 </div>
               </Reveal>
             ))}
-          </div>
+          </CardCarousel>
         </div>
       </section>
 

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
+import CardCarousel from "@/components/CardCarousel";
 
 function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -267,7 +268,7 @@ export default function ResearchPage() {
             <h2 className="text-3xl font-bold text-gray-900 leading-snug mb-6 w-full">{t.whyTitle}</h2>
             <p className="text-sm text-gray-500 mb-8 w-full leading-relaxed">{t.whyDesc}</p>
           </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <CardCarousel gridClass="md:grid-cols-2">
             {t.why.map((item, i) => (
               <Reveal key={item.num} delay={i * 100}>
                 <div className="rounded-lg border border-gray-200 bg-white p-8 hover:shadow-lg transition-all duration-300 h-full">
@@ -277,7 +278,7 @@ export default function ResearchPage() {
                 </div>
               </Reveal>
             ))}
-          </div>
+          </CardCarousel>
         </div>
       </section>
 
@@ -289,7 +290,7 @@ export default function ResearchPage() {
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.areasTitle}</h2>
             <p className="text-sm text-gray-500 mb-8 w-full leading-relaxed">{t.areasDesc}</p>
           </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <CardCarousel gridClass="md:grid-cols-2 lg:grid-cols-3">
             {t.areas.map((item, i) => (
               <Reveal key={item.title} delay={i * 80}>
                 <div className="h-full rounded-lg border border-gray-200 bg-white p-6 lg:p-7 hover:shadow-lg transition-all duration-300 flex flex-col">
@@ -307,7 +308,7 @@ export default function ResearchPage() {
                 </div>
               </Reveal>
             ))}
-          </div>
+          </CardCarousel>
         </div>
       </section>
 
@@ -343,7 +344,7 @@ export default function ResearchPage() {
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.outputsTitle}</h2>
             <p className="text-sm text-gray-500 mb-8 w-full leading-relaxed">{t.outputsDesc}</p>
           </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <CardCarousel gridClass="md:grid-cols-2 lg:grid-cols-3">
             {t.outputs.map((item, i) => (
               <Reveal key={item.title} delay={i * 80}>
                 <div className="h-full rounded-lg border border-gray-200 bg-white p-6 lg:p-7">
@@ -352,7 +353,7 @@ export default function ResearchPage() {
                 </div>
               </Reveal>
             ))}
-          </div>
+          </CardCarousel>
         </div>
       </section>
 
@@ -364,7 +365,7 @@ export default function ResearchPage() {
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.techTitle}</h2>
             <p className="text-sm text-gray-500 mb-8 w-full leading-relaxed">{t.techDesc}</p>
           </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <CardCarousel gridClass="md:grid-cols-2 lg:grid-cols-3">
             {t.tech.map((item, i) => (
               <Reveal key={item.category} delay={i * 80}>
                 <div className="h-full rounded-lg border border-gray-200 bg-gray-50 p-6">
@@ -380,7 +381,7 @@ export default function ResearchPage() {
                 </div>
               </Reveal>
             ))}
-          </div>
+          </CardCarousel>
         </div>
       </section>
 
@@ -392,7 +393,7 @@ export default function ResearchPage() {
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.engageTitle}</h2>
             <p className="text-sm text-gray-500 mb-8 w-full leading-relaxed">{t.engageDesc}</p>
           </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <CardCarousel gridClass="md:grid-cols-3">
             {t.engage.map((item, i) => (
               <Reveal key={item.title} delay={i * 80}>
                 <div className="h-full rounded-lg border border-gray-200 bg-white p-6 lg:p-7 hover:shadow-lg transition-all duration-300 flex flex-col">
@@ -410,7 +411,7 @@ export default function ResearchPage() {
                 </div>
               </Reveal>
             ))}
-          </div>
+          </CardCarousel>
         </div>
       </section>
 

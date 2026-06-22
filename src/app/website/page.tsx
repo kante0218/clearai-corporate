@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import PricingCarousel from "@/components/PricingCarousel";
+import CardCarousel from "@/components/CardCarousel";
 
 function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -305,7 +306,7 @@ export default function WebsitePage() {
             <Label>Why Now</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-snug mb-8 w-full">{t.whyTitle}</h2>
           </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <CardCarousel gridClass="md:grid-cols-3">
             {t.whyItems.map((item, i) => (
               <Reveal key={item.title} delay={i * 100}>
                 <div className="rounded-lg border border-gray-200 bg-white p-8 hover:shadow-lg transition-all duration-300 h-full">
@@ -314,7 +315,7 @@ export default function WebsitePage() {
                 </div>
               </Reveal>
             ))}
-          </div>
+          </CardCarousel>
         </div>
       </section>
 
@@ -328,7 +329,7 @@ export default function WebsitePage() {
               {t.typesDesc}
             </p>
           </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <CardCarousel gridClass="md:grid-cols-2">
             {t.typeItems.map((item, i) => (
               <Reveal key={item.num} delay={i * 80}>
                 <div className="bg-white rounded-lg border border-gray-200 p-8 hover:border-neutral-300 hover:shadow-lg transition-all duration-300 h-full">
@@ -338,7 +339,7 @@ export default function WebsitePage() {
                 </div>
               </Reveal>
             ))}
-          </div>
+          </CardCarousel>
         </div>
       </section>
 
@@ -349,7 +350,7 @@ export default function WebsitePage() {
             <Label>Tech Stack</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-8">{t.stackTitle}</h2>
           </Reveal>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <CardCarousel gridClass="md:grid-cols-4">
             {t.stackItems.map((f, i) => (
               <Reveal key={f.title} delay={i * 80}>
                 <div className="rounded-xl border border-gray-200 bg-white p-5 h-full">
@@ -358,7 +359,7 @@ export default function WebsitePage() {
                 </div>
               </Reveal>
             ))}
-          </div>
+          </CardCarousel>
           <Reveal delay={200}>
             <p className="text-xs text-gray-500 mt-6">{t.stackNote}</p>
           </Reveal>
@@ -372,7 +373,7 @@ export default function WebsitePage() {
             <Label>Process</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-8">{t.processTitle}</h2>
           </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <CardCarousel gridClass="md:grid-cols-2">
             {t.processItems.map((item, i) => (
               <Reveal key={item.title} delay={i * 100}>
                 <div className="rounded-lg border border-gray-200 bg-white p-8 hover:shadow-lg transition-all duration-300 h-full">
@@ -382,7 +383,7 @@ export default function WebsitePage() {
                 </div>
               </Reveal>
             ))}
-          </div>
+          </CardCarousel>
         </div>
       </section>
 
