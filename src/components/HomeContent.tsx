@@ -524,6 +524,28 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
   const t = COPY[lang];
   const [heroLoaded, setHeroLoaded] = useState(false);
   useEffect(() => { setTimeout(() => setHeroLoaded(true), 100); }, []);
+  const heroFeatures = lang === "ja"
+    ? [
+        { title: "伴走支援", sub: "責任を持って支援" },
+        { title: "安心・安全", sub: "信頼の技術と運用" },
+        { title: "中小企業特化", sub: "業種・業界に最適化" },
+      ]
+    : [
+        { title: "Hands-on support", sub: "We see it through" },
+        { title: "Safe & reliable", sub: "Trusted tech & operations" },
+        { title: "SME-focused", sub: "Tailored to your industry" },
+      ];
+  const heroFeatureIcons = [
+    (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="m11 17 2 2a1 1 0 1 0 3-3" /><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4" /><path d="m21 3 1 11h-2" /><path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3" /><path d="M3 4h8" /></svg>
+    ),
+    (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /><path d="m9 12 2 2 4-4" /></svg>
+    ),
+    (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z" /><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2" /><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2" /><path d="M10 6h4" /><path d="M10 10h4" /><path d="M10 14h4" /><path d="M10 18h4" /></svg>
+    ),
+  ];
 
   return (
     <>
@@ -534,7 +556,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
         <img
           src="/images/hero-robot.png"
           alt="clearAI ヒューマノイドロボットと四足歩行ロボット"
-          className="pointer-events-none select-none absolute bottom-0 right-0 sm:right-2 lg:right-8 z-0 h-[48%] sm:h-[66%] md:h-[82%] lg:h-[90%] w-auto object-contain object-bottom"
+          className="pointer-events-none select-none absolute bottom-0 right-0 z-0 h-[58%] sm:h-[74%] md:h-[92%] lg:h-full w-auto object-contain object-bottom"
           style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateX(0)" : "translateX(24px)", transition: "opacity 1s ease 300ms, transform 1s ease 300ms" }}
         />
         <div className="relative z-10 w-full max-w-[1800px] mx-auto px-6 lg:px-10 pt-28 pb-16 md:py-24 pointer-events-none">
@@ -563,6 +585,25 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
               </Link>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* ═══ HERO TRUST CARD ═══ */}
+      <section className="relative z-20 -mt-8 md:-mt-14 bg-transparent">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
+          <Reveal>
+            <div className="rounded-2xl border border-gray-200 bg-white shadow-[0_10px_40px_-15px_rgba(0,0,0,0.18)] grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-gray-100 overflow-hidden">
+              {heroFeatures.map((f, i) => (
+                <div key={f.title} className="flex items-center gap-3.5 px-6 py-5">
+                  <span className="flex-shrink-0 text-neutral-900">{heroFeatureIcons[i]}</span>
+                  <div>
+                    <div className="text-sm font-bold text-gray-900 leading-tight">{f.title}</div>
+                    <div className="text-xs text-gray-500 mt-0.5">{f.sub}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Reveal>
         </div>
       </section>
 
