@@ -563,7 +563,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
         <div className="pointer-events-none absolute inset-0 z-[5] bg-gradient-to-r from-white via-white/45 via-40% to-transparent to-75% md:hidden" />
         <div className="relative z-10 w-full max-w-[1800px] mx-auto px-6 lg:px-10 pt-28 pb-16 md:py-24 pointer-events-none">
           <div className="max-w-[19rem] sm:max-w-md md:max-w-2xl lg:max-w-3xl text-left pointer-events-auto">
-            <div className="flex flex-wrap justify-start gap-2 mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "200ms" }}>
+            <div className="flex flex-col items-start md:flex-row md:flex-wrap md:justify-start gap-2 mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "200ms" }}>
               {t.heroChips.map((tag) => (
                 <span key={tag} className="inline-flex items-center rounded-md bg-neutral-100 text-neutral-900 border border-neutral-200 px-3 py-1 text-xs font-semibold">
                   {tag}
