@@ -556,7 +556,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
         <img
           src="/images/hero-robot.png"
           alt="clearAI ヒューマノイドロボットと四足歩行ロボット"
-          className="pointer-events-none select-none absolute bottom-0 -right-6 sm:right-0 z-0 h-[78%] sm:h-[88%] md:h-full lg:h-full w-auto object-contain object-bottom"
+          className="pointer-events-none select-none absolute bottom-0 right-0 z-0 h-[60%] sm:h-[78%] md:h-[94%] lg:h-full w-auto object-contain object-bottom"
           style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateX(0)" : "translateX(24px)", transition: "opacity 1s ease 300ms, transform 1s ease 300ms" }}
         />
         {/* White fade so the headline stays readable where it overlaps the robot */}
