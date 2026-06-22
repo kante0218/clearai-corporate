@@ -554,7 +554,7 @@ export default function RobotRentalPage() {
                     </div>
                     <p className="text-sm text-gray-500 leading-relaxed w-full">{group.summary}</p>
                   </div>
-                  <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
+                  <div className="grid grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-5">
                     {group.robots.map((item, i) => {
                       const available = item.status === "booking" || Boolean(item.buyUrl);
                       return (
