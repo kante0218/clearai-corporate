@@ -562,7 +562,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
         {/* White fade so the headline stays readable where it overlaps the robot */}
         <div className="pointer-events-none absolute inset-0 z-[5] bg-gradient-to-r from-white via-white/85 to-transparent md:via-white/60" />
         <div className="relative z-10 w-full max-w-[1800px] mx-auto px-6 lg:px-10 pt-28 pb-16 md:py-24 pointer-events-none">
-          <div className="max-w-2xl lg:max-w-3xl text-left pointer-events-auto">
+          <div className="max-w-[19rem] sm:max-w-md md:max-w-lg lg:max-w-2xl text-left pointer-events-auto">
             <div className="flex flex-wrap justify-start gap-2 mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "200ms" }}>
               {t.heroChips.map((tag) => (
                 <span key={tag} className="inline-flex items-center rounded-md bg-neutral-100 text-neutral-900 border border-neutral-200 px-3 py-1 text-xs font-semibold">
@@ -570,10 +570,10 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
                 </span>
               ))}
             </div>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-[1.12] tracking-tight mb-8 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0)" : "translateY(24px)", transitionDelay: "400ms" }}>
+            <h1 className="text-[1.9rem] sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-[1.12] tracking-tight mb-8 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0)" : "translateY(24px)", transitionDelay: "400ms" }}>
               {t.heroTitle}
             </h1>
-            <p className="text-base md:text-lg text-gray-600 leading-relaxed max-w-xl mb-10 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "650ms" }}>
+            <p className="text-base md:text-lg text-gray-600 leading-relaxed max-w-[17rem] sm:max-w-sm md:max-w-md lg:max-w-xl mb-10 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "650ms" }}>
               {t.heroDesc}
             </p>
             <div className="flex flex-wrap justify-start items-center gap-5 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "850ms" }}>
