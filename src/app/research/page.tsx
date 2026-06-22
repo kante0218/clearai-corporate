@@ -226,6 +226,7 @@ const COPY: Record<"ja" | "en", Copy> = {
 export default function ResearchPage() {
   const { lang } = useLanguage();
   const t = COPY[lang];
+  const diagram = lang === "ja" ? "/images/research-overview.png" : "/images/research-overview-en.png";
 
   return (
     <>
@@ -237,7 +238,7 @@ export default function ResearchPage() {
           <p className="text-base text-gray-600 leading-relaxed w-full">{t.heroDesc}</p>
           <figure className="mt-8">
             <a
-              href="/images/research-overview.png"
+              href={diagram}
               target="_blank"
               rel="noopener noreferrer"
               className="block group"
@@ -245,7 +246,7 @@ export default function ResearchPage() {
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/images/research-overview.png"
+                src={diagram}
                 alt={lang === "ja" ? "ヒューマノイド開発の全体像：Sim2Realパイプライン、AI/ロボットOS開発、ハードウェア開発、ソフトとハードの両輪" : "Overview of humanoid development: Sim2Real pipeline, AI/Robot OS, hardware development, software-and-hardware dual approach"}
                 loading="lazy"
                 className="w-full h-auto rounded-lg border border-gray-200 bg-white transition-shadow duration-300 group-hover:shadow-lg"
