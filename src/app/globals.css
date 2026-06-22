@@ -451,3 +451,44 @@ details[open] summary {
     animation: none !important;
   }
 }
+
+/* ─────────────────────────────────────────────────────────────
+   SP(スマホ)専用: 縦余白を圧縮してスクロール量を削減。
+   md:/lg: は別セレクタのためPCは不変。pt-20/24/28はヘッダー
+   クリアランス確保のため対象外。
+   ───────────────────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  .py-8  { padding-top: 1.5rem  !important; padding-bottom: 1.5rem  !important; }
+  .py-12 { padding-top: 1.75rem !important; padding-bottom: 1.75rem !important; }
+  .py-14 { padding-top: 2rem    !important; padding-bottom: 2rem    !important; }
+  .py-16 { padding-top: 2rem    !important; padding-bottom: 2rem    !important; }
+  .py-20 { padding-top: 2.25rem !important; padding-bottom: 2.25rem !important; }
+  .py-24 { padding-top: 2.5rem  !important; padding-bottom: 2.5rem  !important; }
+  .py-28 { padding-top: 2.5rem  !important; padding-bottom: 2.5rem  !important; }
+
+  .pt-8  { padding-top: 1rem    !important; }
+  .pt-10 { padding-top: 1.25rem !important; }
+  .pt-12 { padding-top: 1.5rem  !important; }
+
+  .pb-8  { padding-bottom: 1.25rem !important; }
+  .pb-10 { padding-bottom: 1.5rem  !important; }
+  .pb-12 { padding-bottom: 1.75rem !important; }
+  .pb-14 { padding-bottom: 2rem    !important; }
+  .pb-16 { padding-bottom: 2rem    !important; }
+  .pb-20 { padding-bottom: 2.25rem !important; }
+
+  .mb-8  { margin-bottom: 1rem    !important; }
+  .mb-10 { margin-bottom: 1.25rem !important; }
+  .mb-12 { margin-bottom: 1.5rem  !important; }
+  .mb-14 { margin-bottom: 1.5rem  !important; }
+  .mb-16 { margin-bottom: 1.75rem !important; }
+
+  .mt-8  { margin-top: 1rem    !important; }
+  .mt-10 { margin-top: 1.25rem !important; }
+  .mt-12 { margin-top: 1.5rem  !important; }
+
+  .gap-6   { gap: 1rem    !important; }
+  .gap-8   { gap: 1.25rem !important; }
+  .gap-y-6 { row-gap: 1rem !important; }
+  .gap-y-8 { row-gap: 1rem !important; }
+}
