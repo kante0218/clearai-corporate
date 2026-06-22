@@ -235,6 +235,26 @@ export default function ResearchPage() {
           <p className="text-sm font-semibold text-neutral-900 mb-3">{t.heroKicker}</p>
           <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4">{t.heroTitle}</h1>
           <p className="text-base text-gray-600 leading-relaxed w-full">{t.heroDesc}</p>
+          <figure className="mt-8">
+            <a
+              href="/images/research-overview.png"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block group"
+              aria-label={lang === "ja" ? "ヒューマノイド開発の全体像（タップで拡大）" : "Humanoid development overview (tap to enlarge)"}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/research-overview.png"
+                alt={lang === "ja" ? "ヒューマノイド開発の全体像：Sim2Realパイプライン、AI/ロボットOS開発、ハードウェア開発、ソフトとハードの両輪" : "Overview of humanoid development: Sim2Real pipeline, AI/Robot OS, hardware development, software-and-hardware dual approach"}
+                loading="lazy"
+                className="w-full h-auto rounded-lg border border-gray-200 bg-white transition-shadow duration-300 group-hover:shadow-lg"
+              />
+            </a>
+            <figcaption className="mt-2 text-xs text-gray-400 text-center md:hidden">
+              {lang === "ja" ? "タップで拡大" : "Tap to enlarge"}
+            </figcaption>
+          </figure>
         </div>
       </section>
 
