@@ -83,7 +83,7 @@ export default function PricingCarousel({ children }: { children: ReactNode }) {
         className="flex md:grid md:grid-cols-3 gap-5 md:gap-6 items-stretch overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none -mx-6 px-6 md:mx-0 md:px-0 pb-4 md:pb-0 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
       >
         {items.map((child, i) => (
-          <div key={i} data-plan-card className="snap-center shrink-0 w-[82%] sm:w-[60%] md:w-full flex">{child}</div>
+          <div key={i} data-plan-card className="snap-center shrink-0 w-[82%] sm:w-[60%] md:w-full flex [&>*]:w-full">{child}</div>
         ))}
       </div>
       {items.length > 1 && (
