@@ -610,9 +610,9 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       </section>
 
       {/* ═══ NEWS / BLOG ═══ */}
-      <section className="pt-8 pb-14 md:pt-10 md:pb-20 lg:pt-12 lg:pb-28 bg-gray-50">
+      <section className="pt-4 pb-8 md:pt-10 md:pb-20 lg:pt-12 lg:pb-28 bg-gray-50">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <div className="flex items-end justify-between mb-12">
+          <div className="flex items-end justify-between mb-6 md:mb-12">
             <div>
               <SectionLabel>{t.newsLabel}</SectionLabel>
               <h2 className="text-3xl font-bold text-gray-900 leading-tight">{t.newsTitle}</h2>
@@ -629,12 +629,12 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       </section>
 
       {/* ═══ TRUST METRICS ═══ */}
-      <section className="py-12 bg-white border-b border-gray-100">
+      <section className="py-6 md:py-12 bg-white border-b border-gray-100">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-y-8 gap-x-4 md:gap-0 md:divide-x divide-gray-200">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-y-2 gap-x-4 md:gap-0 md:divide-x divide-gray-200">
               {t.trustStats.map((stat) => (
-                <div key={stat.label} className="flex flex-col items-center justify-center py-6 px-4 text-center">
+                <div key={stat.label} className="flex flex-col items-center justify-center py-3 md:py-6 px-4 text-center">
                   <span className="text-lg font-bold text-gray-900">{stat.value}</span>
                   <span className="text-xs text-gray-500 mt-1">{stat.label}</span>
                 </div>
@@ -646,12 +646,12 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       </section>
 
       {/* ═══ WHY clearAI ═══ */}
-      <section className="py-14 md:py-20 lg:py-28 bg-white">
+      <section className="py-8 md:py-20 lg:py-28 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <SectionLabel>{t.whyLabel}</SectionLabel>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.whyTitle}</h2>
-            <p className="text-base text-gray-500 mb-14 w-full leading-relaxed">{t.whyDesc}</p>
+            <p className="text-base text-gray-500 mb-7 md:mb-14 w-full leading-relaxed">{t.whyDesc}</p>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {t.why.map((item, i) => (
@@ -668,7 +668,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       </section>
 
       {/* ═══ VISION ═══ */}
-      <section className="py-14 md:py-20 lg:py-28 bg-gray-50">
+      <section className="py-8 md:py-20 lg:py-28 bg-gray-50">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-start">
             <Reveal>
@@ -698,12 +698,12 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       </section>
 
       {/* ═══ ENTRY PRODUCTS ═══ */}
-      <section className="py-14 md:py-20 lg:py-28 bg-white border-t border-gray-100">
+      <section className="py-8 md:py-20 lg:py-28 bg-white border-t border-gray-100">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <SectionLabel>{t.getStartedLabel}</SectionLabel>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.getStartedTitle}</h2>
-            <p className="text-base text-gray-500 mb-14 w-full leading-relaxed">{t.getStartedDesc}</p>
+            <p className="text-base text-gray-500 mb-7 md:mb-14 w-full leading-relaxed">{t.getStartedDesc}</p>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {t.steps.map((step, i) => {
@@ -729,18 +729,18 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       </section>
 
       {/* ═══ SERVICES ═══ */}
-      <section id="services" className="py-14 md:py-20 lg:py-28 bg-gray-50">
+      <section id="services" className="py-8 md:py-20 lg:py-28 bg-gray-50">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <SectionLabel>{t.servicesLabel}</SectionLabel>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.servicesTitle}</h2>
-            <p className="text-base text-gray-500 mb-12 w-full leading-relaxed">{t.servicesDesc}</p>
+            <p className="text-base text-gray-500 mb-6 md:mb-12 w-full leading-relaxed">{t.servicesDesc}</p>
           </Reveal>
 
           <Reveal>
             <p className="text-xs font-semibold tracking-widest uppercase text-gray-400 mb-5">{t.primaryHeading}</p>
           </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch mb-14">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch mb-7 md:mb-14">
             {t.primaryServices.map((svc, i) => (
               <Reveal key={svc.code} delay={(i % 3) * 80} className="h-full">
                 <ServiceCard svc={svc} claudeBadge={t.claudeBadge} />
@@ -762,11 +762,11 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       </section>
 
       {/* ═══ APPROACH ═══ */}
-      <section className="py-14 md:py-20 lg:py-28 bg-white">
+      <section className="py-8 md:py-20 lg:py-28 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <SectionLabel>{t.approachLabel}</SectionLabel>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-14">{t.approachTitle}</h2>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-7 md:mb-14">{t.approachTitle}</h2>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {t.approach.map((item, i) => (
@@ -783,12 +783,12 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       </section>
 
       {/* ═══ PROCESS ═══ */}
-      <section className="py-14 md:py-20 lg:py-28 bg-gray-50">
+      <section className="py-8 md:py-20 lg:py-28 bg-gray-50">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <SectionLabel>{t.processLabel}</SectionLabel>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.processTitle}</h2>
-            <p className="text-base text-gray-500 mb-14 w-full leading-relaxed">{t.processDesc}</p>
+            <p className="text-base text-gray-500 mb-7 md:mb-14 w-full leading-relaxed">{t.processDesc}</p>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {t.process.map((step, i) => (
@@ -805,12 +805,12 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       </section>
 
       {/* ═══ TEAM ═══ */}
-      <section className="py-14 md:py-20 lg:py-28 bg-white">
+      <section className="py-8 md:py-20 lg:py-28 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <SectionLabel>{t.teamLabel}</SectionLabel>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.teamTitle}</h2>
-            <p className="text-base text-gray-500 mb-14 w-full leading-relaxed">{t.teamDesc}</p>
+            <p className="text-base text-gray-500 mb-7 md:mb-14 w-full leading-relaxed">{t.teamDesc}</p>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
             <Reveal delay={0} className="h-full">
@@ -842,12 +842,12 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       </section>
 
       {/* ═══ TECH STACK ═══ */}
-      <section className="py-14 md:py-20 lg:py-28 bg-gray-50">
+      <section className="py-8 md:py-20 lg:py-28 bg-gray-50">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <SectionLabel>{t.techLabel}</SectionLabel>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.techTitle}</h2>
-            <p className="text-base text-gray-500 w-full leading-relaxed mb-14">{t.techDesc}</p>
+            <p className="text-base text-gray-500 w-full leading-relaxed mb-7 md:mb-14">{t.techDesc}</p>
           </Reveal>
           <div className="space-y-0">
             {TECH_GROUPS.map((group, gi) => (
@@ -892,7 +892,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       </section>
 
       {/* ═══ FAQ TEASER ═══ */}
-      <section className="py-14 md:py-20 lg:py-28 bg-white">
+      <section className="py-8 md:py-20 lg:py-28 bg-white">
         <div className="max-w-3xl mx-auto px-6 lg:px-8">
           <Reveal>
             <SectionLabel>{t.faqLabel}</SectionLabel>
@@ -919,10 +919,10 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       </section>
 
       {/* ═══ CTA ═══ */}
-      <section className="py-14 md:py-20 lg:py-28 bg-white border-t border-gray-100">
+      <section className="py-8 md:py-20 lg:py-28 bg-white border-t border-gray-100">
         <div className="max-w-4xl mx-auto px-6">
           <Reveal>
-            <div className="text-center mb-12">
+            <div className="text-center mb-6 md:mb-12">
               <SectionLabel>{t.ctaLabel}</SectionLabel>
               <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-6">{t.ctaTitle}</h2>
               <p className="text-base text-gray-600 leading-relaxed max-w-lg mx-auto">{t.ctaDesc}</p>
