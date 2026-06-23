@@ -913,7 +913,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
           <div className="mb-8">
             {t.faq.map((item, i) => (
               <Reveal key={i} delay={i * 70}>
-                <details className="border-b border-gray-100 py-5 group">
+                <details className="border-b border-gray-100 py-2.5 md:py-5 group">
                   <summary className="font-semibold text-gray-900 cursor-pointer list-none flex items-center justify-between gap-4">
                     <span>{item.q}</span>
                     <span className="text-gray-400 text-lg leading-none flex-shrink-0 transition-transform duration-300 group-open:rotate-45">+</span>

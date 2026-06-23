@@ -108,11 +108,11 @@ export default function FaqPage() {
             {faqItems.map((f, i) => (
               <Reveal key={i} delay={i * 30}>
                 <details className="group bg-white border border-gray-200 rounded-xl overflow-hidden">
-                  <summary className="cursor-pointer list-none p-5 flex items-start justify-between gap-4 hover:bg-gray-50 transition-colors">
+                  <summary className="cursor-pointer list-none p-3.5 md:p-5 flex items-start justify-between gap-4 hover:bg-gray-50 transition-colors">
                     <span className="text-sm lg:text-base font-semibold text-gray-900">{f.q[lang]}</span>
                     <span className="flex-shrink-0 text-neutral-900 text-xl transition-transform group-open:rotate-45">+</span>
                   </summary>
-                  <div className="px-5 pb-5 text-sm text-gray-600 leading-relaxed">{f.a[lang]}</div>
+                  <div className="px-3.5 pb-3.5 md:px-5 md:pb-5 text-sm text-gray-600 leading-relaxed">{f.a[lang]}</div>
                 </details>
               </Reveal>
             ))}
