@@ -232,14 +232,14 @@ export default function Header() {
                           onClick={() => setMobileExpanded(expanded ? null : item.label)}
                           aria-label={`${item.label}${h.subMenuAria}`}
                           aria-expanded={expanded}
-                          className="p-3 text-gray-500"
+                          className="p-3 -mr-1 text-gray-700"
                         >
                           <svg
-                            className={`w-4 h-4 transition-transform duration-300 ${expanded ? "rotate-180" : ""}`}
+                            className={`w-7 h-7 transition-transform duration-300 ${expanded ? "rotate-180" : ""}`}
                             viewBox="0 0 16 16"
                             fill="none"
                             stroke="currentColor"
-                            strokeWidth="1.5"
+                            strokeWidth="2"
                           >
                             <path d="M4 6L8 10L12 6" strokeLinecap="round" strokeLinejoin="round" />
                           </svg>
