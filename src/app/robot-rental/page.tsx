@@ -519,14 +519,14 @@ export default function RobotRentalPage() {
           </Reveal>
           {/* MAKER TABS */}
           <Reveal>
-            <div className="mb-10 flex flex-wrap gap-2">
+            <div className="mb-10 flex gap-2 overflow-x-auto -mx-6 px-6 pb-1 snap-x [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
               {[{ key: "all", label: t.lineupAll }, ...t.lineupGroups.map((g) => ({ key: g.company, label: g.company }))].map((tab) => (
                 <button
                   key={tab.key}
                   type="button"
                   onClick={() => setMaker(tab.key)}
                   aria-pressed={maker === tab.key}
-                  className={`rounded-md px-4 py-2 text-sm font-semibold transition-colors duration-200 ${
+                  className={`shrink-0 whitespace-nowrap snap-start rounded-md px-4 py-2 text-sm font-semibold transition-colors duration-200 ${
                     maker === tab.key
                       ? "bg-neutral-900 text-white shadow-sm"
                       : "bg-white border border-gray-200 text-gray-600 hover:border-gray-400 hover:text-gray-900"
