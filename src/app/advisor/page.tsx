@@ -132,7 +132,7 @@ function PlansCarousel({ plans, recommended }: { plans: Plan[]; recommended: str
         ))}
       </div>
       {/* Pagination dots (mobile only) */}
-      <div className="flex md:hidden justify-center gap-2 mt-6">
+      <div className="flex md:hidden justify-center gap-1.5 mt-3">
         {plans.map((plan, i) => (
           <button
             key={plan.name}
@@ -140,7 +140,7 @@ function PlansCarousel({ plans, recommended }: { plans: Plan[]; recommended: str
             aria-label={`${plan.name}を表示`}
             aria-current={active === i}
             onClick={() => { pause(); goTo(i); resumeLater(); }}
-            className={`h-2 rounded-full transition-all duration-300 ${active === i ? "w-6 bg-neutral-900" : "w-2 bg-gray-300"}`}
+            className={`rounded-full transition-all duration-300 ${active === i ? "w-2 h-2 bg-neutral-900" : "w-1.5 h-1.5 bg-gray-300"}`}
           />
         ))}
       </div>
