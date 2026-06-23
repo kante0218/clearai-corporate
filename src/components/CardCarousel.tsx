@@ -64,7 +64,7 @@ export default function CardCarousel({ children, className = "", gridClass = "md
               aria-label={`${i + 1}枚目を表示`}
               aria-current={active === i}
               onClick={() => goTo(i)}
-              className={`shrink-0 aspect-square rounded-full transition-all duration-300 ${active === i ? "w-2 bg-neutral-900" : "w-1.5 bg-gray-300"}`}
+              className={`appearance-none shrink-0 min-h-0 p-0 border-0 rounded-full transition-all duration-300 ${active === i ? "w-2 h-2 bg-neutral-900" : "w-1.5 h-1.5 bg-gray-300"}`}
             />
           ))}
         </div>
