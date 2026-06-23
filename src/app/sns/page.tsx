@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
+import CardCarousel from "@/components/CardCarousel";
+import PricingCarousel from "@/components/PricingCarousel";
 
 function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -200,7 +202,7 @@ export default function SnsPage() {
             <Label>{t.pricingLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.pricingTitle}</h2>
           </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+          <PricingCarousel>
             {t.plans.map((plan, i) => (
               <Reveal key={plan.name} delay={i * 100} className="flex">
                 <div className={`rounded-lg p-5 lg:p-6 transition-all duration-300 flex flex-col w-full ${plan.featured ? "bg-neutral-900 text-white shadow-xl" : "bg-white border border-gray-200 hover:shadow-lg"}`}>
@@ -223,7 +225,7 @@ export default function SnsPage() {
                 </div>
               </Reveal>
             ))}
-          </div>
+          </PricingCarousel>
           <Reveal delay={300}>
             <p className="text-xs text-gray-500 text-center mt-8">{t.pricingNote}</p>
           </Reveal>
@@ -237,7 +239,7 @@ export default function SnsPage() {
             <Label>{t.whyLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-snug mb-8 w-full">{t.whyTitle}</h2>
           </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <CardCarousel>
             {t.why.map((item, i) => (
               <Reveal key={item.title} delay={i * 100}>
                 <div className="rounded-lg border border-gray-200 bg-white p-8 hover:shadow-lg transition-all duration-300 h-full">
@@ -246,7 +248,7 @@ export default function SnsPage() {
                 </div>
               </Reveal>
             ))}
-          </div>
+          </CardCarousel>
         </div>
       </section>
 
@@ -257,7 +259,7 @@ export default function SnsPage() {
             <Label>{t.whatLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-8">{t.whatTitle}</h2>
           </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <CardCarousel gridClass="md:grid-cols-2">
             {t.what.map((item, i) => (
               <Reveal key={item.num} delay={i * 100}>
                 <div className="bg-white rounded-lg border border-gray-200 p-8 hover:border-neutral-300 hover:shadow-lg transition-all duration-300">
@@ -267,7 +269,7 @@ export default function SnsPage() {
                 </div>
               </Reveal>
             ))}
-          </div>
+          </CardCarousel>
         </div>
       </section>
 
