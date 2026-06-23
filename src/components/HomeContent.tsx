@@ -715,8 +715,10 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
                 <Reveal key={step.step} delay={i * 80}>
                   <Link href={step.href} className="group block h-full">
                     <div className={`bg-white border border-gray-200 rounded-lg p-8 lg:p-10 ${c.hoverBorder} hover:shadow-lg transition-all duration-300 h-full flex flex-col`}>
-                      <span className={`inline-block text-xs font-semibold tracking-widest uppercase ${c.code} mb-4`}>{step.step}</span>
-                      <h3 className="text-xl font-bold text-gray-900 mb-3">{step.title}</h3>
+                      <div className="flex items-center gap-3 mb-3">
+                        <span className={`inline-block text-xs font-semibold tracking-widest uppercase ${c.code} flex-shrink-0`}>{step.step}</span>
+                        <h3 className="text-xl font-bold text-gray-900">{step.title}</h3>
+                      </div>
                       <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">{step.desc}</p>
                       <ul className="space-y-2 text-xs text-gray-500 mb-6">
                         {step.points.map((p) => <li key={p}>・{p}</li>)}
@@ -775,8 +777,10 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
             {t.approach.map((item, i) => (
               <Reveal key={item.num} delay={i * 80}>
                 <div className="border-t-2 border-neutral-900 pt-6">
-                  <span className="text-xs font-semibold text-neutral-900 tracking-widest">{item.num}</span>
-                  <h3 className="text-lg font-bold text-gray-900 mt-2 mb-3">{item.title}</h3>
+                  <div className="flex items-center gap-3 mb-2">
+                    <span className="text-xs font-semibold text-neutral-900 tracking-widest flex-shrink-0">{item.num}</span>
+                    <h3 className="text-lg font-bold text-gray-900">{item.title}</h3>
+                  </div>
                   <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
                 </div>
               </Reveal>
@@ -797,8 +801,10 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
             {t.process.map((step, i) => (
               <Reveal key={step.num} delay={i * 80}>
                 <div className="group relative bg-white border border-gray-200 rounded-lg p-7 h-full transition-colors duration-300 hover:border-gray-300">
-                  <span className="text-3xl font-bold text-neutral-200 transition-colors duration-300 group-hover:text-neutral-900">{step.num}</span>
-                  <h3 className="text-base font-bold text-gray-900 mt-2 mb-2">{step.title}</h3>
+                  <div className="flex items-center gap-3 mb-2">
+                    <span className="text-3xl font-bold text-neutral-200 transition-colors duration-300 group-hover:text-neutral-900 flex-shrink-0">{step.num}</span>
+                    <h3 className="text-base font-bold text-gray-900">{step.title}</h3>
+                  </div>
                   <p className="text-sm text-gray-600 leading-relaxed">{step.desc}</p>
                 </div>
               </Reveal>

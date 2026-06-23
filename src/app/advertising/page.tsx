@@ -254,8 +254,10 @@ export default function AdvertisingPage() {
             {t.services.map((item, i) => (
               <Reveal key={item.num} delay={i * 80} className="flex">
                 <div className="bg-white rounded-lg border border-gray-200 p-8 hover:border-neutral-300 hover:shadow-lg transition-all duration-300 h-full w-full">
-                  <span className="text-sm font-bold text-neutral-900 mb-3 inline-block">{item.num}</span>
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">{item.title}</h3>
+                  <div className="flex items-center gap-3 mb-2">
+                    <span className="text-sm font-bold text-neutral-900 inline-block flex-shrink-0">{item.num}</span>
+                    <h3 className="text-xl font-bold text-gray-900">{item.title}</h3>
+                  </div>
                   <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
                 </div>
               </Reveal>
@@ -295,8 +297,10 @@ export default function AdvertisingPage() {
             {t.features.map((item, i) => (
               <Reveal key={item.title} delay={i * 100} className="flex">
                 <div className="rounded-lg border border-gray-200 bg-white p-8 hover:shadow-lg transition-all duration-300 h-full w-full">
-                  <span className="text-xs font-semibold text-neutral-900 tracking-widest">{item.num}</span>
-                  <h3 className="text-lg font-bold text-gray-900 mt-2 mb-3">{item.title}</h3>
+                  <div className="flex items-center gap-3 mb-2">
+                    <span className="text-xs font-semibold text-neutral-900 tracking-widest flex-shrink-0">{item.num}</span>
+                    <h3 className="text-lg font-bold text-gray-900">{item.title}</h3>
+                  </div>
                   <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
                 </div>
               </Reveal>
