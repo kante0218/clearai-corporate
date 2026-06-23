@@ -56,7 +56,7 @@ export default function CardCarousel({ children, className = "", gridClass = "md
         ))}
       </div>
       {items.length > 1 && (
-        <div className="flex md:hidden justify-center gap-2 mt-4">
+        <div className="flex md:hidden justify-center gap-1.5 mt-2.5">
           {items.map((_, i) => (
             <button
               key={i}
@@ -64,7 +64,7 @@ export default function CardCarousel({ children, className = "", gridClass = "md
               aria-label={`${i + 1}枚目を表示`}
               aria-current={active === i}
               onClick={() => goTo(i)}
-              className={`h-2 rounded-full transition-all duration-300 ${active === i ? "w-6 bg-neutral-900" : "w-2 bg-gray-300"}`}
+              className={`h-1 rounded-full transition-all duration-300 ${active === i ? "w-5 bg-neutral-900" : "w-2 bg-gray-300"}`}
             />
           ))}
         </div>
