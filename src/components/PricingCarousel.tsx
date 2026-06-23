@@ -87,7 +87,7 @@ export default function PricingCarousel({ children }: { children: ReactNode }) {
         ))}
       </div>
       {items.length > 1 && (
-        <div className="flex md:hidden justify-center gap-1.5 mt-3">
+        <div className="flex items-center md:hidden justify-center gap-1.5 mt-3">
           {items.map((_, i) => (
             <button
               key={i}
