@@ -587,9 +587,7 @@ export default function RobotRentalPage() {
                                     <span className="text-xs text-gray-500">{item.priceUnit}</span>
                                   </div>
                                   <a
-                                    href={item.buyUrl}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
+                                    href={`/robot-rental/reserve?maker=${encodeURIComponent(group.company)}&robot=${encodeURIComponent(item.name)}&price=${encodeURIComponent(item.price ?? "")}&unit=${encodeURIComponent(item.priceUnit ?? "")}`}
                                     className="block w-full text-center rounded-lg bg-neutral-900 text-white font-semibold px-3 sm:px-6 py-3 hover:bg-neutral-800 transition-colors duration-300"
                                   >
                                     {t.reserveCta}
