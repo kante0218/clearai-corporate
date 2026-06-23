@@ -223,11 +223,15 @@ export default function RobotReservePage() {
     });
   }, []);
 
+  // タイムゾーン非依存に固定日付文字列から整形（SSR=UTCとクライアント=JSTの不一致を防ぐ）
   const openDateLabel = useMemo(() => {
-    const d = new Date(`${BOOKING_OPEN_DATE}T00:00:00+09:00`);
-    return lang === "ja"
-      ? `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日`
-      : d.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+    const [y, m, d] = BOOKING_OPEN_DATE.split("-").map(Number);
+    if (lang === "ja") return `${y}年${m}月${d}日`;
+    const months = [
+      "January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December",
+    ];
+    return `${months[m - 1]} ${d}, ${y}`;
   }, [lang]);
 
   const set = (k: string, v: string) => setForm((f) => ({ ...f, [k]: v }));
