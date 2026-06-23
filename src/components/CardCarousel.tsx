@@ -49,14 +49,14 @@ export default function CardCarousel({ children, className = "", gridClass = "md
     <div className={className}>
       <div
         ref={trackRef}
-        className={`flex md:grid ${gridClass} gap-4 md:gap-6 items-stretch overflow-x-auto md:overflow-visible snap-x snap-proximity md:snap-none -mx-6 px-6 md:mx-0 md:px-0 pb-4 md:pb-0 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden`}
+        className={`flex md:grid ${gridClass} gap-4 md:gap-6 items-stretch overflow-x-auto md:overflow-visible snap-x snap-proximity md:snap-none -mx-6 px-6 md:mx-0 md:px-0 pb-1 md:pb-0 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden`}
       >
         {items.map((child, i) => (
           <div key={i} data-cc-card className="snap-center shrink-0 w-[80%] sm:w-[55%] md:w-full flex [&>*]:w-full">{child}</div>
         ))}
       </div>
       {items.length > 1 && (
-        <div className="flex items-center md:hidden justify-center gap-1.5 mt-2.5">
+        <div className="flex items-center md:hidden justify-center gap-1.5 mt-1">
           {items.map((_, i) => (
             <button
               key={i}
