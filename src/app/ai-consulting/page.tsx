@@ -460,9 +460,9 @@ export default function AiConsultingPage() {
                       <h3 className="text-sm font-bold text-gray-900 mt-0.5">{group.label}</h3>
                     </div>
                     <div className="lg:col-span-10">
-                      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+                      <div className="grid grid-cols-3 lg:grid-cols-5 gap-2.5 sm:gap-3">
                         {group.items.map((tech) => (
-                          <div key={tech.name} className="bg-white border border-gray-200 rounded-xl p-5 flex flex-col items-center justify-center gap-3 hover:border-gray-300 hover:shadow-sm transition-all aspect-square">
+                          <div key={tech.name} className="bg-white border border-gray-200 rounded-xl p-3 sm:p-5 flex flex-col items-center justify-center gap-2 sm:gap-3 hover:border-gray-300 hover:shadow-sm transition-all aspect-square">
                             {/* eslint-disable-next-line @next/next/no-img-element */}
                             <img src={`https://api.iconify.design/${tech.icon}.svg${tech.color ? `?color=%23${tech.color}` : ''}`} alt={tech.name} className="w-8 h-8 object-contain" loading="lazy" />
                             <p className="text-xs font-medium text-gray-600 text-center leading-tight">{tech.name}</p>
