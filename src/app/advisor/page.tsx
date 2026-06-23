@@ -140,7 +140,7 @@ function PlansCarousel({ plans, recommended }: { plans: Plan[]; recommended: str
             aria-label={`${plan.name}を表示`}
             aria-current={active === i}
             onClick={() => { pause(); goTo(i); resumeLater(); }}
-            className={`appearance-none shrink-0 min-h-0 p-0 border-0 rounded-full transition-all duration-300 ${active === i ? "w-2 h-2 bg-neutral-900" : "w-1.5 h-1.5 bg-gray-300"}`}
+            style={{ display: "block", flex: "none", alignSelf: "center", width: active === i ? 8 : 6, height: active === i ? 8 : 6, minWidth: 0, minHeight: 0, padding: 0, border: 0, borderRadius: 9999, background: active === i ? "#171717" : "#d1d5db", appearance: "none", WebkitAppearance: "none", transition: "background .3s, width .3s, height .3s" }}
           />
         ))}
       </div>
