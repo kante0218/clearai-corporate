@@ -9,6 +9,8 @@
 export const header = {
   ja: {
     navAi: "AI",
+    navFde: "FDEコンサルティング",
+    navFdeDesc: "現場に入り込むForward Deployed型でAI活用を一気通貫支援",
     navAiConsulting: "AIコンサル・DX",
     navAiConsultingDesc: "大手コンサル出身者が監修する戦略〜実装支援",
     navAdvisor: "AI顧問",
@@ -41,6 +43,8 @@ export const header = {
   },
   en: {
     navAi: "AI",
+    navFde: "FDE Consulting",
+    navFdeDesc: "Forward Deployed support, embedded in your team end to end",
     navAiConsulting: "AI Consulting & DX",
     navAiConsultingDesc: "Strategy to implementation, led by ex-Big 4 consultants",
     navAdvisor: "AI Advisor",
