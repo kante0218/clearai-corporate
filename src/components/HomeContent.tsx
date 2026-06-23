@@ -498,8 +498,10 @@ function ServiceCard({ svc, claudeBadge, compact }: { svc: Svc; claudeBadge: str
             {svc.badge}
           </span>
         )}
-        <span className={`inline-block text-xs font-semibold tracking-widest uppercase ${c.code} mb-3`}>{svc.code}</span>
-        <h3 className={`${compact ? "text-lg" : "text-xl"} font-bold text-gray-900 mb-3`}>{svc.title}</h3>
+        <div className="flex items-baseline gap-3 mb-3">
+          <span className={`text-xs font-semibold tracking-widest uppercase ${c.code} flex-shrink-0`}>{svc.code}</span>
+          <h3 className={`${compact ? "text-lg" : "text-xl"} font-bold text-gray-900`}>{svc.title}</h3>
+        </div>
         <p className={`${compact ? "text-[13px]" : "text-sm"} text-gray-600 leading-relaxed mb-5 flex-1`}>{svc.desc}</p>
         {svc.claudeNote && (
           <div className="mb-5 rounded-lg bg-neutral-50 border border-neutral-200 px-3.5 py-2.5">
