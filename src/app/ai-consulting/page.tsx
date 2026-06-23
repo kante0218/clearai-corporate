@@ -299,7 +299,7 @@ export default function AiConsultingPage() {
   return (
     <>
       {/* PAGE HEADER */}
-      <section className="pt-24 pb-10 lg:pt-28 lg:pb-12 bg-white border-b border-gray-100">
+      <section className="pt-24 pb-4 lg:pt-28 lg:pb-5 bg-white border-b border-gray-100">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <p className="text-sm font-semibold text-neutral-900 mb-3">{t.heroKicker}</p>
           <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4">{t.heroTitle}</h1>
@@ -308,32 +308,32 @@ export default function AiConsultingPage() {
       </section>
 
       {/* PRICING */}
-      <section className="py-14 lg:py-20 bg-white">
+      <section className="pt-6 pb-10 lg:pt-8 lg:pb-12 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.pricingLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-8">{t.pricingTitle}</h2>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.pricingTitle}</h2>
           </Reveal>
           <PricingCarousel>
             {t.plans.map((plan, i) => (
               <Reveal key={plan.name} delay={i * 100} className="flex">
-                <div className={`rounded-lg p-8 lg:p-10 transition-all duration-300 flex flex-col w-full ${plan.featured ? "bg-neutral-900 text-white shadow-xl" : "bg-white border border-gray-200 hover:shadow-lg"}`}>
-                  {plan.featured && <span className="inline-block rounded-md bg-white/20 text-white px-3 py-1 text-sm font-semibold mb-4 self-start">Recommended</span>}
-                  <h3 className={`text-lg font-bold mb-2 ${plan.featured ? "text-white" : "text-gray-900"}`}>{plan.name}</h3>
-                  <div className="mb-4 flex items-baseline gap-1">
-                    <span className={`text-2xl font-bold ${plan.featured ? "text-white" : "text-gray-900"}`}>{plan.price}</span>
+                <div className={`rounded-lg p-5 lg:p-6 transition-all duration-300 flex flex-col w-full ${plan.featured ? "bg-neutral-900 text-white shadow-xl" : "bg-white border border-gray-200 hover:shadow-lg"}`}>
+                  {plan.featured && <span className="inline-block rounded-md bg-white/20 text-white px-3 py-1 text-sm font-semibold mb-3 self-start">Recommended</span>}
+                  <h3 className={`text-base font-bold mb-1.5 ${plan.featured ? "text-white" : "text-gray-900"}`}>{plan.name}</h3>
+                  <div className="mb-3 flex items-baseline gap-1">
+                    <span className={`text-xl font-bold ${plan.featured ? "text-white" : "text-gray-900"}`}>{plan.price}</span>
                     {plan.unit && <span className={`text-sm ${plan.featured ? "text-white/80" : "text-gray-500"}`}>{plan.unit}</span>}
                   </div>
-                  <p className={`text-sm leading-relaxed mb-6 ${plan.featured ? "text-white/80" : "text-gray-600"}`}>{plan.desc}</p>
-                  <ul className="space-y-3 mb-8 flex-1">
+                  <p className={`text-xs leading-relaxed mb-3 ${plan.featured ? "text-white/80" : "text-gray-600"}`}>{plan.desc}</p>
+                  <ul className="space-y-2 mb-4 flex-1">
                     {plan.features.map((f) => (
                       <li key={f} className="flex items-start gap-3">
                         <span className={`mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 ${plan.featured ? "bg-white/40" : "bg-neutral-900"}`} />
-                        <span className={`text-sm ${plan.featured ? "text-white/90" : "text-gray-600"}`}>{f}</span>
+                        <span className={`text-xs ${plan.featured ? "text-white/90" : "text-gray-600"}`}>{f}</span>
                       </li>
                     ))}
                   </ul>
-                  <a href="/contact" className={`block text-center text-sm font-semibold py-3 rounded-lg transition-all duration-300 mt-auto ${plan.featured ? "bg-white text-neutral-900 hover:bg-neutral-50" : "border border-gray-200 text-gray-600 hover:border-gray-400 hover:text-gray-900"}`}>{t.planCta}</a>
+                  <a href="/contact" className={`block text-center text-sm font-semibold py-2 rounded-lg transition-all duration-300 mt-auto ${plan.featured ? "bg-white text-neutral-900 hover:bg-neutral-50" : "border border-gray-200 text-gray-600 hover:border-gray-400 hover:text-gray-900"}`}>{t.planCta}</a>
                 </div>
               </Reveal>
             ))}
