@@ -95,7 +95,7 @@ export default function PricingCarousel({ children }: { children: ReactNode }) {
               aria-label={`${i + 1}枚目のプランを表示`}
               aria-current={active === i}
               onClick={() => { pause(); goTo(i); resumeLater(); }}
-              className={`h-1 rounded-full transition-all duration-300 ${active === i ? "w-5 bg-neutral-900" : "w-2 bg-gray-300"}`}
+              className={`rounded-full transition-all duration-300 ${active === i ? "w-2 h-2 bg-neutral-900" : "w-1.5 h-1.5 bg-gray-300"}`}
             />
           ))}
         </div>

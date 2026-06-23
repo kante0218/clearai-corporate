@@ -589,8 +589,10 @@ export default function TrainingPage() {
             {t.features.map((item, i) => (
               <Reveal key={item.title} delay={i * 100}>
                 <div className="rounded-lg border border-gray-200 bg-white p-8 hover:shadow-lg transition-all duration-300 h-full">
-                  <span className="text-xs font-semibold text-neutral-900 tracking-widest">{item.num}</span>
-                  <h3 className="text-lg font-bold text-gray-900 mt-2 mb-3">{item.title}</h3>
+                  <div className="flex items-center gap-3 mb-2">
+                    <span className="text-xs font-semibold text-neutral-900 tracking-widest flex-shrink-0">{item.num}</span>
+                    <h3 className="text-lg font-bold text-gray-900 mb-3">{item.title}</h3>
+                  </div>
                   <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
                 </div>
               </Reveal>
@@ -611,8 +613,10 @@ export default function TrainingPage() {
             {t.flowSteps.map((step, i) => (
               <Reveal key={step.num} delay={i * 80}>
                 <div className="relative rounded-lg border border-gray-200 bg-white p-6 h-full">
-                  <span className="text-2xl font-bold text-neutral-200">{step.num}</span>
-                  <h3 className="text-sm font-bold text-gray-900 mt-2 mb-2">{step.title}</h3>
+                  <div className="flex items-center gap-3 mb-2">
+                    <span className="text-2xl font-bold text-neutral-200 flex-shrink-0">{step.num}</span>
+                    <h3 className="text-sm font-bold text-gray-900 mb-2">{step.title}</h3>
+                  </div>
                   <p className="text-xs text-gray-600 leading-relaxed">{step.desc}</p>
                 </div>
               </Reveal>

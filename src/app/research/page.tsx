@@ -272,8 +272,10 @@ export default function ResearchPage() {
             {t.why.map((item, i) => (
               <Reveal key={item.num} delay={i * 100}>
                 <div className="rounded-lg border border-gray-200 bg-white p-8 hover:shadow-lg transition-all duration-300 h-full">
-                  <span className="text-sm font-bold text-neutral-900">{item.num}</span>
-                  <h3 className="text-xl font-bold text-gray-900 mt-3 mb-3">{item.title}</h3>
+                  <div className="flex items-center gap-3 mb-2">
+                    <span className="text-sm font-bold text-neutral-900 flex-shrink-0">{item.num}</span>
+                    <h3 className="text-xl font-bold text-gray-900">{item.title}</h3>
+                  </div>
                   <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
                 </div>
               </Reveal>
