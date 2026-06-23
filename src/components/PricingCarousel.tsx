@@ -87,7 +87,7 @@ export default function PricingCarousel({ children }: { children: ReactNode }) {
         ))}
       </div>
       {items.length > 1 && (
-        <div className="flex md:hidden justify-center gap-2 mt-6">
+        <div className="flex md:hidden justify-center gap-1.5 mt-3">
           {items.map((_, i) => (
             <button
               key={i}
@@ -95,7 +95,7 @@ export default function PricingCarousel({ children }: { children: ReactNode }) {
               aria-label={`${i + 1}枚目のプランを表示`}
               aria-current={active === i}
               onClick={() => { pause(); goTo(i); resumeLater(); }}
-              className={`h-2 rounded-full transition-all duration-300 ${active === i ? "w-6 bg-neutral-900" : "w-2 bg-gray-300"}`}
+              className={`h-1 rounded-full transition-all duration-300 ${active === i ? "w-5 bg-neutral-900" : "w-2 bg-gray-300"}`}
             />
           ))}
         </div>

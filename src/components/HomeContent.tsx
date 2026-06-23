@@ -658,8 +658,10 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
             {t.why.map((item, i) => (
               <Reveal key={item.title} delay={i * 80}>
                 <div className="bg-gray-50 border border-gray-200 rounded-lg p-8 h-full">
-                  <div className="w-10 h-10 rounded-full bg-neutral-900 text-white flex items-center justify-center font-bold mb-5">{i + 1}</div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-3">{item.title}</h3>
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 rounded-full bg-neutral-900 text-white flex items-center justify-center font-bold flex-shrink-0">{i + 1}</div>
+                    <h3 className="text-lg font-bold text-gray-900">{item.title}</h3>
+                  </div>
                   <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
                 </div>
               </Reveal>
