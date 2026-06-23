@@ -56,7 +56,7 @@ export default function CardCarousel({ children, className = "", gridClass = "md
         ))}
       </div>
       {items.length > 1 && (
-        <div className="flex md:hidden justify-center gap-1.5 mt-2.5">
+        <div className="flex items-center md:hidden justify-center gap-1.5 mt-2.5">
           {items.map((_, i) => (
             <button
               key={i}
