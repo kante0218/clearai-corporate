@@ -494,7 +494,7 @@ export default function RobotRentalPage() {
   return (
     <>
       {/* PAGE HEADER */}
-      <section className="pt-24 pb-6 lg:pt-28 lg:pb-8 bg-white border-b border-gray-100">
+      <section className="pt-24 pb-4 lg:pt-28 lg:pb-5 bg-white border-b border-gray-100">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <div>
             <div className="flex items-center gap-3 mb-3">
@@ -504,12 +504,7 @@ export default function RobotRentalPage() {
               </span>
             </div>
             <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4">{t.heroTitle}</h1>
-            <p className="text-base text-gray-600 leading-relaxed w-full mb-8">{t.heroDesc}</p>
-            <div className="flex items-center gap-4 flex-wrap">
-              <a href="/contact?service=robot-rental" className="rounded-lg bg-neutral-900 text-white font-semibold px-8 py-3.5 hover:bg-neutral-800 transition-colors duration-300 inline-block">
-                {t.heroCta}
-              </a>
-            </div>
+            <p className="text-base text-gray-600 leading-relaxed w-full">{t.heroDesc}</p>
           </div>
         </div>
       </section>
