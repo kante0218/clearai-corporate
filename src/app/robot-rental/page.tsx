@@ -509,7 +509,6 @@ export default function RobotRentalPage() {
               <a href="/contact?service=robot-rental" className="rounded-lg bg-neutral-900 text-white font-semibold px-8 py-3.5 hover:bg-neutral-800 transition-colors duration-300 inline-block">
                 {t.heroCta}
               </a>
-              <span className="text-sm text-gray-400">{t.heroNote}</span>
             </div>
           </div>
         </div>
