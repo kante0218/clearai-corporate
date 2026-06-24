@@ -428,7 +428,7 @@ export default function AdvisorPage() {
           </Reveal>
           {t.process.map((step, i) => (
             <Reveal key={step.num} delay={i * 100}>
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-2 md:gap-6 py-4 md:py-10 border-b border-gray-100 last:border-0">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-1.5 md:gap-6 py-2.5 md:py-10 border-b border-gray-100 last:border-0">
                 <div className="lg:col-span-1"><span className="text-sm font-bold text-neutral-900">{step.num}</span></div>
                 <div className="lg:col-span-3">
                   <h3 className="text-xl font-bold text-gray-900">{step.title}</h3>
