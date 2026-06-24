@@ -91,7 +91,7 @@ export default function Header() {
               <span className="text-xl lg:text-2xl font-semibold tracking-tight text-neutral-900">clearAI</span>
             </Link>
 
-            <nav className="hidden xl:flex items-center gap-1">
+            <nav className="hidden xl:flex items-center gap-1 ml-auto mr-8">
               {navItems.map((item) => {
                 const hasChildren = item.children && item.children.length > 0;
                 const isMenuOpen = openMenu === item.label;
