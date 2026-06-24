@@ -194,9 +194,9 @@ export default function Header() {
           </div>
         </div>
 
-        <div className={`xl:hidden overflow-hidden transition-all duration-500 ${isOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"}`}>
+        <div className={`xl:hidden transition-all duration-500 ${isOpen ? "max-h-[calc(100svh-4.5rem)] overflow-y-auto overscroll-contain opacity-100" : "max-h-0 overflow-hidden opacity-0"}`}>
           <div className="bg-white/98 backdrop-blur-xl border-t border-gray-100">
-            <nav className="max-w-[1800px] mx-auto px-6 py-8 space-y-1">
+            <nav className="max-w-[1800px] mx-auto px-6 py-8 pb-16 space-y-1">
               {navItems.map((item, i) => {
                 const hasChildren = item.children && item.children.length > 0;
                 const expanded = mobileExpanded === item.label;
