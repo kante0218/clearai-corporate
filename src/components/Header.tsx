@@ -252,7 +252,7 @@ export default function Header() {
                               onClick={() => setIsOpen(false)}
                               className="block py-2.5 text-sm text-gray-600 hover:text-gray-900"
                             >
-                              {child.label}
+                              <span className="font-medium">{child.label}</span>
                               {child.description && (
                                 <span className="block text-xs text-gray-400 mt-0.5">{child.description}</span>
                               )}
