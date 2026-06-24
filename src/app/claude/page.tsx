@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
+import PricingCarousel from "@/components/PricingCarousel";
 
 function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -245,7 +246,7 @@ export default function ClaudePage() {
             <Label>{t.servicesLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-8">{t.servicesTitle}</h2>
           </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+          <PricingCarousel gridClass="md:grid-cols-2">
             {/* Offline */}
             <Reveal>
               <div className="rounded-lg border-2 border-neutral-900 bg-neutral-50 p-8 lg:p-10 h-full flex flex-col shadow-xl">
@@ -297,7 +298,7 @@ export default function ClaudePage() {
                 <a href="https://buy.stripe.com/14AfZa2tm5I4dD4gFSd7q03" className="block text-center text-sm font-semibold py-3.5 rounded-lg border border-neutral-300 text-neutral-900 hover:bg-neutral-50 transition-all duration-300 mt-auto">{t.onlineCta}</a>
               </div>
             </Reveal>
-          </div>
+          </PricingCarousel>
         </div>
       </section>
 
