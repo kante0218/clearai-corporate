@@ -243,7 +243,7 @@ export default function Header() {
                       )}
                     </div>
                     {hasChildren && (
-                      <div className={`overflow-hidden transition-all duration-300 ${expanded ? "max-h-96 pb-3" : "max-h-0"}`}>
+                      <div className={`overflow-hidden transition-all duration-300 ${expanded ? "max-h-[720px] pb-3" : "max-h-0"}`}>
                         <div className="pl-4 space-y-1">
                           {item.children!.map((child) => (
                             <Link
