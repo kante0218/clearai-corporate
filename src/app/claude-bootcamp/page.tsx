@@ -155,8 +155,8 @@ const COPY: Record<"ja" | "en", Copy> = {
     pricingTitle: "料金",
     pricingDesc: "1日買い切り型。助成金を使えば、実質負担はさらに小さくなります。表示は税抜・1社あたりの目安です。",
     plans: [
-      { name: "1DAYブートキャンプ", price: "35万円〜", unit: "/ 1日", desc: "御社オンサイトで1日集中。まず現場を立ち上げたい方へ。", features: ["最大10名（オンサイト）", "オリジナル教材・修了証", "全員が業務ツールを1つ完成", "研修後30日チャットサポート", "成果保証つき"], featured: false },
-      { name: "定着パッケージ", price: "88万円〜", unit: "/ 3ヶ月", desc: "1日研修＋月次伴走で、社内に根づくまで。最も成果が出る形です。", features: ["1DAYブートキャンプ", "月次フォロー研修 ×3", "社内展開・ガイドライン策定支援", "Slackでの随時質問対応", "助成金申請サポート付き"], featured: true, badge: "人気・成果が出る" },
+      { name: "1DAYブートキャンプ", price: "20万円〜", unit: "/ 回", desc: "御社オンサイトで1日集中。まず現場を立ち上げたい方へ。", features: ["最大10名（オンサイト）", "オリジナル教材・修了証", "全員が業務ツールを1つ完成", "研修後30日チャットサポート", "成果保証つき"], featured: false },
+      { name: "定着パッケージ", price: "80万円〜", unit: "/ 3ヶ月", desc: "1日研修＋月次伴走で、社内に根づくまで。最も成果が出る形です。", features: ["1DAYブートキャンプ", "月次フォロー研修 ×3", "社内展開・ガイドライン策定支援", "Slackでの随時質問対応", "助成金申請サポート付き"], featured: true, badge: "人気・成果が出る" },
       { name: "全社キャラバン", price: "ご相談", unit: "", desc: "複数拠点・全社展開や、自治体・商工会との地域開催に。", features: ["複数拠点での連続開催", "部署別カリキュラム設計", "講師チーム編成", "効果測定・レポート", "助成金フルサポート"], featured: false },
     ],
     planCta: "この内容で相談する",
@@ -290,8 +290,8 @@ const COPY: Record<"ja" | "en", Copy> = {
     pricingTitle: "Pricing",
     pricingDesc: "A one-day buy-out. With subsidies, your net cost is even smaller. Prices exclude tax; per-company guideline.",
     plans: [
-      { name: "1-Day Bootcamp", price: "From JPY 350K", unit: "/ day", desc: "One intensive day on-site. For getting the front line started.", features: ["Up to 10 people (on-site)", "Original materials & certificate", "Everyone completes one work tool", "30-day post-training chat support", "Outcome guaranteed"], featured: false },
-      { name: "Embed Package", price: "From JPY 880K", unit: "/ 3 mo", desc: "Bootcamp + monthly coaching until it takes hold. Where results show.", features: ["1-Day Bootcamp", "Monthly follow-up ×3", "Rollout & guideline support", "On-demand Slack Q&A", "Subsidy application support"], featured: true, badge: "Popular · best results" },
+      { name: "1-Day Bootcamp", price: "From JPY 200K", unit: "/ session", desc: "One intensive day on-site. For getting the front line started.", features: ["Up to 10 people (on-site)", "Original materials & certificate", "Everyone completes one work tool", "30-day post-training chat support", "Outcome guaranteed"], featured: false },
+      { name: "Embed Package", price: "From JPY 800K", unit: "/ 3 mo", desc: "Bootcamp + monthly coaching until it takes hold. Where results show.", features: ["1-Day Bootcamp", "Monthly follow-up ×3", "Rollout & guideline support", "On-demand Slack Q&A", "Subsidy application support"], featured: true, badge: "Popular · best results" },
       { name: "Company Caravan", price: "Let's talk", unit: "", desc: "Multi-site / company-wide, or regional sessions with municipalities.", features: ["Back-to-back multi-site sessions", "Department-specific curriculum", "Instructor team assembly", "Impact measurement & reports", "Full subsidy support"], featured: false },
     ],
     planCta: "Ask about this",

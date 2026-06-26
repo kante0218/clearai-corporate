@@ -44,7 +44,7 @@ const serviceSchema = {
   name: "Claude Code 1DAYブートキャンプ（全国キャラバン）",
   description,
   url: "https://clearai.jp/claude-bootcamp",
-  offers: { "@type": "Offer", availability: "https://schema.org/InStock", priceCurrency: "JPY", price: "350000" },
+  offers: { "@type": "Offer", availability: "https://schema.org/InStock", priceCurrency: "JPY", price: "200000" },
 };
 
 const breadcrumbSchema = {
