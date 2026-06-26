@@ -393,7 +393,6 @@ const CLIENT_LOGOS = [
   { name: "エンジニアのミカタ", src: "/images/clients/engineer-no-mikata.png", width: 991, height: 143 },
   { name: "Gugen", src: "/images/clients/gugen.png", width: 1111, height: 346 },
   { name: "DiaL Shift", src: "/images/clients/dial-shift.png", width: 1950, height: 342 },
-  { name: "EDUCAI", src: "/images/clients/educai.png", width: 556, height: 540 },
   { name: "ノイアーエーテル", src: "/images/clients/noir-aether.png", width: 656, height: 686 },
   { name: "Wave Leaf", src: "/images/clients/wave-leaf.png", width: 1164, height: 324 },
   { name: "AT", src: "/images/clients/at.png", width: 1030, height: 838 },
