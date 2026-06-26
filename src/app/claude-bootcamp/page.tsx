@@ -59,7 +59,7 @@ type Copy = {
 
 const COPY: Record<"ja" | "en", Copy> = {
   ja: {
-    heroBadge: "全国47都道府県キャラバン｜31日連続開催・各地の枠は数社限定",
+    heroBadge: "複数講師の全国キャラバン｜47都道府県・31日間連続開催・各地の枠は数社限定",
     heroKicker: "Claude Code Bootcamp",
     heroTitlePre: "1日で、御社の現場が",
     heroTitleHi: "Claude Code",
@@ -71,7 +71,7 @@ const COPY: Record<"ja" | "en", Copy> = {
     statsLabel: "Why now",
     stats: [
       { value: "1", unit: "日", desc: "朝から夕方の集中ハンズオンで、現場が「触れる」を「使える」に。" },
-      { value: "47", unit: "都道府県", desc: "地方こそ届けたい。全国を回り続けるキャラバン形式で出張します。" },
+      { value: "47", unit: "都道府県", desc: "地方こそ届けたい。複数の講師チームが全国を同時並行で巡回します。" },
       { value: "75", unit: "%", desc: "人材開発支援助成金の活用で、研修費の実質負担を大きく圧縮。" },
     ],
     painLabel: "Problem",
@@ -143,11 +143,11 @@ const COPY: Record<"ja" | "en", Copy> = {
     ],
     caravanLabel: "Nationwide Caravan",
     caravanTitle: "全国を、回り続けます。次は、あなたの地域へ。",
-    caravanDesc: "都心の研修に人を送るのではなく、私たちが御社に伺います。31日間連続で全国を縦断するキャラバン。地方だからと諦める必要は、もうありません。",
+    caravanDesc: "都心の研修に人を送るのではなく、私たちが御社に伺います。複数の講師チームが全国を同時並行で巡回するキャラバン編成だから、地方でも希望の時期に日程を合わせやすい。地方だからと諦める必要は、もうありません。",
     caravanSteps: [
-      { num: "01", title: "開催をリクエスト", desc: "フォームから地域と希望時期をお知らせください。近隣の開催に合わせて日程を調整します。" },
+      { num: "01", title: "開催をリクエスト", desc: "フォームから地域と希望時期をお知らせください。全国を同時並行で回る講師チームの近隣ルートに合わせ、最短で日程を調整します。" },
       { num: "02", title: "事前ヒアリング", desc: "オンライン30分で、業種・参加者・解決したい業務をすり合わせ。当日の題材を設計します。" },
-      { num: "03", title: "御社で1日開催", desc: "講師が現地に伺い、御社の会議室で実施。最大10名まで、一人ひとり伴走します。" },
+      { num: "03", title: "御社で1日開催", desc: "担当講師が現地に伺い、御社の会議室で実施。最大10名まで、一人ひとり伴走します。" },
       { num: "04", title: "30日間の定着サポート", desc: "研修後もチャットで質問対応。希望に応じて月次の伴走に移行し、社内に根づかせます。" },
     ],
     caravanNote: "※ 1社単独開催のほか、商工会議所・自治体・複数社合同での地域開催にも対応します。お気軽にご相談ください。",
@@ -194,7 +194,7 @@ const COPY: Record<"ja" | "en", Copy> = {
     ctaSub: "しつこい営業はしません。まずは「うちでもできる？」のご相談から。",
   },
   en: {
-    heroBadge: "Nationwide caravan across all 47 prefectures · 31 days straight · a few slots per region",
+    heroBadge: "Multi-instructor nationwide caravan · 47 prefectures · 31 days straight · a few slots per region",
     heroKicker: "Claude Code Bootcamp",
     heroTitlePre: "In one day, your team learns to use ",
     heroTitleHi: "Claude Code",
@@ -206,7 +206,7 @@ const COPY: Record<"ja" | "en", Copy> = {
     statsLabel: "Why now",
     stats: [
       { value: "1", unit: "day", desc: "A focused, hands-on day that turns \"touched it\" into \"can use it.\"" },
-      { value: "47", unit: "prefs", desc: "We especially want to reach regional Japan — a caravan that keeps touring." },
+      { value: "47", unit: "prefs", desc: "We especially want to reach regional Japan — instructor teams touring in parallel." },
       { value: "75", unit: "%", desc: "With the Human Resources Development Subsidy, net training cost shrinks sharply." },
     ],
     painLabel: "Problem",
@@ -278,9 +278,9 @@ const COPY: Record<"ja" | "en", Copy> = {
     ],
     caravanLabel: "Nationwide Caravan",
     caravanTitle: "We keep touring. Your area is next.",
-    caravanDesc: "Instead of sending people to city training, we come to you — a caravan crossing the country 31 days straight. No need to give up because you're in the regions.",
+    caravanDesc: "Instead of sending people to city training, we come to you — multiple instructor teams touring the country in parallel, so even in the regions it's easy to find a date. No need to give up because you're in the regions.",
     caravanSteps: [
-      { num: "01", title: "Request a session", desc: "Tell us your area and preferred timing via the form. We align dates around nearby sessions." },
+      { num: "01", title: "Request a session", desc: "Tell us your area and preferred timing via the form. We align with the nearest route of our parallel instructor teams to find a date fast." },
       { num: "02", title: "Pre-interview", desc: "A 30-minute online sync on industry, participants, and the work to solve — then we design the day's material." },
       { num: "03", title: "One day at your office", desc: "An instructor comes on-site to your meeting room. Up to 10 people, with one-on-one support." },
       { num: "04", title: "30 days of follow-up", desc: "Chat support continues after; optionally move to monthly coaching to embed it internally." },
