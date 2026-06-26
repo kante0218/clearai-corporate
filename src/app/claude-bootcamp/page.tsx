@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import PricingCarousel from "@/components/PricingCarousel";
 import CardCarousel from "@/components/CardCarousel";
+import ClientLogoMarquee from "@/components/ClientLogoMarquee";
 
 function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -27,18 +28,30 @@ function Label({ children }: { children: ReactNode }) {
   return <p className="text-sm font-semibold text-neutral-900 mb-4">{children}</p>;
 }
 
+const TOOLS = [
+  { name: "Claude", logo: "/logos/claude.svg" },
+  { name: "Codex", logo: "/logos/openai.svg" },
+  { name: "GitHub", logo: "/logos/github.svg" },
+  { name: "Vercel", logo: "/logos/vercel.svg" },
+  { name: "Firebase", logo: "/logos/firebase.svg" },
+  { name: "Obsidian", logo: "/logos/obsidian.svg" },
+];
+
 type Plan = { name: string; price: string; unit: string; desc: string; features: string[]; featured: boolean; badge?: string };
 
 type Copy = {
   heroBadge: string; heroKicker: string; heroTitlePre: string; heroTitleHi: string; heroTitlePost: string;
   heroDesc: string; heroCtaPrimary: string; heroCtaSecondary: string; heroTrust: string;
+  marqueeLabel: string; marqueeNote: string;
+  reassure: { t: string; d: string }[]; reassureCta: string; reassureCtaSub: string;
+  stackLabel: string;
   statsLabel: string; stats: { value: string; unit: string; desc: string }[];
   painLabel: string; painTitle: string; painDesc: string; pains: string[];
   promiseLabel: string; promiseTitle: string; promiseDesc: string;
-  promises: { num: string; title: string; desc: string }[];
+  promises: { num: string; title: string; desc: string; icons: string[] }[];
   guaranteeBadge: string; guaranteeTitle: string; guaranteeDesc: string;
   whyLabel: string; whyTitle: string; whyDesc: string;
-  whyPoints: { title: string; desc: string }[];
+  whyPoints: { title: string; desc: string; icons: string[] }[];
   dayLabel: string; dayTitle: string; dayDesc: string;
   dayRows: { time: string; title: string; desc: string }[];
   dayNote: string;
@@ -54,279 +67,329 @@ type Copy = {
   instructorLabel: string; instructorTitle: string; instructorDesc: string;
   instructorPoints: string[];
   faqLabel: string; faqTitle: string; faqItems: { q: string; a: string }[];
+  consultLabel: string; consultTitle: string; consultDesc: string; consultItems: string[]; consultNote: string;
   ctaLabel: string; ctaTitle: string; ctaDesc: string; ctaButton: string; ctaSub: string;
+  stickyTitle: string; stickySub: string; stickyBtn: string;
 };
 
 const COPY: Record<"ja" | "en", Copy> = {
   ja: {
-    heroBadge: "複数講師の全国キャラバン｜47都道府県・31日間連続開催・各地の枠は数社限定",
-    heroKicker: "Claude Code Bootcamp",
-    heroTitlePre: "1日で、御社の現場が",
-    heroTitleHi: "Claude Code",
-    heroTitlePost: "を使えるようになる。",
-    heroDesc: "「AIを入れたいが、誰も使いこなせない」を1日で終わらせる出張ブートキャンプ。実装の現場に立つエンジニアが御社に伺い、非エンジニアの社員でも、その日のうちに自分の業務をAIで動かせる状態まで引き上げます。北海道から沖縄まで、全国どこへでも。",
-    heroCtaPrimary: "開催を相談する（無料）",
+    heroBadge: "複数講師の全国キャラバン｜Claude・Codex × GitHub・Vercel・Firebase｜各地の枠は数社限定",
+    heroKicker: "In-house Web Dev Bootcamp",
+    heroTitlePre: "Claude と Codex で、",
+    heroTitleHi: "Webアプリ開発の内製化",
+    heroTitlePost: "を本気で実現する。",
+    heroDesc: "外注に頼らず、自社のメンバーが Claude・Codex（AIコーディング）と GitHub・Vercel・Firebase（モダンな開発基盤）を使って、Webアプリ・社内ツールを自分たちで作り、本番公開し、運用できる状態をつくる出張ブートキャンプ。実装の現場に立つエンジニアが御社に伺い、非エンジニア中心のチームでも“絶対に作れる”ところまで引き上げます。北海道から沖縄まで、全国どこへでも。",
+    heroCtaPrimary: "内製化を相談する（無料）",
     heroCtaSecondary: "自分の地域へのリクエスト",
-    heroTrust: "オンサイト／オンライン対応・最大75%の助成金活用可・成果保証つき",
+    heroTrust: "オンライン30分・しつこい営業なし・相談だけでもOK・助成金の可否も確認できます",
+    marqueeLabel: "中小企業・地域企業のAI活用・Webアプリ開発を支援しています",
+    marqueeNote: "※ 掲載許可をいただいた企業のみ掲載しています",
+    reassure: [
+      { t: "オンライン30分", d: "まずは短時間のご相談から。来社・移動は不要です。" },
+      { t: "相談だけでもOK", d: "今すぐの申し込みは不要。情報収集だけでも歓迎です。" },
+      { t: "無理な営業は一切なし", d: "内容を確認し、不要な提案や追客はしません。" },
+      { t: "成果保証・全額返金", d: "その日に1つも本番公開できなければ研修費は頂きません。" },
+    ],
+    reassureCta: "無料相談を予約する",
+    reassureCtaSub: "オンライン30分・しつこい営業なし",
+    stackLabel: "扱う標準スタック",
     statsLabel: "Why now",
     stats: [
-      { value: "1", unit: "日", desc: "朝から夕方の集中ハンズオンで、現場が「触れる」を「使える」に。" },
-      { value: "47", unit: "都道府県", desc: "地方こそ届けたい。複数の講師チームが全国を同時並行で巡回します。" },
-      { value: "75", unit: "%", desc: "人材開発支援助成金の活用で、研修費の実質負担を大きく圧縮。" },
+      { value: "1", unit: "日", desc: "最初の本番Webアプリを、自社の手で作って公開するところまでを1日で。" },
+      { value: "5", unit: "ツール", desc: "Claude・Codex・GitHub・Vercel・Firebase。実務の標準スタックを一気通貫で。" },
+      { value: "75", unit: "%", desc: "人材開発支援助成金の活用で、内製化研修の実質負担を大きく圧縮。" },
     ],
     painLabel: "Problem",
-    painTitle: "AI導入、この状態で止まっていませんか。",
-    painDesc: "ツールは契約した。社長は本気。それでも現場が動かない——地方の中小企業で、最も多く聞く声です。",
+    painTitle: "Webの内製化、この壁で止まっていませんか。",
+    painDesc: "「自分たちで作れたら」と思いながら、外注とノーコードの間で止まっている——成長したい中小企業ほど、よく聞く声です。",
     pains: [
-      "ChatGPTやClaudeを契約したが、一部の人しか触っていない",
-      "「AIで効率化しろ」と言われても、何から手をつければいいか分からない",
-      "外部に開発を頼むと高く、社内には作れる人がいない",
-      "都心の研修に社員を送る時間も交通費も惜しい",
-      "本やYouTubeで勉強しても、自社の業務に落とし込めない",
-      "若手は興味があるのに、ベテランが及び腰で全社に広がらない",
+      "アプリを作るたびに外注で高くつき、スピードも出ない",
+      "社内にエンジニアがいない、いても1人に依存している",
+      "ノーコードで作ったが、結局かゆいところに手が届かない",
+      "AIで作れると聞くが、GitHubやデプロイの壁で本番まで出せない",
+      "作っても公開・運用・修正が回らず、結局放置される",
+      "外注先に仕様が伝わらず、何度も作り直しになる",
     ],
     promiseLabel: "Promise",
-    promiseTitle: "夕方には、全員がこの状態に。",
-    promiseDesc: "「分かった気になる」研修では終わりません。受講した一人ひとりが、自分の手で動かせる状態で帰ります。",
+    promiseTitle: "受講後、チームはこの状態に。",
+    promiseDesc: "「分かった気になる」研修では終わりません。受講したチームが、自分たちの手で作って公開できる状態で帰ります。",
     promises: [
-      { num: "01", title: "Claude Codeが自分のPCで動く", desc: "環境構築から最初の実行まで全員ハンズオンで完了。「家でも会社でも開ける」状態にして帰します。" },
-      { num: "02", title: "自分の業務を1つAIで自動化できる", desc: "当日その場で、各自の実際の業務（集計・文書・問い合わせ対応など）を題材に、動くものを1つ作り上げます。" },
-      { num: "03", title: "明日から続けられる型が手に入る", desc: "つまずいた時の質問の仕方、安全な使い方、社内への広げ方まで。研修後30日間のチャットサポートで定着まで伴走します。" },
+      { num: "01", title: "Claude と Codex で“作る”が回る", desc: "自然言語で指示してコードを生成・修正し、動くアプリにする——AIコーディングの型が身につきます。2つのエージェントの使い分けまで。", icons: ["/logos/claude.svg", "/logos/openai.svg"] },
+      { num: "02", title: "GitHub → Vercel で本番公開できる", desc: "コードの管理から本番デプロイまで、自分たちで完結。研修中に、自社のアプリが本番URLとして世に出ます。", icons: ["/logos/github.svg", "/logos/vercel.svg"] },
+      { num: "03", title: "Firebase でデータ・認証・保存まで", desc: "ログイン・データベース・フォーム保存など、実用アプリに必要なバックエンドを、サーバーを持たずに内製できます。", icons: ["/logos/firebase.svg"] },
     ],
     guaranteeBadge: "成果保証",
-    guaranteeTitle: "1日終えて「使える」を実感できなければ、研修費を全額返金します。",
-    guaranteeDesc: "受講者全員が、自分の業務を動かすものを最低1つ完成させる——これを到達基準にしています。万一その日のうちに到達できなければ、研修費は申し受けません。本気で「使える」を約束できるからこその保証です。",
-    whyLabel: "Why Claude Code",
-    whyTitle: "チャット止まりではなく、Claude Codeまで踏み込む理由。",
-    whyDesc: "ChatGPTの会話だけでは、業務は本質的には変わりません。Claude Codeは、あなたの言葉でファイルを読み、ツールを作り、作業そのものを代行します。だからこそ、現場の生産性が桁で変わります。",
+    guaranteeTitle: "その日のうちに、自社のWebアプリを1つ本番公開できなければ、研修費を全額返金します。",
+    guaranteeDesc: "受講チームが、Claude／Codex で作ったWebアプリを GitHub に上げ、Vercel で本番URLとして公開する——これを到達基準にしています。万一その日のうちに公開まで到達できなければ、研修費は申し受けません。本気で「内製化できる」を約束できるからこその保証です。",
+    whyLabel: "Why now",
+    whyTitle: "なぜ今、AIコーディングで“内製化”が現実になるのか。",
+    whyDesc: "数年前まで専門エンジニアにしか作れなかったWebアプリが、Claude や Codex の登場で「自然言語で作る」時代に入りました。GitHub・Vercel・Firebase という無料〜低コストの標準基盤と組み合わせれば、小さなチームでも本番運用まで届きます。",
     whyPoints: [
-      { title: "自然言語が、そのまま業務ツールになる", desc: "「この一覧から請求書を作って」と話すだけで、繰り返しの手作業が動くツールに変わります。コードは書けなくて構いません。" },
-      { title: "自社のファイル・データを直接扱える", desc: "Excelやテキスト、社内資料をその場で読み込み、要約・変換・自動化。汎用チャットでは越えられない壁を越えます。" },
-      { title: "“調べる”から“やってもらう”へ", desc: "答えを聞くAIから、作業を任せるAIへ。1人あたりの処理量が変わり、人手不足の現場ほど効きます。" },
-      { title: "一度作れば、社内資産として残る", desc: "その日に作ったツールやワークフローは会社に残り、翌日からチーム全員が使えます。研修費が消えず、積み上がります。" },
+      { title: "Claude と Codex を“相棒”にする", desc: "2つのAIコーディングエージェントの得意を使い分け、設計・実装・修正・デバッグを高速に回す型を学びます。1人の手数が何倍にもなります。", icons: ["/logos/claude.svg", "/logos/openai.svg"] },
+      { title: "GitHub で安全に育てる", desc: "変更履歴・バックアップ・チーム共同編集。壊さずに継続的にアプリを育てる、開発の基本を内製化します。", icons: ["/logos/github.svg"] },
+      { title: "Vercel で即・本番公開", desc: "push するだけで自動デプロイ。社内ツールも対外サービスも、自分たちのURLで世に出せます。インフラ管理は不要です。", icons: ["/logos/vercel.svg"] },
+      { title: "Firebase で“動く”を支える", desc: "認証・データベース・ホスティング・通知。サーバーを持たずに、実用アプリを支えるバックエンドを扱えるようになります。", icons: ["/logos/firebase.svg"] },
     ],
     dayLabel: "One Day",
     dayTitle: "ある1日の進行（オンサイト・標準）",
-    dayDesc: "御社の業種・参加者のレベルに合わせて毎回オーダーメイドします。下記は典型的な1日の流れです。",
+    dayDesc: "御社の業種・参加者のレベルに合わせて毎回オーダーメイドします。下記は「1日で最初の本番アプリを公開する」典型的な流れです。",
     dayRows: [
-      { time: "09:30", title: "オリエンテーション", desc: "AIで「できること・できないこと」の現在地を共有し、今日の到達点を全員で確認します。" },
-      { time: "10:00", title: "環境構築ハンズオン", desc: "全員のPCでClaude Codeを起動。つまずきやすい初期設定を、その場で一人ずつ解消します。" },
-      { time: "11:00", title: "基本操作で“感覚”をつかむ", desc: "ファイルを読ませる・要約させる・直させる。指示の出し方のコツを手を動かして体得します。" },
-      { time: "13:00", title: "自部署の業務を棚卸し", desc: "各自の毎日の手作業を洗い出し、AIに任せられる工程を特定。題材を決めます。" },
-      { time: "14:00", title: "“自分の業務”を1つ自動化", desc: "実際の業務データを使い、動くツール／自動化を一人1つ完成させます。本日の山場。" },
-      { time: "16:30", title: "成果共有・横展開の設計", desc: "作ったものを共有し、チームに広げる進め方と、安全な運用ルールを設計します。" },
-      { time: "17:30", title: "まとめ・30日サポートの開始", desc: "持ち帰りテンプレートを配布。研修後30日間のチャットサポートをその場で開通します。" },
+      { time: "09:30", title: "オリエンテーション", desc: "今日作る自社アプリのゴールを決めます（社内ツール・予約・問い合わせ・Obsidianで業務を記録する仕組み・管理画面など）。" },
+      { time: "10:00", title: "まず全員でClaudeをセットアップ", desc: "最初に参加者全員のPCでClaude（Claude Code）を起動。一人も取り残さず、全員が同じスタートラインに立ってから先へ進みます。続けて Codex・GitHub・Vercel・Firebase も用意します。" },
+      { time: "11:00", title: "AIで“作る”を体験", desc: "Claude／Codex に指示して画面とロジックを生成・修正。AIコーディングの感覚を手を動かして掴みます。" },
+      { time: "13:00", title: "自社アプリを実装", desc: "実際の業務で使うアプリ（例：Obsidianに業務・日報を記録する仕組み、予約・管理ツールなど）を、AIと一緒に形にしていきます。本日の山場。" },
+      { time: "15:00", title: "GitHub → Vercel で本番公開", desc: "コードを管理し、本番URLとしてデプロイ。自社のアプリが世に出ます。" },
+      { time: "16:00", title: "Firebase で仕上げ", desc: "ログイン・データ保存など、実用に必要な機能を追加して“使える”状態に。" },
+      { time: "17:30", title: "まとめ・30日サポート開始", desc: "改修・運用の進め方を共有し、研修後30日間のチャットサポートをその場で開通します。" },
     ],
-    dayNote: "※ 半日（4時間）短縮版、経営層向け90分版、複数日プログラムにも対応します。",
+    dayNote: "※ 1日で最小の本番アプリを公開→以降は伴走で本格的な内製化へ。半日版・複数日プログラム・経営層向け90分版にも対応します。",
     buildLabel: "Outcomes",
-    buildTitle: "受講者が、その日のうちに作れるもの。",
-    buildDesc: "「すごい人だけ」のものではありません。普通の現場担当者が、研修中に自分の手で作り上げます。",
+    buildTitle: "内製で作れるようになるもの。",
+    buildDesc: "外注に出していたものを、自分たちの手で。研修で“作って公開する”を一度通せば、あとは応用が利きます。",
     builds: [
-      "問い合わせメールの自動分類・下書き",
-      "Excel集計の自動化スクリプト",
-      "見積書・請求書PDFの自動生成",
-      "日報・週報の自動まとめ",
-      "社内FAQに答えるチャット",
-      "アンケート結果の自動集計・可視化",
-      "在庫・受注アラートの自動通知",
-      "議事録の文字起こし→要約",
+      "社内業務の管理ダッシュボード",
+      "予約・受付システム",
+      "問い合わせフォーム＋自動通知",
+      "顧客・案件管理ツール",
+      "キャンペーンLP・サービスサイト",
+      "在庫・受発注の管理アプリ",
+      "Obsidianで業務・ナレッジを記録する仕組み",
+      "データ集計・可視化ツール",
     ],
     forLabel: "For",
-    forTitle: "こんな会社のための1日です。",
+    forTitle: "こんな会社のための内製化プログラムです。",
     forItems: [
-      { ok: true, text: "地方で、社員のAI内製化を一気に進めたい中小企業" },
-      { ok: true, text: "非エンジニア中心でも、現場が自分でツールを作れるようになりたい" },
-      { ok: true, text: "都心まで社員を送らず、自社に来てほしい" },
-      { ok: true, text: "助成金を使って、賢く研修費を抑えたい" },
-      { ok: false, text: "概要だけ聞ければよく、手は動かさなくていい（→入門セミナーが適切です）" },
-      { ok: false, text: "すでに全社で開発が定着しており、初歩は不要" },
+      { ok: true, text: "外注費を圧縮し、Web／アプリ開発を社内に取り込みたい中小企業" },
+      { ok: true, text: "非エンジニア中心でも、自分たちでツールを作って運用したい" },
+      { ok: true, text: "ノーコードの限界を感じ、本物のコードで内製したい" },
+      { ok: true, text: "助成金を使って、賢く内製化に投資したい" },
+      { ok: false, text: "高信頼性が必須の基幹システムをいきなり内製したい（→段階設計を別途ご相談）" },
+      { ok: false, text: "すでに開発チームが確立しており、初歩は不要" },
     ],
     caravanLabel: "Nationwide Caravan",
     caravanTitle: "全国を、回り続けます。次は、あなたの地域へ。",
-    caravanDesc: "都心の研修に人を送るのではなく、私たちが御社に伺います。複数の講師チームが全国を同時並行で巡回するキャラバン編成だから、地方でも希望の時期に日程を合わせやすい。地方だからと諦める必要は、もうありません。",
+    caravanDesc: "都心の研修に人を送るのではなく、私たちが御社に伺います。複数の講師チームが全国を同時並行で巡回するキャラバン編成だから、地方でも希望の時期に日程を合わせやすい。地方だからと内製化を諦める必要は、もうありません。",
     caravanSteps: [
       { num: "01", title: "開催をリクエスト", desc: "フォームから地域と希望時期をお知らせください。全国を同時並行で回る講師チームの近隣ルートに合わせ、最短で日程を調整します。" },
-      { num: "02", title: "事前ヒアリング", desc: "オンライン30分で、業種・参加者・解決したい業務をすり合わせ。当日の題材を設計します。" },
+      { num: "02", title: "事前ヒアリング", desc: "オンライン30分で、業種・参加者・内製化したいアプリをすり合わせ。当日作る題材を設計します。" },
       { num: "03", title: "御社で1日開催", desc: "担当講師が現地に伺い、御社の会議室で実施。最大10名まで、一人ひとり伴走します。" },
-      { num: "04", title: "30日間の定着サポート", desc: "研修後もチャットで質問対応。希望に応じて月次の伴走に移行し、社内に根づかせます。" },
+      { num: "04", title: "30日間の定着サポート", desc: "研修後もチャットで質問対応。希望に応じて月次の伴走に移行し、作り続けられるチームへ育てます。" },
     ],
     caravanNote: "※ 1社単独開催のほか、商工会議所・自治体・複数社合同での地域開催にも対応します。お気軽にご相談ください。",
     pricingLabel: "Pricing",
     pricingTitle: "料金",
     pricingDesc: "1日買い切り型。助成金を使えば、実質負担はさらに小さくなります。表示は税抜・1社あたりの目安です。",
     plans: [
-      { name: "1DAYブートキャンプ", price: "20万円〜", unit: "/ 回", desc: "御社オンサイトで1日集中。まず現場を立ち上げたい方へ。", features: ["最大10名（オンサイト）", "オリジナル教材・修了証", "全員が業務ツールを1つ完成", "研修後30日チャットサポート", "成果保証つき"], featured: false },
-      { name: "定着パッケージ", price: "80万円〜", unit: "/ 3ヶ月", desc: "1日研修＋月次伴走で、社内に根づくまで。最も成果が出る形です。", features: ["1DAYブートキャンプ", "月次フォロー研修 ×3", "社内展開・ガイドライン策定支援", "Slackでの随時質問対応", "助成金申請サポート付き"], featured: true, badge: "人気・成果が出る" },
-      { name: "全社キャラバン", price: "ご相談", unit: "", desc: "複数拠点・全社展開や、自治体・商工会との地域開催に。", features: ["複数拠点での連続開催", "部署別カリキュラム設計", "講師チーム編成", "効果測定・レポート", "助成金フルサポート"], featured: false },
+      { name: "1DAY内製ブートキャンプ", price: "20万円〜", unit: "/ 回", desc: "御社オンサイトで1日集中。最初の本番アプリを公開したい方へ。", features: ["最大10名（オンサイト）", "Claude・Codex・GitHub・Vercel・Firebase 一式", "全員が本番Webアプリを1つ公開", "研修後30日チャットサポート", "成果保証つき"], featured: false },
+      { name: "内製化定着パッケージ", price: "80万円〜", unit: "/ 3ヶ月", desc: "1日研修＋月次伴走で、継続的に作れるチームになるまで。最も成果が出る形です。", features: ["1DAY内製ブートキャンプ", "月次フォロー研修 ×3", "社内開発ルール・ガイドライン策定支援", "Slackでの随時質問対応", "助成金申請サポート付き"], featured: true, badge: "人気・成果が出る" },
+      { name: "全社内製化キャラバン", price: "ご相談", unit: "", desc: "複数拠点・全社展開や、自治体・商工会との地域開催に。", features: ["複数拠点での連続開催", "部署別カリキュラム設計", "講師チーム編成", "効果測定・レポート", "助成金フルサポート"], featured: false },
     ],
     planCta: "この内容で相談する",
-    pricingNote: "交通費・宿泊費は地域により別途。複数社合同・自治体開催は1社あたりを大きく抑えられます。",
+    pricingNote: "交通費・宿泊費は地域により別途。GitHub・Vercel・Firebase は無料枠から始められます。複数社合同・自治体開催は1社あたりを大きく抑えられます。",
     subsidyLabel: "Subsidy",
-    subsidyTitlePre: "研修費は、",
+    subsidyTitlePre: "内製化研修は、",
     subsidyTitleHi: "最大75%",
     subsidyTitlePost: "を助成金でまかなえます。",
-    subsidyDesc: "厚生労働省「人材開発支援助成金」を活用すれば、中小企業は研修経費の最大75%＋受講者の賃金まで助成対象に。clearAIが社労士と連携し、申請計画から実施報告まで伴走します。",
-    subsidyCta: "助成金の実質負担を試算する →",
+    subsidyDesc: "厚生労働省「人材開発支援助成金」を活用すれば、中小企業は研修経費の最大75%＋受講者の賃金まで助成対象に。clearAIが社労士と連携し、申請計画から実施報告まで伴走します。※対象条件あり。申請可否は無料相談で確認します。",
+    subsidyCta: "助成金活用について相談する →",
     instructorLabel: "Instructor",
     instructorTitle: "教えるのは、評論家ではなく実装者。",
-    instructorDesc: "登壇するのは、受託開発・ロボティクス・社内自動化を自らClaude Codeで実装してきたエンジニアです。「動かしてきた人」だからこそ、現場のつまずきの一歩先を教えられます。",
+    instructorDesc: "登壇するのは、Claude や Codex で実際にWebアプリ・事業システムを内製し、GitHub・Vercel・Firebase で本番運用してきたエンジニアです。「作って動かしてきた人」だからこそ、現場のつまずきの一歩先を教えられます。",
     instructorPoints: [
-      "実際にClaude Codeで事業システムを構築・運用",
+      "Claude／Codex で実際にWebアプリ・事業システムを構築・本番運用",
       "非エンジニアへの指導実績にもとづく“つまずき所”の先回り",
       "業種別ユースケースの引き出しで、その場で題材化",
-      "研修後も同じ担当が伴走し、定着まで責任を持つ",
+      "研修後も同じ担当が伴走し、作り続けられるまで責任を持つ",
     ],
     faqLabel: "FAQ",
     faqTitle: "よくあるご質問",
     faqItems: [
-      { q: "プログラミング未経験の社員でも本当に大丈夫ですか？", a: "はい。むしろ非エンジニアの方を主対象に設計しています。Claude Codeは自然言語で指示するため、PCの基本操作ができれば参加できます。当日は一人ずつ伴走し、全員が動くものを完成させて帰ります。" },
-      { q: "地方でも、本当に来てもらえますか？", a: "はい。全国47都道府県が対象です。むしろ地方の中小企業にこそ届けたく、キャラバン形式で全国を回っています。日程は近隣の開催と合わせて調整します。離島・遠隔地もご相談ください。" },
-      { q: "最少何名から、何名まで開催できますか？", a: "オンサイトは最大10名を目安に、少人数ほど一人ひとりに密着できます。経営層1名のセッションから、複数社合同の地域開催まで対応します。" },
-      { q: "成果保証とは具体的に何を指しますか？", a: "受講者全員が、自分の業務を動かすツール／自動化を最低1つ完成させることを到達基準としています。万一その日のうちに到達できなかった場合、研修費は申し受けません。" },
+      { q: "プログラミング未経験の社員でも本当に内製化できますか？", a: "はい。むしろ非エンジニアの方を主対象に設計しています。Claude／Codex は自然言語で指示するため、PCの基本操作ができれば参加できます。当日は一人ずつ伴走し、全員が本番公開まで到達します。" },
+      { q: "ClaudeとCodex、GitHub・Vercel・Firebaseのツール費用はかかりますか？", a: "GitHub・Vercel・Firebase はいずれも無料枠から始められ、研修はその範囲で完結します。Claude／Codex などAIコーディングの利用料は規模により異なりますが、当日に最適な始め方までご案内します。" },
+      { q: "地方でも、本当に来てもらえますか？", a: "はい。全国47都道府県が対象です。むしろ地方の中小企業にこそ届けたく、複数の講師チームでキャラバンを組み、全国を同時並行で回っています。日程は近隣ルートに合わせて調整します。" },
+      { q: "成果保証とは具体的に何を指しますか？", a: "受講チームが、自社のWebアプリを GitHub→Vercel で本番URLとして1つ公開することを到達基準としています。万一その日のうちに公開まで到達できなかった場合、研修費は申し受けません。" },
       { q: "助成金は必ず使えますか？", a: "「人材開発支援助成金」は要件（研修10時間以上など）を満たせば中小企業で経費の最大75%が対象です。1日研修は半日×複数回や月次伴走と組み合わせて要件を満たす設計が可能です。要件確認から申請まで社労士と連携し伴走しますが、支給可否は審査で決まります。" },
-      { q: "研修後のサポートはありますか？", a: "全プランに研修後30日間のチャットサポートが付きます。定着パッケージでは月次の伴走研修で、社内に根づくまで継続的に支援します。" },
-      { q: "セキュリティや情報の扱いが心配です。", a: "機密データの扱い、社内で使う際のルール、外部に出してはいけない情報の線引きまで、当日のカリキュラムに含めます。安全に社内運用するための型をお渡しします。" },
+      { q: "研修後のサポートはありますか？", a: "全プランに研修後30日間のチャットサポートが付きます。定着パッケージでは月次の伴走研修で、社内で作り続けられるチームになるまで継続的に支援します。" },
+      { q: "セキュリティや情報の扱いが心配です。", a: "機密データの扱い、社内で使う際のルール、外部に公開してよい情報の線引き、本番アプリの安全な運用まで、当日のカリキュラムに含めます。安全に内製化を進める型をお渡しします。" },
     ],
+    consultLabel: "Free Consultation",
+    consultTitle: "無料相談で行うこと",
+    consultDesc: "「いきなり申し込む」必要はありません。まずは御社の状況を伺い、進め方を一緒に整理するだけの30分です。",
+    consultItems: [
+      "御社の業務の中で、アプリ化しやすいテーマを一緒に整理します",
+      "1DAYブートキャンプか、3ヶ月の定着パッケージかを判断します",
+      "助成金（最大75%）を活用できる可能性を確認します",
+      "無理な営業はしません。不要だと感じたら、その場で終了でOKです",
+    ],
+    consultNote: "ご相談はオンライン30分です。内容を確認したうえで、無理な営業や不要な提案は行いません。いただいた情報はご相談対応の目的にのみ使用します。",
     ctaLabel: "Contact",
-    ctaTitle: "次のキャラバンを、御社の地域へ。",
-    ctaDesc: "開催枠は各地で数社限定です。まずは無料相談で、御社の課題と日程をお聞かせください。オンライン30分から始められます。",
-    ctaButton: "無料で開催を相談する",
-    ctaSub: "しつこい営業はしません。まずは「うちでもできる？」のご相談から。",
+    ctaTitle: "Web開発の内製化を、御社の地域から。",
+    ctaDesc: "開催枠は各地で数社限定です。まずは無料相談で、御社の課題と作りたいものをお聞かせください。オンライン30分から始められます。",
+    ctaButton: "無料で内製化を相談する",
+    ctaSub: "しつこい営業はしません。まずは「うちでも作れる？」のご相談から。",
+    stickyTitle: "無料相談",
+    stickySub: "オンライン30分・営業なし",
+    stickyBtn: "予約する",
   },
   en: {
-    heroBadge: "Multi-instructor nationwide caravan · 47 prefectures · 31 days straight · a few slots per region",
-    heroKicker: "Claude Code Bootcamp",
-    heroTitlePre: "In one day, your team learns to use ",
-    heroTitleHi: "Claude Code",
-    heroTitlePost: ".",
-    heroDesc: "An on-site bootcamp that ends \"we have AI but no one uses it\" in a single day. Engineers who build in the real world come to you, and bring even non-engineer staff to the point where they can run their own work with AI by that evening. From Hokkaido to Okinawa — anywhere in Japan.",
-    heroCtaPrimary: "Talk to us (free)",
+    heroBadge: "Multi-instructor nationwide caravan｜Claude・Codex × GitHub・Vercel・Firebase｜a few slots per region",
+    heroKicker: "In-house Web Dev Bootcamp",
+    heroTitlePre: "With Claude and Codex, make ",
+    heroTitleHi: "in-house web app development",
+    heroTitlePost: " real.",
+    heroDesc: "An on-site bootcamp that gets your own team — not an outside vendor — to build, ship, and operate web apps and internal tools using Claude and Codex (AI coding) plus GitHub, Vercel, and Firebase (a modern dev stack). Engineers who build in the real world come to you and bring even non-engineer teams to the point where they can definitely build. From Hokkaido to Okinawa, anywhere in Japan.",
+    heroCtaPrimary: "Talk about in-house dev (free)",
     heroCtaSecondary: "Request a session in your area",
-    heroTrust: "On-site / online · up to 75% subsidy · outcome guaranteed",
+    heroTrust: "30-min online · no pushy sales · just a chat is fine · we'll also check subsidy eligibility",
+    marqueeLabel: "Supporting AI adoption and web app development at SMEs and regional companies",
+    marqueeNote: "* Only companies that gave us permission to display their logo are shown",
+    reassure: [
+      { t: "30 minutes online", d: "Start with a short chat. No visit or travel required." },
+      { t: "Just a chat is fine", d: "No need to apply now. Gathering information is welcome too." },
+      { t: "No pushy sales", d: "We review your needs and won't push unnecessary proposals or follow-ups." },
+      { t: "Guaranteed or refunded", d: "If you can't ship even one app live that day, we don't charge." },
+    ],
+    reassureCta: "Book a free consultation",
+    reassureCtaSub: "30-min online · no pushy sales",
+    stackLabel: "The standard stack we use",
     statsLabel: "Why now",
     stats: [
-      { value: "1", unit: "day", desc: "A focused, hands-on day that turns \"touched it\" into \"can use it.\"" },
-      { value: "47", unit: "prefs", desc: "We especially want to reach regional Japan — instructor teams touring in parallel." },
+      { value: "1", unit: "day", desc: "Build and ship your first production web app, by your own team, in a single day." },
+      { value: "5", unit: "tools", desc: "Claude, Codex, GitHub, Vercel, Firebase — the standard working stack, end to end." },
       { value: "75", unit: "%", desc: "With the Human Resources Development Subsidy, net training cost shrinks sharply." },
     ],
     painLabel: "Problem",
-    painTitle: "Is your AI rollout stuck here?",
-    painDesc: "You signed up for the tools. Leadership means it. And still the front line doesn't move — the most common story at regional SMEs.",
+    painTitle: "Is in-house web dev stuck at this wall?",
+    painDesc: "Wishing \"if only we could build it ourselves,\" yet stuck between outsourcing and no-code — the story we hear most from SMEs that want to grow.",
     pains: [
-      "You pay for ChatGPT or Claude, but only a few people touch it",
-      "\"Use AI to be efficient\" — but no one knows where to start",
-      "Outside development is expensive, and no one in-house can build",
-      "Sending staff to big-city training costs too much time and travel",
-      "Books and YouTube don't translate to your actual work",
-      "Younger staff are curious, but veterans hold back and it never spreads",
+      "Every app means an expensive vendor, and it's slow",
+      "No engineer in-house — or it all depends on one person",
+      "Built it with no-code, but it can't reach the details that matter",
+      "You hear AI can build it, but GitHub and deployment block you from going live",
+      "Even when built, it isn't shipped, run, or fixed — so it gets abandoned",
+      "The vendor doesn't get the spec, so it's rebuilt again and again",
     ],
     promiseLabel: "Promise",
-    promiseTitle: "By evening, everyone is here.",
-    promiseDesc: "This isn't training that just feels productive. Each participant leaves able to run things with their own hands.",
+    promiseTitle: "After the session, your team is here.",
+    promiseDesc: "This isn't training that just feels productive. Your team leaves able to build and ship with their own hands.",
     promises: [
-      { num: "01", title: "Claude Code runs on their own PC", desc: "From setup to first run, everyone finishes hands-on — ready to open it at home and at work." },
-      { num: "02", title: "They automate one real task", desc: "On the day, using their own real work (aggregation, documents, inquiries), each person builds one working thing." },
-      { num: "03", title: "A repeatable pattern to keep going", desc: "How to ask when stuck, how to stay safe, how to spread it internally — with 30 days of post-training chat support." },
+      { num: "01", title: "Building flows with Claude & Codex", desc: "Instruct in plain language to generate and fix code into a working app — you learn the AI-coding pattern, including when to use each of the two agents.", icons: ["/logos/claude.svg", "/logos/openai.svg"] },
+      { num: "02", title: "Ship live with GitHub → Vercel", desc: "From code management to production deploy, done by your team. During the session, your app goes live at a real URL.", icons: ["/logos/github.svg", "/logos/vercel.svg"] },
+      { num: "03", title: "Data, auth & storage with Firebase", desc: "Login, database, form storage — the backend a real app needs, built in-house without running a server.", icons: ["/logos/firebase.svg"] },
     ],
     guaranteeBadge: "Outcome guarantee",
-    guaranteeTitle: "If your team doesn't feel \"we can use this\" by day's end, we refund the fee in full.",
-    guaranteeDesc: "Our bar: every participant completes at least one thing that runs their own work. If we don't reach it that day, we don't charge. We can guarantee it because we mean \"usable.\"",
-    whyLabel: "Why Claude Code",
-    whyTitle: "Why we go past chat, all the way to Claude Code.",
-    whyDesc: "Chatting with ChatGPT alone doesn't fundamentally change work. Claude Code reads your files, builds tools, and does the work itself in your own words — which is why front-line productivity changes by an order of magnitude.",
+    guaranteeTitle: "If you can't ship one of your own web apps live that day, we refund the fee in full.",
+    guaranteeDesc: "Our bar: your team pushes a web app built with Claude/Codex to GitHub and publishes it live on Vercel. If we don't reach that by day's end, we don't charge. We can guarantee it because we mean \"you can build in-house.\"",
+    whyLabel: "Why now",
+    whyTitle: "Why AI coding makes \"in-house\" real now.",
+    whyDesc: "Web apps that only specialist engineers could build a few years ago are now built \"in plain language\" thanks to Claude and Codex. Combined with GitHub, Vercel, and Firebase — free-to-low-cost standard infrastructure — even small teams reach production.",
     whyPoints: [
-      { title: "Plain language becomes a work tool", desc: "Say \"make invoices from this list\" and repetitive manual work becomes a running tool. No coding required." },
-      { title: "It works directly on your files and data", desc: "Read Excel, text, and internal docs on the spot — summarize, convert, automate. It crosses walls generic chat can't." },
-      { title: "From \"look it up\" to \"get it done\"", desc: "From an AI that answers to an AI that does the work. Throughput per person changes — most of all where hands are short." },
-      { title: "Build once, keep it as an asset", desc: "Tools and workflows built that day stay with the company, usable by the whole team the next morning. The fee compounds." },
+      { title: "Make Claude & Codex your partners", desc: "Use the strengths of two AI coding agents to run design, implementation, fixes, and debugging fast. One person's output multiplies.", icons: ["/logos/claude.svg", "/logos/openai.svg"] },
+      { title: "Grow it safely with GitHub", desc: "Change history, backups, team collaboration. Internalize the basics of growing an app continuously without breaking it.", icons: ["/logos/github.svg"] },
+      { title: "Ship instantly with Vercel", desc: "Auto-deploy just by pushing. Internal tools or public services — out to the world at your own URL. No infra management.", icons: ["/logos/vercel.svg"] },
+      { title: "Power it with Firebase", desc: "Auth, database, hosting, notifications. Handle the backend that powers a real app — without running a server.", icons: ["/logos/firebase.svg"] },
     ],
     dayLabel: "One Day",
     dayTitle: "How a day runs (on-site, standard)",
-    dayDesc: "We tailor each session to your industry and participants' levels. Below is a typical day.",
+    dayDesc: "We tailor each session to your industry and participants' levels. Below is a typical \"ship your first production app in a day\" flow.",
     dayRows: [
-      { time: "09:30", title: "Orientation", desc: "Align on what AI can and can't do, and set the day's goal together." },
-      { time: "10:00", title: "Setup hands-on", desc: "Launch Claude Code on every PC, clearing the tricky first-time setup one by one." },
-      { time: "11:00", title: "Get the feel with basics", desc: "Have it read files, summarize, and revise — learning how to instruct by doing." },
-      { time: "13:00", title: "Inventory your team's work", desc: "Map each person's daily manual tasks and pick what to hand to AI." },
-      { time: "14:00", title: "Automate one real task", desc: "Using real work data, each person completes one running tool — the heart of the day." },
-      { time: "16:30", title: "Share & plan rollout", desc: "Share what was built, and design how to spread it and operate safely." },
-      { time: "17:30", title: "Wrap-up & start 30-day support", desc: "Hand out takeaway templates and open 30 days of chat support on the spot." },
+      { time: "09:30", title: "Orientation", desc: "Decide the goal of the app you'll build today (internal tool, booking, inquiries, an Obsidian work-logging system, an admin screen, etc.)." },
+      { time: "10:00", title: "First, set up Claude together", desc: "Launch Claude (Claude Code) on everyone's PC first. No one left behind — the whole team starts from the same line, then we add Codex, GitHub, Vercel, and Firebase." },
+      { time: "11:00", title: "Experience \"building\" with AI", desc: "Instruct Claude/Codex to generate and fix screens and logic. Get the feel of AI coding hands-on." },
+      { time: "13:00", title: "Build your own app", desc: "Shape an app for real work (e.g., an Obsidian work/daily-log system, booking or admin tools) together with AI. The heart of the day." },
+      { time: "15:00", title: "Ship live via GitHub → Vercel", desc: "Manage the code and deploy it as a production URL. Your app goes live." },
+      { time: "16:00", title: "Finish with Firebase", desc: "Add login, data storage, and the features needed to make it genuinely usable." },
+      { time: "17:30", title: "Wrap-up & start 30-day support", desc: "Share how to improve and operate it, and open 30 days of post-training chat support on the spot." },
     ],
-    dayNote: "* Also available as a half-day (4h), a 90-minute executive version, or a multi-day program.",
+    dayNote: "* Ship a minimal production app in one day → then move to real in-house capability with follow-up. Half-day, multi-day, and 90-minute executive versions available.",
     buildLabel: "Outcomes",
-    buildTitle: "What participants can build that same day.",
-    buildDesc: "Not just for \"the talented few.\" Ordinary front-line staff build these with their own hands during the session.",
+    buildTitle: "What you'll be able to build in-house.",
+    buildDesc: "What you used to outsource, by your own hands. Once you run \"build and ship\" once in the session, it carries over.",
     builds: [
-      "Auto-classify & draft inquiry emails",
-      "Excel aggregation automation",
-      "Auto-generated quote / invoice PDFs",
-      "Auto-summarized daily / weekly reports",
-      "A chat that answers internal FAQs",
-      "Auto survey aggregation & charts",
-      "Inventory / order alert notifications",
-      "Transcript → summary of minutes",
+      "Internal operations dashboard",
+      "Booking / reception system",
+      "Inquiry form + auto notifications",
+      "Customer / deal management tool",
+      "Campaign LP / service site",
+      "Inventory / ordering management app",
+      "An Obsidian work & knowledge logging system",
+      "Data aggregation & visualization tool",
     ],
     forLabel: "For",
-    forTitle: "This day is for companies like these.",
+    forTitle: "This program is for companies like these.",
     forItems: [
-      { ok: true, text: "Regional SMEs that want to accelerate in-house AI adoption" },
-      { ok: true, text: "Mostly non-engineers, but want the front line building tools themselves" },
-      { ok: true, text: "Want us to come to you, not send staff to the big city" },
-      { ok: true, text: "Want to cut training cost smartly with subsidies" },
-      { ok: false, text: "Just want an overview, no hands-on (→ an intro seminar fits better)" },
-      { ok: false, text: "Development is already embedded company-wide; basics aren't needed" },
+      { ok: true, text: "SMEs that want to cut outsourcing cost and bring web/app dev in-house" },
+      { ok: true, text: "Mostly non-engineers, but want to build and run tools themselves" },
+      { ok: true, text: "Feeling no-code's limits, wanting to build in-house with real code" },
+      { ok: true, text: "Want to invest in in-house dev smartly using subsidies" },
+      { ok: false, text: "Want to suddenly build a high-reliability core system in-house (→ let's design it in stages separately)" },
+      { ok: false, text: "Already have an established dev team; basics aren't needed" },
     ],
     caravanLabel: "Nationwide Caravan",
     caravanTitle: "We keep touring. Your area is next.",
-    caravanDesc: "Instead of sending people to city training, we come to you — multiple instructor teams touring the country in parallel, so even in the regions it's easy to find a date. No need to give up because you're in the regions.",
+    caravanDesc: "Instead of sending people to city training, we come to you — multiple instructor teams touring the country in parallel, so even in the regions it's easy to find a date. No need to give up on in-house dev because you're in the regions.",
     caravanSteps: [
       { num: "01", title: "Request a session", desc: "Tell us your area and preferred timing via the form. We align with the nearest route of our parallel instructor teams to find a date fast." },
-      { num: "02", title: "Pre-interview", desc: "A 30-minute online sync on industry, participants, and the work to solve — then we design the day's material." },
+      { num: "02", title: "Pre-interview", desc: "A 30-minute online sync on industry, participants, and the app you want to build in-house — then we design the day's material." },
       { num: "03", title: "One day at your office", desc: "An instructor comes on-site to your meeting room. Up to 10 people, with one-on-one support." },
-      { num: "04", title: "30 days of follow-up", desc: "Chat support continues after; optionally move to monthly coaching to embed it internally." },
+      { num: "04", title: "30 days of follow-up", desc: "Chat support continues after; optionally move to monthly coaching to grow a team that keeps building." },
     ],
     caravanNote: "* Beyond single-company sessions, we also run regional sessions with chambers of commerce, municipalities, or several companies together.",
     pricingLabel: "Pricing",
     pricingTitle: "Pricing",
     pricingDesc: "A one-day buy-out. With subsidies, your net cost is even smaller. Prices exclude tax; per-company guideline.",
     plans: [
-      { name: "1-Day Bootcamp", price: "From JPY 200K", unit: "/ session", desc: "One intensive day on-site. For getting the front line started.", features: ["Up to 10 people (on-site)", "Original materials & certificate", "Everyone completes one work tool", "30-day post-training chat support", "Outcome guaranteed"], featured: false },
-      { name: "Embed Package", price: "From JPY 800K", unit: "/ 3 mo", desc: "Bootcamp + monthly coaching until it takes hold. Where results show.", features: ["1-Day Bootcamp", "Monthly follow-up ×3", "Rollout & guideline support", "On-demand Slack Q&A", "Subsidy application support"], featured: true, badge: "Popular · best results" },
+      { name: "1-Day In-house Bootcamp", price: "From JPY 200K", unit: "/ session", desc: "One intensive day on-site. For shipping your first production app.", features: ["Up to 10 people (on-site)", "Claude, Codex, GitHub, Vercel, Firebase set", "Everyone ships one production web app", "30-day post-training chat support", "Outcome guaranteed"], featured: false },
+      { name: "Embed Package", price: "From JPY 800K", unit: "/ 3 mo", desc: "Bootcamp + monthly coaching until you're a team that keeps building. Where results show.", features: ["1-Day In-house Bootcamp", "Monthly follow-up ×3", "Dev rules & guideline support", "On-demand Slack Q&A", "Subsidy application support"], featured: true, badge: "Popular · best results" },
       { name: "Company Caravan", price: "Let's talk", unit: "", desc: "Multi-site / company-wide, or regional sessions with municipalities.", features: ["Back-to-back multi-site sessions", "Department-specific curriculum", "Instructor team assembly", "Impact measurement & reports", "Full subsidy support"], featured: false },
     ],
     planCta: "Ask about this",
-    pricingNote: "Travel and lodging billed separately by region. Joint or municipal sessions sharply lower per-company cost.",
+    pricingNote: "Travel and lodging billed separately by region. GitHub, Vercel, and Firebase can start on free tiers. Joint or municipal sessions sharply lower per-company cost.",
     subsidyLabel: "Subsidy",
     subsidyTitlePre: "Cover ",
     subsidyTitleHi: "up to 75%",
-    subsidyTitlePost: " of the fee with subsidies.",
-    subsidyDesc: "With Japan's Human Resources Development Subsidy, SMEs can have up to 75% of training expenses — plus participants' wages — covered. clearAI partners with a labor consultant to support you from application to completion report.",
-    subsidyCta: "Estimate your net cost →",
+    subsidyTitlePost: " of in-house training with subsidies.",
+    subsidyDesc: "With Japan's Human Resources Development Subsidy, SMEs can have up to 75% of training expenses — plus participants' wages — covered. clearAI partners with a labor consultant from application to completion report. * Conditions apply; we'll confirm eligibility in the free consultation.",
+    subsidyCta: "Ask about using subsidies →",
     instructorLabel: "Instructor",
     instructorTitle: "Taught by builders, not pundits.",
-    instructorDesc: "The instructors are engineers who've shipped contract systems, robotics, and internal automation with Claude Code themselves. Because they've built, they can teach one step ahead of where the front line gets stuck.",
+    instructorDesc: "The instructors are engineers who've actually built web apps and business systems in-house with Claude and Codex, and run them in production on GitHub, Vercel, and Firebase. Because they've shipped, they teach one step ahead of where you'd get stuck.",
     instructorPoints: [
-      "Built and operate real business systems with Claude Code",
+      "Built and run real web apps & business systems with Claude/Codex",
       "Anticipate sticking points from real non-engineer teaching",
       "A deep bench of industry use cases, turned into material on the spot",
-      "The same person follows up after, owning it until it sticks",
+      "The same person follows up after, owning it until you keep building",
     ],
     faqLabel: "FAQ",
     faqTitle: "Frequently asked questions",
     faqItems: [
-      { q: "Is it really OK for staff with no programming experience?", a: "Yes — non-engineers are our main audience. Because Claude Code takes plain-language instructions, anyone who can use a PC can join. We support each person one-on-one so everyone leaves with something that runs." },
-      { q: "Will you really come out to the regions?", a: "Yes. All 47 prefectures are in scope. We especially want to reach regional SMEs, touring nationwide as a caravan. We align dates with nearby sessions; ask us about remote islands too." },
-      { q: "What's the minimum and maximum headcount?", a: "On-site we aim for up to 10 — the smaller the group, the closer the support. From a single-executive session to multi-company regional sessions." },
-      { q: "What exactly does the outcome guarantee mean?", a: "Our bar is that every participant completes at least one tool or automation that runs their own work. If we don't reach it that day, we don't charge for the session." },
-      { q: "Can we always use subsidies?", a: "The Human Resources Development Subsidy covers up to 75% of SME expenses if requirements (e.g. 10+ training hours) are met. A one-day session can be combined with half-days or monthly coaching to qualify. We support you with a labor consultant, though approval is decided by review." },
-      { q: "Is there post-training support?", a: "Every plan includes 30 days of post-training chat support. The Embed Package continues with monthly coaching until it takes hold internally." },
-      { q: "We're worried about security and data handling.", a: "Handling confidential data, internal usage rules, and what must never leave the company are all part of the day. You leave with a pattern for safe internal operation." },
+      { q: "Can staff with no programming experience really build in-house?", a: "Yes — non-engineers are our main audience. Because Claude/Codex take plain-language instructions, anyone who can use a PC can join. We support each person one-on-one, and everyone reaches a live deployment." },
+      { q: "Are there tool costs for Claude, Codex, GitHub, Vercel, Firebase?", a: "GitHub, Vercel, and Firebase all start on free tiers, and the session completes within them. AI-coding usage (Claude/Codex) varies by scale, but we'll guide the best way to start on the day." },
+      { q: "Will you really come out to the regions?", a: "Yes. All 47 prefectures are in scope. We especially want to reach regional SMEs, touring nationwide with multiple instructor teams in parallel. We align dates with the nearest route." },
+      { q: "What exactly does the outcome guarantee mean?", a: "Our bar is that your team publishes one of your web apps live via GitHub → Vercel. If we don't reach that by day's end, we don't charge for the session." },
+      { q: "Can we always use subsidies?", a: "The Human Resources Development Subsidy covers up to 75% of SME expenses if requirements (e.g. 10+ training hours) are met. A one-day session can combine with half-days or monthly coaching to qualify. We support you with a labor consultant, though approval is decided by review." },
+      { q: "Is there post-training support?", a: "Every plan includes 30 days of post-training chat support. The Embed Package continues with monthly coaching until you're a team that keeps building in-house." },
+      { q: "We're worried about security and data handling.", a: "Handling confidential data, internal usage rules, what may be published externally, and safe operation of the live app are all part of the day. You leave with a pattern for safe in-house development." },
     ],
+    consultLabel: "Free Consultation",
+    consultTitle: "What the free consultation covers",
+    consultDesc: "No need to \"apply right away.\" It's just 30 minutes to hear your situation and organize the path together.",
+    consultItems: [
+      "We organize, together, which of your workflows are easiest to turn into apps",
+      "We judge whether the 1-day bootcamp or the 3-month embed package fits",
+      "We check the possibility of using subsidies (up to 75%)",
+      "No pushy sales. If you feel it's not for you, we can end right there",
+    ],
+    consultNote: "The consultation is 30 minutes online. After reviewing your needs, we won't push unnecessary sales or proposals. Information you share is used only to respond to your inquiry.",
     ctaLabel: "Contact",
-    ctaTitle: "Bring the next caravan to your area.",
-    ctaDesc: "Slots are limited to a few companies per region. Start with a free consultation about your challenges and dates — from a 30-minute online chat.",
+    ctaTitle: "Bring in-house web dev to your area.",
+    ctaDesc: "Slots are limited to a few companies per region. Start with a free consultation about your challenges and what you want to build — from a 30-minute online chat.",
     ctaButton: "Book a free consultation",
-    ctaSub: "No pushy sales. Just start with \"could this work for us?\"",
+    ctaSub: "No pushy sales. Just start with \"could we build it too?\"",
+    stickyTitle: "Free consultation",
+    stickySub: "30-min online · no sales",
+    stickyBtn: "Book",
   },
 };
 
@@ -344,7 +407,7 @@ export default function ClaudeBootcampPage() {
               <span className="w-1.5 h-1.5 rounded-full bg-neutral-900 animate-pulse" />{t.heroBadge}
             </span>
             <p className="text-sm font-semibold text-neutral-900 mb-3">{t.heroKicker}</p>
-            <h1 className="text-3xl lg:text-5xl font-bold text-gray-900 leading-[1.15] mb-6 max-w-[20ch] lg:max-w-[26ch]">
+            <h1 className="text-3xl lg:text-5xl font-bold text-gray-900 leading-[1.15] mb-6 max-w-[20ch] lg:max-w-[28ch]">
               {t.heroTitlePre}<span className="underline decoration-2 underline-offset-4">{t.heroTitleHi}</span>{t.heroTitlePost}
             </h1>
             <p className="text-base lg:text-lg text-gray-600 leading-relaxed max-w-3xl mb-8">{t.heroDesc}</p>
@@ -357,6 +420,56 @@ export default function ClaudeBootcampPage() {
               </a>
             </div>
             <p className="text-xs text-gray-500">{t.heroTrust}</p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* CLIENT LOGO MARQUEE */}
+      <ClientLogoMarquee label={t.marqueeLabel} note={t.marqueeNote} />
+
+      {/* REASSURANCE BAND */}
+      <section className="py-12 lg:py-16 bg-gray-50 border-b border-gray-100">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4">
+            {t.reassure.map((item, i) => (
+              <Reveal key={item.t} delay={i * 70}>
+                <div className="rounded-lg border border-gray-200 bg-white p-5 lg:p-6 h-full">
+                  <div className="flex items-start gap-2.5">
+                    <span className="mt-0.5 text-neutral-900 font-bold flex-shrink-0">✓</span>
+                    <div>
+                      <h3 className="text-sm lg:text-base font-bold text-gray-900 mb-1">{item.t}</h3>
+                      <p className="text-xs text-gray-600 leading-relaxed">{item.d}</p>
+                    </div>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+          <Reveal delay={300}>
+            <div className="text-center mt-8">
+              <a href="/contact?service=training" className="rounded-md bg-neutral-900 text-white font-semibold px-8 py-3.5 hover:bg-neutral-800 transition-colors duration-300 inline-block">
+                {t.reassureCta}
+              </a>
+              <p className="text-xs text-gray-500 mt-3">{t.reassureCtaSub}</p>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* TECH STACK LOGOS */}
+      <section className="py-10 lg:py-14 bg-white border-b border-gray-100">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
+          <Reveal>
+            <p className="text-center text-xs font-semibold tracking-[0.2em] text-gray-400 uppercase mb-8">{t.stackLabel}</p>
+            <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-6 lg:gap-x-16">
+              {TOOLS.map((tool) => (
+                <div key={tool.name} className="flex items-center gap-2.5">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={tool.logo} alt={tool.name} className="h-6 lg:h-7 w-auto" />
+                  <span className="text-sm lg:text-base font-semibold text-neutral-800">{tool.name}</span>
+                </div>
+              ))}
+            </div>
           </Reveal>
         </div>
       </section>
@@ -412,8 +525,16 @@ export default function ClaudeBootcampPage() {
             {t.promises.map((p, i) => (
               <Reveal key={p.num} delay={i * 100}>
                 <div className="rounded-lg border border-gray-200 bg-white p-8 hover:shadow-lg transition-all duration-300 h-full">
-                  <span className="text-2xl font-bold text-neutral-200">{p.num}</span>
-                  <h3 className="text-lg font-bold text-gray-900 mt-3 mb-3">{p.title}</h3>
+                  <div className="flex items-center justify-between mb-3 h-8">
+                    <span className="text-2xl font-bold text-neutral-200">{p.num}</span>
+                    <div className="flex items-center gap-2.5">
+                      {p.icons.map((ic) => (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img key={ic} src={ic} alt="" className="h-6 w-auto" />
+                      ))}
+                    </div>
+                  </div>
+                  <h3 className="text-lg font-bold text-gray-900 mb-3">{p.title}</h3>
                   <p className="text-sm text-gray-600 leading-relaxed">{p.desc}</p>
                 </div>
               </Reveal>
@@ -435,7 +556,7 @@ export default function ClaudeBootcampPage() {
         </div>
       </section>
 
-      {/* WHY CLAUDE CODE */}
+      {/* WHY */}
       <section className="py-14 lg:py-20 bg-gray-50">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
@@ -447,6 +568,12 @@ export default function ClaudeBootcampPage() {
             {t.whyPoints.map((p, i) => (
               <Reveal key={p.title} delay={i * 80}>
                 <div className="rounded-lg border border-gray-200 bg-white p-8 hover:shadow-lg transition-all duration-300 h-full">
+                  <div className="flex items-center gap-3 mb-4 h-8">
+                    {p.icons.map((ic) => (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img key={ic} src={ic} alt="" className="h-7 w-auto" />
+                    ))}
+                  </div>
                   <h3 className="text-base font-bold text-gray-900 mb-2">{p.title}</h3>
                   <p className="text-sm text-gray-600 leading-relaxed">{p.desc}</p>
                 </div>
@@ -597,7 +724,7 @@ export default function ClaudeBootcampPage() {
                 {t.subsidyTitlePre}<span className="underline decoration-2 underline-offset-4">{t.subsidyTitleHi}</span>{t.subsidyTitlePost}
               </h2>
               <p className="text-base text-gray-600 max-w-2xl mx-auto leading-relaxed mb-8">{t.subsidyDesc}</p>
-              <a href="/subsidy" className="rounded-md bg-neutral-900 text-white font-semibold px-8 py-3.5 hover:bg-neutral-800 transition-colors duration-300 inline-block">
+              <a href="/contact?service=training" className="rounded-md bg-neutral-900 text-white font-semibold px-8 py-3.5 hover:bg-neutral-800 transition-colors duration-300 inline-block">
                 {t.subsidyCta}
               </a>
             </div>
@@ -653,6 +780,30 @@ export default function ClaudeBootcampPage() {
         </div>
       </section>
 
+      {/* 無料相談で行うこと */}
+      <section className="py-14 lg:py-20 bg-gray-50">
+        <div className="max-w-3xl mx-auto px-6 lg:px-8">
+          <Reveal>
+            <Label>{t.consultLabel}</Label>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.consultTitle}</h2>
+            <p className="text-sm text-gray-500 mb-8 leading-relaxed">{t.consultDesc}</p>
+          </Reveal>
+          <div className="rounded-lg border border-gray-200 bg-white p-6 lg:p-8">
+            {t.consultItems.map((item, i) => (
+              <Reveal key={item} delay={i * 60}>
+                <div className={`flex items-start gap-3 py-3 ${i > 0 ? "border-t border-gray-100" : ""}`}>
+                  <span className="mt-0.5 text-neutral-900 font-bold flex-shrink-0">✓</span>
+                  <p className="text-sm text-gray-700 leading-relaxed">{item}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+          <Reveal delay={200}>
+            <p className="text-xs text-gray-500 mt-5 leading-relaxed">{t.consultNote}</p>
+          </Reveal>
+        </div>
+      </section>
+
       {/* FINAL CTA */}
       <section className="py-16 lg:py-24 bg-neutral-900">
         <div className="max-w-2xl mx-auto px-6 text-center">
@@ -665,6 +816,20 @@ export default function ClaudeBootcampPage() {
           </Reveal>
         </div>
       </section>
+
+      {/* STICKY MOBILE CTA BAR */}
+      <div className="lg:hidden fixed bottom-0 inset-x-0 z-50 bg-white/95 backdrop-blur-md border-t border-gray-200">
+        <div className="flex items-center justify-between gap-3 px-4 py-3">
+          <div className="leading-tight">
+            <p className="text-[13px] font-bold text-gray-900">{t.stickyTitle}</p>
+            <p className="text-[10px] text-gray-500">{t.stickySub}</p>
+          </div>
+          <a href="/contact?service=training" className="rounded-md bg-neutral-900 text-white text-sm font-semibold px-6 py-3 hover:bg-neutral-800 transition-colors whitespace-nowrap">
+            {t.stickyBtn}
+          </a>
+        </div>
+      </div>
+      <div className="lg:hidden h-20" />
     </>
   );
 }

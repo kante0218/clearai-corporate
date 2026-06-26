@@ -2,24 +2,24 @@ import type { Metadata } from "next";
 import Script from "next/script";
 
 const description =
-  "1日で御社の現場がClaude Codeを使えるようになる出張ブートキャンプ。全国47都道府県をキャラバン形式で巡回し、地方の中小企業の社員でも、その日のうちに自分の業務をAIで自動化できる状態まで引き上げます。最大75%の助成金活用可・成果保証つき。";
+  "Claude・Codex × GitHub・Vercel・Firebase で、Webアプリ開発の内製化を実現する出張ブートキャンプ。外注に頼らず自社のチームが、その日のうちに本番Webアプリを作って公開できる状態に。複数講師が全国47都道府県を巡回、成果保証つき・最大75%の助成金活用可。";
 
 export const metadata: Metadata = {
-  title: "Claude Code 1DAYブートキャンプ | 全国出張・1日で現場が使えるAI研修",
+  title: "Webアプリ内製化ブートキャンプ | Claude・Codex × GitHub・Vercel・Firebase",
   description,
   keywords: [
+    "Webアプリ 内製化",
+    "AI開発 研修",
     "Claude Code 研修",
-    "Claude Code ブートキャンプ",
-    "出張AI研修",
-    "地方 AI研修",
-    "中小企業 AI内製化",
+    "Codex 研修",
+    "GitHub Vercel Firebase 研修",
+    "出張 開発研修",
+    "中小企業 内製化",
     "バイブコーディング研修",
-    "全国 AI研修",
-    "AI 自動化 研修",
   ],
   alternates: { canonical: "https://clearai.jp/claude-bootcamp" },
   openGraph: {
-    title: "Claude Code 1DAYブートキャンプ | clearAI株式会社",
+    title: "Webアプリ内製化ブートキャンプ | clearAI株式会社",
     description,
     url: "https://clearai.jp/claude-bootcamp",
     type: "website",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Claude Code 1DAYブートキャンプ | clearAI株式会社",
+    title: "Webアプリ内製化ブートキャンプ | clearAI株式会社",
     description,
     images: ["/images/logo.png"],
   },
