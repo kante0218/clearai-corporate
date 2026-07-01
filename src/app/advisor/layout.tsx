@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import Script from "next/script";
 
 const description =
-  "clearAIのAI顧問サービス。月10万円〜、大手コンサル出身のAIアドバイザーが貴社の意思決定と現場実装に継続伴走。戦略相談・技術選定・PoC評価・社内教育まで、自走できる体制づくりを支援します。";
+  "clearAIのAI顧問サービス。月2.5万円〜、AIアドバイザーがチャット相談、会議参加、内製化支援、IT・テクノロジー全般の相談まで継続伴走します。ライトは限定10社。";
 
 export const metadata: Metadata = {
-  title: "AI顧問 | 月10万円〜、AI活用を継続伴走するアドバイザー",
+  title: "AI顧問 | 月2.5万円〜、AI活用を継続伴走するアドバイザー",
   description,
   keywords: [
     "AI顧問",
@@ -49,7 +49,7 @@ const serviceSchema = {
   url: "https://clearai.jp/advisor",
   offers: {
     "@type": "Offer",
-    price: "50000",
+    price: "25000",
     priceCurrency: "JPY",
     availability: "https://schema.org/InStock",
   },

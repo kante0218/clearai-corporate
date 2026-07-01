@@ -171,25 +171,25 @@ const COPY: Record<"ja" | "en", Copy> = {
   ja: {
     heroKicker: "AI Advisor",
     heroTitle: "AI顧問",
-    heroDesc: "月額契約で、AI活用の意思決定を継続的に伴走します。チャット相談から内製化支援、IT・テクノロジー全般の相談まで。月2.5万円〜／ライトは限定10社。",
+    heroDesc: "月額2.5万円〜でAI活用の意思決定を継続的に伴走し、チャット相談から内製化支援・IT全般まで対応します（ライトは限定10社）。",
     whyLabel: "Why Advisor",
     whyTitle: "こんなお悩みに、月2.5万円からお応えします。",
     why: [
-      { title: "誰に聞けばいいかわからない", desc: "社内にAI人材がいない、外部ベンダーに聞くと売り込みに変わる。中立な相談相手が欲しい。" },
-      { title: "情報の陳腐化が早すぎる", desc: "生成AIは毎月のように新機能が出る。何を試すべきか、何を無視していいかを選別してほしい。" },
+      { title: "誰に聞けばいいかわからない", desc: "社内にAI人材がおらず外部ベンダーは売り込みに変わるため、中立な相談相手を求めている。" },
+      { title: "情報の陳腐化が早すぎる", desc: "生成AIは毎月のように新機能が出るため、試すべきものと無視していいものを選別してほしい。" },
       { title: "単発コンサルは続かない", desc: "一度きりの提案書より、日々の意思決定を継続サポートしてくれる顧問の方が成果につながる。" },
     ],
     whatLabel: "What We Do",
     whatTitle: "顧問として提供する内容",
     what: [
-      { num: "01", title: "経営・戦略相談", desc: "AI投資の優先順位、組織体制、競合動向まで。大手コンサル出身者が経営の視点で壁打ち相手になります。" },
-      { num: "02", title: "技術選定アドバイス", desc: "ChatGPT・Claude・Gemini・オープンソース。中立な立場で貴社のユースケースに合うモデルとツールを選定。" },
+      { num: "01", title: "経営・戦略相談", desc: "AI投資の優先順位・組織体制・競合動向まで、大手コンサル出身者が経営の視点で壁打ち相手になります。" },
+      { num: "02", title: "技術選定アドバイス", desc: "ChatGPT・Claude・Gemini・オープンソースを中立な立場で比較し、貴社のユースケースに合うモデルとツールを選定します。" },
       { num: "03", title: "PoC・導入プロジェクト評価", desc: "現在進行中のAIプロジェクトに対するレビュー、リスク洗い出し、改善提案を行います。" },
       { num: "04", title: "社内AIリテラシー支援", desc: "経営会議での勉強会、現場向けのプロンプト指南、社内ガイドライン策定を必要に応じてサポート。" },
     ],
     claudeLabel: "Advisor × Claude",
     claudeTitle: "Claudeの業務導入も、顧問として伴走します。",
-    claudeDesc: "AnthropicのClaudeを「導入して終わり」にしないために。顧問契約の中で、Claudeの選定・社内ルール整備・運用定着までを月次で継続支援します。特定ツールの押し売りはせず、貴社の業務に本当に合うかを中立に見極めた上で進めます。",
+    claudeDesc: "顧問契約の中でClaudeの選定・社内ルール整備・運用定着まで月次で継続支援し、特定ツールの押し売りをせず中立に見極めた上で進めます。",
     claudePoints: [
       "Claude / ChatGPT / Gemini の中立比較と使い分け設計",
       "Claudeの社内導入・アカウント/権限・セキュリティ方針の整備",
@@ -226,16 +226,16 @@ const COPY: Record<"ja" | "en", Copy> = {
       { num: "01", title: "無料相談", en: "Consultation", desc: "貴社の現状と、顧問に期待したい役割をお伺いします（30〜45分）。" },
       { num: "02", title: "プラン提案", en: "Proposal", desc: "お話を踏まえ、最適なプランと担当顧問をご提案します。" },
       { num: "03", title: "契約・キックオフ", en: "Kickoff", desc: "契約締結後、連絡チャンネルを整備し、初回キックオフで支援範囲と進め方を確定します。" },
-      { num: "04", title: "継続伴走", en: "Ongoing", desc: "定例会議＋日常相談。成果と運用体制を定期的に見直します。" },
+      { num: "04", title: "継続伴走", en: "Ongoing", desc: "定例会議＋日常相談で継続支援し、成果と運用体制を定期的に見直します。" },
     ],
     faqLabel: "FAQ",
     faqTitle: "よくあるご質問",
     faq: [
-      { q: "顧問とコンサルの違いは？", a: "コンサルが「特定プロジェクトの提案・実装」であるのに対し、顧問は「継続的な相談相手」です。必要に応じてコンサルプランとの併用も可能です。" },
-      { q: "契約期間の縛りはありますか？", a: "ライトは限定10社の月額制、スタンダード以上は最低3ヶ月契約からとなります。以降は月単位で更新可能です。" },
-      { q: "誰が担当してくれますか？", a: "大手コンサルティングファーム出身者、もしくはAI実装経験豊富なエンジニアが担当します。事前の面談で相性をご確認ください。" },
+      { q: "顧問とコンサルの違いは？", a: "コンサルが「特定プロジェクトの提案・実装」であるのに対し、顧問は「継続的な相談相手」で、必要に応じてコンサルプランとの併用も可能です。" },
+      { q: "契約期間の縛りはありますか？", a: "ライトは限定10社の月額制、スタンダード以上は最低3ヶ月契約からで、以降は月単位で更新可能です。" },
+      { q: "誰が担当してくれますか？", a: "大手コンサルファーム出身者またはAI実装経験豊富なエンジニアが担当し、事前の面談で相性をご確認いただけます。" },
       { q: "NDAには対応していますか？", a: "もちろんです。顧問契約締結時に相互NDAを結びます。" },
-      { q: "オンサイト対応はありますか？", a: "エンタープライズプランでは重要会議への参加など対面対応が可能です。他プランでも追加料金で対応できます。" },
+      { q: "オンサイト対応はありますか？", a: "エンタープライズプランでは対面対応が可能で、他プランも追加料金で対応できます。" },
     ],
     ctaLabel: "Contact",
     ctaTitle: "月2.5万円から、AIの相談相手を。",
@@ -245,12 +245,12 @@ const COPY: Record<"ja" | "en", Copy> = {
   en: {
     heroKicker: "AI Advisor",
     heroTitle: "AI Advisor",
-    heroDesc: "A monthly engagement that supports your AI decisions on an ongoing basis — from chat consultation to internalization and IT/technology advice. From JPY 25K/month; Light is limited to 10 companies.",
+    heroDesc: "A monthly engagement (from JPY 25K) that supports your AI decisions on an ongoing basis — chat consultation, internalization, and IT/technology advice; Light plan is limited to 10 companies.",
     whyLabel: "Why Advisor",
     whyTitle: "We answer these concerns — from JPY 25K/month.",
     why: [
-      { title: "We don't know who to ask", desc: "No AI talent in-house, and asking a vendor turns into a sales pitch. You want a neutral sounding board." },
-      { title: "Information goes stale too fast", desc: "Generative AI ships new features almost monthly. You want someone to sort what's worth trying from what to ignore." },
+      { title: "We don't know who to ask", desc: "With no AI talent in-house and vendors that turn into sales pitches, you need a neutral sounding board." },
+      { title: "Information goes stale too fast", desc: "Generative AI ships new features almost monthly, and you need someone to sort what's worth trying from what to ignore." },
       { title: "One-off consulting doesn't last", desc: "More than a one-time proposal deck, an advisor who supports daily decisions drives real results." },
     ],
     whatLabel: "What We Do",
@@ -263,7 +263,7 @@ const COPY: Record<"ja" | "en", Copy> = {
     ],
     claudeLabel: "Advisor × Claude",
     claudeTitle: "We support adopting Claude, too — as your advisor.",
-    claudeDesc: "So Anthropic's Claude doesn't end at 'we rolled it out.' Within the advisory engagement, we provide ongoing monthly support for selecting Claude, setting internal rules, and embedding it into operations. No tool push — we first judge neutrally whether it truly fits your operations.",
+    claudeDesc: "Within the advisory engagement, we provide ongoing monthly support for selecting Claude, setting internal rules, and embedding it into operations — without pushing the tool until we've neutrally confirmed it fits.",
     claudePoints: [
       "Neutral comparison and role split across Claude / ChatGPT / Gemini",
       "Claude rollout: accounts, permissions, and security policy",
@@ -305,11 +305,11 @@ const COPY: Record<"ja" | "en", Copy> = {
     faqLabel: "FAQ",
     faqTitle: "Frequently asked questions",
     faq: [
-      { q: "How is an advisor different from consulting?", a: "Consulting is 'proposing and implementing a specific project,' while an advisor is 'an ongoing sounding board.' The two can be combined as needed." },
+      { q: "How is an advisor different from consulting?", a: "Consulting is 'proposing and implementing a specific project,' while an advisor is 'an ongoing sounding board' — the two can be combined as needed." },
       { q: "Is there a lock-in period?", a: "Light is a monthly plan limited to 10 companies; Standard and above start with a 3-month minimum, then renew monthly." },
-      { q: "Who will be in charge?", a: "An ex-top-tier consultant or an engineer with deep AI implementation experience. Check the fit in an upfront meeting." },
+      { q: "Who will be in charge?", a: "An ex-top-tier consultant or engineer with deep AI implementation experience — check fit in an upfront meeting." },
       { q: "Do you handle NDAs?", a: "Of course. We sign a mutual NDA when the advisory contract begins." },
-      { q: "Do you offer on-site support?", a: "The Enterprise plan includes in-person support such as key-meeting attendance. Other plans can add visits for an extra fee." },
+      { q: "Do you offer on-site support?", a: "The Enterprise plan includes in-person support such as key-meeting attendance; other plans can add visits for an extra fee." },
     ],
     ctaLabel: "Contact",
     ctaTitle: "An AI sounding board — from JPY 25K/month.",
@@ -428,7 +428,7 @@ export default function AdvisorPage() {
           </Reveal>
           {t.process.map((step, i) => (
             <Reveal key={step.num} delay={i * 100}>
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-1.5 md:gap-6 py-2.5 md:py-10 border-b border-gray-100 last:border-0">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 py-10 border-b border-gray-100 last:border-0">
                 <div className="lg:col-span-1"><span className="text-sm font-bold text-neutral-900">{step.num}</span></div>
                 <div className="lg:col-span-3">
                   <h3 className="text-xl font-bold text-gray-900">{step.title}</h3>

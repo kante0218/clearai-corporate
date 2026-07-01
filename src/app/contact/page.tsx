@@ -13,83 +13,23 @@ const COPY = {
     // Header
     headerKicker: "Contact",
     headerTitle: "お問い合わせ",
-    headerDesc: "2営業日以内にご返信します。お急ぎの方は",
-    headerDescEmail: "まで直接ご連絡ください。",
+    headerDesc: "ご質問・ご相談は2営業日以内にご返信します。お急ぎの方は",
+    headerDescEmail: "まで。",
     // Success screen
     successTitle: "送信ありがとうございます",
-    successBody: "担当者より2営業日以内にご連絡いたします。確認用メールが届かない場合は迷惑メールフォルダもご確認ください。",
+    successBody: "2営業日以内にご連絡いたします（確認メールが届かない場合は迷惑メールフォルダをご確認ください）。",
     successReset: "もう一件送る",
-    // Step labels
-    step1Title: "お問い合わせ種別",
-    step2Title: "ご興味のあるサービス",
-    step2Optional: "（任意）",
-    step3Title: "ご連絡先",
-    step4TitleBusiness: "ご相談内容",
-    step4TitleEngineer: "自己紹介・志望動機",
-    // Inquiry type options
-    inquiryBusiness: "サービス相談",
-    inquiryBusinessDesc: "AI顧問・研修・コンサル・ロボットレンタルなど",
-    inquiryEngineer: "エンジニア採用",
-    inquiryEngineerDesc: "チームに参加したい方",
-    inquiryOther: "その他",
-    inquiryOtherDesc: "取材・提携など",
-    // Service option labels
-    serviceConsulting: "AIコンサル・DX",
-    serviceAdvisor: "AI顧問",
-    serviceEducation: "AI研修",
-    serviceSubsidy: "補助金サポート",
-    serviceClaudeCode: "Claude特化",
-    serviceAdvertising: "AI広告運用",
-    serviceWebsite: "ウェブサイト作成",
-    serviceSns: "SNS運用代行",
-    serviceCeo: "経営者向けAI活用",
-    serviceRobotRental: "ロボットレンタル",
     // Field labels
-    labelName: "ご担当者名",
-    labelNameEngineer: "お名前",
-    labelRequired: "*",
+    labelName: "お名前",
     labelEmail: "メールアドレス",
     labelCompany: "会社名",
-    labelPosition: "希望ポジション",
-    labelExperience: "経験年数",
+    labelMessage: "お問い合わせ内容",
+    labelRequired: "*",
     labelOptional: "（任意）",
-    labelPhone: "電話番号",
-    labelSize: "従業員規模",
-    labelPortfolio: "GitHub / ポートフォリオ URL",
     // Placeholders
     placeholderName: "山田 太郎",
     placeholderEmail: "info@example.com",
     placeholderCompany: "株式会社〇〇",
-    placeholderPhone: "03-XXXX-XXXX",
-    placeholderPortfolioUrl: "https://github.com/your-id",
-    // Optional section toggles
-    optionalToggleBusiness: "電話番号・従業員規模を追加",
-    optionalToggleEngineer: "ポートフォリオURLを追加",
-    // Select defaults
-    selectDefault: "選択してください",
-    // Position options
-    positionFrontend: "フロントエンド",
-    positionBackend: "バックエンド",
-    positionFullstack: "フルスタック",
-    positionDesigner: "デザイナー",
-    positionInfra: "インフラ・SRE",
-    positionAiMl: "AI / ML",
-    positionOther: "その他",
-    // Experience options
-    experienceStudent: "学生",
-    experienceLt1: "1年未満",
-    experience1to3: "1〜3年",
-    experience3to5: "3〜5年",
-    experience5to10: "5〜10年",
-    experienceGt10: "10年以上",
-    // Size options
-    sizeLt50: "〜50名",
-    size51to200: "51〜200名",
-    size201to500: "201〜500名",
-    size501to1000: "501〜1000名",
-    sizeGt1000: "1001名〜",
-    // Message placeholders
-    messagePlaceholderEngineer: "使用技術・得意分野・志望動機など、自由にご記入ください",
     messagePlaceholderDefault: "ご質問やご相談内容をご記入ください（10文字以上）",
     messagePlaceholderService: "について、検討背景や聞きたいことをご記入ください",
     // Submit
@@ -100,7 +40,7 @@ const COPY = {
     privacyLink: "プライバシーポリシー",
     privacySuffix: "に従い適切に管理します。",
     // Server error
-    serverError: "通信エラーが発生しました。時間をおいて再度お試しください。",
+    serverError: "通信エラーが発生しましたので、しばらく経ってから再試行してください。",
     // Info strip
     infoReplyLabel: "返信目安",
     infoReplyValue: "2営業日以内",
@@ -115,83 +55,23 @@ const COPY = {
     // Header
     headerKicker: "Contact",
     headerTitle: "Contact Us",
-    headerDesc: "We reply within 2 business days. For urgent matters, email",
-    headerDescEmail: "directly.",
+    headerDesc: "Feel free to reach out — we reply within 2 business days, or email",
+    headerDescEmail: "for urgent matters.",
     // Success screen
     successTitle: "Message sent — thank you.",
-    successBody: "A member of our team will be in touch within 2 business days. If you don't receive a confirmation email, please check your spam folder.",
+    successBody: "We'll be in touch within 2 business days (if no confirmation email arrives, check your spam folder).",
     successReset: "Send another message",
-    // Step labels
-    step1Title: "Inquiry type",
-    step2Title: "Service of interest",
-    step2Optional: "(optional)",
-    step3Title: "Contact details",
-    step4TitleBusiness: "Inquiry details",
-    step4TitleEngineer: "Introduction & motivation",
-    // Inquiry type options
-    inquiryBusiness: "Service inquiry",
-    inquiryBusinessDesc: "AI adoption, advisory, training, etc.",
-    inquiryEngineer: "Engineering roles",
-    inquiryEngineerDesc: "Join our team",
-    inquiryOther: "Other",
-    inquiryOtherDesc: "Press, partnerships, etc.",
-    // Service option labels
-    serviceConsulting: "AI Consulting & DX",
-    serviceAdvisor: "AI Advisory",
-    serviceEducation: "AI Training",
-    serviceSubsidy: "Subsidy Support",
-    serviceClaudeCode: "Claude-Focused",
-    serviceAdvertising: "AI Ad Operations",
-    serviceWebsite: "Website Creation",
-    serviceSns: "SNS Management",
-    serviceCeo: "AI for Executives",
-    serviceRobotRental: "Robot Rental",
     // Field labels
-    labelName: "Contact person",
-    labelNameEngineer: "Full name",
-    labelRequired: "*",
+    labelName: "Full name",
     labelEmail: "Email address",
     labelCompany: "Company name",
-    labelPosition: "Desired position",
-    labelExperience: "Years of experience",
+    labelMessage: "Your message",
+    labelRequired: "*",
     labelOptional: "(optional)",
-    labelPhone: "Phone number",
-    labelSize: "Company size",
-    labelPortfolio: "GitHub / Portfolio URL",
     // Placeholders
     placeholderName: "Jane Smith",
     placeholderEmail: "info@example.com",
     placeholderCompany: "Acme Inc.",
-    placeholderPhone: "+81-3-XXXX-XXXX",
-    placeholderPortfolioUrl: "https://github.com/your-id",
-    // Optional section toggles
-    optionalToggleBusiness: "Add phone & company size",
-    optionalToggleEngineer: "Add portfolio URL",
-    // Select defaults
-    selectDefault: "Please select",
-    // Position options
-    positionFrontend: "Frontend",
-    positionBackend: "Backend",
-    positionFullstack: "Full-stack",
-    positionDesigner: "Designer",
-    positionInfra: "Infrastructure / SRE",
-    positionAiMl: "AI / ML",
-    positionOther: "Other",
-    // Experience options
-    experienceStudent: "Student",
-    experienceLt1: "Less than 1 year",
-    experience1to3: "1–3 years",
-    experience3to5: "3–5 years",
-    experience5to10: "5–10 years",
-    experienceGt10: "10+ years",
-    // Size options
-    sizeLt50: "Up to 50",
-    size51to200: "51–200",
-    size201to500: "201–500",
-    size501to1000: "501–1,000",
-    sizeGt1000: "1,001+",
-    // Message placeholders
-    messagePlaceholderEngineer: "Tell us about your tech stack, strengths, and why you want to join clearAI.",
     messagePlaceholderDefault: "Please describe your question or inquiry (10+ characters).",
     messagePlaceholderService: " — please share the background and what you'd like to know.",
     // Submit
@@ -202,7 +82,7 @@ const COPY = {
     privacyLink: "Privacy Policy",
     privacySuffix: ".",
     // Server error
-    serverError: "A network error occurred. Please wait a moment and try again.",
+    serverError: "A network error occurred — please wait a moment and try again.",
     // Info strip
     infoReplyLabel: "Response time",
     infoReplyValue: "Within 2 business days",
@@ -239,49 +119,18 @@ function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; 
 // ---------------------------------------------------------------------------
 // Types & constants
 // ---------------------------------------------------------------------------
-type InquiryType = "business" | "engineer" | "other";
-
-// Extended service key that includes robot-rental (not in validators SERVICE_KEYS)
+// Service may still arrive via ?service= (e.g. from a plan card) — it is sent
+// silently with the message for context, but no longer shown as a selector.
 type ExtendedServiceKey = ServiceKey | "robot-rental" | "sns";
-
-const INQUIRY_ICONS: Record<InquiryType, ReactNode> = {
-  business: (
-    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /><path d="M12 8v4l2.5 2.5" />
-    </svg>
-  ),
-  engineer: (
-    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <path d="m8 4 8 16M4 8l4 4-4 4M20 8l-4 4 4 4" />
-    </svg>
-  ),
-  other: (
-    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z" />
-    </svg>
-  ),
-};
-
-const INQUIRY_TYPE_KEYS: InquiryType[] = ["business", "engineer", "other"];
-const SERVICE_OPTION_KEYS: ExtendedServiceKey[] = [
-  "advisor", "education", "consulting", "website", "advertising", "sns",
-  "robot-rental", "subsidy", "claude-code", "ceo",
-];
-
-// Extended SERVICE_KEYS including robot-rental and sns for query-param handling
 const EXTENDED_SERVICE_KEYS: readonly string[] = [...(SERVICE_KEYS as readonly string[]), "robot-rental", "sns"];
 
 const EMPTY_FORM = {
-  inquiryType: "business" as InquiryType,
+  // General-inquiry form: "other" keeps only name / email / message required.
+  inquiryType: "other" as const,
   service: "" as ExtendedServiceKey | "",
   company: "",
   name: "",
   email: "",
-  phone: "",
-  size: "",
-  position: "",
-  experience: "",
-  portfolio: "",
   message: "",
   website: "",
 };
@@ -309,16 +158,16 @@ function ContactPageInner() {
   const [form, setForm] = useState(EMPTY_FORM);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [serverError, setServerError] = useState<string | null>(null);
-  const [showOptional, setShowOptional] = useState(false);
 
+  // Silently capture ?service= for context (no UI).
   useEffect(() => {
     const serviceParam = searchParams.get("service");
     if (serviceParam && EXTENDED_SERVICE_KEYS.includes(serviceParam)) {
-      setForm((prev) => ({ ...prev, inquiryType: "business", service: serviceParam as ExtendedServiceKey }));
+      setForm((prev) => ({ ...prev, service: serviceParam as ExtendedServiceKey }));
     }
   }, [searchParams]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
     if (errors[e.target.name]) {
       setErrors((prev) => { const next = { ...prev }; delete next[e.target.name]; return next; });
@@ -333,11 +182,6 @@ function ContactPageInner() {
       company: form.company,
       name: form.name,
       email: form.email,
-      phone: form.phone,
-      size: form.size,
-      position: form.position,
-      experience: form.experience,
-      portfolio: form.portfolio,
       message: form.message,
     });
     if (Object.keys(clientErrors).length > 0) {
@@ -373,7 +217,6 @@ function ContactPageInner() {
     setErrors({});
     setServerError(null);
     setStatus("idle");
-    setShowOptional(false);
     const serviceParam = searchParams.get("service");
     if (serviceParam && EXTENDED_SERVICE_KEYS.includes(serviceParam)) {
       setForm((prev) => ({ ...prev, service: serviceParam as ExtendedServiceKey }));
@@ -385,36 +228,12 @@ function ContactPageInner() {
       errors[field] ? "border-neutral-300 bg-neutral-50" : "border-gray-200 hover:border-gray-300"
     }`;
 
-  const selectInquiry = (type: InquiryType) => {
-    setForm({ ...form, inquiryType: type, service: type === "business" ? form.service : "" });
-    setErrors({});
-  };
-
-  const isBusiness = form.inquiryType === "business";
-  const isEngineer = form.inquiryType === "engineer";
-
-  // Service label lookup including robot-rental
-  const getServiceLabel = (key: ExtendedServiceKey): string => {
-    const labelMap: Record<ExtendedServiceKey, string> = {
-      consulting: t.serviceConsulting,
-      advisor: t.serviceAdvisor,
-      education: t.serviceEducation,
-      subsidy: t.serviceSubsidy,
-      "claude-code": t.serviceClaudeCode,
-      advertising: t.serviceAdvertising,
-      website: t.serviceWebsite,
-      sns: t.serviceSns,
-      ceo: t.serviceCeo,
-      "robot-rental": t.serviceRobotRental,
-    };
-    return labelMap[key] ?? key;
-  };
-
-  // Message placeholder — uses SERVICE_LABELS for known keys, falls back to t.serviceRobotRental
   const getMessagePlaceholder = (): string => {
-    if (isEngineer) return t.messagePlaceholderEngineer;
     if (form.service) {
-      const label = (SERVICE_LABELS as Record<string, string>)[form.service] ?? getServiceLabel(form.service as ExtendedServiceKey);
+      const label =
+        (SERVICE_LABELS as Record<string, string>)[form.service] ??
+        ({ "robot-rental": "ロボットレンタル", sns: "SNS運用代行" } as Record<string, string>)[form.service] ??
+        form.service;
       return `${label}${t.messagePlaceholderService}`;
     }
     return t.messagePlaceholderDefault;
@@ -423,7 +242,7 @@ function ContactPageInner() {
   return (
     <main className="min-h-screen bg-white">
       {/* Header */}
-      <section className="max-w-3xl mx-auto px-6 pt-28 lg:pt-32 pb-8 lg:pb-10 text-center">
+      <section className="max-w-2xl mx-auto px-6 pt-28 lg:pt-32 pb-8 lg:pb-10 text-center">
         <Reveal>
           <p className="text-xs font-semibold tracking-[0.2em] text-neutral-900 uppercase mb-4">{t.headerKicker}</p>
           <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">{t.headerTitle}</h1>
@@ -435,7 +254,7 @@ function ContactPageInner() {
         </Reveal>
       </section>
 
-      <section className="max-w-3xl mx-auto px-6 pb-20 lg:pb-28">
+      <section className="max-w-2xl mx-auto px-6 pb-20 lg:pb-28">
         {status === "success" ? (
           <Reveal>
             <div className="bg-white border border-gray-200 rounded-lg px-8 py-16 text-center shadow-sm">
@@ -456,195 +275,54 @@ function ContactPageInner() {
           </Reveal>
         ) : (
           <Reveal>
-            <form onSubmit={handleSubmit} noValidate className="bg-white border border-gray-200 rounded-lg p-6 sm:p-10 shadow-sm space-y-8">
+            <form onSubmit={handleSubmit} noValidate className="bg-white border border-gray-200 rounded-lg p-6 sm:p-10 shadow-sm space-y-6">
               {/* Honeypot */}
               <input type="text" name="website" value={form.website} onChange={handleChange}
                 tabIndex={-1} autoComplete="off" aria-hidden="true"
                 style={{ position: "absolute", left: "-9999px", width: "1px", height: "1px", overflow: "hidden" }} />
 
-              {/* STEP 1: Inquiry type */}
-              <div>
-                <div className="flex items-baseline gap-3 mb-4">
-                  <span className="text-xs font-bold text-neutral-900">01</span>
-                  <h2 className="text-sm font-semibold text-gray-900">{t.step1Title}</h2>
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3">
-                  {INQUIRY_TYPE_KEYS.map((key) => {
-                    const active = form.inquiryType === key;
-                    const labelKey = key === "business" ? "inquiryBusiness" : key === "engineer" ? "inquiryEngineer" : "inquiryOther";
-                    const descKey = key === "business" ? "inquiryBusinessDesc" : key === "engineer" ? "inquiryEngineerDesc" : "inquiryOtherDesc";
-                    return (
-                      <button key={key} type="button" onClick={() => selectInquiry(key)}
-                        aria-pressed={active}
-                        className={`flex sm:flex-col items-center sm:text-center gap-3 sm:gap-0 rounded-lg border px-4 py-3.5 sm:py-5 transition-all duration-200 ${
-                          active ? "border-neutral-900 bg-neutral-50 ring-2 ring-neutral-300" : "border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50/50"
-                        }`}>
-                        <div className={`shrink-0 sm:mx-auto sm:mb-2 w-9 h-9 rounded-full flex items-center justify-center transition-colors ${
-                          active ? "bg-neutral-900 text-white" : "bg-gray-100 text-gray-500"
-                        }`}>{INQUIRY_ICONS[key]}</div>
-                        <div className="min-w-0">
-                          <span className={`block text-sm font-bold leading-tight ${active ? "text-neutral-900" : "text-gray-900"}`}>{t[labelKey]}</span>
-                          <span className="block text-[11px] text-gray-500 mt-0.5 sm:mt-1 leading-snug">{t[descKey]}</span>
-                        </div>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-
-              {/* STEP 2: Service (business only) */}
-              {isBusiness && (
+              {/* Name + Email */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
-                  <div className="flex items-baseline gap-3 mb-4">
-                    <span className="text-xs font-bold text-neutral-900">02</span>
-                    <h2 className="text-sm font-semibold text-gray-900">{t.step2Title} <span className="font-normal text-gray-400">{t.step2Optional}</span></h2>
-                  </div>
-                  <select id="service" name="service" value={form.service} onChange={handleChange}
-                    className={`${inputClass("service")} appearance-none cursor-pointer pr-10 bg-[url('data:image/svg+xml;utf8,<svg%20xmlns=%22http://www.w3.org/2000/svg%22%20width=%2212%22%20height=%2212%22%20viewBox=%220%200%2012%2012%22%20fill=%22none%22%20stroke=%22%23999%22%20stroke-width=%221.5%22%20stroke-linecap=%22round%22%20stroke-linejoin=%22round%22><path%20d=%22M3%204.5L6%207.5L9%204.5%22/></svg>')] bg-no-repeat bg-[right_1rem_center]`}>
-                    <option value="">{t.selectDefault}</option>
-                    {SERVICE_OPTION_KEYS.map((key) => (
-                      <option key={key} value={key}>{getServiceLabel(key)}</option>
-                    ))}
-                  </select>
+                  <label htmlFor="name" className="block text-xs font-semibold text-gray-600 mb-1.5">
+                    {t.labelName} <span className="text-neutral-900">{t.labelRequired}</span>
+                  </label>
+                  <input id="name" type="text" name="name" value={form.name} onChange={handleChange}
+                    placeholder={t.placeholderName} autoComplete="name"
+                    aria-invalid={!!errors.name} className={inputClass("name")} />
+                  {errors.name && <p className="mt-1.5 text-xs text-neutral-900 font-medium">{errors.name}</p>}
                 </div>
-              )}
-
-              {/* STEP 3: Basic info */}
-              <div>
-                <div className="flex items-baseline gap-3 mb-4">
-                  <span className="text-xs font-bold text-neutral-900">{isBusiness ? "03" : "02"}</span>
-                  <h2 className="text-sm font-semibold text-gray-900">{t.step3Title}</h2>
-                </div>
-                <div className="space-y-5">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                    <div>
-                      <label htmlFor="name" className="block text-xs font-semibold text-gray-600 mb-1.5">
-                        {isEngineer ? t.labelNameEngineer : t.labelName} <span className="text-neutral-900">{t.labelRequired}</span>
-                      </label>
-                      <input id="name" type="text" name="name" value={form.name} onChange={handleChange}
-                        placeholder={t.placeholderName} autoComplete="name"
-                        aria-invalid={!!errors.name} className={inputClass("name")} />
-                      {errors.name && <p className="mt-1.5 text-xs text-neutral-900 font-medium">{errors.name}</p>}
-                    </div>
-                    <div>
-                      <label htmlFor="email" className="block text-xs font-semibold text-gray-600 mb-1.5">
-                        {t.labelEmail} <span className="text-neutral-900">{t.labelRequired}</span>
-                      </label>
-                      <input id="email" type="email" name="email" value={form.email} onChange={handleChange}
-                        placeholder={t.placeholderEmail} autoComplete="email"
-                        aria-invalid={!!errors.email} className={inputClass("email")} />
-                      {errors.email && <p className="mt-1.5 text-xs text-neutral-900 font-medium">{errors.email}</p>}
-                    </div>
-                  </div>
-
-                  {isBusiness && (
-                    <div>
-                      <label htmlFor="company" className="block text-xs font-semibold text-gray-600 mb-1.5">
-                        {t.labelCompany} <span className="text-neutral-900">{t.labelRequired}</span>
-                      </label>
-                      <input id="company" type="text" name="company" value={form.company} onChange={handleChange}
-                        placeholder={t.placeholderCompany} autoComplete="organization"
-                        aria-invalid={!!errors.company} className={inputClass("company")} />
-                      {errors.company && <p className="mt-1.5 text-xs text-neutral-900 font-medium">{errors.company}</p>}
-                    </div>
-                  )}
-
-                  {/* Engineer-specific required */}
-                  {isEngineer && (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                      <div>
-                        <label htmlFor="position" className="block text-xs font-semibold text-gray-600 mb-1.5">
-                          {t.labelPosition} <span className="text-neutral-900">{t.labelRequired}</span>
-                        </label>
-                        <select id="position" name="position" value={form.position} onChange={handleChange}
-                          aria-invalid={!!errors.position} className={`${inputClass("position")} appearance-none cursor-pointer pr-10 bg-[url('data:image/svg+xml;utf8,<svg%20xmlns=%22http://www.w3.org/2000/svg%22%20width=%2212%22%20height=%2212%22%20viewBox=%220%200%2012%2012%22%20fill=%22none%22%20stroke=%22%23999%22%20stroke-width=%221.5%22%20stroke-linecap=%22round%22%20stroke-linejoin=%22round%22><path%20d=%22M3%204.5L6%207.5L9%204.5%22/></svg>')] bg-no-repeat bg-[right_1rem_center]`}>
-                          <option value="">{t.selectDefault}</option>
-                          <option value="フロントエンド">{t.positionFrontend}</option>
-                          <option value="バックエンド">{t.positionBackend}</option>
-                          <option value="フルスタック">{t.positionFullstack}</option>
-                          <option value="デザイナー">{t.positionDesigner}</option>
-                          <option value="インフラ・SRE">{t.positionInfra}</option>
-                          <option value="AI/ML">{t.positionAiMl}</option>
-                          <option value="その他">{t.positionOther}</option>
-                        </select>
-                        {errors.position && <p className="mt-1.5 text-xs text-neutral-900 font-medium">{errors.position}</p>}
-                      </div>
-                      <div>
-                        <label htmlFor="experience" className="block text-xs font-semibold text-gray-600 mb-1.5">{t.labelExperience} <span className="font-normal text-gray-400">{t.labelOptional}</span></label>
-                        <select id="experience" name="experience" value={form.experience} onChange={handleChange}
-                          className={`${inputClass("experience")} appearance-none cursor-pointer pr-10 bg-[url('data:image/svg+xml;utf8,<svg%20xmlns=%22http://www.w3.org/2000/svg%22%20width=%2212%22%20height=%2212%22%20viewBox=%220%200%2012%2012%22%20fill=%22none%22%20stroke=%22%23999%22%20stroke-width=%221.5%22%20stroke-linecap=%22round%22%20stroke-linejoin=%22round%22><path%20d=%22M3%204.5L6%207.5L9%204.5%22/></svg>')] bg-no-repeat bg-[right_1rem_center]`}>
-                          <option value="">{t.selectDefault}</option>
-                          <option value="学生">{t.experienceStudent}</option>
-                          <option value="1年未満">{t.experienceLt1}</option>
-                          <option value="1-3年">{t.experience1to3}</option>
-                          <option value="3-5年">{t.experience3to5}</option>
-                          <option value="5-10年">{t.experience5to10}</option>
-                          <option value="10年以上">{t.experienceGt10}</option>
-                        </select>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Optional collapsible */}
-                  {(isBusiness || isEngineer) && (
-                    <div>
-                      <button type="button" onClick={() => setShowOptional((v) => !v)}
-                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-gray-500 hover:text-gray-900 transition-colors">
-                        <svg className={`w-3 h-3 transition-transform ${showOptional ? "rotate-180" : ""}`} viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 4.5L6 7.5L9 4.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                        {isBusiness ? t.optionalToggleBusiness : t.optionalToggleEngineer}
-                        <span className="font-normal text-gray-400">{t.labelOptional}</span>
-                      </button>
-                      {showOptional && (
-                        <div className="mt-4 pt-4 border-t border-gray-100 space-y-5">
-                          {isBusiness && (
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                              <div>
-                                <label htmlFor="phone" className="block text-xs font-semibold text-gray-600 mb-1.5">{t.labelPhone}</label>
-                                <input id="phone" type="tel" name="phone" value={form.phone} onChange={handleChange}
-                                  placeholder={t.placeholderPhone} autoComplete="tel" className={inputClass("phone")} />
-                                {errors.phone && <p className="mt-1.5 text-xs text-neutral-900 font-medium">{errors.phone}</p>}
-                              </div>
-                              <div>
-                                <label htmlFor="size" className="block text-xs font-semibold text-gray-600 mb-1.5">{t.labelSize}</label>
-                                <select id="size" name="size" value={form.size} onChange={handleChange}
-                                  className={`${inputClass("size")} appearance-none cursor-pointer pr-10 bg-[url('data:image/svg+xml;utf8,<svg%20xmlns=%22http://www.w3.org/2000/svg%22%20width=%2212%22%20height=%2212%22%20viewBox=%220%200%2012%2012%22%20fill=%22none%22%20stroke=%22%23999%22%20stroke-width=%221.5%22%20stroke-linecap=%22round%22%20stroke-linejoin=%22round%22><path%20d=%22M3%204.5L6%207.5L9%204.5%22/></svg>')] bg-no-repeat bg-[right_1rem_center]`}>
-                                  <option value="">{t.selectDefault}</option>
-                                  <option value="~50名">{t.sizeLt50}</option>
-                                  <option value="51-200名">{t.size51to200}</option>
-                                  <option value="201-500名">{t.size201to500}</option>
-                                  <option value="501-1000名">{t.size501to1000}</option>
-                                  <option value="1001名~">{t.sizeGt1000}</option>
-                                </select>
-                              </div>
-                            </div>
-                          )}
-                          {isEngineer && (
-                            <div>
-                              <label htmlFor="portfolio" className="block text-xs font-semibold text-gray-600 mb-1.5">{t.labelPortfolio}</label>
-                              <input id="portfolio" type="url" name="portfolio" value={form.portfolio} onChange={handleChange}
-                                placeholder={t.placeholderPortfolioUrl} autoComplete="url" className={inputClass("portfolio")} />
-                              {errors.portfolio && <p className="mt-1.5 text-xs text-neutral-900 font-medium">{errors.portfolio}</p>}
-                            </div>
-                          )}
-                        </div>
-                      )}
-                    </div>
-                  )}
+                <div>
+                  <label htmlFor="email" className="block text-xs font-semibold text-gray-600 mb-1.5">
+                    {t.labelEmail} <span className="text-neutral-900">{t.labelRequired}</span>
+                  </label>
+                  <input id="email" type="email" name="email" value={form.email} onChange={handleChange}
+                    placeholder={t.placeholderEmail} autoComplete="email"
+                    aria-invalid={!!errors.email} className={inputClass("email")} />
+                  {errors.email && <p className="mt-1.5 text-xs text-neutral-900 font-medium">{errors.email}</p>}
                 </div>
               </div>
 
-              {/* STEP 4: Message */}
+              {/* Company (optional) */}
               <div>
-                <div className="flex items-baseline gap-3 mb-4">
-                  <span className="text-xs font-bold text-neutral-900">{isBusiness ? "04" : "03"}</span>
-                  <h2 className="text-sm font-semibold text-gray-900">
-                    {isEngineer ? t.step4TitleEngineer : t.step4TitleBusiness}
-                  </h2>
-                </div>
-                <textarea id="message" name="message" rows={5} value={form.message} onChange={handleChange}
+                <label htmlFor="company" className="block text-xs font-semibold text-gray-600 mb-1.5">
+                  {t.labelCompany} <span className="font-normal text-gray-400">{t.labelOptional}</span>
+                </label>
+                <input id="company" type="text" name="company" value={form.company} onChange={handleChange}
+                  placeholder={t.placeholderCompany} autoComplete="organization"
+                  aria-invalid={!!errors.company} className={inputClass("company")} />
+                {errors.company && <p className="mt-1.5 text-xs text-neutral-900 font-medium">{errors.company}</p>}
+              </div>
+
+              {/* Message */}
+              <div>
+                <label htmlFor="message" className="block text-xs font-semibold text-gray-600 mb-1.5">
+                  {t.labelMessage} <span className="text-neutral-900">{t.labelRequired}</span>
+                </label>
+                <textarea id="message" name="message" rows={6} value={form.message} onChange={handleChange}
                   placeholder={getMessagePlaceholder()}
                   aria-invalid={!!errors.message}
-                  className={`${inputClass("message")} resize-none min-h-[150px]`} />
+                  className={`${inputClass("message")} resize-none min-h-[160px]`} />
                 {errors.message && <p className="mt-1.5 text-xs text-neutral-900 font-medium">{errors.message}</p>}
               </div>
 
@@ -655,10 +333,10 @@ function ContactPageInner() {
                 )}
               </div>
 
-              {/* Submit */}
+              {/* Submit (full width) */}
               <div className="pt-2 space-y-4">
                 <button type="submit" disabled={status === "submitting"}
-                  className={`w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg bg-neutral-900 text-white font-semibold px-10 py-4 hover:bg-neutral-800 active:bg-neutral-900 transition-all duration-200 shadow-sm hover:shadow-md ${
+                  className={`w-full inline-flex items-center justify-center gap-2 rounded-lg bg-neutral-900 text-white font-semibold px-10 py-4 hover:bg-neutral-800 active:bg-neutral-900 transition-all duration-200 shadow-sm hover:shadow-md ${
                     status === "submitting" ? "opacity-60 cursor-not-allowed" : ""
                   }`}>
                   {status === "submitting" && (
@@ -672,7 +350,7 @@ function ContactPageInner() {
                     <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
                   )}
                 </button>
-                <p className="text-xs text-gray-500 leading-relaxed">
+                <p className="text-xs text-gray-500 leading-relaxed text-center">
                   {t.privacyPrefix}{" "}
                   <a href="/privacy" className="underline hover:text-gray-700">{t.privacyLink}</a>
                   {t.privacySuffix}
@@ -685,7 +363,7 @@ function ContactPageInner() {
 
       {/* Mini info strip */}
       {status !== "success" && (
-        <section className="max-w-3xl mx-auto px-6 pb-24">
+        <section className="max-w-2xl mx-auto px-6 pb-24">
           <Reveal>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-px bg-gray-200 rounded-lg overflow-hidden">
               {[

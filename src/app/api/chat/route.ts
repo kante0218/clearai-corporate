@@ -35,7 +35,7 @@ const SYSTEM_PROMPT = `あなたは、clearAI株式会社の公式Webサイト�
 - 茨城県の農業現場に根差した技術開発
 
 ## 関連ページ
-- 顧問（月10万円〜の継続伴走）: /advisor
+- 顧問（月2.5万円〜の継続伴走）: /advisor
 - 研修（チームのAIリテラシー向上）: /training
 - ブログ: /blog
 - 会社概要: /about

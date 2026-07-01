@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 
 const description =
-  "【準備中／Coming Soon】clearAIのロボットレンタル。Unitree・Boston Dynamics・AGIBOT・JAKA・PUDUなど海外の最先端ヒューマノイド／四足歩行ロボット／協働ロボットを輸入し、短期レンタル・導入前トライアル・イベント活用で提供予定。先行のご相談を承っています。";
+  "【準備中／Coming Soon】clearAIのロボットレンタル。Unitree・Boston Dynamics・AGIBOT・JAKA・PUDU・Booster Robotics・EngineAI・UBTECH・Fourier・PAL Roboticsなど海外の最先端ヒューマノイド／四足歩行ロボット／協働ロボット／サービスロボットを輸入し、短期レンタル・導入前トライアル・イベント活用で提供予定。先行のご相談を承っています。";
 
 export const metadata: Metadata = {
   title: "ロボットレンタル | ヒューマノイドの短期レンタル・PoC・実証",
@@ -18,6 +18,27 @@ export const metadata: Metadata = {
     "Unitree B2",
     "Unitree A2",
     "PUDU D7",
+    "Booster Robotics",
+    "Booster T1",
+    "Booster K1",
+    "EngineAI",
+    "EngineAI PM01",
+    "EngineAI SE01",
+    "UBTECH",
+    "Walker S2",
+    "Fourier GR-1",
+    "Fourier GR-2",
+    "PAL Robotics",
+    "TALOS",
+    "ARI",
+    "Engineered Arts",
+    "Ameca",
+    "Keenon Robotics",
+    "Bear Robotics",
+    "ROBOTIS OP3",
+    "Furhat Robotics",
+    "AiMoga",
+    "Morine M1",
     "AgiBot A2-W",
     "Boston Dynamics Spot",
     "Boston Dynamics Atlas",

@@ -25,12 +25,20 @@ export default async function TwitterImage() {
         <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
           <div
             style={{
-              width: 14,
-              height: 14,
-              borderRadius: 999,
-              background: "#ffffff",
+              width: 48,
+              height: 48,
+              borderRadius: 14,
+              border: "2px solid #e5e7eb",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              color: "#ffffff",
+              fontSize: 20,
+              fontWeight: 800,
             }}
-          />
+          >
+            AI
+          </div>
           <span
             style={{
               fontSize: 22,

@@ -56,8 +56,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: "/images/logo.png",
-        width: 1207,
-        height: 366,
+        width: 1254,
+        height: 1254,
         alt: "clearAI株式会社",
       },
     ],
@@ -122,8 +122,8 @@ const organizationSchema = {
   "logo": {
     "@type": "ImageObject",
     "url": "https://clearai.jp/images/logo.png",
-    "width": 1207,
-    "height": 366,
+    "width": 1254,
+    "height": 1254,
   },
   "image": "https://clearai.jp/images/logo.png",
   "foundingDate": "2026-04",
@@ -261,7 +261,7 @@ const brandFaqSchema = {
       "name": "中小企業や個人事業主でもAI導入の相談はできますか？",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "はい。clearAIは中小企業・個人事業主のAI導入支援を中心に据えています。月10万円〜のAI顧問、補助金活用による研修費削減（最大75%）など、規模に合わせた選択肢があります。初回相談は無料、メール・オンライン面談にて全国対応しています。",
+        "text": "はい。clearAIは中小企業・個人事業主のAI導入支援を中心に据えています。月2.5万円〜のAI顧問、補助金活用による研修費削減（最大75%）など、規模に合わせた選択肢があります。初回相談は無料、メール・オンライン面談にて全国対応しています。",
       },
     },
   ],

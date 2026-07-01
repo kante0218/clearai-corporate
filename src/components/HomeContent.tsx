@@ -4,7 +4,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
-import HeroParticlesBg from "@/components/HeroParticlesBg";
 import CardCarousel from "@/components/CardCarousel";
 
 /* Scroll-triggered reveal - simplified, up direction only */
@@ -85,7 +84,7 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
   ja: {
     heroChips: ["ロボットレンタル × AIコンサル", "戦略から現場実装まで", "中小企業特化"],
     heroTitle: (
-      <>日本の中小企業に、<br /><span className="text-neutral-900">ロボット</span>と<span className="text-neutral-900">AI</span>を。</>
+      <>Saving Japanese Industry with <span className="whitespace-nowrap">Physical AI</span></>
     ),
     heroDesc: (
       <>ヒューマノイド・ロボットのレンタルとAIコンサルティングを軸に、<br className="hidden md:inline" />
@@ -101,16 +100,16 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
     ],
     whyLabel: "Why clearAI",
     whyTitle: "「提案で終わらない」を、約束します。",
-    whyDesc: "コンサルの戦略視点と、現場で鍛えたエンジニアリング。両方を一社で担えるから、絵に描いた餅では終わりません。",
+    whyDesc: "コンサルの戦略視点と現場で鍛えたエンジニアリングを一社で担うから、絵に描いた餅で終わりません。",
     why: [
-      { title: "実装まで責任を持つ", desc: "戦略提案だけでは終わりません。稼働するシステム・運用定着まで、エンジニアが手を動かして仕上げます。" },
-      { title: "中立な立場で伴走", desc: "特定ツールの売り込みはしません。Claude・ChatGPT・Geminiから、貴社の課題に本当に合うものを中立に選びます。" },
-      { title: "補助金をフル活用", desc: "人材開発支援助成金・IT導入補助金などを活用し、研修・導入コストを最大75%削減。実質負担を抑えて始められます。" },
+      { title: "実装まで責任を持つ", desc: "戦略提案で終わらせず、稼働するシステムと運用定着まで、エンジニアが手を動かして仕上げます。" },
+      { title: "中立な立場で伴走", desc: "特定ツールを売り込まず、Claude・ChatGPT・Geminiから貴社の課題に本当に合うものを中立に選びます。" },
+      { title: "補助金をフル活用", desc: "人材開発支援助成金・IT導入補助金などを活用し、研修・導入コストを最大75%削減して始められます。" },
     ],
     visionLabel: "Our Vision",
     visionTitle: "AIを、日本の現場へ届ける。",
-    visionBody1: "AIはまだ、多くの企業にとって遠い存在です。難しい、コストが高い、何から始めればいいかわからない——そんな声を何度も聞いてきました。",
-    visionBody2: "私たちはそのギャップを埋めるために生まれました。最先端のAI技術をビジネスの言葉に翻訳し、エンジニアの力で現場の経営を支える。一社一社に寄り添い、確かな価値を届けていきます。",
+    visionBody1: "難しい、コストが高い、何から始めればいいかわからない——AIはまだ多くの企業にとって遠い存在だという声を、何度も聞いてきました。",
+    visionBody2: "私たちはそのギャップを埋めるため、最先端のAI技術をビジネスの言葉に翻訳し、エンジニアの力で一社一社の経営に寄り添い、確かな価値を届けます。",
     visionStats: [
       { value: "顧問・研修・Web", label: "3つの主力支援" },
       { value: "日本", label: "市場特化" },
@@ -118,11 +117,11 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
     ],
     getStartedLabel: "Get Started",
     getStartedTitle: "まずは、小さく始められます。",
-    getStartedDesc: "いきなりの大型契約は不要です。30分の無料診断と3分で読める資料から、貴社に合うかを見極めてください。",
+    getStartedDesc: "いきなりの大型契約は不要、30分の無料診断と3分で読める資料から貴社に合うかを見極めてください。",
     steps: [
-      { step: "STEP 01", title: "無料AI診断（30分）", desc: "現状の業務・課題をヒアリングし、AI活用で効果の高そうな領域を1つ特定してお返しします。営業色の強い提案はしません。", points: ["Zoom / 対面いずれも可", "NDA締結のうえ、機密情報も扱えます", "その場で簡易レポートを口頭共有"], cta: "申し込む →", href: "/contact?service=advisor", color: "indigo" },
-      { step: "STEP 02", title: "3分でわかる会社資料", desc: "事業内容・代表的な支援パターン・料金レンジ・補助金活用例をまとめた1枚PDFを送付します。社内稟議用にどうぞ。", points: ["PDF 1ページ", "料金レンジと進め方の目安入り", "登録不要・当日返信"], cta: "資料をもらう →", href: "/contact?service=advisor&doc=company-deck", color: "amber" },
-      { step: "STEP 03", title: "1部署・1業務からのPoC", desc: "いきなり全社展開ではなく、最も効果が出そうな1部署・1業務に絞って小さく試行導入。効果が見えてから拡張します。", points: ["PoC期間 1〜2ヶ月", "成功基準を事前合意", "人材開発支援助成金の活用も可"], cta: "相談する →", href: "/contact?service=training", color: "sky" },
+      { step: "STEP 01", title: "無料AI診断（30分）", desc: "営業色の強い提案はせず、現状の業務・課題をヒアリングしてAI活用で効果の高そうな領域を1つ特定してお返しします。", points: ["Zoom / 対面いずれも可", "NDA締結のうえ、機密情報も扱えます", "その場で簡易レポートを口頭共有"], cta: "申し込む →", href: "/contact?service=advisor", color: "indigo" },
+      { step: "STEP 02", title: "3分でわかる会社資料", desc: "事業内容・代表的な支援パターン・料金レンジ・補助金活用例をまとめた1枚PDFを、社内稟議用に送付します。", points: ["PDF 1ページ", "料金レンジと進め方の目安入り", "登録不要・当日返信"], cta: "資料をもらう →", href: "/contact?service=advisor&doc=company-deck", color: "amber" },
+      { step: "STEP 03", title: "1部署・1業務からのPoC", desc: "最も効果が出そうな1部署・1業務に絞って小さく試行導入し、効果が見えてから拡張します。", points: ["PoC期間 1〜2ヶ月", "成功基準を事前合意", "人材開発支援助成金の活用も可"], cta: "相談する →", href: "/contact?service=training", color: "sky" },
     ],
     servicesLabel: "Our Services",
     servicesTitle: "AIで、日本の未来をつくる。",
@@ -133,21 +132,21 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
     primaryServices: [
       {
         code: "01", title: "AI顧問", color: "indigo",
-        desc: "月2.5万円〜、外部AI顧問としてチャット相談・会議参加・内製化支援まで継続伴走。技術選定からPoC評価、IT全般の相談まで支援します。",
+        desc: "月2.5万円〜、外部AI顧問として技術選定からPoC評価・IT全般の相談まで、チャット相談・会議参加・内製化支援で継続伴走します。",
         tags: ["月額契約", "限定10社枠", "経営伴走", "内製化支援"],
         href: "/advisor", cta: "顧問契約のご相談",
         claudeNote: "Claude（Anthropic）の業務導入・運用定着まで、顧問として継続的に伴走します。",
       },
       {
         code: "02", title: "AI研修", color: "amber", badge: "補助金 最大75%OFF",
-        desc: "チームのAIリテラシーを底上げ。導入研修から部門別ワークショップ、実務適用まで、社員が主役になる学習プログラムを設計・提供します。",
+        desc: "導入研修から部門別ワークショップ・実務適用まで、社員が主役になる学習プログラムでチームのAIリテラシーを底上げします。",
         tags: ["社員研修", "部門別ワークショップ", "プロンプト設計", "業務適用"],
         href: "/training", cta: "研修プログラムを見る",
         claudeNote: "Claudeを実務で使いこなす実践研修も。現場のユースケースに即したプロンプト・運用ルールまで指南します。",
       },
       {
         code: "03", title: "ウェブサイト作成", color: "sky",
-        desc: "AI時代に成果が出るサイトを高速制作。Next.js + Vercel + Headless CMSで、表示速度・SEO・運用しやすさを最高水準に。",
+        desc: "Next.js + Vercel + Headless CMSで、表示速度・SEO・運用しやすさを最高水準にしたサイトを高速制作します。",
         tags: ["Next.js", "Vercel", "SEO", "Headless CMS"],
         href: "/website", cta: "詳しく見る",
       },
@@ -155,19 +154,19 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
     secondaryServices: [
       {
         code: "04", title: "コンサル・DX", color: "blue",
-        desc: "大手コンサル出身者が監修。戦略策定から実装・運用まで、AI活用を一気通貫で支援します。",
+        desc: "大手コンサル出身者の監修で、戦略策定から実装・運用までAI活用を一気通貫で支援します。",
         tags: ["AI戦略策定", "業務自動化", "生成AI活用"],
         href: "/ai-consulting", cta: "詳しく見る",
       },
       {
         code: "05", title: "AI広告運用", color: "rose",
-        desc: "AI活用で広告運用を最適化・自動化。クリエイティブ生成から効果検証までAIで効率化し、ROAS改善を伴走します。",
+        desc: "クリエイティブ生成から効果検証までAIで広告運用を最適化・自動化し、ROAS改善を伴走します。",
         tags: ["広告運用", "クリエイティブ生成", "効果検証"],
         href: "/advertising", cta: "詳しく見る",
       },
       {
         code: "06", title: "ロボットレンタル", color: "cyan", badge: "Coming Soon",
-        desc: "【準備中】Unitree・AGIBOT等の最先端ロボットを輸入し、レンタルで提供予定。高額な機体を購入前に、自社の現場で試せます。",
+        desc: "【準備中】Unitree・AGIBOT等の最先端ロボットを輸入・レンタルし、高額な機体を購入前に自社の現場で試せます。",
         tags: ["Unitree / AGIBOT", "輸入レンタル", "Coming Soon"],
         href: "/robot-rental", cta: "詳しく見る",
       },
@@ -175,9 +174,9 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
     approachLabel: "Our Approach",
     approachTitle: "私たちが大切にする3つのこと",
     approach: [
-      { num: "01", title: "正直であること", desc: "実現可能性を率直に見極め、効果の高い領域から着実に進めます。過度な期待を煽らず、成果が出る順に一歩ずつ。" },
-      { num: "02", title: "伴走すること", desc: "導入して終わりではなく、運用が定着するまで。お客様のチームの一員として、ともに歩みます。" },
-      { num: "03", title: "現場に落とし込むこと", desc: "技術選定から運用設計まで、現場で使える形に落とし込みます。専門知識がなくても扱える、具体的な提案を。" },
+      { num: "01", title: "正直であること", desc: "過度な期待を煽らず、実現可能性を率直に見極めて効果の高い領域から着実に進めます。" },
+      { num: "02", title: "伴走すること", desc: "導入して終わりではなく、お客様のチームの一員として運用が定着するまでともに歩みます。" },
+      { num: "03", title: "現場に落とし込むこと", desc: "技術選定から運用設計まで、専門知識がなくても扱える現場で使える形に落とし込みます。" },
     ],
     processLabel: "How It Works",
     processTitle: "ご相談から導入までの流れ",
@@ -185,34 +184,34 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
     process: [
       { num: "01", title: "無料相談・AI診断", desc: "現状の課題をヒアリングし、AI活用で効果の高い領域を一緒に特定します（30分・オンライン可）。" },
       { num: "02", title: "ご提案・お見積り", desc: "顧問・研修・Web制作のうち、最適な進め方と料金・補助金活用をご提案します。" },
-      { num: "03", title: "スモールスタート", desc: "1部署・1業務に絞ったPoCや単発研修から開始。効果を確認しながら無理なく拡張します。" },
-      { num: "04", title: "継続伴走・定着", desc: "運用が現場に根付くまで継続的に伴走。成果と体制を定期的に見直します。" },
+      { num: "03", title: "スモールスタート", desc: "1部署・1業務に絞ったPoCや単発研修から始め、効果を確認しながら無理なく拡張します。" },
+      { num: "04", title: "継続伴走・定着", desc: "運用が現場に根付くまで継続的に伴走し、成果と体制を定期的に見直します。" },
     ],
     teamLabel: "Our Team",
     teamTitle: (<>戦略から実装・運用まで、<br className="hidden sm:inline" />信頼できるプロフェッショナルが担います。</>),
-    teamDesc: "経営コンサルの視座と、現場で鍛え上げたエンジニアリングの実装力。二つを掛け合わせ、提案だけで終わらせず、稼働するシステムと継続的な価値創出まで一貫して責任を持ちます。",
+    teamDesc: "経営コンサルの視座と現場で鍛え上げたエンジニアリングの実装力を掛け合わせ、提案だけで終わらせず稼働するシステムと継続的な価値創出まで一貫して責任を持ちます。",
     teamCard1Label: "Strategy & DX",
     teamCard1Title: "業務改革・DX領域の監修",
-    teamCard1Desc: "大手コンサルティングファーム出身のメンバーが、業務改革・DX推進の設計を監修。経営課題の構造化から全社展開のロードマップまで、上流の意思決定に耐える品質でご支援します。",
+    teamCard1Desc: "大手コンサルティングファーム出身のメンバーが、経営課題の構造化から全社展開のロードマップまで、上流の意思決定に耐える品質で業務改革・DX推進の設計を監修します。",
     teamCard1Tags: ["大手コンサルファーム出身", "業務改革", "DX戦略", "全社展開"],
     teamCard2Label: "Engineering",
     teamCard2Title: "開発・デプロイ・メンテナンス",
-    teamCard2Desc: "AIコンサルティング経験が豊富なエンジニア、シリコンバレーでバックエンド開発に従事した技術者、高専から筑波大学に進学し応用情報技術者を持つ情報技術者などが、ウェブアプリケーションの開発・デプロイ・運用保守を担当。リリース後の信頼性の担保まで一貫して責任を持ちます。",
+    teamCard2Desc: "AIコンサルティング経験が豊富なエンジニア、シリコンバレーでバックエンド開発に従事した技術者、高専から筑波大学に進学し応用情報技術者を持つ情報技術者などが、ウェブアプリケーションの開発・デプロイ・運用保守からリリース後の信頼性の担保まで一貫して責任を持ちます。",
     teamCard2Tags: ["AIコンサル経験豊富", "シリコンバレー開発経験", "高専→筑波大学", "応用情報技術者"],
     techLabel: "Tech Stack",
     techTitle: "使用技術",
     techDesc: "中小企業でも安心して導入できるよう、実績・安定性・サポート体制が確立された技術のみを採用しています。",
     techGroups: { frontend: "フロントエンド", backend: "バックエンド", aiml: "AI・機械学習", database: "データベース", cloud: "クラウド・インフラ", ec: "EC・決済", biz: "業務連携・コラボレーション" },
     techMoreTitle: "上記以外の技術にも対応可能",
-    techMoreDesc: "お客様の既存環境・社内標準・業界要件に合わせて、記載以外の言語・フレームワーク・クラウド・SaaS連携にも柔軟に対応いたします。まずはお気軽にご相談ください。",
+    techMoreDesc: "お客様の既存環境・社内標準・業界要件に合わせて、記載以外の言語・フレームワーク・クラウド・SaaS連携にも柔軟に対応いたしますので、まずはお気軽にご相談ください。",
     faqLabel: "FAQ",
     faqTitle: "よくあるご質問",
     faqDesc: "ご相談前によく寄せられる質問をまとめました。",
     faqCta: "すべての質問を見る →",
     faq: [
-      { q: "AIの知識がなくても相談できますか？", a: "もちろんです。「何から始めればいいかわからない」という段階からのご相談を最も多くいただきます。専門用語を使わず、現場の言葉でご説明します。" },
+      { q: "AIの知識がなくても相談できますか？", a: "もちろんです。「何から始めればいいかわからない」段階からのご相談が最も多く、専門用語を使わず現場の言葉でご説明します。" },
       { q: "小さく始めることはできますか？", a: "できます。単発の研修や、1部署・1業務に絞ったPoCなど、いきなり大型契約をせずに効果を確かめてから拡張いただけます。" },
-      { q: "補助金は使えますか？", a: "研修・AI導入では人材開発支援助成金やIT導入補助金などを活用でき、実質負担を最大75%削減できる場合があります。申請書類もサポートします。" },
+      { q: "補助金は使えますか？", a: "研修・AI導入では人材開発支援助成金やIT導入補助金などを活用でき、実質負担を最大75%削減できる場合があり、申請書類もサポートします。" },
     ],
     newsLabel: "News",
     newsTitle: "お知らせ",
@@ -220,7 +219,7 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
     clientLogosLabel: "実績企業",
     ctaLabel: "Contact",
     ctaTitle: "まずは、お話ししませんか。",
-    ctaDesc: (<>AIのことがわからなくても大丈夫です。<br />貴社の状況に合わせて、一緒に考えます。</>),
+    ctaDesc: (<>AIのことがわからなくても大丈夫、<br />貴社の状況に合わせて一緒に考えます。</>),
     ctaCards: [
       { label: "AI顧問", service: "advisor" },
       { label: "AI研修・教育", service: "training" },
@@ -235,7 +234,7 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
   en: {
     heroChips: ["Robot Rental × AI Consulting", "Strategy to deployment", "Built for SMEs"],
     heroTitle: (
-      <><span className="text-neutral-900">Robots</span> and <span className="text-neutral-900">AI</span><br />for Japanese SMEs.</>
+      <>Saving Japanese Industry with <span className="whitespace-nowrap">Physical AI</span></>
     ),
     heroDesc: (
       <>Centered on humanoid robot rental and AI consulting —<br className="hidden md:inline" />
@@ -251,16 +250,16 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
     ],
     whyLabel: "Why clearAI",
     whyTitle: "We promise to never stop at a proposal.",
-    whyDesc: "A consultant's strategic view and field-forged engineering — both under one roof. So plans don't stay on paper.",
+    whyDesc: "A consultant's strategic view and field-forged engineering under one roof, so plans don't stay on paper.",
     why: [
-      { title: "We own the implementation", desc: "We don't stop at strategy decks. Our engineers build working systems and see them through to real adoption." },
-      { title: "Neutral, on your side", desc: "No pushing a specific tool. From Claude, ChatGPT, and Gemini, we neutrally pick what truly fits your problem." },
+      { title: "We own the implementation", desc: "Our engineers don't stop at strategy decks — they build working systems and see them through to real adoption." },
+      { title: "Neutral, on your side", desc: "Without pushing a specific tool, we neutrally pick what truly fits your problem from Claude, ChatGPT, and Gemini." },
       { title: "Full use of subsidies", desc: "Using Japan's HR development and IT-introduction subsidies, we cut training and adoption costs by up to 75%, so you can start with minimal net cost." },
     ],
     visionLabel: "Our Vision",
     visionTitle: "Bringing AI to Japan's front lines.",
-    visionBody1: "For most companies, AI still feels out of reach — too hard, too expensive, with no obvious place to start. We've heard that story many times.",
-    visionBody2: "We exist to close that gap. We translate state-of-the-art AI into the language of business and use engineering to support real operations — staying close to each company and delivering tangible value.",
+    visionBody1: "For most companies, AI still feels out of reach — too hard, too expensive, with no obvious place to start — a story we've heard many times.",
+    visionBody2: "We exist to close that gap — translating state-of-the-art AI into the language of business and using engineering to support real operations, staying close to each company and delivering tangible value.",
     visionStats: [
       { value: "Advisor · Training · Web", label: "Three core services" },
       { value: "Japan", label: "market focus" },
@@ -268,11 +267,11 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
     ],
     getStartedLabel: "Get Started",
     getStartedTitle: "Start small. Scale when it works.",
-    getStartedDesc: "No big contract required. Start with a free 30-minute assessment and a 3-minute company deck, and see whether we're a fit.",
+    getStartedDesc: "No big contract required — start with a free 30-minute assessment and a 3-minute company deck to see whether we're a fit.",
     steps: [
-      { step: "STEP 01", title: "Free AI assessment (30 min)", desc: "We listen to your current workflows and challenges, then identify one high-impact area for AI. No hard sell.", points: ["Zoom or in-person", "NDA on request — we can handle confidential data", "Verbal summary on the spot"], cta: "Book a session →", href: "/contact?service=advisor", color: "indigo" },
-      { step: "STEP 02", title: "3-minute company deck", desc: "A one-page PDF summarizing our services, typical engagements, price ranges, and subsidy examples. Perfect for internal review.", points: ["1-page PDF", "Price ranges and engagement model included", "No signup, same-day delivery"], cta: "Get the deck →", href: "/contact?service=advisor&doc=company-deck", color: "amber" },
-      { step: "STEP 03", title: "PoC from a single team", desc: "No company-wide rollout upfront. We focus on the one team or workflow where AI is most likely to pay off, then expand from proven results.", points: ["1–2 month PoC", "Success criteria agreed up front", "Government training subsidies available"], cta: "Get in touch →", href: "/contact?service=training", color: "sky" },
+      { step: "STEP 01", title: "Free AI assessment (30 min)", desc: "With no hard sell, we listen to your current workflows and challenges, then identify one high-impact area for AI.", points: ["Zoom or in-person", "NDA on request — we can handle confidential data", "Verbal summary on the spot"], cta: "Book a session →", href: "/contact?service=advisor", color: "indigo" },
+      { step: "STEP 02", title: "3-minute company deck", desc: "A one-page PDF summarizing our services, typical engagements, price ranges, and subsidy examples — perfect for internal review.", points: ["1-page PDF", "Price ranges and engagement model included", "No signup, same-day delivery"], cta: "Get the deck →", href: "/contact?service=advisor&doc=company-deck", color: "amber" },
+      { step: "STEP 03", title: "PoC from a single team", desc: "Rather than a company-wide rollout upfront, we focus on the one team or workflow where AI is most likely to pay off, then expand from proven results.", points: ["1–2 month PoC", "Success criteria agreed up front", "Government training subsidies available"], cta: "Get in touch →", href: "/contact?service=training", color: "sky" },
     ],
     servicesLabel: "Our Services",
     servicesTitle: "Building Japan's future with AI.",
@@ -290,14 +289,14 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
       },
       {
         code: "02", title: "AI Training", color: "amber", badge: "Up to 75% subsidy",
-        desc: "Raise your team's AI literacy. From onboarding workshops to department-specific sessions and hands-on application — learning programs where employees take the lead.",
+        desc: "Raise your team's AI literacy with learning programs where employees take the lead — from onboarding workshops to department-specific sessions and hands-on application.",
         tags: ["Employee training", "Department workshops", "Prompt design", "Workflow application"],
         href: "/training", cta: "View training programs",
         claudeNote: "Hands-on Claude training too — prompts and operating rules tailored to your real use cases.",
       },
       {
         code: "03", title: "Website Production", color: "sky",
-        desc: "Fast production of websites that perform in the AI era. Next.js + Vercel + Headless CMS for top-tier speed, SEO, and ease of operation.",
+        desc: "Fast production of websites that perform in the AI era, built on Next.js + Vercel + Headless CMS for top-tier speed, SEO, and ease of operation.",
         tags: ["Next.js", "Vercel", "SEO", "Headless CMS"],
         href: "/website", cta: "Learn more",
       },
@@ -305,19 +304,19 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
     secondaryServices: [
       {
         code: "04", title: "Consulting & DX", color: "blue",
-        desc: "Overseen by ex-top-tier consultants. End-to-end support for AI adoption — from strategy through implementation and operation.",
+        desc: "Overseen by ex-top-tier consultants, with end-to-end support for AI adoption from strategy through implementation and operation.",
         tags: ["AI strategy", "Workflow automation", "Generative AI"],
         href: "/ai-consulting", cta: "Learn more",
       },
       {
         code: "05", title: "AI Advertising", color: "rose",
-        desc: "Optimize and automate ad operations with AI. From creative generation to measurement, we improve efficiency and partner on ROAS.",
+        desc: "We optimize and automate ad operations with AI — from creative generation to measurement — and partner on ROAS.",
         tags: ["Ad operations", "Creative generation", "Measurement"],
         href: "/advertising", cta: "Learn more",
       },
       {
         code: "06", title: "Robot Rental", color: "cyan", badge: "Coming Soon",
-        desc: "Coming soon — importing and renting cutting-edge robots like Unitree and AGIBOT. Try the latest humanoids on-site before you commit.",
+        desc: "Coming soon — importing and renting cutting-edge robots like Unitree and AGIBOT so you can try the latest humanoids on-site before you commit.",
         tags: ["Unitree / AGIBOT", "Import rental", "Coming Soon"],
         href: "/robot-rental", cta: "Learn more",
       },
@@ -325,8 +324,8 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
     approachLabel: "Our Approach",
     approachTitle: "Three things we stand for",
     approach: [
-      { num: "01", title: "Honesty", desc: "We candidly judge what's feasible and move forward where impact is highest. No hype — progress in order of demonstrated results." },
-      { num: "02", title: "Partnership", desc: "Delivery isn't the finish line. We stay engaged until adoption takes root — walking alongside your team." },
+      { num: "01", title: "Honesty", desc: "Without hype, we candidly judge what's feasible and move forward where impact is highest, in order of demonstrated results." },
+      { num: "02", title: "Partnership", desc: "Delivery isn't the finish line — we stay engaged until adoption takes root, walking alongside your team." },
       { num: "03", title: "Grounded execution", desc: "From technology choice to operational design, we translate everything into a form your team can actually use." },
     ],
     processLabel: "How It Works",
@@ -335,12 +334,12 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
     process: [
       { num: "01", title: "Free consult & AI assessment", desc: "We listen to your challenges and identify high-impact areas for AI together (30 min, online available)." },
       { num: "02", title: "Proposal & quote", desc: "We propose the best path among advisory, training, and web production — with pricing and subsidy options." },
-      { num: "03", title: "Start small", desc: "Begin with a focused PoC or a one-off training. Expand at a comfortable pace as results show." },
+      { num: "03", title: "Start small", desc: "Begin with a focused PoC or a one-off training, expanding at a comfortable pace as results show." },
       { num: "04", title: "Ongoing partnership", desc: "We stay engaged until it sticks on the ground, reviewing outcomes and structure regularly." },
     ],
     teamLabel: "Our Team",
     teamTitle: (<>From strategy to implementation and operation,<br className="hidden sm:inline" />trusted professionals see it through.</>),
-    teamDesc: "Management-consulting perspective combined with field-forged engineering execution. We don't stop at proposals — we own working systems and continuous value all the way through.",
+    teamDesc: "Combining management-consulting perspective with field-forged engineering execution, we don't stop at proposals — we own working systems and continuous value all the way through.",
     teamCard1Label: "Strategy & DX",
     teamCard1Title: "Business transformation & DX oversight",
     teamCard1Desc: "Members with backgrounds at top-tier consulting firms oversee business-transformation and DX design — from structuring management issues to company-wide rollout roadmaps, at quality that stands up to upstream decision-making.",
@@ -354,15 +353,15 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
     techDesc: "We only adopt technologies with proven track record, stability, and strong support — so SMEs can deploy with confidence.",
     techGroups: { frontend: "Frontend", backend: "Backend", aiml: "AI / ML", database: "Database", cloud: "Cloud & Infrastructure", ec: "EC / Commerce", biz: "Business Integrations" },
     techMoreTitle: "We also support technologies beyond this list",
-    techMoreDesc: "We flexibly support languages, frameworks, clouds, and SaaS integrations beyond this list — tailored to your environment, internal standards, and industry requirements. Please reach out.",
+    techMoreDesc: "We flexibly support languages, frameworks, clouds, and SaaS integrations beyond this list — tailored to your environment, internal standards, and industry requirements — so please reach out.",
     faqLabel: "FAQ",
     faqTitle: "Frequently asked questions",
     faqDesc: "A few questions we're often asked before getting started.",
     faqCta: "See all questions →",
     faq: [
-      { q: "Can we consult even without AI knowledge?", a: "Absolutely. 'We don't know where to start' is the most common starting point we hear. We explain in plain language, not jargon." },
+      { q: "Can we consult even without AI knowledge?", a: "Absolutely — 'We don't know where to start' is the most common starting point we hear, and we explain in plain language, not jargon." },
       { q: "Can we start small?", a: "Yes. With one-off training or a PoC scoped to a single team or workflow, you can verify results before any large commitment." },
-      { q: "Can we use subsidies?", a: "For training and AI adoption, programs like the HR Development Subsidy and IT Introduction Subsidy can cut your net cost by up to 75%. We support the paperwork too." },
+      { q: "Can we use subsidies?", a: "For training and AI adoption, programs like the HR Development Subsidy and IT Introduction Subsidy can cut your net cost by up to 75%, and we support the paperwork too." },
     ],
     newsLabel: "News",
     newsTitle: "News",
@@ -370,7 +369,7 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
     clientLogosLabel: "Client Work",
     ctaLabel: "Contact",
     ctaTitle: "Let's start with a conversation.",
-    ctaDesc: (<>No AI expertise needed.<br />We'll think it through with you, tailored to your situation.</>),
+    ctaDesc: (<>No AI expertise needed —<br />we'll think it through with you, tailored to your situation.</>),
     ctaCards: [
       { label: "AI Advisor", service: "advisor" },
       { label: "AI Training & Education", service: "training" },
@@ -526,6 +525,51 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
   const t = COPY[lang];
   const [heroLoaded, setHeroLoaded] = useState(false);
   useEffect(() => { setTimeout(() => setHeroLoaded(true), 100); }, []);
+
+  // Adaptive hero text color: sample the video region behind the copy each frame
+  // and switch between dark/light text so the catchphrase stays legible whether
+  // the dithered background is bright or dark. Hysteresis avoids flicker.
+  const heroVideoRef = useRef<HTMLVideoElement | null>(null);
+  const [heroTextDark, setHeroTextDark] = useState(true);
+  useEffect(() => {
+    const video = heroVideoRef.current;
+    if (!video) return;
+    const canvas = document.createElement("canvas");
+    canvas.width = 48;
+    canvas.height = 32;
+    const ctx = canvas.getContext("2d", { willReadFrequently: true });
+    if (!ctx) return;
+    let raf = 0;
+    let last = 0;
+    let dark = true; // current decision: true = dark text
+    const sample = (ts: number) => {
+      raf = requestAnimationFrame(sample);
+      if (ts - last < 180) return;
+      last = ts;
+      if (video.readyState < 2 || video.videoWidth === 0) return;
+      // Sample the left-center band of the frame — where the copy sits (left-aligned).
+      const sx = 0;
+      const sy = video.videoHeight * 0.12;
+      const sw = video.videoWidth * 0.55;
+      const sh = video.videoHeight * 0.76;
+      try {
+        ctx.drawImage(video, sx, sy, sw, sh, 0, 0, canvas.width, canvas.height);
+        const { data } = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        let sum = 0;
+        for (let i = 0; i < data.length; i += 4) {
+          sum += 0.2126 * data[i] + 0.7152 * data[i + 1] + 0.0722 * data[i + 2];
+        }
+        const avg = sum / (data.length / 4) / 255; // 0 (black) .. 1 (white)
+        if (dark && avg < 0.45) dark = false;      // background got dark -> light text
+        else if (!dark && avg > 0.58) dark = true; // background got bright -> dark text
+        setHeroTextDark(dark);
+      } catch {
+        /* canvas tainted or frame not ready — keep last decision */
+      }
+    };
+    raf = requestAnimationFrame(sample);
+    return () => cancelAnimationFrame(raf);
+  }, []);
   const heroFeatures = lang === "ja"
     ? [
         { title: "伴走支援", sub: "責任を持って支援" },
@@ -553,37 +597,37 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
     <>
       {/* ═══ HERO ═══ */}
       <section className="relative min-h-[70svh] md:min-h-screen flex items-start md:items-center overflow-hidden bg-white">
-        <HeroParticlesBg />
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/images/hero-robot.png"
-          alt="clearAI ヒューマノイドロボットと四足歩行ロボット"
-          className="pointer-events-none select-none absolute bottom-0 right-0 z-0 h-[78%] sm:h-[84%] w-auto object-contain object-bottom md:hidden"
-          style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateX(0)" : "translateX(24px)", transition: "opacity 1s ease 300ms, transform 1s ease 300ms" }}
-        />
-        {/* White fade so the headline stays readable where it overlaps the robot */}
-        <div className="pointer-events-none absolute inset-0 z-[5] bg-gradient-to-br from-white from-5% via-white/35 to-transparent to-70% md:hidden" />
+        {/* Background video — dithered marble bust, monochrome brand imagery */}
+        <video
+          ref={heroVideoRef}
+          className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover object-[62%_center] sm:object-center"
+          width={2160}
+          height={1216}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          crossOrigin="anonymous"
+          poster="/videos/hero-dither-poster.jpg"
+          aria-hidden
+        >
+          <source src="/videos/hero-dither-hq.mp4" type="video/mp4" />
+        </video>
         <div className="relative z-10 w-full max-w-[1800px] mx-auto px-6 lg:px-10 pt-24 pb-6 md:py-24 pointer-events-none">
-          <div className="max-w-[18.5rem] sm:max-w-md md:max-w-2xl lg:max-w-3xl text-left pointer-events-auto">
-            <div className="hidden md:flex md:flex-wrap md:justify-start gap-2 mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "200ms" }}>
-              {t.heroChips.map((tag) => (
-                <span key={tag} className="inline-flex items-center rounded-md bg-neutral-100 text-neutral-900 border border-neutral-200 px-3 py-1 text-xs font-semibold">
-                  {tag}
-                </span>
-              ))}
-            </div>
-            <h1 className="text-[1.9rem] sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-[1.12] tracking-tight mb-8 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0)" : "translateY(24px)", transitionDelay: "400ms" }}>
+          <div className="max-w-none sm:max-w-md md:max-w-2xl lg:max-w-3xl text-left pointer-events-auto">
+            <h1 className={`text-[1.9rem] sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.12] tracking-tight mb-8 transition-[color,opacity,transform] duration-500 ${heroTextDark ? "text-gray-900" : "text-white"}`} style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0)" : "translateY(24px)", transitionDelay: "400ms", textShadow: heroTextDark ? "0 1px 3px rgba(255,255,255,0.75),0 2px 22px rgba(255,255,255,0.55)" : "0 1px 3px rgba(0,0,0,0.6),0 2px 22px rgba(0,0,0,0.65)" }}>
               {t.heroTitle}
             </h1>
-            <p className="text-base md:text-lg text-gray-600 leading-relaxed max-w-[17rem] sm:max-w-sm md:max-w-xl mb-10 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "650ms" }}>
+            <p className={`text-base md:text-lg font-medium leading-relaxed max-w-none sm:max-w-sm md:max-w-xl mb-10 transition-[color,opacity] duration-500 ${heroTextDark ? "text-gray-900" : "text-white"}`} style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "650ms", textShadow: heroTextDark ? "0 1px 2px rgba(255,255,255,0.95),0 1px 12px rgba(255,255,255,0.85)" : "0 1px 2px rgba(0,0,0,0.75),0 1px 12px rgba(0,0,0,0.7)" }}>
               {t.heroDesc}
             </p>
-            <div className="flex flex-wrap justify-start items-center gap-5 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "850ms" }}>
-              <Link href="/reserve" className="inline-flex items-center gap-2 rounded-md bg-neutral-900 text-white font-semibold px-7 py-3.5 hover:bg-neutral-800 transition-colors duration-300 shadow-[0_8px_24px_-8px_rgba(0,0,0,0.3)]">
+            <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3 sm:gap-5 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "850ms" }}>
+              <Link href="/reserve" className="inline-flex w-full sm:w-auto justify-center items-center gap-2 rounded-md bg-neutral-900 text-white font-semibold px-7 min-h-[52px] py-3.5 hover:bg-neutral-800 transition-colors duration-300 shadow-[0_8px_24px_-8px_rgba(0,0,0,0.3)]">
                 {t.heroPrimary}
                 <span aria-hidden>→</span>
               </Link>
-              <Link href="#services" className="inline-flex items-center gap-1.5 text-sm text-gray-700 font-semibold hover:text-neutral-900 transition-colors duration-300">
+              <Link href="#services" className={`inline-flex w-full sm:w-auto justify-center sm:justify-start items-center gap-1.5 min-h-[44px] py-2 text-sm font-semibold transition-colors duration-300 ${heroTextDark ? "text-gray-700 hover:text-neutral-900" : "text-white/90 hover:text-white"}`} style={{ textShadow: heroTextDark ? "none" : "0 1px 6px rgba(0,0,0,0.6)" }}>
                 {t.heroSecondary}
                 <span aria-hidden>→</span>
               </Link>

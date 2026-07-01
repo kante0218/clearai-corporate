@@ -13,7 +13,7 @@ const FROM_EMAIL = process.env.CONTACT_FROM_EMAIL ?? "clearAI <onboarding@resend
 const INQUIRY_LABEL: Record<InquiryType, string> = {
   business: "ご相談・お見積もり",
   engineer: "エンジニア採用応募",
-  other: "その他",
+  other: "お問い合わせ",
 };
 
 function escapeHtml(s: string) {

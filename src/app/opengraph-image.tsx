@@ -25,12 +25,20 @@ export default async function OpengraphImage() {
         <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
           <div
             style={{
-              width: 14,
-              height: 14,
-              borderRadius: 999,
-              background: "#ffffff",
+              width: 48,
+              height: 48,
+              borderRadius: 14,
+              border: "2px solid #e5e7eb",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              color: "#ffffff",
+              fontSize: 20,
+              fontWeight: 800,
             }}
-          />
+          >
+            AI
+          </div>
           <span
             style={{
               fontSize: 22,
@@ -46,15 +54,16 @@ export default async function OpengraphImage() {
         <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
           <div
             style={{
+              display: "flex",
+              flexDirection: "column",
               fontSize: 96,
               fontWeight: 800,
               lineHeight: 1.05,
               letterSpacing: -2,
             }}
           >
-            AIで、すべてを
-            <br />
-            クリアにする。
+            <span>AIで、すべてを</span>
+            <span>クリアにする。</span>
           </div>
           <div
             style={{

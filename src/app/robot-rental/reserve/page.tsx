@@ -57,8 +57,8 @@ const COPY: Record<"ja" | "en", Copy> = {
     title: "レンタル予約",
     subtitle: "ご利用者情報とご利用先をご入力いただいたのち、ご希望の日程をお選びください。",
     notOpenNotice: (d) =>
-      `ご予約の受付は ${d} より開始します。それまでは事前のご入力のみ可能です（確定はできません）。`,
-    openNotice: "ご予約を受け付けています。内容をご確認のうえお進みください。",
+      `ご予約の受付は ${d} から開始します（それまでは事前のご入力のみ可能です）。`,
+    openNotice: "ご予約を受け付けていますので、内容をご確認のうえお進みください。",
     selectedLabel: "ご選択中の機体",
     step1: "ご利用者情報・ご利用先",
     step2: "ご利用日程",
@@ -89,7 +89,7 @@ const COPY: Record<"ja" | "en", Copy> = {
     sending: "送信中…",
     thanksTitle: "予約リクエストを受け付けました",
     thanksBody:
-      "ご入力ありがとうございます。担当より折り返しご連絡いたします。控えはご入力のメールアドレス宛にお送りします。",
+      "担当より折り返しご連絡いたします（控えはご入力のメールアドレス宛にお送りします）。",
     backToList: "ロボット一覧に戻る",
     errName: "お名前をご入力ください。",
     errEmail: "有効なメールアドレスをご入力ください。",
@@ -104,8 +104,8 @@ const COPY: Record<"ja" | "en", Copy> = {
     subtitle:
       "Enter your details and rental location, then choose your preferred dates.",
     notOpenNotice: (d) =>
-      `Reservations open on ${d}. Until then you may pre-fill this form, but cannot confirm a booking.`,
-    openNotice: "Reservations are open. Please review your details and proceed.",
+      `Reservations open on ${d}; you may pre-fill this form until then, but bookings cannot be confirmed.`,
+    openNotice: "Reservations are open — please review your details and proceed.",
     selectedLabel: "Selected unit",
     step1: "Your details & location",
     step2: "Rental dates",
@@ -136,7 +136,7 @@ const COPY: Record<"ja" | "en", Copy> = {
     sending: "Sending…",
     thanksTitle: "Your reservation request has been received",
     thanksBody:
-      "Thank you. Our team will get back to you shortly. A copy will be sent to the email you provided.",
+      "Our team will get back to you shortly, and a confirmation copy will be sent to the email you provided.",
     backToList: "Back to robot list",
     errName: "Please enter your name.",
     errEmail: "Please enter a valid email address.",
