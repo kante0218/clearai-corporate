@@ -760,8 +760,8 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
         </div>
       </section>
 
-      {/* ═══ ENTRY PRODUCTS ═══ */}
-      <section className="py-8 md:py-20 lg:py-28 bg-white border-t border-gray-100">
+      {/* ═══ ENTRY PRODUCTS ═══ (SPでは非表示・PCは維持) */}
+      <section className="hidden md:block md:py-20 lg:py-28 bg-white border-t border-gray-100">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <SectionLabel>{t.getStartedLabel}</SectionLabel>
