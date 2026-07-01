@@ -629,7 +629,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
         >
           <source src="/videos/hero-dither-hq.mp4" type="video/mp4" />
         </video>
-        <div className="relative z-10 w-full max-w-[1800px] mx-auto px-6 lg:px-10 pt-6 pb-10 md:py-24 pointer-events-none">
+        <div className="relative z-10 w-full max-w-[1800px] mx-auto px-6 lg:px-10 pt-4 pb-6 md:py-24 pointer-events-none">
           <div className="max-w-none sm:max-w-md md:max-w-2xl lg:max-w-3xl text-left pointer-events-auto">
             <h1 className={`text-[1.9rem] sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.12] tracking-tight mb-8 transition-[color,opacity,transform] duration-500 text-gray-900 ${heroTextDark ? "md:text-gray-900" : "md:text-white"}`} style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0)" : "translateY(24px)", transitionDelay: "400ms", textShadow: heroTextDark ? "0 1px 3px rgba(255,255,255,0.75),0 2px 22px rgba(255,255,255,0.55)" : "0 1px 3px rgba(0,0,0,0.6),0 2px 22px rgba(0,0,0,0.65)" }}>
               {t.heroTitle}
