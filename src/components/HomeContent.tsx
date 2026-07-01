@@ -921,9 +921,9 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
           <div className="space-y-0">
             {TECH_GROUPS.map((group, gi) => (
               <Reveal key={group.key} delay={gi * 40}>
-                <div className="border-t border-gray-200 py-8">
+                <div className="border-t border-gray-200 py-3 md:py-8">
                   <div className="lg:grid lg:grid-cols-12 lg:gap-6 lg:items-center">
-                    <div className="lg:col-span-2 mb-3 lg:mb-0">
+                    <div className="lg:col-span-2 mb-2 lg:mb-0">
                       <h3 className="text-sm font-bold text-gray-900">{t.techGroups[group.key as keyof typeof t.techGroups]}</h3>
                     </div>
                     <div className="lg:col-span-10">
