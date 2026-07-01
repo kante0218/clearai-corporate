@@ -911,7 +911,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       </section>
 
       {/* ═══ TECH STACK ═══ */}
-      <section className="py-8 md:py-20 lg:py-28 bg-gray-50">
+      <section className="py-8 md:py-20 lg:py-28 bg-gray-50 overflow-x-clip">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <SectionLabel>{t.techLabel}</SectionLabel>
@@ -922,8 +922,8 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
             {TECH_GROUPS.map((group, gi) => (
               <Reveal key={group.key} delay={gi * 40}>
                 <div className="border-t border-gray-200 py-8">
-                  <div className="grid lg:grid-cols-12 gap-6 items-center">
-                    <div className="lg:col-span-2">
+                  <div className="lg:grid lg:grid-cols-12 lg:gap-6 lg:items-center">
+                    <div className="lg:col-span-2 mb-3 lg:mb-0">
                       <h3 className="text-sm font-bold text-gray-900">{t.techGroups[group.key as keyof typeof t.techGroups]}</h3>
                     </div>
                     <div className="lg:col-span-10">
