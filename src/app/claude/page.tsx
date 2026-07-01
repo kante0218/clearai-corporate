@@ -74,13 +74,13 @@ const COPY: Record<"ja" | "en", Copy> = {
   ja: {
     pageKicker: "Claude Specialized",
     pageTitle: "Claude特化支援",
-    pageDesc: "AnthropicのClaudeに特化した、経営者向けマンツーマンスクール。月2回の対面指導（オフライン版10万円/月）と、SNSで気軽に質問できるオンライン版（5万円/月）の2形態でご提供します。使いこなせなかったら全額返金保証。",
+    pageDesc: "AnthropicのClaudeに特化した経営者向けマンツーマンスクールで、月2回対面のオフライン版（10万円/月）とチャットサポートのオンライン版（5万円/月）の2形態をご提供します（全額返金保証付き）。",
     pageImgAlt: "",
     whyLabel: "Why Claude",
     whyTitle: "なぜ、Claudeに特化するのか。",
-    whyDesc: "Claudeは文章品質・コード生成・長文脈理解で世界トップクラスの性能を誇り、特にClaude Codeは「AIに任せられる業務範囲」を劇的に広げました。一方で、真価を引き出すには正しい使い方と設計が必要です。clearAIは、Claudeにだけ深く張るチームだからこそ提供できる、一段深い支援を行います。",
+    whyDesc: "Claude Codeを含むClaudeは文章品質・コード生成・長文脈理解で世界トップクラスですが、真価を引き出すには正しい使い方が必要で、Claudeにだけ深く張るclearAIだからこそ一段深い支援が可能です。",
     whyCards: [
-      { title: "最高クラスの言語能力", desc: "日本語の文章理解・生成・要約は、いま最も信頼できるレベル。議事録・契約レビュー・社内文書に強い。" },
+      { title: "最高クラスの言語能力", desc: "日本語の文章理解・生成・要約は現在最も信頼できるレベルで、議事録・契約レビュー・社内文書に強みを発揮します。" },
       { title: "Claude Codeの破壊力", desc: "コーディングだけでなく、データ整形・調査・検証まで「実行する相棒」として使える唯一無二のAI。" },
       { title: "安全性と透明性", desc: "Anthropicのポリシーは企業の情報統制と相性が良く、ガバナンスを重視する日本企業でも安心して導入できる。" },
     ],
@@ -88,7 +88,7 @@ const COPY: Record<"ja" | "en", Copy> = {
     servicesTitle: "2つのサービス",
     offlineTag: "OFFLINE / 対面",
     offlineTitle: "オフライン版（対面マンツーマン）",
-    offlineDesc: "月2回、経営者と直接お会いしてマンツーマンで指導。経営課題を題材に、その場で手を動かしてClaudeを使いこなせる状態まで引き上げます。",
+    offlineDesc: "月2回経営者と直接お会いし、経営課題を題材に手を動かしながらClaudeを使いこなせる状態まで引き上げます。",
     offlinePrice: "10万円",
     offlinePriceUnit: "/ 月",
     offlineGuaranteeNote: "使いこなせるようにならなかった場合、全額返金保証",
@@ -103,7 +103,7 @@ const COPY: Record<"ja" | "en", Copy> = {
     offlineCta: "オフライン版に申し込む",
     onlineTag: "ONLINE / オンライン",
     onlineTitle: "オンライン版（SNSサポート）",
-    onlineDesc: "対面セッションなしで、初期セットアップガイド＋SNS/チャットでの継続サポートを提供。まずは自分のペースでClaudeを使いこなしたい経営者向けの軽量プラン。",
+    onlineDesc: "対面セッションなしで初期セットアップガイド＋SNS/チャットでの継続サポートを提供する、自分のペースでClaudeを習得したい経営者向けの軽量プランです。",
     onlinePrice: "5万円",
     onlinePriceUnit: "/ 月",
     onlineSubNote: "対面レッスンなし・サポートはオンラインのみ",
@@ -119,24 +119,24 @@ const COPY: Record<"ja" | "en", Copy> = {
     guaranteeLabel: "Money-Back Guarantee",
     guaranteeTitle: "使えるようにならなかったら、\n全額返金します。",
     guaranteeDesc: "プライベートスクールでは、開始3ヶ月経過時点で「Claudeを実務で使いこなせている」と実感できない場合、受講料を全額返金します。",
-    guaranteeDisclaimer: "※ 所定の課題提出・セッション出席など、最低限の条件を満たしていただくことが前提です。詳細は契約時にご確認ください。",
+    guaranteeDisclaimer: "※ 所定の課題提出・セッション出席など最低限の条件を満たしていただくことが前提です（詳細は契約時にご確認ください）。",
     curriculumLabel: "Curriculum",
     curriculumTitle: "スクールで学べること",
     curriculum: [
-      { num: "01", title: "Claudeの原則", en: "Fundamentals", desc: "他のAIとの違い、得意・不得意、指示の出し方。経営者がまず押さえるべき思考の型を習得します。" },
+      { num: "01", title: "Claudeの原則", en: "Fundamentals", desc: "他のAIとの違い、得意・不得意、指示の出し方など、経営者がまず押さえるべき思考の型を習得します。" },
       { num: "02", title: "経営業務への応用", en: "Executive Use", desc: "事業計画のレビュー、会議前ブリーフ、採用面接の質問設計、投資家向け資料のブラッシュアップなど。" },
       { num: "03", title: "Claude Code 実践", en: "Claude Code", desc: "コーディングだけでなく、社内データ分析や調査タスクを「自律的に実行させる」レベルまで引き上げます。" },
       { num: "04", title: "Projects と MCP", en: "Advanced", desc: "社内ナレッジの取り込み、外部ツール連携、データベース接続など、一段上のセットアップを構築します。" },
-      { num: "05", title: "チーム展開の設計", en: "Team Rollout", desc: "自分で使えるようになった上で、役員・部門長への展開を設計。組織への導入まで一貫支援します。" },
+      { num: "05", title: "チーム展開の設計", en: "Team Rollout", desc: "自分で使えるようになった上で、役員・部門長への展開設計から組織導入まで一貫支援します。" },
     ],
     faqLabel: "FAQ",
     faqTitle: "よくあるご質問",
     faq: [
-      { q: "オフライン版とオンライン版の違いは？", a: "オフライン版（月10万円）は経営者ご本人と直接お会いして月2回のマンツーマン対面レッスンを行う、最も濃い形態です。オンライン版（月5万円）は対面セッションなしで、初期セットアップガイド＋SNS/チャットでの継続サポートをご提供します。途中でオフライン版にアップグレードすることもできます。" },
-      { q: "料金以外に費用はかかりますか？", a: "初期費用・教材費などは不要で、月額料金（税抜）のみです。Claude本体のサブスクリプション費用は別途、各社でご契約いただきます。" },
-      { q: "全額返金の条件を教えてください。", a: "オフライン版で、開始から3ヶ月時点で「実務で使いこなせている」と実感できない場合に全額返金します。所定の対面レッスンに出席いただくこと、課題に取り組んでいただくことが条件です。" },
-      { q: "AI初心者でも大丈夫ですか？", a: "むしろ初心者の経営者が最も成長を実感します。ITに詳しくない方でも、マンツーマンで伴走するため安心です。" },
-      { q: "オフライン版はどこで受けられますか？", a: "東京・水戸を中心に、経営者のご都合に合わせて月2回お伺いします。その他のエリアもご相談ください。" },
+      { q: "オフライン版とオンライン版の違いは？", a: "オフライン版（月10万円）は月2回の対面マンツーマンレッスン、オンライン版（月5万円）は初期セットアップガイド＋SNS/チャットサポートで、途中でオフライン版へのアップグレードも可能です。" },
+      { q: "料金以外に費用はかかりますか？", a: "初期費用・教材費は不要で月額料金（税抜）のみですが、Claudeのサブスクリプション費用は各社で別途ご契約いただきます。" },
+      { q: "全額返金の条件を教えてください。", a: "オフライン版で開始から3ヶ月時点で「実務で使いこなせている」と実感できない場合に全額返金します（所定のレッスン出席・課題取り組みが条件）。" },
+      { q: "AI初心者でも大丈夫ですか？", a: "むしろAI初心者の経営者が最も成長を実感しており、ITに詳しくない方でもマンツーマンで伴走するため安心です。" },
+      { q: "オフライン版はどこで受けられますか？", a: "東京・水戸を中心に経営者のご都合に合わせて月2回お伺いしますので、その他のエリアもお気軽にご相談ください。" },
       { q: "他社のAI（ChatGPT等）も扱いますか？", a: "スクール内ではClaudeに集中しますが、比較観点での他社モデル解説は行います。" },
     ],
     ctaLabel: "Contact",
@@ -147,11 +147,11 @@ const COPY: Record<"ja" | "en", Copy> = {
   en: {
     pageKicker: "Claude Specialized",
     pageTitle: "Claude Specialist Support",
-    pageDesc: "One-on-one coaching for executives, focused entirely on Anthropic's Claude. Two formats: in-person sessions (Offline plan, ¥100,000/month) and online Q&A support via chat (Online plan, ¥50,000/month). Full refund if you don't master it.",
+    pageDesc: "One-on-one coaching for executives focused entirely on Anthropic's Claude, offered in two formats — in-person sessions (Offline, ¥100,000/month) and online chat support (Online, ¥50,000/month) — with a full refund if you don't master it.",
     pageImgAlt: "",
     whyLabel: "Why Claude",
     whyTitle: "Why focus exclusively on Claude?",
-    whyDesc: "Claude leads the world in writing quality, code generation, and long-context understanding — and Claude Code has dramatically expanded what you can delegate to AI. But unlocking its full potential requires the right approach and setup. clearAI goes deeper on Claude than anyone else, delivering a level of support only a dedicated specialist team can provide.",
+    whyDesc: "Claude leads the world in writing quality, code generation, and long-context understanding, and while Claude Code has dramatically expanded what you can delegate to AI, unlocking its full potential requires the right approach — which is exactly what clearAI, as a dedicated Claude specialist team, delivers.",
     whyCards: [
       { title: "World-class language ability", desc: "Japanese reading, writing, and summarization at the highest level of reliability today — ideal for meeting notes, contract reviews, and internal documents." },
       { title: "The power of Claude Code", desc: "Beyond coding — the only AI you can use as an autonomous partner for data wrangling, research, and verification tasks." },
@@ -161,7 +161,7 @@ const COPY: Record<"ja" | "en", Copy> = {
     servicesTitle: "Two service formats",
     offlineTag: "OFFLINE / In-Person",
     offlineTitle: "Offline Plan (In-Person One-on-One)",
-    offlineDesc: "Two in-person sessions per month with the executive directly. Using your real business challenges as the curriculum, we guide you hands-on until you can command Claude with confidence.",
+    offlineDesc: "Two in-person sessions per month using your real business challenges as the curriculum, guiding you hands-on until you can command Claude with confidence.",
     offlinePrice: "¥100,000",
     offlinePriceUnit: "/ month",
     offlineGuaranteeNote: "Full refund if you don't achieve proficiency",
@@ -176,7 +176,7 @@ const COPY: Record<"ja" | "en", Copy> = {
     offlineCta: "Enroll in the Offline Plan",
     onlineTag: "ONLINE / Remote",
     onlineTitle: "Online Plan (Chat Support)",
-    onlineDesc: "No in-person sessions — initial setup guidance plus ongoing Q&A via chat. A lightweight plan for executives who want to learn Claude at their own pace.",
+    onlineDesc: "No in-person sessions — initial setup guidance plus ongoing Q&A via chat for executives who want to learn Claude at their own pace.",
     onlinePrice: "¥50,000",
     onlinePriceUnit: "/ month",
     onlineSubNote: "No in-person sessions · online support only",
@@ -192,7 +192,7 @@ const COPY: Record<"ja" | "en", Copy> = {
     guaranteeLabel: "Money-Back Guarantee",
     guaranteeTitle: "If you don't master it,\nwe refund every yen.",
     guaranteeDesc: "In the private school, if you don't feel that you are using Claude productively in real work by the 3-month mark, we will refund your full tuition.",
-    guaranteeDisclaimer: "* Subject to minimum conditions including session attendance and assigned exercises. Full terms confirmed at contract signing.",
+    guaranteeDisclaimer: "* Subject to minimum conditions including session attendance and assigned exercises; full terms confirmed at contract signing.",
     curriculumLabel: "Curriculum",
     curriculumTitle: "What you'll learn",
     curriculum: [
@@ -205,11 +205,11 @@ const COPY: Record<"ja" | "en", Copy> = {
     faqLabel: "FAQ",
     faqTitle: "Frequently asked questions",
     faq: [
-      { q: "What is the difference between the Offline and Online plans?", a: "The Offline plan (¥100,000/month) involves meeting the executive in person for two dedicated one-on-one sessions each month — our most intensive format. The Online plan (¥50,000/month) provides an initial setup guide plus ongoing support via chat, with no in-person sessions. You can upgrade to the Offline plan at any time." },
-      { q: "Are there any costs beyond the monthly fee?", a: "No setup fees or materials costs — the monthly fee (excl. tax) is all. Your Claude subscription is a separate cost contracted by your company." },
-      { q: "What are the conditions for the full refund?", a: "For the Offline plan: if, at the 3-month mark, you don't feel you are using Claude productively in real work, we refund in full. Conditions are attending the scheduled in-person sessions and completing the assigned exercises." },
-      { q: "Is this suitable for someone new to AI?", a: "Executives who are new to AI actually tend to see the most dramatic growth. Even if you are not technical, one-on-one coaching means you are never on your own." },
-      { q: "Where are the Offline sessions held?", a: "We primarily serve Tokyo and Mito, Ibaraki, visiting twice a month at the executive's convenience. Other areas are also available — please inquire." },
+      { q: "What is the difference between the Offline and Online plans?", a: "The Offline plan (¥100,000/month) delivers two dedicated in-person sessions per month, while the Online plan (¥50,000/month) provides an initial setup guide plus ongoing chat support — with a free upgrade to Offline available any time." },
+      { q: "Are there any costs beyond the monthly fee?", a: "No setup fees or materials costs — the monthly fee (excl. tax) is all you pay, with your Claude subscription contracted separately by your company." },
+      { q: "What are the conditions for the full refund?", a: "For the Offline plan, if at the 3-month mark you don't feel you're using Claude productively in real work, we refund in full — provided you attended the scheduled sessions and completed the assigned exercises." },
+      { q: "Is this suitable for someone new to AI?", a: "Executives who are new to AI tend to see the most dramatic growth, and one-on-one coaching means you're never on your own even if you're not technical." },
+      { q: "Where are the Offline sessions held?", a: "We primarily serve Tokyo and Mito, Ibaraki, visiting twice a month at the executive's convenience — other areas are also available on request." },
       { q: "Do you cover other AI tools like ChatGPT?", a: "The school stays focused on Claude, but we do provide comparative overviews of other models for context." },
     ],
     ctaLabel: "Contact",
@@ -226,7 +226,7 @@ export default function ClaudePage() {
   return (
     <>
       {/* PAGE HEADER */}
-      <section className="pt-24 pb-10 lg:pt-28 lg:pb-12 bg-white border-b border-gray-100">
+      <section className="pt-24 pb-4 lg:pt-28 lg:pb-5 bg-white border-b border-gray-100">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <p className="text-sm font-semibold text-neutral-900 mb-3">{t.pageKicker}</p>
           <div className="flex items-center gap-3 mb-4">
@@ -239,62 +239,62 @@ export default function ClaudePage() {
       </section>
 
       {/* SERVICES */}
-      <section id="services" className="py-14 lg:py-20 bg-gray-50">
+      <section id="services" className="pt-4 pb-10 lg:pt-6 lg:pb-12 bg-gray-50">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.servicesLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-8">{t.servicesTitle}</h2>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-3">{t.servicesTitle}</h2>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
             {/* Offline */}
             <Reveal>
-              <div className="rounded-lg border-2 border-neutral-900 bg-neutral-50 p-8 lg:p-10 h-full flex flex-col shadow-xl">
-                <span className="inline-block rounded-md bg-neutral-900 text-white px-3 py-1 text-xs font-bold tracking-widest mb-6 self-start">{t.offlineTag}</span>
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">{t.offlineTitle}</h3>
-                <p className="text-sm text-gray-600 leading-relaxed mb-6">{t.offlineDesc}</p>
-                <div className="bg-white rounded-lg border border-neutral-200 p-5 mb-6">
+              <div className="rounded-lg border-2 border-neutral-900 bg-neutral-50 p-5 h-full flex flex-col shadow-xl">
+                <span className="inline-block rounded-md bg-neutral-900 text-white px-3 py-1 text-xs font-bold tracking-widest mb-3 self-start">{t.offlineTag}</span>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">{t.offlineTitle}</h3>
+                <p className="text-xs text-gray-600 leading-relaxed mb-2">{t.offlineDesc}</p>
+                <div className="bg-white rounded-lg border border-neutral-200 p-4 mb-4">
                   <div className="flex items-baseline gap-1 mb-2">
-                    <span className="text-3xl font-bold text-gray-900">{t.offlinePrice}</span>
+                    <span className="text-2xl font-bold text-gray-900">{t.offlinePrice}</span>
                     <span className="text-sm text-gray-500">{t.offlinePriceUnit}</span>
                   </div>
                   <p className="text-xs text-neutral-900 font-semibold">{t.offlineGuaranteeNote}</p>
                 </div>
-                <ul className="space-y-3 mb-8 flex-1">
+                <ul className="space-y-1.5 mb-3 flex-1">
                   {t.offlineFeatures.map((f) => (
                     <li key={f} className="flex items-start gap-3">
                       <span className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 bg-neutral-900" />
-                      <span className="text-sm text-gray-700">{f}</span>
+                      <span className="text-xs text-gray-700">{f}</span>
                     </li>
                   ))}
                 </ul>
-                <p className="text-xs text-center text-neutral-900 mb-3">{t.offlineMinNote}</p>
-                <a href="https://buy.stripe.com/aFafZafg8daw8iKexKd7q02" className="block text-center text-sm font-semibold py-3.5 rounded-lg bg-neutral-900 text-white hover:bg-neutral-800 transition-all duration-300 mt-auto">{t.offlineCta}</a>
+                <p className="text-xs text-center text-neutral-900 mb-2">{t.offlineMinNote}</p>
+                <a href="https://buy.stripe.com/aFafZafg8daw8iKexKd7q02" className="block text-center text-sm font-semibold py-2.5 rounded-lg bg-neutral-900 text-white hover:bg-neutral-800 transition-all duration-300 mt-auto">{t.offlineCta}</a>
               </div>
             </Reveal>
 
             {/* Online */}
             <Reveal delay={150}>
-              <div className="rounded-lg border border-gray-200 bg-white p-8 lg:p-10 h-full flex flex-col hover:shadow-lg transition-all duration-300">
-                <span className="inline-block rounded-md bg-neutral-100 text-neutral-900 px-3 py-1 text-xs font-bold tracking-widest mb-6 self-start">{t.onlineTag}</span>
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">{t.onlineTitle}</h3>
-                <p className="text-sm text-gray-600 leading-relaxed mb-6">{t.onlineDesc}</p>
-                <div className="bg-gray-50 rounded-xl border border-gray-200 p-5 mb-6">
+              <div className="rounded-lg border border-gray-200 bg-white p-5 h-full flex flex-col hover:shadow-lg transition-all duration-300">
+                <span className="inline-block rounded-md bg-neutral-100 text-neutral-900 px-3 py-1 text-xs font-bold tracking-widest mb-3 self-start">{t.onlineTag}</span>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">{t.onlineTitle}</h3>
+                <p className="text-xs text-gray-600 leading-relaxed mb-2">{t.onlineDesc}</p>
+                <div className="bg-gray-50 rounded-xl border border-gray-200 p-4 mb-4">
                   <div className="flex items-baseline gap-1 mb-2">
-                    <span className="text-3xl font-bold text-gray-900">{t.onlinePrice}</span>
+                    <span className="text-2xl font-bold text-gray-900">{t.onlinePrice}</span>
                     <span className="text-sm text-gray-500">{t.onlinePriceUnit}</span>
                   </div>
                   <p className="text-xs text-gray-500">{t.onlineSubNote}</p>
                 </div>
-                <ul className="space-y-3 mb-8 flex-1">
+                <ul className="space-y-1.5 mb-3 flex-1">
                   {t.onlineFeatures.map((f) => (
                     <li key={f} className="flex items-start gap-3">
                       <span className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 bg-neutral-900" />
-                      <span className="text-sm text-gray-700">{f}</span>
+                      <span className="text-xs text-gray-700">{f}</span>
                     </li>
                   ))}
                 </ul>
-                <p className="text-xs text-center text-gray-500 mb-3">{t.onlineMinNote}</p>
-                <a href="https://buy.stripe.com/14AfZa2tm5I4dD4gFSd7q03" className="block text-center text-sm font-semibold py-3.5 rounded-lg border border-neutral-300 text-neutral-900 hover:bg-neutral-50 transition-all duration-300 mt-auto">{t.onlineCta}</a>
+                <p className="text-xs text-center text-gray-500 mb-2">{t.onlineMinNote}</p>
+                <a href="https://buy.stripe.com/14AfZa2tm5I4dD4gFSd7q03" className="block text-center text-sm font-semibold py-2.5 rounded-lg border border-neutral-300 text-neutral-900 hover:bg-neutral-50 transition-all duration-300 mt-auto">{t.onlineCta}</a>
               </div>
             </Reveal>
           </div>
@@ -331,7 +331,7 @@ export default function ClaudePage() {
               <div className="absolute -bottom-20 -left-20 w-60 h-60 rounded-full bg-white/10 blur-3xl" />
               <div className="relative">
                 <p className="text-sm font-semibold tracking-widest uppercase mb-4 opacity-90">{t.guaranteeLabel}</p>
-                <h2 className="text-3xl lg:text-4xl font-bold leading-tight mb-6 whitespace-pre-line">{t.guaranteeTitle}</h2>
+                <h2 className="text-3xl lg:text-4xl font-bold leading-tight mb-4 whitespace-pre-line">{t.guaranteeTitle}</h2>
                 <p className="text-sm lg:text-base leading-relaxed opacity-90 mb-2">{t.guaranteeDesc}</p>
                 <p className="text-xs opacity-75">{t.guaranteeDisclaimer}</p>
               </div>
@@ -392,7 +392,7 @@ export default function ClaudePage() {
             <Label>{t.ctaLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 mb-4">{t.ctaTitle}</h2>
             <p className="text-base text-gray-600 leading-relaxed mb-10">{t.ctaDesc}</p>
-            <a href="/contact" className="rounded-lg bg-neutral-900 text-white font-semibold px-10 py-4 hover:bg-neutral-800 transition-colors duration-300 inline-block">{t.ctaButton}</a>
+            <a href="/reserve" className="rounded-lg bg-neutral-900 text-white font-semibold px-10 py-4 hover:bg-neutral-800 transition-colors duration-300 inline-block">{t.ctaButton}</a>
           </Reveal>
         </div>
       </section>

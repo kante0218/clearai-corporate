@@ -91,7 +91,7 @@ const COPY: Record<"ja" | "en", Copy> = {
   ja: {
     pageLabel: "Subsidy Support",
     pageTitle: "補助金サポート",
-    pageDesc: "人材開発支援助成金・IT導入補助金・茨城県独自の支援制度まで。研修費・AI導入費を最大75%削減できる制度を、計画策定から実施報告・支給申請までフルサポートします。",
+    pageDesc: "人材開発支援助成金・IT導入補助金・茨城県独自制度を活用し、研修費・AI導入費を最大75%削減できるよう計画策定から支給申請まで一貫サポートします。",
     programsLabel: "Programs",
     programsTitle: "対応する3つの支援制度",
     programsDesc: "AI研修・AI導入プロジェクトに最も適した制度を、貴社の事業ステージと目的に合わせてご提案します。",
@@ -100,7 +100,7 @@ const COPY: Record<"ja" | "en", Copy> = {
         tag: "国",
         title: "人材開発支援助成金",
         subtitle: "事業展開等リスキリング支援コース",
-        desc: "新規事業・DX推進のための研修に使える厚労省の制度。AI・生成AI研修と極めて相性が良く、経費の最大75%と受講者の賃金を助成。",
+        desc: "新規事業・DX推進の研修に使える厚労省の制度で、AI・生成AI研修に極めて相性が良く、経費最大75%と受講者賃金を助成。",
         metrics: [
           { label: "経費助成（中小）", value: "75%" },
           { label: "賃金助成", value: "960円/人・時間" },
@@ -113,7 +113,7 @@ const COPY: Record<"ja" | "en", Copy> = {
         tag: "国",
         title: "IT導入補助金",
         subtitle: "通常枠 / インボイス対応枠 等",
-        desc: "AIツール・SaaS・業務自動化システムの導入費用を補助。clearAIのコンサル＋導入パッケージと組み合わせて活用可能。",
+        desc: "AIツール・SaaS・業務自動化システムの導入費用を補助する制度で、clearAIのコンサル＋導入パッケージと組み合わせて活用できます。",
         metrics: [
           { label: "補助率", value: "最大 1/2〜3/4" },
           { label: "補助額", value: "〜450万円" },
@@ -126,7 +126,7 @@ const COPY: Record<"ja" | "en", Copy> = {
         tag: "県・市",
         title: "茨城県・地方自治体支援",
         subtitle: "DX推進／中小企業人材開発等",
-        desc: "茨城県および県内市町村が独自に実施するDX・生成AI活用・人材育成の助成制度。全国対応ですが、当社拠点の茨城県は特に精通しています。",
+        desc: "茨城県および県内市町村が独自に実施するDX・生成AI・人材育成の助成制度で、当社拠点の茨城県制度に特に精通しています。",
         metrics: [
           { label: "対象", value: "県内中小企業等" },
           { label: "補助率", value: "制度により50〜75%" },
@@ -138,7 +138,7 @@ const COPY: Record<"ja" | "en", Copy> = {
     ],
     simulatorLabel: "Simulator",
     simulatorTitle: "実質負担額を、その場で計算。",
-    simulatorDesc: "受講人数・研修時間・企業規模を入れるだけ。人材開発支援助成金（事業展開等リスキリング支援コース）を前提にした概算が即座に表示されます。",
+    simulatorDesc: "受講人数・研修時間・企業規模を入力するだけで、人材開発支援助成金（事業展開等リスキリング支援コース）の概算が即座に表示されます。",
     simCondTitle: "シミュレーション条件",
     simCompanySize: "企業規模",
     simSmall: "中小企業（75%）",
@@ -167,7 +167,7 @@ const COPY: Record<"ja" | "en", Copy> = {
       { num: "04", title: "実施・記録", desc: "研修の実施から出席簿・賃金台帳までのエビデンス管理をサポート。" },
     ],
     supportDisclaimer: "書類の最終提出は事業主または提携社労士が行います",
-    supportDisclaimerBody: "clearAIは計画策定・研修実施・エビデンス管理までを責任を持って伴走。労働局への正式な申請手続きは有資格者である提携社労士がおこないます（紹介可）。",
+    supportDisclaimerBody: "clearAIは計画策定・研修実施・エビデンス管理まで責任を持って伴走し、労働局への正式申請は提携社労士（紹介可）が担当します。",
     flowLabel: "Flow",
     flowTitle: "申請から受給までの流れ",
     flow: [
@@ -183,32 +183,32 @@ const COPY: Record<"ja" | "en", Copy> = {
     faq: [
       {
         q: "人材開発支援助成金は誰でも使えますか？",
-        a: "雇用保険適用事業所であり、一定の要件を満たす訓練計画を事前に労働局に届け出た上で、計画通り実施できれば受給可能です。中小企業は経費助成率が75%になります。",
+        a: "雇用保険適用事業所が要件を満たす訓練計画を事前に届け出て計画通り実施すれば受給可能で、中小企業の経費助成率は75%です。",
       },
       {
         q: "申請手続きはclearAIが代行してくれますか？",
-        a: "連携する社労士と共に、訓練計画届・実施報告・支給申請までの書類作成を伴走支援します。書類の最終提出は事業主または提携社労士が行います。",
+        a: "提携社労士と連携し、訓練計画届・実施報告・支給申請まで書類作成を伴走支援します（最終提出は事業主または提携社労士が行います）。",
       },
       {
         q: "費用の立替は必要ですか？",
-        a: "助成金は後払い方式のため、研修費用は一旦お支払いいただき、実施後に助成金が支給される流れになります。資金繰りのご相談にも応じます。",
+        a: "助成金は後払い方式で研修費用は一旦お支払いいただきますが、資金繰りのご相談にも対応しています。",
       },
       {
         q: "どれくらいの期間で受給できますか？",
-        a: "訓練開始の1ヶ月前に計画届を提出し、研修終了後2ヶ月以内に支給申請。その後労働局の審査を経て支給となります。全体で4〜8ヶ月程度を見込んでください。",
+        a: "計画届（開始1ヶ月前）→研修実施→支給申請（終了後2ヶ月以内）→労働局審査の流れで、全体で4〜8ヶ月程度を見込んでください。",
       },
       {
         q: "IT導入補助金と人材開発支援助成金は併用できますか？",
-        a: "基本的に同一費用の二重受給はできませんが、AIツール導入費はIT導入補助金、研修費は人材開発支援助成金、と分けて活用することは可能です。個別にご提案します。",
+        a: "同一費用の二重受給は不可ですが、AIツール導入費はIT導入補助金・研修費は人材開発支援助成金と用途を分けての併用は可能で、個別にご提案します。",
       },
       {
         q: "茨城県内の企業向けの補助金はありますか？",
-        a: "茨城県独自のDX推進・人材育成関連助成金や、市町村単位での支援制度があります。clearAIは茨城県に拠点を置く企業として地域特有の制度にも精通しています。",
+        a: "茨城県および市町村独自のDX推進・人材育成関連助成金があり、茨城県拠点のclearAIは地域制度に精通しています。",
       },
     ],
     ctaLabel: "Contact",
     ctaTitle: "補助金を、損なく使い切る。",
-    ctaDesc: "「どの制度が合うかわからない」「書類作成に自信がない」——そんな段階からご相談いただけます。30分の無料診断から。",
+    ctaDesc: "「どの制度が合うか」「書類が不安」という段階から、30分の無料診断でご相談いただけます。",
     ctaButton: "無料相談を予約する",
     ctaSecondary: "研修プログラムを見る →",
   },
@@ -250,7 +250,7 @@ const COPY: Record<"ja" | "en", Copy> = {
         tag: "Pref. / City",
         title: "Ibaraki Prefecture & Local Government Programs",
         subtitle: "DX Promotion / SME Human Resource Development, etc.",
-        desc: "Subsidy programs independently run by Ibaraki Prefecture and its municipalities for DX, generative AI use, and talent development. We serve nationwide, but have deep expertise in Ibaraki-specific programs as our home base.",
+        desc: "Subsidy programs run by Ibaraki Prefecture and its municipalities for DX, generative AI, and talent development — with deep expertise in local programs as our home base.",
         metrics: [
           { label: "Eligible", value: "Ibaraki-based SMEs" },
           { label: "Subsidy rate", value: "50–75% (varies by program)" },
@@ -262,7 +262,7 @@ const COPY: Record<"ja" | "en", Copy> = {
     ],
     simulatorLabel: "Simulator",
     simulatorTitle: "Calculate your net cost on the spot.",
-    simulatorDesc: "Just enter headcount, training hours, and company size. An instant estimate based on the Human Resources Development Subsidy (Business Expansion / Reskilling Support Course) is displayed immediately.",
+    simulatorDesc: "Enter headcount, training hours, and company size to get an instant estimate based on the Human Resources Development Subsidy (Business Expansion / Reskilling Support Course).",
     simCondTitle: "Simulation parameters",
     simCompanySize: "Company size",
     simSmall: "SME (75%)",
@@ -291,7 +291,7 @@ const COPY: Record<"ja" | "en", Copy> = {
       { num: "04", title: "Implementation & records", desc: "We support evidence management from training delivery through attendance records and payroll ledgers." },
     ],
     supportDisclaimer: "Final document submission is made by the employer or an affiliated licensed consultant",
-    supportDisclaimerBody: "clearAI provides end-to-end support for planning, training delivery, and evidence management. Formal application to the Labour Bureau is handled by our affiliated licensed social insurance and labor consultant (referral available).",
+    supportDisclaimerBody: "clearAI provides end-to-end support for planning, training delivery, and evidence management; formal application to the Labour Bureau is handled by our affiliated licensed consultant (referral available).",
     flowLabel: "Flow",
     flowTitle: "From application to grant receipt",
     flow: [
@@ -307,32 +307,32 @@ const COPY: Record<"ja" | "en", Copy> = {
     faq: [
       {
         q: "Is the Human Resources Development Subsidy available to any company?",
-        a: "Any business covered by employment insurance that files a compliant training plan with the Labour Bureau in advance and carries it out as planned is eligible. SMEs qualify for a 75% expense subsidy rate.",
+        a: "Any employment-insurance-covered business that files a compliant training plan in advance and carries it out as planned is eligible, with SMEs qualifying for a 75% expense subsidy rate.",
       },
       {
         q: "Will clearAI handle the application process on our behalf?",
-        a: "Together with our affiliated labor/social insurance consultant, we provide hands-on support for all documentation — training plan filings, implementation reports, and grant applications. Final submission is made by the employer or the affiliated licensed consultant.",
+        a: "Together with our affiliated consultant, we support all documentation — training plan filings, implementation reports, and grant applications — with final submission made by the employer or affiliated licensed consultant.",
       },
       {
         q: "Do we need to front the costs?",
-        a: "Subsidies are paid after the fact, so training costs must be paid first and the grant is received after delivery. We can also discuss cash-flow concerns with you.",
+        a: "Subsidies are paid after training delivery, so costs must be fronted — we're available to discuss cash-flow concerns.",
       },
       {
         q: "How long does it take to receive the grant?",
-        a: "Plan the filing one month before training starts, submit the grant application within two months of completion, then await Labour Bureau review. Expect roughly 4–8 months in total.",
+        a: "File one month before training, submit the grant application within two months of completion, then await Labour Bureau review — roughly 4–8 months in total.",
       },
       {
         q: "Can the IT Introduction Subsidy and Human Resources Development Subsidy be combined?",
-        a: "Double-claiming the same expense is not permitted, but it is possible to apply the IT Introduction Subsidy to AI tool adoption costs and the Human Resources Development Subsidy to training costs separately. We will propose an approach tailored to your situation.",
+        a: "Double-claiming the same expense is not permitted, but applying the IT Introduction Subsidy to tool costs and the Human Resources Development Subsidy to training costs separately is possible — we'll propose a tailored approach.",
       },
       {
         q: "Are there subsidies specifically for companies in Ibaraki Prefecture?",
-        a: "Yes — Ibaraki Prefecture and its municipalities offer their own DX promotion and talent development subsidies. As a company headquartered in Ibaraki, clearAI has deep expertise in local programs.",
+        a: "Yes — Ibaraki Prefecture and its municipalities offer their own DX and talent development subsidies, and as an Ibaraki-based company, clearAI has deep expertise in local programs.",
       },
     ],
     ctaLabel: "Contact",
     ctaTitle: "Use every subsidy yen available to you.",
-    ctaDesc: "'Not sure which program fits us' or 'Not confident about the paperwork' — reach out at any stage. Start with a free 30-minute diagnosis.",
+    ctaDesc: "'Not sure which program fits' or 'not confident about the paperwork' — start with a free 30-minute diagnosis at any stage.",
     ctaButton: "Book a free consultation",
     ctaSecondary: "View training programs →",
   },
@@ -632,7 +632,7 @@ export default function SubsidyPage() {
             <h2 className="text-3xl font-bold text-gray-900 mb-4">{t.ctaTitle}</h2>
             <p className="text-base text-gray-600 leading-relaxed mb-10">{t.ctaDesc}</p>
             <div className="flex items-center justify-center gap-4 flex-wrap">
-              <a href="/contact?service=subsidy" className="rounded-md bg-neutral-900 text-white font-semibold px-10 py-4 hover:bg-neutral-800 transition-colors duration-300 inline-block">
+              <a href="/reserve" className="rounded-md bg-neutral-900 text-white font-semibold px-10 py-4 hover:bg-neutral-800 transition-colors duration-300 inline-block">
                 {t.ctaButton}
               </a>
               <a href="/training" className="text-sm text-gray-500 font-semibold hover:text-gray-900 transition-colors duration-300">

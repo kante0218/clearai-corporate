@@ -29,6 +29,8 @@ export const header = {
     navSubsidyDesc: "研修・AI導入費を助成金で最大75%削減",
     navRobotRental: "ロボットレンタル",
     navRobotRentalDesc: "ヒューマノイドの短期レンタル・PoC・実証",
+    navSpatialScan: "空間3Dスキャン",
+    navSpatialScanDesc: "現場をカメラで3Dデータ化し、点検・巡回ロボット導入を設計",
     navAiAgent: "AIエージェント開発",
     navAiAgentDesc: "業務を任せられる自律型AIエージェントを設計・開発・運用",
     navResearch: "研究開発",
@@ -63,6 +65,8 @@ export const header = {
     navSubsidyDesc: "Cut training and AI rollout costs by up to 75% with subsidies",
     navRobotRental: "Robot Rental",
     navRobotRentalDesc: "Short-term humanoid rental, PoC & demos",
+    navSpatialScan: "3D Spatial Scan",
+    navSpatialScanDesc: "Turn sites into 3D data with a camera and plan robot rollout",
     navAiAgent: "AI Agent Development",
     navAiAgentDesc: "Design, build, and operate autonomous AI agents you can delegate work to",
     navResearch: "R&D",
@@ -81,7 +85,7 @@ export const header = {
 export const footer = {
   ja: {
     logoAlt: "clearAI株式会社（クリアエーアイ）ロゴ",
-    tagline: "中小企業に、使えるAIと実装力を。戦略から実装まで一貫して支援します。",
+    tagline: "中小企業に、戦略から実装まで一貫した、使えるAIと実装力を。",
     companyLine1: "clearAI株式会社（読み方：クリアエーアイ）",
     companyLine2: "代表取締役 髙橋 敢輝",
     companyLine3: "茨城県 / 2026年4月設立",
@@ -178,7 +182,7 @@ export const aiConsulting = {
     introLabel: "About",
     introTitle: "AIは魔法ではなく、道具です。正しく使えば、確実に成果が出ます。",
     introBody:
-      "多くの企業が「AIを導入したい」と考えながら、何から始めればいいかわからずに立ち止まっています。clearAIは、AIの専門知識がない企業でも安心して始められるよう、ヒアリングから運用定着まで伴走します。派手な提案ではなく、貴社の課題に合った地に足のついたAI活用を、一緒に見つけていきます。",
+      "AIの専門知識がない企業でも、ヒアリングから運用定着まで伴走し、貴社の課題に合った地に足のついたAI活用を一緒に見つけます。",
     ctaLabel: "Contact",
     ctaTitle: "まずは、お話ししませんか。",
     ctaDescLine1: "「何から始めればいいかわからない」でも大丈夫です。",
@@ -199,7 +203,7 @@ export const aiConsulting = {
     introTitle:
       "AI isn't magic — it's a tool. Used well, it reliably delivers results.",
     introBody:
-      "Many companies want to adopt AI but stall because they don't know where to start. clearAI walks alongside you from discovery to post-launch adoption, so teams without AI expertise can start with confidence. No flashy proposals — we find grounded AI use cases that fit your actual problems.",
+      "Even without AI expertise, we walk alongside you from discovery to post-launch adoption to find grounded AI use cases that fit your actual problems.",
     ctaLabel: "Contact",
     ctaTitle: "Let's start with a conversation.",
     ctaDescLine1: "'I don't know where to start' is a fine place to start.",
@@ -258,7 +262,7 @@ export const subsidy = {
     ctaLabel: "Contact",
     ctaTitle: "補助金を、損なく使い切る。",
     ctaDesc:
-      "「どの制度が合うかわからない」「書類作成に自信がない」——そんな段階からご相談いただけます。30分の無料診断から。",
+      "「どの制度が合うかわからない」段階から、30分の無料診断でご相談いただけます。",
     ctaButton: "無料相談を予約する",
     ctaLink: "研修プログラムを見る →",
   },
@@ -277,7 +281,7 @@ export const subsidy = {
     ctaLabel: "Contact",
     ctaTitle: "Use subsidies to their full potential.",
     ctaDesc:
-      "'I'm not sure which program fits' or 'I'm not confident with the paperwork' — both are fine starting points. Begin with a free 30-minute assessment.",
+      "Start from 'I'm not sure which program fits' with a free 30-minute assessment.",
     ctaButton: "Book a free consultation",
     ctaLink: "View training programs →",
   },

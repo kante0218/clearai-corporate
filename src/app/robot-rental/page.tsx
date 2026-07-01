@@ -72,7 +72,7 @@ const COPY: Record<"ja" | "en", Copy> = {
     comingSoon: "Coming Soon",
     inquiryBadge: "導入相談受付中",
     heroTitle: "ロボットレンタル",
-    heroDesc: "Unitree・Boston Dynamics・AGIBOT・JAKA・PUDU・Booster Robotics・EngineAI・UBTECH・Fourier・PAL Robotics・Engineered Arts など、海外の最先端ヒューマノイド／四足歩行ロボット／協働ロボット／サービスロボットを輸入し、レンタルで提供するサービスを準備中です。高額な機体を購入する前に、自社の現場で試せる選択肢を増やしていきます。",
+    heroDesc: "海外の最先端ヒューマノイド・四足歩行・協働・サービスロボットを輸入し、購入前に現場で試せるレンタルサービスを準備中です。",
     heroCta: "先行してご相談する",
     heroNote: "一部機体は予約受付を開始しました",
     lineupLabel: "Lineup",
@@ -86,20 +86,20 @@ const COPY: Record<"ja" | "en", Copy> = {
         robots: [
           { name: "Unitree G1", type: "ヒューマノイド", desc: "コンパクトな人型ロボット。研究・実証・展示など幅広い用途を想定。", image: "/images/robot-rental/g1.png", price: "¥100,000", priceUnit: "/ 日（税込）", buyUrl: PAY.g1, status: "booking" },
           { name: "Unitree Go2", type: "四足歩行ロボット", desc: "機動性の高い四足歩行型。点検・巡回・イベント演出などに。", image: "/images/robot-rental/go2.png", price: "¥10,000", priceUnit: "/ 日（税込）", buyUrl: PAY.go2, status: "booking" },
-          { name: "Unitree R1", type: "ヒューマノイド", desc: "鮮やかなカラーリングが特徴の中型ヒューマノイド。接客・展示・撮影など視認性が求められる現場に。", image: "/images/robot-rental/r1.png" },
-          { name: "Unitree H1", type: "ヒューマノイド", desc: "高い運動性能を持つ大型人型ロボット。先進的なデモ・実証向け。", image: "/images/robot-rental/h1.png" },
-          { name: "Unitree H2", type: "ヒューマノイド", desc: "より大型の次世代ヒューマノイド。研究開発・先進デモ・メディア露出を伴う実証向け。", image: "/images/robot-rental/h2.png" },
-          { name: "Unitree B2", type: "産業用四足歩行ロボット", desc: "高い積載・走破性を重視した産業向け四足歩行型。巡回・点検・屋外実証に。", image: "/images/robot-rental/b2.png" },
-          { name: "Unitree A2", type: "産業用四足歩行ロボット", desc: "長時間稼働と拡張性を重視した四足歩行型。物流・工場・災害対応PoCに。", image: "/images/robot-rental/a2.png" },
-          { name: "Unitree As2", type: "小型産業用四足歩行ロボット", desc: "Go2より産業用途に寄せた小型機。持ち運びや短期デモをしやすい候補機。", image: "/images/robot-rental/as2.png" },
+          { name: "Unitree R1", type: "ヒューマノイド", desc: "鮮やかなカラーリングが特徴の中型ヒューマノイドで、接客・展示・撮影など視認性が求められる現場向け。", image: "/images/robot-rental/r1.png" },
+          { name: "Unitree H1", type: "ヒューマノイド", desc: "高い運動性能を持つ大型人型ロボットで、先進的なデモ・実証向け候補。", image: "/images/robot-rental/h1.png" },
+          { name: "Unitree H2", type: "ヒューマノイド", desc: "研究開発・先進デモ・メディア露出を伴う実証向けの次世代大型ヒューマノイド候補。", image: "/images/robot-rental/h2.png" },
+          { name: "Unitree B2", type: "産業用四足歩行ロボット", desc: "積載・走破性を重視した産業向け四足歩行型で、巡回・点検・屋外実証に向いた候補。", image: "/images/robot-rental/b2.png" },
+          { name: "Unitree A2", type: "産業用四足歩行ロボット", desc: "長時間稼働と拡張性を重視した四足歩行型で、物流・工場・災害対応PoC向け候補。", image: "/images/robot-rental/a2.png" },
+          { name: "Unitree As2", type: "小型産業用四足歩行ロボット", desc: "Go2より産業用途に特化した小型機で、持ち運びや短期デモに使いやすい候補。", image: "/images/robot-rental/as2.png" },
         ],
       },
       {
         company: "Boston Dynamics",
         summary: "商用導入実績のある四足歩行・物流ロボットと、次世代産業ヒューマノイドを候補化。",
         robots: [
-          { name: "Spot", type: "四足歩行ロボット", desc: "施設巡回・点検・遠隔監視に強い商用四足歩行型。産業現場の自動巡回PoC向け。", image: "/images/robot-rental/spot.png" },
-          { name: "Spot Arm", type: "モバイルマニピュレーション", desc: "Spot にアームを組み合わせた構成。扉・バルブ・軽作業など操作系デモの候補。", image: "/images/robot-rental/spot-arm.png" },
+          { name: "Spot", type: "四足歩行ロボット", desc: "施設巡回・点検・遠隔監視に強い商用四足歩行型で、産業現場の自動巡回PoC向け候補。", image: "/images/robot-rental/spot.png" },
+          { name: "Spot Arm", type: "モバイルマニピュレーション", desc: "Spot にアームを組み合わせた構成で、扉・バルブ・軽作業など操作系デモの候補。", image: "/images/robot-rental/spot-arm.png" },
           { name: "Stretch", type: "物流ロボット", desc: "倉庫でのケース荷役・トラック荷下ろし向け。物流自動化の実証候補。", image: "/images/robot-rental/stretch.png" },
           { name: "Atlas", type: "産業用ヒューマノイド", desc: "製造・マテリアルハンドリング領域を見据えた次世代ヒューマノイド候補。", image: "/images/robot-rental/atlas.png" },
         ],
@@ -109,10 +109,10 @@ const COPY: Record<"ja" | "en", Copy> = {
         summary: "フルサイズヒューマノイド、車輪型作業ロボット、四足歩行型、清掃ロボットまで幅広く候補化。",
         robots: [
           { name: "AgiBot A2", type: "フルサイズヒューマノイド", desc: "商用実証・接客・展示・作業デモ向けのフルサイズ人型ロボット候補。", image: "/images/robot-rental/agibot-a2.png", price: "¥100,000", priceUnit: "/ 日（税込）", buyUrl: PAY.agibot, status: "booking" },
-          { name: "AgiBot A2-W", type: "車輪型ヒューマノイド", desc: "移動安定性と上半身作業を組み合わせた車輪型。施設案内・軽作業実証の候補。", image: "/images/robot-rental/agibot-a2w.png" },
+          { name: "AgiBot A2-W", type: "車輪型ヒューマノイド", desc: "移動安定性と上半身作業を組み合わせた車輪型で、施設案内・軽作業実証の候補。", image: "/images/robot-rental/agibot-a2w.png" },
           { name: "AgiBot A2 Lite", type: "ヒューマノイド", desc: "パフォーマンス・展示・商業施設での演出用途を想定した候補機。", image: "/images/robot-rental/agibot-a2-lite.png" },
           { name: "AgiBot X1", type: "オープンソースロボット", desc: "研究開発・教育・ソフトウェア検証に使いやすいフルスタック開発向け候補。", image: "/images/robot-rental/agibot-x1.png" },
-          { name: "AgiBot X2", type: "ヒューマノイド", desc: "俊敏性と知能化を重視したヒューマノイド。先進デモ・研究用途の候補。", image: "/images/robot-rental/agibot-x2.png" },
+          { name: "AgiBot X2", type: "ヒューマノイド", desc: "俊敏性と知能化を重視したヒューマノイドで、先進デモ・研究用途の候補。", image: "/images/robot-rental/agibot-x2.png" },
           { name: "AgiBot G1", type: "汎用 embodied AI ロボット", desc: "Genie 系の汎用ロボット。施設内作業・接客・研究実証の候補。", image: "/images/robot-rental/agibot-g1.png" },
           { name: "AgiBot G2", type: "汎用 embodied AI ロボット", desc: "産業グレードの embodied AI ロボット。作業自動化PoCの候補。", image: "/images/robot-rental/agibot-g2.png" },
           { name: "AgiBot D1", type: "四足歩行ロボット", desc: "D1 Pro / Edu / Ultra / Max 系を含む四足歩行型。巡回・教育・産業点検の候補。", image: "/images/robot-rental/agibot-d1.png" },
@@ -123,26 +123,26 @@ const COPY: Record<"ja" | "en", Copy> = {
         company: "JAKA",
         summary: "中小製造業の実証に使いやすい協働ロボット。組立・検査・梱包・研磨・ねじ締めなどに対応。",
         robots: [
-          { name: "JAKA Zu Series", type: "協働ロボットアーム", desc: "3kgから30kg級まで展開する汎用協働ロボット。搬送・組立・検査・梱包PoCに。", image: "/images/robot-rental/jaka-zu.png" },
-          { name: "JAKA S Series", type: "力制御協働ロボット", desc: "高精度な力覚制御を重視したシリーズ。研磨・嵌合・繊細な組立の候補。", image: "/images/robot-rental/jaka-s.png" },
-          { name: "JAKA Pro Series", type: "高耐環境協働ロボット", desc: "油・粉じん・水に強いIP68系。金属加工・食品・屋外に近い現場の実証向け。", image: "/images/robot-rental/jaka-pro.png" },
-          { name: "JAKA Mini Series", type: "小型協働ロボット", desc: "小型・低コストの導入候補。教育・省スペース工程・店舗デモに。", image: "/images/robot-rental/jaka-mini.png" },
-          { name: "JAKA Lens 2D", type: "ビジョンシステム", desc: "JAKA ロボットと組み合わせる2Dビジョン。検査・位置決め・ピッキング実証向け。", image: "/images/robot-rental/jaka-lens2d.png" },
+          { name: "JAKA Zu Series", type: "協働ロボットアーム", desc: "3kgから30kg級まで展開する汎用協働ロボットで、搬送・組立・検査・梱包PoC向け候補。", image: "/images/robot-rental/jaka-zu.png" },
+          { name: "JAKA S Series", type: "力制御協働ロボット", desc: "高精度な力覚制御を重視したシリーズで、研磨・嵌合・繊細な組立向け候補。", image: "/images/robot-rental/jaka-s.png" },
+          { name: "JAKA Pro Series", type: "高耐環境協働ロボット", desc: "油・粉じん・水に強いIP68対応で、金属加工・食品・屋外に近い現場の実証向け候補。", image: "/images/robot-rental/jaka-pro.png" },
+          { name: "JAKA Mini Series", type: "小型協働ロボット", desc: "小型・低コストで、教育・省スペース工程・店舗デモに使いやすい導入候補。", image: "/images/robot-rental/jaka-mini.png" },
+          { name: "JAKA Lens 2D", type: "ビジョンシステム", desc: "JAKA ロボットと組み合わせる2Dビジョンで、検査・位置決め・ピッキング実証向け。", image: "/images/robot-rental/jaka-lens2d.png" },
         ],
       },
       {
         company: "PUDU",
         summary: "サービスロボットと半ヒューマノイド領域の候補。施設・店舗・工場内の移動作業を想定。",
         robots: [
-          { name: "PUDU D7", type: "半ヒューマノイド", desc: "産業・サービス現場向けの半ヒューマノイド。搬送・案内・施設内作業の候補。", image: "/images/robot-rental/pudu-d7.png" },
+          { name: "PUDU D7", type: "半ヒューマノイド", desc: "産業・サービス現場向けの半ヒューマノイドで、搬送・案内・施設内作業の候補。", image: "/images/robot-rental/pudu-d7.png" },
         ],
       },
       {
         company: "Booster Robotics",
         summary: "研究開発・教育・RoboCup・デベロッパー向けに扱いやすい小型ヒューマノイド候補。",
         robots: [
-          { name: "Booster T1", type: "ヒューマノイド", desc: "開発者向けの高耐久ヒューマノイド。研究・教育・ロボット競技・デモ用途の候補。", image: "/images/robot-rental/booster-t1.png" },
-          { name: "Booster K1", type: "小型ヒューマノイド", desc: "導入しやすい価格帯の embodied AI 開発プラットフォーム。学校・研究室・企業研修向け。", image: "/images/robot-rental/booster-k1.png" },
+          { name: "Booster T1", type: "ヒューマノイド", desc: "開発者向けの高耐久ヒューマノイドで、研究・教育・ロボット競技・デモ向け候補。", image: "/images/robot-rental/booster-t1.png" },
+          { name: "Booster K1", type: "小型ヒューマノイド", desc: "導入しやすい価格帯の embodied AI 開発プラットフォームで、学校・研究室・企業研修向け候補。", image: "/images/robot-rental/booster-k1.png" },
         ],
       },
       {
@@ -150,9 +150,9 @@ const COPY: Record<"ja" | "en", Copy> = {
         summary: "PM01からフルサイズ機まで展開する中国発ヒューマノイドメーカー。展示・研究・先進デモ向け。",
         robots: [
           { name: "EngineAI PM01", type: "小型ヒューマノイド", desc: "軽量・高動作性能・オープン性を重視した開発向けヒューマノイド候補。", image: "/images/robot-rental/engineai-pm01.png" },
-          { name: "EngineAI SA01", type: "二足歩行ロボット", desc: "拡張性を重視した二足歩行プラットフォーム。研究・教育・歩行制御デモ向け。", image: "/images/robot-rental/engineai-sa01.png" },
-          { name: "EngineAI SE01", type: "フルサイズヒューマノイド", desc: "自然な歩行表現を訴求するフルサイズ機。メディア向けデモ・先進PoC候補。", image: "/images/robot-rental/engineai-se01.png" },
-          { name: "EngineAI T800", type: "フルサイズヒューマノイド", desc: "高出力・大型の汎用ヒューマノイド候補。産業実証・展示会での訴求向け。", image: "/images/robot-rental/engineai-t800.png" },
+          { name: "EngineAI SA01", type: "二足歩行ロボット", desc: "拡張性を重視した二足歩行プラットフォームで、研究・教育・歩行制御デモ向け候補。", image: "/images/robot-rental/engineai-sa01.png" },
+          { name: "EngineAI SE01", type: "フルサイズヒューマノイド", desc: "自然な歩行表現を訴求するフルサイズ機で、メディア向けデモ・先進PoC候補。", image: "/images/robot-rental/engineai-se01.png" },
+          { name: "EngineAI T800", type: "フルサイズヒューマノイド", desc: "高出力・大型の汎用ヒューマノイドで、産業実証・展示会向け候補。", image: "/images/robot-rental/engineai-t800.png" },
           { name: "EngineAI S2", type: "サービスロボット", desc: "接客・案内・施設内サービスを想定したIPサービスロボット候補。", image: "/images/robot-rental/engineai-s2.png" },
           { name: "EngineAI JS01", type: "重載四足ロボット", desc: "産業点検・屋外実証・高負荷移動に向いた四足歩行型候補。", image: "/images/robot-rental/engineai-js01.png" },
         ],
@@ -161,53 +161,53 @@ const COPY: Record<"ja" | "en", Copy> = {
         company: "UBTECH",
         summary: "産業用ヒューマノイド、商用サービスロボット、教育ロボットを展開する大手候補。",
         robots: [
-          { name: "Walker S2", type: "産業用ヒューマノイド", desc: "製造・物流領域を想定した次世代ヒューマノイド。工場PoC・先進展示向け。" },
-          { name: "Walker S1", type: "産業用ヒューマノイド", desc: "スマート製造・物流用途のヒューマノイド候補。法人向け実証の相談対象。" },
-          { name: "Walker C", type: "商用ヒューマノイド", desc: "展示ホール・受付・案内など商用接客シーンを想定した候補機。" },
-          { name: "Walker X", type: "商用ヒューマノイド", desc: "対話・案内・デモンストレーション向けの商用ヒューマノイド候補。" },
-          { name: "Cruzr S2", type: "車輪型サービスロボット", desc: "受付・案内・施設内コミュニケーション用途に使いやすい車輪型ロボット。" },
-          { name: "Panda Robot", type: "教育・展示ロボット", desc: "教育・観光・展示で親しみやすさを出しやすいキャラクター型候補。" },
+          { name: "Walker S2", type: "産業用ヒューマノイド", desc: "製造・物流領域を想定した次世代ヒューマノイドで、工場PoC・先進展示向け候補。", image: "/images/robot-rental/ubtech-walker-s2.png" },
+          { name: "Walker S1", type: "産業用ヒューマノイド", desc: "スマート製造・物流用途の法人向け実証に向いたヒューマノイド候補。", image: "/images/robot-rental/ubtech-walker-s1.png" },
+          { name: "Walker C", type: "商用ヒューマノイド", desc: "展示ホール・受付・案内など商用接客シーンを想定した候補機。", image: "/images/robot-rental/ubtech-walker-c.png" },
+          { name: "Walker X", type: "商用ヒューマノイド", desc: "対話・案内・デモンストレーション向けの商用ヒューマノイド候補。", image: "/images/robot-rental/ubtech-walker-x.png" },
+          { name: "Cruzr S2", type: "車輪型サービスロボット", desc: "受付・案内・施設内コミュニケーション用途に使いやすい車輪型ロボット。", image: "/images/robot-rental/cruzr-s2.png" },
+          { name: "Panda Robot", type: "教育・展示ロボット", desc: "教育・観光・展示で親しみやすさを出しやすいキャラクター型候補。", image: "/images/robot-rental/panda-robot.png" },
         ],
       },
       {
         company: "Fourier",
         summary: "リハビリロボットの実績を背景に、GRシリーズのヒューマノイドを展開する研究・法人向け候補。",
         robots: [
-          { name: "Fourier GR-1", type: "フルサイズヒューマノイド", desc: "研究機関・AI企業向けに展開される汎用ヒューマノイド候補。" },
-          { name: "Fourier GR-2", type: "フルサイズヒューマノイド", desc: "GR-1の後継世代。高自由度・交換式バッテリーなどを想定した先進PoC向け。" },
-          { name: "Fourier GR-3", type: "ヒューマノイド", desc: "施設展示・研究・接客演出での活用を想定する次世代シリーズ候補。" },
+          { name: "Fourier GR-1", type: "フルサイズヒューマノイド", desc: "研究機関・AI企業向けに展開される汎用ヒューマノイド候補。", image: "/images/robot-rental/fourier-gr1.png" },
+          { name: "Fourier GR-2", type: "フルサイズヒューマノイド", desc: "高自由度・交換式バッテリーを備えたGR-1の後継世代で、先進PoC向け候補。", image: "/images/robot-rental/fourier-gr2.png" },
+          { name: "Fourier GR-3", type: "ヒューマノイド", desc: "施設展示・研究・接客演出での活用を想定する次世代シリーズ候補。", image: "/images/robot-rental/fourier-gr3.png" },
         ],
       },
       {
         company: "PAL Robotics",
         summary: "研究・物流・接客・小売向けに豊富なロボットを持つ欧州ロボティクスメーカー候補。",
         robots: [
-          { name: "TALOS", type: "研究用ヒューマノイド", desc: "高度な二足歩行・全身制御研究向けのヒューマノイド候補。" },
-          { name: "KANGAROO", type: "動的二足歩行ロボット", desc: "俊敏な二足歩行研究・デモ向けのレッグドロボット候補。" },
-          { name: "ARI", type: "接客・対話ロボット", desc: "サービスロボティクスとAI対話を組み合わせた受付・案内候補。" },
-          { name: "TIAGo", type: "モバイルマニピュレーター", desc: "移動台車とアームを組み合わせた研究・軽作業PoC向けロボット。" },
-          { name: "TIAGo Pro", type: "次世代モバイルマニピュレーター", desc: "研究・物流・小売向けの高機能モバイルマニピュレーター候補。" },
-          { name: "StockBot", type: "RFID棚卸ロボット", desc: "小売・倉庫の棚卸し、在庫管理、データ収集PoC向け。" },
+          { name: "TALOS", type: "研究用ヒューマノイド", desc: "高度な二足歩行・全身制御研究向けのヒューマノイド候補。", image: "/images/robot-rental/talos.png" },
+          { name: "KANGAROO", type: "動的二足歩行ロボット", desc: "俊敏な二足歩行研究・デモ向けのレッグドロボット候補。", image: "/images/robot-rental/kangaroo.png" },
+          { name: "ARI", type: "接客・対話ロボット", desc: "サービスロボティクスとAI対話を組み合わせた受付・案内候補。", image: "/images/robot-rental/ari.png" },
+          { name: "TIAGo", type: "モバイルマニピュレーター", desc: "移動台車とアームを組み合わせた研究・軽作業PoC向けロボット。", image: "/images/robot-rental/tiago.png" },
+          { name: "TIAGo Pro", type: "次世代モバイルマニピュレーター", desc: "研究・物流・小売向けの高機能モバイルマニピュレーター候補。", image: "/images/robot-rental/tiago-pro.png" },
+          { name: "StockBot", type: "RFID棚卸ロボット", desc: "小売・倉庫の棚卸し、在庫管理、データ収集PoC向け。", image: "/images/robot-rental/stockbot.png" },
         ],
       },
       {
         company: "Engineered Arts",
         summary: "表情・対話・存在感に強いソーシャルヒューマノイド。展示会・受付・PR演出向け。",
         robots: [
-          { name: "Ameca", type: "対話型ヒューマノイド", desc: "表情表現と対話体験に強い上半身型ヒューマノイド。展示・受付・PR向け。" },
-          { name: "Ami", type: "ソーシャルロボット", desc: "人との自然な対話・案内・エンタメ演出を想定した候補機。" },
-          { name: "RoboThespian", type: "エンタメロボット", desc: "イベント・劇場・展示施設でのプレゼンテーション演出向け候補。" },
+          { name: "Ameca", type: "対話型ヒューマノイド", desc: "表情表現と対話体験に強い上半身型ヒューマノイドで、展示・受付・PR向け候補。", image: "/images/robot-rental/ameca.png" },
+          { name: "Ami", type: "ソーシャルロボット", desc: "人との自然な対話・案内・エンタメ演出を想定した候補機。", image: "/images/robot-rental/ami.png" },
+          { name: "RoboThespian", type: "エンタメロボット", desc: "イベント・劇場・展示施設でのプレゼンテーション演出向け候補。", image: "/images/robot-rental/robothespian.png" },
         ],
       },
       {
         company: "Keenon Robotics",
         summary: "配膳・ホテル・清掃・重量搬送・半ヒューマノイドまで展開する実用サービスロボット候補。",
         robots: [
-          { name: "XMAN-R1", type: "ヒューマノイドサービスロボット", desc: "サービス業向けの二足歩行ヒューマノイド候補。案内・施設内業務の先進デモに。" },
-          { name: "XMAN-F1", type: "ヒューマノイドサービスロボット", desc: "施設・店舗・イベントでのサービス業務を想定した候補機。" },
-          { name: "DINERBOT T10", type: "配膳・広告ロボット", desc: "飲食店・商業施設での配膳、下げ膳、広告表示に使いやすい候補。" },
-          { name: "BUTLERBOT W3", type: "ホテル配送ロボット", desc: "ホテル・病院・複合施設での個室配送やフロア間サービス向け。" },
-          { name: "KLEENBOT C40", type: "清掃ロボット", desc: "中小規模施設向けの床清掃ロボット。清掃自動化PoCに。" },
+          { name: "XMAN-R1", type: "ヒューマノイドサービスロボット", desc: "サービス業向けの二足歩行ヒューマノイドで、案内・施設内業務の先進デモ向け候補。", image: "/images/robot-rental/xman-r1.png" },
+          { name: "XMAN-F1", type: "ヒューマノイドサービスロボット", desc: "施設・店舗・イベントでのサービス業務を想定した候補機。", image: "/images/robot-rental/xman-f1.png" },
+          { name: "DINERBOT T10", type: "配膳・広告ロボット", desc: "飲食店・商業施設での配膳、下げ膳、広告表示に使いやすい候補。", image: "/images/robot-rental/dinerbot-t10.png" },
+          { name: "BUTLERBOT W3", type: "ホテル配送ロボット", desc: "ホテル・病院・複合施設での個室配送やフロア間サービス向け。", image: "/images/robot-rental/butlerbot-w3.png" },
+          { name: "KLEENBOT C40", type: "清掃ロボット", desc: "中小規模施設の清掃自動化PoCに向いた床清掃ロボット候補。", image: "/images/robot-rental/kleenbot-c40.png" },
           { name: "S300", type: "重量搬送ロボット", desc: "工場・倉庫内の重荷重搬送を想定したAMR候補。" },
         ],
       },
@@ -215,37 +215,37 @@ const COPY: Record<"ja" | "en", Copy> = {
         company: "Bear Robotics",
         summary: "飲食・ホテル・病院・倉庫向けの自律移動ロボット。実需に直結しやすいレンタル候補。",
         robots: [
-          { name: "Servi", type: "配膳ロボット", desc: "飲食店・ホテル・イベント会場での配膳補助に使いやすい定番候補。" },
-          { name: "Servi Plus", type: "大容量配膳ロボット", desc: "多皿・大容量の配膳に向いたモデル。飲食店の省人化PoC向け。" },
-          { name: "Servi Q", type: "小型AMR", desc: "狭い通路や小規模店舗で使いやすいコンパクトなサービスロボット候補。" },
-          { name: "Carti 100", type: "倉庫搬送ロボット", desc: "100kg級搬送を想定した倉庫・工場向けAMR候補。" },
-          { name: "Servi Clean", type: "清掃ロボット", desc: "施設・店舗・病院向けの清掃自動化候補。" },
+          { name: "Servi", type: "配膳ロボット", desc: "飲食店・ホテル・イベント会場での配膳補助に使いやすい定番候補。", image: "/images/robot-rental/servi.png" },
+          { name: "Servi Plus", type: "大容量配膳ロボット", desc: "多皿・大容量の配膳に向いた、飲食店の省人化PoC向けモデル。", image: "/images/robot-rental/servi-plus.png" },
+          { name: "Servi Q", type: "小型AMR", desc: "狭い通路や小規模店舗で使いやすいコンパクトなサービスロボット候補。", image: "/images/robot-rental/servi-q.png" },
+          { name: "Carti 100", type: "倉庫搬送ロボット", desc: "100kg級搬送を想定した倉庫・工場向けAMR候補。", image: "/images/robot-rental/carti-100.png" },
+          { name: "Servi Clean", type: "清掃ロボット", desc: "施設・店舗・病院向けの清掃自動化候補。", image: "/images/robot-rental/servi-clean.png" },
         ],
       },
       {
         company: "ROBOTIS",
         summary: "教育・研究・開発者向けの小型ヒューマノイド／ROS系ロボットを展開する候補。",
         robots: [
-          { name: "ROBOTIS OP3", type: "小型ヒューマノイド", desc: "研究・教育・RoboCup向けのオープンプラットフォーム型ヒューマノイド候補。" },
-          { name: "BIOLOID", type: "教育ロボットキット", desc: "組み立て・制御・プログラミング教育に使いやすいロボットキット候補。" },
-          { name: "TurtleBot3", type: "ROS教育ロボット", desc: "ROS 2・SLAM・自律移動の教育・研修に使いやすい小型移動ロボット。" },
+          { name: "ROBOTIS OP3", type: "小型ヒューマノイド", desc: "研究・教育・RoboCup向けのオープンプラットフォーム型ヒューマノイド候補。", image: "/images/robot-rental/robotis-op3.png" },
+          { name: "BIOLOID", type: "教育ロボットキット", desc: "組み立て・制御・プログラミング教育に使いやすいロボットキット候補。", image: "/images/robot-rental/bioloid.png" },
+          { name: "TurtleBot3", type: "ROS教育ロボット", desc: "ROS 2・SLAM・自律移動の教育・研修に使いやすい小型移動ロボット。", image: "/images/robot-rental/turtlebot3.png" },
         ],
       },
       {
         company: "Furhat Robotics",
         summary: "対話・受付・教育・研究用途に使いやすいソーシャルロボット候補。",
         robots: [
-          { name: "Furhat", type: "対話型ソーシャルロボット", desc: "顔表情・視線・音声対話を組み合わせた受付・研究・教育向け候補。" },
-          { name: "Misty II", type: "プログラマブルロボット", desc: "教育・研究・受付アシスタント用途に使いやすい小型ソーシャルロボット。" },
-          { name: "Tengai", type: "面接・対話ロボット", desc: "採用面接・接客ヒアリング・対話実験などのユースケース候補。" },
+          { name: "Furhat", type: "対話型ソーシャルロボット", desc: "顔表情・視線・音声対話を組み合わせた受付・研究・教育向け候補。", image: "/images/robot-rental/furhat.png" },
+          { name: "Misty II", type: "プログラマブルロボット", desc: "教育・研究・受付アシスタント用途に使いやすい小型ソーシャルロボット。", image: "/images/robot-rental/misty-ii.png" },
+          { name: "Tengai", type: "面接・対話ロボット", desc: "採用面接・接客ヒアリング・対話実験などのユースケース候補。", image: "/images/robot-rental/tengai.png" },
         ],
       },
       {
         company: "AiMoga",
         summary: "自動車メーカー系のヒューマノイド／ロボット犬。高インパクトな展示・PR候補。",
         robots: [
-          { name: "Morine M1", type: "フルサイズヒューマノイド", desc: "店舗・展示・案内・PR向けの高存在感ヒューマノイド候補。輸入・保守条件の確認前提。" },
-          { name: "AiMoga Robot Dog", type: "四足歩行ロボット", desc: "イベント・展示・巡回デモ向けの四足歩行型候補。" },
+          { name: "Morine M1", type: "フルサイズヒューマノイド", desc: "輸入・保守条件の確認を前提とした、店舗・展示・案内・PR向けの高存在感ヒューマノイド候補。", image: "/images/robot-rental/morine-m1.png" },
+          { name: "AiMoga Robot Dog", type: "四足歩行ロボット", desc: "イベント・展示・巡回デモ向けの四足歩行型候補。", image: "/images/robot-rental/aimoga-dog.png" },
         ],
       },
     ],
@@ -256,7 +256,7 @@ const COPY: Record<"ja" | "en", Copy> = {
     planTitle: "提供予定の内容",
     planDesc: "「買う前に試す」を軸に、現場で価値を確かめられる形で提供予定です。",
     plans: [
-      { title: "短期レンタル", desc: "日・週・月単位での貸し出しを予定。目的と期間に合わせて柔軟に。" },
+      { title: "短期レンタル", desc: "日・週・月単位で、目的と期間に合わせて柔軟に貸し出し予定です。" },
       { title: "導入前トライアル", desc: "購入を検討中の機体を、実際の現場で試せるトライアル提供を予定。" },
       { title: "イベント・展示活用", desc: "展示会・店頭・撮影など、集客・PR用途での活用を予定。" },
       { title: "運用サポート", desc: "搬入・セットアップ・操作レクチャー・AI連携まで伴走予定。" },
@@ -272,7 +272,7 @@ const COPY: Record<"ja" | "en", Copy> = {
     ],
     ctaLabel: "Contact",
     ctaTitle: "先行のご相談を承っています。",
-    ctaDesc: "「こういう用途で使いたい」「提供開始時期を知りたい」など、ローンチ前の段階からお気軽にご相談ください。準備が整い次第、優先的にご案内します。",
+    ctaDesc: "用途や提供開始時期のご確認など、ローンチ前からご相談いただいた方を優先的にご案内します。",
     ctaButton: "先行して相談する",
   },
   en: {
@@ -280,7 +280,7 @@ const COPY: Record<"ja" | "en", Copy> = {
     comingSoon: "Coming Soon",
     inquiryBadge: "Inquiry open",
     heroTitle: "Robot Rental",
-    heroDesc: "We're preparing a service to import and rent cutting-edge humanoids, quadrupeds, collaborative robots, and service robots from overseas, including Unitree, Boston Dynamics, AGIBOT, JAKA, PUDU, Booster Robotics, EngineAI, UBTECH, Fourier, PAL Robotics, and Engineered Arts. The lineup will keep expanding so teams can try advanced robots on-site before committing to an expensive purchase.",
+    heroDesc: "We're preparing an import rental service for cutting-edge humanoids, quadrupeds, collaborative robots, and service robots — letting teams try them on-site before committing to a purchase.",
     heroCta: "Get an early consultation",
     heroNote: "Booking is now open for select units",
     lineupLabel: "Lineup",
@@ -369,53 +369,53 @@ const COPY: Record<"ja" | "en", Copy> = {
         company: "UBTECH",
         summary: "A major robotics company with industrial humanoids, commercial service robots, and AI education platforms.",
         robots: [
-          { name: "Walker S2", type: "Industrial humanoid", desc: "A next-generation humanoid candidate for manufacturing, logistics, factory PoCs, and advanced showcases." },
-          { name: "Walker S1", type: "Industrial humanoid", desc: "A humanoid candidate for smart manufacturing and logistics trials." },
-          { name: "Walker C", type: "Commercial humanoid", desc: "A candidate for exhibition halls, reception, guidance, and commercial hospitality." },
-          { name: "Walker X", type: "Commercial humanoid", desc: "A commercial humanoid candidate for conversation, guidance, and demonstrations." },
-          { name: "Cruzr S2", type: "Wheeled service robot", desc: "A wheeled robot suited to reception, guidance, and facility communication." },
-          { name: "Panda Robot", type: "Education and exhibition robot", desc: "A character robot candidate for education, tourism, and friendly exhibition experiences." },
+          { name: "Walker S2", type: "Industrial humanoid", desc: "A next-generation humanoid candidate for manufacturing, logistics, factory PoCs, and advanced showcases.", image: "/images/robot-rental/ubtech-walker-s2.png" },
+          { name: "Walker S1", type: "Industrial humanoid", desc: "A humanoid candidate for smart manufacturing and logistics trials.", image: "/images/robot-rental/ubtech-walker-s1.png" },
+          { name: "Walker C", type: "Commercial humanoid", desc: "A candidate for exhibition halls, reception, guidance, and commercial hospitality.", image: "/images/robot-rental/ubtech-walker-c.png" },
+          { name: "Walker X", type: "Commercial humanoid", desc: "A commercial humanoid candidate for conversation, guidance, and demonstrations.", image: "/images/robot-rental/ubtech-walker-x.png" },
+          { name: "Cruzr S2", type: "Wheeled service robot", desc: "A wheeled robot suited to reception, guidance, and facility communication.", image: "/images/robot-rental/cruzr-s2.png" },
+          { name: "Panda Robot", type: "Education and exhibition robot", desc: "A character robot candidate for education, tourism, and friendly exhibition experiences.", image: "/images/robot-rental/panda-robot.png" },
         ],
       },
       {
         company: "Fourier",
         summary: "A research and enterprise humanoid candidate maker building on rehabilitation robotics expertise.",
         robots: [
-          { name: "Fourier GR-1", type: "Full-size humanoid", desc: "A general humanoid candidate deployed toward research institutions and AI companies." },
-          { name: "Fourier GR-2", type: "Full-size humanoid", desc: "A newer generation candidate with higher degrees of freedom and enterprise PoC potential." },
-          { name: "Fourier GR-3", type: "Humanoid", desc: "A next-generation series candidate for facility exhibitions, R&D, and hospitality presentation." },
+          { name: "Fourier GR-1", type: "Full-size humanoid", desc: "A general humanoid candidate deployed toward research institutions and AI companies.", image: "/images/robot-rental/fourier-gr1.png" },
+          { name: "Fourier GR-2", type: "Full-size humanoid", desc: "A newer generation candidate with higher degrees of freedom and enterprise PoC potential.", image: "/images/robot-rental/fourier-gr2.png" },
+          { name: "Fourier GR-3", type: "Humanoid", desc: "A next-generation series candidate for facility exhibitions, R&D, and hospitality presentation.", image: "/images/robot-rental/fourier-gr3.png" },
         ],
       },
       {
         company: "PAL Robotics",
         summary: "A European robotics maker with platforms for research, logistics, retail, interaction, and mobile manipulation.",
         robots: [
-          { name: "TALOS", type: "Research humanoid", desc: "An advanced humanoid platform candidate for bipedal locomotion and whole-body control research." },
-          { name: "KANGAROO", type: "Dynamic biped", desc: "A legged robot candidate for agile biped research and demonstrations." },
-          { name: "ARI", type: "Assistive interaction robot", desc: "A service robotics and AI interaction platform for reception and guidance." },
-          { name: "TIAGo", type: "Mobile manipulator", desc: "A mobile base plus arm platform for research and light manipulation PoCs." },
-          { name: "TIAGo Pro", type: "Next-generation mobile manipulator", desc: "A higher-capability mobile manipulator candidate for research, logistics, and retail trials." },
-          { name: "StockBot", type: "RFID inventory robot", desc: "An autonomous RFID stock-taking robot candidate for retail, warehouse, and data collection trials." },
+          { name: "TALOS", type: "Research humanoid", desc: "An advanced humanoid platform candidate for bipedal locomotion and whole-body control research.", image: "/images/robot-rental/talos.png" },
+          { name: "KANGAROO", type: "Dynamic biped", desc: "A legged robot candidate for agile biped research and demonstrations.", image: "/images/robot-rental/kangaroo.png" },
+          { name: "ARI", type: "Assistive interaction robot", desc: "A service robotics and AI interaction platform for reception and guidance.", image: "/images/robot-rental/ari.png" },
+          { name: "TIAGo", type: "Mobile manipulator", desc: "A mobile base plus arm platform for research and light manipulation PoCs.", image: "/images/robot-rental/tiago.png" },
+          { name: "TIAGo Pro", type: "Next-generation mobile manipulator", desc: "A higher-capability mobile manipulator candidate for research, logistics, and retail trials.", image: "/images/robot-rental/tiago-pro.png" },
+          { name: "StockBot", type: "RFID inventory robot", desc: "An autonomous RFID stock-taking robot candidate for retail, warehouse, and data collection trials.", image: "/images/robot-rental/stockbot.png" },
         ],
       },
       {
         company: "Engineered Arts",
         summary: "Social humanoids with strong facial expression, presence, and conversation value for exhibitions, reception, and PR.",
         robots: [
-          { name: "Ameca", type: "Conversational humanoid", desc: "A highly expressive upper-body humanoid candidate for exhibitions, reception, and PR experiences." },
-          { name: "Ami", type: "Social robot", desc: "A candidate for natural interaction, guidance, and entertainment experiences." },
-          { name: "RoboThespian", type: "Entertainment robot", desc: "A presentation and performance robot candidate for events, museums, and venues." },
+          { name: "Ameca", type: "Conversational humanoid", desc: "A highly expressive upper-body humanoid candidate for exhibitions, reception, and PR experiences.", image: "/images/robot-rental/ameca.png" },
+          { name: "Ami", type: "Social robot", desc: "A candidate for natural interaction, guidance, and entertainment experiences.", image: "/images/robot-rental/ami.png" },
+          { name: "RoboThespian", type: "Entertainment robot", desc: "A presentation and performance robot candidate for events, museums, and venues.", image: "/images/robot-rental/robothespian.png" },
         ],
       },
       {
         company: "Keenon Robotics",
         summary: "Practical service robots across catering, hotel delivery, cleaning, heavy-load transport, and humanoid service concepts.",
         robots: [
-          { name: "XMAN-R1", type: "Humanoid service robot", desc: "A service-industry humanoid candidate for guidance, indoor operations, and advanced demonstrations." },
-          { name: "XMAN-F1", type: "Humanoid service robot", desc: "A candidate for service workflows in facilities, stores, and events." },
-          { name: "DINERBOT T10", type: "Delivery and marketing robot", desc: "A candidate for catering, clearing, and advertising in restaurants and commercial facilities." },
-          { name: "BUTLERBOT W3", type: "Hotel delivery robot", desc: "A robot candidate for room delivery and cross-floor service in hotels, hospitals, and facilities." },
-          { name: "KLEENBOT C40", type: "Cleaning robot", desc: "A floor-cleaning candidate for small and medium facilities." },
+          { name: "XMAN-R1", type: "Humanoid service robot", desc: "A service-industry humanoid candidate for guidance, indoor operations, and advanced demonstrations.", image: "/images/robot-rental/xman-r1.png" },
+          { name: "XMAN-F1", type: "Humanoid service robot", desc: "A candidate for service workflows in facilities, stores, and events.", image: "/images/robot-rental/xman-f1.png" },
+          { name: "DINERBOT T10", type: "Delivery and marketing robot", desc: "A candidate for catering, clearing, and advertising in restaurants and commercial facilities.", image: "/images/robot-rental/dinerbot-t10.png" },
+          { name: "BUTLERBOT W3", type: "Hotel delivery robot", desc: "A robot candidate for room delivery and cross-floor service in hotels, hospitals, and facilities.", image: "/images/robot-rental/butlerbot-w3.png" },
+          { name: "KLEENBOT C40", type: "Cleaning robot", desc: "A floor-cleaning candidate for small and medium facilities.", image: "/images/robot-rental/kleenbot-c40.png" },
           { name: "S300", type: "Heavy-load AMR", desc: "A heavy-load transport AMR candidate for factories and warehouses." },
         ],
       },
@@ -423,37 +423,37 @@ const COPY: Record<"ja" | "en", Copy> = {
         company: "Bear Robotics",
         summary: "Autonomous mobile robots for restaurants, hotels, hospitals, and warehouses where rental demand is easier to validate.",
         robots: [
-          { name: "Servi", type: "Serving robot", desc: "A practical serving assistant candidate for restaurants, hotels, and event venues." },
-          { name: "Servi Plus", type: "High-capacity serving robot", desc: "A higher-capacity candidate for multi-table service and restaurant labor-saving PoCs." },
-          { name: "Servi Q", type: "Compact AMR", desc: "A compact service robot candidate for narrow aisles and smaller stores." },
-          { name: "Carti 100", type: "Warehouse AMR", desc: "A 100kg-class transport robot candidate for warehouses and factories." },
-          { name: "Servi Clean", type: "Cleaning robot", desc: "A cleaning automation candidate for facilities, stores, and hospitals." },
+          { name: "Servi", type: "Serving robot", desc: "A practical serving assistant candidate for restaurants, hotels, and event venues.", image: "/images/robot-rental/servi.png" },
+          { name: "Servi Plus", type: "High-capacity serving robot", desc: "A higher-capacity candidate for multi-table service and restaurant labor-saving PoCs.", image: "/images/robot-rental/servi-plus.png" },
+          { name: "Servi Q", type: "Compact AMR", desc: "A compact service robot candidate for narrow aisles and smaller stores.", image: "/images/robot-rental/servi-q.png" },
+          { name: "Carti 100", type: "Warehouse AMR", desc: "A 100kg-class transport robot candidate for warehouses and factories.", image: "/images/robot-rental/carti-100.png" },
+          { name: "Servi Clean", type: "Cleaning robot", desc: "A cleaning automation candidate for facilities, stores, and hospitals.", image: "/images/robot-rental/servi-clean.png" },
         ],
       },
       {
         company: "ROBOTIS",
         summary: "Education, research, and developer platforms including compact humanoids and ROS robots.",
         robots: [
-          { name: "ROBOTIS OP3", type: "Compact humanoid", desc: "An open-platform humanoid candidate for research, education, and RoboCup." },
-          { name: "BIOLOID", type: "Educational robot kit", desc: "A modular robot kit candidate for robotics, control, and programming education." },
-          { name: "TurtleBot3", type: "ROS education robot", desc: "A compact mobile robot candidate for ROS 2, SLAM, and autonomous navigation training." },
+          { name: "ROBOTIS OP3", type: "Compact humanoid", desc: "An open-platform humanoid candidate for research, education, and RoboCup.", image: "/images/robot-rental/robotis-op3.png" },
+          { name: "BIOLOID", type: "Educational robot kit", desc: "A modular robot kit candidate for robotics, control, and programming education.", image: "/images/robot-rental/bioloid.png" },
+          { name: "TurtleBot3", type: "ROS education robot", desc: "A compact mobile robot candidate for ROS 2, SLAM, and autonomous navigation training.", image: "/images/robot-rental/turtlebot3.png" },
         ],
       },
       {
         company: "Furhat Robotics",
         summary: "Social robots suited to conversation, reception, education, research, and interview workflows.",
         robots: [
-          { name: "Furhat", type: "Conversational social robot", desc: "A face, gaze, and voice interaction platform candidate for reception, research, and education." },
-          { name: "Misty II", type: "Programmable robot", desc: "A compact social robot candidate for education, research, and assistant prototypes." },
-          { name: "Tengai", type: "Interview and dialogue robot", desc: "A candidate for hiring interviews, customer interviews, and dialogue experiments." },
+          { name: "Furhat", type: "Conversational social robot", desc: "A face, gaze, and voice interaction platform candidate for reception, research, and education.", image: "/images/robot-rental/furhat.png" },
+          { name: "Misty II", type: "Programmable robot", desc: "A compact social robot candidate for education, research, and assistant prototypes.", image: "/images/robot-rental/misty-ii.png" },
+          { name: "Tengai", type: "Interview and dialogue robot", desc: "A candidate for hiring interviews, customer interviews, and dialogue experiments.", image: "/images/robot-rental/tengai.png" },
         ],
       },
       {
         company: "AiMoga",
         summary: "Automotive-backed humanoid and robot-dog candidates with strong PR and exhibition impact.",
         robots: [
-          { name: "Morine M1", type: "Full-size humanoid", desc: "A high-presence humanoid candidate for stores, exhibitions, guidance, and PR, subject to import and support checks." },
-          { name: "AiMoga Robot Dog", type: "Quadruped", desc: "A quadruped candidate for events, exhibitions, and patrol demonstrations." },
+          { name: "Morine M1", type: "Full-size humanoid", desc: "A high-presence humanoid candidate for stores, exhibitions, guidance, and PR, subject to import and support checks.", image: "/images/robot-rental/morine-m1.png" },
+          { name: "AiMoga Robot Dog", type: "Quadruped", desc: "A quadruped candidate for events, exhibitions, and patrol demonstrations.", image: "/images/robot-rental/aimoga-dog.png" },
         ],
       },
     ],
@@ -480,7 +480,7 @@ const COPY: Record<"ja" | "en", Copy> = {
     ],
     ctaLabel: "Contact",
     ctaTitle: "We welcome early inquiries.",
-    ctaDesc: "'We'd like to use it for this,' or 'When does it launch?' — reach out even before launch. We'll prioritize your inquiry as soon as we're ready.",
+    ctaDesc: "Reach out before launch — early inquiries on use cases and availability are given priority.",
     ctaButton: "Get an early consultation",
   },
 };
@@ -494,7 +494,7 @@ export default function RobotRentalPage() {
   return (
     <>
       {/* PAGE HEADER */}
-      <section className="pt-24 pb-4 lg:pt-28 lg:pb-5 bg-white border-b border-gray-100">
+      <section className="pt-24 pb-6 lg:pt-28 lg:pb-8 bg-white border-b border-gray-100">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <div>
             <div className="flex items-center gap-3 mb-3">
@@ -504,7 +504,12 @@ export default function RobotRentalPage() {
               </span>
             </div>
             <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4">{t.heroTitle}</h1>
-            <p className="text-base text-gray-600 leading-relaxed w-full">{t.heroDesc}</p>
+            <p className="text-base text-gray-600 leading-relaxed w-full mb-8">{t.heroDesc}</p>
+            <div className="flex items-center gap-4 flex-wrap">
+              <a href="/contact?service=robot-rental" className="rounded-lg bg-neutral-900 text-white font-semibold px-8 py-3.5 hover:bg-neutral-800 transition-colors duration-300 inline-block">
+                {t.heroCta}
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -519,14 +524,14 @@ export default function RobotRentalPage() {
           </Reveal>
           {/* MAKER TABS */}
           <Reveal>
-            <div className="mb-10 flex gap-2 overflow-x-auto -mx-6 px-6 pb-1 snap-x [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+            <div className="mb-10 flex flex-wrap gap-2">
               {[{ key: "all", label: t.lineupAll }, ...t.lineupGroups.map((g) => ({ key: g.company, label: g.company }))].map((tab) => (
                 <button
                   key={tab.key}
                   type="button"
                   onClick={() => setMaker(tab.key)}
                   aria-pressed={maker === tab.key}
-                  className={`shrink-0 whitespace-nowrap snap-start rounded-md px-4 py-2 text-sm font-semibold transition-colors duration-200 ${
+                  className={`rounded-md px-4 py-2 text-sm font-semibold transition-colors duration-200 ${
                     maker === tab.key
                       ? "bg-neutral-900 text-white shadow-sm"
                       : "bg-white border border-gray-200 text-gray-600 hover:border-gray-400 hover:text-gray-900"
