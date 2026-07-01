@@ -552,7 +552,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
   return (
     <>
       {/* ═══ HERO ═══ */}
-      <section className="relative min-h-[56.25vw] md:min-h-screen flex items-start md:items-center overflow-hidden bg-white">
+      <section className="relative min-h-[70svh] md:min-h-screen flex items-start md:items-center overflow-hidden bg-white">
         <HeroParticlesBg />
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -563,7 +563,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
         />
         {/* White fade so the headline stays readable where it overlaps the robot */}
         <div className="pointer-events-none absolute inset-0 z-[5] bg-gradient-to-br from-white from-5% via-white/35 to-transparent to-70% md:hidden" />
-        <div className="relative z-10 w-full max-w-[1800px] mx-auto px-6 lg:px-10 pt-20 pb-5 md:py-24 pointer-events-none">
+        <div className="relative z-10 w-full max-w-[1800px] mx-auto px-6 lg:px-10 pt-24 pb-6 md:py-24 pointer-events-none">
           <div className="max-w-[18.5rem] sm:max-w-md md:max-w-2xl lg:max-w-3xl text-left pointer-events-auto">
             <div className="hidden md:flex md:flex-wrap md:justify-start gap-2 mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "200ms" }}>
               {t.heroChips.map((tag) => (
@@ -767,8 +767,8 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
         </div>
       </section>
 
-      {/* ═══ APPROACH ═══ (SPでは非表示・PCは維持) */}
-      <section className="hidden md:block md:py-20 lg:py-28 bg-white">
+      {/* ═══ APPROACH ═══ */}
+      <section className="py-8 md:py-20 lg:py-28 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <SectionLabel>{t.approachLabel}</SectionLabel>
@@ -868,22 +868,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
                       <h3 className="text-sm font-bold text-gray-900">{t.techGroups[group.key as keyof typeof t.techGroups]}</h3>
                     </div>
                     <div className="lg:col-span-10">
-                      {/* SP: アイコンが自動で横に流れるマーキー（交互方向・スクロール不要） */}
-                      <div className="md:hidden relative -mx-6 overflow-hidden">
-                        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-gradient-to-r from-gray-50 to-transparent" />
-                        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-gray-50 to-transparent" />
-                        <div className={`flex w-max gap-2.5 ${gi % 2 ? "animate-[marqueeReverse_24s_linear_infinite]" : "animate-[marquee_21s_linear_infinite]"}`}>
-                          {[...group.items, ...group.items].map((tech, idx) => (
-                            <div key={`${tech.name}-${idx}`} className="shrink-0 w-[4.5rem] h-[4.5rem] bg-white border border-gray-200 rounded-xl flex flex-col items-center justify-center gap-1.5">
-                              {/* eslint-disable-next-line @next/next/no-img-element */}
-                              <img src={`https://api.iconify.design/${tech.icon}.svg${"color" in tech && tech.color ? `?color=%23${tech.color}` : ''}`} alt={tech.name} className="w-7 h-7 object-contain" loading="lazy" />
-                              <p className="text-[9px] font-medium text-gray-600 text-center leading-tight px-1">{tech.name}</p>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                      {/* PC: グリッド（不変） */}
-                      <div className="hidden md:grid grid-cols-3 lg:grid-cols-5 gap-2.5 sm:gap-3">
+                      <div className="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-5 gap-2.5 sm:gap-3">
                         {group.items.map((tech) => (
                           <div key={tech.name} className="bg-white border border-gray-200 rounded-xl p-3 sm:p-5 flex flex-col items-center justify-center gap-2 sm:gap-3 hover:border-gray-300 hover:shadow-sm transition-all aspect-square">
                             {/* eslint-disable-next-line @next/next/no-img-element */}
