@@ -11,9 +11,6 @@ import { header as headerDict } from "@/lib/i18n/translations";
 type NavChild = { label: string; href: string; description?: string };
 type NavItem = { label: string; href: string; children?: NavChild[]; external?: boolean };
 
-// 業務まるごとAI診断（別アプリ・別サブドメイン）
-const DIAGNOSIS_URL = "https://shindan.clearai.jp";
-
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -25,6 +22,7 @@ export default function Header() {
 
   const navItems: NavItem[] = [
     { label: h.navRobotRental, href: "/robot-rental" },
+    { label: h.navSpatialScan, href: "/spatial-scan" },
     {
       label: h.navFde,
       href: "/ai-consulting",
@@ -94,7 +92,7 @@ export default function Header() {
               <span className="text-xl lg:text-2xl font-semibold tracking-tight text-neutral-900">clearAI</span>
             </Link>
 
-            <nav className="hidden xl:flex items-center gap-1 ml-auto mr-8">
+            <nav className="hidden xl:flex items-center gap-1">
               {navItems.map((item) => {
                 const hasChildren = item.children && item.children.length > 0;
                 const isMenuOpen = openMenu === item.label;
@@ -174,14 +172,6 @@ export default function Header() {
                 ))}
               </div>
               <LanguageToggle variant="desktop" />
-              <a
-                href={DIAGNOSIS_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group inline-flex items-center justify-center gap-1.5 text-sm font-semibold text-white px-5 py-2.5 rounded-md bg-blue-600 hover:bg-blue-700 shadow-[0_6px_20px_-6px_rgba(37,99,235,0.55)] hover:shadow-[0_12px_28px_-6px_rgba(37,99,235,0.7)] transition-all duration-300 hover:-translate-y-0.5">
-                {h.diagnosis}
-                <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-0.5">→</span>
-              </a>
               <Link href="/contact"
                 className={`group inline-flex items-center justify-center gap-1.5 text-sm font-semibold text-white px-5 py-2.5 rounded-md transition-all duration-300 hover:-translate-y-0.5 ${contactBtnClass}`}>
                 {h.contact}
@@ -205,9 +195,9 @@ export default function Header() {
           </div>
         </div>
 
-        <div className={`xl:hidden transition-all duration-500 ${isOpen ? "max-h-[calc(100svh-4.5rem)] overflow-y-auto overscroll-contain opacity-100" : "max-h-0 overflow-hidden opacity-0"}`}>
+        <div className={`xl:hidden overflow-hidden transition-all duration-500 ${isOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"}`}>
           <div className="bg-white/98 backdrop-blur-xl border-t border-gray-100">
-            <nav className="max-w-[1800px] mx-auto px-6 py-8 pb-16 space-y-1">
+            <nav className="max-w-[1800px] mx-auto px-6 py-8 space-y-1">
               {navItems.map((item, i) => {
                 const hasChildren = item.children && item.children.length > 0;
                 const expanded = mobileExpanded === item.label;
@@ -254,7 +244,7 @@ export default function Header() {
                       )}
                     </div>
                     {hasChildren && (
-                      <div className={`overflow-hidden transition-all duration-300 ${expanded ? "max-h-[720px] pb-3" : "max-h-0"}`}>
+                      <div className={`overflow-hidden transition-all duration-300 ${expanded ? "max-h-96 pb-3" : "max-h-0"}`}>
                         <div className="pl-4 space-y-1">
                           {item.children!.map((child) => (
                             <Link
@@ -263,7 +253,7 @@ export default function Header() {
                               onClick={() => setIsOpen(false)}
                               className="block py-2.5 text-sm text-gray-600 hover:text-gray-900"
                             >
-                              <span className="font-medium">{child.label}</span>
+                              {child.label}
                               {child.description && (
                                 <span className="block text-xs text-gray-400 mt-0.5">{child.description}</span>
                               )}
@@ -287,15 +277,7 @@ export default function Header() {
                   </Link>
                 ))}
               </div>
-              <div className="mt-4 space-y-3">
-                <a
-                  href={DIAGNOSIS_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => setIsOpen(false)}
-                  className="block text-center px-4 py-3.5 rounded-lg text-sm font-semibold transition-colors min-h-[44px] flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white">
-                  {h.diagnosis}
-                </a>
+              <div className="mt-4">
                 <Link href="/contact" onClick={() => setIsOpen(false)}
                   className={`block text-center px-4 py-3.5 rounded-lg text-sm font-semibold transition-colors min-h-[44px] flex items-center justify-center ${contactFilledClass}`}>
                   {h.contact}

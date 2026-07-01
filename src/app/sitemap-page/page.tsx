@@ -20,7 +20,7 @@ const COPY: Record<"ja" | "en", Copy> = {
   ja: {
     label: "Sitemap",
     title: "サイトマップ",
-    desc: "clearAI株式会社（読み方：クリアエーアイ）の全ページ一覧です。目的のページへ素早くアクセスしてください。",
+    desc: "clearAI株式会社（クリアエーアイ）の全ページ一覧から、目的のページへ素早くアクセスできます。",
     sections: [
       {
         title: "会社情報",
@@ -62,7 +62,7 @@ const COPY: Record<"ja" | "en", Copy> = {
   en: {
     label: "Sitemap",
     title: "Sitemap",
-    desc: "A full list of pages on clearAI Inc. Jump to the page you need.",
+    desc: "A full list of clearAI Inc. pages — jump directly to what you need.",
     sections: [
       {
         title: "Company",

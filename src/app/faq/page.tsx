@@ -44,27 +44,27 @@ const COPY: Record<"ja" | "en", Copy> = {
   ja: {
     heroChip: "FAQ",
     heroTitle: "よくあるご質問",
-    heroDesc: "お問い合わせ前に多く寄せられる質問を12項目まとめました。\nここに無い内容は、お気軽にお問い合わせください。",
+    heroDesc: "お問い合わせ前によく寄せられる12の質問をまとめましたので、ここにない内容はお気軽にご連絡ください。",
     heroBtnPrimary: "質問を見る",
     heroBtnSecondary: "直接相談する →",
     listLabel: "Questions",
     listTitle: "12の質問にお答えします",
     ctaLabel: "Contact",
     ctaTitle: "答えが見つからないときは。",
-    ctaDesc: "個別のご質問は、お問い合わせフォームからご連絡ください。\n初回返信は2営業日以内、NDA締結にも対応します。",
+    ctaDesc: "お問い合わせフォームからご連絡いただければ、2営業日以内にご返信します（NDA締結にも対応）。",
     ctaButton: "無料で相談する",
   },
   en: {
     heroChip: "FAQ",
     heroTitle: "Frequently Asked Questions",
-    heroDesc: "We've compiled 12 of the most common questions we receive before an enquiry.\nFor anything not covered here, please feel free to reach out.",
+    heroDesc: "We've compiled 12 common pre-enquiry questions — for anything not covered here, please feel free to reach out.",
     heroBtnPrimary: "View questions",
     heroBtnSecondary: "Talk to us directly →",
     listLabel: "Questions",
     listTitle: "Answers to 12 common questions",
     ctaLabel: "Contact",
     ctaTitle: "Didn't find your answer?",
-    ctaDesc: "Send your specific question through the contact form.\nWe reply within 2 business days and are happy to sign an NDA.",
+    ctaDesc: "Send your question through the contact form and we'll reply within 2 business days — NDA signing available.",
     ctaButton: "Book a free consultation",
   },
 };
@@ -131,7 +131,7 @@ export default function FaqPage() {
                 <span key={i}>{line}{i < arr.length - 1 && <br />}</span>
               ))}
             </p>
-            <a href="/contact" className="rounded-lg bg-neutral-900 text-white font-semibold px-10 py-4 hover:bg-neutral-800 transition-colors duration-300 inline-block">{t.ctaButton}</a>
+            <a href="/reserve" className="rounded-lg bg-neutral-900 text-white font-semibold px-10 py-4 hover:bg-neutral-800 transition-colors duration-300 inline-block">{t.ctaButton}</a>
           </Reveal>
         </div>
       </section>
