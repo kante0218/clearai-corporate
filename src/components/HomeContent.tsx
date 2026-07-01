@@ -597,8 +597,8 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
     <>
       {/* ═══ HERO ═══ */}
       <section className="relative overflow-hidden bg-white md:flex md:min-h-screen md:items-center">
-        {/* SP: 映像を16:9で表示（切り取らず全体を見せる・ヘッダー分の余白を確保） */}
-        <div className="md:hidden w-full pt-[4.5rem]">
+        {/* SP: 映像を16:9で表示。ヘッダー直下にぴったり付ける（上余白なし） */}
+        <div className="md:hidden w-full">
           <video
             className="w-full aspect-video object-cover"
             autoPlay
