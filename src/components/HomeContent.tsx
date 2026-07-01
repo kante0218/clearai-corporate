@@ -596,11 +596,26 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
   return (
     <>
       {/* ═══ HERO ═══ */}
-      <section className="relative min-h-[70svh] md:min-h-screen flex items-start md:items-center overflow-hidden bg-white">
-        {/* Background video — dithered marble bust, monochrome brand imagery */}
+      <section className="relative overflow-hidden bg-white md:flex md:min-h-screen md:items-center">
+        {/* SP: 映像を16:9で表示（切り取らず全体を見せる・ヘッダー分の余白を確保） */}
+        <div className="md:hidden w-full pt-[4.5rem]">
+          <video
+            className="w-full aspect-video object-cover"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            poster="/videos/hero-dither-poster.jpg"
+            aria-hidden
+          >
+            <source src="/videos/hero-dither-hq.mp4" type="video/mp4" />
+          </video>
+        </div>
+        {/* PC: 背景動画（全面・テキスト重ね）— 不変 */}
         <video
           ref={heroVideoRef}
-          className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover object-[62%_center] sm:object-center"
+          className="hidden md:block pointer-events-none absolute inset-0 z-0 h-full w-full object-cover object-[62%_center] sm:object-center"
           width={2160}
           height={1216}
           autoPlay
@@ -614,12 +629,12 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
         >
           <source src="/videos/hero-dither-hq.mp4" type="video/mp4" />
         </video>
-        <div className="relative z-10 w-full max-w-[1800px] mx-auto px-6 lg:px-10 pt-24 pb-6 md:py-24 pointer-events-none">
+        <div className="relative z-10 w-full max-w-[1800px] mx-auto px-6 lg:px-10 pt-6 pb-10 md:py-24 pointer-events-none">
           <div className="max-w-none sm:max-w-md md:max-w-2xl lg:max-w-3xl text-left pointer-events-auto">
-            <h1 className={`text-[1.9rem] sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.12] tracking-tight mb-8 transition-[color,opacity,transform] duration-500 ${heroTextDark ? "text-gray-900" : "text-white"}`} style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0)" : "translateY(24px)", transitionDelay: "400ms", textShadow: heroTextDark ? "0 1px 3px rgba(255,255,255,0.75),0 2px 22px rgba(255,255,255,0.55)" : "0 1px 3px rgba(0,0,0,0.6),0 2px 22px rgba(0,0,0,0.65)" }}>
+            <h1 className={`text-[1.9rem] sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.12] tracking-tight mb-8 transition-[color,opacity,transform] duration-500 text-gray-900 ${heroTextDark ? "md:text-gray-900" : "md:text-white"}`} style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0)" : "translateY(24px)", transitionDelay: "400ms", textShadow: heroTextDark ? "0 1px 3px rgba(255,255,255,0.75),0 2px 22px rgba(255,255,255,0.55)" : "0 1px 3px rgba(0,0,0,0.6),0 2px 22px rgba(0,0,0,0.65)" }}>
               {t.heroTitle}
             </h1>
-            <p className={`text-base md:text-lg font-medium leading-relaxed max-w-none sm:max-w-sm md:max-w-xl mb-10 transition-[color,opacity] duration-500 ${heroTextDark ? "text-gray-900" : "text-white"}`} style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "650ms", textShadow: heroTextDark ? "0 1px 2px rgba(255,255,255,0.95),0 1px 12px rgba(255,255,255,0.85)" : "0 1px 2px rgba(0,0,0,0.75),0 1px 12px rgba(0,0,0,0.7)" }}>
+            <p className={`text-base md:text-lg font-medium leading-relaxed max-w-none sm:max-w-sm md:max-w-xl mb-10 transition-[color,opacity] duration-500 text-gray-900 ${heroTextDark ? "md:text-gray-900" : "md:text-white"}`} style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "650ms", textShadow: heroTextDark ? "0 1px 2px rgba(255,255,255,0.95),0 1px 12px rgba(255,255,255,0.85)" : "0 1px 2px rgba(0,0,0,0.75),0 1px 12px rgba(0,0,0,0.7)" }}>
               {t.heroDesc}
             </p>
             <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3 sm:gap-5 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "850ms" }}>
@@ -627,7 +642,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
                 {t.heroPrimary}
                 <span aria-hidden>→</span>
               </Link>
-              <Link href="#services" className={`inline-flex w-full sm:w-auto justify-center sm:justify-start items-center gap-1.5 min-h-[44px] py-2 text-sm font-semibold transition-colors duration-300 ${heroTextDark ? "text-gray-700 hover:text-neutral-900" : "text-white/90 hover:text-white"}`} style={{ textShadow: heroTextDark ? "none" : "0 1px 6px rgba(0,0,0,0.6)" }}>
+              <Link href="#services" className={`inline-flex w-full sm:w-auto justify-center sm:justify-start items-center gap-1.5 min-h-[44px] py-2 text-sm font-semibold transition-colors duration-300 text-gray-700 hover:text-neutral-900 ${heroTextDark ? "" : "md:text-white/90 md:hover:text-white"}`} style={{ textShadow: heroTextDark ? "none" : "0 1px 6px rgba(0,0,0,0.6)" }}>
                 {t.heroSecondary}
                 <span aria-hidden>→</span>
               </Link>
@@ -811,8 +826,8 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
         </div>
       </section>
 
-      {/* ═══ APPROACH ═══ */}
-      <section className="py-8 md:py-20 lg:py-28 bg-white">
+      {/* ═══ APPROACH ═══ (SPでは非表示・PCは維持) */}
+      <section className="hidden md:block md:py-20 lg:py-28 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <SectionLabel>{t.approachLabel}</SectionLabel>
@@ -912,7 +927,22 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
                       <h3 className="text-sm font-bold text-gray-900">{t.techGroups[group.key as keyof typeof t.techGroups]}</h3>
                     </div>
                     <div className="lg:col-span-10">
-                      <div className="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-5 gap-2.5 sm:gap-3">
+                      {/* SP: アイコンが自動で横に流れるマーキー（交互方向・スクロール不要） */}
+                      <div className="md:hidden relative -mx-6 overflow-hidden">
+                        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-gradient-to-r from-gray-50 to-transparent" />
+                        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-gray-50 to-transparent" />
+                        <div className={`flex w-max gap-2.5 ${gi % 2 ? "animate-[marqueeReverse_24s_linear_infinite]" : "animate-[marquee_21s_linear_infinite]"}`}>
+                          {[...group.items, ...group.items].map((tech, idx) => (
+                            <div key={`${tech.name}-${idx}`} className="shrink-0 w-[4.5rem] h-[4.5rem] bg-white border border-gray-200 rounded-xl flex flex-col items-center justify-center gap-1.5">
+                              {/* eslint-disable-next-line @next/next/no-img-element */}
+                              <img src={`https://api.iconify.design/${tech.icon}.svg${"color" in tech && tech.color ? `?color=%23${tech.color}` : ''}`} alt={tech.name} className="w-7 h-7 object-contain" loading="lazy" />
+                              <p className="text-[9px] font-medium text-gray-600 text-center leading-tight px-1">{tech.name}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                      {/* PC: グリッド（不変） */}
+                      <div className="hidden md:grid grid-cols-3 lg:grid-cols-5 gap-2.5 sm:gap-3">
                         {group.items.map((tech) => (
                           <div key={tech.name} className="bg-white border border-gray-200 rounded-xl p-3 sm:p-5 flex flex-col items-center justify-center gap-2 sm:gap-3 hover:border-gray-300 hover:shadow-sm transition-all aspect-square">
                             {/* eslint-disable-next-line @next/next/no-img-element */}
