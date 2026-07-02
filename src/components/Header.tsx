@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Logo from "@/components/Logo";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import LanguageToggle from "@/components/LanguageToggle";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { header as headerDict } from "@/lib/i18n/translations";
@@ -17,6 +17,7 @@ export default function Header() {
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
   const pathname = usePathname();
+  const router = useRouter();
   const { lang } = useLanguage();
   const h = headerDict[lang];
 
@@ -108,14 +109,16 @@ export default function Header() {
                         href={item.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={`text-sm font-semibold tracking-wide px-3 py-2 transition-colors duration-200 inline-flex items-center gap-1 ${navColor}`}
+                        className={`relative text-sm font-semibold tracking-wide px-3 py-2 transition-colors duration-200 inline-flex items-center gap-1 after:pointer-events-none after:absolute after:bottom-1 after:left-3 after:right-3 after:h-px after:origin-left after:scale-x-0 after:bg-neutral-900 after:transition-transform after:duration-300 hover:after:scale-x-100 ${navColor}`}
                       >
                         {item.label}
                       </a>
                     ) : (
                       <Link
                         href={item.href}
-                        className={`text-sm font-semibold tracking-wide px-3 py-2 transition-colors duration-200 inline-flex items-center gap-1 ${navColor}`}
+                        prefetch
+                        onMouseEnter={() => router.prefetch(item.href)}
+                        className={`relative text-sm font-semibold tracking-wide px-3 py-2 transition-colors duration-200 inline-flex items-center gap-1 after:pointer-events-none after:absolute after:bottom-1 after:left-3 after:right-3 after:h-px after:origin-left after:scale-x-0 after:bg-neutral-900 after:transition-transform after:duration-300 hover:after:scale-x-100 ${navColor}`}
                       >
                         {item.label}
                         {hasChildren && (

@@ -5,9 +5,11 @@ import Image from "next/image";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import CardCarousel from "@/components/CardCarousel";
+import CountUp from "@/components/CountUp";
+import InlineContactForm from "@/components/InlineContactForm";
 
 /* Scroll-triggered reveal - simplified, up direction only */
-function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
+function Reveal({ children, className = "", delay = 0, variant = "up" }: { children: ReactNode; className?: string; delay?: number; variant?: "up" | "scale" | "left" }) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
   useEffect(() => {
@@ -20,10 +22,12 @@ function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; 
     obs.observe(el);
     return () => obs.disconnect();
   }, []);
+  const hiddenTransform =
+    variant === "scale" ? "scale(0.96)" : variant === "left" ? "translateX(-24px)" : "translateY(24px)";
   return (
     <div ref={ref} className={className} style={{
       opacity: visible ? 1 : 0,
-      transform: visible ? "none" : "translateY(24px)",
+      transform: visible ? "none" : hiddenTransform,
       transition: `opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
     }}>{children}</div>
   );
@@ -121,7 +125,7 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
     steps: [
       { step: "STEP 01", title: "無料AI診断（30分）", desc: "営業色の強い提案はせず、現状の業務・課題をヒアリングしてAI活用で効果の高そうな領域を1つ特定してお返しします。", points: ["Zoom / 対面いずれも可", "NDA締結のうえ、機密情報も扱えます", "その場で簡易レポートを口頭共有"], cta: "申し込む →", href: "/contact?service=advisor", color: "indigo" },
       { step: "STEP 02", title: "3分でわかる会社資料", desc: "事業内容・代表的な支援パターン・料金レンジ・補助金活用例をまとめた1枚PDFを、社内稟議用に送付します。", points: ["PDF 1ページ", "料金レンジと進め方の目安入り", "登録不要・当日返信"], cta: "資料をもらう →", href: "/contact?service=advisor&doc=company-deck", color: "amber" },
-      { step: "STEP 03", title: "1部署・1業務からのPoC", desc: "最も効果が出そうな1部署・1業務に絞って小さく試行導入し、効果が見えてから拡張します。", points: ["PoC期間 1〜2ヶ月", "成功基準を事前合意", "人材開発支援助成金の活用も可"], cta: "相談する →", href: "/contact?service=training", color: "sky" },
+      { step: "STEP 03", title: "1部署・1業務からのPoC", desc: "最も効果が出そうな1部署・1業務に絞って小さく試行導入し、効果が見えてから拡張します。", points: ["PoC期間 1〜2ヶ月", "成功基準を事前合意", "小さく確かめてから拡張"], cta: "相談する →", href: "/contact?service=training", color: "sky" },
     ],
     servicesLabel: "Our Services",
     servicesTitle: "AIで、日本の未来をつくる。",
@@ -211,7 +215,7 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
     faq: [
       { q: "AIの知識がなくても相談できますか？", a: "もちろんです。「何から始めればいいかわからない」段階からのご相談が最も多く、専門用語を使わず現場の言葉でご説明します。" },
       { q: "小さく始めることはできますか？", a: "できます。単発の研修や、1部署・1業務に絞ったPoCなど、いきなり大型契約をせずに効果を確かめてから拡張いただけます。" },
-      { q: "補助金は使えますか？", a: "研修・AI導入では人材開発支援助成金やIT導入補助金などを活用でき、実質負担を最大75%削減できる場合があり、申請書類もサポートします。" },
+      { q: "補助金は使えますか？", a: "研修・AI導入では各種助成金・補助金を活用でき、実質負担を最大75%削減できる場合があり、対象制度の見極めから申請書類までサポートします。" },
     ],
     newsLabel: "News",
     newsTitle: "お知らせ",
@@ -271,7 +275,7 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
     steps: [
       { step: "STEP 01", title: "Free AI assessment (30 min)", desc: "With no hard sell, we listen to your current workflows and challenges, then identify one high-impact area for AI.", points: ["Zoom or in-person", "NDA on request — we can handle confidential data", "Verbal summary on the spot"], cta: "Book a session →", href: "/contact?service=advisor", color: "indigo" },
       { step: "STEP 02", title: "3-minute company deck", desc: "A one-page PDF summarizing our services, typical engagements, price ranges, and subsidy examples — perfect for internal review.", points: ["1-page PDF", "Price ranges and engagement model included", "No signup, same-day delivery"], cta: "Get the deck →", href: "/contact?service=advisor&doc=company-deck", color: "amber" },
-      { step: "STEP 03", title: "PoC from a single team", desc: "Rather than a company-wide rollout upfront, we focus on the one team or workflow where AI is most likely to pay off, then expand from proven results.", points: ["1–2 month PoC", "Success criteria agreed up front", "Government training subsidies available"], cta: "Get in touch →", href: "/contact?service=training", color: "sky" },
+      { step: "STEP 03", title: "PoC from a single team", desc: "Rather than a company-wide rollout upfront, we focus on the one team or workflow where AI is most likely to pay off, then expand from proven results.", points: ["1–2 month PoC", "Success criteria agreed up front", "Verify small, then expand"], cta: "Get in touch →", href: "/contact?service=training", color: "sky" },
     ],
     servicesLabel: "Our Services",
     servicesTitle: "Building Japan's future with AI.",
@@ -361,7 +365,7 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
     faq: [
       { q: "Can we consult even without AI knowledge?", a: "Absolutely — 'We don't know where to start' is the most common starting point we hear, and we explain in plain language, not jargon." },
       { q: "Can we start small?", a: "Yes. With one-off training or a PoC scoped to a single team or workflow, you can verify results before any large commitment." },
-      { q: "Can we use subsidies?", a: "For training and AI adoption, programs like the HR Development Subsidy and IT Introduction Subsidy can cut your net cost by up to 75%, and we support the paperwork too." },
+      { q: "Can we use subsidies?", a: "For training and AI adoption, various government subsidies can cut your net cost by up to 75%, and we help identify the right programs and handle the paperwork." },
     ],
     newsLabel: "News",
     newsTitle: "News",
@@ -490,7 +494,7 @@ function ServiceCard({ svc, claudeBadge, compact }: { svc: Svc; claudeBadge: str
   const c = colorMap[svc.color];
   return (
     <Link href={svc.href} className="group block h-full">
-      <div className={`relative bg-white border border-gray-200 rounded-lg ${compact ? "p-6 lg:p-7" : "p-8 lg:p-10"} ${c.hoverBorder} hover:shadow-lg transition-all duration-300 h-full flex flex-col`}>
+      <div className={`relative bg-white border border-gray-200 rounded-lg ${compact ? "p-6 lg:p-7" : "p-8 lg:p-10"} ${c.hoverBorder} hover:shadow-lg hover:-translate-y-1 transition-all duration-300 h-full flex flex-col`}>
         {svc.badge && (
           <span className="absolute top-4 right-4 inline-flex items-center gap-1 rounded-md bg-neutral-900 text-white text-[10px] font-bold px-2.5 py-1 tracking-wide">
             {svc.badge}
@@ -500,16 +504,16 @@ function ServiceCard({ svc, claudeBadge, compact }: { svc: Svc; claudeBadge: str
           <span className={`text-xs font-semibold tracking-widest uppercase ${c.code} flex-shrink-0`}>{svc.code}</span>
           <h3 className={`${compact ? "text-lg" : "text-xl"} font-bold text-gray-900`}>{svc.title}</h3>
         </div>
-        <p className={`${compact ? "text-[13px]" : "text-sm"} text-gray-600 leading-relaxed mb-5 flex-1`}>{svc.desc}</p>
+        <p className={`${compact ? "text-[13px]" : "text-sm"} text-gray-600 leading-relaxed mb-5`}>{svc.desc}</p>
         {svc.claudeNote && (
-          <div className="mb-5 rounded-lg bg-neutral-50 border border-neutral-200 px-3.5 py-2.5">
+          <div className="mb-5 rounded-lg bg-neutral-50 border border-neutral-200 px-3.5 py-2.5 min-h-[104px]">
             <span className="inline-flex items-center gap-1 text-[10px] font-bold text-neutral-900 uppercase tracking-wide mb-1">
               <span className="w-1.5 h-1.5 rounded-full bg-neutral-900" />{claudeBadge}
             </span>
             <p className="text-[12px] text-neutral-700 leading-relaxed">{svc.claudeNote}</p>
           </div>
         )}
-        <div className="flex items-center gap-2 flex-wrap mb-5">
+        <div className="flex items-center gap-2 flex-wrap mb-5 mt-auto">
           {svc.tags.map((tag) => (
             <span key={tag} className="text-xs text-gray-500 border border-gray-200 rounded px-2.5 py-1">{tag}</span>
           ))}
@@ -524,6 +528,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
   const { lang } = useLanguage();
   const t = COPY[lang];
   const [heroLoaded, setHeroLoaded] = useState(false);
+  const [techOpen, setTechOpen] = useState(false);
   useEffect(() => { setTimeout(() => setHeroLoaded(true), 100); }, []);
 
   // Adaptive hero text color: sample the video region behind the copy each frame
@@ -670,33 +675,14 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
         </div>
       </section>
 
-      {/* ═══ NEWS / BLOG ═══ */}
-      <section className="pt-4 pb-8 md:pt-10 md:pb-20 lg:pt-12 lg:pb-28 bg-gray-50">
-        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <div className="flex items-end justify-between mb-6 md:mb-12">
-            <div>
-              <SectionLabel>{t.newsLabel}</SectionLabel>
-              <h2 className="text-3xl font-bold text-gray-900 leading-tight">{t.newsTitle}</h2>
-            </div>
-            <Link href="/blog" className="hidden sm:inline-flex items-center gap-2 text-sm font-semibold text-neutral-900 hover:text-neutral-700 transition-colors">
-              {t.newsCta}
-            </Link>
-          </div>
-          {newsSlot}
-          <div className="text-center mt-8 sm:hidden">
-            <Link href="/blog" className="text-sm font-semibold text-neutral-900">{t.newsCta}</Link>
-          </div>
-        </div>
-      </section>
-
       {/* ═══ TRUST METRICS ═══ */}
       <section className="py-6 md:py-12 bg-white border-b border-gray-100">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <Reveal>
+          <Reveal variant="scale">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-y-2 gap-x-4 md:gap-0 md:divide-x divide-gray-200">
               {t.trustStats.map((stat) => (
                 <div key={stat.label} className="flex flex-col items-center justify-center py-3 md:py-6 px-4 text-center">
-                  <span className="text-lg font-bold text-gray-900">{stat.value}</span>
+                  <span className="text-lg font-bold text-gray-900"><CountUp value={stat.value} /></span>
                   <span className="text-xs text-gray-500 mt-1">{stat.label}</span>
                 </div>
               ))}
@@ -740,7 +726,8 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
             </Reveal>
             <Reveal delay={100}>
               <div className="space-y-5">
-                <p className="text-base text-gray-600 leading-relaxed">{t.visionBody1}</p>
+                {/* C1: 抽象的な前置き(visionBody1)を省き、ミッション文だけに短縮して
+                    サービス節の見出しとのメッセージ重複を緩和 */}
                 <p className="text-base text-gray-600 leading-relaxed">{t.visionBody2}</p>
                 <div className="h-px bg-gray-200 mt-6" />
                 <div className="flex items-center gap-6 pt-4 flex-wrap">
@@ -748,7 +735,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
                     <div key={s.label} className="flex items-center gap-6">
                       {i > 0 && <div className="w-px h-10 bg-gray-200 hidden sm:block" />}
                       <div>
-                        <p className="text-lg font-bold text-gray-900">{s.value}</p>
+                        <p className="text-lg font-bold text-gray-900"><CountUp value={s.value} /></p>
                         <p className="text-xs text-gray-400 mt-1">{s.label}</p>
                       </div>
                     </div>
@@ -774,7 +761,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
               return (
                 <Reveal key={step.step} delay={i * 80}>
                   <Link href={step.href} className="group block h-full">
-                    <div className={`bg-white border border-gray-200 rounded-lg p-8 lg:p-10 ${c.hoverBorder} hover:shadow-lg transition-all duration-300 h-full flex flex-col`}>
+                    <div className={`bg-white border border-gray-200 rounded-lg p-8 lg:p-10 ${c.hoverBorder} hover:shadow-lg hover:-translate-y-1 transition-all duration-300 h-full flex flex-col`}>
                       <div className="flex items-center gap-3 mb-3">
                         <span className={`inline-block text-xs font-semibold tracking-widest uppercase ${c.code} flex-shrink-0`}>{step.step}</span>
                         <h3 className="text-xl font-bold text-gray-900">{step.title}</h3>
@@ -860,7 +847,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {t.process.map((step, i) => (
               <Reveal key={step.num} delay={i * 80}>
-                <div className="group relative bg-white border border-gray-200 rounded-lg p-7 h-full transition-colors duration-300 hover:border-gray-300">
+                <div className="group relative bg-white border border-gray-200 rounded-lg p-7 h-full transition-all duration-300 hover:border-gray-300 hover:shadow-lg hover:-translate-y-1">
                   <div className="flex items-center gap-3 mb-2">
                     <span className="text-3xl font-bold text-neutral-200 transition-colors duration-300 group-hover:text-neutral-900 flex-shrink-0">{step.num}</span>
                     <h3 className="text-base font-bold text-gray-900">{step.title}</h3>
@@ -883,7 +870,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
             <Reveal delay={0} className="h-full">
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-8 lg:p-10 h-full flex flex-col">
+              <div className="bg-gray-50 border border-gray-200 rounded-lg p-8 lg:p-10 h-full flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-gray-300">
                 <span className="inline-block text-xs font-semibold tracking-widest uppercase text-neutral-900 mb-4">{t.teamCard1Label}</span>
                 <h3 className="text-xl font-bold text-gray-900 mb-4">{t.teamCard1Title}</h3>
                 <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">{t.teamCard1Desc}</p>
@@ -895,7 +882,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
               </div>
             </Reveal>
             <Reveal delay={100} className="h-full">
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-8 lg:p-10 h-full flex flex-col">
+              <div className="bg-gray-50 border border-gray-200 rounded-lg p-8 lg:p-10 h-full flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-gray-300">
                 <span className="inline-block text-xs font-semibold tracking-widest uppercase text-neutral-900 mb-4">{t.teamCard2Label}</span>
                 <h3 className="text-xl font-bold text-gray-900 mb-4">{t.teamCard2Title}</h3>
                 <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">{t.teamCard2Desc}</p>
@@ -918,45 +905,40 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.techTitle}</h2>
             <p className="text-base text-gray-500 w-full leading-relaxed mb-7 md:mb-14">{t.techDesc}</p>
           </Reveal>
-          <div className="space-y-0">
-            {TECH_GROUPS.map((group, gi) => (
-              <Reveal key={group.key} delay={gi * 40}>
-                <div className="border-t border-gray-200 py-3 md:py-8">
-                  <div className="lg:grid lg:grid-cols-12 lg:gap-6 lg:items-center">
-                    <div className="lg:col-span-2 mb-2 lg:mb-0">
-                      <h3 className="text-sm font-bold text-gray-900">{t.techGroups[group.key as keyof typeof t.techGroups]}</h3>
-                    </div>
-                    <div className="lg:col-span-10">
-                      {/* SP: アイコンが自動で横に流れるマーキー（交互方向・スクロール不要） */}
-                      <div className="md:hidden relative -mx-6 overflow-hidden">
-                        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-gradient-to-r from-gray-50 to-transparent" />
-                        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-10 bg-gradient-to-l from-gray-50 to-transparent" />
-                        <div className={`flex w-max gap-2.5 ${gi % 2 ? "animate-[marqueeReverse_24s_linear_infinite]" : "animate-[marquee_21s_linear_infinite]"}`}>
-                          {[...group.items, ...group.items].map((tech, idx) => (
-                            <div key={`${tech.name}-${idx}`} className="shrink-0 w-[4.5rem] h-[4.5rem] bg-white border border-gray-200 rounded-xl flex flex-col items-center justify-center gap-1.5">
-                              {/* eslint-disable-next-line @next/next/no-img-element */}
-                              <img src={`https://api.iconify.design/${tech.icon}.svg${"color" in tech && tech.color ? `?color=%23${tech.color}` : ''}`} alt={tech.name} className="w-7 h-7 object-contain" loading="lazy" />
-                              <p className="text-[9px] font-medium text-gray-600 text-center leading-tight px-1">{tech.name}</p>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                      {/* PC: グリッド（不変） */}
-                      <div className="hidden md:grid grid-cols-3 lg:grid-cols-5 gap-2.5 sm:gap-3">
-                        {group.items.map((tech) => (
-                          <div key={tech.name} className="bg-white border border-gray-200 rounded-xl p-3 sm:p-5 flex flex-col items-center justify-center gap-2 sm:gap-3 hover:border-gray-300 hover:shadow-sm transition-all aspect-square">
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img src={`https://api.iconify.design/${tech.icon}.svg${"color" in tech && tech.color ? `?color=%23${tech.color}` : ''}`} alt={tech.name} className="w-7 h-7 sm:w-8 sm:h-8 object-contain" loading="lazy" />
-                            <p className="text-[11px] sm:text-xs font-medium text-gray-600 text-center leading-tight">{tech.name}</p>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
+          {/* 他セクションと同じカードグリッド。各カテゴリ＝1カード、技術は小さな
+              アイコン付きチップ（ServiceCard のタグと同じ意匠）で左寄せ表示。 */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+            {TECH_GROUPS.slice(0, techOpen ? TECH_GROUPS.length : 4).map((group, gi) => (
+              <Reveal key={group.key} delay={(gi % 2) * 80} className="h-full">
+                <div className="h-full bg-white border border-gray-200 rounded-lg p-6 lg:p-7 hover:border-gray-300 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                  <h3 className="text-sm font-bold text-gray-900 mb-4">{t.techGroups[group.key as keyof typeof t.techGroups]}</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {group.items.map((tech) => (
+                      <span key={tech.name} className="inline-flex items-center gap-1.5 text-xs font-medium text-gray-700 bg-white border border-gray-200 rounded-md px-2.5 py-1.5">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src={`https://api.iconify.design/${tech.icon}.svg${"color" in tech && tech.color ? `?color=%23${tech.color}` : ''}`} alt={tech.name} className="w-4 h-4 object-contain" loading="lazy" />
+                        {tech.name}
+                      </span>
+                    ))}
                   </div>
                 </div>
               </Reveal>
             ))}
           </div>
+          {!techOpen && (
+            <div className="border-t border-gray-200 pt-8 text-center">
+              <button
+                type="button"
+                onClick={() => setTechOpen(true)}
+                className="inline-flex items-center gap-2 rounded-full border border-neutral-300 px-6 py-3 text-sm font-semibold text-neutral-900 hover:bg-neutral-900 hover:text-white transition-colors duration-300"
+              >
+                {lang === "ja"
+                  ? `すべての使用技術を見る（残り ${TECH_GROUPS.length - 4} カテゴリ）`
+                  : `Show all technologies (${TECH_GROUPS.length - 4} more)`}
+                <span aria-hidden>↓</span>
+              </button>
+            </div>
+          )}
           <Reveal>
             <div className="mt-10 border-t border-gray-200 pt-8">
               <div className="bg-white border border-gray-200 rounded-lg p-6 lg:p-8 flex flex-col lg:flex-row lg:items-center gap-4 lg:gap-6">
@@ -1002,6 +984,25 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
         </div>
       </section>
 
+      {/* ═══ NEWS / BLOG (moved below: lead with value & services first) ═══ */}
+      <section className="py-8 md:py-20 lg:py-28 bg-gray-50 border-t border-gray-100">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
+          <div className="flex items-end justify-between mb-6 md:mb-12">
+            <div>
+              <SectionLabel>{t.newsLabel}</SectionLabel>
+              <h2 className="text-3xl font-bold text-gray-900 leading-tight">{t.newsTitle}</h2>
+            </div>
+            <Link href="/blog" className="hidden sm:inline-flex items-center gap-2 text-sm font-semibold text-neutral-900 hover:text-neutral-700 transition-colors">
+              {t.newsCta}
+            </Link>
+          </div>
+          {newsSlot}
+          <div className="text-center mt-8 sm:hidden">
+            <Link href="/blog" className="text-sm font-semibold text-neutral-900">{t.newsCta}</Link>
+          </div>
+        </div>
+      </section>
+
       {/* ═══ CTA ═══ */}
       <section className="py-8 md:py-20 lg:py-28 bg-white border-t border-gray-100">
         <div className="max-w-4xl mx-auto px-6">
@@ -1012,12 +1013,20 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
               <p className="text-base text-gray-600 leading-relaxed max-w-lg mx-auto">{t.ctaDesc}</p>
             </div>
           </Reveal>
+          <Reveal delay={120}>
+            <InlineContactForm lang={lang} />
+          </Reveal>
+          <Reveal delay={200}>
+            <p className="text-center text-xs font-semibold uppercase tracking-widest text-gray-400 mt-10 mb-5">
+              {lang === "ja" ? "または、相談内容から選ぶ" : "Or choose by topic"}
+            </p>
+          </Reveal>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {t.ctaCards.map((item, i) => (
               <Reveal key={item.service} delay={i * 50}>
                 <Link
                   href={`/contact?service=${item.service}`}
-                  className="group block rounded-lg border border-gray-200 bg-white px-5 py-4 hover:border-neutral-300 hover:shadow-md transition-all duration-300"
+                  className="group block rounded-lg border border-gray-200 bg-white px-5 py-4 hover:border-neutral-300 hover:shadow-md hover:-translate-y-1 transition-all duration-300"
                 >
                   <span className="block text-sm font-bold text-gray-900 group-hover:text-neutral-700 transition-colors">
                     {item.label}
