@@ -194,18 +194,11 @@ h1, h2, h3, h4, h5, h6 {
 .animate-float4 { animation: float4 15s ease-in-out infinite; }
 .animate-pulse-glow { animation: pulseGlow 3s ease-in-out infinite; }
 
-/* ── View Transitions (experimental) — branded root cross-fade ──
-   Enabled via next.config experimental.viewTransition + <ViewTransition> in
-   app/template.tsx. Customizes the default root snapshot cross-fade timing. */
-::view-transition-old(root),
-::view-transition-new(root) {
-  animation-duration: 0.4s;
-  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
-}
-@media (prefers-reduced-motion: reduce) {
-  ::view-transition-old(root),
-  ::view-transition-new(root) { animation: none !important; }
-}
+/* ── Page transition (app/template.tsx: replays on every navigation) ──
+   CSS-only opacity fade so it runs without JS and never leaves content
+   hidden. No transform → safe for position:fixed descendants. */
+@keyframes pageFade { from { opacity: 0; } to { opacity: 1; } }
+.page-transition { animation: pageFade 0.45s cubic-bezier(0.16, 1, 0.3, 1) both; }
 
 /* ── Horizontal rule ── */
 .divider {
