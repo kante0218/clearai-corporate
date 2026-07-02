@@ -194,6 +194,19 @@ h1, h2, h3, h4, h5, h6 {
 .animate-float4 { animation: float4 15s ease-in-out infinite; }
 .animate-pulse-glow { animation: pulseGlow 3s ease-in-out infinite; }
 
+/* ── View Transitions (experimental) — branded root cross-fade ──
+   Enabled via next.config experimental.viewTransition + <ViewTransition> in
+   app/template.tsx. Customizes the default root snapshot cross-fade timing. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.4s;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) { animation: none !important; }
+}
+
 /* ── Horizontal rule ── */
 .divider {
   height: 1px;
@@ -404,6 +417,17 @@ details[open] summary {
 /* ── Compact mobile / narrow window rhythm ──
    Keep desktop untouched, but make narrow screens denser: smaller type,
    shorter sections, tighter cards, and less whitespace between blocks. */
+
+/* ── Desktop (>900px) contrast lift ──
+   The grey lifts below are scoped to ≤900px only, so on true desktop the
+   secondary copy still renders at the default Tailwind greys — text-gray-400
+   (#9ca3af) is ≈2.5:1 on white = WCAG fail. Mirror the same lifts on desktop. */
+@media (min-width: 901px) {
+  .text-gray-400 { color: #6b7280; }  /* was #9ca3af */
+  .text-gray-500 { color: #4b5563; }  /* was #6b7280 */
+  .text-gray-600 { color: #374151; }  /* was #4b5563 */
+}
+
 @media (max-width: 900px) {
   body {
     line-height: 1.58;

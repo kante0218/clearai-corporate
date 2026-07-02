@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import IntroLoader from "@/components/IntroLoader";
+import RouteProgress from "@/components/RouteProgress";
 import { LanguageProvider } from "@/lib/i18n/LanguageContext";
 
 // Japanese face — refined humanist gothic, closest free match to 筑紫ゴシック (mount.jp).
@@ -351,6 +352,7 @@ export default function RootLayout({
       </head>
       <body className="font-sans antialiased text-neutral-900 bg-white">
         <IntroLoader />
+        <RouteProgress />
         <LanguageProvider>
           <Header />
           <main className="min-h-screen">{children}</main>
