@@ -22,8 +22,29 @@ function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; 
   );
 }
 
-function Label({ children }: { children: ReactNode }) {
-  return <p className="text-sm font-semibold text-neutral-900 mb-4">{children}</p>;
+function SectionHead({
+  index,
+  kicker,
+  title,
+  desc,
+}: {
+  index: string;
+  kicker: ReactNode;
+  title: ReactNode;
+  desc?: ReactNode;
+}) {
+  return (
+    <Reveal className="mb-12 lg:mb-16">
+      <div className="flex items-center gap-4 border-b border-neutral-900 pb-4">
+        <span className="font-mono text-xs font-bold tabular-nums text-neutral-900">§{index}</span>
+        <span className="font-mono text-[11px] font-medium uppercase tracking-[0.25em] text-neutral-500">{kicker}</span>
+      </div>
+      <h2 className="mt-8 max-w-4xl text-[30px] sm:text-4xl lg:text-5xl font-bold leading-[1.05] tracking-[-0.02em] text-neutral-900">
+        {title}
+      </h2>
+      {desc && <p className="mt-5 max-w-2xl text-[15px] leading-relaxed text-neutral-600">{desc}</p>}
+    </Reveal>
+  );
 }
 
 type Copy = {
@@ -231,52 +252,74 @@ export default function ResearchPage() {
 
   return (
     <>
-      {/* PAGE HEADER */}
-      <section className="pt-24 pb-10 lg:pt-28 lg:pb-12 bg-white border-b border-gray-100">
+      {/* MASTHEAD */}
+      <section className="bg-white pt-32 lg:pt-40">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <p className="text-sm font-semibold text-neutral-900 mb-3">{t.heroKicker}</p>
-          <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4">{t.heroTitle}</h1>
-          <p className="text-base text-gray-600 leading-relaxed w-full">{t.heroDesc}</p>
-          <figure className="mt-8">
-            <a
-              href={diagram}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block group"
-              aria-label={lang === "ja" ? "ヒューマノイド開発の全体像（タップで拡大）" : "Humanoid development overview (tap to enlarge)"}
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={diagram}
-                alt={lang === "ja" ? "ヒューマノイド開発の全体像：Sim2Realパイプライン、AI/ロボットOS開発、ハードウェア開発、ソフトとハードの両輪" : "Overview of humanoid development: Sim2Real pipeline, AI/Robot OS, hardware development, software-and-hardware dual approach"}
-                loading="lazy"
-                className="w-full h-auto rounded-lg border border-gray-200 bg-white transition-shadow duration-300 group-hover:shadow-lg"
-              />
-            </a>
-            <figcaption className="mt-2 text-xs text-gray-400 text-center md:hidden">
-              {lang === "ja" ? "タップで拡大" : "Tap to enlarge"}
-            </figcaption>
-          </figure>
+          <Reveal>
+            {/* technical meta bar */}
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 border-b border-neutral-900 pb-4 font-mono text-[11px] uppercase tracking-[0.2em] text-neutral-500">
+              <span className="font-bold text-neutral-900">§00</span>
+              <span>{t.heroKicker}</span>
+              <span className="text-neutral-300">/</span>
+              <span>Robotics</span>
+              <span className="text-neutral-300">/</span>
+              <span>Machine&nbsp;Learning</span>
+              <span className="text-neutral-300">/</span>
+              <span>Sim2Real</span>
+            </div>
+            <h1 className="mt-10 text-[16vw] sm:text-7xl lg:text-[104px] font-bold leading-[0.9] tracking-[-0.04em] text-neutral-900">
+              {t.heroTitle}
+            </h1>
+            <p className="mt-8 mb-14 max-w-2xl text-base lg:text-lg leading-relaxed text-neutral-600">{t.heroDesc}</p>
+          </Reveal>
+          <Reveal delay={120}>
+            <figure>
+              <a
+                href={diagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group block"
+                aria-label={lang === "ja" ? "ヒューマノイド開発の全体像（タップで拡大）" : "Humanoid development overview (tap to enlarge)"}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={diagram}
+                  alt={lang === "ja" ? "ヒューマノイド開発の全体像：Sim2Realパイプライン、AI/ロボットOS開発、ハードウェア開発、ソフトとハードの両輪" : "Overview of humanoid development: Sim2Real pipeline, AI/Robot OS, hardware development, software-and-hardware dual approach"}
+                  loading="lazy"
+                  className="w-full h-auto border border-neutral-900 bg-white"
+                />
+                <figcaption className="flex items-center justify-between border-x border-b border-neutral-900 bg-neutral-50 px-4 py-2.5 font-mono text-[11px] uppercase tracking-[0.15em] text-neutral-500">
+                  <span>FIG.01 — Humanoid development overview</span>
+                  <span className="text-neutral-900 transition-transform duration-300 group-hover:translate-x-0.5">
+                    {lang === "ja" ? "拡大 ↗" : "Enlarge ↗"}
+                  </span>
+                </figcaption>
+              </a>
+            </figure>
+          </Reveal>
         </div>
       </section>
 
       {/* WHY */}
-      <section className="py-14 lg:py-20 bg-white">
+      <section className="py-20 lg:py-28 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <Reveal>
-            <Label>{t.whyLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-snug mb-6 w-full">{t.whyTitle}</h2>
-            <p className="text-sm text-gray-500 mb-8 w-full leading-relaxed">{t.whyDesc}</p>
-          </Reveal>
+          <SectionHead index="01" kicker={t.whyLabel} title={t.whyTitle} desc={t.whyDesc} />
           <CardCarousel gridClass="md:grid-cols-2">
             {t.why.map((item, i) => (
-              <Reveal key={item.num} delay={i * 100}>
-                <div className="rounded-lg border border-gray-200 bg-white p-8 hover:shadow-lg transition-all duration-300 h-full">
-                  <div className="flex items-center gap-3 mb-2">
-                    <span className="text-sm font-bold text-neutral-900 flex-shrink-0">{item.num}</span>
-                    <h3 className="text-xl font-bold text-gray-900">{item.title}</h3>
+              <Reveal key={item.num} delay={i * 80}>
+                <div className="group h-full border border-neutral-900 bg-white p-8 lg:p-10 transition-colors duration-300 hover:bg-neutral-900">
+                  <div className="flex items-baseline justify-between border-b border-neutral-200 pb-4 transition-colors duration-300 group-hover:border-neutral-700">
+                    <span className="font-mono text-2xl font-bold tabular-nums text-neutral-900 transition-colors duration-300 group-hover:text-white">
+                      {item.num}
+                    </span>
+                    <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-400">Why / {item.num}</span>
                   </div>
-                  <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
+                  <h3 className="mt-6 text-xl lg:text-2xl font-bold tracking-tight text-neutral-900 transition-colors duration-300 group-hover:text-white">
+                    {item.title}
+                  </h3>
+                  <p className="mt-4 text-[15px] leading-relaxed text-neutral-600 transition-colors duration-300 group-hover:text-neutral-300">
+                    {item.desc}
+                  </p>
                 </div>
               </Reveal>
             ))}
@@ -285,24 +328,23 @@ export default function ResearchPage() {
       </section>
 
       {/* AREAS */}
-      <section className="py-14 lg:py-20 bg-gray-50">
+      <section className="py-20 lg:py-28 bg-neutral-50 border-y border-neutral-900">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <Reveal>
-            <Label>{t.areasLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.areasTitle}</h2>
-            <p className="text-sm text-gray-500 mb-8 w-full leading-relaxed">{t.areasDesc}</p>
-          </Reveal>
+          <SectionHead index="02" kicker={t.areasLabel} title={t.areasTitle} desc={t.areasDesc} />
           <CardCarousel gridClass="md:grid-cols-2 lg:grid-cols-3">
             {t.areas.map((item, i) => (
-              <Reveal key={item.title} delay={i * 80}>
-                <div className="h-full rounded-lg border border-gray-200 bg-white p-6 lg:p-7 hover:shadow-lg transition-all duration-300 flex flex-col">
-                  <span className="inline-block text-[10px] font-bold tracking-widest text-neutral-900 uppercase mb-3 self-start rounded-md bg-neutral-100 px-2.5 py-1">{item.tag}</span>
-                  <h3 className="text-lg font-bold text-gray-900 mb-3">{item.title}</h3>
-                  <p className="text-sm text-gray-600 leading-relaxed mb-4">{item.desc}</p>
-                  <ul className="space-y-2 mt-auto">
+              <Reveal key={item.title} delay={i * 70}>
+                <div className="flex h-full flex-col border border-neutral-900 bg-white p-7 lg:p-8">
+                  <div className="mb-6 flex items-center justify-between border-b border-neutral-200 pb-3">
+                    <span className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-neutral-900">{item.tag}</span>
+                    <span className="font-mono text-[10px] tabular-nums text-neutral-400">{String(i + 1).padStart(2, "0")}</span>
+                  </div>
+                  <h3 className="mb-3 text-lg lg:text-xl font-bold tracking-tight text-neutral-900">{item.title}</h3>
+                  <p className="mb-6 text-sm leading-relaxed text-neutral-600">{item.desc}</p>
+                  <ul className="mt-auto space-y-2 font-mono">
                     {item.examples.map((ex) => (
-                      <li key={ex} className="flex items-start gap-2 text-xs text-gray-500">
-                        <span className="mt-1.5 w-1 h-1 rounded-full flex-shrink-0 bg-neutral-900" />
+                      <li key={ex} className="flex items-start gap-2 text-xs text-neutral-500">
+                        <span className="flex-shrink-0 text-neutral-900">→</span>
                         <span>{ex}</span>
                       </li>
                     ))}
@@ -315,23 +357,32 @@ export default function ResearchPage() {
       </section>
 
       {/* PROCESS */}
-      <section className="py-14 lg:py-20 bg-white">
+      <section className="py-20 lg:py-28 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <Reveal>
-            <Label>{t.processLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.processTitle}</h2>
-            <p className="text-sm text-gray-500 mb-8 w-full leading-relaxed">{t.processDesc}</p>
-          </Reveal>
+          <SectionHead index="03" kicker={t.processLabel} title={t.processTitle} desc={t.processDesc} />
+          {/* table header */}
+          <div className="hidden lg:grid grid-cols-12 gap-6 border-b border-neutral-900 pb-3 font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-400">
+            <div className="col-span-1">No.</div>
+            <div className="col-span-3">Phase</div>
+            <div className="col-span-6">Detail</div>
+            <div className="col-span-2 text-right">Duration</div>
+          </div>
           {t.process.map((step, i) => (
-            <Reveal key={step.num} delay={i * 100}>
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 py-8 border-b border-gray-100 last:border-0">
-                <div className="lg:col-span-1"><span className="text-sm font-bold text-neutral-900">{step.num}</span></div>
-                <div className="lg:col-span-3">
-                  <h3 className="text-xl font-bold text-gray-900">{step.title}</h3>
-                  <p className="text-sm text-gray-400 mt-1">{step.en}</p>
-                  <p className="inline-block text-xs font-semibold text-neutral-900 bg-neutral-100 rounded-md px-2.5 py-1 mt-2">{step.duration}</p>
+            <Reveal key={step.num} delay={i * 60}>
+              <div className="group grid grid-cols-1 gap-2 border-b border-neutral-200 py-7 transition-colors duration-300 hover:bg-neutral-50 lg:grid-cols-12 lg:gap-6">
+                <div className="lg:col-span-1">
+                  <span className="font-mono text-lg font-bold tabular-nums text-neutral-900">{step.num}</span>
                 </div>
-                <div className="lg:col-span-8"><p className="text-sm text-gray-600 leading-relaxed">{step.desc}</p></div>
+                <div className="lg:col-span-3">
+                  <h3 className="text-lg font-bold tracking-tight text-neutral-900">{step.title}</h3>
+                  <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-400">{step.en}</p>
+                </div>
+                <div className="lg:col-span-6">
+                  <p className="text-[15px] leading-relaxed text-neutral-600">{step.desc}</p>
+                </div>
+                <div className="lg:col-span-2 lg:text-right">
+                  <span className="font-mono text-xs text-neutral-700">{step.duration}</span>
+                </div>
               </div>
             </Reveal>
           ))}
@@ -339,19 +390,22 @@ export default function ResearchPage() {
       </section>
 
       {/* OUTPUTS */}
-      <section className="py-14 lg:py-20 bg-gray-50">
+      <section className="py-20 lg:py-28 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <Reveal>
-            <Label>{t.outputsLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.outputsTitle}</h2>
-            <p className="text-sm text-gray-500 mb-8 w-full leading-relaxed">{t.outputsDesc}</p>
-          </Reveal>
+          <SectionHead index="04" kicker={t.outputsLabel} title={t.outputsTitle} desc={t.outputsDesc} />
           <CardCarousel gridClass="md:grid-cols-2 lg:grid-cols-3">
             {t.outputs.map((item, i) => (
-              <Reveal key={item.title} delay={i * 80}>
-                <div className="h-full rounded-lg border border-gray-200 bg-white p-6 lg:p-7">
-                  <h3 className="text-base font-bold text-gray-900 mb-2">{item.title}</h3>
-                  <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
+              <Reveal key={item.title} delay={i * 70}>
+                <div className="group h-full border border-neutral-900 bg-white p-7 lg:p-8 transition-colors duration-300 hover:bg-neutral-900">
+                  <span className="mb-4 block font-mono text-xs font-bold tabular-nums text-neutral-400 transition-colors duration-300 group-hover:text-white">
+                    OUT.{String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="mb-3 text-base lg:text-lg font-bold tracking-tight text-neutral-900 transition-colors duration-300 group-hover:text-white">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm leading-relaxed text-neutral-600 transition-colors duration-300 group-hover:text-neutral-300">
+                    {item.desc}
+                  </p>
                 </div>
               </Reveal>
             ))}
@@ -360,52 +414,59 @@ export default function ResearchPage() {
       </section>
 
       {/* TECH */}
-      <section className="py-14 lg:py-20 bg-white">
+      <section className="py-20 lg:py-28 bg-neutral-50 border-y border-neutral-900">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <Reveal>
-            <Label>{t.techLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.techTitle}</h2>
-            <p className="text-sm text-gray-500 mb-8 w-full leading-relaxed">{t.techDesc}</p>
-          </Reveal>
-          <CardCarousel gridClass="md:grid-cols-2 lg:grid-cols-3">
+          <SectionHead index="05" kicker={t.techLabel} title={t.techTitle} desc={t.techDesc} />
+          <div className="border-t border-neutral-900">
             {t.tech.map((item, i) => (
-              <Reveal key={item.category} delay={i * 80}>
-                <div className="h-full rounded-lg border border-gray-200 bg-gray-50 p-6">
-                  <h3 className="text-xs font-bold tracking-widest text-neutral-900 uppercase mb-4">{item.category}</h3>
-                  <ul className="space-y-2">
-                    {item.items.map((s) => (
-                      <li key={s} className="flex items-start gap-2 text-sm text-gray-700">
-                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 bg-neutral-900" />
-                        <span>{s}</span>
-                      </li>
-                    ))}
-                  </ul>
+              <Reveal key={item.category} delay={i * 60}>
+                <div className="grid grid-cols-1 gap-3 border-b border-neutral-300 py-6 lg:grid-cols-12 lg:gap-8">
+                  <div className="lg:col-span-3">
+                    <h3 className="flex items-baseline gap-2 font-mono text-xs font-bold uppercase tracking-[0.18em] text-neutral-900">
+                      <span className="text-neutral-400">{String(i + 1).padStart(2, "0")}</span>
+                      {item.category}
+                    </h3>
+                  </div>
+                  <div className="lg:col-span-9">
+                    <ul className="flex flex-wrap gap-2 font-mono text-[13px] text-neutral-700">
+                      {item.items.map((s) => (
+                        <li key={s} className="border border-neutral-300 bg-white px-2.5 py-1 transition-colors duration-200 hover:border-neutral-900">
+                          {s}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </Reveal>
             ))}
-          </CardCarousel>
+          </div>
         </div>
       </section>
 
       {/* ENGAGEMENT */}
-      <section className="py-14 lg:py-20 bg-gray-50">
+      <section className="py-20 lg:py-28 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <Reveal>
-            <Label>{t.engageLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.engageTitle}</h2>
-            <p className="text-sm text-gray-500 mb-8 w-full leading-relaxed">{t.engageDesc}</p>
-          </Reveal>
+          <SectionHead index="06" kicker={t.engageLabel} title={t.engageTitle} desc={t.engageDesc} />
           <CardCarousel gridClass="md:grid-cols-3">
             {t.engage.map((item, i) => (
               <Reveal key={item.title} delay={i * 80}>
-                <div className="h-full rounded-lg border border-gray-200 bg-white p-6 lg:p-7 hover:shadow-lg transition-all duration-300 flex flex-col">
-                  <span className="inline-block text-[10px] font-bold tracking-widest text-neutral-900 uppercase mb-3 self-start rounded-md bg-neutral-100 px-2.5 py-1">{item.tag}</span>
-                  <h3 className="text-lg font-bold text-gray-900 mb-3">{item.title}</h3>
-                  <p className="text-sm text-gray-600 leading-relaxed mb-4">{item.desc}</p>
-                  <ul className="space-y-2 mt-auto">
+                <div className="group flex h-full flex-col border border-neutral-900 bg-white p-7 lg:p-8 transition-colors duration-300 hover:bg-neutral-900">
+                  <div className="mb-6 flex items-center justify-between border-b border-neutral-200 pb-3 transition-colors duration-300 group-hover:border-neutral-700">
+                    <span className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-neutral-900 transition-colors duration-300 group-hover:text-white">
+                      {item.tag}
+                    </span>
+                    <span className="font-mono text-[10px] tabular-nums text-neutral-400">{String(i + 1).padStart(2, "0")}</span>
+                  </div>
+                  <h3 className="mb-3 text-lg lg:text-xl font-bold tracking-tight text-neutral-900 transition-colors duration-300 group-hover:text-white">
+                    {item.title}
+                  </h3>
+                  <p className="mb-6 text-sm leading-relaxed text-neutral-600 transition-colors duration-300 group-hover:text-neutral-300">
+                    {item.desc}
+                  </p>
+                  <ul className="mt-auto space-y-2 border-t border-neutral-200 pt-4 font-mono transition-colors duration-300 group-hover:border-neutral-700">
                     {item.features.map((f) => (
-                      <li key={f} className="flex items-start gap-2 text-xs text-gray-500">
-                        <span className="mt-1.5 w-1 h-1 rounded-full flex-shrink-0 bg-neutral-900" />
+                      <li key={f} className="flex items-start gap-2 text-xs text-neutral-500 transition-colors duration-300 group-hover:text-neutral-400">
+                        <span className="flex-shrink-0 text-neutral-900 transition-colors duration-300 group-hover:text-white">→</span>
                         <span>{f}</span>
                       </li>
                     ))}
@@ -418,21 +479,19 @@ export default function ResearchPage() {
       </section>
 
       {/* FAQ */}
-      <section className="py-14 lg:py-20 bg-white">
+      <section className="py-20 lg:py-28 bg-neutral-50 border-t border-neutral-900">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <Reveal>
-            <Label>{t.faqLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-8">{t.faqTitle}</h2>
-          </Reveal>
-          <div className="max-w-3xl">
+          <SectionHead index="07" kicker={t.faqLabel} title={t.faqTitle} />
+          <div className="max-w-3xl border-t border-neutral-900">
             {t.faq.map((item, i) => (
-              <Reveal key={i} delay={i * 60}>
-                <details className="border-b border-gray-100 py-2.5 md:py-5 group">
-                  <summary className="font-semibold text-gray-900 cursor-pointer list-none flex items-center justify-between gap-4">
-                    <span>{item.q}</span>
-                    <span className="text-gray-400 text-lg leading-none flex-shrink-0 transition-transform duration-300 group-open:rotate-45">+</span>
+              <Reveal key={i} delay={i * 50}>
+                <details className="group border-b border-neutral-300 py-5">
+                  <summary className="flex cursor-pointer list-none items-start gap-4 text-base font-semibold text-neutral-900">
+                    <span className="mt-0.5 font-mono text-xs tabular-nums text-neutral-400">Q{String(i + 1).padStart(2, "0")}</span>
+                    <span className="flex-1">{item.q}</span>
+                    <span className="font-mono text-lg leading-none text-neutral-400 transition-transform duration-300 group-open:rotate-45">+</span>
                   </summary>
-                  <p className="text-gray-600 text-sm leading-relaxed mt-3">{item.a}</p>
+                  <p className="mt-4 pl-9 text-sm leading-relaxed text-neutral-600">{item.a}</p>
                 </details>
               </Reveal>
             ))}
@@ -441,13 +500,28 @@ export default function ResearchPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-14 lg:py-20 bg-gray-50">
-        <div className="max-w-2xl mx-auto px-6 text-center">
+      <section className="bg-neutral-900 py-24 lg:py-32">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
-            <Label>{t.ctaLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">{t.ctaTitle}</h2>
-            <p className="text-base text-gray-600 leading-relaxed mb-10">{t.ctaDesc}</p>
-            <a href="/reserve" className="rounded-md bg-neutral-900 text-white font-semibold px-10 py-4 hover:bg-neutral-800 transition-colors duration-300 inline-block">{t.ctaButton}</a>
+            <div className="flex items-center gap-4 border-b border-neutral-700 pb-4 font-mono text-[11px] uppercase tracking-[0.25em] text-neutral-500">
+              <span className="font-bold text-white">§08</span>
+              <span>{t.ctaLabel}</span>
+            </div>
+            <div className="mt-12 grid grid-cols-1 items-end gap-10 lg:grid-cols-12">
+              <div className="lg:col-span-8">
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-[1.05] tracking-[-0.02em] text-white">{t.ctaTitle}</h2>
+                <p className="mt-6 max-w-2xl text-base leading-relaxed text-neutral-400">{t.ctaDesc}</p>
+              </div>
+              <div className="lg:col-span-4 lg:text-right">
+                <a
+                  href="/reserve"
+                  className="group inline-flex items-center gap-3 border border-white bg-white px-8 py-4 font-mono text-sm font-bold uppercase tracking-[0.08em] text-neutral-900 transition-colors duration-300 hover:bg-transparent hover:text-white"
+                >
+                  {t.ctaButton}
+                  <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                </a>
+              </div>
+            </div>
           </Reveal>
         </div>
       </section>
