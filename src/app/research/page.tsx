@@ -39,10 +39,10 @@ function SectionHead({
         <span className="font-mono text-xs font-bold tabular-nums text-neutral-900">§{index}</span>
         <span className="font-mono text-[11px] font-medium uppercase tracking-[0.25em] text-neutral-500">{kicker}</span>
       </div>
-      <h2 className="mt-8 max-w-4xl text-[30px] sm:text-4xl lg:text-5xl font-bold leading-[1.05] tracking-[-0.02em] text-neutral-900">
+      <h2 className="mt-8 max-w-4xl text-[24px] sm:text-4xl lg:text-5xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance text-neutral-900">
         {title}
       </h2>
-      {desc && <p className="mt-5 max-w-2xl text-[15px] leading-relaxed text-neutral-600">{desc}</p>}
+      {desc && <p className="mt-5 max-w-2xl text-[15px] leading-relaxed text-pretty text-neutral-600">{desc}</p>}
     </Reveal>
   );
 }
@@ -267,12 +267,16 @@ export default function ResearchPage() {
               <span className="text-neutral-300">/</span>
               <span>Sim2Real</span>
             </div>
-            <h1 className="mt-10 text-[16vw] sm:text-7xl lg:text-[104px] font-bold leading-[0.9] tracking-[-0.04em] text-neutral-900">
+          </Reveal>
+          <Reveal delay={90}>
+            <h1 className="mt-10 text-[12vw] sm:text-6xl lg:text-[104px] font-bold leading-[0.95] tracking-[-0.04em] text-balance text-neutral-900">
               {t.heroTitle}
             </h1>
-            <p className="mt-8 mb-14 max-w-2xl text-base lg:text-lg leading-relaxed text-neutral-600">{t.heroDesc}</p>
           </Reveal>
-          <Reveal delay={120}>
+          <Reveal delay={180}>
+            <p className="mt-8 mb-14 max-w-2xl text-base lg:text-lg leading-relaxed text-pretty text-neutral-600">{t.heroDesc}</p>
+          </Reveal>
+          <Reveal delay={260}>
             <figure>
               <a
                 href={diagram}
@@ -314,10 +318,10 @@ export default function ResearchPage() {
                     </span>
                     <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-400">Why / {item.num}</span>
                   </div>
-                  <h3 className="mt-6 text-xl lg:text-2xl font-bold tracking-tight text-neutral-900 transition-colors duration-300 group-hover:text-white">
+                  <h3 className="mt-6 text-xl lg:text-2xl font-bold tracking-tight text-balance text-neutral-900 transition-colors duration-300 group-hover:text-white">
                     {item.title}
                   </h3>
-                  <p className="mt-4 text-[15px] leading-relaxed text-neutral-600 transition-colors duration-300 group-hover:text-neutral-300">
+                  <p className="mt-4 text-[15px] leading-relaxed text-pretty text-neutral-600 transition-colors duration-300 group-hover:text-neutral-300">
                     {item.desc}
                   </p>
                 </div>
@@ -339,8 +343,8 @@ export default function ResearchPage() {
                     <span className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-neutral-900">{item.tag}</span>
                     <span className="font-mono text-[10px] tabular-nums text-neutral-400">{String(i + 1).padStart(2, "0")}</span>
                   </div>
-                  <h3 className="mb-3 text-lg lg:text-xl font-bold tracking-tight text-neutral-900">{item.title}</h3>
-                  <p className="mb-6 text-sm leading-relaxed text-neutral-600">{item.desc}</p>
+                  <h3 className="mb-3 text-lg lg:text-xl font-bold tracking-tight text-balance text-neutral-900">{item.title}</h3>
+                  <p className="mb-6 text-sm leading-relaxed text-pretty text-neutral-600">{item.desc}</p>
                   <ul className="mt-auto space-y-2 font-mono">
                     {item.examples.map((ex) => (
                       <li key={ex} className="flex items-start gap-2 text-xs text-neutral-500">
@@ -374,14 +378,14 @@ export default function ResearchPage() {
                   <span className="font-mono text-lg font-bold tabular-nums text-neutral-900">{step.num}</span>
                 </div>
                 <div className="lg:col-span-3">
-                  <h3 className="text-lg font-bold tracking-tight text-neutral-900">{step.title}</h3>
+                  <h3 className="text-lg font-bold tracking-tight text-balance text-neutral-900">{step.title}</h3>
                   <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-400">{step.en}</p>
                 </div>
                 <div className="lg:col-span-6">
-                  <p className="text-[15px] leading-relaxed text-neutral-600">{step.desc}</p>
+                  <p className="text-[15px] leading-relaxed text-pretty text-neutral-600">{step.desc}</p>
                 </div>
                 <div className="lg:col-span-2 lg:text-right">
-                  <span className="font-mono text-xs text-neutral-700">{step.duration}</span>
+                  <span className="font-mono text-xs tabular-nums text-neutral-700">{step.duration}</span>
                 </div>
               </div>
             </Reveal>
@@ -400,10 +404,10 @@ export default function ResearchPage() {
                   <span className="mb-4 block font-mono text-xs font-bold tabular-nums text-neutral-400 transition-colors duration-300 group-hover:text-white">
                     OUT.{String(i + 1).padStart(2, "0")}
                   </span>
-                  <h3 className="mb-3 text-base lg:text-lg font-bold tracking-tight text-neutral-900 transition-colors duration-300 group-hover:text-white">
+                  <h3 className="mb-3 text-base lg:text-lg font-bold tracking-tight text-balance text-neutral-900 transition-colors duration-300 group-hover:text-white">
                     {item.title}
                   </h3>
-                  <p className="text-sm leading-relaxed text-neutral-600 transition-colors duration-300 group-hover:text-neutral-300">
+                  <p className="text-sm leading-relaxed text-pretty text-neutral-600 transition-colors duration-300 group-hover:text-neutral-300">
                     {item.desc}
                   </p>
                 </div>
@@ -457,10 +461,10 @@ export default function ResearchPage() {
                     </span>
                     <span className="font-mono text-[10px] tabular-nums text-neutral-400">{String(i + 1).padStart(2, "0")}</span>
                   </div>
-                  <h3 className="mb-3 text-lg lg:text-xl font-bold tracking-tight text-neutral-900 transition-colors duration-300 group-hover:text-white">
+                  <h3 className="mb-3 text-lg lg:text-xl font-bold tracking-tight text-balance text-neutral-900 transition-colors duration-300 group-hover:text-white">
                     {item.title}
                   </h3>
-                  <p className="mb-6 text-sm leading-relaxed text-neutral-600 transition-colors duration-300 group-hover:text-neutral-300">
+                  <p className="mb-6 text-sm leading-relaxed text-pretty text-neutral-600 transition-colors duration-300 group-hover:text-neutral-300">
                     {item.desc}
                   </p>
                   <ul className="mt-auto space-y-2 border-t border-neutral-200 pt-4 font-mono transition-colors duration-300 group-hover:border-neutral-700">
@@ -491,7 +495,7 @@ export default function ResearchPage() {
                     <span className="flex-1">{item.q}</span>
                     <span className="font-mono text-lg leading-none text-neutral-400 transition-transform duration-300 group-open:rotate-45">+</span>
                   </summary>
-                  <p className="mt-4 pl-9 text-sm leading-relaxed text-neutral-600">{item.a}</p>
+                  <p className="mt-4 pl-9 text-sm leading-relaxed text-pretty text-neutral-600">{item.a}</p>
                 </details>
               </Reveal>
             ))}
@@ -509,13 +513,13 @@ export default function ResearchPage() {
             </div>
             <div className="mt-12 grid grid-cols-1 items-end gap-10 lg:grid-cols-12">
               <div className="lg:col-span-8">
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-[1.05] tracking-[-0.02em] text-white">{t.ctaTitle}</h2>
-                <p className="mt-6 max-w-2xl text-base leading-relaxed text-neutral-400">{t.ctaDesc}</p>
+                <h2 className="text-[24px] sm:text-4xl lg:text-5xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance text-white">{t.ctaTitle}</h2>
+                <p className="mt-6 max-w-2xl text-base leading-relaxed text-pretty text-neutral-400">{t.ctaDesc}</p>
               </div>
               <div className="lg:col-span-4 lg:text-right">
                 <a
                   href="/reserve"
-                  className="group inline-flex items-center gap-3 border border-white bg-white px-8 py-4 font-mono text-sm font-bold uppercase tracking-[0.08em] text-neutral-900 transition-colors duration-300 hover:bg-transparent hover:text-white"
+                  className="group inline-flex items-center gap-3 border border-white bg-white px-8 py-4 font-mono text-sm font-bold uppercase tracking-[0.08em] text-neutral-900 transition-[color,background-color,border-color,scale] duration-300 hover:bg-transparent hover:text-white active:scale-[0.96]"
                 >
                   {t.ctaButton}
                   <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
