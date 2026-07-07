@@ -23,8 +23,31 @@ function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; 
   );
 }
 
-function Label({ children }: { children: ReactNode }) {
-  return <p className="text-sm font-semibold text-neutral-900 mb-4">{children}</p>;
+function SectionHead({
+  index,
+  kicker,
+  title,
+  desc,
+  dark = false,
+}: {
+  index: string;
+  kicker: ReactNode;
+  title: ReactNode;
+  desc?: ReactNode;
+  dark?: boolean;
+}) {
+  return (
+    <Reveal className="mb-12 lg:mb-16">
+      <div className={`flex items-center gap-4 border-b pb-4 ${dark ? "border-white/25" : "border-neutral-900"}`}>
+        <span className={`font-mono text-xs font-bold tabular-nums ${dark ? "text-white" : "text-neutral-900"}`}>§{index}</span>
+        <span className={`font-mono text-[11px] font-medium uppercase tracking-[0.25em] ${dark ? "text-neutral-400" : "text-neutral-500"}`}>{kicker}</span>
+      </div>
+      <h2 className={`mt-8 max-w-4xl text-[24px] sm:text-4xl lg:text-5xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance ${dark ? "text-white" : "text-neutral-900"}`}>
+        {title}
+      </h2>
+      {desc && <p className={`mt-5 max-w-2xl text-[15px] leading-relaxed text-pretty ${dark ? "text-neutral-400" : "text-neutral-600"}`}>{desc}</p>}
+    </Reveal>
+  );
 }
 
 type Copy = {
@@ -168,71 +191,86 @@ export default function AdvertisingPage() {
 
   return (
     <>
-      {/* PAGE HEADER */}
-      <section className="pt-24 pb-4 lg:pt-28 lg:pb-5 bg-white border-b border-gray-100">
+      {/* MASTHEAD */}
+      <section className="bg-white pt-32 lg:pt-40">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <p className="text-sm font-semibold text-neutral-900 mb-3">{t.headerKicker}</p>
-          <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4">{t.headerTitle}</h1>
-          <p className="text-base text-gray-600 leading-relaxed w-full">{t.headerDesc}</p>
+          <Reveal>
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 border-b border-neutral-900 pb-4 font-mono text-[11px] uppercase tracking-[0.2em] text-neutral-500">
+              <span className="font-bold text-neutral-900">§00</span>
+              <span>{t.headerKicker}</span>
+              <span className="text-neutral-300">/</span>
+              <span>Google</span>
+              <span className="text-neutral-300">/</span>
+              <span>Meta</span>
+              <span className="text-neutral-300">/</span>
+              <span>LINE</span>
+            </div>
+          </Reveal>
+          <Reveal delay={90}>
+            <h1 className="mt-10 text-[12vw] sm:text-6xl lg:text-[104px] font-bold leading-[0.95] tracking-[-0.04em] text-balance text-neutral-900">{t.headerTitle}</h1>
+          </Reveal>
+          <Reveal delay={180}>
+            <p className="mt-8 mb-4 max-w-2xl text-base lg:text-lg leading-relaxed text-pretty text-neutral-600">{t.headerDesc}</p>
+          </Reveal>
         </div>
       </section>
 
       {/* PRICING */}
-      <section className="pt-6 pb-10 lg:pt-8 lg:pb-12 bg-white">
+      <section className="py-20 lg:py-28 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <Reveal>
-            <Label>{t.pricingLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.pricingTitle}</h2>
-            <p className="text-sm text-gray-500 mb-6 w-full leading-relaxed">
-              {t.pricingDesc}
-            </p>
-          </Reveal>
+          <SectionHead index="01" kicker={t.pricingLabel} title={t.pricingTitle} desc={t.pricingDesc} />
           <PricingCarousel>
             {t.plans.map((plan, i) => (
               <Reveal key={plan.name} delay={i * 100} className="flex">
-                <div className={`rounded-lg p-5 lg:p-6 transition-all duration-300 flex flex-col w-full ${plan.featured ? "bg-neutral-900 text-white shadow-xl" : "bg-white border border-gray-200 hover:shadow-lg"}`}>
-                  {plan.featured && <span className="inline-block rounded-md bg-white/20 text-white px-3 py-1 text-sm font-semibold mb-3 self-start">Popular</span>}
-                  <h3 className={`text-base font-bold mb-1.5 ${plan.featured ? "text-white" : "text-gray-900"}`}>{plan.name}</h3>
-                  <div className="mb-2 flex items-baseline gap-1">
-                    <span className={`text-xl font-bold ${plan.featured ? "text-white" : "text-gray-900"}`}>{plan.price}</span>
-                    {plan.unit && <span className={`text-sm ${plan.featured ? "text-white/80" : "text-gray-500"}`}>{plan.unit}</span>}
+                <div className={`flex w-full flex-col border p-7 lg:p-8 ${plan.featured ? "border-neutral-900 bg-neutral-900 text-white" : "border-neutral-900 bg-white"}`}>
+                  <div className={`mb-6 flex items-center justify-between border-b pb-3 ${plan.featured ? "border-neutral-700" : "border-neutral-200"}`}>
+                    <span className={`font-mono text-[10px] font-bold uppercase tracking-[0.18em] ${plan.featured ? "text-white" : "text-neutral-900"}`}>{plan.name}</span>
+                    <span className={`font-mono text-[10px] tabular-nums ${plan.featured ? "text-neutral-500" : "text-neutral-400"}`}>{plan.featured ? "★ Popular" : `PLAN.${String(i + 1).padStart(2, "0")}`}</span>
                   </div>
-                  <p className={`text-xs leading-relaxed mb-3 ${plan.featured ? "text-white/80" : "text-gray-600"}`}>{plan.desc}</p>
-                  <ul className="space-y-2 mb-4 flex-1">
+                  <div className="mb-2 flex items-baseline gap-1.5">
+                    <span className={`font-mono text-2xl font-bold tabular-nums tracking-tight ${plan.featured ? "text-white" : "text-neutral-900"}`}>{plan.price}</span>
+                    {plan.unit && <span className={`font-mono text-xs ${plan.featured ? "text-neutral-400" : "text-neutral-500"}`}>{plan.unit}</span>}
+                  </div>
+                  <p className={`mb-5 text-xs leading-relaxed text-pretty ${plan.featured ? "text-neutral-400" : "text-neutral-600"}`}>{plan.desc}</p>
+                  <ul className={`mb-5 flex-1 space-y-2 border-t pt-4 font-mono ${plan.featured ? "border-neutral-700" : "border-neutral-200"}`}>
                     {plan.features.map((f) => (
-                      <li key={f} className="flex items-start gap-3">
-                        <span className={`mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 ${plan.featured ? "bg-white/40" : "bg-neutral-900"}`} />
-                        <span className={`text-xs ${plan.featured ? "text-white/90" : "text-gray-600"}`}>{f}</span>
+                      <li key={f} className="flex items-start gap-2 text-xs">
+                        <span className={`flex-shrink-0 ${plan.featured ? "text-white" : "text-neutral-900"}`}>→</span>
+                        <span className={plan.featured ? "text-neutral-400" : "text-neutral-500"}>{f}</span>
                       </li>
                     ))}
                   </ul>
                   {plan.minTerm && (
-                    <p className={`text-xs text-center mb-3 ${plan.featured ? "text-white/80" : "text-gray-500"}`}>※{plan.minTerm}</p>
+                    <p className={`mb-4 font-mono text-[10px] uppercase tracking-[0.1em] ${plan.featured ? "text-neutral-500" : "text-neutral-400"}`}>※{plan.minTerm}</p>
                   )}
-                  <a href={plan.href} className={`block text-center text-sm font-semibold py-2 rounded-lg transition-all duration-300 mt-auto ${plan.featured ? "bg-white text-neutral-900 hover:bg-neutral-50" : "border border-gray-200 text-gray-600 hover:border-gray-400 hover:text-gray-900"}`}>{plan.cta}</a>
+                  <a href={plan.href} className={`group mt-auto inline-flex items-center justify-center gap-2 border px-6 py-3 font-mono text-xs font-bold uppercase tracking-[0.08em] transition-[color,background-color,border-color,scale] duration-300 active:scale-[0.96] ${plan.featured ? "border-white bg-white text-neutral-900 hover:bg-transparent hover:text-white" : "border-neutral-900 bg-white text-neutral-900 hover:bg-neutral-900 hover:text-white"}`}>
+                    {plan.cta}
+                    <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                  </a>
                 </div>
               </Reveal>
             ))}
           </PricingCarousel>
           <Reveal delay={300}>
-            <p className="text-xs text-gray-500 text-center mt-8">{t.pricingNote}</p>
+            <p className="mt-8 font-mono text-[11px] leading-relaxed text-neutral-500">{t.pricingNote}</p>
           </Reveal>
         </div>
       </section>
 
       {/* CHALLENGES */}
-      <section className="py-14 lg:py-20 bg-white">
+      <section className="py-20 lg:py-28 bg-neutral-50 border-y border-neutral-900">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <Reveal>
-            <Label>{t.challengesLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-snug mb-8 w-full">{t.challengesTitle}</h2>
-          </Reveal>
+          <SectionHead index="02" kicker={t.challengesLabel} title={t.challengesTitle} />
           <CardCarousel gridClass="md:grid-cols-3">
             {t.challenges.map((item, i) => (
               <Reveal key={item.title} delay={i * 100} className="flex">
-                <div className="rounded-lg border border-gray-200 bg-white p-8 hover:shadow-lg transition-all duration-300 h-full w-full">
-                  <h3 className="text-lg font-bold text-gray-900 mb-3">{item.title}</h3>
-                  <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
+                <div className="flex h-full w-full flex-col border border-neutral-900 bg-white p-7 lg:p-8">
+                  <div className="mb-6 flex items-center justify-between border-b border-neutral-200 pb-3">
+                    <span className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-neutral-900">Issue</span>
+                    <span className="font-mono text-[10px] tabular-nums text-neutral-400">{String(i + 1).padStart(2, "0")}</span>
+                  </div>
+                  <h3 className="mb-3 text-lg font-bold tracking-tight text-balance text-neutral-900">{item.title}</h3>
+                  <p className="text-sm leading-relaxed text-pretty text-neutral-600">{item.desc}</p>
                 </div>
               </Reveal>
             ))}
@@ -241,24 +279,19 @@ export default function AdvertisingPage() {
       </section>
 
       {/* SERVICES */}
-      <section id="services" className="py-14 lg:py-20 bg-gray-50">
+      <section id="services" className="py-20 lg:py-28 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <Reveal>
-            <Label>{t.servicesLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.servicesTitle}</h2>
-            <p className="text-sm text-gray-500 mb-8 w-full leading-relaxed">
-              {t.servicesDesc}
-            </p>
-          </Reveal>
+          <SectionHead index="03" kicker={t.servicesLabel} title={t.servicesTitle} desc={t.servicesDesc} />
           <CardCarousel gridClass="md:grid-cols-2">
             {t.services.map((item, i) => (
               <Reveal key={item.num} delay={i * 80} className="flex">
-                <div className="bg-white rounded-lg border border-gray-200 p-8 hover:border-neutral-300 hover:shadow-lg transition-all duration-300 h-full w-full">
-                  <div className="flex items-center gap-3 mb-2">
-                    <span className="text-sm font-bold text-neutral-900 inline-block flex-shrink-0">{item.num}</span>
-                    <h3 className="text-xl font-bold text-gray-900">{item.title}</h3>
+                <div className="group h-full w-full border border-neutral-900 bg-white p-7 lg:p-8 transition-colors duration-300 hover:bg-neutral-900">
+                  <div className="mb-4 flex items-baseline justify-between border-b border-neutral-200 pb-4 transition-colors duration-300 group-hover:border-neutral-700">
+                    <span className="font-mono text-2xl font-bold tabular-nums text-neutral-900 transition-colors duration-300 group-hover:text-white">{item.num}</span>
+                    <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-400">Service / {item.num}</span>
                   </div>
-                  <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
+                  <h3 className="mt-6 text-xl font-bold tracking-tight text-balance text-neutral-900 transition-colors duration-300 group-hover:text-white">{item.title}</h3>
+                  <p className="mt-4 text-sm leading-relaxed text-pretty text-neutral-600 transition-colors duration-300 group-hover:text-neutral-300">{item.desc}</p>
                 </div>
               </Reveal>
             ))}
@@ -267,18 +300,19 @@ export default function AdvertisingPage() {
       </section>
 
       {/* CHANNELS */}
-      <section className="py-14 lg:py-20 bg-white">
+      <section className="py-20 lg:py-28 bg-neutral-50 border-y border-neutral-900">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <Reveal>
-            <Label>{t.channelsLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-8">{t.channelsTitle}</h2>
-          </Reveal>
+          <SectionHead index="04" kicker={t.channelsLabel} title={t.channelsTitle} />
           <CardCarousel gridClass="md:grid-cols-4">
             {t.channels.map((f, i) => (
               <Reveal key={f.title} delay={i * 80} className="flex">
-                <div className="rounded-xl border border-gray-200 bg-white p-5 h-full w-full">
-                  <h3 className="text-sm font-bold text-gray-900 mb-2">{f.title}</h3>
-                  <p className="text-xs text-gray-600 leading-relaxed">{f.desc}</p>
+                <div className="flex h-full w-full flex-col border border-neutral-900 bg-white p-6">
+                  <div className="mb-4 flex items-center justify-between border-b border-neutral-200 pb-3">
+                    <span className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-neutral-900">Channel</span>
+                    <span className="font-mono text-[10px] tabular-nums text-neutral-400">{String(i + 1).padStart(2, "0")}</span>
+                  </div>
+                  <h3 className="mb-2 text-sm font-bold tracking-tight text-balance text-neutral-900">{f.title}</h3>
+                  <p className="text-xs leading-relaxed text-pretty text-neutral-600">{f.desc}</p>
                 </div>
               </Reveal>
             ))}
@@ -287,21 +321,19 @@ export default function AdvertisingPage() {
       </section>
 
       {/* FEATURES */}
-      <section className="py-14 lg:py-20 bg-gray-50">
+      <section className="py-20 lg:py-28 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <Reveal>
-            <Label>{t.featuresLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-8">{t.featuresTitle}</h2>
-          </Reveal>
+          <SectionHead index="05" kicker={t.featuresLabel} title={t.featuresTitle} />
           <CardCarousel gridClass="md:grid-cols-2">
             {t.features.map((item, i) => (
               <Reveal key={item.title} delay={i * 100} className="flex">
-                <div className="rounded-lg border border-gray-200 bg-white p-8 hover:shadow-lg transition-all duration-300 h-full w-full">
-                  <div className="flex items-center gap-3 mb-2">
-                    <span className="text-xs font-semibold text-neutral-900 tracking-widest flex-shrink-0">{item.num}</span>
-                    <h3 className="text-lg font-bold text-gray-900">{item.title}</h3>
+                <div className="group h-full w-full border border-neutral-900 bg-white p-7 lg:p-8 transition-colors duration-300 hover:bg-neutral-900">
+                  <div className="mb-4 flex items-baseline justify-between border-b border-neutral-200 pb-4 transition-colors duration-300 group-hover:border-neutral-700">
+                    <span className="font-mono text-2xl font-bold tabular-nums text-neutral-900 transition-colors duration-300 group-hover:text-white">{item.num}</span>
+                    <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-400">Feature / {item.num}</span>
                   </div>
-                  <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
+                  <h3 className="mt-6 text-lg lg:text-xl font-bold tracking-tight text-balance text-neutral-900 transition-colors duration-300 group-hover:text-white">{item.title}</h3>
+                  <p className="mt-4 text-sm leading-relaxed text-pretty text-neutral-600 transition-colors duration-300 group-hover:text-neutral-300">{item.desc}</p>
                 </div>
               </Reveal>
             ))}
@@ -310,13 +342,28 @@ export default function AdvertisingPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-14 lg:py-20 bg-gray-50">
-        <div className="max-w-2xl mx-auto px-6 text-center">
+      <section className="bg-neutral-900 py-24 lg:py-32">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
-            <Label>{t.ctaLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">{t.ctaTitle}</h2>
-            <p className="text-base text-gray-600 leading-relaxed mb-10">{t.ctaDesc}</p>
-            <a href="/contact?service=advertising" className="rounded-lg bg-neutral-900 text-white font-semibold px-10 py-4 hover:bg-neutral-800 transition-colors duration-300 inline-block">{t.ctaButton}</a>
+            <div className="flex items-center gap-4 border-b border-neutral-700 pb-4 font-mono text-[11px] uppercase tracking-[0.25em] text-neutral-500">
+              <span className="font-bold text-white">§06</span>
+              <span>{t.ctaLabel}</span>
+            </div>
+            <div className="mt-12 grid grid-cols-1 items-end gap-10 lg:grid-cols-12">
+              <div className="lg:col-span-8">
+                <h2 className="text-[24px] sm:text-4xl lg:text-5xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance text-white">{t.ctaTitle}</h2>
+                <p className="mt-6 max-w-2xl text-base leading-relaxed text-pretty text-neutral-400">{t.ctaDesc}</p>
+              </div>
+              <div className="lg:col-span-4 lg:text-right">
+                <a
+                  href="/contact?service=advertising"
+                  className="group inline-flex items-center gap-3 border border-white bg-white px-8 py-4 font-mono text-sm font-bold uppercase tracking-[0.08em] text-neutral-900 transition-[color,background-color,border-color,scale] duration-300 hover:bg-transparent hover:text-white active:scale-[0.96]"
+                >
+                  {t.ctaButton}
+                  <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                </a>
+              </div>
+            </div>
           </Reveal>
         </div>
       </section>

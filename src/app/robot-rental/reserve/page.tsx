@@ -1,7 +1,28 @@
 "use client";
 
-import { useEffect, useMemo, useState, type ReactNode } from "react";
+import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
+
+function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) { setVisible(true); obs.unobserve(el); } },
+      { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+  return (
+    <div ref={ref} className={className} style={{
+      opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(32px)",
+      transition: `opacity 0.7s cubic-bezier(0.16,1,0.3,1) ${delay}ms, transform 0.7s cubic-bezier(0.16,1,0.3,1) ${delay}ms`,
+    }}>{children}</div>
+  );
+}
 
 // 予約受付開始日。これより前は入力はできるが確定（送信）はできない。
 const BOOKING_OPEN_DATE = "2026-08-01"; // JST
@@ -160,22 +181,22 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="flex items-center gap-2 text-sm font-semibold text-gray-900 mb-1.5">
+      <span className="mb-2 flex items-center gap-2 font-mono text-[10px] font-semibold uppercase tracking-[0.15em] text-neutral-500">
         {label}
         {badge && (
-          <span className="text-[10px] font-bold tracking-wide text-gray-400 border border-gray-200 rounded px-1.5 py-0.5">
+          <span className="border border-neutral-300 px-1.5 py-0.5 font-mono text-[9px] font-bold uppercase tracking-[0.1em] text-neutral-400">
             {badge}
           </span>
         )}
       </span>
       {children}
-      {error && <span className="block text-xs text-red-600 mt-1">{error}</span>}
+      {error && <span className="mt-1 block font-mono text-[11px] text-neutral-900">{error}</span>}
     </label>
   );
 }
 
 const inputCls =
-  "w-full rounded-lg border border-gray-300 bg-white px-3.5 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 focus:border-neutral-900 focus:outline-none focus:ring-1 focus:ring-neutral-900 transition-colors";
+  "w-full rounded-none border border-neutral-300 bg-white px-3 py-2.5 text-sm text-neutral-900 placeholder:text-neutral-400 outline-none transition-[border-color] duration-200 focus:border-neutral-900";
 
 function isValidEmail(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -299,67 +320,86 @@ export default function RobotReservePage() {
 
   if (status === "done") {
     return (
-      <section className="pt-24 pb-24 lg:pt-28 bg-white min-h-[70vh]">
-        <div className="max-w-xl mx-auto px-6 text-center">
-          <div className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-full bg-neutral-900 text-white text-2xl">
-            ✓
+      <section className="min-h-[70vh] bg-white pt-32 pb-24 lg:pt-40">
+        <div className="mx-auto max-w-xl px-6">
+          <div className="mx-auto max-w-md border border-neutral-900 bg-white px-8 py-14 text-center">
+            <div className="mx-auto mb-6 flex h-14 w-14 items-center justify-center border border-neutral-900 bg-neutral-900">
+              <svg className="h-6 w-6 text-white" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+            </div>
+            <h1 className="mb-3 text-xl font-bold tracking-tight text-balance text-neutral-900">{t.thanksTitle}</h1>
+            <p className="mx-auto mb-8 max-w-sm text-sm leading-relaxed text-pretty text-neutral-600">{t.thanksBody}</p>
+            <a
+              href="/robot-rental"
+              className="group inline-flex items-center gap-3 border border-neutral-900 bg-white px-6 py-3 font-mono text-sm font-bold uppercase tracking-[0.08em] text-neutral-900 transition-[color,background-color,border-color,scale] duration-300 hover:bg-neutral-900 hover:text-white active:scale-[0.96]"
+            >
+              {t.backToList}
+              <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+            </a>
           </div>
-          <h1 className="text-2xl font-bold text-gray-900 mb-3">{t.thanksTitle}</h1>
-          <p className="text-sm text-gray-600 leading-relaxed mb-8">{t.thanksBody}</p>
-          <a
-            href="/robot-rental"
-            className="inline-block rounded-lg border border-gray-300 text-gray-700 font-semibold px-6 py-3 hover:border-gray-500 hover:text-gray-900 transition-colors"
-          >
-            {t.backToList}
-          </a>
         </div>
       </section>
     );
   }
 
   return (
-    <section className="pt-24 pb-20 lg:pt-28 bg-white">
-      <div className="max-w-xl mx-auto px-6">
-        <p className="text-sm font-semibold text-neutral-900 mb-2">{t.kicker}</p>
-        <h1 className="text-3xl font-bold text-gray-900 mb-3">{t.title}</h1>
-        <p className="text-sm text-gray-600 leading-relaxed mb-6">{t.subtitle}</p>
+    <section className="bg-white pt-32 pb-20 lg:pt-40 lg:pb-28">
+      <div className="mx-auto max-w-xl px-6">
+        <Reveal>
+          {/* technical meta bar */}
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 border-b border-neutral-900 pb-4 font-mono text-[11px] uppercase tracking-[0.2em] text-neutral-500">
+            <span className="font-bold text-neutral-900">§00</span>
+            <span>{t.kicker}</span>
+          </div>
+        </Reveal>
+        <Reveal delay={90}>
+          <h1 className="mt-10 text-[12vw] sm:text-6xl lg:text-[104px] font-bold leading-[0.95] tracking-[-0.04em] text-balance text-neutral-900">
+            {t.title}
+          </h1>
+        </Reveal>
+        <Reveal delay={180}>
+          <p className="mt-8 text-base leading-relaxed text-pretty text-neutral-600">{t.subtitle}</p>
+        </Reveal>
 
         {/* 受付開始の告知 */}
-        <div
-          className={`rounded-lg border px-4 py-3 mb-6 text-sm ${
-            mounted && isOpen
-              ? "border-gray-200 bg-gray-50 text-gray-700"
-              : "border-neutral-900 bg-neutral-900 text-white"
-          }`}
-        >
-          {mounted && isOpen ? t.openNotice : t.notOpenNotice(openDateLabel)}
-        </div>
+        <Reveal delay={240}>
+          <div
+            className={`mt-12 border px-4 py-3 font-mono text-[11px] uppercase tracking-[0.1em] leading-relaxed ${
+              mounted && isOpen
+                ? "border-neutral-300 bg-neutral-50 text-neutral-600"
+                : "border-neutral-900 bg-neutral-900 text-white"
+            }`}
+          >
+            {mounted && isOpen ? t.openNotice : t.notOpenNotice(openDateLabel)}
+          </div>
+        </Reveal>
 
         {/* 選択中の機体 */}
         {selected.robot && (
-          <div className="rounded-lg border border-gray-200 bg-gray-50 px-4 py-3 mb-8">
-            <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-1">
-              {t.selectedLabel}
-            </p>
-            <div className="flex items-baseline justify-between gap-3 flex-wrap">
-              <p className="text-base font-bold text-gray-900">
-                {selected.maker && <span className="text-gray-500 font-semibold">{selected.maker} / </span>}
-                {selected.robot}
+          <Reveal delay={300}>
+            <div className="mt-6 border border-neutral-900 bg-white px-4 py-3">
+              <p className="mb-1.5 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400">
+                {t.selectedLabel}
               </p>
-              {selected.price && (
-                <p className="text-sm font-bold text-gray-900">
-                  {selected.price} <span className="text-xs font-normal text-gray-500">{selected.unit}</span>
+              <div className="flex flex-wrap items-baseline justify-between gap-3">
+                <p className="text-base font-bold tracking-tight text-neutral-900">
+                  {selected.maker && <span className="font-mono text-neutral-500">{selected.maker} / </span>}
+                  {selected.robot}
                 </p>
-              )}
+                {selected.price && (
+                  <p className="font-mono text-sm font-bold tabular-nums text-neutral-900">
+                    {selected.price} <span className="text-[11px] font-normal uppercase tracking-[0.1em] text-neutral-500">{selected.unit}</span>
+                  </p>
+                )}
+              </div>
             </div>
-          </div>
+          </Reveal>
         )}
 
         {/* ステップ表示 */}
-        <div className="flex items-center gap-2 mb-6 text-xs font-semibold">
-          <span className={step === 1 ? "text-neutral-900" : "text-gray-400"}>1. {t.step1}</span>
-          <span className="text-gray-300">—</span>
-          <span className={step === 2 ? "text-neutral-900" : "text-gray-400"}>2. {t.step2}</span>
+        <div className="mt-8 mb-8 flex items-center gap-3 border-b border-neutral-200 pb-4 font-mono text-[11px] uppercase tracking-[0.12em]">
+          <span className={step === 1 ? "font-bold text-neutral-900" : "text-neutral-400"}>01 / {t.step1}</span>
+          <span className="text-neutral-300">→</span>
+          <span className={step === 2 ? "font-bold text-neutral-900" : "text-neutral-400"}>02 / {t.step2}</span>
         </div>
 
         {step === 1 ? (
@@ -385,9 +425,10 @@ export default function RobotReservePage() {
             <button
               type="button"
               onClick={goNext}
-              className="w-full rounded-lg bg-neutral-900 text-white font-semibold py-3 hover:bg-neutral-800 transition-colors"
+              className="group flex w-full items-center justify-center gap-2 border border-neutral-900 bg-neutral-900 px-6 py-3.5 font-mono text-sm font-bold uppercase tracking-[0.08em] text-white transition-[color,background-color,border-color,scale] duration-300 hover:bg-transparent hover:text-neutral-900 active:scale-[0.96]"
             >
               {t.next}
+              <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">→</span>
             </button>
           </div>
         ) : (
@@ -400,31 +441,31 @@ export default function RobotReservePage() {
                 min={BOOKING_OPEN_DATE}
                 onChange={(e) => set("startDate", e.target.value)}
               />
-              <span className="block text-xs text-gray-500 mt-1">{t.dateHint(openDateLabel)}</span>
+              <span className="mt-1 block font-mono text-[11px] uppercase tracking-[0.1em] text-neutral-500">{t.dateHint(openDateLabel)}</span>
             </Field>
             <Field label={t.days} badge={t.optional}>
               <div className="flex items-center gap-2">
                 <input
                   type="number"
                   min={1}
-                  className={`${inputCls} max-w-[120px]`}
+                  className={`${inputCls} max-w-[120px] tabular-nums`}
                   value={form.days}
                   onChange={(e) => set("days", e.target.value)}
                 />
-                <span className="text-sm text-gray-500">{t.daysUnit}</span>
+                <span className="font-mono text-[11px] uppercase tracking-[0.1em] text-neutral-500">{t.daysUnit}</span>
               </div>
             </Field>
             <Field label={t.notes} badge={t.optional}>
               <textarea rows={4} className={inputCls} value={form.notes} placeholder={t.notesPh} onChange={(e) => set("notes", e.target.value)} />
             </Field>
 
-            {status === "error" && <p className="text-sm text-red-600">{t.sendError}</p>}
+            {status === "error" && <p className="border border-neutral-900 bg-neutral-100 px-3 py-2.5 text-sm text-neutral-900">{t.sendError}</p>}
 
             <div className="flex items-center gap-3">
               <button
                 type="button"
                 onClick={() => setStep(1)}
-                className="rounded-lg border border-gray-300 text-gray-700 font-semibold px-5 py-3 hover:border-gray-500 transition-colors"
+                className="border border-neutral-300 px-5 py-3.5 font-mono text-sm font-bold uppercase tracking-[0.08em] text-neutral-700 transition-[color,background-color,border-color,scale] duration-200 hover:border-neutral-900 hover:text-neutral-900 active:scale-[0.96]"
               >
                 {t.back}
               </button>
@@ -432,13 +473,14 @@ export default function RobotReservePage() {
                 type="button"
                 onClick={submit}
                 disabled={!mounted || !isOpen || status === "sending"}
-                className="flex-1 rounded-lg bg-neutral-900 text-white font-semibold py-3 hover:bg-neutral-800 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+                className="group flex flex-1 items-center justify-center gap-2 border border-neutral-900 bg-neutral-900 px-6 py-3.5 font-mono text-sm font-bold uppercase tracking-[0.08em] text-white transition-[color,background-color,border-color,scale] duration-300 hover:bg-transparent hover:text-neutral-900 active:scale-[0.96] disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-neutral-900 disabled:hover:text-white"
               >
                 {status === "sending" ? t.sending : !isOpen ? t.submitClosed : t.submit}
+                {status !== "sending" && <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">→</span>}
               </button>
             </div>
             {mounted && !isOpen && (
-              <p className="text-xs text-gray-500 text-center">{t.notOpenNotice(openDateLabel)}</p>
+              <p className="text-center font-mono text-[10px] uppercase leading-relaxed tracking-[0.1em] text-neutral-400">{t.notOpenNotice(openDateLabel)}</p>
             )}
           </div>
         )}

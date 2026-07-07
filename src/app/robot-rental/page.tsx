@@ -22,8 +22,31 @@ function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; 
   );
 }
 
-function Label({ children }: { children: ReactNode }) {
-  return <p className="text-sm font-semibold text-neutral-900 mb-4">{children}</p>;
+function SectionHead({
+  index,
+  kicker,
+  title,
+  desc,
+  dark = false,
+}: {
+  index: string;
+  kicker: ReactNode;
+  title: ReactNode;
+  desc?: ReactNode;
+  dark?: boolean;
+}) {
+  return (
+    <Reveal className="mb-12 lg:mb-16 max-w-3xl">
+      <div className={`flex items-center gap-4 border-b pb-4 ${dark ? "border-white/25" : "border-neutral-900"}`}>
+        <span className={`font-mono text-xs font-bold tabular-nums ${dark ? "text-white" : "text-neutral-900"}`}>§{index}</span>
+        <span className={`font-mono text-[11px] font-medium uppercase tracking-[0.25em] ${dark ? "text-neutral-400" : "text-neutral-500"}`}>{kicker}</span>
+      </div>
+      <h2 className={`mt-8 text-[24px] sm:text-4xl lg:text-5xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance ${dark ? "text-white" : "text-neutral-900"}`}>
+        {title}
+      </h2>
+      {desc && <p className={`mt-6 text-[15px] leading-relaxed text-pretty ${dark ? "text-neutral-400" : "text-neutral-600"}`}>{desc}</p>}
+    </Reveal>
+  );
 }
 
 // 本番ライブ Stripe Payment Link（日額レンタル・数量＝日数）。
@@ -493,48 +516,62 @@ export default function RobotRentalPage() {
 
   return (
     <>
-      {/* PAGE HEADER */}
-      <section className="pt-24 pb-6 lg:pt-28 lg:pb-8 bg-white border-b border-gray-100">
+      {/* MASTHEAD */}
+      <section className="bg-white pt-32 lg:pt-40">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <div>
-            <div className="flex items-center gap-3 mb-3">
-              <p className="text-sm font-semibold text-neutral-900">{t.heroKicker}</p>
-              <span className="inline-flex items-center rounded-md bg-neutral-50 text-neutral-900 border border-neutral-200 px-3 py-1 text-xs font-bold tracking-wide">
-                {t.comingSoon}
-              </span>
+          <Reveal>
+            {/* technical meta bar */}
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 border-b border-neutral-900 pb-4 font-mono text-[11px] uppercase tracking-[0.2em] text-neutral-500">
+              <span className="font-bold text-neutral-900">§00</span>
+              <span>{t.heroKicker}</span>
+              <span className="text-neutral-300">/</span>
+              <span>Humanoid</span>
+              <span className="text-neutral-300">/</span>
+              <span>Quadruped</span>
+              <span className="text-neutral-300">/</span>
+              <span className="border border-neutral-900 px-2 py-0.5 text-neutral-900">{t.comingSoon}</span>
             </div>
-            <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4">{t.heroTitle}</h1>
-            <p className="text-base text-gray-600 leading-relaxed w-full mb-8">{t.heroDesc}</p>
-            <div className="flex items-center gap-4 flex-wrap">
-              <a href="/contact?service=robot-rental" className="rounded-lg bg-neutral-900 text-white font-semibold px-8 py-3.5 hover:bg-neutral-800 transition-colors duration-300 inline-block">
+          </Reveal>
+          <Reveal delay={90}>
+            <h1 className="mt-10 text-[12vw] sm:text-6xl lg:text-[104px] font-bold leading-[0.95] tracking-[-0.04em] text-balance text-neutral-900">
+              {t.heroTitle}
+            </h1>
+          </Reveal>
+          <Reveal delay={180}>
+            <p className="mt-8 max-w-2xl text-base lg:text-lg leading-relaxed text-pretty text-neutral-600">{t.heroDesc}</p>
+          </Reveal>
+          <Reveal delay={260}>
+            <div className="mt-10 flex items-center gap-4 flex-wrap">
+              <a
+                href="/contact?service=robot-rental"
+                className="group inline-flex items-center gap-3 border border-neutral-900 bg-neutral-900 px-8 py-4 font-mono text-sm font-bold uppercase tracking-[0.08em] text-white transition-[color,background-color,border-color,scale] duration-300 hover:bg-transparent hover:text-neutral-900 active:scale-[0.96]"
+              >
                 {t.heroCta}
+                <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
               </a>
+              <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-neutral-500">{t.heroNote}</span>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
       {/* LINEUP */}
-      <section className="pt-8 pb-14 lg:pt-10 lg:pb-20 bg-gray-50">
+      <section className="py-20 lg:py-28 bg-neutral-50 border-y border-neutral-900">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <Reveal>
-            <Label>{t.lineupLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.lineupTitle}</h2>
-            <p className="text-sm text-gray-500 mb-8 w-full leading-relaxed">{t.lineupDesc}</p>
-          </Reveal>
+          <SectionHead index="01" kicker={t.lineupLabel} title={t.lineupTitle} desc={t.lineupDesc} />
           {/* MAKER TABS */}
           <Reveal>
-            <div className="mb-10 flex flex-wrap gap-2">
+            <div className="mb-12 flex flex-wrap gap-2">
               {[{ key: "all", label: t.lineupAll }, ...t.lineupGroups.map((g) => ({ key: g.company, label: g.company }))].map((tab) => (
                 <button
                   key={tab.key}
                   type="button"
                   onClick={() => setMaker(tab.key)}
                   aria-pressed={maker === tab.key}
-                  className={`rounded-md px-4 py-2 text-sm font-semibold transition-colors duration-200 ${
+                  className={`border px-4 py-2 font-mono text-[12px] uppercase tracking-[0.1em] transition-[color,background-color,border-color,scale] duration-200 active:scale-[0.96] ${
                     maker === tab.key
-                      ? "bg-neutral-900 text-white shadow-sm"
-                      : "bg-white border border-gray-200 text-gray-600 hover:border-gray-400 hover:text-gray-900"
+                      ? "border-neutral-900 bg-neutral-900 text-white"
+                      : "border-neutral-300 bg-white text-neutral-600 hover:border-neutral-900 hover:text-neutral-900"
                   }`}
                 >
                   {tab.label}
@@ -542,24 +579,24 @@ export default function RobotRentalPage() {
               ))}
             </div>
           </Reveal>
-          <div className="space-y-12">
+          <div className="space-y-16">
             {visibleGroups.map((group, groupIndex) => (
               <Reveal key={`${maker}-${group.company}`} delay={groupIndex * 80}>
-                <div className="border-t border-gray-200 pt-8">
-                  <div className="mb-6 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+                <div className="border-t border-neutral-900 pt-8">
+                  <div className="mb-8 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
                     <div>
-                      <p className="text-xs font-bold tracking-widest text-neutral-900 uppercase mb-2">Maker</p>
-                      <h3 className="text-2xl font-bold text-gray-900">{group.company}</h3>
+                      <p className="mb-2 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400">Maker / {String(groupIndex + 1).padStart(2, "0")}</p>
+                      <h3 className="text-2xl font-bold tracking-tight text-balance text-neutral-900">{group.company}</h3>
                     </div>
-                    <p className="text-sm text-gray-500 leading-relaxed w-full">{group.summary}</p>
+                    <p className="max-w-xl text-sm leading-relaxed text-pretty text-neutral-500">{group.summary}</p>
                   </div>
-                  <div className="grid grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-5">
+                  <div className="grid grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4">
                     {group.robots.map((item, i) => {
                       const available = item.status === "booking" || Boolean(item.buyUrl);
                       return (
                         <Reveal key={item.name} delay={i * 60}>
-                          <div className={`relative h-full rounded-lg border bg-white overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col ${available ? "border-neutral-300" : "border-gray-200"}`}>
-                            <div className="relative aspect-square bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
+                          <div className={`relative flex h-full flex-col border bg-white ${available ? "border-neutral-900" : "border-neutral-300"}`}>
+                            <div className="relative aspect-square border-b border-neutral-200 bg-neutral-50 flex items-center justify-center">
                               {item.image ? (
                                 <Image
                                   src={item.image}
@@ -569,42 +606,44 @@ export default function RobotRentalPage() {
                                   className="object-contain p-4 sm:p-6"
                                 />
                               ) : (
-                                <span className="text-xs font-bold tracking-widest text-gray-400 uppercase">Image Coming Soon</span>
+                                <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-neutral-400">Image Coming Soon</span>
                               )}
                               {available ? (
-                                <span className="absolute top-3 right-3 inline-flex items-center gap-1.5 rounded-md bg-neutral-900 text-white px-2.5 py-0.5 text-[10px] font-bold tracking-wide shadow-sm">
-                                  <span className="w-1.5 h-1.5 rounded-full bg-white" />{t.availableBadge}
+                                <span className="absolute top-0 right-0 inline-flex items-center gap-1.5 border-b border-l border-neutral-900 bg-neutral-900 px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.12em] text-white">
+                                  <span className="h-1.5 w-1.5 bg-white" />{t.availableBadge}
                                 </span>
                               ) : (
-                                <span className="absolute top-3 right-3 inline-flex items-center rounded-full bg-white/90 backdrop-blur text-gray-500 px-2.5 py-0.5 text-[10px] font-bold tracking-wide border border-gray-200">
+                                <span className="absolute top-0 right-0 inline-flex items-center border-b border-l border-neutral-300 bg-white px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.12em] text-neutral-500">
                                   {t.inquiryBadge}
                                 </span>
                               )}
                             </div>
-                            <div className="p-4 sm:p-6 flex-1 flex flex-col">
-                              <span className="inline-block text-xs font-bold tracking-widest text-neutral-900 uppercase mb-2 sm:mb-3">{item.type}</span>
-                              <h4 className="text-base sm:text-lg font-bold text-gray-900 mb-2">{item.name}</h4>
-                              <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
+                            <div className="flex flex-1 flex-col p-4 sm:p-5">
+                              <span className="mb-2 inline-block font-mono text-[10px] font-bold uppercase tracking-[0.15em] text-neutral-900 sm:mb-3">{item.type}</span>
+                              <h4 className="mb-2 text-base sm:text-lg font-bold tracking-tight text-balance text-neutral-900">{item.name}</h4>
+                              <p className="text-sm leading-relaxed text-pretty text-neutral-600">{item.desc}</p>
                               {available ? (
                                 <div className="mt-auto pt-5">
-                                  <div className="flex items-baseline flex-wrap gap-x-1.5 mb-3">
-                                    <span className="text-xl sm:text-2xl font-bold text-gray-900">{item.price}</span>
-                                    <span className="text-xs text-gray-500">{item.priceUnit}</span>
+                                  <div className="mb-3 flex items-baseline flex-wrap gap-x-1.5 border-t border-neutral-200 pt-3">
+                                    <span className="font-mono text-xl sm:text-2xl font-bold tabular-nums text-neutral-900">{item.price}</span>
+                                    <span className="font-mono text-[10px] uppercase tracking-[0.1em] text-neutral-500">{item.priceUnit}</span>
                                   </div>
                                   <a
                                     href={`/robot-rental/reserve?maker=${encodeURIComponent(group.company)}&robot=${encodeURIComponent(item.name)}&price=${encodeURIComponent(item.price ?? "")}&unit=${encodeURIComponent(item.priceUnit ?? "")}`}
-                                    className="block w-full text-center rounded-lg bg-neutral-900 text-white font-semibold px-3 sm:px-6 py-3 hover:bg-neutral-800 transition-colors duration-300"
+                                    className="group flex w-full items-center justify-center gap-2 border border-neutral-900 bg-neutral-900 px-3 sm:px-6 py-3 font-mono text-[12px] font-bold uppercase tracking-[0.08em] text-white transition-[color,background-color,border-color,scale] duration-300 hover:bg-transparent hover:text-neutral-900 active:scale-[0.96]"
                                   >
                                     {t.reserveCta}
+                                    <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
                                   </a>
                                 </div>
                               ) : (
                                 <div className="mt-auto pt-5">
                                   <a
                                     href={`/contact?service=robot-rental&maker=${encodeURIComponent(group.company)}&robot=${encodeURIComponent(item.name)}`}
-                                    className="block w-full text-center rounded-lg border border-neutral-200 text-neutral-900 font-semibold px-3 sm:px-6 py-3 hover:bg-neutral-50 transition-colors duration-300"
+                                    className="group flex w-full items-center justify-center gap-2 border border-neutral-900 bg-white px-3 sm:px-6 py-3 font-mono text-[12px] font-bold uppercase tracking-[0.08em] text-neutral-900 transition-[color,background-color,border-color,scale] duration-300 hover:bg-neutral-900 hover:text-white active:scale-[0.96]"
                                   >
                                     {t.heroCta}
+                                    <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
                                   </a>
                                 </div>
                               )}
@@ -619,26 +658,28 @@ export default function RobotRentalPage() {
             ))}
           </div>
           <Reveal delay={200}>
-            <p className="text-xs text-gray-400 mt-8">{t.lineupFootnote}</p>
+            <p className="mt-10 border-t border-neutral-200 pt-4 font-mono text-[11px] leading-relaxed text-neutral-400">{t.lineupFootnote}</p>
           </Reveal>
         </div>
       </section>
 
       {/* PLAN */}
-      <section className="py-12 lg:py-16 bg-white">
+      <section className="py-20 lg:py-28 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <Reveal>
-            <Label>{t.planLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.planTitle}</h2>
-            <p className="text-sm text-gray-500 mb-6 w-full leading-relaxed">{t.planDesc}</p>
-          </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <SectionHead index="02" kicker={t.planLabel} title={t.planTitle} desc={t.planDesc} />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {t.plans.map((item, i) => (
-              <Reveal key={item.title} delay={i * 100}>
-                <div className="bg-white rounded-lg border border-gray-200 p-5 hover:border-neutral-300 hover:shadow-lg transition-all duration-300">
-                  <span className="text-sm font-bold text-neutral-900">{String(i + 1).padStart(2, "0")}</span>
-                  <h3 className="text-xl font-bold text-gray-900 mt-3 mb-3">{item.title}</h3>
-                  <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
+              <Reveal key={item.title} delay={i * 80}>
+                <div className="group h-full border border-neutral-900 bg-white p-7 lg:p-8 transition-colors duration-300 hover:bg-neutral-900">
+                  <span className="mb-4 block font-mono text-xs font-bold tabular-nums text-neutral-400 transition-colors duration-300 group-hover:text-white">
+                    PLAN.{String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="mb-3 text-lg lg:text-xl font-bold tracking-tight text-balance text-neutral-900 transition-colors duration-300 group-hover:text-white">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm leading-relaxed text-pretty text-neutral-600 transition-colors duration-300 group-hover:text-neutral-300">
+                    {item.desc}
+                  </p>
                 </div>
               </Reveal>
             ))}
@@ -647,19 +688,19 @@ export default function RobotRentalPage() {
       </section>
 
       {/* USE CASES */}
-      <section className="py-14 lg:py-20 bg-gray-50">
+      <section className="py-20 lg:py-28 bg-neutral-50 border-y border-neutral-900">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <Reveal>
-            <Label>{t.useLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.useTitle}</h2>
-            <p className="text-sm text-gray-500 mb-8 w-full leading-relaxed">{t.useDesc}</p>
-          </Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <SectionHead index="03" kicker={t.useLabel} title={t.useTitle} desc={t.useDesc} />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {t.useCases.map((item, i) => (
               <Reveal key={item.name} delay={i * 80}>
-                <div className="h-full rounded-lg border border-gray-200 bg-white p-6">
-                  <h3 className="text-lg font-bold text-gray-900 mb-2">{item.name}</h3>
-                  <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
+                <div className="flex h-full flex-col border border-neutral-900 bg-white p-6 lg:p-7">
+                  <div className="mb-6 flex items-center justify-between border-b border-neutral-200 pb-3">
+                    <span className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-neutral-900">Case</span>
+                    <span className="font-mono text-[10px] tabular-nums text-neutral-400">{String(i + 1).padStart(2, "0")}</span>
+                  </div>
+                  <h3 className="mb-2 text-lg font-bold tracking-tight text-balance text-neutral-900">{item.name}</h3>
+                  <p className="text-sm leading-relaxed text-pretty text-neutral-600">{item.desc}</p>
                 </div>
               </Reveal>
             ))}
@@ -668,13 +709,28 @@ export default function RobotRentalPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-14 lg:py-20 bg-white">
-        <div className="max-w-2xl mx-auto px-6 text-center">
+      <section className="bg-neutral-900 py-24 lg:py-32">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
-            <Label>{t.ctaLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">{t.ctaTitle}</h2>
-            <p className="text-base text-gray-600 leading-relaxed mb-10">{t.ctaDesc}</p>
-            <a href="/reserve" className="rounded-lg bg-neutral-900 text-white font-semibold px-10 py-4 hover:bg-neutral-800 transition-colors duration-300 inline-block">{t.ctaButton}</a>
+            <div className="flex items-center gap-4 border-b border-neutral-700 pb-4 font-mono text-[11px] uppercase tracking-[0.25em] text-neutral-500">
+              <span className="font-bold text-white">§04</span>
+              <span>{t.ctaLabel}</span>
+            </div>
+            <div className="mt-12 grid grid-cols-1 items-end gap-10 lg:grid-cols-12">
+              <div className="lg:col-span-8">
+                <h2 className="text-[24px] sm:text-4xl lg:text-5xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance text-white">{t.ctaTitle}</h2>
+                <p className="mt-6 max-w-2xl text-base leading-relaxed text-pretty text-neutral-400">{t.ctaDesc}</p>
+              </div>
+              <div className="lg:col-span-4 lg:text-right">
+                <a
+                  href="/reserve"
+                  className="group inline-flex items-center gap-3 border border-white bg-white px-8 py-4 font-mono text-sm font-bold uppercase tracking-[0.08em] text-neutral-900 transition-[color,background-color,border-color,scale] duration-300 hover:bg-transparent hover:text-white active:scale-[0.96]"
+                >
+                  {t.ctaButton}
+                  <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                </a>
+              </div>
+            </div>
           </Reveal>
         </div>
       </section>

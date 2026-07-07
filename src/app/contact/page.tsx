@@ -224,8 +224,8 @@ function ContactPageInner() {
   };
 
   const inputClass = (field: string) =>
-    `w-full rounded-xl border bg-white px-4 py-3.5 text-base text-gray-900 placeholder-gray-400 outline-none transition-all duration-200 focus:border-neutral-900 focus:ring-2 focus:ring-neutral-200 ${
-      errors[field] ? "border-neutral-300 bg-neutral-50" : "border-gray-200 hover:border-gray-300"
+    `w-full border bg-white px-4 py-3.5 text-base text-neutral-900 placeholder-neutral-400 outline-none transition-[border-color,background-color,box-shadow] duration-200 focus:border-neutral-900 focus:shadow-[inset_0_0_0_1px_#171717] ${
+      errors[field] ? "border-neutral-900 bg-neutral-50" : "border-neutral-900 hover:border-neutral-900"
     }`;
 
   const getMessagePlaceholder = (): string => {
@@ -241,41 +241,69 @@ function ContactPageInner() {
 
   return (
     <main className="min-h-screen bg-white">
-      {/* Header */}
-      <section className="max-w-2xl mx-auto px-6 pt-28 lg:pt-32 pb-8 lg:pb-10 text-center">
-        <Reveal>
-          <p className="text-xs font-semibold tracking-[0.2em] text-neutral-900 uppercase mb-4">{t.headerKicker}</p>
-          <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">{t.headerTitle}</h1>
-          <p className="text-sm lg:text-base text-gray-600 leading-relaxed max-w-xl mx-auto">
-            {t.headerDesc}{" "}
-            <a href="mailto:info@clearai.jp" className="text-neutral-900 underline underline-offset-2">info@clearai.jp</a>{" "}
-            {t.headerDescEmail}
-          </p>
-        </Reveal>
+      {/* MASTHEAD */}
+      <section className="bg-white pt-32 lg:pt-40 pb-10 lg:pb-12">
+        <div className="max-w-2xl mx-auto px-6">
+          <Reveal>
+            {/* technical meta bar */}
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 border-b border-neutral-900 pb-4 font-mono text-[11px] uppercase tracking-[0.2em] text-neutral-500">
+              <span className="font-bold text-neutral-900">§00</span>
+              <span>{t.headerKicker}</span>
+              <span className="text-neutral-300">/</span>
+              <span>Inquiry</span>
+              <span className="text-neutral-300">/</span>
+              <span>info@clearai.jp</span>
+            </div>
+          </Reveal>
+          <Reveal delay={90}>
+            <h1 className="mt-10 text-[12vw] sm:text-6xl lg:text-[104px] font-bold leading-[0.95] tracking-[-0.04em] text-balance text-neutral-900">
+              {t.headerTitle}
+            </h1>
+          </Reveal>
+          <Reveal delay={180}>
+            <p className="mt-8 max-w-xl text-base lg:text-lg leading-relaxed text-pretty text-neutral-600">
+              {t.headerDesc}{" "}
+              <a href="mailto:info@clearai.jp" className="font-mono text-neutral-900 underline underline-offset-2 decoration-neutral-400 hover:decoration-neutral-900">info@clearai.jp</a>{" "}
+              {t.headerDescEmail}
+            </p>
+          </Reveal>
+        </div>
       </section>
 
       <section className="max-w-2xl mx-auto px-6 pb-20 lg:pb-28">
         {status === "success" ? (
           <Reveal>
-            <div className="bg-white border border-gray-200 rounded-lg px-8 py-16 text-center shadow-sm">
-              <div className="w-14 h-14 bg-neutral-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <svg className="w-6 h-6 text-neutral-900" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                </svg>
+            <div className="border border-neutral-900 bg-white">
+              <div className="flex items-center justify-between border-b border-neutral-900 bg-neutral-50 px-5 py-3 font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-500">
+                <span>Status</span>
+                <span className="text-neutral-900">Received / OK</span>
               </div>
-              <h2 className="text-xl font-bold text-gray-900 mb-3">{t.successTitle}</h2>
-              <p className="text-sm text-gray-600 leading-relaxed max-w-md mx-auto mb-8">
-                {t.successBody}
-              </p>
-              <button type="button" onClick={handleReset}
-                className="rounded-lg border border-gray-300 text-gray-700 font-semibold px-6 py-3 hover:border-gray-400 hover:bg-gray-50 transition-all duration-200">
-                {t.successReset}
-              </button>
+              <div className="px-8 py-16 text-center">
+                <div className="mx-auto mb-6 flex h-14 w-14 items-center justify-center border border-neutral-900">
+                  <svg className="h-6 w-6 text-neutral-900" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <h2 className="mb-3 text-xl lg:text-2xl font-bold tracking-tight text-balance text-neutral-900">{t.successTitle}</h2>
+                <p className="mx-auto mb-8 max-w-md text-sm leading-relaxed text-pretty text-neutral-600">
+                  {t.successBody}
+                </p>
+                <button type="button" onClick={handleReset}
+                  className="inline-flex items-center gap-2 border border-neutral-900 bg-white px-6 py-3 font-mono text-sm font-bold uppercase tracking-[0.08em] text-neutral-900 transition-[color,background-color,scale] duration-300 hover:bg-neutral-900 hover:text-white active:scale-[0.96]">
+                  {t.successReset}
+                </button>
+              </div>
             </div>
           </Reveal>
         ) : (
           <Reveal>
-            <form onSubmit={handleSubmit} noValidate className="bg-white border border-gray-200 rounded-lg p-6 sm:p-10 shadow-sm space-y-6">
+            <form onSubmit={handleSubmit} noValidate className="border border-neutral-900 bg-white">
+              {/* form meta bar */}
+              <div className="flex items-center justify-between border-b border-neutral-900 bg-neutral-50 px-6 py-3 font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-500 sm:px-10">
+                <span className="text-neutral-900">§01 / Message Form</span>
+                <span>Required *</span>
+              </div>
+              <div className="space-y-6 p-6 sm:p-10">
               {/* Honeypot */}
               <input type="text" name="website" value={form.website} onChange={handleChange}
                 tabIndex={-1} autoComplete="off" aria-hidden="true"
@@ -284,60 +312,60 @@ function ContactPageInner() {
               {/* Name + Email */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
-                  <label htmlFor="name" className="block text-xs font-semibold text-gray-600 mb-1.5">
+                  <label htmlFor="name" className="mb-1.5 block font-mono text-[11px] font-medium uppercase tracking-[0.15em] text-neutral-500">
                     {t.labelName} <span className="text-neutral-900">{t.labelRequired}</span>
                   </label>
                   <input id="name" type="text" name="name" value={form.name} onChange={handleChange}
                     placeholder={t.placeholderName} autoComplete="name"
                     aria-invalid={!!errors.name} className={inputClass("name")} />
-                  {errors.name && <p className="mt-1.5 text-xs text-neutral-900 font-medium">{errors.name}</p>}
+                  {errors.name && <p className="mt-1.5 font-mono text-xs font-medium text-neutral-900">{errors.name}</p>}
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-xs font-semibold text-gray-600 mb-1.5">
+                  <label htmlFor="email" className="mb-1.5 block font-mono text-[11px] font-medium uppercase tracking-[0.15em] text-neutral-500">
                     {t.labelEmail} <span className="text-neutral-900">{t.labelRequired}</span>
                   </label>
                   <input id="email" type="email" name="email" value={form.email} onChange={handleChange}
                     placeholder={t.placeholderEmail} autoComplete="email"
                     aria-invalid={!!errors.email} className={inputClass("email")} />
-                  {errors.email && <p className="mt-1.5 text-xs text-neutral-900 font-medium">{errors.email}</p>}
+                  {errors.email && <p className="mt-1.5 font-mono text-xs font-medium text-neutral-900">{errors.email}</p>}
                 </div>
               </div>
 
               {/* Company (optional) */}
               <div>
-                <label htmlFor="company" className="block text-xs font-semibold text-gray-600 mb-1.5">
-                  {t.labelCompany} <span className="font-normal text-gray-400">{t.labelOptional}</span>
+                <label htmlFor="company" className="mb-1.5 block font-mono text-[11px] font-medium uppercase tracking-[0.15em] text-neutral-500">
+                  {t.labelCompany} <span className="font-normal text-neutral-400">{t.labelOptional}</span>
                 </label>
                 <input id="company" type="text" name="company" value={form.company} onChange={handleChange}
                   placeholder={t.placeholderCompany} autoComplete="organization"
                   aria-invalid={!!errors.company} className={inputClass("company")} />
-                {errors.company && <p className="mt-1.5 text-xs text-neutral-900 font-medium">{errors.company}</p>}
+                {errors.company && <p className="mt-1.5 font-mono text-xs font-medium text-neutral-900">{errors.company}</p>}
               </div>
 
               {/* Message */}
               <div>
-                <label htmlFor="message" className="block text-xs font-semibold text-gray-600 mb-1.5">
+                <label htmlFor="message" className="mb-1.5 block font-mono text-[11px] font-medium uppercase tracking-[0.15em] text-neutral-500">
                   {t.labelMessage} <span className="text-neutral-900">{t.labelRequired}</span>
                 </label>
                 <textarea id="message" name="message" rows={6} value={form.message} onChange={handleChange}
                   placeholder={getMessagePlaceholder()}
                   aria-invalid={!!errors.message}
                   className={`${inputClass("message")} resize-none min-h-[160px]`} />
-                {errors.message && <p className="mt-1.5 text-xs text-neutral-900 font-medium">{errors.message}</p>}
+                {errors.message && <p className="mt-1.5 font-mono text-xs font-medium text-neutral-900">{errors.message}</p>}
               </div>
 
               {/* Server error */}
               <div aria-live="polite">
                 {serverError && (
-                  <p className="text-sm text-neutral-900 bg-neutral-100 border border-neutral-300 rounded-lg px-4 py-3">{serverError}</p>
+                  <p className="border border-neutral-900 bg-neutral-50 px-4 py-3 text-sm text-neutral-900">{serverError}</p>
                 )}
               </div>
 
               {/* Submit (full width) */}
-              <div className="pt-2 space-y-4">
+              <div className="space-y-4 pt-2">
                 <button type="submit" disabled={status === "submitting"}
-                  className={`w-full inline-flex items-center justify-center gap-2 rounded-lg bg-neutral-900 text-white font-semibold px-10 py-4 hover:bg-neutral-800 active:bg-neutral-900 transition-all duration-200 shadow-sm hover:shadow-md ${
-                    status === "submitting" ? "opacity-60 cursor-not-allowed" : ""
+                  className={`group inline-flex w-full items-center justify-center gap-2 border border-neutral-900 bg-neutral-900 px-10 py-4 font-mono text-sm font-bold uppercase tracking-[0.08em] text-white transition-[color,background-color,border-color,scale] duration-300 hover:bg-transparent hover:text-neutral-900 active:scale-[0.96] ${
+                    status === "submitting" ? "cursor-not-allowed opacity-60" : ""
                   }`}>
                   {status === "submitting" && (
                     <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24" aria-hidden="true">
@@ -347,14 +375,15 @@ function ContactPageInner() {
                   )}
                   {status === "submitting" ? t.submitSending : t.submitButton}
                   {status !== "submitting" && (
-                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+                    <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
                   )}
                 </button>
-                <p className="text-xs text-gray-500 leading-relaxed text-center">
+                <p className="text-center text-xs leading-relaxed text-neutral-500">
                   {t.privacyPrefix}{" "}
-                  <a href="/privacy" className="underline hover:text-gray-700">{t.privacyLink}</a>
+                  <a href="/privacy" className="underline underline-offset-2 hover:text-neutral-900">{t.privacyLink}</a>
                   {t.privacySuffix}
                 </p>
+              </div>
               </div>
             </form>
           </Reveal>
@@ -365,16 +394,18 @@ function ContactPageInner() {
       {status !== "success" && (
         <section className="max-w-2xl mx-auto px-6 pb-24">
           <Reveal>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-px bg-gray-200 rounded-lg overflow-hidden">
+            <div className="grid grid-cols-2 gap-px border border-neutral-900 bg-neutral-900 sm:grid-cols-4">
               {[
-                { label: t.infoReplyLabel, value: t.infoReplyValue },
-                { label: t.infoMethodLabel, value: t.infoMethodValue },
-                { label: t.infoHoursLabel, value: t.infoHoursValue },
-                { label: t.infoDirectLabel, value: t.infoDirectValue },
+                { no: "01", label: t.infoReplyLabel, value: t.infoReplyValue },
+                { no: "02", label: t.infoMethodLabel, value: t.infoMethodValue },
+                { no: "03", label: t.infoHoursLabel, value: t.infoHoursValue },
+                { no: "04", label: t.infoDirectLabel, value: t.infoDirectValue },
               ].map((item) => (
-                <div key={item.label} className="bg-white p-4 text-center">
-                  <p className="text-[10px] font-semibold tracking-widest text-gray-400 uppercase mb-1">{item.label}</p>
-                  <p className="text-xs font-semibold text-gray-900 break-all">{item.value}</p>
+                <div key={item.label} className="bg-white p-5">
+                  <p className="mb-2 font-mono text-[10px] font-medium uppercase tracking-[0.18em] text-neutral-400">
+                    <span className="tabular-nums text-neutral-900">{item.no}</span> — {item.label}
+                  </p>
+                  <p className="break-all font-mono text-[13px] font-semibold text-neutral-900">{item.value}</p>
                 </div>
               ))}
             </div>

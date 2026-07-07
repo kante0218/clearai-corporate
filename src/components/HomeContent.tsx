@@ -33,16 +33,37 @@ function Reveal({ children, className = "", delay = 0, variant = "up" }: { child
   );
 }
 
-type SvcColor = "indigo" | "amber" | "sky" | "blue" | "rose" | "cyan";
+/* Dossier section header — §NN chapter marker + mono kicker (dark-capable) */
+function SectionHead({
+  index,
+  kicker,
+  title,
+  desc,
+  dark = false,
+  className = "",
+}: {
+  index: string;
+  kicker: ReactNode;
+  title: ReactNode;
+  desc?: ReactNode;
+  dark?: boolean;
+  className?: string;
+}) {
+  return (
+    <Reveal className={`mb-8 md:mb-12 lg:mb-16 ${className}`}>
+      <div className={`flex items-center gap-4 border-b pb-4 ${dark ? "border-white/25" : "border-neutral-900"}`}>
+        <span className={`font-mono text-xs font-bold tabular-nums ${dark ? "text-white" : "text-neutral-900"}`}>§{index}</span>
+        <span className={`font-mono text-[11px] font-medium uppercase tracking-[0.25em] ${dark ? "text-neutral-400" : "text-neutral-500"}`}>{kicker}</span>
+      </div>
+      <h2 className={`mt-6 md:mt-8 text-[24px] sm:text-4xl lg:text-5xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance ${dark ? "text-white" : "text-neutral-900"}`}>
+        {title}
+      </h2>
+      {desc && <p className={`mt-5 max-w-2xl text-[15px] leading-relaxed text-pretty ${dark ? "text-neutral-400" : "text-neutral-600"}`}>{desc}</p>}
+    </Reveal>
+  );
+}
 
-const colorMap: Record<SvcColor, { hoverBorder: string; code: string; cta: string; ctaHover: string }> = {
-  indigo: { hoverBorder: "hover:border-neutral-300", code: "text-neutral-900", cta: "text-neutral-900", ctaHover: "group-hover:text-neutral-700" },
-  amber:  { hoverBorder: "hover:border-neutral-300", code: "text-neutral-900", cta: "text-neutral-900", ctaHover: "group-hover:text-neutral-700" },
-  sky:    { hoverBorder: "hover:border-neutral-300", code: "text-neutral-900", cta: "text-neutral-900", ctaHover: "group-hover:text-neutral-700" },
-  blue:   { hoverBorder: "hover:border-neutral-300", code: "text-neutral-900", cta: "text-neutral-900", ctaHover: "group-hover:text-neutral-700" },
-  rose:   { hoverBorder: "hover:border-neutral-300", code: "text-neutral-900", cta: "text-neutral-900", ctaHover: "group-hover:text-neutral-700" },
-  cyan:   { hoverBorder: "hover:border-neutral-300", code: "text-neutral-900", cta: "text-neutral-900", ctaHover: "group-hover:text-neutral-700" },
-};
+type SvcColor = "indigo" | "amber" | "sky" | "blue" | "rose" | "cyan";
 
 type Svc = {
   code: string; title: string; desc: string; tags: string[];
@@ -455,12 +476,6 @@ const TECH_GROUPS: { key: keyof typeof COPY["ja"]["techGroups"]; items: { name: 
   ]},
 ];
 
-function SectionLabel({ children }: { children: ReactNode }) {
-  return (
-    <p className="text-xs font-semibold tracking-widest uppercase text-neutral-900 mb-4">{children}</p>
-  );
-}
-
 function ClientLogoMarquee({ label }: { label: string }) {
   const logos = [...CLIENT_LOGOS, ...CLIENT_LOGOS];
 
@@ -491,34 +506,36 @@ function ClientLogoMarquee({ label }: { label: string }) {
 }
 
 function ServiceCard({ svc, claudeBadge, compact }: { svc: Svc; claudeBadge: string; compact?: boolean }) {
-  const c = colorMap[svc.color];
   return (
     <Link href={svc.href} className="group block h-full">
-      <div className={`relative bg-white border border-gray-200 rounded-lg ${compact ? "p-6 lg:p-7" : "p-8 lg:p-10"} ${c.hoverBorder} hover:shadow-lg hover:-translate-y-1 transition-all duration-300 h-full flex flex-col`}>
+      <div className={`relative flex h-full flex-col border border-neutral-900 bg-white ${compact ? "p-6 lg:p-7" : "p-8 lg:p-10"} transition-colors duration-300 hover:bg-neutral-900`}>
         {svc.badge && (
-          <span className="absolute top-4 right-4 inline-flex items-center gap-1 rounded-md bg-neutral-900 text-white text-[10px] font-bold px-2.5 py-1 tracking-wide">
+          <span className="absolute right-0 top-0 inline-flex items-center gap-1 border-b border-l border-neutral-900 bg-neutral-900 px-2.5 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-white transition-colors duration-300 group-hover:bg-white group-hover:text-neutral-900">
             {svc.badge}
           </span>
         )}
-        <div className="flex items-baseline gap-3 mb-3">
-          <span className={`text-xs font-semibold tracking-widest uppercase ${c.code} flex-shrink-0`}>{svc.code}</span>
-          <h3 className={`${compact ? "text-lg" : "text-xl"} font-bold text-gray-900`}>{svc.title}</h3>
+        <div className="mb-4 flex items-baseline gap-3 border-b border-neutral-200 pb-4 transition-colors duration-300 group-hover:border-neutral-700">
+          <span className="font-mono text-xs font-bold tabular-nums text-neutral-900 transition-colors duration-300 group-hover:text-white">{svc.code}</span>
+          <h3 className={`${compact ? "text-lg" : "text-xl"} font-bold tracking-tight text-balance text-neutral-900 transition-colors duration-300 group-hover:text-white`}>{svc.title}</h3>
         </div>
-        <p className={`${compact ? "text-[13px]" : "text-sm"} text-gray-600 leading-relaxed mb-5`}>{svc.desc}</p>
+        <p className={`${compact ? "text-[13px]" : "text-sm"} leading-relaxed text-pretty text-neutral-600 mb-5 transition-colors duration-300 group-hover:text-neutral-300`}>{svc.desc}</p>
         {svc.claudeNote && (
-          <div className="mb-5 rounded-lg bg-neutral-50 border border-neutral-200 px-3.5 py-2.5 min-h-[104px]">
-            <span className="inline-flex items-center gap-1 text-[10px] font-bold text-neutral-900 uppercase tracking-wide mb-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-neutral-900" />{claudeBadge}
+          <div className="mb-5 border border-neutral-300 bg-neutral-50 px-3.5 py-2.5 min-h-[104px] transition-colors duration-300 group-hover:border-neutral-700 group-hover:bg-neutral-800">
+            <span className="mb-1 inline-flex items-center gap-1.5 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-neutral-900 transition-colors duration-300 group-hover:text-white">
+              <span className="h-1.5 w-1.5 bg-neutral-900 transition-colors duration-300 group-hover:bg-white" />{claudeBadge}
             </span>
-            <p className="text-[12px] text-neutral-700 leading-relaxed">{svc.claudeNote}</p>
+            <p className="text-[12px] leading-relaxed text-neutral-700 transition-colors duration-300 group-hover:text-neutral-300">{svc.claudeNote}</p>
           </div>
         )}
-        <div className="flex items-center gap-2 flex-wrap mb-5 mt-auto">
+        <div className="mb-5 mt-auto flex flex-wrap items-center gap-2 font-mono">
           {svc.tags.map((tag) => (
-            <span key={tag} className="text-xs text-gray-500 border border-gray-200 rounded px-2.5 py-1">{tag}</span>
+            <span key={tag} className="border border-neutral-300 px-2.5 py-1 text-xs text-neutral-500 transition-colors duration-300 group-hover:border-neutral-600 group-hover:text-neutral-400">{tag}</span>
           ))}
         </div>
-        <span className={`text-sm font-semibold ${c.cta} ${c.ctaHover} transition-colors`}>{svc.cta} →</span>
+        <span className="inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-[0.08em] text-neutral-900 transition-colors duration-300 group-hover:text-white">
+          {svc.cta}
+          <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+        </span>
       </div>
     </Link>
   );
@@ -642,8 +659,8 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
             <p className={`text-base md:text-lg font-medium leading-relaxed max-w-none sm:max-w-sm md:max-w-xl mb-10 transition-[color,opacity] duration-500 text-gray-900 ${heroTextDark ? "md:text-gray-900" : "md:text-white"}`} style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "650ms", textShadow: heroTextDark ? "0 1px 2px rgba(255,255,255,0.95),0 1px 12px rgba(255,255,255,0.85)" : "0 1px 2px rgba(0,0,0,0.75),0 1px 12px rgba(0,0,0,0.7)" }}>
               {t.heroDesc}
             </p>
-            <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3 sm:gap-5 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "850ms" }}>
-              <Link href="/reserve" className="inline-flex w-full sm:w-auto justify-center items-center gap-2 rounded-md bg-neutral-900 text-white font-semibold px-7 min-h-[52px] py-3.5 hover:bg-neutral-800 transition-colors duration-300 shadow-[0_8px_24px_-8px_rgba(0,0,0,0.3)]">
+            <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3 sm:gap-5 transition-[opacity,transform] duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "850ms" }}>
+              <Link href="/reserve" className="inline-flex w-full sm:w-auto justify-center items-center gap-2 bg-neutral-900 text-white font-mono text-sm font-bold uppercase tracking-[0.08em] px-8 min-h-[52px] py-3.5 border border-neutral-900 hover:bg-neutral-800 transition-[background-color,scale] duration-300 active:scale-[0.96]">
                 {t.heroPrimary}
                 <span aria-hidden>→</span>
               </Link>
@@ -660,7 +677,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       <section className="relative z-20 -mt-2 bg-transparent md:hidden">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
-            <div className="rounded-2xl border border-gray-200 bg-white shadow-[0_10px_40px_-15px_rgba(0,0,0,0.18)] grid grid-cols-3 divide-x divide-gray-100 overflow-hidden">
+            <div className="border border-neutral-900 bg-white grid grid-cols-3 divide-x divide-neutral-200 overflow-hidden">
               {heroFeatures.map((f, i) => (
                 <div key={f.title} className="flex items-center gap-2 px-2.5 py-4 sm:gap-3.5 sm:px-6 sm:py-5">
                   <span className="flex-shrink-0 text-neutral-900 [&>svg]:w-5 [&>svg]:h-5 sm:[&>svg]:w-[26px] sm:[&>svg]:h-[26px]">{heroFeatureIcons[i]}</span>
@@ -695,20 +712,17 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       {/* ═══ WHY clearAI ═══ */}
       <section className="py-8 md:py-20 lg:py-28 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <Reveal>
-            <SectionLabel>{t.whyLabel}</SectionLabel>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.whyTitle}</h2>
-            <p className="text-base text-gray-500 mb-7 md:mb-14 w-full leading-relaxed">{t.whyDesc}</p>
-          </Reveal>
+          <SectionHead index="01" kicker={t.whyLabel} title={t.whyTitle} desc={t.whyDesc} />
           <CardCarousel>
             {t.why.map((item, i) => (
               <Reveal key={item.title} delay={i * 80}>
-                <div className="bg-gray-50 border border-gray-200 rounded-lg p-8 h-full">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-10 h-10 rounded-full bg-neutral-900 text-white flex items-center justify-center font-bold flex-shrink-0">{i + 1}</div>
-                    <h3 className="text-lg font-bold text-gray-900">{item.title}</h3>
+                <div className="group h-full border border-neutral-900 bg-white p-8 lg:p-10 transition-colors duration-300 hover:bg-neutral-900">
+                  <div className="flex items-baseline justify-between border-b border-neutral-200 pb-4 transition-colors duration-300 group-hover:border-neutral-700">
+                    <span className="font-mono text-2xl font-bold tabular-nums text-neutral-900 transition-colors duration-300 group-hover:text-white">{String(i + 1).padStart(2, "0")}</span>
+                    <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-400">Why / {String(i + 1).padStart(2, "0")}</span>
                   </div>
-                  <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
+                  <h3 className="mt-6 text-xl font-bold tracking-tight text-balance text-neutral-900 transition-colors duration-300 group-hover:text-white">{item.title}</h3>
+                  <p className="mt-4 text-[15px] leading-relaxed text-pretty text-neutral-600 transition-colors duration-300 group-hover:text-neutral-300">{item.desc}</p>
                 </div>
               </Reveal>
             ))}
@@ -717,27 +731,20 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       </section>
 
       {/* ═══ VISION ═══ */}
-      <section className="py-8 md:py-20 lg:py-28 bg-gray-50">
+      <section className="py-8 md:py-20 lg:py-28 bg-neutral-50 border-y border-neutral-900">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-5 lg:gap-16 items-start">
-            <Reveal>
-              <SectionLabel>{t.visionLabel}</SectionLabel>
-              <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-6">{t.visionTitle}</h2>
-            </Reveal>
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-start">
+            <SectionHead index="02" kicker={t.visionLabel} title={t.visionTitle} className="mb-0" />
             <Reveal delay={100}>
-              <div className="space-y-5">
+              <div>
                 {/* C1: 抽象的な前置き(visionBody1)を省き、ミッション文だけに短縮して
                     サービス節の見出しとのメッセージ重複を緩和 */}
-                <p className="text-base text-gray-600 leading-relaxed">{t.visionBody2}</p>
-                <div className="h-px bg-gray-200 mt-6" />
-                <div className="flex items-center gap-6 pt-4 flex-wrap">
-                  {t.visionStats.map((s, i) => (
-                    <div key={s.label} className="flex items-center gap-6">
-                      {i > 0 && <div className="w-px h-10 bg-gray-200 hidden sm:block" />}
-                      <div>
-                        <p className="text-lg font-bold text-gray-900"><CountUp value={s.value} /></p>
-                        <p className="text-xs text-gray-400 mt-1">{s.label}</p>
-                      </div>
+                <p className="text-base leading-relaxed text-pretty text-neutral-600">{t.visionBody2}</p>
+                <div className="mt-8 grid grid-cols-1 border-t border-neutral-900 sm:grid-cols-3">
+                  {t.visionStats.map((s) => (
+                    <div key={s.label} className="border-b border-neutral-300 py-5 sm:border-b-0 sm:border-r sm:last:border-r-0 sm:py-6 sm:pr-6">
+                      <p className="text-lg font-bold tabular-nums leading-tight text-neutral-900"><CountUp value={s.value} /></p>
+                      <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.15em] text-neutral-400">{s.label}</p>
                     </div>
                   ))}
                 </div>
@@ -748,49 +755,49 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       </section>
 
       {/* ═══ ENTRY PRODUCTS ═══ (SPでは非表示・PCは維持) */}
-      <section className="hidden md:block md:py-20 lg:py-28 bg-white border-t border-gray-100">
+      <section className="hidden md:block md:py-20 lg:py-28 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <Reveal>
-            <SectionLabel>{t.getStartedLabel}</SectionLabel>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.getStartedTitle}</h2>
-            <p className="text-base text-gray-500 mb-7 md:mb-14 w-full leading-relaxed">{t.getStartedDesc}</p>
-          </Reveal>
+          <SectionHead index="03" kicker={t.getStartedLabel} title={t.getStartedTitle} desc={t.getStartedDesc} />
           <CardCarousel>
-            {t.steps.map((step, i) => {
-              const c = colorMap[step.color];
-              return (
-                <Reveal key={step.step} delay={i * 80}>
-                  <Link href={step.href} className="group block h-full">
-                    <div className={`bg-white border border-gray-200 rounded-lg p-8 lg:p-10 ${c.hoverBorder} hover:shadow-lg hover:-translate-y-1 transition-all duration-300 h-full flex flex-col`}>
-                      <div className="flex items-center gap-3 mb-3">
-                        <span className={`inline-block text-xs font-semibold tracking-widest uppercase ${c.code} flex-shrink-0`}>{step.step}</span>
-                        <h3 className="text-xl font-bold text-gray-900">{step.title}</h3>
-                      </div>
-                      <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">{step.desc}</p>
-                      <ul className="space-y-2 text-xs text-gray-500 mb-6">
-                        {step.points.map((p) => <li key={p}>・{p}</li>)}
-                      </ul>
-                      <span className={`text-sm font-semibold ${c.cta} ${c.ctaHover} transition-colors`}>{step.cta}</span>
+            {t.steps.map((step, i) => (
+              <Reveal key={step.step} delay={i * 80}>
+                <Link href={step.href} className="group block h-full">
+                  <div className="group flex h-full flex-col border border-neutral-900 bg-white p-8 lg:p-10 transition-colors duration-300 hover:bg-neutral-900">
+                    <div className="mb-4 flex items-center justify-between border-b border-neutral-200 pb-4 transition-colors duration-300 group-hover:border-neutral-700">
+                      <span className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-neutral-900 transition-colors duration-300 group-hover:text-white">{step.step}</span>
+                      <span className="font-mono text-[10px] tabular-nums text-neutral-400">{String(i + 1).padStart(2, "0")}</span>
                     </div>
-                  </Link>
-                </Reveal>
-              );
-            })}
+                    <h3 className="mb-3 text-xl font-bold tracking-tight text-balance text-neutral-900 transition-colors duration-300 group-hover:text-white">{step.title}</h3>
+                    <p className="mb-6 flex-1 text-sm leading-relaxed text-pretty text-neutral-600 transition-colors duration-300 group-hover:text-neutral-300">{step.desc}</p>
+                    <ul className="mb-6 space-y-2 border-t border-neutral-200 pt-4 font-mono transition-colors duration-300 group-hover:border-neutral-700">
+                      {step.points.map((p) => (
+                        <li key={p} className="flex items-start gap-2 text-xs text-neutral-500 transition-colors duration-300 group-hover:text-neutral-400">
+                          <span className="flex-shrink-0 text-neutral-900 transition-colors duration-300 group-hover:text-white">→</span>
+                          <span>{p}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <span className="mt-auto inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-[0.08em] text-neutral-900 transition-colors duration-300 group-hover:text-white">
+                      {step.cta}
+                      <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                    </span>
+                  </div>
+                </Link>
+              </Reveal>
+            ))}
           </CardCarousel>
         </div>
       </section>
 
       {/* ═══ SERVICES ═══ */}
-      <section id="services" className="py-8 md:py-20 lg:py-28 bg-gray-50">
+      <section id="services" className="py-8 md:py-20 lg:py-28 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <Reveal>
-            <SectionLabel>{t.servicesLabel}</SectionLabel>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.servicesTitle}</h2>
-            <p className="text-base text-gray-500 mb-6 md:mb-12 w-full leading-relaxed">{t.servicesDesc}</p>
-          </Reveal>
+          <SectionHead index="04" kicker={t.servicesLabel} title={t.servicesTitle} desc={t.servicesDesc} />
 
           <Reveal>
-            <p className="text-xs font-semibold tracking-widest uppercase text-gray-400 mb-5">{t.primaryHeading}</p>
+            <p className="mb-5 flex items-center gap-3 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-neutral-500">
+              <span className="h-px w-6 bg-neutral-900" />{t.primaryHeading}
+            </p>
           </Reveal>
           <CardCarousel className="mb-7 md:mb-14">
             {t.primaryServices.map((svc, i) => (
@@ -801,7 +808,9 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
           </CardCarousel>
 
           <Reveal>
-            <p className="text-xs font-semibold tracking-widest uppercase text-gray-400 mb-5">{t.secondaryHeading}</p>
+            <p className="mb-5 flex items-center gap-3 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-neutral-500">
+              <span className="h-px w-6 bg-neutral-900" />{t.secondaryHeading}
+            </p>
           </Reveal>
           <CardCarousel>
             {t.secondaryServices.map((svc, i) => (
@@ -814,21 +823,18 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       </section>
 
       {/* ═══ APPROACH ═══ (SPでは非表示・PCは維持) */}
-      <section className="hidden md:block md:py-20 lg:py-28 bg-white">
+      <section className="hidden md:block md:py-20 lg:py-28 bg-neutral-50 border-y border-neutral-900">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <Reveal>
-            <SectionLabel>{t.approachLabel}</SectionLabel>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-7 md:mb-14">{t.approachTitle}</h2>
-          </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <SectionHead index="05" kicker={t.approachLabel} title={t.approachTitle} />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border-t border-neutral-900">
             {t.approach.map((item, i) => (
               <Reveal key={item.num} delay={i * 80}>
-                <div className="border-t-2 border-neutral-900 pt-6">
-                  <div className="flex items-center gap-3 mb-2">
-                    <span className="text-xs font-semibold text-neutral-900 tracking-widest flex-shrink-0">{item.num}</span>
-                    <h3 className="text-lg font-bold text-gray-900">{item.title}</h3>
+                <div className="h-full border-b border-neutral-300 py-7 md:border-b-0 md:border-r md:last:border-r-0 md:px-8 md:first:pl-0">
+                  <div className="mb-3 flex items-baseline gap-3 font-mono">
+                    <span className="text-xs font-bold tabular-nums text-neutral-400">{item.num}</span>
+                    <h3 className="text-lg font-bold tracking-tight text-balance font-sans text-neutral-900">{item.title}</h3>
                   </div>
-                  <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
+                  <p className="text-sm leading-relaxed text-pretty text-neutral-600">{item.desc}</p>
                 </div>
               </Reveal>
             ))}
@@ -837,58 +843,64 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       </section>
 
       {/* ═══ PROCESS ═══ */}
-      <section className="py-8 md:py-20 lg:py-28 bg-gray-50">
+      <section className="py-8 md:py-20 lg:py-28 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <Reveal>
-            <SectionLabel>{t.processLabel}</SectionLabel>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.processTitle}</h2>
-            <p className="text-base text-gray-500 mb-7 md:mb-14 w-full leading-relaxed">{t.processDesc}</p>
-          </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {t.process.map((step, i) => (
-              <Reveal key={step.num} delay={i * 80}>
-                <div className="group relative bg-white border border-gray-200 rounded-lg p-7 h-full transition-all duration-300 hover:border-gray-300 hover:shadow-lg hover:-translate-y-1">
-                  <div className="flex items-center gap-3 mb-2">
-                    <span className="text-3xl font-bold text-neutral-200 transition-colors duration-300 group-hover:text-neutral-900 flex-shrink-0">{step.num}</span>
-                    <h3 className="text-base font-bold text-gray-900">{step.title}</h3>
-                  </div>
-                  <p className="text-sm text-gray-600 leading-relaxed">{step.desc}</p>
-                </div>
-              </Reveal>
-            ))}
+          <SectionHead index="06" kicker={t.processLabel} title={t.processTitle} desc={t.processDesc} />
+          {/* table header */}
+          <div className="hidden lg:grid grid-cols-12 gap-6 border-b border-neutral-900 pb-3 font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-400">
+            <div className="col-span-1">No.</div>
+            <div className="col-span-3">Phase</div>
+            <div className="col-span-8">Detail</div>
           </div>
+          {t.process.map((step, i) => (
+            <Reveal key={step.num} delay={i * 60}>
+              <div className="group grid grid-cols-1 gap-2 border-b border-neutral-200 py-6 transition-colors duration-300 hover:bg-neutral-50 lg:grid-cols-12 lg:gap-6 lg:py-7">
+                <div className="lg:col-span-1">
+                  <span className="font-mono text-lg font-bold tabular-nums text-neutral-900">{step.num}</span>
+                </div>
+                <div className="lg:col-span-3">
+                  <h3 className="text-base font-bold tracking-tight text-balance text-neutral-900">{step.title}</h3>
+                </div>
+                <div className="lg:col-span-8">
+                  <p className="text-[15px] leading-relaxed text-pretty text-neutral-600">{step.desc}</p>
+                </div>
+              </div>
+            </Reveal>
+          ))}
         </div>
       </section>
 
       {/* ═══ TEAM ═══ */}
-      <section className="py-8 md:py-20 lg:py-28 bg-white">
+      <section className="py-8 md:py-20 lg:py-28 bg-neutral-50 border-y border-neutral-900">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <Reveal>
-            <SectionLabel>{t.teamLabel}</SectionLabel>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.teamTitle}</h2>
-            <p className="text-base text-gray-500 mb-7 md:mb-14 w-full leading-relaxed">{t.teamDesc}</p>
-          </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+          <SectionHead index="07" kicker={t.teamLabel} title={t.teamTitle} desc={t.teamDesc} />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-stretch">
             <Reveal delay={0} className="h-full">
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-8 lg:p-10 h-full flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-gray-300">
-                <span className="inline-block text-xs font-semibold tracking-widest uppercase text-neutral-900 mb-4">{t.teamCard1Label}</span>
-                <h3 className="text-xl font-bold text-gray-900 mb-4">{t.teamCard1Title}</h3>
-                <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">{t.teamCard1Desc}</p>
-                <div className="flex items-center gap-2 flex-wrap">
+              <div className="group flex h-full flex-col border border-neutral-900 bg-white p-8 lg:p-10 transition-colors duration-300 hover:bg-neutral-900">
+                <div className="mb-4 flex items-center justify-between border-b border-neutral-200 pb-4 transition-colors duration-300 group-hover:border-neutral-700">
+                  <span className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-neutral-900 transition-colors duration-300 group-hover:text-white">{t.teamCard1Label}</span>
+                  <span className="font-mono text-[10px] tabular-nums text-neutral-400">01</span>
+                </div>
+                <h3 className="mb-4 text-xl font-bold tracking-tight text-balance text-neutral-900 transition-colors duration-300 group-hover:text-white">{t.teamCard1Title}</h3>
+                <p className="mb-6 flex-1 text-sm leading-relaxed text-pretty text-neutral-600 transition-colors duration-300 group-hover:text-neutral-300">{t.teamCard1Desc}</p>
+                <div className="flex flex-wrap items-center gap-2 font-mono">
                   {t.teamCard1Tags.map((tag) => (
-                    <span key={tag} className="text-xs text-gray-600 bg-white border border-gray-200 rounded px-2.5 py-1">{tag}</span>
+                    <span key={tag} className="border border-neutral-300 px-2.5 py-1 text-xs text-neutral-600 transition-colors duration-300 group-hover:border-neutral-600 group-hover:text-neutral-400">{tag}</span>
                   ))}
                 </div>
               </div>
             </Reveal>
             <Reveal delay={100} className="h-full">
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-8 lg:p-10 h-full flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-gray-300">
-                <span className="inline-block text-xs font-semibold tracking-widest uppercase text-neutral-900 mb-4">{t.teamCard2Label}</span>
-                <h3 className="text-xl font-bold text-gray-900 mb-4">{t.teamCard2Title}</h3>
-                <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">{t.teamCard2Desc}</p>
-                <div className="flex items-center gap-2 flex-wrap">
+              <div className="group flex h-full flex-col border border-neutral-900 bg-white p-8 lg:p-10 transition-colors duration-300 hover:bg-neutral-900">
+                <div className="mb-4 flex items-center justify-between border-b border-neutral-200 pb-4 transition-colors duration-300 group-hover:border-neutral-700">
+                  <span className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-neutral-900 transition-colors duration-300 group-hover:text-white">{t.teamCard2Label}</span>
+                  <span className="font-mono text-[10px] tabular-nums text-neutral-400">02</span>
+                </div>
+                <h3 className="mb-4 text-xl font-bold tracking-tight text-balance text-neutral-900 transition-colors duration-300 group-hover:text-white">{t.teamCard2Title}</h3>
+                <p className="mb-6 flex-1 text-sm leading-relaxed text-pretty text-neutral-600 transition-colors duration-300 group-hover:text-neutral-300">{t.teamCard2Desc}</p>
+                <div className="flex flex-wrap items-center gap-2 font-mono">
                   {t.teamCard2Tags.map((tag) => (
-                    <span key={tag} className="text-xs text-gray-600 bg-white border border-gray-200 rounded px-2.5 py-1">{tag}</span>
+                    <span key={tag} className="border border-neutral-300 px-2.5 py-1 text-xs text-neutral-600 transition-colors duration-300 group-hover:border-neutral-600 group-hover:text-neutral-400">{tag}</span>
                   ))}
                 </div>
               </div>
@@ -898,59 +910,59 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       </section>
 
       {/* ═══ TECH STACK ═══ */}
-      <section className="py-8 md:py-20 lg:py-28 bg-gray-50 overflow-x-clip">
+      <section className="py-8 md:py-20 lg:py-28 bg-white overflow-x-clip">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <Reveal>
-            <SectionLabel>{t.techLabel}</SectionLabel>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.techTitle}</h2>
-            <p className="text-base text-gray-500 w-full leading-relaxed mb-7 md:mb-14">{t.techDesc}</p>
-          </Reveal>
-          {/* 他セクションと同じカードグリッド。各カテゴリ＝1カード、技術は小さな
-              アイコン付きチップ（ServiceCard のタグと同じ意匠）で左寄せ表示。 */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+          <SectionHead index="08" kicker={t.techLabel} title={t.techTitle} desc={t.techDesc} />
+          {/* Manifest: 左にカテゴリ（mono＋連番）、右にアイコン付きチップ。角ゼロ・罫線区切り。 */}
+          <div className="border-t border-neutral-900">
             {TECH_GROUPS.slice(0, techOpen ? TECH_GROUPS.length : 4).map((group, gi) => (
-              <Reveal key={group.key} delay={(gi % 2) * 80} className="h-full">
-                <div className="h-full bg-white border border-gray-200 rounded-lg p-6 lg:p-7 hover:border-gray-300 hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-                  <h3 className="text-sm font-bold text-gray-900 mb-4">{t.techGroups[group.key as keyof typeof t.techGroups]}</h3>
-                  <div className="flex flex-wrap gap-2">
-                    {group.items.map((tech) => (
-                      <span key={tech.name} className="inline-flex items-center gap-1.5 text-xs font-medium text-gray-700 bg-white border border-gray-200 rounded-md px-2.5 py-1.5">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img src={`https://api.iconify.design/${tech.icon}.svg${"color" in tech && tech.color ? `?color=%23${tech.color}` : ''}`} alt={tech.name} className="w-4 h-4 object-contain" loading="lazy" />
-                        {tech.name}
-                      </span>
-                    ))}
+              <Reveal key={group.key} delay={(gi % 2) * 80}>
+                <div className="grid grid-cols-1 gap-3 border-b border-neutral-300 py-6 lg:grid-cols-12 lg:gap-8">
+                  <div className="lg:col-span-3">
+                    <h3 className="flex items-baseline gap-2 font-mono text-xs font-bold uppercase tracking-[0.18em] text-neutral-900">
+                      <span className="text-neutral-400">{String(gi + 1).padStart(2, "0")}</span>
+                      {t.techGroups[group.key as keyof typeof t.techGroups]}
+                    </h3>
+                  </div>
+                  <div className="lg:col-span-9">
+                    <ul className="flex flex-wrap gap-2 font-mono">
+                      {group.items.map((tech) => (
+                        <li key={tech.name} className="inline-flex items-center gap-1.5 border border-neutral-300 bg-white px-2.5 py-1 text-[13px] text-neutral-700 transition-colors duration-200 hover:border-neutral-900">
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img src={`https://api.iconify.design/${tech.icon}.svg${"color" in tech && tech.color ? `?color=%23${tech.color}` : ''}`} alt={tech.name} className="w-4 h-4 object-contain grayscale" loading="lazy" />
+                          {tech.name}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
               </Reveal>
             ))}
           </div>
           {!techOpen && (
-            <div className="border-t border-gray-200 pt-8 text-center">
+            <div className="pt-8">
               <button
                 type="button"
                 onClick={() => setTechOpen(true)}
-                className="inline-flex items-center gap-2 rounded-full border border-neutral-300 px-6 py-3 text-sm font-semibold text-neutral-900 hover:bg-neutral-900 hover:text-white transition-colors duration-300"
+                className="group inline-flex items-center gap-2 border border-neutral-900 px-6 py-3 font-mono text-xs font-bold uppercase tracking-[0.08em] text-neutral-900 transition-[color,background-color,border-color,scale] duration-300 hover:bg-neutral-900 hover:text-white active:scale-[0.96]"
               >
                 {lang === "ja"
                   ? `すべての使用技術を見る（残り ${TECH_GROUPS.length - 4} カテゴリ）`
                   : `Show all technologies (${TECH_GROUPS.length - 4} more)`}
-                <span aria-hidden>↓</span>
+                <span aria-hidden className="transition-transform duration-300 group-hover:translate-y-0.5">↓</span>
               </button>
             </div>
           )}
           <Reveal>
-            <div className="mt-10 border-t border-gray-200 pt-8">
-              <div className="bg-white border border-gray-200 rounded-lg p-6 lg:p-8 flex flex-col lg:flex-row lg:items-center gap-4 lg:gap-6">
-                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-neutral-100 flex items-center justify-center">
-                  <svg className="w-6 h-6 text-neutral-900" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
-                </div>
-                <div className="flex-1">
-                  <p className="text-sm font-bold text-gray-900 mb-1">{t.techMoreTitle}</p>
-                  <p className="text-sm text-gray-600 leading-relaxed">{t.techMoreDesc}</p>
-                </div>
+            <div className="mt-10 border border-neutral-900 bg-neutral-50 p-6 lg:p-8 flex flex-col lg:flex-row lg:items-center gap-4 lg:gap-6">
+              <div className="flex-shrink-0 w-11 h-11 border border-neutral-900 flex items-center justify-center">
+                <svg className="w-5 h-5 text-neutral-900" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
+              <div className="flex-1">
+                <p className="text-sm font-bold text-neutral-900 mb-1">{t.techMoreTitle}</p>
+                <p className="text-sm leading-relaxed text-pretty text-neutral-600">{t.techMoreDesc}</p>
               </div>
             </div>
           </Reveal>
@@ -958,87 +970,96 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       </section>
 
       {/* ═══ FAQ TEASER ═══ */}
-      <section className="py-8 md:py-20 lg:py-28 bg-white">
+      <section className="py-8 md:py-20 lg:py-28 bg-neutral-50 border-y border-neutral-900">
         <div className="max-w-3xl mx-auto px-6 lg:px-8">
-          <Reveal>
-            <SectionLabel>{t.faqLabel}</SectionLabel>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.faqTitle}</h2>
-            <p className="text-base text-gray-500 mb-10 leading-relaxed">{t.faqDesc}</p>
-          </Reveal>
-          <div className="mb-8">
+          <SectionHead index="09" kicker={t.faqLabel} title={t.faqTitle} desc={t.faqDesc} />
+          <div className="mb-8 border-t border-neutral-900">
             {t.faq.map((item, i) => (
               <Reveal key={i} delay={i * 70}>
-                <details className="border-b border-gray-100 py-2.5 md:py-5 group">
-                  <summary className="font-semibold text-gray-900 cursor-pointer list-none flex items-center justify-between gap-4">
-                    <span>{item.q}</span>
-                    <span className="text-gray-400 text-lg leading-none flex-shrink-0 transition-transform duration-300 group-open:rotate-45">+</span>
+                <details className="group border-b border-neutral-300 py-4 md:py-5">
+                  <summary className="flex cursor-pointer list-none items-start gap-4 text-base font-semibold text-neutral-900">
+                    <span className="mt-0.5 font-mono text-xs tabular-nums text-neutral-400">Q{String(i + 1).padStart(2, "0")}</span>
+                    <span className="flex-1">{item.q}</span>
+                    <span className="font-mono text-lg leading-none text-neutral-400 transition-transform duration-300 group-open:rotate-45">+</span>
                   </summary>
-                  <p className="text-gray-600 text-sm leading-relaxed mt-3">{item.a}</p>
+                  <p className="mt-4 pl-9 text-sm leading-relaxed text-pretty text-neutral-600">{item.a}</p>
                 </details>
               </Reveal>
             ))}
           </div>
           <Reveal delay={200}>
-            <Link href="/faq" className="text-sm font-semibold text-neutral-900 hover:text-neutral-700 transition-colors">{t.faqCta}</Link>
+            <Link href="/faq" className="inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-[0.08em] text-neutral-900 hover:text-neutral-600 transition-colors">{t.faqCta}</Link>
           </Reveal>
         </div>
       </section>
 
       {/* ═══ NEWS / BLOG (moved below: lead with value & services first) ═══ */}
-      <section className="py-8 md:py-20 lg:py-28 bg-gray-50 border-t border-gray-100">
+      <section className="py-8 md:py-20 lg:py-28 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <div className="flex items-end justify-between mb-6 md:mb-12">
-            <div>
-              <SectionLabel>{t.newsLabel}</SectionLabel>
-              <h2 className="text-3xl font-bold text-gray-900 leading-tight">{t.newsTitle}</h2>
+          <Reveal className="mb-6 md:mb-12">
+            <div className="flex items-end justify-between border-b border-neutral-900 pb-4">
+              <div>
+                <div className="flex items-center gap-4">
+                  <span className="font-mono text-xs font-bold tabular-nums text-neutral-900">§10</span>
+                  <span className="font-mono text-[11px] font-medium uppercase tracking-[0.25em] text-neutral-500">{t.newsLabel}</span>
+                </div>
+                <h2 className="mt-5 text-[24px] sm:text-4xl lg:text-5xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance text-neutral-900">{t.newsTitle}</h2>
+              </div>
+              <Link href="/blog" className="hidden sm:inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-[0.08em] text-neutral-900 hover:text-neutral-600 transition-colors">
+                {t.newsCta}
+              </Link>
             </div>
-            <Link href="/blog" className="hidden sm:inline-flex items-center gap-2 text-sm font-semibold text-neutral-900 hover:text-neutral-700 transition-colors">
-              {t.newsCta}
-            </Link>
-          </div>
+          </Reveal>
           {newsSlot}
           <div className="text-center mt-8 sm:hidden">
-            <Link href="/blog" className="text-sm font-semibold text-neutral-900">{t.newsCta}</Link>
+            <Link href="/blog" className="font-mono text-xs font-bold uppercase tracking-[0.08em] text-neutral-900">{t.newsCta}</Link>
           </div>
         </div>
       </section>
 
       {/* ═══ CTA ═══ */}
-      <section className="py-8 md:py-20 lg:py-28 bg-white border-t border-gray-100">
+      <section className="py-8 md:py-20 lg:py-28 bg-neutral-50 border-t border-neutral-900">
         <div className="max-w-4xl mx-auto px-6">
           <Reveal>
-            <div className="text-center mb-6 md:mb-12">
-              <SectionLabel>{t.ctaLabel}</SectionLabel>
-              <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-6">{t.ctaTitle}</h2>
-              <p className="text-base text-gray-600 leading-relaxed max-w-lg mx-auto">{t.ctaDesc}</p>
+            <div className="mb-8 md:mb-12 border-b border-neutral-900 pb-6">
+              <div className="flex items-center gap-4">
+                <span className="font-mono text-xs font-bold tabular-nums text-neutral-900">§11</span>
+                <span className="font-mono text-[11px] font-medium uppercase tracking-[0.25em] text-neutral-500">{t.ctaLabel}</span>
+              </div>
+              <h2 className="mt-6 text-[24px] sm:text-4xl lg:text-5xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance text-neutral-900">{t.ctaTitle}</h2>
+              <p className="mt-5 max-w-lg text-base leading-relaxed text-pretty text-neutral-600">{t.ctaDesc}</p>
             </div>
           </Reveal>
           <Reveal delay={120}>
             <InlineContactForm lang={lang} />
           </Reveal>
           <Reveal delay={200}>
-            <p className="text-center text-xs font-semibold uppercase tracking-widest text-gray-400 mt-10 mb-5">
+            <p className="mt-10 mb-5 flex items-center gap-3 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-neutral-500">
+              <span className="h-px w-6 bg-neutral-900" />
               {lang === "ja" ? "または、相談内容から選ぶ" : "Or choose by topic"}
             </p>
           </Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          <div className="grid grid-cols-1 border-t border-neutral-900 sm:grid-cols-2 lg:grid-cols-3">
             {t.ctaCards.map((item, i) => (
               <Reveal key={item.service} delay={i * 50}>
                 <Link
                   href={`/contact?service=${item.service}`}
-                  className="group block rounded-lg border border-gray-200 bg-white px-5 py-4 hover:border-neutral-300 hover:shadow-md hover:-translate-y-1 transition-all duration-300"
+                  className="group flex h-full flex-col justify-between gap-3 border-b border-r border-neutral-300 bg-white px-5 py-5 transition-colors duration-300 hover:bg-neutral-900"
                 >
-                  <span className="block text-sm font-bold text-gray-900 group-hover:text-neutral-700 transition-colors">
+                  <span className="block text-sm font-bold text-neutral-900 transition-colors duration-300 group-hover:text-white">
                     {item.label}
                   </span>
-                  <span className="block text-xs text-gray-400 mt-1">{t.ctaCardAction}</span>
+                  <span className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.12em] text-neutral-400 transition-colors duration-300 group-hover:text-neutral-300">
+                    {t.ctaCardAction}
+                    <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                  </span>
                 </Link>
               </Reveal>
             ))}
           </div>
           <Reveal delay={350}>
-            <div className="text-center mt-8">
-              <Link href="/contact" className="text-sm text-gray-500 hover:text-gray-700 transition-colors">
+            <div className="mt-8">
+              <Link href="/contact" className="font-mono text-xs uppercase tracking-[0.08em] text-neutral-500 hover:text-neutral-900 transition-colors">
                 {t.ctaOthers}
               </Link>
             </div>

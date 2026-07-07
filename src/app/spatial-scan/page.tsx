@@ -21,8 +21,31 @@ function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; 
   );
 }
 
-function Label({ children }: { children: ReactNode }) {
-  return <p className="text-sm font-semibold text-neutral-900 mb-4">{children}</p>;
+function SectionHead({
+  index,
+  kicker,
+  title,
+  desc,
+  dark = false,
+}: {
+  index: string;
+  kicker: ReactNode;
+  title: ReactNode;
+  desc?: ReactNode;
+  dark?: boolean;
+}) {
+  return (
+    <Reveal className="mb-12 lg:mb-16 max-w-3xl">
+      <div className={`flex items-center gap-4 border-b pb-4 ${dark ? "border-white/25" : "border-neutral-900"}`}>
+        <span className={`font-mono text-xs font-bold tabular-nums ${dark ? "text-white" : "text-neutral-900"}`}>§{index}</span>
+        <span className={`font-mono text-[11px] font-medium uppercase tracking-[0.25em] ${dark ? "text-neutral-400" : "text-neutral-500"}`}>{kicker}</span>
+      </div>
+      <h2 className={`mt-8 text-[24px] sm:text-4xl lg:text-5xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance ${dark ? "text-white" : "text-neutral-900"}`}>
+        {title}
+      </h2>
+      {desc && <p className={`mt-6 text-[15px] leading-relaxed text-pretty ${dark ? "text-neutral-400" : "text-neutral-600"}`}>{desc}</p>}
+    </Reveal>
+  );
 }
 
 type Copy = {
@@ -195,39 +218,71 @@ export default function SpatialScanPage() {
 
   return (
     <>
-      {/* PAGE HEADER */}
-      <section className="pt-24 pb-10 lg:pt-28 lg:pb-12 bg-white border-b border-gray-100">
+      {/* MASTHEAD */}
+      <section className="bg-white pt-32 lg:pt-40">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <p className="text-sm font-semibold text-neutral-900 mb-3">{t.heroKicker}</p>
-          <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4 max-w-4xl">{t.heroTitle}</h1>
-          <p className="text-base text-gray-600 leading-relaxed max-w-3xl">{t.heroDesc}</p>
-          <div className="mt-8 flex flex-wrap items-center gap-4">
-            <a href="/contact" className="rounded-lg bg-neutral-900 text-white font-semibold px-8 py-3.5 hover:bg-neutral-800 transition-colors duration-300 inline-block">{t.heroCta}</a>
-            <a href="/robot-rental" className="inline-flex items-center gap-1.5 text-sm font-semibold text-gray-600 hover:text-gray-900 px-2 py-3.5 transition-colors">
-              {t.heroCta2}
-              <span aria-hidden>↗</span>
-            </a>
-          </div>
+          <Reveal>
+            {/* technical meta bar */}
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 border-b border-neutral-900 pb-4 font-mono text-[11px] uppercase tracking-[0.2em] text-neutral-500">
+              <span className="font-bold text-neutral-900">§00</span>
+              <span>{t.heroKicker}</span>
+              <span className="text-neutral-300">/</span>
+              <span>Digital&nbsp;Twin</span>
+              <span className="text-neutral-300">/</span>
+              <span>Simulation</span>
+              <span className="text-neutral-300">/</span>
+              <span>Robotics</span>
+            </div>
+          </Reveal>
+          <Reveal delay={90}>
+            <h1 className="mt-10 text-[12vw] sm:text-6xl lg:text-[104px] font-bold leading-[0.95] tracking-[-0.04em] text-balance text-neutral-900">
+              {t.heroTitle}
+            </h1>
+          </Reveal>
+          <Reveal delay={180}>
+            <p className="mt-8 max-w-2xl text-base lg:text-lg leading-relaxed text-pretty text-neutral-600">{t.heroDesc}</p>
+          </Reveal>
+          <Reveal delay={260}>
+            <div className="mt-10 mb-14 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-5">
+              <a
+                href="/contact"
+                className="group inline-flex items-center justify-center gap-3 border border-neutral-900 bg-neutral-900 px-8 py-4 font-mono text-sm font-bold uppercase tracking-[0.08em] text-white transition-[color,background-color,border-color,scale] duration-300 hover:bg-transparent hover:text-neutral-900 active:scale-[0.96]"
+              >
+                {t.heroCta}
+                <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+              </a>
+              <a
+                href="/robot-rental"
+                className="group inline-flex items-center justify-center gap-2 border border-neutral-300 px-8 py-4 font-mono text-sm font-bold uppercase tracking-[0.08em] text-neutral-600 transition-[color,border-color,scale] duration-300 hover:border-neutral-900 hover:text-neutral-900 active:scale-[0.96]"
+              >
+                {t.heroCta2}
+                <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-0.5">↗</span>
+              </a>
+            </div>
+          </Reveal>
         </div>
       </section>
 
       {/* WHY NOW */}
-      <section className="py-14 lg:py-20 bg-white">
+      <section className="py-20 lg:py-28 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <Reveal>
-            <Label>{t.whyLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-snug mb-4 max-w-3xl">{t.whyTitle}</h2>
-            <p className="text-sm text-gray-500 mb-8 max-w-3xl leading-relaxed">{t.whyDesc}</p>
-          </Reveal>
-          <div className="grid sm:grid-cols-2 gap-6">
+          <SectionHead index="01" kicker={t.whyLabel} title={t.whyTitle} desc={t.whyDesc} />
+          <div className="grid sm:grid-cols-2 gap-4">
             {t.why.map((item, i) => (
               <Reveal key={item.num} delay={i * 80}>
-                <div className="rounded-lg border border-gray-200 bg-white p-8 hover:shadow-lg transition-all duration-300 h-full">
-                  <div className="flex items-center gap-3 mb-2">
-                    <span className="text-sm font-bold text-neutral-900 flex-shrink-0">{item.num}</span>
-                    <h3 className="text-lg font-bold text-gray-900">{item.title}</h3>
+                <div className="group h-full border border-neutral-900 bg-white p-8 lg:p-10 transition-colors duration-300 hover:bg-neutral-900">
+                  <div className="flex items-baseline justify-between border-b border-neutral-200 pb-4 transition-colors duration-300 group-hover:border-neutral-700">
+                    <span className="font-mono text-2xl font-bold tabular-nums text-neutral-900 transition-colors duration-300 group-hover:text-white">
+                      {item.num}
+                    </span>
+                    <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-400">Why / {item.num}</span>
                   </div>
-                  <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
+                  <h3 className="mt-6 text-xl lg:text-2xl font-bold tracking-tight text-balance text-neutral-900 transition-colors duration-300 group-hover:text-white">
+                    {item.title}
+                  </h3>
+                  <p className="mt-4 text-[15px] leading-relaxed text-pretty text-neutral-600 transition-colors duration-300 group-hover:text-neutral-300">
+                    {item.desc}
+                  </p>
                 </div>
               </Reveal>
             ))}
@@ -236,23 +291,20 @@ export default function SpatialScanPage() {
       </section>
 
       {/* STEPS */}
-      <section className="py-14 lg:py-20 bg-gray-50">
+      <section className="py-20 lg:py-28 bg-neutral-50 border-y border-neutral-900">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <Reveal>
-            <Label>{t.stepLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4 max-w-3xl">{t.stepTitle}</h2>
-            <p className="text-sm text-gray-500 mb-8 max-w-3xl leading-relaxed">{t.stepDesc}</p>
-          </Reveal>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <SectionHead index="02" kicker={t.stepLabel} title={t.stepTitle} desc={t.stepDesc} />
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
             {t.steps.map((s, i) => (
               <Reveal key={s.num} delay={i * 80} className="h-full">
-                <div className="h-full rounded-lg border border-gray-200 bg-white p-6 lg:p-7 hover:shadow-lg transition-all duration-300">
-                  <div className="flex items-baseline justify-between">
-                    <span className="text-3xl font-bold text-gray-900">{s.num}</span>
-                    <span className="text-[10px] font-bold tracking-widest uppercase text-neutral-900 rounded-md bg-neutral-100 px-2.5 py-1">{s.en}</span>
+                <div className="flex h-full flex-col border border-neutral-900 bg-white p-7 lg:p-8">
+                  <div className="mb-6 flex items-center justify-between border-b border-neutral-200 pb-3">
+                    <span className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-neutral-900">{s.en}</span>
+                    <span className="font-mono text-[10px] tabular-nums text-neutral-400">{s.num}</span>
                   </div>
-                  <h3 className="mt-5 text-lg font-bold text-gray-900">{s.title}</h3>
-                  <p className="mt-3 text-sm text-gray-600 leading-relaxed">{s.desc}</p>
+                  <span className="font-mono text-3xl font-bold tabular-nums text-neutral-900">{s.num}</span>
+                  <h3 className="mt-4 text-lg font-bold tracking-tight text-balance text-neutral-900">{s.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-pretty text-neutral-600">{s.desc}</p>
                 </div>
               </Reveal>
             ))}
@@ -261,22 +313,22 @@ export default function SpatialScanPage() {
       </section>
 
       {/* DELIVERABLES */}
-      <section className="py-14 lg:py-20 bg-white">
+      <section className="py-20 lg:py-28 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <Reveal>
-            <Label>{t.outLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4 max-w-3xl">{t.outTitle}</h2>
-            <p className="text-sm text-gray-500 mb-8 max-w-3xl leading-relaxed">{t.outDesc}</p>
-          </Reveal>
-          <div className="grid sm:grid-cols-2 gap-6">
+          <SectionHead index="03" kicker={t.outLabel} title={t.outTitle} desc={t.outDesc} />
+          <div className="grid sm:grid-cols-2 gap-4">
             {t.outputs.map((o, i) => (
               <Reveal key={o.title} delay={i * 80} className="h-full">
-                <div className="h-full rounded-lg border border-gray-200 bg-white p-7 lg:p-8 hover:shadow-lg transition-all duration-300 flex gap-5">
-                  <span className="flex-shrink-0 w-9 h-9 rounded-full bg-neutral-900 text-white flex items-center justify-center text-sm font-bold">{String(i + 1).padStart(2, "0")}</span>
-                  <div>
-                    <h3 className="text-lg font-bold text-gray-900">{o.title}</h3>
-                    <p className="mt-2 text-sm text-gray-600 leading-relaxed">{o.desc}</p>
-                  </div>
+                <div className="group h-full border border-neutral-900 bg-white p-7 lg:p-8 transition-colors duration-300 hover:bg-neutral-900">
+                  <span className="mb-4 block font-mono text-xs font-bold tabular-nums text-neutral-400 transition-colors duration-300 group-hover:text-white">
+                    OUT.{String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="mb-3 text-lg font-bold tracking-tight text-balance text-neutral-900 transition-colors duration-300 group-hover:text-white">
+                    {o.title}
+                  </h3>
+                  <p className="text-sm leading-relaxed text-pretty text-neutral-600 transition-colors duration-300 group-hover:text-neutral-300">
+                    {o.desc}
+                  </p>
                 </div>
               </Reveal>
             ))}
@@ -285,20 +337,19 @@ export default function SpatialScanPage() {
       </section>
 
       {/* USE CASES */}
-      <section className="py-14 lg:py-20 bg-gray-50">
+      <section className="py-20 lg:py-28 bg-neutral-50 border-y border-neutral-900">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <Reveal>
-            <Label>{t.useLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4 max-w-3xl">{t.useTitle}</h2>
-            <p className="text-sm text-gray-500 mb-8 max-w-3xl leading-relaxed">{t.useDesc}</p>
-          </Reveal>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <SectionHead index="04" kicker={t.useLabel} title={t.useTitle} desc={t.useDesc} />
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {t.uses.map((u, i) => (
               <Reveal key={u.title} delay={i * 80} className="h-full">
-                <div className="h-full rounded-lg border border-gray-200 bg-white p-6 lg:p-7 hover:shadow-lg transition-all duration-300 flex flex-col">
-                  <span className="inline-block text-[10px] font-bold tracking-widest text-neutral-900 uppercase mb-3 self-start rounded-md bg-neutral-100 px-2.5 py-1">{u.tag}</span>
-                  <h3 className="text-base font-bold text-gray-900 leading-snug mb-3">{u.title}</h3>
-                  <p className="text-sm text-gray-600 leading-relaxed">{u.desc}</p>
+                <div className="flex h-full flex-col border border-neutral-900 bg-white p-6 lg:p-7">
+                  <div className="mb-6 flex items-center justify-between border-b border-neutral-200 pb-3">
+                    <span className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-neutral-900">{u.tag}</span>
+                    <span className="font-mono text-[10px] tabular-nums text-neutral-400">{String(i + 1).padStart(2, "0")}</span>
+                  </div>
+                  <h3 className="mb-3 text-base font-bold tracking-tight text-balance text-neutral-900 leading-snug">{u.title}</h3>
+                  <p className="text-sm leading-relaxed text-pretty text-neutral-600">{u.desc}</p>
                 </div>
               </Reveal>
             ))}
@@ -307,19 +358,18 @@ export default function SpatialScanPage() {
       </section>
 
       {/* WHY clearAI */}
-      <section className="py-14 lg:py-20 bg-white">
+      <section className="py-20 lg:py-28 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <Reveal>
-            <Label>{t.whyUsLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4 max-w-3xl">{t.whyUsTitle}</h2>
-            <p className="text-sm text-gray-500 mb-8 max-w-3xl leading-relaxed">{t.whyUsDesc}</p>
-          </Reveal>
-          <div className="grid md:grid-cols-3 gap-6">
+          <SectionHead index="05" kicker={t.whyUsLabel} title={t.whyUsTitle} desc={t.whyUsDesc} />
+          <div className="grid md:grid-cols-3 gap-4">
             {t.whyUs.map((w, i) => (
               <Reveal key={w.title} delay={i * 80} className="h-full">
-                <div className="h-full rounded-lg border border-gray-200 bg-white p-8 hover:shadow-lg transition-all duration-300">
-                  <h3 className="text-lg font-bold text-gray-900">{w.title}</h3>
-                  <p className="mt-3 text-sm text-gray-600 leading-relaxed">{w.desc}</p>
+                <div className="group h-full border border-neutral-900 bg-white p-8 lg:p-10 transition-colors duration-300 hover:bg-neutral-900">
+                  <span className="mb-6 block font-mono text-xs font-bold tabular-nums text-neutral-400 transition-colors duration-300 group-hover:text-white">
+                    {String(i + 1).padStart(2, "0")} / {String(t.whyUs.length).padStart(2, "0")}
+                  </span>
+                  <h3 className="text-lg lg:text-xl font-bold tracking-tight text-balance text-neutral-900 transition-colors duration-300 group-hover:text-white">{w.title}</h3>
+                  <p className="mt-4 text-sm leading-relaxed text-pretty text-neutral-600 transition-colors duration-300 group-hover:text-neutral-300">{w.desc}</p>
                 </div>
               </Reveal>
             ))}
@@ -328,21 +378,19 @@ export default function SpatialScanPage() {
       </section>
 
       {/* FAQ */}
-      <section className="py-14 lg:py-20 bg-gray-50">
+      <section className="py-20 lg:py-28 bg-neutral-50 border-t border-neutral-900">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <Reveal>
-            <Label>{t.faqLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-8">{t.faqTitle}</h2>
-          </Reveal>
-          <div className="max-w-3xl">
+          <SectionHead index="06" kicker={t.faqLabel} title={t.faqTitle} />
+          <div className="max-w-3xl border-t border-neutral-900">
             {t.faq.map((item, i) => (
               <Reveal key={i} delay={i * 60}>
-                <details className="border-b border-gray-200 py-2.5 md:py-5 group">
-                  <summary className="font-semibold text-gray-900 cursor-pointer list-none flex items-center justify-between gap-4">
-                    <span>{item.q}</span>
-                    <span className="text-gray-400 text-lg leading-none flex-shrink-0 transition-transform duration-300 group-open:rotate-45">+</span>
+                <details className="group border-b border-neutral-300 py-5">
+                  <summary className="flex cursor-pointer list-none items-start gap-4 text-base font-semibold text-neutral-900">
+                    <span className="mt-0.5 font-mono text-xs tabular-nums text-neutral-400">Q{String(i + 1).padStart(2, "0")}</span>
+                    <span className="flex-1">{item.q}</span>
+                    <span className="font-mono text-lg leading-none text-neutral-400 transition-transform duration-300 group-open:rotate-45">+</span>
                   </summary>
-                  <p className="text-gray-600 text-sm leading-relaxed mt-3">{item.a}</p>
+                  <p className="mt-4 pl-9 text-sm leading-relaxed text-pretty text-neutral-600">{item.a}</p>
                 </details>
               </Reveal>
             ))}
@@ -351,13 +399,28 @@ export default function SpatialScanPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-14 lg:py-20 bg-white">
-        <div className="max-w-2xl mx-auto px-6 text-center">
+      <section className="bg-neutral-900 py-24 lg:py-32">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
-            <Label>{t.ctaLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">{t.ctaTitle}</h2>
-            <p className="text-base text-gray-600 leading-relaxed mb-10">{t.ctaDesc}</p>
-            <a href="/contact" className="rounded-md bg-neutral-900 text-white font-semibold px-10 py-4 hover:bg-neutral-800 transition-colors duration-300 inline-block">{t.ctaButton}</a>
+            <div className="flex items-center gap-4 border-b border-neutral-700 pb-4 font-mono text-[11px] uppercase tracking-[0.25em] text-neutral-500">
+              <span className="font-bold text-white">§07</span>
+              <span>{t.ctaLabel}</span>
+            </div>
+            <div className="mt-12 grid grid-cols-1 items-end gap-10 lg:grid-cols-12">
+              <div className="lg:col-span-8">
+                <h2 className="text-[24px] sm:text-4xl lg:text-5xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance text-white">{t.ctaTitle}</h2>
+                <p className="mt-6 max-w-2xl text-base leading-relaxed text-pretty text-neutral-400">{t.ctaDesc}</p>
+              </div>
+              <div className="lg:col-span-4 lg:text-right">
+                <a
+                  href="/contact"
+                  className="group inline-flex items-center gap-3 border border-white bg-white px-8 py-4 font-mono text-sm font-bold uppercase tracking-[0.08em] text-neutral-900 transition-[color,background-color,border-color,scale] duration-300 hover:bg-transparent hover:text-white active:scale-[0.96]"
+                >
+                  {t.ctaButton}
+                  <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                </a>
+              </div>
+            </div>
           </Reveal>
         </div>
       </section>

@@ -24,8 +24,31 @@ function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; 
   );
 }
 
-function Label({ children }: { children: ReactNode }) {
-  return <p className="text-sm font-semibold text-neutral-900 mb-4">{children}</p>;
+function SectionHead({
+  index,
+  kicker,
+  title,
+  desc,
+  dark = false,
+}: {
+  index: string;
+  kicker: ReactNode;
+  title: ReactNode;
+  desc?: ReactNode;
+  dark?: boolean;
+}) {
+  return (
+    <Reveal className="mb-12 lg:mb-16">
+      <div className={`flex items-center gap-4 border-b pb-4 ${dark ? "border-white/25" : "border-neutral-900"}`}>
+        <span className={`font-mono text-xs font-bold tabular-nums ${dark ? "text-white" : "text-neutral-900"}`}>§{index}</span>
+        <span className={`font-mono text-[11px] font-medium uppercase tracking-[0.25em] ${dark ? "text-neutral-400" : "text-neutral-500"}`}>{kicker}</span>
+      </div>
+      <h2 className={`mt-8 max-w-4xl text-[24px] sm:text-4xl lg:text-5xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance ${dark ? "text-white" : "text-neutral-900"}`}>
+        {title}
+      </h2>
+      {desc && <p className={`mt-5 max-w-2xl text-[15px] leading-relaxed text-pretty ${dark ? "text-neutral-400" : "text-neutral-600"}`}>{desc}</p>}
+    </Reveal>
+  );
 }
 
 const TOOLS = [
@@ -399,27 +422,49 @@ export default function ClaudeBootcampPage() {
 
   return (
     <>
-      {/* HERO */}
-      <section className="pt-24 pb-12 lg:pt-28 lg:pb-16 bg-white border-b border-gray-100">
+      {/* HERO / MASTHEAD */}
+      <section className="bg-white pt-28 pb-14 lg:pt-32 lg:pb-20 border-b border-neutral-900">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
-            <span className="inline-flex items-center gap-2 rounded-full border border-neutral-300 bg-neutral-50 px-4 py-1.5 text-xs font-semibold text-neutral-700 mb-6">
-              <span className="w-1.5 h-1.5 rounded-full bg-neutral-900 animate-pulse" />{t.heroBadge}
-            </span>
-            <p className="text-sm font-semibold text-neutral-900 mb-3">{t.heroKicker}</p>
-            <h1 className="text-3xl lg:text-5xl font-bold text-gray-900 leading-[1.15] mb-6 max-w-[20ch] lg:max-w-[28ch]">
-              {t.heroTitlePre}<span className="underline decoration-2 underline-offset-4">{t.heroTitleHi}</span>{t.heroTitlePost}
+            {/* technical meta bar */}
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 border-b border-neutral-900 pb-4 font-mono text-[11px] uppercase tracking-[0.2em] text-neutral-500">
+              <span className="font-bold text-neutral-900">§00</span>
+              <span>{t.heroKicker}</span>
+              <span className="text-neutral-300">/</span>
+              <span>Claude</span>
+              <span className="text-neutral-300">/</span>
+              <span>Codex</span>
+              <span className="text-neutral-300">/</span>
+              <span>Nationwide&nbsp;Caravan</span>
+            </div>
+          </Reveal>
+          <Reveal delay={70}>
+            <div className="mt-6 flex items-start gap-2.5 border border-neutral-900 bg-neutral-50 px-4 py-2.5 font-mono text-[11px] leading-relaxed uppercase tracking-[0.12em] text-neutral-600">
+              <span className="mt-0.5 inline-block h-1.5 w-1.5 flex-shrink-0 bg-neutral-900 animate-pulse" />
+              <span className="normal-case tracking-normal">{t.heroBadge}</span>
+            </div>
+          </Reveal>
+          <Reveal delay={140}>
+            <h1 className="mt-10 max-w-[22ch] text-[12vw] sm:text-6xl lg:text-[104px] font-bold leading-[0.95] tracking-[-0.04em] text-balance text-neutral-900">
+              {t.heroTitlePre}<span className="underline decoration-[3px] underline-offset-[6px]">{t.heroTitleHi}</span>{t.heroTitlePost}
             </h1>
-            <p className="text-base lg:text-lg text-gray-600 leading-relaxed max-w-3xl mb-8">{t.heroDesc}</p>
-            <div className="flex flex-wrap items-center gap-4 mb-5">
-              <a href="/contact?service=training" className="rounded-md bg-neutral-900 text-white font-semibold px-8 py-3.5 hover:bg-neutral-800 transition-colors duration-300">
+          </Reveal>
+          <Reveal delay={220}>
+            <p className="mt-8 max-w-2xl text-base lg:text-lg leading-relaxed text-pretty text-neutral-600">{t.heroDesc}</p>
+          </Reveal>
+          <Reveal delay={280}>
+            <div className="mt-10 flex flex-wrap items-center gap-4">
+              <a href="/contact?service=training" className="group inline-flex items-center gap-3 border border-neutral-900 bg-neutral-900 px-8 py-4 font-mono text-sm font-bold uppercase tracking-[0.08em] text-white transition-[color,background-color,border-color,scale] duration-300 hover:bg-transparent hover:text-neutral-900 active:scale-[0.96]">
                 {t.heroCtaPrimary}
+                <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
               </a>
-              <a href="/contact?service=training" className="group inline-flex items-center gap-2 text-sm font-semibold text-neutral-900 hover:text-neutral-700 transition-colors">
-                {t.heroCtaSecondary} <span className="group-hover:translate-x-1 transition-transform">→</span>
+              <a href="/contact?service=training" className="group inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-[0.08em] text-neutral-900 transition-colors duration-300 hover:text-neutral-500">
+                {t.heroCtaSecondary} <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
               </a>
             </div>
-            <p className="text-xs text-gray-500">{t.heroTrust}</p>
+          </Reveal>
+          <Reveal delay={340}>
+            <p className="mt-6 font-mono text-[11px] uppercase tracking-[0.12em] text-neutral-500">{t.heroTrust}</p>
           </Reveal>
         </div>
       </section>
@@ -428,45 +473,49 @@ export default function ClaudeBootcampPage() {
       <ClientLogoMarquee label={t.marqueeLabel} note={t.marqueeNote} />
 
       {/* REASSURANCE BAND */}
-      <section className="py-12 lg:py-16 bg-gray-50 border-b border-gray-100">
+      <section className="py-14 lg:py-20 bg-neutral-50 border-b border-neutral-900">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4">
+          <div className="grid grid-cols-2 border-l border-t border-neutral-900 lg:grid-cols-4">
             {t.reassure.map((item, i) => (
               <Reveal key={item.t} delay={i * 70}>
-                <div className="rounded-lg border border-gray-200 bg-white p-5 lg:p-6 h-full">
-                  <div className="flex items-start gap-2.5">
-                    <span className="mt-0.5 text-neutral-900 font-bold flex-shrink-0">✓</span>
-                    <div>
-                      <h3 className="text-sm lg:text-base font-bold text-gray-900 mb-1">{item.t}</h3>
-                      <p className="text-xs text-gray-600 leading-relaxed">{item.d}</p>
-                    </div>
+                <div className="h-full border-b border-r border-neutral-900 bg-white p-5 lg:p-6">
+                  <div className="mb-4 flex items-center justify-between border-b border-neutral-200 pb-3">
+                    <span className="font-mono text-[10px] tabular-nums text-neutral-400">{String(i + 1).padStart(2, "0")}</span>
+                    <span className="font-mono text-neutral-900">→</span>
                   </div>
+                  <h3 className="mb-1.5 text-sm lg:text-base font-bold tracking-tight text-balance text-neutral-900">{item.t}</h3>
+                  <p className="text-xs leading-relaxed text-pretty text-neutral-600">{item.d}</p>
                 </div>
               </Reveal>
             ))}
           </div>
           <Reveal delay={300}>
-            <div className="text-center mt-8">
-              <a href="/contact?service=training" className="rounded-md bg-neutral-900 text-white font-semibold px-8 py-3.5 hover:bg-neutral-800 transition-colors duration-300 inline-block">
+            <div className="mt-10 flex flex-col items-center">
+              <a href="/contact?service=training" className="group inline-flex items-center gap-3 border border-neutral-900 bg-neutral-900 px-8 py-4 font-mono text-sm font-bold uppercase tracking-[0.08em] text-white transition-[color,background-color,border-color,scale] duration-300 hover:bg-transparent hover:text-neutral-900 active:scale-[0.96]">
                 {t.reassureCta}
+                <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
               </a>
-              <p className="text-xs text-gray-500 mt-3">{t.reassureCtaSub}</p>
+              <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.12em] text-neutral-500">{t.reassureCtaSub}</p>
             </div>
           </Reveal>
         </div>
       </section>
 
       {/* TECH STACK LOGOS */}
-      <section className="py-10 lg:py-14 bg-white border-b border-gray-100">
+      <section className="py-12 lg:py-16 bg-white border-b border-neutral-900">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
-            <p className="text-center text-xs font-semibold tracking-[0.2em] text-gray-400 uppercase mb-8">{t.stackLabel}</p>
-            <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-6 lg:gap-x-16">
+            <div className="mb-8 flex items-center gap-4 font-mono text-[11px] uppercase tracking-[0.25em] text-neutral-500">
+              <span className="text-neutral-300">//</span>
+              <span>{t.stackLabel}</span>
+              <span className="h-px flex-1 bg-neutral-200" />
+            </div>
+            <div className="grid grid-cols-2 border-l border-t border-neutral-300 sm:grid-cols-3 lg:grid-cols-6">
               {TOOLS.map((tool) => (
-                <div key={tool.name} className="flex items-center gap-2.5">
+                <div key={tool.name} className="flex items-center gap-2.5 border-b border-r border-neutral-300 bg-white px-5 py-5 transition-colors duration-200 hover:border-neutral-900">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={tool.logo} alt={tool.name} className="h-6 lg:h-7 w-auto" />
-                  <span className="text-sm lg:text-base font-semibold text-neutral-800">{tool.name}</span>
+                  <span className="font-mono text-[13px] font-medium text-neutral-800">{tool.name}</span>
                 </div>
               ))}
             </div>
@@ -475,16 +524,23 @@ export default function ClaudeBootcampPage() {
       </section>
 
       {/* STATS */}
-      <section className="py-12 lg:py-16 bg-neutral-900">
+      <section className="py-16 lg:py-24 bg-neutral-900">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+          <Reveal>
+            <div className="mb-12 flex items-center gap-4 border-b border-white/20 pb-4 font-mono text-[11px] uppercase tracking-[0.25em] text-neutral-500">
+              <span className="font-bold text-white">§01</span>
+              <span>{t.statsLabel}</span>
+            </div>
+          </Reveal>
+          <div className="grid grid-cols-1 border-t border-white/15 md:grid-cols-3 md:border-t-0">
             {t.stats.map((s, i) => (
               <Reveal key={s.unit} delay={i * 100}>
-                <div className="border-l border-white/20 pl-6">
-                  <p className="text-5xl lg:text-6xl font-bold text-white mb-3 leading-none">
-                    {s.value}<span className="text-2xl lg:text-3xl text-white/60 ml-1">{s.unit}</span>
+                <div className="h-full border-b border-white/15 py-8 md:border-b-0 md:border-l md:py-0 md:pl-8">
+                  <span className="mb-6 block font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-500">STAT.{String(i + 1).padStart(2, "0")}</span>
+                  <p className="mb-3 font-bold tabular-nums leading-none text-white text-5xl lg:text-6xl">
+                    {s.value}<span className="ml-1 font-mono text-2xl font-medium text-white/50 lg:text-3xl">{s.unit}</span>
                   </p>
-                  <p className="text-sm text-white/70 leading-relaxed">{s.desc}</p>
+                  <p className="max-w-xs text-sm leading-relaxed text-pretty text-neutral-400">{s.desc}</p>
                 </div>
               </Reveal>
             ))}
@@ -493,19 +549,15 @@ export default function ClaudeBootcampPage() {
       </section>
 
       {/* PROBLEM */}
-      <section className="py-14 lg:py-20 bg-white">
+      <section className="py-20 lg:py-28 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <Reveal>
-            <Label>{t.painLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.painTitle}</h2>
-            <p className="text-sm text-gray-500 mb-8 max-w-3xl leading-relaxed">{t.painDesc}</p>
-          </Reveal>
+          <SectionHead index="02" kicker={t.painLabel} title={t.painTitle} desc={t.painDesc} />
           <CardCarousel gridClass="md:grid-cols-2 lg:grid-cols-3">
             {t.pains.map((p, i) => (
               <Reveal key={p} delay={i * 60}>
-                <div className="flex items-start gap-3 rounded-lg border border-gray-200 bg-gray-50 p-6 h-full">
-                  <span className="mt-0.5 text-lg font-bold text-neutral-400 flex-shrink-0">✓</span>
-                  <p className="text-sm text-gray-700 leading-relaxed">{p}</p>
+                <div className="flex h-full items-start gap-4 border border-neutral-900 bg-white p-6 lg:p-7">
+                  <span className="mt-0.5 flex-shrink-0 font-mono text-xs tabular-nums text-neutral-400">{String(i + 1).padStart(2, "0")}</span>
+                  <p className="text-sm leading-relaxed text-pretty text-neutral-700">{p}</p>
                 </div>
               </Reveal>
             ))}
@@ -514,28 +566,24 @@ export default function ClaudeBootcampPage() {
       </section>
 
       {/* PROMISE */}
-      <section className="py-14 lg:py-20 bg-gray-50">
+      <section className="py-20 lg:py-28 bg-neutral-50 border-y border-neutral-900">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <Reveal>
-            <Label>{t.promiseLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.promiseTitle}</h2>
-            <p className="text-sm text-gray-500 mb-8 max-w-3xl leading-relaxed">{t.promiseDesc}</p>
-          </Reveal>
+          <SectionHead index="03" kicker={t.promiseLabel} title={t.promiseTitle} desc={t.promiseDesc} />
           <CardCarousel gridClass="md:grid-cols-3">
             {t.promises.map((p, i) => (
               <Reveal key={p.num} delay={i * 100}>
-                <div className="rounded-lg border border-gray-200 bg-white p-8 hover:shadow-lg transition-all duration-300 h-full">
-                  <div className="flex items-center justify-between mb-3 h-8">
-                    <span className="text-2xl font-bold text-neutral-200">{p.num}</span>
-                    <div className="flex items-center gap-2.5">
+                <div className="group h-full border border-neutral-900 bg-white p-8 lg:p-10 transition-colors duration-300 hover:bg-neutral-900">
+                  <div className="mb-6 flex h-8 items-center justify-between border-b border-neutral-200 pb-4 transition-colors duration-300 group-hover:border-neutral-700">
+                    <span className="font-mono text-2xl font-bold tabular-nums text-neutral-900 transition-colors duration-300 group-hover:text-white">{p.num}</span>
+                    <div className="flex items-center gap-2.5 opacity-100 transition-[filter] duration-300 group-hover:[filter:invert(1)_grayscale(1)_brightness(2)]">
                       {p.icons.map((ic) => (
                         // eslint-disable-next-line @next/next/no-img-element
                         <img key={ic} src={ic} alt="" className="h-6 w-auto" />
                       ))}
                     </div>
                   </div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-3">{p.title}</h3>
-                  <p className="text-sm text-gray-600 leading-relaxed">{p.desc}</p>
+                  <h3 className="mt-6 text-lg lg:text-xl font-bold tracking-tight text-balance text-neutral-900 transition-colors duration-300 group-hover:text-white">{p.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-pretty text-neutral-600 transition-colors duration-300 group-hover:text-neutral-300">{p.desc}</p>
                 </div>
               </Reveal>
             ))}
@@ -544,38 +592,40 @@ export default function ClaudeBootcampPage() {
       </section>
 
       {/* GUARANTEE */}
-      <section className="py-14 lg:py-20 bg-white">
+      <section className="py-20 lg:py-28 bg-white">
         <div className="max-w-5xl mx-auto px-6 lg:px-8">
           <Reveal>
-            <div className="rounded-lg border-2 border-neutral-900 bg-neutral-900 text-white p-8 lg:p-12 text-center">
-              <span className="inline-block rounded-md bg-white text-neutral-900 px-4 py-1.5 text-xs font-bold tracking-wide mb-6">{t.guaranteeBadge}</span>
-              <h2 className="text-2xl lg:text-3xl font-bold leading-snug mb-5 max-w-3xl mx-auto">{t.guaranteeTitle}</h2>
-              <p className="text-sm lg:text-base text-white/80 leading-relaxed max-w-2xl mx-auto">{t.guaranteeDesc}</p>
+            <div className="border border-neutral-900 bg-neutral-900 p-8 lg:p-14 text-white">
+              <div className="flex items-center gap-4 border-b border-white/20 pb-4 font-mono text-[11px] uppercase tracking-[0.25em] text-neutral-500">
+                <span className="border border-white/40 px-2 py-0.5 font-bold text-white">{t.guaranteeBadge}</span>
+                <span className="text-neutral-500">// Outcome guarantee</span>
+              </div>
+              <h2 className="mt-8 max-w-3xl text-[24px] sm:text-3xl lg:text-4xl font-bold leading-[1.2] tracking-[-0.02em] text-balance">{t.guaranteeTitle}</h2>
+              <p className="mt-6 max-w-2xl text-sm lg:text-base leading-relaxed text-pretty text-neutral-400">{t.guaranteeDesc}</p>
             </div>
           </Reveal>
         </div>
       </section>
 
       {/* WHY */}
-      <section className="py-14 lg:py-20 bg-gray-50">
+      <section className="py-20 lg:py-28 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <Reveal>
-            <Label>{t.whyLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-snug mb-4 max-w-4xl">{t.whyTitle}</h2>
-            <p className="text-sm text-gray-500 mb-8 max-w-3xl leading-relaxed">{t.whyDesc}</p>
-          </Reveal>
+          <SectionHead index="04" kicker={t.whyLabel} title={t.whyTitle} desc={t.whyDesc} />
           <CardCarousel gridClass="md:grid-cols-2">
             {t.whyPoints.map((p, i) => (
               <Reveal key={p.title} delay={i * 80}>
-                <div className="rounded-lg border border-gray-200 bg-white p-8 hover:shadow-lg transition-all duration-300 h-full">
-                  <div className="flex items-center gap-3 mb-4 h-8">
-                    {p.icons.map((ic) => (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img key={ic} src={ic} alt="" className="h-7 w-auto" />
-                    ))}
+                <div className="group h-full border border-neutral-900 bg-white p-8 lg:p-10 transition-colors duration-300 hover:bg-neutral-900">
+                  <div className="mb-6 flex h-8 items-center justify-between border-b border-neutral-200 pb-4 transition-colors duration-300 group-hover:border-neutral-700">
+                    <span className="font-mono text-[10px] tabular-nums uppercase tracking-[0.2em] text-neutral-400">Why / {String(i + 1).padStart(2, "0")}</span>
+                    <div className="flex items-center gap-3 transition-[filter] duration-300 group-hover:[filter:invert(1)_grayscale(1)_brightness(2)]">
+                      {p.icons.map((ic) => (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img key={ic} src={ic} alt="" className="h-7 w-auto" />
+                      ))}
+                    </div>
                   </div>
-                  <h3 className="text-base font-bold text-gray-900 mb-2">{p.title}</h3>
-                  <p className="text-sm text-gray-600 leading-relaxed">{p.desc}</p>
+                  <h3 className="mt-6 text-base lg:text-lg font-bold tracking-tight text-balance text-neutral-900 transition-colors duration-300 group-hover:text-white">{p.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-pretty text-neutral-600 transition-colors duration-300 group-hover:text-neutral-300">{p.desc}</p>
                 </div>
               </Reveal>
             ))}
@@ -584,46 +634,48 @@ export default function ClaudeBootcampPage() {
       </section>
 
       {/* ONE DAY TIMETABLE */}
-      <section className="py-14 lg:py-20 bg-white">
+      <section className="py-20 lg:py-28 bg-neutral-50 border-y border-neutral-900">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <Reveal>
-            <Label>{t.dayLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.dayTitle}</h2>
-            <p className="text-sm text-gray-500 mb-8 max-w-3xl leading-relaxed">{t.dayDesc}</p>
-          </Reveal>
-          <div className="rounded-lg border border-gray-200 bg-white overflow-hidden">
+          <SectionHead index="05" kicker={t.dayLabel} title={t.dayTitle} desc={t.dayDesc} />
+          {/* table header */}
+          <div className="hidden lg:grid grid-cols-12 gap-6 border-b border-neutral-900 pb-3 font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-400">
+            <div className="col-span-2">Time</div>
+            <div className="col-span-3">Phase</div>
+            <div className="col-span-7">Detail</div>
+          </div>
+          <div className="border-t border-neutral-900 lg:border-t-0">
             {t.dayRows.map((row, i) => (
               <Reveal key={row.time} delay={i * 50}>
-                <div className={`flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-6 px-6 py-5 ${i > 0 ? "border-t border-gray-100" : ""}`}>
-                  <span className="text-sm font-bold text-neutral-900 tabular-nums sm:w-16 flex-shrink-0">{row.time}</span>
-                  <div className="flex-1">
-                    <h3 className="text-base font-bold text-gray-900 mb-1">{row.title}</h3>
-                    <p className="text-sm text-gray-600 leading-relaxed">{row.desc}</p>
+                <div className="group grid grid-cols-1 gap-2 border-b border-neutral-200 py-6 transition-colors duration-300 hover:bg-white lg:grid-cols-12 lg:gap-6">
+                  <div className="lg:col-span-2">
+                    <span className="font-mono text-lg font-bold tabular-nums text-neutral-900">{row.time}</span>
+                  </div>
+                  <div className="lg:col-span-3">
+                    <h3 className="text-base font-bold tracking-tight text-balance text-neutral-900">{row.title}</h3>
+                  </div>
+                  <div className="lg:col-span-7">
+                    <p className="text-sm leading-relaxed text-pretty text-neutral-600">{row.desc}</p>
                   </div>
                 </div>
               </Reveal>
             ))}
           </div>
           <Reveal delay={150}>
-            <p className="text-xs text-gray-500 mt-6">{t.dayNote}</p>
+            <p className="mt-6 font-mono text-[11px] leading-relaxed text-neutral-500">{t.dayNote}</p>
           </Reveal>
         </div>
       </section>
 
       {/* OUTCOMES / BUILDS */}
-      <section className="py-14 lg:py-20 bg-neutral-900">
+      <section className="py-20 lg:py-28 bg-neutral-900">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <Reveal>
-            <p className="text-sm font-semibold text-white mb-4">{t.buildLabel}</p>
-            <h2 className="text-3xl font-bold text-white leading-tight mb-4">{t.buildTitle}</h2>
-            <p className="text-sm text-white/60 mb-8 max-w-3xl leading-relaxed">{t.buildDesc}</p>
-          </Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          <SectionHead index="06" kicker={t.buildLabel} title={t.buildTitle} desc={t.buildDesc} dark />
+          <div className="grid grid-cols-1 border-l border-t border-white/15 sm:grid-cols-2 lg:grid-cols-4">
             {t.builds.map((b, i) => (
               <Reveal key={b} delay={i * 50}>
-                <div className="rounded-lg bg-white/5 border border-white/15 px-5 py-4 h-full flex items-center gap-3">
-                  <span className="text-white/40 font-bold flex-shrink-0">→</span>
-                  <p className="text-sm text-white/90 leading-snug">{b}</p>
+                <div className="flex h-full items-start gap-3 border-b border-r border-white/15 bg-neutral-900 px-5 py-5 transition-colors duration-300 hover:bg-white/[0.04]">
+                  <span className="flex-shrink-0 font-mono text-xs tabular-nums text-neutral-500">{String(i + 1).padStart(2, "0")}</span>
+                  <p className="text-sm leading-snug text-pretty text-white/90">{b}</p>
                 </div>
               </Reveal>
             ))}
@@ -632,18 +684,15 @@ export default function ClaudeBootcampPage() {
       </section>
 
       {/* FOR */}
-      <section className="py-14 lg:py-20 bg-white">
+      <section className="py-20 lg:py-28 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <Reveal>
-            <Label>{t.forLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-8">{t.forTitle}</h2>
-          </Reveal>
+          <SectionHead index="07" kicker={t.forLabel} title={t.forTitle} />
           <CardCarousel gridClass="md:grid-cols-2">
             {t.forItems.map((item, i) => (
               <Reveal key={item.text} delay={i * 60}>
-                <div className={`flex items-start gap-3 rounded-lg border p-6 h-full ${item.ok ? "border-neutral-300 bg-white" : "border-gray-100 bg-gray-50"}`}>
-                  <span className={`mt-0.5 text-lg font-bold flex-shrink-0 ${item.ok ? "text-neutral-900" : "text-gray-300"}`}>{item.ok ? "✓" : "—"}</span>
-                  <p className={`text-sm leading-relaxed ${item.ok ? "text-gray-800 font-medium" : "text-gray-400"}`}>{item.text}</p>
+                <div className={`flex h-full items-start gap-4 border p-6 lg:p-7 ${item.ok ? "border-neutral-900 bg-white" : "border-neutral-300 bg-neutral-50"}`}>
+                  <span className={`mt-0.5 flex-shrink-0 font-mono text-xs font-bold tabular-nums ${item.ok ? "text-neutral-900" : "text-neutral-400"}`}>{item.ok ? "YES" : "NO"}</span>
+                  <p className={`text-sm leading-relaxed text-pretty ${item.ok ? "font-medium text-neutral-800" : "text-neutral-400"}`}>{item.text}</p>
                 </div>
               </Reveal>
             ))}
@@ -652,103 +701,113 @@ export default function ClaudeBootcampPage() {
       </section>
 
       {/* CARAVAN */}
-      <section className="py-14 lg:py-20 bg-gray-50">
+      <section className="py-20 lg:py-28 bg-neutral-50 border-y border-neutral-900">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <Reveal>
-            <Label>{t.caravanLabel}</Label>
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4 max-w-4xl">{t.caravanTitle}</h2>
-            <p className="text-sm text-gray-500 mb-8 max-w-3xl leading-relaxed">{t.caravanDesc}</p>
-          </Reveal>
+          <SectionHead index="08" kicker={t.caravanLabel} title={t.caravanTitle} desc={t.caravanDesc} />
           <CardCarousel gridClass="sm:grid-cols-2 lg:grid-cols-4">
             {t.caravanSteps.map((step, i) => (
               <Reveal key={step.num} delay={i * 80}>
-                <div className="relative rounded-lg border border-gray-200 bg-white p-6 h-full">
-                  <span className="text-2xl font-bold text-neutral-200">{step.num}</span>
-                  <h3 className="text-sm font-bold text-gray-900 mt-2 mb-2">{step.title}</h3>
-                  <p className="text-xs text-gray-600 leading-relaxed">{step.desc}</p>
+                <div className="group flex h-full flex-col border border-neutral-900 bg-white p-6 lg:p-7 transition-colors duration-300 hover:bg-neutral-900">
+                  <div className="mb-5 flex items-center justify-between border-b border-neutral-200 pb-3 transition-colors duration-300 group-hover:border-neutral-700">
+                    <span className="font-mono text-2xl font-bold tabular-nums text-neutral-900 transition-colors duration-300 group-hover:text-white">{step.num}</span>
+                    <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-400">Step</span>
+                  </div>
+                  <h3 className="mb-2 text-sm font-bold tracking-tight text-balance text-neutral-900 transition-colors duration-300 group-hover:text-white">{step.title}</h3>
+                  <p className="text-xs leading-relaxed text-pretty text-neutral-600 transition-colors duration-300 group-hover:text-neutral-300">{step.desc}</p>
                 </div>
               </Reveal>
             ))}
           </CardCarousel>
           <Reveal delay={150}>
-            <p className="text-xs text-gray-500 mt-6 max-w-3xl">{t.caravanNote}</p>
+            <p className="mt-6 max-w-3xl font-mono text-[11px] leading-relaxed text-neutral-500">{t.caravanNote}</p>
           </Reveal>
         </div>
       </section>
 
       {/* PRICING */}
-      <section className="py-14 lg:py-20 bg-white">
+      <section className="py-20 lg:py-28 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <Reveal>
-            <Label>{t.pricingLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.pricingTitle}</h2>
-            <p className="text-sm text-gray-500 mb-8 max-w-3xl leading-relaxed">{t.pricingDesc}</p>
-          </Reveal>
+          <SectionHead index="09" kicker={t.pricingLabel} title={t.pricingTitle} desc={t.pricingDesc} />
           <PricingCarousel>
             {t.plans.map((plan, i) => (
               <Reveal key={plan.name} delay={i * 100} className="flex">
-                <div className={`rounded-lg p-5 lg:p-6 transition-all duration-300 flex flex-col w-full ${plan.featured ? "bg-neutral-900 text-white shadow-xl" : "bg-white border border-gray-200 hover:shadow-lg"}`}>
-                  {plan.featured && plan.badge && <span className="inline-block rounded-md bg-white/20 text-white px-3 py-1 text-sm font-semibold mb-3 self-start">{plan.badge}</span>}
-                  <h3 className={`text-base font-bold mb-1.5 ${plan.featured ? "text-white" : "text-gray-900"}`}>{plan.name}</h3>
-                  <div className="mb-2 flex items-baseline gap-1">
-                    <span className={`text-xl font-bold ${plan.featured ? "text-white" : "text-gray-900"}`}>{plan.price}</span>
-                    {plan.unit && <span className={`text-sm ${plan.featured ? "text-white/80" : "text-gray-500"}`}>{plan.unit}</span>}
+                <div className={`flex w-full flex-col border p-6 lg:p-7 ${plan.featured ? "border-neutral-900 bg-neutral-900 text-white" : "border-neutral-900 bg-white"}`}>
+                  <div className={`mb-5 flex items-center justify-between border-b pb-3 ${plan.featured ? "border-white/20" : "border-neutral-200"}`}>
+                    <span className={`font-mono text-[10px] tabular-nums uppercase tracking-[0.2em] ${plan.featured ? "text-neutral-400" : "text-neutral-400"}`}>Plan.{String(i + 1).padStart(2, "0")}</span>
+                    {plan.featured && plan.badge && <span className="border border-white/40 px-2 py-0.5 font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-white">{plan.badge}</span>}
                   </div>
-                  <p className={`text-xs leading-relaxed mb-3 ${plan.featured ? "text-white/80" : "text-gray-600"}`}>{plan.desc}</p>
-                  <ul className="space-y-2 mb-4 flex-1">
+                  <h3 className={`mb-2 text-base font-bold tracking-tight text-balance ${plan.featured ? "text-white" : "text-neutral-900"}`}>{plan.name}</h3>
+                  <div className="mb-3 flex items-baseline gap-1">
+                    <span className={`font-mono text-xl font-bold tabular-nums ${plan.featured ? "text-white" : "text-neutral-900"}`}>{plan.price}</span>
+                    {plan.unit && <span className={`font-mono text-sm ${plan.featured ? "text-white/70" : "text-neutral-500"}`}>{plan.unit}</span>}
+                  </div>
+                  <p className={`mb-4 text-xs leading-relaxed text-pretty ${plan.featured ? "text-white/80" : "text-neutral-600"}`}>{plan.desc}</p>
+                  <ul className={`mb-5 flex-1 space-y-2.5 border-t pt-4 font-mono ${plan.featured ? "border-white/20" : "border-neutral-200"}`}>
                     {plan.features.map((f) => (
-                      <li key={f} className="flex items-start gap-3">
-                        <span className={`mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 ${plan.featured ? "bg-white/40" : "bg-neutral-900"}`} />
-                        <span className={`text-xs ${plan.featured ? "text-white/90" : "text-gray-600"}`}>{f}</span>
+                      <li key={f} className="flex items-start gap-2.5">
+                        <span className={`flex-shrink-0 ${plan.featured ? "text-white" : "text-neutral-900"}`}>→</span>
+                        <span className={`text-xs leading-relaxed ${plan.featured ? "text-white/90" : "text-neutral-600"}`}>{f}</span>
                       </li>
                     ))}
                   </ul>
-                  <a href="/contact?service=training" className={`block text-center text-sm font-semibold py-2 rounded-md transition-all duration-300 mt-auto ${plan.featured ? "bg-white text-neutral-900 hover:bg-neutral-100" : "border border-gray-200 text-gray-600 hover:border-gray-400 hover:text-gray-900"}`}>{t.planCta}</a>
+                  <a href="/contact?service=training" className={`group mt-auto flex items-center justify-center gap-2 border px-5 py-3 font-mono text-xs font-bold uppercase tracking-[0.08em] transition-[color,background-color,border-color,scale] duration-300 active:scale-[0.96] ${plan.featured ? "border-white bg-white text-neutral-900 hover:bg-transparent hover:text-white" : "border-neutral-900 bg-white text-neutral-900 hover:bg-neutral-900 hover:text-white"}`}>
+                    {t.planCta}
+                    <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                  </a>
                 </div>
               </Reveal>
             ))}
           </PricingCarousel>
           <Reveal delay={300}>
-            <p className="text-xs text-gray-500 text-center mt-8">{t.pricingNote}</p>
+            <p className="mt-8 text-center font-mono text-[11px] leading-relaxed text-neutral-500">{t.pricingNote}</p>
           </Reveal>
         </div>
       </section>
 
       {/* SUBSIDY */}
-      <section className="py-14 lg:py-20 bg-neutral-50">
-        <div className="max-w-5xl mx-auto px-6 lg:px-8">
+      <section className="py-20 lg:py-28 bg-white border-b border-neutral-900">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
-            <div className="text-center">
-              <Label>{t.subsidyLabel}</Label>
-              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4">
-                {t.subsidyTitlePre}<span className="underline decoration-2 underline-offset-4">{t.subsidyTitleHi}</span>{t.subsidyTitlePost}
-              </h2>
-              <p className="text-base text-gray-600 max-w-2xl mx-auto leading-relaxed mb-8">{t.subsidyDesc}</p>
-              <a href="/contact?service=training" className="rounded-md bg-neutral-900 text-white font-semibold px-8 py-3.5 hover:bg-neutral-800 transition-colors duration-300 inline-block">
-                {t.subsidyCta}
-              </a>
+            <div className="flex items-center gap-4 border-b border-neutral-900 pb-4 font-mono text-[11px] uppercase tracking-[0.25em] text-neutral-500">
+              <span className="font-bold text-neutral-900">§10</span>
+              <span>{t.subsidyLabel}</span>
+            </div>
+            <div className="mt-10 grid grid-cols-1 items-end gap-10 lg:grid-cols-12">
+              <div className="lg:col-span-8">
+                <h2 className="max-w-3xl text-[24px] sm:text-4xl lg:text-5xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance text-neutral-900">
+                  {t.subsidyTitlePre}<span className="underline decoration-[3px] underline-offset-[6px]">{t.subsidyTitleHi}</span>{t.subsidyTitlePost}
+                </h2>
+                <p className="mt-6 max-w-2xl text-[15px] leading-relaxed text-pretty text-neutral-600">{t.subsidyDesc}</p>
+              </div>
+              <div className="lg:col-span-4 lg:text-right">
+                <a href="/contact?service=training" className="group inline-flex items-center gap-3 border border-neutral-900 bg-neutral-900 px-8 py-4 font-mono text-sm font-bold uppercase tracking-[0.08em] text-white transition-[color,background-color,border-color,scale] duration-300 hover:bg-transparent hover:text-neutral-900 active:scale-[0.96]">
+                  {t.subsidyCta}
+                  <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                </a>
+              </div>
             </div>
           </Reveal>
         </div>
       </section>
 
       {/* INSTRUCTOR */}
-      <section className="py-14 lg:py-20 bg-white">
+      <section className="py-20 lg:py-28 bg-neutral-50 border-b border-neutral-900">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <div className="rounded-lg border border-neutral-200 bg-neutral-50 p-8 lg:p-12">
+          <div className="border border-neutral-900 bg-white p-8 lg:p-14">
             <Reveal>
-              <p className="inline-flex items-center gap-2 text-sm font-semibold text-neutral-900 mb-4">
-                <span className="w-2 h-2 rounded-full bg-neutral-900" />{t.instructorLabel}
-              </p>
-              <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 leading-snug mb-4 max-w-3xl">{t.instructorTitle}</h2>
-              <p className="text-sm text-gray-600 leading-relaxed mb-8 max-w-3xl">{t.instructorDesc}</p>
+              <div className="flex items-center gap-4 border-b border-neutral-900 pb-4 font-mono text-[11px] uppercase tracking-[0.25em] text-neutral-500">
+                <span className="font-bold text-neutral-900">§11</span>
+                <span>{t.instructorLabel}</span>
+              </div>
+              <h2 className="mt-8 max-w-3xl text-[24px] sm:text-3xl lg:text-4xl font-bold leading-[1.2] tracking-[-0.02em] text-balance text-neutral-900">{t.instructorTitle}</h2>
+              <p className="mt-5 max-w-3xl text-sm leading-relaxed text-pretty text-neutral-600">{t.instructorDesc}</p>
             </Reveal>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="mt-10 grid grid-cols-1 border-l border-t border-neutral-900 md:grid-cols-2">
               {t.instructorPoints.map((p, i) => (
                 <Reveal key={p} delay={i * 80}>
-                  <div className="flex items-start gap-3 rounded-lg bg-white border border-neutral-200 p-5 h-full">
-                    <span className="mt-0.5 text-neutral-900 font-bold flex-shrink-0">✓</span>
-                    <p className="text-sm text-gray-700 leading-relaxed">{p}</p>
+                  <div className="flex h-full items-start gap-4 border-b border-r border-neutral-900 bg-white p-5 lg:p-6">
+                    <span className="mt-0.5 flex-shrink-0 font-mono text-xs tabular-nums text-neutral-400">{String(i + 1).padStart(2, "0")}</span>
+                    <p className="text-sm leading-relaxed text-pretty text-neutral-700">{p}</p>
                   </div>
                 </Reveal>
               ))}
@@ -758,21 +817,19 @@ export default function ClaudeBootcampPage() {
       </section>
 
       {/* FAQ */}
-      <section className="py-14 lg:py-20 bg-gray-50">
-        <div className="max-w-3xl mx-auto px-6 lg:px-8">
-          <Reveal>
-            <Label>{t.faqLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-8">{t.faqTitle}</h2>
-          </Reveal>
-          <div className="space-y-3">
+      <section className="py-20 lg:py-28 bg-white">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
+          <SectionHead index="12" kicker={t.faqLabel} title={t.faqTitle} />
+          <div className="max-w-3xl border-t border-neutral-900">
             {t.faqItems.map((item, i) => (
               <Reveal key={item.q} delay={i * 50}>
-                <details className="group rounded-lg border border-gray-200 bg-white open:shadow-sm transition-all duration-300">
-                  <summary className="flex items-center justify-between gap-4 cursor-pointer list-none px-6 py-5">
-                    <span className="text-sm lg:text-base font-bold text-gray-900">{item.q}</span>
-                    <span className="text-neutral-400 text-xl font-light flex-shrink-0 transition-transform duration-300 group-open:rotate-45">+</span>
+                <details className="group border-b border-neutral-300 py-5">
+                  <summary className="flex cursor-pointer list-none items-start gap-4 text-base font-semibold text-neutral-900">
+                    <span className="mt-0.5 font-mono text-xs tabular-nums text-neutral-400">Q{String(i + 1).padStart(2, "0")}</span>
+                    <span className="flex-1">{item.q}</span>
+                    <span className="font-mono text-lg leading-none text-neutral-400 transition-transform duration-300 group-open:rotate-45">+</span>
                   </summary>
-                  <p className="px-6 pb-5 text-sm text-gray-600 leading-relaxed">{item.a}</p>
+                  <p className="mt-4 pl-9 text-sm leading-relaxed text-pretty text-neutral-600">{item.a}</p>
                 </details>
               </Reveal>
             ))}
@@ -781,51 +838,60 @@ export default function ClaudeBootcampPage() {
       </section>
 
       {/* 無料相談で行うこと */}
-      <section className="py-14 lg:py-20 bg-gray-50">
-        <div className="max-w-3xl mx-auto px-6 lg:px-8">
-          <Reveal>
-            <Label>{t.consultLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.consultTitle}</h2>
-            <p className="text-sm text-gray-500 mb-8 leading-relaxed">{t.consultDesc}</p>
-          </Reveal>
-          <div className="rounded-lg border border-gray-200 bg-white p-6 lg:p-8">
+      <section className="py-20 lg:py-28 bg-neutral-50 border-b border-neutral-900">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
+          <SectionHead index="13" kicker={t.consultLabel} title={t.consultTitle} desc={t.consultDesc} />
+          <div className="max-w-3xl border-t border-neutral-900">
             {t.consultItems.map((item, i) => (
               <Reveal key={item} delay={i * 60}>
-                <div className={`flex items-start gap-3 py-3 ${i > 0 ? "border-t border-gray-100" : ""}`}>
-                  <span className="mt-0.5 text-neutral-900 font-bold flex-shrink-0">✓</span>
-                  <p className="text-sm text-gray-700 leading-relaxed">{item}</p>
+                <div className="flex items-start gap-4 border-b border-neutral-300 py-4">
+                  <span className="mt-0.5 flex-shrink-0 font-mono text-xs tabular-nums text-neutral-400">{String(i + 1).padStart(2, "0")}</span>
+                  <p className="text-sm leading-relaxed text-pretty text-neutral-700">{item}</p>
                 </div>
               </Reveal>
             ))}
           </div>
           <Reveal delay={200}>
-            <p className="text-xs text-gray-500 mt-5 leading-relaxed">{t.consultNote}</p>
+            <p className="mt-6 max-w-3xl font-mono text-[11px] leading-relaxed text-neutral-500">{t.consultNote}</p>
           </Reveal>
         </div>
       </section>
 
       {/* FINAL CTA */}
-      <section className="py-16 lg:py-24 bg-neutral-900">
-        <div className="max-w-2xl mx-auto px-6 text-center">
+      <section className="bg-neutral-900 py-24 lg:py-32">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
-            <p className="text-sm font-semibold text-white/60 mb-4">{t.ctaLabel}</p>
-            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4 leading-tight">{t.ctaTitle}</h2>
-            <p className="text-base text-white/70 leading-relaxed mb-10">{t.ctaDesc}</p>
-            <a href="/contact?service=training" className="rounded-md bg-white text-neutral-900 font-semibold px-10 py-4 hover:bg-neutral-100 transition-colors duration-300 inline-block">{t.ctaButton}</a>
-            <p className="text-xs text-white/50 mt-5">{t.ctaSub}</p>
+            <div className="flex items-center gap-4 border-b border-neutral-700 pb-4 font-mono text-[11px] uppercase tracking-[0.25em] text-neutral-500">
+              <span className="font-bold text-white">§14</span>
+              <span>{t.ctaLabel}</span>
+            </div>
+            <div className="mt-12 grid grid-cols-1 items-end gap-10 lg:grid-cols-12">
+              <div className="lg:col-span-8">
+                <h2 className="text-[24px] sm:text-4xl lg:text-5xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance text-white">{t.ctaTitle}</h2>
+                <p className="mt-6 max-w-2xl text-base leading-relaxed text-pretty text-neutral-400">{t.ctaDesc}</p>
+                <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.12em] text-neutral-500">{t.ctaSub}</p>
+              </div>
+              <div className="lg:col-span-4 lg:text-right">
+                <a href="/contact?service=training" className="group inline-flex items-center gap-3 border border-white bg-white px-8 py-4 font-mono text-sm font-bold uppercase tracking-[0.08em] text-neutral-900 transition-[color,background-color,border-color,scale] duration-300 hover:bg-transparent hover:text-white active:scale-[0.96]">
+                  {t.ctaButton}
+                  <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                </a>
+              </div>
+            </div>
           </Reveal>
         </div>
       </section>
 
       {/* STICKY MOBILE CTA BAR */}
-      <div className="lg:hidden fixed bottom-0 inset-x-0 z-50 bg-white/95 backdrop-blur-md border-t border-gray-200">
+      <div className="lg:hidden fixed bottom-0 inset-x-0 z-50 bg-white/95 backdrop-blur-md border-t border-neutral-900">
         <div className="flex items-center justify-between gap-3 px-4 py-3">
           <div className="leading-tight">
-            <p className="text-[13px] font-bold text-gray-900">{t.stickyTitle}</p>
-            <p className="text-[10px] text-gray-500">{t.stickySub}</p>
+            <p className="text-[13px] font-bold text-neutral-900">{t.stickyTitle}</p>
+            <p className="font-mono text-[10px] uppercase tracking-[0.1em] text-neutral-500">{t.stickySub}</p>
           </div>
-          <a href="/contact?service=training" className="rounded-md bg-neutral-900 text-white text-sm font-semibold px-6 py-3 hover:bg-neutral-800 transition-colors whitespace-nowrap">
+          <a href="/contact?service=training" className="group inline-flex items-center gap-2 whitespace-nowrap border border-neutral-900 bg-neutral-900 px-6 py-3 font-mono text-sm font-bold uppercase tracking-[0.06em] text-white transition-[color,background-color,border-color,scale] duration-300 hover:bg-transparent hover:text-neutral-900 active:scale-[0.96]">
             {t.stickyBtn}
+            <span className="transition-transform duration-300 group-hover:translate-x-0.5">→</span>
           </a>
         </div>
       </div>
