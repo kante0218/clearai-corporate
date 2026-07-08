@@ -322,6 +322,12 @@ export default function AiConsultingPage() {
   const { lang } = useLanguage();
   const t = COPY[lang];
 
+  // 使用技術：全ロゴを2列に分けて逆方向に流すマーキー用
+  const allTech = t.techGroups.flatMap((g) => g.items);
+  const techMid = Math.ceil(allTech.length / 2);
+  const techRowA = allTech.slice(0, techMid);
+  const techRowB = allTech.slice(techMid);
+
   return (
     <>
       {/* MASTHEAD */}
@@ -489,35 +495,39 @@ export default function AiConsultingPage() {
       </section>
 
       {/* TECH STACK */}
-      <section className="py-20 lg:py-28 bg-white">
+      <section className="py-20 lg:py-28 bg-white overflow-x-clip">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <SectionHead index="06" kicker={t.techLabel} title={t.techTitle} desc={t.techDesc} />
-          <div className="border-t border-neutral-900">
-            {t.techGroups.map((group, gi) => (
-              <Reveal key={group.category} delay={gi * 40}>
-                <div className="grid gap-4 border-b border-neutral-300 py-7 lg:grid-cols-12 lg:gap-8">
-                  <div className="lg:col-span-2">
-                    <p className="flex items-baseline gap-2 font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-neutral-900">
-                      <span className="text-neutral-400">{String(gi + 1).padStart(2, "0")}</span>
-                      {group.category}
-                    </p>
-                    <h3 className="mt-1 text-sm font-bold text-neutral-700">{group.label}</h3>
-                  </div>
-                  <div className="lg:col-span-10">
-                    <div className="grid grid-cols-3 gap-2.5 sm:gap-3 lg:grid-cols-5">
-                      {group.items.map((tech) => (
-                        <div key={tech.name} className="flex aspect-square flex-col items-center justify-center gap-2 border border-neutral-300 bg-white p-3 transition-colors duration-200 hover:border-neutral-900 sm:gap-3 sm:p-5">
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img src={`/logos/tech/${techSlug(tech.name)}.svg`} alt={tech.name} className="w-8 h-8 object-contain" loading="lazy" />
-                          <p className="text-center font-mono text-[11px] leading-tight text-neutral-600">{tech.name}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
+        </div>
+        {/* 使用技術：色付きロゴが流れるマーキー（2列・逆方向・両端フェード・hoverで一時停止） */}
+        <div className="mt-8 md:mt-10 space-y-3 md:space-y-4">
+          {[techRowA, techRowB].map((row, ri) => (
+            <div key={ri} className="relative overflow-hidden">
+              <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-white to-transparent md:w-28" />
+              <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-white to-transparent md:w-28" />
+              <div
+                className={`flex w-max items-center gap-3 md:gap-4 hover:[animation-play-state:paused] ${
+                  ri === 0 ? "animate-[marquee_55s_linear_infinite]" : "animate-[marqueeReverse_55s_linear_infinite]"
+                }`}
+              >
+                {[...row, ...row].map((tech, i) => (
+                  <span
+                    key={`${tech.name}-${i}`}
+                    className="inline-flex shrink-0 items-center gap-2 border border-neutral-300 bg-white px-3.5 py-2 font-mono text-[13px] text-neutral-700"
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={`/logos/tech/${techSlug(tech.name)}.svg`}
+                      alt={tech.name}
+                      className="w-4 h-4 object-contain"
+                      loading="lazy"
+                    />
+                    {tech.name}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
