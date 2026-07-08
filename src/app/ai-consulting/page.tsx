@@ -5,6 +5,9 @@ import { useLanguage } from "@/lib/i18n/LanguageContext";
 import PricingCarousel from "@/components/PricingCarousel";
 import CardCarousel from "@/components/CardCarousel";
 
+// 使用技術ロゴは public/logos/tech/ のself-host版を利用（ホームと同一・確実に色付き表示）
+const techSlug = (name: string) => name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+
 function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
@@ -505,7 +508,7 @@ export default function AiConsultingPage() {
                       {group.items.map((tech) => (
                         <div key={tech.name} className="flex aspect-square flex-col items-center justify-center gap-2 border border-neutral-300 bg-white p-3 transition-colors duration-200 hover:border-neutral-900 sm:gap-3 sm:p-5">
                           {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img src={`https://api.iconify.design/${tech.icon}.svg${tech.color ? `?color=%23${tech.color}` : ''}`} alt={tech.name} className="w-8 h-8 object-contain grayscale" loading="lazy" />
+                          <img src={`/logos/tech/${techSlug(tech.name)}.svg`} alt={tech.name} className="w-8 h-8 object-contain" loading="lazy" />
                           <p className="text-center font-mono text-[11px] leading-tight text-neutral-600">{tech.name}</p>
                         </div>
                       ))}

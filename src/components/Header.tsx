@@ -39,7 +39,6 @@ export default function Header() {
         { label: h.navSns, href: "/sns", description: h.navSnsDesc },
       ],
     },
-    { label: h.navResearch, href: "/research" },
   ];
 
   const utilityItems: { label: string; href: string }[] = [
