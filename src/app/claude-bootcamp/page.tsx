@@ -43,7 +43,7 @@ function SectionHead({
         <span className={`font-mono text-xs font-bold tabular-nums ${dark ? "text-white" : "text-neutral-900"}`}>§{index}</span>
         <span className={`font-mono text-[11px] font-medium uppercase tracking-[0.25em] ${dark ? "text-neutral-400" : "text-neutral-500"}`}>{kicker}</span>
       </div>
-      <h2 className={`mt-8 max-w-4xl text-[22px] sm:text-3xl lg:text-4xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance ${dark ? "text-white" : "text-neutral-900"}`}>
+      <h2 className={`mt-8 max-w-4xl text-[20px] sm:text-2xl lg:text-3xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance ${dark ? "text-white" : "text-neutral-900"}`}>
         {title}
       </h2>
       {desc && <p className={`mt-5 max-w-2xl text-[15px] leading-relaxed text-pretty ${dark ? "text-neutral-400" : "text-neutral-600"}`}>{desc}</p>}
@@ -445,7 +445,7 @@ export default function ClaudeBootcampPage() {
             </div>
           </Reveal>
           <Reveal delay={140}>
-            <h1 className="mt-10 max-w-[22ch] text-[10vw] sm:text-5xl lg:text-7xl font-bold leading-[0.95] tracking-[-0.04em] text-balance text-neutral-900">
+            <h1 className="mt-10 max-w-[22ch] text-[8vw] sm:text-4xl lg:text-5xl font-bold leading-[0.95] tracking-[-0.04em] text-balance text-neutral-900">
               {t.heroTitlePre}<span className="underline decoration-[3px] underline-offset-[6px]">{t.heroTitleHi}</span>{t.heroTitlePost}
             </h1>
           </Reveal>
@@ -600,7 +600,7 @@ export default function ClaudeBootcampPage() {
                 <span className="border border-white/40 px-2 py-0.5 font-bold text-white">{t.guaranteeBadge}</span>
                 <span className="text-neutral-500">// Outcome guarantee</span>
               </div>
-              <h2 className="mt-8 max-w-3xl text-[24px] sm:text-3xl lg:text-4xl font-bold leading-[1.2] tracking-[-0.02em] text-balance">{t.guaranteeTitle}</h2>
+              <h2 className="mt-8 max-w-3xl text-[22px] sm:text-2xl lg:text-3xl font-bold leading-[1.2] tracking-[-0.02em] text-balance">{t.guaranteeTitle}</h2>
               <p className="mt-6 max-w-2xl text-sm lg:text-base leading-relaxed text-pretty text-neutral-400">{t.guaranteeDesc}</p>
             </div>
           </Reveal>
@@ -774,7 +774,7 @@ export default function ClaudeBootcampPage() {
             </div>
             <div className="mt-10 grid grid-cols-1 items-end gap-10 lg:grid-cols-12">
               <div className="lg:col-span-8">
-                <h2 className="max-w-3xl text-[22px] sm:text-3xl lg:text-4xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance text-neutral-900">
+                <h2 className="max-w-3xl text-[20px] sm:text-2xl lg:text-3xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance text-neutral-900">
                   {t.subsidyTitlePre}<span className="underline decoration-[3px] underline-offset-[6px]">{t.subsidyTitleHi}</span>{t.subsidyTitlePost}
                 </h2>
                 <p className="mt-6 max-w-2xl text-[15px] leading-relaxed text-pretty text-neutral-600">{t.subsidyDesc}</p>
@@ -799,7 +799,7 @@ export default function ClaudeBootcampPage() {
                 <span className="font-bold text-neutral-900">§11</span>
                 <span>{t.instructorLabel}</span>
               </div>
-              <h2 className="mt-8 max-w-3xl text-[24px] sm:text-3xl lg:text-4xl font-bold leading-[1.2] tracking-[-0.02em] text-balance text-neutral-900">{t.instructorTitle}</h2>
+              <h2 className="mt-8 max-w-3xl text-[22px] sm:text-2xl lg:text-3xl font-bold leading-[1.2] tracking-[-0.02em] text-balance text-neutral-900">{t.instructorTitle}</h2>
               <p className="mt-5 max-w-3xl text-sm leading-relaxed text-pretty text-neutral-600">{t.instructorDesc}</p>
             </Reveal>
             <div className="mt-10 grid grid-cols-1 border-l border-t border-neutral-900 md:grid-cols-2">
@@ -867,7 +867,7 @@ export default function ClaudeBootcampPage() {
             </div>
             <div className="mt-12 grid grid-cols-1 items-end gap-10 lg:grid-cols-12">
               <div className="lg:col-span-8">
-                <h2 className="text-[22px] sm:text-3xl lg:text-4xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance text-white">{t.ctaTitle}</h2>
+                <h2 className="text-[20px] sm:text-2xl lg:text-3xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance text-white">{t.ctaTitle}</h2>
                 <p className="mt-6 max-w-2xl text-base leading-relaxed text-pretty text-neutral-400">{t.ctaDesc}</p>
                 <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.12em] text-neutral-500">{t.ctaSub}</p>
               </div>

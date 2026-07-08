@@ -40,7 +40,7 @@ function SectionHead({
         <span className={`font-mono text-xs font-bold tabular-nums ${dark ? "text-white" : "text-neutral-900"}`}>§{index}</span>
         <span className={`font-mono text-[11px] font-medium uppercase tracking-[0.25em] ${dark ? "text-neutral-400" : "text-neutral-500"}`}>{kicker}</span>
       </div>
-      <h2 className={`mt-8 text-[22px] sm:text-3xl lg:text-4xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance ${dark ? "text-white" : "text-neutral-900"}`}>
+      <h2 className={`mt-8 text-[20px] sm:text-2xl lg:text-3xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance ${dark ? "text-white" : "text-neutral-900"}`}>
         {title}
       </h2>
       {desc && <p className={`mt-6 text-[15px] leading-relaxed text-pretty ${dark ? "text-neutral-400" : "text-neutral-600"}`}>{desc}</p>}
@@ -235,7 +235,7 @@ export default function SpatialScanPage() {
             </div>
           </Reveal>
           <Reveal delay={90}>
-            <h1 className="mt-10 text-[10vw] sm:text-5xl lg:text-7xl font-bold leading-[0.95] tracking-[-0.04em] text-balance text-neutral-900">
+            <h1 className="mt-10 text-[8vw] sm:text-4xl lg:text-5xl font-bold leading-[0.95] tracking-[-0.04em] text-balance text-neutral-900">
               {t.heroTitle}
             </h1>
           </Reveal>
@@ -408,7 +408,7 @@ export default function SpatialScanPage() {
             </div>
             <div className="mt-12 grid grid-cols-1 items-end gap-10 lg:grid-cols-12">
               <div className="lg:col-span-8">
-                <h2 className="text-[22px] sm:text-3xl lg:text-4xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance text-white">{t.ctaTitle}</h2>
+                <h2 className="text-[20px] sm:text-2xl lg:text-3xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance text-white">{t.ctaTitle}</h2>
                 <p className="mt-6 max-w-2xl text-base leading-relaxed text-pretty text-neutral-400">{t.ctaDesc}</p>
               </div>
               <div className="lg:col-span-4 lg:text-right">

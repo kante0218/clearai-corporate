@@ -352,7 +352,7 @@ export default function RobotReservePage() {
           </div>
         </Reveal>
         <Reveal delay={90}>
-          <h1 className="mt-10 text-[10vw] sm:text-5xl lg:text-7xl font-bold leading-[0.95] tracking-[-0.04em] text-balance text-neutral-900">
+          <h1 className="mt-10 text-[8vw] sm:text-4xl lg:text-5xl font-bold leading-[0.95] tracking-[-0.04em] text-balance text-neutral-900">
             {t.title}
           </h1>
         </Reveal>

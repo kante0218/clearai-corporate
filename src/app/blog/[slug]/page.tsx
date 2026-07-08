@@ -152,7 +152,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           </time>
         </div>
 
-        <h1 className="text-[24px] sm:text-3xl lg:text-4xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance text-neutral-900 mb-10">
+        <h1 className="text-[22px] sm:text-2xl lg:text-3xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance text-neutral-900 mb-10">
           {post.title}
         </h1>
 
