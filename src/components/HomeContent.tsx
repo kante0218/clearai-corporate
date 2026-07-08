@@ -55,7 +55,7 @@ function SectionHead({
         <span className={`font-mono text-xs font-bold tabular-nums ${dark ? "text-white" : "text-neutral-900"}`}>§{index}</span>
         <span className={`font-mono text-[11px] font-medium uppercase tracking-[0.25em] ${dark ? "text-neutral-400" : "text-neutral-500"}`}>{kicker}</span>
       </div>
-      <h2 className={`mt-6 md:mt-8 text-[24px] sm:text-4xl lg:text-5xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance ${dark ? "text-white" : "text-neutral-900"}`}>
+      <h2 className={`mt-6 md:mt-8 text-[22px] sm:text-3xl lg:text-4xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance ${dark ? "text-white" : "text-neutral-900"}`}>
         {title}
       </h2>
       {desc && <p className={`mt-5 max-w-2xl text-[15px] leading-relaxed text-pretty ${dark ? "text-neutral-400" : "text-neutral-600"}`}>{desc}</p>}
@@ -1003,7 +1003,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
                   <span className="font-mono text-xs font-bold tabular-nums text-neutral-900">§10</span>
                   <span className="font-mono text-[11px] font-medium uppercase tracking-[0.25em] text-neutral-500">{t.newsLabel}</span>
                 </div>
-                <h2 className="mt-5 text-[24px] sm:text-4xl lg:text-5xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance text-neutral-900">{t.newsTitle}</h2>
+                <h2 className="mt-5 text-[22px] sm:text-3xl lg:text-4xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance text-neutral-900">{t.newsTitle}</h2>
               </div>
               <Link href="/blog" className="hidden sm:inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-[0.08em] text-neutral-900 hover:text-neutral-600 transition-colors">
                 {t.newsCta}
@@ -1026,7 +1026,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
                 <span className="font-mono text-xs font-bold tabular-nums text-neutral-900">§11</span>
                 <span className="font-mono text-[11px] font-medium uppercase tracking-[0.25em] text-neutral-500">{t.ctaLabel}</span>
               </div>
-              <h2 className="mt-6 text-[24px] sm:text-4xl lg:text-5xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance text-neutral-900">{t.ctaTitle}</h2>
+              <h2 className="mt-6 text-[22px] sm:text-3xl lg:text-4xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance text-neutral-900">{t.ctaTitle}</h2>
               <p className="mt-5 max-w-lg text-base leading-relaxed text-pretty text-neutral-600">{t.ctaDesc}</p>
             </div>
           </Reveal>
