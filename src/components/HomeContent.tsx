@@ -424,6 +424,10 @@ const CLIENT_LOGOS = [
   { name: "ICONIQ", src: "/images/clients/iconiq.png", width: 1436, height: 304 },
 ];
 
+// 使用技術ロゴは public/logos/tech/ にself-host（外部CDN依存を排除・確実に色付き表示）。
+// 各SVGは iconify (下記 icon/color) から取得し、ファイル名は techSlug(name) と一致させる。
+const techSlug = (name: string) => name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+
 const TECH_GROUPS: { key: keyof typeof COPY["ja"]["techGroups"]; items: { name: string; icon: string; color?: string }[] }[] = [
   { key: "frontend", items: [
     { name: "Next.js", icon: "logos:nextjs-icon" },
@@ -935,7 +939,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
                   >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
-                      src={`https://api.iconify.design/${tech.icon}.svg${"color" in tech && tech.color ? `?color=%23${tech.color}` : ""}`}
+                      src={`/logos/tech/${techSlug(tech.name)}.svg`}
                       alt={tech.name}
                       className="w-4 h-4 object-contain"
                       loading="lazy"
