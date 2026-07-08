@@ -55,7 +55,7 @@ function SectionHead({
         <span className={`font-mono text-xs font-bold tabular-nums ${dark ? "text-white" : "text-neutral-900"}`}>§{index}</span>
         <span className={`font-mono text-[11px] font-medium uppercase tracking-[0.25em] ${dark ? "text-neutral-400" : "text-neutral-500"}`}>{kicker}</span>
       </div>
-      <h2 className={`mt-6 md:mt-8 text-[20px] sm:text-2xl lg:text-3xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance ${dark ? "text-white" : "text-neutral-900"}`}>
+      <h2 className={`mt-6 md:mt-8 text-[18px] sm:text-xl lg:text-2xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance ${dark ? "text-white" : "text-neutral-900"}`}>
         {title}
       </h2>
       {desc && <p className={`mt-5 max-w-2xl text-[15px] leading-relaxed text-pretty ${dark ? "text-neutral-400" : "text-neutral-600"}`}>{desc}</p>}
@@ -653,7 +653,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
         </video>
         <div className="relative z-10 w-full max-w-[1800px] mx-auto px-6 lg:px-10 pt-4 pb-6 md:py-24 pointer-events-none">
           <div className="max-w-none sm:max-w-md md:max-w-2xl lg:max-w-3xl text-left pointer-events-auto">
-            <h1 className={`text-[1.7rem] sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.12] tracking-tight mb-8 transition-[color,opacity,transform] duration-500 text-gray-900 ${heroTextDark ? "md:text-gray-900" : "md:text-white"}`} style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0)" : "translateY(24px)", transitionDelay: "400ms", textShadow: heroTextDark ? "0 1px 3px rgba(255,255,255,0.75),0 2px 22px rgba(255,255,255,0.55)" : "0 1px 3px rgba(0,0,0,0.6),0 2px 22px rgba(0,0,0,0.65)" }}>
+            <h1 className={`text-[1.5rem] sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.12] tracking-tight mb-8 transition-[color,opacity,transform] duration-500 text-gray-900 ${heroTextDark ? "md:text-gray-900" : "md:text-white"}`} style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0)" : "translateY(24px)", transitionDelay: "400ms", textShadow: heroTextDark ? "0 1px 3px rgba(255,255,255,0.75),0 2px 22px rgba(255,255,255,0.55)" : "0 1px 3px rgba(0,0,0,0.6),0 2px 22px rgba(0,0,0,0.65)" }}>
               {t.heroTitle}
             </h1>
             <p className={`text-base md:text-lg font-medium leading-relaxed max-w-none sm:max-w-sm md:max-w-xl mb-10 transition-[color,opacity] duration-500 text-gray-900 ${heroTextDark ? "md:text-gray-900" : "md:text-white"}`} style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "650ms", textShadow: heroTextDark ? "0 1px 2px rgba(255,255,255,0.95),0 1px 12px rgba(255,255,255,0.85)" : "0 1px 2px rgba(0,0,0,0.75),0 1px 12px rgba(0,0,0,0.7)" }}>
@@ -1003,7 +1003,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
                   <span className="font-mono text-xs font-bold tabular-nums text-neutral-900">§10</span>
                   <span className="font-mono text-[11px] font-medium uppercase tracking-[0.25em] text-neutral-500">{t.newsLabel}</span>
                 </div>
-                <h2 className="mt-5 text-[20px] sm:text-2xl lg:text-3xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance text-neutral-900">{t.newsTitle}</h2>
+                <h2 className="mt-5 text-[18px] sm:text-xl lg:text-2xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance text-neutral-900">{t.newsTitle}</h2>
               </div>
               <Link href="/blog" className="hidden sm:inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-[0.08em] text-neutral-900 hover:text-neutral-600 transition-colors">
                 {t.newsCta}
@@ -1026,7 +1026,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
                 <span className="font-mono text-xs font-bold tabular-nums text-neutral-900">§11</span>
                 <span className="font-mono text-[11px] font-medium uppercase tracking-[0.25em] text-neutral-500">{t.ctaLabel}</span>
               </div>
-              <h2 className="mt-6 text-[20px] sm:text-2xl lg:text-3xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance text-neutral-900">{t.ctaTitle}</h2>
+              <h2 className="mt-6 text-[18px] sm:text-xl lg:text-2xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance text-neutral-900">{t.ctaTitle}</h2>
               <p className="mt-5 max-w-lg text-base leading-relaxed text-pretty text-neutral-600">{t.ctaDesc}</p>
             </div>
           </Reveal>

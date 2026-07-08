@@ -39,7 +39,7 @@ function SectionHead({
         <span className="font-mono text-xs font-bold tabular-nums text-neutral-900">§{index}</span>
         <span className="font-mono text-[11px] font-medium uppercase tracking-[0.25em] text-neutral-500">{kicker}</span>
       </div>
-      <h2 className="mt-8 max-w-4xl text-[20px] sm:text-2xl lg:text-3xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance text-neutral-900">
+      <h2 className="mt-8 max-w-4xl text-[18px] sm:text-xl lg:text-2xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance text-neutral-900">
         {title}
       </h2>
       {desc && <p className="mt-5 max-w-2xl text-[15px] leading-relaxed text-pretty text-neutral-600">{desc}</p>}
@@ -269,7 +269,7 @@ export default function ResearchPage() {
             </div>
           </Reveal>
           <Reveal delay={90}>
-            <h1 className="mt-10 text-[8vw] sm:text-4xl lg:text-5xl font-bold leading-[0.95] tracking-[-0.04em] text-balance text-neutral-900">
+            <h1 className="mt-10 text-[7vw] sm:text-3xl lg:text-4xl font-bold leading-[0.95] tracking-[-0.04em] text-balance text-neutral-900">
               {t.heroTitle}
             </h1>
           </Reveal>
@@ -513,7 +513,7 @@ export default function ResearchPage() {
             </div>
             <div className="mt-12 grid grid-cols-1 items-end gap-10 lg:grid-cols-12">
               <div className="lg:col-span-8">
-                <h2 className="text-[20px] sm:text-2xl lg:text-3xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance text-white">{t.ctaTitle}</h2>
+                <h2 className="text-[18px] sm:text-xl lg:text-2xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance text-white">{t.ctaTitle}</h2>
                 <p className="mt-6 max-w-2xl text-base leading-relaxed text-pretty text-neutral-400">{t.ctaDesc}</p>
               </div>
               <div className="lg:col-span-4 lg:text-right">

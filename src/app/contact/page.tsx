@@ -256,7 +256,7 @@ function ContactPageInner() {
             </div>
           </Reveal>
           <Reveal delay={90}>
-            <h1 className="mt-10 text-[8vw] sm:text-4xl lg:text-5xl font-bold leading-[0.95] tracking-[-0.04em] text-balance text-neutral-900">
+            <h1 className="mt-10 text-[7vw] sm:text-3xl lg:text-4xl font-bold leading-[0.95] tracking-[-0.04em] text-balance text-neutral-900">
               {t.headerTitle}
             </h1>
           </Reveal>

@@ -53,7 +53,7 @@ export default function BlogList({ posts, categories }: { posts: Blog[]; categor
           </div>
         </Reveal>
         <Reveal delay={80}>
-          <h1 className="mt-10 text-[8vw] sm:text-4xl lg:text-5xl font-bold leading-[0.95] tracking-[-0.04em] text-balance text-neutral-900">
+          <h1 className="mt-10 text-[7vw] sm:text-3xl lg:text-4xl font-bold leading-[0.95] tracking-[-0.04em] text-balance text-neutral-900">
             お知らせ
           </h1>
         </Reveal>
