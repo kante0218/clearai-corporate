@@ -11,6 +11,9 @@ import { header as headerDict } from "@/lib/i18n/translations";
 type NavChild = { label: string; href: string; description?: string };
 type NavItem = { label: string; href: string; children?: NavChild[]; external?: boolean };
 
+// 業務まるごとAI診断（別アプリ・別サブドメイン）
+const DIAGNOSIS_URL = "https://shindan.clearai.jp";
+
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -174,6 +177,14 @@ export default function Header() {
                 ))}
               </div>
               <LanguageToggle variant="desktop" />
+              <a
+                href={DIAGNOSIS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center justify-center gap-1.5 text-sm font-semibold px-5 py-2.5 rounded-md border border-neutral-300 text-neutral-900 hover:bg-neutral-900 hover:text-white transition-all duration-300 hover:-translate-y-0.5">
+                {h.diagnosis}
+                <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-0.5">→</span>
+              </a>
               <Link href="/contact"
                 className={`group inline-flex items-center justify-center gap-1.5 text-sm font-semibold text-white px-5 py-2.5 rounded-md transition-all duration-300 hover:-translate-y-0.5 ${contactBtnClass}`}>
                 {h.contact}
@@ -279,7 +290,15 @@ export default function Header() {
                   </Link>
                 ))}
               </div>
-              <div className="mt-4">
+              <div className="mt-4 space-y-3">
+                <a
+                  href={DIAGNOSIS_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setIsOpen(false)}
+                  className="block text-center px-4 py-3.5 rounded-lg text-sm font-semibold transition-colors min-h-[44px] flex items-center justify-center border border-neutral-300 text-neutral-900 hover:bg-neutral-900 hover:text-white">
+                  {h.diagnosis}
+                </a>
                 <Link href="/contact" onClick={() => setIsOpen(false)}
                   className={`block text-center px-4 py-3.5 rounded-lg text-sm font-semibold transition-colors min-h-[44px] flex items-center justify-center ${contactFilledClass}`}>
                   {h.contact}
