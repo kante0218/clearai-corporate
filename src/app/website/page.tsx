@@ -37,15 +37,15 @@ function SectionHead({
   dark?: boolean;
 }) {
   return (
-    <Reveal className="mb-12 lg:mb-16 max-w-3xl">
+    <Reveal className="mb-7 lg:mb-9 max-w-3xl">
       <div className={`flex items-center gap-4 border-b pb-4 ${dark ? "border-white/25" : "border-neutral-900"}`}>
         <span className={`font-mono text-xs font-bold tabular-nums ${dark ? "text-white" : "text-neutral-900"}`}>§{index}</span>
         <span className={`font-mono text-[11px] font-medium uppercase tracking-[0.25em] ${dark ? "text-neutral-400" : "text-neutral-500"}`}>{kicker}</span>
       </div>
-      <h2 className={`mt-8 text-[18px] sm:text-xl lg:text-2xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance ${dark ? "text-white" : "text-neutral-900"}`}>
+      <h2 className={`mt-5 text-[18px] sm:text-xl lg:text-2xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance ${dark ? "text-white" : "text-neutral-900"}`}>
         {title}
       </h2>
-      {desc && <p className={`mt-6 text-[15px] leading-relaxed text-pretty ${dark ? "text-neutral-400" : "text-neutral-600"}`}>{desc}</p>}
+      {desc && <p className={`mt-4 text-[15px] leading-relaxed text-pretty ${dark ? "text-neutral-400" : "text-neutral-600"}`}>{desc}</p>}
     </Reveal>
   );
 }
@@ -265,7 +265,7 @@ export default function WebsitePage() {
   return (
     <>
       {/* MASTHEAD */}
-      <section className="bg-white pt-32 lg:pt-40 pb-12 lg:pb-16">
+      <section className="bg-white pt-28 lg:pt-32 pb-8 lg:pb-10">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <div className="flex flex-wrap items-center gap-x-3 gap-y-1 border-b border-neutral-900 pb-4 font-mono text-[11px] uppercase tracking-[0.2em] text-neutral-500">
@@ -291,7 +291,7 @@ export default function WebsitePage() {
       </section>
 
       {/* PRICING */}
-      <section className="py-20 lg:py-28 bg-white">
+      <section className="py-12 lg:py-16 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <SectionHead index="01" kicker={t.pricingLabel} title={t.pricingTitle} desc={t.pricingDesc} />
           <PricingCarousel>
@@ -339,7 +339,7 @@ export default function WebsitePage() {
       </section>
 
       {/* WHY */}
-      <section className="py-20 lg:py-28 bg-white">
+      <section className="py-12 lg:py-16 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <SectionHead index="02" kicker={t.whyLabel} title={t.whyTitle} />
           <CardCarousel gridClass="md:grid-cols-3">
@@ -359,7 +359,7 @@ export default function WebsitePage() {
       </section>
 
       {/* TYPES */}
-      <section id="types" className="py-20 lg:py-28 bg-neutral-50 border-y border-neutral-900">
+      <section id="types" className="py-12 lg:py-16 bg-neutral-50 border-y border-neutral-900">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <SectionHead index="03" kicker={t.typesLabel} title={t.typesTitle} desc={t.typesDesc} />
           <CardCarousel gridClass="md:grid-cols-2 lg:grid-cols-3">
@@ -380,7 +380,7 @@ export default function WebsitePage() {
       </section>
 
       {/* STACK */}
-      <section className="py-20 lg:py-28 bg-white">
+      <section className="py-12 lg:py-16 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <SectionHead index="04" kicker={t.stackLabel} title={t.stackTitle} />
           <div className="border-t border-neutral-900">
@@ -407,7 +407,7 @@ export default function WebsitePage() {
       </section>
 
       {/* PROCESS */}
-      <section className="py-20 lg:py-28 bg-neutral-50 border-y border-neutral-900">
+      <section className="py-12 lg:py-16 bg-neutral-50 border-y border-neutral-900">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <SectionHead index="05" kicker={t.processLabel} title={t.processTitle} />
           <div className="hidden lg:grid grid-cols-12 gap-6 border-b border-neutral-900 pb-3 font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-400">
@@ -434,7 +434,7 @@ export default function WebsitePage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-neutral-900 py-24 lg:py-32">
+      <section className="bg-neutral-900 py-16 lg:py-20">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <div className="flex items-center gap-4 border-b border-neutral-700 pb-4 font-mono text-[11px] uppercase tracking-[0.25em] text-neutral-500">
