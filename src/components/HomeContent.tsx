@@ -545,7 +545,10 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
   const { lang } = useLanguage();
   const t = COPY[lang];
   const [heroLoaded, setHeroLoaded] = useState(false);
-  const [techOpen, setTechOpen] = useState(false);
+  const allTech = TECH_GROUPS.flatMap((g) => g.items);
+  const techMid = Math.ceil(allTech.length / 2);
+  const techRowA = allTech.slice(0, techMid);
+  const techRowB = allTech.slice(techMid);
   useEffect(() => { setTimeout(() => setHeroLoaded(true), 100); }, []);
 
   // Adaptive hero text color: sample the video region behind the copy each frame
@@ -913,46 +916,38 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       <section className="py-8 md:py-20 lg:py-28 bg-white overflow-x-clip">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <SectionHead index="08" kicker={t.techLabel} title={t.techTitle} desc={t.techDesc} />
-          {/* Manifest: 左にカテゴリ（mono＋連番）、右にアイコン付きチップ。角ゼロ・罫線区切り。 */}
-          <div className="border-t border-neutral-900">
-            {TECH_GROUPS.slice(0, techOpen ? TECH_GROUPS.length : 4).map((group, gi) => (
-              <Reveal key={group.key} delay={(gi % 2) * 80}>
-                <div className="grid grid-cols-1 gap-3 border-b border-neutral-300 py-6 lg:grid-cols-12 lg:gap-8">
-                  <div className="lg:col-span-3">
-                    <h3 className="flex items-baseline gap-2 font-mono text-xs font-bold uppercase tracking-[0.18em] text-neutral-900">
-                      <span className="text-neutral-400">{String(gi + 1).padStart(2, "0")}</span>
-                      {t.techGroups[group.key as keyof typeof t.techGroups]}
-                    </h3>
-                  </div>
-                  <div className="lg:col-span-9">
-                    <ul className="flex flex-wrap gap-2 font-mono">
-                      {group.items.map((tech) => (
-                        <li key={tech.name} className="inline-flex items-center gap-1.5 border border-neutral-300 bg-white px-2.5 py-1 text-[13px] text-neutral-700 transition-colors duration-200 hover:border-neutral-900">
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img src={`https://api.iconify.design/${tech.icon}.svg${"color" in tech && tech.color ? `?color=%23${tech.color}` : ''}`} alt={tech.name} className="w-4 h-4 object-contain grayscale" loading="lazy" />
-                          {tech.name}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-          {!techOpen && (
-            <div className="pt-8">
-              <button
-                type="button"
-                onClick={() => setTechOpen(true)}
-                className="group inline-flex items-center gap-2 border border-neutral-900 px-6 py-3 font-mono text-xs font-bold uppercase tracking-[0.08em] text-neutral-900 transition-[color,background-color,border-color,scale] duration-300 hover:bg-neutral-900 hover:text-white active:scale-[0.96]"
+        </div>
+        {/* 使用技術：色付きロゴが流れるマーキー（2列・逆方向・両端フェード・hoverで一時停止） */}
+        <div className="mt-8 md:mt-10 space-y-3 md:space-y-4">
+          {[techRowA, techRowB].map((row, ri) => (
+            <div key={ri} className="relative overflow-hidden">
+              <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-white to-transparent md:w-28" />
+              <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-white to-transparent md:w-28" />
+              <div
+                className={`flex w-max items-center gap-3 md:gap-4 hover:[animation-play-state:paused] ${
+                  ri === 0 ? "animate-[marquee_55s_linear_infinite]" : "animate-[marqueeReverse_55s_linear_infinite]"
+                }`}
               >
-                {lang === "ja"
-                  ? `すべての使用技術を見る（残り ${TECH_GROUPS.length - 4} カテゴリ）`
-                  : `Show all technologies (${TECH_GROUPS.length - 4} more)`}
-                <span aria-hidden className="transition-transform duration-300 group-hover:translate-y-0.5">↓</span>
-              </button>
+                {[...row, ...row].map((tech, i) => (
+                  <span
+                    key={`${tech.name}-${i}`}
+                    className="inline-flex shrink-0 items-center gap-2 border border-neutral-300 bg-white px-3.5 py-2 font-mono text-[13px] text-neutral-700"
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={`https://api.iconify.design/${tech.icon}.svg${"color" in tech && tech.color ? `?color=%23${tech.color}` : ""}`}
+                      alt={tech.name}
+                      className="w-4 h-4 object-contain"
+                      loading="lazy"
+                    />
+                    {tech.name}
+                  </span>
+                ))}
+              </div>
             </div>
-          )}
+          ))}
+        </div>
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <div className="mt-10 border border-neutral-900 bg-neutral-50 p-6 lg:p-8 flex flex-col lg:flex-row lg:items-center gap-4 lg:gap-6">
               <div className="flex-shrink-0 w-11 h-11 border border-neutral-900 flex items-center justify-center">
