@@ -50,7 +50,7 @@ function SectionHead({
   dark?: boolean;
 }) {
   return (
-    <Reveal className="mb-12 lg:mb-16 max-w-3xl">
+    <Reveal className="mb-7 lg:mb-9 max-w-3xl">
       <div className={`flex items-center gap-4 border-b pb-4 ${dark ? "border-white/25" : "border-neutral-900"}`}>
         <span className={`font-mono text-xs font-bold tabular-nums ${dark ? "text-white" : "text-neutral-900"}`}>§{index}</span>
         <span className={`font-mono text-[11px] font-medium uppercase tracking-[0.25em] ${dark ? "text-neutral-400" : "text-neutral-500"}`}>{kicker}</span>

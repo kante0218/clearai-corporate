@@ -64,7 +64,7 @@ function SectionHead({
   dark?: boolean;
 }) {
   return (
-    <Reveal className="mb-12 lg:mb-16 max-w-3xl">
+    <Reveal className="mb-7 lg:mb-9 max-w-3xl">
       <div className={`flex items-center gap-4 border-b pb-4 ${dark ? "border-white/25" : "border-neutral-900"}`}>
         <span className={`font-mono text-xs font-bold tabular-nums ${dark ? "text-white" : "text-neutral-900"}`}>§{index}</span>
         <span className={`font-mono text-[11px] font-medium uppercase tracking-[0.25em] ${dark ? "text-neutral-400" : "text-neutral-500"}`}>{kicker}</span>
@@ -480,7 +480,7 @@ export default function AboutPage() {
       </section>
 
       {/* ─── 7.5 MEMBERS ─────────────────────────────────────────────────── */}
-      <section className="py-20 lg:py-28 bg-white border-t border-neutral-900">
+      <section className="py-12 lg:py-16 bg-white border-t border-neutral-900">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <SectionHead index="01" kicker={t.membersLabel} title={t.membersTitle} desc={t.membersDesc} />
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -512,7 +512,7 @@ export default function AboutPage() {
       </section>
 
       {/* ─── 9. HISTORY / TIMELINE ───────────────────────────────────────── */}
-      <section className="py-20 lg:py-28 bg-neutral-50 border-y border-neutral-900">
+      <section className="py-12 lg:py-16 bg-neutral-50 border-y border-neutral-900">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <SectionHead index="02" kicker={t.historyLabel} title={t.historyTitle} />
           <div className="relative max-w-2xl ml-[1px] border-l border-neutral-300">
@@ -550,7 +550,7 @@ export default function AboutPage() {
       </section>
 
       {/* ─── 10. CTA ─────────────────────────────────────────────────────── */}
-      <section className="bg-neutral-900 py-24 lg:py-32">
+      <section className="bg-neutral-900 py-16 lg:py-20">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <div className="flex items-center gap-4 border-b border-neutral-700 pb-4 font-mono text-[11px] uppercase tracking-[0.25em] text-neutral-500">
@@ -585,7 +585,7 @@ export default function AboutPage() {
       </section>
 
       {/* ─── 11. COMPANY INFORMATION (moved below Join Us) ───────────────── */}
-      <section className="py-20 lg:py-28 bg-white border-t border-neutral-900">
+      <section className="py-12 lg:py-16 bg-white border-t border-neutral-900">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <SectionHead index="04" kicker={t.companyLabel} title={t.companyTitle} />
           <div className="max-w-3xl border-t border-neutral-900">

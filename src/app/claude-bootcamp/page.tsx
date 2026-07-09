@@ -38,7 +38,7 @@ function SectionHead({
   dark?: boolean;
 }) {
   return (
-    <Reveal className="mb-12 lg:mb-16">
+    <Reveal className="mb-7 lg:mb-9">
       <div className={`flex items-center gap-4 border-b pb-4 ${dark ? "border-white/25" : "border-neutral-900"}`}>
         <span className={`font-mono text-xs font-bold tabular-nums ${dark ? "text-white" : "text-neutral-900"}`}>§{index}</span>
         <span className={`font-mono text-[11px] font-medium uppercase tracking-[0.25em] ${dark ? "text-neutral-400" : "text-neutral-500"}`}>{kicker}</span>
@@ -549,7 +549,7 @@ export default function ClaudeBootcampPage() {
       </section>
 
       {/* PROBLEM */}
-      <section className="py-20 lg:py-28 bg-white">
+      <section className="py-12 lg:py-16 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <SectionHead index="02" kicker={t.painLabel} title={t.painTitle} desc={t.painDesc} />
           <CardCarousel gridClass="md:grid-cols-2 lg:grid-cols-3">
@@ -566,7 +566,7 @@ export default function ClaudeBootcampPage() {
       </section>
 
       {/* PROMISE */}
-      <section className="py-20 lg:py-28 bg-neutral-50 border-y border-neutral-900">
+      <section className="py-12 lg:py-16 bg-neutral-50 border-y border-neutral-900">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <SectionHead index="03" kicker={t.promiseLabel} title={t.promiseTitle} desc={t.promiseDesc} />
           <CardCarousel gridClass="md:grid-cols-3">
@@ -592,7 +592,7 @@ export default function ClaudeBootcampPage() {
       </section>
 
       {/* GUARANTEE */}
-      <section className="py-20 lg:py-28 bg-white">
+      <section className="py-12 lg:py-16 bg-white">
         <div className="max-w-5xl mx-auto px-6 lg:px-8">
           <Reveal>
             <div className="border border-neutral-900 bg-neutral-900 p-8 lg:p-14 text-white">
@@ -608,7 +608,7 @@ export default function ClaudeBootcampPage() {
       </section>
 
       {/* WHY */}
-      <section className="py-20 lg:py-28 bg-white">
+      <section className="py-12 lg:py-16 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <SectionHead index="04" kicker={t.whyLabel} title={t.whyTitle} desc={t.whyDesc} />
           <CardCarousel gridClass="md:grid-cols-2">
@@ -634,7 +634,7 @@ export default function ClaudeBootcampPage() {
       </section>
 
       {/* ONE DAY TIMETABLE */}
-      <section className="py-20 lg:py-28 bg-neutral-50 border-y border-neutral-900">
+      <section className="py-12 lg:py-16 bg-neutral-50 border-y border-neutral-900">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <SectionHead index="05" kicker={t.dayLabel} title={t.dayTitle} desc={t.dayDesc} />
           {/* table header */}
@@ -667,7 +667,7 @@ export default function ClaudeBootcampPage() {
       </section>
 
       {/* OUTCOMES / BUILDS */}
-      <section className="py-20 lg:py-28 bg-neutral-900">
+      <section className="py-12 lg:py-16 bg-neutral-900">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <SectionHead index="06" kicker={t.buildLabel} title={t.buildTitle} desc={t.buildDesc} dark />
           <div className="grid grid-cols-1 border-l border-t border-white/15 sm:grid-cols-2 lg:grid-cols-4">
@@ -684,7 +684,7 @@ export default function ClaudeBootcampPage() {
       </section>
 
       {/* FOR */}
-      <section className="py-20 lg:py-28 bg-white">
+      <section className="py-12 lg:py-16 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <SectionHead index="07" kicker={t.forLabel} title={t.forTitle} />
           <CardCarousel gridClass="md:grid-cols-2">
@@ -701,7 +701,7 @@ export default function ClaudeBootcampPage() {
       </section>
 
       {/* CARAVAN */}
-      <section className="py-20 lg:py-28 bg-neutral-50 border-y border-neutral-900">
+      <section className="py-12 lg:py-16 bg-neutral-50 border-y border-neutral-900">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <SectionHead index="08" kicker={t.caravanLabel} title={t.caravanTitle} desc={t.caravanDesc} />
           <CardCarousel gridClass="sm:grid-cols-2 lg:grid-cols-4">
@@ -725,7 +725,7 @@ export default function ClaudeBootcampPage() {
       </section>
 
       {/* PRICING */}
-      <section className="py-20 lg:py-28 bg-white">
+      <section className="py-12 lg:py-16 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <SectionHead index="09" kicker={t.pricingLabel} title={t.pricingTitle} desc={t.pricingDesc} />
           <PricingCarousel>
@@ -765,7 +765,7 @@ export default function ClaudeBootcampPage() {
       </section>
 
       {/* SUBSIDY */}
-      <section className="py-20 lg:py-28 bg-white border-b border-neutral-900">
+      <section className="py-12 lg:py-16 bg-white border-b border-neutral-900">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <div className="flex items-center gap-4 border-b border-neutral-900 pb-4 font-mono text-[11px] uppercase tracking-[0.25em] text-neutral-500">
@@ -791,7 +791,7 @@ export default function ClaudeBootcampPage() {
       </section>
 
       {/* INSTRUCTOR */}
-      <section className="py-20 lg:py-28 bg-neutral-50 border-b border-neutral-900">
+      <section className="py-12 lg:py-16 bg-neutral-50 border-b border-neutral-900">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <div className="border border-neutral-900 bg-white p-8 lg:p-14">
             <Reveal>
@@ -817,7 +817,7 @@ export default function ClaudeBootcampPage() {
       </section>
 
       {/* FAQ */}
-      <section className="py-20 lg:py-28 bg-white">
+      <section className="py-12 lg:py-16 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <SectionHead index="12" kicker={t.faqLabel} title={t.faqTitle} />
           <div className="max-w-3xl border-t border-neutral-900">
@@ -838,7 +838,7 @@ export default function ClaudeBootcampPage() {
       </section>
 
       {/* 無料相談で行うこと */}
-      <section className="py-20 lg:py-28 bg-neutral-50 border-b border-neutral-900">
+      <section className="py-12 lg:py-16 bg-neutral-50 border-b border-neutral-900">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <SectionHead index="13" kicker={t.consultLabel} title={t.consultTitle} desc={t.consultDesc} />
           <div className="max-w-3xl border-t border-neutral-900">
@@ -858,7 +858,7 @@ export default function ClaudeBootcampPage() {
       </section>
 
       {/* FINAL CTA */}
-      <section className="bg-neutral-900 py-24 lg:py-32">
+      <section className="bg-neutral-900 py-16 lg:py-20">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <div className="flex items-center gap-4 border-b border-neutral-700 pb-4 font-mono text-[11px] uppercase tracking-[0.25em] text-neutral-500">

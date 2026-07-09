@@ -50,7 +50,7 @@ function SectionHead({
   className?: string;
 }) {
   return (
-    <Reveal className={`mb-8 md:mb-12 lg:mb-16 ${className}`}>
+    <Reveal className={`mb-8 md:mb-7 lg:mb-9 ${className}`}>
       <div className={`flex items-center gap-4 border-b pb-4 ${dark ? "border-white/25" : "border-neutral-900"}`}>
         <span className={`font-mono text-xs font-bold tabular-nums ${dark ? "text-white" : "text-neutral-900"}`}>§{index}</span>
         <span className={`font-mono text-[11px] font-medium uppercase tracking-[0.25em] ${dark ? "text-neutral-400" : "text-neutral-500"}`}>{kicker}</span>
@@ -717,7 +717,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       </section>
 
       {/* ═══ WHY clearAI ═══ */}
-      <section className="py-8 md:py-20 lg:py-28 bg-white">
+      <section className="py-8 md:py-12 lg:py-16 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <SectionHead index="01" kicker={t.whyLabel} title={t.whyTitle} desc={t.whyDesc} />
           <CardCarousel>
@@ -738,7 +738,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       </section>
 
       {/* ═══ VISION ═══ */}
-      <section className="py-8 md:py-20 lg:py-28 bg-neutral-50 border-y border-neutral-900">
+      <section className="py-8 md:py-12 lg:py-16 bg-neutral-50 border-y border-neutral-900">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-start">
             <SectionHead index="02" kicker={t.visionLabel} title={t.visionTitle} className="mb-0" />
@@ -762,7 +762,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       </section>
 
       {/* ═══ ENTRY PRODUCTS ═══ (SPでは非表示・PCは維持) */}
-      <section className="hidden md:block md:py-20 lg:py-28 bg-white">
+      <section className="hidden md:block md:py-12 lg:py-16 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <SectionHead index="03" kicker={t.getStartedLabel} title={t.getStartedTitle} desc={t.getStartedDesc} />
           <CardCarousel>
@@ -797,7 +797,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       </section>
 
       {/* ═══ SERVICES ═══ */}
-      <section id="services" className="py-8 md:py-20 lg:py-28 bg-white">
+      <section id="services" className="py-8 md:py-12 lg:py-16 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <SectionHead index="04" kicker={t.servicesLabel} title={t.servicesTitle} desc={t.servicesDesc} />
 
@@ -830,7 +830,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       </section>
 
       {/* ═══ APPROACH ═══ (SPでは非表示・PCは維持) */}
-      <section className="hidden md:block md:py-20 lg:py-28 bg-neutral-50 border-y border-neutral-900">
+      <section className="hidden md:block md:py-12 lg:py-16 bg-neutral-50 border-y border-neutral-900">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <SectionHead index="05" kicker={t.approachLabel} title={t.approachTitle} />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border-t border-neutral-900">
@@ -850,7 +850,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       </section>
 
       {/* ═══ PROCESS ═══ */}
-      <section className="py-8 md:py-20 lg:py-28 bg-white">
+      <section className="py-8 md:py-12 lg:py-16 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <SectionHead index="06" kicker={t.processLabel} title={t.processTitle} desc={t.processDesc} />
           {/* table header */}
@@ -878,7 +878,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       </section>
 
       {/* ═══ TEAM ═══ */}
-      <section className="py-8 md:py-20 lg:py-28 bg-neutral-50 border-y border-neutral-900">
+      <section className="py-8 md:py-12 lg:py-16 bg-neutral-50 border-y border-neutral-900">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <SectionHead index="07" kicker={t.teamLabel} title={t.teamTitle} desc={t.teamDesc} />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-stretch">
@@ -917,7 +917,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       </section>
 
       {/* ═══ TECH STACK ═══ */}
-      <section className="py-8 md:py-20 lg:py-28 bg-white overflow-x-clip">
+      <section className="py-8 md:py-12 lg:py-16 bg-white overflow-x-clip">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <SectionHead index="08" kicker={t.techLabel} title={t.techTitle} desc={t.techDesc} />
         </div>
@@ -969,7 +969,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       </section>
 
       {/* ═══ FAQ TEASER ═══ */}
-      <section className="py-8 md:py-20 lg:py-28 bg-neutral-50 border-y border-neutral-900">
+      <section className="py-8 md:py-12 lg:py-16 bg-neutral-50 border-y border-neutral-900">
         <div className="max-w-3xl mx-auto px-6 lg:px-8">
           <SectionHead index="09" kicker={t.faqLabel} title={t.faqTitle} desc={t.faqDesc} />
           <div className="mb-8 border-t border-neutral-900">
@@ -993,7 +993,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       </section>
 
       {/* ═══ NEWS / BLOG (moved below: lead with value & services first) ═══ */}
-      <section className="py-8 md:py-20 lg:py-28 bg-white">
+      <section className="py-8 md:py-12 lg:py-16 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal className="mb-6 md:mb-12">
             <div className="flex items-end justify-between border-b border-neutral-900 pb-4">
@@ -1017,7 +1017,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       </section>
 
       {/* ═══ CTA ═══ */}
-      <section className="py-8 md:py-20 lg:py-28 bg-neutral-50 border-t border-neutral-900">
+      <section className="py-8 md:py-12 lg:py-16 bg-neutral-50 border-t border-neutral-900">
         <div className="max-w-4xl mx-auto px-6">
           <Reveal>
             <div className="mb-8 md:mb-12 border-b border-neutral-900 pb-6">

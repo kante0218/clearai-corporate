@@ -306,7 +306,7 @@ export default function ReservePage() {
         </div>
       </section>
 
-      <section className="max-w-4xl mx-auto px-6 lg:px-8 py-20 lg:py-28">
+      <section className="max-w-4xl mx-auto px-6 lg:px-8 py-12 lg:py-16">
         {/* Loading */}
         {loading && (
           <div className="flex flex-col items-center justify-center gap-4 border border-neutral-200 py-24">

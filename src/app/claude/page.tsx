@@ -35,7 +35,7 @@ function SectionHead({
   dark?: boolean;
 }) {
   return (
-    <Reveal className="mb-12 lg:mb-16 max-w-3xl">
+    <Reveal className="mb-7 lg:mb-9 max-w-3xl">
       <div className={`flex items-center gap-4 border-b pb-4 ${dark ? "border-white/25" : "border-neutral-900"}`}>
         <span className={`font-mono text-xs font-bold tabular-nums ${dark ? "text-white" : "text-neutral-900"}`}>§{index}</span>
         <span className={`font-mono text-[11px] font-medium uppercase tracking-[0.25em] ${dark ? "text-neutral-400" : "text-neutral-500"}`}>{kicker}</span>
@@ -280,7 +280,7 @@ export default function ClaudePage() {
       </section>
 
       {/* SERVICES */}
-      <section id="services" className="py-20 lg:py-28 bg-neutral-50 border-b border-neutral-900">
+      <section id="services" className="py-12 lg:py-16 bg-neutral-50 border-b border-neutral-900">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <SectionHead index="01" kicker={t.servicesLabel} title={t.servicesTitle} />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-stretch">
@@ -356,7 +356,7 @@ export default function ClaudePage() {
       </section>
 
       {/* WHY CLAUDE */}
-      <section className="py-20 lg:py-28 bg-white">
+      <section className="py-12 lg:py-16 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <SectionHead index="02" kicker={t.whyLabel} title={t.whyTitle} desc={t.whyDesc} />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -379,7 +379,7 @@ export default function ClaudePage() {
       </section>
 
       {/* GUARANTEE */}
-      <section className="py-20 lg:py-28 bg-neutral-950">
+      <section className="py-12 lg:py-16 bg-neutral-950">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <SectionHead index="03" kicker={t.guaranteeLabel} title={t.guaranteeTitle} desc={t.guaranteeDesc} dark />
           <Reveal delay={120}>
@@ -391,7 +391,7 @@ export default function ClaudePage() {
       </section>
 
       {/* CURRICULUM */}
-      <section className="py-20 lg:py-28 bg-neutral-50 border-y border-neutral-900">
+      <section className="py-12 lg:py-16 bg-neutral-50 border-y border-neutral-900">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <SectionHead index="04" kicker={t.curriculumLabel} title={t.curriculumTitle} />
           {/* table header */}
@@ -420,7 +420,7 @@ export default function ClaudePage() {
       </section>
 
       {/* FAQ */}
-      <section className="py-20 lg:py-28 bg-white">
+      <section className="py-12 lg:py-16 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <SectionHead index="05" kicker={t.faqLabel} title={t.faqTitle} />
           <div className="max-w-3xl border-t border-neutral-900">
@@ -441,7 +441,7 @@ export default function ClaudePage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-neutral-900 py-24 lg:py-32">
+      <section className="bg-neutral-900 py-16 lg:py-20">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <div className="flex items-center gap-4 border-b border-neutral-700 pb-4 font-mono text-[11px] uppercase tracking-[0.25em] text-neutral-500">
