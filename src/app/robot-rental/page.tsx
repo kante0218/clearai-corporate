@@ -77,6 +77,7 @@ type RobotCompany = {
 type Copy = {
   heroKicker: string; comingSoon: string; inquiryBadge: string; heroTitle: string; heroDesc: string;
   heroCta: string; heroNote: string;
+  robollyEyebrow: string; robollyTitle: string; robollyDesc: string; robollyCta: string;
   lineupLabel: string; lineupTitle: string; lineupDesc: string;
   lineupAll: string;
   lineupGroups: RobotCompany[];
@@ -98,6 +99,10 @@ const COPY: Record<"ja" | "en", Copy> = {
     heroDesc: "海外の最先端ヒューマノイド・四足歩行・協働・サービスロボットを輸入し、購入前に現場で試せるレンタルサービスを準備中です。",
     heroCta: "先行してご相談する",
     heroNote: "一部機体は予約受付を開始しました",
+    robollyEyebrow: "四足歩行ロボット専門",
+    robollyTitle: "見回り・警備を、ロボットに。",
+    robollyDesc: "四足歩行ロボットによる警備・巡回のレンタルは、専門サイト「Robolly（ロボリー）」で。導入事例・料金・最適機体の診断まで詳しくご案内します。",
+    robollyCta: "Robolly（ロボリー）を見る",
     lineupLabel: "Lineup",
     lineupTitle: "導入予定・導入候補のロボット",
     lineupDesc: "予約受付中の機体に加えて、産業・接客・展示・研究用途に合わせた候補機を順次追加していきます。",
@@ -306,6 +311,10 @@ const COPY: Record<"ja" | "en", Copy> = {
     heroDesc: "We're preparing an import rental service for cutting-edge humanoids, quadrupeds, collaborative robots, and service robots — letting teams try them on-site before committing to a purchase.",
     heroCta: "Get an early consultation",
     heroNote: "Booking is now open for select units",
+    robollyEyebrow: "Quadruped robots, specialized",
+    robollyTitle: "Put patrols & security on autopilot.",
+    robollyDesc: "For quadruped-robot security and patrol rentals, visit our dedicated site \"Robolly\" — case studies, pricing, and a fit-finder to match the right unit.",
+    robollyCta: "Visit Robolly",
     lineupLabel: "Lineup",
     lineupTitle: "Planned and candidate robots",
     lineupDesc: "In addition to units already open for booking, we will keep adding candidates for industrial, hospitality, exhibition, and research use cases.",
@@ -551,6 +560,37 @@ export default function RobotRentalPage() {
               </a>
               <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-neutral-500">{t.heroNote}</span>
             </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ROBOLLY 導線 — 四足歩行ロボット専門LPへ */}
+      <section className="bg-white pt-2 pb-6 lg:pb-8">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
+          <Reveal>
+            <a
+              href="https://robolly-lp.vercel.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative block overflow-hidden border border-[#0a1f3c] bg-[#0a1f3c] p-6 lg:p-8 transition-[scale] duration-300 active:scale-[0.995]"
+            >
+              <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between lg:gap-8">
+                <div className="max-w-3xl">
+                  <div className="flex items-center gap-3 font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-amber-400">
+                    <span aria-hidden>◆</span>
+                    <span>{t.robollyEyebrow}</span>
+                  </div>
+                  <p className="mt-4 text-2xl lg:text-[1.9rem] font-bold leading-[1.1] tracking-[-0.02em] text-balance text-white">
+                    {t.robollyTitle}
+                  </p>
+                  <p className="mt-3 text-sm lg:text-[15px] leading-relaxed text-pretty text-neutral-300">{t.robollyDesc}</p>
+                </div>
+                <span className="inline-flex shrink-0 items-center gap-2.5 border border-amber-400 bg-amber-400 px-7 py-3.5 font-mono text-xs font-bold uppercase tracking-[0.08em] text-[#0a1f3c] transition-colors duration-300 group-hover:bg-transparent group-hover:text-amber-400">
+                  {t.robollyCta}
+                  <span className="transition-transform duration-300 group-hover:translate-x-1">↗</span>
+                </span>
+              </div>
+            </a>
           </Reveal>
         </div>
       </section>
