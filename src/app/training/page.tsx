@@ -54,6 +54,10 @@ type Plan = { name: string; price: string; unit: string; desc: string; features:
 
 type Copy = {
   heroKicker: string; heroTitle: string; heroDesc: string; heroSubsidyLink: string;
+  heroBadges: string[];
+  valueEyebrow: string; valueTitle: string; valueDesc: string;
+  valueSteps: { k: string; label: string; value: string; desc: string }[];
+  valueNote: string; valueCta: string;
   forLabel: string; forTitle: string;
   targets: { role: string; title: string; desc: string }[];
   programsLabel: string; programsTitle: string; programsDesc: string;
@@ -89,9 +93,20 @@ type Copy = {
 const COPY: Record<"ja" | "en", Copy> = {
   ja: {
     heroKicker: "AI Training",
-    heroTitle: "AI研修",
-    heroDesc: "経営層から現場まで、階層別に設計したAI実務研修。最大75%の研修費を助成金で削減可能。",
+    heroTitle: "社内システムを、\n絶対に作れるようになる。",
+    heroDesc: "コードが書けない社員でも、Claude × Vibe Coding の実践研修で「AIで自分の業務システムを作り切る力」が身につく。外注すれば1億円規模のシステムを、助成金活用で実質50万円台から内製へ。",
     heroSubsidyLink: "助成金の活用について詳しく見る",
+    heroBadges: ["絶対に、作れるようになる", "助成金 最大75%OFF", "コード知識ゼロでOK"],
+    valueEyebrow: "The Math",
+    valueTitle: "実質50万円で、\n1億円規模のシステムを内製する。",
+    valueDesc: "「AIを学ぶだけ」の研修では終わりません。助成金で実質負担を抑えながら、外注に頼らず“自社で作り切る力”を社員に残します。",
+    valueSteps: [
+      { k: "01", label: "研修投資", value: "約200万円", desc: "階層別・実務ハンズオンのフル研修プログラム（全社展開）。" },
+      { k: "02", label: "助成金 −75%", value: "実質 約50万円", desc: "人材開発支援助成金で、研修費の最大75%＋受講者の賃金まで助成対象に。" },
+      { k: "03", label: "内製で構築", value: "1億円規模のシステム", desc: "外注すれば1億円規模の業務システムを、社員が自分の手で作れるように。作る力は会社に残り続けます。" },
+    ],
+    valueNote: "※ 金額はモデルケースです。助成金の要件・支給上限により実質負担額は変動します。「1億円規模」は外注相当額の目安です。",
+    valueCta: "実質負担額をシミュレーションする",
     forLabel: "For",
     forTitle: "階層別に、必要なスキルを。",
     targets: [
@@ -222,9 +237,20 @@ const COPY: Record<"ja" | "en", Copy> = {
   },
   en: {
     heroKicker: "AI Training",
-    heroTitle: "AI Training",
-    heroDesc: "Role-based, hands-on AI training from leadership to the front line. Up to 75% of training costs can be covered by subsidies.",
+    heroTitle: "Build in-house systems—\nfor real, not someday.",
+    heroDesc: "Even employees who can't code learn to build their own operational systems with Claude × Vibe Coding. Bring a system that would cost ¥100M to outsource in-house—from as little as ¥500K after subsidies.",
     heroSubsidyLink: "Learn how to use subsidies",
+    heroBadges: ["You will build, guaranteed", "Up to 75% subsidized", "No coding required"],
+    valueEyebrow: "The Math",
+    valueTitle: "¥500K net to build\na ¥100M-class system in-house.",
+    valueDesc: "This isn't training that ends at \"learning AI.\" With subsidies lowering your net cost, your team keeps the ability to build—without relying on outsourcing.",
+    valueSteps: [
+      { k: "01", label: "Training investment", value: "≈ ¥2M", desc: "Full role-based, hands-on program rolled out company-wide." },
+      { k: "02", label: "Subsidy −75%", value: "≈ ¥500K net", desc: "Up to 75% of training cost—plus trainee wages—covered by the HRD subsidy." },
+      { k: "03", label: "Built in-house", value: "¥100M-class system", desc: "A system that would cost ¥100M to outsource, built by your own people. The capability stays in the company." },
+    ],
+    valueNote: "※ Figures are a model case. Net cost varies with subsidy requirements and caps. \"¥100M-class\" is an outsourcing-equivalent estimate.",
+    valueCta: "Simulate your net cost",
     forLabel: "For",
     forTitle: "The right skills, by role.",
     targets: [
@@ -377,17 +403,76 @@ export default function TrainingPage() {
             </div>
           </Reveal>
           <Reveal delay={90}>
-            <h1 className="mt-10 text-[7vw] sm:text-3xl lg:text-4xl font-bold leading-[0.95] tracking-[-0.04em] text-balance text-neutral-900">
+            <h1 className="mt-10 text-[8.5vw] sm:text-4xl lg:text-[3.4rem] font-bold leading-[0.98] tracking-[-0.04em] whitespace-pre-line text-neutral-900">
               {t.heroTitle}
             </h1>
           </Reveal>
-          <Reveal delay={180}>
+          <Reveal delay={150}>
+            <div className="mt-7 flex flex-wrap gap-2">
+              {t.heroBadges.map((b, i) => (
+                <span key={b} className={`inline-flex items-center gap-1.5 border px-3 py-1.5 font-mono text-[11px] font-bold uppercase tracking-[0.1em] ${i === 0 ? "border-neutral-900 bg-neutral-900 text-white" : "border-neutral-300 text-neutral-700"}`}>
+                  {i === 0 && <span aria-hidden>◆</span>}{b}
+                </span>
+              ))}
+            </div>
+          </Reveal>
+          <Reveal delay={220}>
             <p className="mt-8 max-w-2xl text-base lg:text-lg leading-relaxed text-pretty text-neutral-600">{t.heroDesc}</p>
           </Reveal>
-          <Reveal delay={260}>
-            <a href="/subsidy" className="group mt-8 mb-2 inline-flex items-center gap-2 border-b border-neutral-900 pb-1 font-mono text-xs font-bold uppercase tracking-[0.15em] text-neutral-900 transition-colors duration-300 hover:text-neutral-600">
-              {t.heroSubsidyLink} <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+          <Reveal delay={300}>
+            <div className="mt-9 flex flex-col sm:flex-row flex-wrap items-start sm:items-center gap-3">
+              <a href="/contact?service=training" className="group inline-flex items-center justify-center gap-2 border border-neutral-900 bg-neutral-900 px-7 py-3.5 font-mono text-xs font-bold uppercase tracking-[0.08em] text-white transition-[color,background-color,scale] duration-300 hover:bg-transparent hover:text-neutral-900 active:scale-[0.96]">
+                {t.ctaButton}
+                <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+              </a>
+              <a href="/subsidy" className="group inline-flex items-center gap-2 border-b border-neutral-900 pb-1 font-mono text-xs font-bold uppercase tracking-[0.15em] text-neutral-900 transition-colors duration-300 hover:text-neutral-600">
+                {t.heroSubsidyLink} <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
             </a>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* VALUE — 実質50万で1億円規模のシステムを内製 */}
+      <section className="bg-neutral-900 py-14 lg:py-20 text-white">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
+          <Reveal>
+            <div className="flex items-center gap-4 border-b border-white/25 pb-4 font-mono text-[11px] uppercase tracking-[0.25em] text-neutral-400">
+              <span className="font-bold text-white">◆</span>
+              <span>{t.valueEyebrow}</span>
+            </div>
+          </Reveal>
+          <Reveal delay={80}>
+            <h2 className="mt-8 max-w-4xl text-[7vw] sm:text-3xl lg:text-[2.6rem] font-bold leading-[1.05] tracking-[-0.03em] whitespace-pre-line text-white">
+              {t.valueTitle}
+            </h2>
+          </Reveal>
+          <Reveal delay={160}>
+            <p className="mt-6 max-w-2xl text-[15px] lg:text-base leading-relaxed text-pretty text-neutral-400">{t.valueDesc}</p>
+          </Reveal>
+          <div className="mt-12 grid gap-4 lg:grid-cols-3">
+            {t.valueSteps.map((s, i) => (
+              <Reveal key={s.k} delay={i * 110}>
+                <div className={`relative flex h-full flex-col border p-7 lg:p-8 ${i === 2 ? "border-white bg-white text-neutral-900" : "border-white/20 bg-white/[0.04]"}`}>
+                  <div className="flex items-center justify-between font-mono text-[10px] font-bold uppercase tracking-[0.2em]">
+                    <span className={i === 2 ? "text-neutral-900" : "text-neutral-400"}>{s.label}</span>
+                    <span className={i === 2 ? "text-neutral-400" : "text-neutral-600"}>{s.k}</span>
+                  </div>
+                  <p className={`mt-6 text-3xl lg:text-[2.1rem] font-bold tabular-nums tracking-tight leading-none text-balance ${i === 2 ? "text-neutral-900" : "text-white"}`}>{s.value}</p>
+                  <p className={`mt-5 flex-1 text-sm leading-relaxed text-pretty ${i === 2 ? "text-neutral-600" : "text-neutral-400"}`}>{s.desc}</p>
+                  {i < 2 && <span aria-hidden className="pointer-events-none absolute -right-3 top-1/2 z-10 hidden -translate-y-1/2 font-mono text-2xl text-white/40 lg:block">→</span>}
+                </div>
+              </Reveal>
+            ))}
+          </div>
+          <Reveal delay={200}>
+            <div className="mt-10 flex flex-col sm:flex-row sm:items-center gap-4">
+              <a href="/subsidy" className="group inline-flex items-center justify-center gap-2 border border-white bg-white px-7 py-3.5 font-mono text-xs font-bold uppercase tracking-[0.08em] text-neutral-900 transition-[color,background-color,scale] duration-300 hover:bg-transparent hover:text-white active:scale-[0.96]">
+                {t.valueCta}
+                <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+              </a>
+              <p className="max-w-xl font-mono text-[11px] leading-relaxed text-neutral-500">{t.valueNote}</p>
+            </div>
           </Reveal>
         </div>
       </section>
