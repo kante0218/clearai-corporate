@@ -569,7 +569,7 @@ export default function RobotRentalPage() {
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <a
-              href="https://robolly-lp.vercel.app"
+              href="https://robolly.jp"
               target="_blank"
               rel="noopener noreferrer"
               className="group relative block overflow-hidden border border-[#0a1f3c] bg-[#0a1f3c] p-6 lg:p-8 transition-[scale] duration-300 active:scale-[0.995]"
