@@ -55,6 +55,7 @@ type Plan = { name: string; price: string; unit: string; desc: string; features:
 type Copy = {
   heroKicker: string; heroTitle: string; heroDesc: string; heroSubsidyLink: string;
   heroBadges: string[];
+  lpEyebrow: string; lpTitle: string; lpDesc: string; lpCta: string;
   valueEyebrow: string; valueTitle: string; valueDesc: string;
   valueSteps: { k: string; label: string; value: string; desc: string }[];
   valueNote: string; valueCta: string;
@@ -97,6 +98,10 @@ const COPY: Record<"ja" | "en", Copy> = {
     heroDesc: "コードが書けない社員でも、Claude × Vibe Coding の実践研修で「AIで自分の業務システムを作り切る力」が身につく。外注すれば1億円規模のシステムを、助成金活用で実質50万円台から内製へ。",
     heroSubsidyLink: "助成金の活用について詳しく見る",
     heroBadges: ["絶対に、作れるようになる", "助成金 最大75%OFF", "コード知識ゼロでOK"],
+    lpEyebrow: "専用ランディングページ",
+    lpTitle: "「絶対に社内システムが作れるようになるAI研修」の詳細はこちら",
+    lpDesc: "カリキュラム・料金プラン・助成金の実質負担シミュレーション・かんたん診断まで、専用ページで詳しくご案内しています。資料ダウンロードもこちらから。",
+    lpCta: "専用ページを見る",
     valueEyebrow: "The Math",
     valueTitle: "実質50万円で、\n1億円規模のシステムを内製する。",
     valueDesc: "「AIを学ぶだけ」の研修では終わりません。助成金で実質負担を抑えながら、外注に頼らず“自社で作り切る力”を社員に残します。",
@@ -241,6 +246,10 @@ const COPY: Record<"ja" | "en", Copy> = {
     heroDesc: "Even employees who can't code learn to build their own operational systems with Claude × Vibe Coding. Bring a system that would cost ¥100M to outsource in-house—from as little as ¥500K after subsidies.",
     heroSubsidyLink: "Learn how to use subsidies",
     heroBadges: ["You will build, guaranteed", "Up to 75% subsidized", "No coding required"],
+    lpEyebrow: "Dedicated landing page",
+    lpTitle: "See the full details of our AI in-house development training",
+    lpDesc: "Curriculum, pricing, a subsidy cost simulator, and a quick eligibility check — all on the dedicated page. Download the brochure there too.",
+    lpCta: "View the dedicated page",
     valueEyebrow: "The Math",
     valueTitle: "¥500K net to build\na ¥100M-class system in-house.",
     valueDesc: "This isn't training that ends at \"learning AI.\" With subsidies lowering your net cost, your team keeps the ability to build—without relying on outsourcing.",
@@ -429,6 +438,37 @@ export default function TrainingPage() {
                 {t.heroSubsidyLink} <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
             </a>
             </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* LP 導線バナー — 専用ランディングページ（clearai-kensyuu.jp） */}
+      <section className="bg-white pt-2 pb-6 lg:pb-8">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
+          <Reveal>
+            <a
+              href="https://clearai-kensyuu.jp"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative block overflow-hidden border border-[#0a1f3c] bg-[#0a1f3c] p-6 lg:p-8 transition-[scale] duration-300 active:scale-[0.995]"
+            >
+              <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between lg:gap-8">
+                <div className="max-w-3xl">
+                  <div className="flex items-center gap-3 font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-amber-400">
+                    <span aria-hidden>◆</span>
+                    <span>{t.lpEyebrow}</span>
+                  </div>
+                  <p className="mt-4 text-2xl lg:text-[1.9rem] font-bold leading-[1.1] tracking-[-0.02em] text-balance text-white">
+                    {t.lpTitle}
+                  </p>
+                  <p className="mt-3 text-sm lg:text-[15px] leading-relaxed text-pretty text-neutral-300">{t.lpDesc}</p>
+                </div>
+                <span className="inline-flex shrink-0 items-center gap-2.5 border border-amber-400 bg-amber-400 px-7 py-3.5 font-mono text-xs font-bold uppercase tracking-[0.08em] text-[#0a1f3c] transition-colors duration-300 group-hover:bg-transparent group-hover:text-amber-400">
+                  {t.lpCta}
+                  <span className="transition-transform duration-300 group-hover:translate-x-1">↗</span>
+                </span>
+              </div>
+            </a>
           </Reveal>
         </div>
       </section>
