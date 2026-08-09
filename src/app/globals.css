@@ -258,7 +258,7 @@ h2 { line-height: 1.25; }
 
 /* ── microCMS Rich Editor (prose) ── */
 .prose {
-  color: #4b5563;
+  color: #555555;
   line-height: 1.9;
   font-size: 1rem;
   letter-spacing: 0.04em;
@@ -311,7 +311,7 @@ h2 { line-height: 1.25; }
 .prose blockquote {
   border-left: 4px solid #e5e7eb;
   padding-left: 1rem;
-  color: #6b7280;
+  color: #6b6b6b;
   font-style: italic;
   margin: 1.5rem 0;
 }
@@ -394,7 +394,7 @@ textarea:focus-visible {
 
 /* ── Brand gradient text ── */
 .text-gradient-brand {
-  background: linear-gradient(135deg, #000000 0%, #1f2937 50%, #6b7280 100%);
+  background: linear-gradient(135deg, #000000 0%, #2a2a2a 50%, #6b6b6b 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -431,9 +431,9 @@ details[open] summary {
    secondary copy still renders at the default Tailwind greys — text-gray-400
    (#9ca3af) is ≈2.5:1 on white = WCAG fail. Mirror the same lifts on desktop. */
 @media (min-width: 901px) {
-  .text-gray-400 { color: #6b7280; }  /* was #9ca3af */
-  .text-gray-500 { color: #4b5563; }  /* was #6b7280 */
-  .text-gray-600 { color: #374151; }  /* was #4b5563 */
+  .text-gray-400 { color: #6b6b6b; }  /* was #9ca3af */
+  .text-gray-500 { color: #555555; }  /* was #6b7280 */
+  .text-gray-600 { color: #3f3f3f; }  /* was #4b5563 */
 }
 
 @media (max-width: 900px) {
@@ -460,9 +460,9 @@ details[open] summary {
   }
 
   /* Keep low-contrast greys readable even after shrinking type. */
-  .text-gray-400 { color: #6b7280; }  /* was #9ca3af */
-  .text-gray-500 { color: #4b5563; }  /* was #6b7280 */
-  .text-gray-600 { color: #374151; }  /* was #4b5563 */
+  .text-gray-400 { color: #6b6b6b; }  /* was #9ca3af */
+  .text-gray-500 { color: #555555; }  /* was #6b7280 */
+  .text-gray-600 { color: #3f3f3f; }  /* was #4b5563 */
 
   main section {
     padding-top: 2rem !important;
