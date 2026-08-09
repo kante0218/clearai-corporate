@@ -92,18 +92,15 @@ const COPY: Record<"ja" | "en", Copy> = {
       {
         title: "AI事業",
         links: [
-          { label: "フィジカルAI受託開発", href: "/physical-ai" },
-          { label: "ロボットレンタル", href: "/robot-rental" },
-          { label: "AI研修", href: "/training" },
-          { label: "AIエージェント開発", href: "/ai-agent" },
-          { label: "空間3Dスキャン", href: "/spatial-scan" },
           { label: "AIコンサルティング", href: "/ai-consulting" },
           { label: "AI顧問", href: "/advisor" },
+          { label: "AI研修", href: "/training" },
           { label: "補助金・助成金サポート", href: "/subsidy" },
           { label: "Claude特化", href: "/claude" },
           { label: "AI広告運用", href: "/advertising" },
           { label: "ウェブサイト作成", href: "/website" },
           { label: "SNS運用代行", href: "/sns" },
+          { label: "ロボットレンタル", href: "/robot-rental" },
         ],
       },
       {
@@ -136,18 +133,15 @@ const COPY: Record<"ja" | "en", Copy> = {
       {
         title: "AI Business",
         links: [
-          { label: "Physical AI Development", href: "/physical-ai" },
-          { label: "Robot Rental", href: "/robot-rental" },
-          { label: "AI Training", href: "/training" },
-          { label: "AI Agent Development", href: "/ai-agent" },
-          { label: "3D Spatial Scan", href: "/spatial-scan" },
           { label: "AI Consulting", href: "/ai-consulting" },
           { label: "AI Advisor", href: "/advisor" },
+          { label: "AI Training", href: "/training" },
           { label: "Subsidy Support", href: "/subsidy" },
           { label: "Claude Specialized", href: "/claude" },
           { label: "AI Advertising", href: "/advertising" },
           { label: "Website Production", href: "/website" },
           { label: "SNS Management", href: "/sns" },
+          { label: "Robot Rental", href: "/robot-rental" },
         ],
       },
       {

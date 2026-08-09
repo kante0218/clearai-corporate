@@ -10,19 +10,16 @@ export default function Footer() {
   const f = footerDict[lang];
 
   const services = [
-    // 主力3事業を先頭に
-    { label: f.services.physicalAi, href: "/physical-ai" },
-    { label: f.services.robotRental, href: "/robot-rental" },
-    { label: f.services.training, href: "/training" },
-    { label: f.services.aiAgent, href: "/ai-agent" },
-    { label: f.services.spatialScan, href: "/spatial-scan" },
     { label: f.services.advisor, href: "/advisor" },
+    { label: f.services.aiAgent, href: "/ai-agent" },
+    { label: f.services.training, href: "/training" },
     { label: f.services.aiConsulting, href: "/ai-consulting" },
-    { label: f.services.subsidy, href: "/subsidy" },
-    { label: f.services.claude, href: "/claude" },
     { label: f.services.website, href: "/website" },
     { label: f.services.advertising, href: "/advertising" },
     { label: f.services.sns, href: "/sns" },
+    { label: f.services.robotRental, href: "/robot-rental" },
+    { label: f.services.subsidy, href: "/subsidy" },
+    { label: f.services.claude, href: "/claude" },
   ];
 
   const company = [

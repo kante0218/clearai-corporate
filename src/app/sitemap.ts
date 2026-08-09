@@ -4,13 +4,9 @@ import { getBlogs } from "@/lib/microcms";
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticPages: MetadataRoute.Sitemap = [
     { url: "https://clearai.jp", lastModified: new Date(), changeFrequency: "weekly", priority: 1 },
-    // 主力3事業
-    { url: "https://clearai.jp/physical-ai", lastModified: new Date(), changeFrequency: "weekly", priority: 0.95 },
-    { url: "https://clearai.jp/robot-rental", lastModified: new Date(), changeFrequency: "weekly", priority: 0.95 },
-    { url: "https://clearai.jp/training", lastModified: new Date(), changeFrequency: "weekly", priority: 0.95 },
-    // その他の支援
     { url: "https://clearai.jp/about", lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
     { url: "https://clearai.jp/ai-consulting", lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
+    { url: "https://clearai.jp/training", lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
     { url: "https://clearai.jp/subsidy", lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
     { url: "https://clearai.jp/advisor", lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
     { url: "https://clearai.jp/ai-agent", lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
@@ -18,6 +14,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: "https://clearai.jp/advertising", lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
     { url: "https://clearai.jp/website", lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
     { url: "https://clearai.jp/sns", lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
+    { url: "https://clearai.jp/robot-rental", lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
     { url: "https://clearai.jp/spatial-scan", lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
     { url: "https://clearai.jp/faq", lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
     { url: "https://clearai.jp/blog", lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },

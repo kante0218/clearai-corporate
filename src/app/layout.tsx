@@ -23,7 +23,7 @@ export const viewport: Viewport = {
 };
 
 const ogDescription =
-  "clearAI株式会社（クリアエーアイ／読み方：クリアエーアイ）は、フィジカルAIの受託開発・ロボットレンタル・AI研修を3本柱に、日本の中小企業の現場へロボットとAIを実装します。四足歩行ロボットは1日1万円から、受託開発はPoC150万円から、研修は助成金活用で最大75%OFF。AIエージェント開発・空間3Dスキャン・AI顧問・補助金サポートまで一気通貫。2026年創業、茨城県拠点・全国対応。";
+  "clearAI株式会社（クリアエーアイ／読み方：クリアエーアイ）は、日本の中小企業向けにAI導入支援を提供。AI戦略策定から実装・運用、AI顧問、AI研修、補助金サポート、Claude特化導入、AI広告運用、ウェブサイト制作まで7領域で一気通貫に伴走します。2026年創業、茨城県拠点。";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://clearai.jp"),
@@ -37,20 +37,12 @@ export const metadata: Metadata = {
     "clearAI", "clearAI株式会社", "clear AI", "Clear AI", "Clear Ai",
     "クリアエーアイ", "クリアAI", "クリア・エーアイ", "クリアーエーアイ",
     "クリアエイアイ", "clearai", "clearai.jp", "クリアエーアイ株式会社",
-    // 主力3事業
-    "フィジカルAI", "フィジカルAI 受託開発", "Physical AI", "Embodied AI",
-    "ロボット 受託開発", "ロボット AI 開発", "ロボットレンタル", "ロボット レンタル",
-    "ヒューマノイド レンタル", "四足歩行ロボット レンタル", "Unitree レンタル", "AgiBot",
-    "AI研修", "生成AI研修", "企業 AI研修", "AI内製化 研修",
     // 事業キーワード
     "AIコンサルティング", "AI導入", "AI顧問", "AI導入支援", "AI活用",
-    "AIエージェント開発", "空間3Dスキャン", "設備点検 自動化", "外観検査 AI",
-    "生成AI", "LLM活用", "DX推進", "業務自動化",
-    "AI補助金", "人材開発支援助成金", "IT導入補助金",
-    "Claude", "Claude Code", "Claude導入", "CEO向けAI",
+    "生成AI", "LLM活用", "DX推進", "業務自動化", "AI研修",
+    "AI補助金", "Claude", "Claude Code", "Claude導入", "CEO向けAI",
     // 地域・業種
     "茨城県 AI", "関東 AIコンサル", "中小企業 AI導入", "日本 AI企業",
-    "製造業 AI導入", "物流 ロボット導入",
   ],
   authors: [{ name: "clearAI株式会社" }],
   creator: "clearAI株式会社",
@@ -142,7 +134,7 @@ const organizationSchema = {
     "address": { "@type": "PostalAddress", "addressRegion": "茨城県", "addressCountry": "JP" },
   },
   "description":
-    "clearAI株式会社（読み方：クリアエーアイ）は、フィジカルAI受託開発・ロボットレンタル・AI研修を3本柱に、日本の中小企業の現場へロボットとAIを実装するAI企業。",
+    "clearAI株式会社（読み方：クリアエーアイ）は、日本の中小企業向けAI導入支援を提供するAI企業。",
   "slogan": "AIで、すべてをクリアにする。",
   "founder": { "@type": "Person", "name": "髙橋 敢輝" },
   "address": {
@@ -170,38 +162,22 @@ const organizationSchema = {
   "email": "info@clearai.jp",
   "sameAs": [],
   "knowsAbout": [
-    "フィジカルAI",
-    "Physical AI",
-    "Embodied AI",
-    "ロボット受託開発",
-    "ロボットレンタル",
-    "ヒューマノイドロボット",
-    "四足歩行ロボット",
-    "設備点検の自動化",
-    "AIエージェント開発",
-    "空間3Dスキャン",
-    "AI研修",
     "AIコンサルティング",
     "AI導入支援",
     "AI顧問",
+    "AI研修",
     "生成AI",
     "LLM活用",
     "DX推進",
     "業務自動化",
-    "人材開発支援助成金",
-    "IT導入補助金",
     "Claude",
     "Claude Code",
     "CEO向けAI活用",
   ],
   "makesOffer": [
-    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "フィジカルAI受託開発", "url": "https://clearai.jp/physical-ai" } },
-    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "ロボットレンタル", "url": "https://clearai.jp/robot-rental" } },
-    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI研修", "url": "https://clearai.jp/training" } },
-    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AIエージェント開発", "url": "https://clearai.jp/ai-agent" } },
-    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "空間3Dスキャン", "url": "https://clearai.jp/spatial-scan" } },
-    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI顧問", "url": "https://clearai.jp/advisor" } },
     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AIコンサルティング", "url": "https://clearai.jp/ai-consulting" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI顧問", "url": "https://clearai.jp/advisor" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI研修", "url": "https://clearai.jp/training" } },
     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "補助金サポート", "url": "https://clearai.jp/subsidy" } },
     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Claude特化導入", "url": "https://clearai.jp/claude" } },
     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI広告運用", "url": "https://clearai.jp/advertising" } },
@@ -219,7 +195,7 @@ const professionalServiceSchema = {
   "logo": "https://clearai.jp/images/logo.png",
   "image": "https://clearai.jp/images/logo.png",
   "description":
-    "フィジカルAI受託開発・ロボットレンタル・AI研修を主力に、AIエージェント開発・空間3Dスキャン・AI顧問・補助金サポートまで提供する日本のAI専門企業。",
+    "AIコンサルティング・AI顧問・AI研修・補助金サポート・Claude特化導入・AI広告運用・ウェブサイト制作を提供する日本のAI専門企業。",
   "address": {
     "@type": "PostalAddress",
     "addressRegion": "茨城県",
@@ -233,13 +209,9 @@ const professionalServiceSchema = {
     "@type": "OfferCatalog",
     "name": "clearAI サービス一覧",
     "itemListElement": [
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "フィジカルAI受託開発", "url": "https://clearai.jp/physical-ai" }, "price": "1500000", "priceCurrency": "JPY" },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "ロボットレンタル", "url": "https://clearai.jp/robot-rental" }, "price": "10000", "priceCurrency": "JPY" },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI研修", "url": "https://clearai.jp/training" }, "price": "200000", "priceCurrency": "JPY" },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AIエージェント開発", "url": "https://clearai.jp/ai-agent" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "空間3Dスキャン", "url": "https://clearai.jp/spatial-scan" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI顧問", "url": "https://clearai.jp/advisor" } },
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AIコンサルティング", "url": "https://clearai.jp/ai-consulting" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI顧問", "url": "https://clearai.jp/advisor" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI研修", "url": "https://clearai.jp/training" } },
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "補助金サポート", "url": "https://clearai.jp/subsidy" } },
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Claude特化導入", "url": "https://clearai.jp/claude" } },
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI広告運用", "url": "https://clearai.jp/advertising" } },
@@ -266,7 +238,7 @@ const brandFaqSchema = {
       "name": "clearAI（クリアエーアイ）は何をしている会社ですか？",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "clearAI株式会社は、日本の中小企業向けにロボットとAIの導入をワンストップで提供するAIスタートアップです。主力は3事業で、(1) フィジカルAI受託開発（ロボット・現場設備とAIをつなぐシステムの受託開発、PoC150万円〜）、(2) ロボットレンタル（Unitree・AgiBot等のヒューマノイド／四足歩行ロボットを1日1万円〜でレンタル）、(3) AI研修（階層別の実践研修、人材開発支援助成金で最大75%OFF）。加えてAIエージェント開発、空間3Dスキャン、AI顧問、補助金サポート、Claude特化導入、AI広告運用、ウェブサイト制作も提供しています。",
+        "text": "clearAI株式会社は、日本の中小企業向けにAI導入支援をワンストップで提供するAIスタートアップです。AI戦略策定から実装・運用、AI顧問、AI研修、補助金サポート、Claude特化導入、AI広告運用、ウェブサイト制作まで7領域を一気通貫で支援しています。",
       },
     },
     {
@@ -300,22 +272,17 @@ const siteNavigationSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
   "itemListElement": [
-    { "@type": "SiteNavigationElement", "position": 1, "name": "フィジカルAI受託開発", "url": "https://clearai.jp/physical-ai" },
-    { "@type": "SiteNavigationElement", "position": 2, "name": "ロボットレンタル", "url": "https://clearai.jp/robot-rental" },
+    { "@type": "SiteNavigationElement", "position": 1, "name": "AIコンサルティング", "url": "https://clearai.jp/ai-consulting" },
+    { "@type": "SiteNavigationElement", "position": 2, "name": "AI顧問", "url": "https://clearai.jp/advisor" },
     { "@type": "SiteNavigationElement", "position": 3, "name": "AI研修", "url": "https://clearai.jp/training" },
-    { "@type": "SiteNavigationElement", "position": 4, "name": "AIエージェント開発", "url": "https://clearai.jp/ai-agent" },
-    { "@type": "SiteNavigationElement", "position": 5, "name": "空間3Dスキャン", "url": "https://clearai.jp/spatial-scan" },
-    { "@type": "SiteNavigationElement", "position": 6, "name": "AI顧問", "url": "https://clearai.jp/advisor" },
-    { "@type": "SiteNavigationElement", "position": 7, "name": "AIコンサルティング", "url": "https://clearai.jp/ai-consulting" },
-    { "@type": "SiteNavigationElement", "position": 8, "name": "補助金サポート", "url": "https://clearai.jp/subsidy" },
-    { "@type": "SiteNavigationElement", "position": 9, "name": "Claude特化導入", "url": "https://clearai.jp/claude" },
-    { "@type": "SiteNavigationElement", "position": 10, "name": "ウェブサイト作成", "url": "https://clearai.jp/website" },
-    { "@type": "SiteNavigationElement", "position": 11, "name": "AI広告運用", "url": "https://clearai.jp/advertising" },
-    { "@type": "SiteNavigationElement", "position": 12, "name": "SNS運用代行", "url": "https://clearai.jp/sns" },
-    { "@type": "SiteNavigationElement", "position": 13, "name": "会社概要", "url": "https://clearai.jp/about" },
-    { "@type": "SiteNavigationElement", "position": 14, "name": "ブログ", "url": "https://clearai.jp/blog" },
-    { "@type": "SiteNavigationElement", "position": 15, "name": "よくある質問", "url": "https://clearai.jp/faq" },
-    { "@type": "SiteNavigationElement", "position": 16, "name": "お問い合わせ", "url": "https://clearai.jp/contact" },
+    { "@type": "SiteNavigationElement", "position": 4, "name": "補助金サポート", "url": "https://clearai.jp/subsidy" },
+    { "@type": "SiteNavigationElement", "position": 5, "name": "Claude特化導入", "url": "https://clearai.jp/claude" },
+    { "@type": "SiteNavigationElement", "position": 6, "name": "AI広告運用", "url": "https://clearai.jp/advertising" },
+    { "@type": "SiteNavigationElement", "position": 7, "name": "ウェブサイト作成", "url": "https://clearai.jp/website" },
+    { "@type": "SiteNavigationElement", "position": 8, "name": "私たちについて", "url": "https://clearai.jp/about" },
+    { "@type": "SiteNavigationElement", "position": 9, "name": "お問い合わせ", "url": "https://clearai.jp/contact" },
+    { "@type": "SiteNavigationElement", "position": 10, "name": "よくある質問", "url": "https://clearai.jp/faq" },
+    { "@type": "SiteNavigationElement", "position": 11, "name": "ブログ", "url": "https://clearai.jp/blog" },
   ],
 };
 
@@ -343,8 +310,20 @@ const websiteSchema = {
   },
 };
 
-// BreadcrumbList は「実際のパンくず経路」を表すものなので、全ページ共通の
-// レイアウトではなく各ページの layout.tsx 側で個別に出力する。
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "@id": "https://clearai.jp/#breadcrumb",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "ホーム", "item": "https://clearai.jp" },
+    { "@type": "ListItem", "position": 2, "name": "AIコンサルティング", "item": "https://clearai.jp/ai-consulting" },
+    { "@type": "ListItem", "position": 3, "name": "AI顧問", "item": "https://clearai.jp/advisor" },
+    { "@type": "ListItem", "position": 4, "name": "AI研修", "item": "https://clearai.jp/training" },
+    { "@type": "ListItem", "position": 5, "name": "Claude特化導入", "item": "https://clearai.jp/claude" },
+    { "@type": "ListItem", "position": 6, "name": "補助金サポート", "item": "https://clearai.jp/subsidy" },
+    { "@type": "ListItem", "position": 7, "name": "お問い合わせ", "item": "https://clearai.jp/contact" },
+  ],
+};
 
 const jsonLdGraph = {
   "@context": "https://schema.org",
@@ -353,6 +332,7 @@ const jsonLdGraph = {
     websiteSchema,
     professionalServiceSchema,
     siteNavigationSchema,
+    breadcrumbSchema,
     brandFaqSchema,
   ],
 };
