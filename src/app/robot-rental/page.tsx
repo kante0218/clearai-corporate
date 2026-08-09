@@ -576,7 +576,7 @@ export default function RobotRentalPage() {
             >
               <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between lg:gap-8">
                 <div className="max-w-3xl">
-                  <div className="flex items-center gap-3 font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-neutral-300">
+                  <div className="flex items-center gap-3 font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-amber-400">
                     <span aria-hidden>◆</span>
                     <span>{t.robollyEyebrow}</span>
                   </div>
@@ -585,7 +585,7 @@ export default function RobotRentalPage() {
                   </p>
                   <p className="mt-3 text-sm lg:text-[15px] leading-relaxed text-pretty text-neutral-300">{t.robollyDesc}</p>
                 </div>
-                <span className="inline-flex shrink-0 items-center gap-2.5 border border-white bg-white px-7 py-3.5 font-mono text-xs font-bold uppercase tracking-[0.08em] text-neutral-900 transition-colors duration-300 group-hover:bg-transparent group-hover:text-white">
+                <span className="inline-flex shrink-0 items-center gap-2.5 border border-amber-400 bg-amber-400 px-7 py-3.5 font-mono text-xs font-bold uppercase tracking-[0.08em] text-[#0a1f3c] transition-colors duration-300 group-hover:bg-transparent group-hover:text-amber-400">
                   {t.robollyCta}
                   <span className="transition-transform duration-300 group-hover:translate-x-1">↗</span>
                 </span>

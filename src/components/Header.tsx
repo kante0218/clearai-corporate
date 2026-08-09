@@ -80,8 +80,10 @@ export default function Header() {
     ? "bg-white/95 backdrop-blur-xl border-b border-gray-200 shadow-sm"
     : "bg-white border-b border-gray-100";
 
-  const contactFilledClass = "executive-consultation-cta";
-  const contactBtnClass = "executive-consultation-cta";
+  const contactFilledClass = "bg-neutral-900 hover:bg-neutral-800 text-white";
+  // Filled CTA for the desktop header (solid + soft neutral shadow + hover lift)
+  const contactBtnClass =
+    "bg-neutral-900 hover:bg-black shadow-[0_6px_20px_-6px_rgba(0,0,0,0.45)] hover:shadow-[0_12px_28px_-6px_rgba(0,0,0,0.6)]";
 
   return (
     <>

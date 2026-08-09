@@ -99,7 +99,7 @@ export default function InlineContactForm({ lang = "ja" }: { lang?: "ja" | "en" 
       <textarea name="message" rows={3} minLength={10} placeholder={t.messagePlaceholder} required className={`${inputCls} mt-3 resize-y`} />
       {/* honeypot: 人間には見えない。埋まっていたらスパム扱い */}
       <input name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
-      {status === "error" && <p className="mt-3 text-sm font-semibold text-neutral-900">{errMsg}</p>}
+      {status === "error" && <p className="mt-3 text-sm text-red-600">{errMsg}</p>}
       <button
         type="submit"
         disabled={status === "sending"}
