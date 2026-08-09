@@ -49,10 +49,6 @@ function SectionHead({
   );
 }
 
-function Label({ children }: { children: ReactNode }) {
-  return <p className="text-sm font-semibold text-neutral-900 mb-4">{children}</p>;
-}
-
 type Copy = {
   heroChip: string;
   heroTitle: string;
@@ -104,42 +100,52 @@ export default function FaqPage() {
 
   return (
     <>
-      {/* HERO */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white">
-        <div className="absolute bottom-1/3 right-1/4 w-[1px] h-[1px] shadow-[0_0_300px_150px_rgba(0,0,0,0.04)]" />
-        <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
-          <span className="inline-block rounded-md bg-neutral-100 text-neutral-900 px-3 py-1 text-sm font-semibold mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "300ms" }}>{t.heroChip}</span>
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0)" : "translateY(24px)", transitionDelay: "500ms" }}>
+      {/* MASTHEAD */}
+      <section className="bg-white pt-32 lg:pt-40 pb-16 lg:pb-24">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
+          {/* technical meta bar */}
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 border-b border-neutral-900 pb-4 font-mono text-[11px] uppercase tracking-[0.2em] text-neutral-500 transition-opacity duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "300ms" }}>
+            <span className="font-bold text-neutral-900">§00</span>
+            <span>{t.heroChip}</span>
+            <span className="text-neutral-300">/</span>
+            <span>Support</span>
+            <span className="text-neutral-300">/</span>
+            <span>Pre&nbsp;Enquiry</span>
+          </div>
+          <h1 className="mt-10 text-[7vw] sm:text-3xl lg:text-4xl font-bold leading-[0.95] tracking-[-0.04em] text-balance text-neutral-900 transition-[opacity,transform] duration-700" style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0)" : "translateY(24px)", transitionDelay: "500ms" }}>
             {t.heroTitle}
           </h1>
-          <p className="text-base text-gray-600 leading-relaxed max-w-lg mx-auto mb-10 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "700ms" }}>
+          <p className="mt-8 max-w-2xl text-base lg:text-lg leading-relaxed text-pretty text-neutral-600 transition-[opacity,transform] duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "700ms" }}>
             {t.heroDesc.split("\n").map((line, i, arr) => (
               <span key={i}>{line}{i < arr.length - 1 && <br />}</span>
             ))}
           </p>
-          <div className="flex items-center justify-center gap-4 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "900ms" }}>
-            <a href="#list" className="rounded-lg bg-neutral-900 text-white font-semibold px-8 py-3.5 hover:bg-neutral-800 transition-colors duration-300">{t.heroBtnPrimary}</a>
-            <a href="/contact" className="text-sm text-gray-500 font-semibold hover:text-gray-900 transition-colors duration-300">{t.heroBtnSecondary}</a>
+          <div className="mt-12 flex flex-col gap-3 sm:flex-row sm:items-center transition-[opacity,transform] duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "900ms" }}>
+            <a href="#list" className="group inline-flex items-center justify-center gap-3 border border-neutral-900 bg-neutral-900 px-8 py-4 font-mono text-sm font-bold uppercase tracking-[0.08em] text-white transition-[color,background-color,border-color,scale] duration-300 hover:bg-transparent hover:text-neutral-900 active:scale-[0.96]">
+              {t.heroBtnPrimary}
+              <span className="transition-transform duration-300 group-hover:translate-x-1">↓</span>
+            </a>
+            <a href="/contact" className="inline-flex items-center justify-center gap-2 border border-neutral-300 px-8 py-4 font-mono text-sm font-bold uppercase tracking-[0.08em] text-neutral-600 transition-[color,border-color,scale] duration-300 hover:border-neutral-900 hover:text-neutral-900 active:scale-[0.96]">
+              {t.heroBtnSecondary}
+            </a>
           </div>
         </div>
       </section>
 
       {/* LIST */}
-      <section id="list" className="py-14 lg:py-20 bg-gray-50">
-        <div className="max-w-3xl mx-auto px-6 lg:px-8">
-          <Reveal>
-            <Label>{t.listLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-8">{t.listTitle}</h2>
-          </Reveal>
-          <div className="space-y-3">
+      <section id="list" className="py-12 lg:py-16 bg-neutral-50 border-y border-neutral-900">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
+          <SectionHead index="01" kicker={t.listLabel} title={t.listTitle} />
+          <div className="max-w-3xl border-t border-neutral-900">
             {faqItems.map((f, i) => (
               <Reveal key={i} delay={i * 30}>
-                <details className="group bg-white border border-gray-200 rounded-xl overflow-hidden">
-                  <summary className="cursor-pointer list-none p-5 flex items-start justify-between gap-4 hover:bg-gray-50 transition-colors">
-                    <span className="text-sm lg:text-base font-semibold text-gray-900">{f.q[lang]}</span>
-                    <span className="flex-shrink-0 text-neutral-900 text-xl transition-transform group-open:rotate-45">+</span>
+                <details className="group border-b border-neutral-300 py-5">
+                  <summary className="flex cursor-pointer list-none items-start gap-4 text-base font-semibold text-neutral-900">
+                    <span className="mt-0.5 font-mono text-xs tabular-nums text-neutral-400">Q{String(i + 1).padStart(2, "0")}</span>
+                    <span className="flex-1">{f.q[lang]}</span>
+                    <span className="font-mono text-lg leading-none text-neutral-400 transition-transform duration-300 group-open:rotate-45">+</span>
                   </summary>
-                  <div className="px-5 pb-5 text-sm text-gray-600 leading-relaxed">{f.a[lang]}</div>
+                  <p className="mt-4 pl-9 text-sm leading-relaxed text-pretty text-neutral-600">{f.a[lang]}</p>
                 </details>
               </Reveal>
             ))}
@@ -148,17 +154,29 @@ export default function FaqPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-14 lg:py-20 bg-white">
-        <div className="max-w-2xl mx-auto px-6 text-center">
+      <section className="bg-neutral-900 py-16 lg:py-20">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
-            <Label>{t.ctaLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">{t.ctaTitle}</h2>
-            <p className="text-base text-gray-600 leading-relaxed mb-10">
-              {t.ctaDesc.split("\n").map((line, i, arr) => (
-                <span key={i}>{line}{i < arr.length - 1 && <br />}</span>
-              ))}
-            </p>
-            <a href="/contact" className="rounded-lg bg-neutral-900 text-white font-semibold px-10 py-4 hover:bg-neutral-800 transition-colors duration-300 inline-block">{t.ctaButton}</a>
+            <div className="flex items-center gap-4 border-b border-neutral-700 pb-4 font-mono text-[11px] uppercase tracking-[0.25em] text-neutral-500">
+              <span className="font-bold text-white">§02</span>
+              <span>{t.ctaLabel}</span>
+            </div>
+            <div className="mt-12 grid grid-cols-1 items-end gap-10 lg:grid-cols-12">
+              <div className="lg:col-span-8">
+                <h2 className="text-[18px] sm:text-xl lg:text-2xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance text-white">{t.ctaTitle}</h2>
+                <p className="mt-6 max-w-2xl text-base leading-relaxed text-pretty text-neutral-400">
+                  {t.ctaDesc.split("\n").map((line, i, arr) => (
+                    <span key={i}>{line}{i < arr.length - 1 && <br />}</span>
+                  ))}
+                </p>
+              </div>
+              <div className="lg:col-span-4 lg:text-right">
+                <a href="/reserve" className="group inline-flex items-center gap-3 border border-white bg-white px-8 py-4 font-mono text-sm font-bold uppercase tracking-[0.08em] text-neutral-900 transition-[color,background-color,border-color,scale] duration-300 hover:bg-transparent hover:text-white active:scale-[0.96]">
+                  {t.ctaButton}
+                  <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                </a>
+              </div>
+            </div>
           </Reveal>
         </div>
       </section>

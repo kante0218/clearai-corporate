@@ -101,36 +101,63 @@ export default function PrivacyPage() {
 
   return (
     <main className="min-h-screen bg-white">
-      <section className="max-w-3xl mx-auto px-6 pt-40 pb-20">
-        <p className="text-sm font-semibold text-neutral-900 mb-4">{t.label}</p>
-        <h1 className="text-3xl font-bold text-gray-900 mb-12">{t.title}</h1>
+      <section className="max-w-3xl mx-auto px-6 lg:px-8 pt-40 pb-24">
 
-        <div className="prose text-gray-600 leading-relaxed space-y-8">
-          {t.sections.map((section) => (
-            <div key={section.title}>
-              <h2 className="text-lg font-bold text-gray-900 mb-3">{section.title}</h2>
-              <p>{section.body}</p>
-              {section.bullets && (
-                <ul className="list-disc pl-6 mt-2 space-y-1">
-                  {section.bullets.map((bullet) => (
-                    <li key={bullet}>{bullet}</li>
-                  ))}
-                </ul>
-              )}
-              {section.extra && (
-                <p className="mt-2">
-                  {section.extra.split("\n").map((line, i) => (
-                    <span key={i}>
-                      {line}
-                      {i < section.extra!.split("\n").length - 1 && <br />}
-                    </span>
-                  ))}
-                </p>
-              )}
-            </div>
+        {/* ─── MASTHEAD ─────────────────────────────────────────────────── */}
+        <div className="flex items-center gap-4 border-b border-neutral-900 pb-4">
+          <span className="font-mono text-xs font-bold tabular-nums text-neutral-900">§00</span>
+          <span className="font-mono text-[11px] font-medium uppercase tracking-[0.25em] text-neutral-500">
+            {t.label}
+          </span>
+        </div>
+        <h1 className="mt-8 text-[7vw] sm:text-3xl lg:text-4xl font-bold leading-[0.95] tracking-[-0.04em] text-balance text-neutral-900">
+          {t.title}
+        </h1>
+
+        {/* ─── LEGAL BODY ───────────────────────────────────────────────── */}
+        <div className="mt-16 border-t border-neutral-900">
+          {t.sections.map((section, i) => (
+            <article key={section.title} className="border-t border-neutral-200 py-9 first:border-t-0">
+              <div className="grid grid-cols-1 gap-x-8 gap-y-4 sm:grid-cols-12">
+                <div className="sm:col-span-3">
+                  <span className="font-mono text-xs font-bold tabular-nums text-neutral-400">
+                    §{String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h2 className="mt-3 text-base font-bold leading-snug tracking-tight text-balance text-neutral-900">
+                    {section.title}
+                  </h2>
+                </div>
+                <div className="sm:col-span-9">
+                  <p className="text-[15px] leading-relaxed text-pretty text-neutral-700">{section.body}</p>
+                  {section.bullets && (
+                    <ul className="mt-4 space-y-2 border-l border-neutral-200 pl-5">
+                      {section.bullets.map((bullet) => (
+                        <li key={bullet} className="flex gap-3 text-[15px] leading-relaxed text-neutral-700">
+                          <span className="mt-px font-mono text-neutral-400" aria-hidden="true">→</span>
+                          <span className="text-pretty">{bullet}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                  {section.extra && (
+                    <p className="mt-4 font-mono text-sm leading-relaxed text-neutral-600">
+                      {section.extra.split("\n").map((line, idx) => (
+                        <span key={idx}>
+                          {line}
+                          {idx < section.extra!.split("\n").length - 1 && <br />}
+                        </span>
+                      ))}
+                    </p>
+                  )}
+                </div>
+              </div>
+            </article>
           ))}
+        </div>
 
-          <p className="text-sm text-gray-400 mt-8">{t.date}</p>
+        {/* ─── META FOOTER ──────────────────────────────────────────────── */}
+        <div className="mt-12 border-t border-neutral-900 pt-5">
+          <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-neutral-400">{t.date}</p>
         </div>
       </section>
     </main>

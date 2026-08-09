@@ -24,19 +24,21 @@ export default function Header() {
   const { lang } = useLanguage();
   const h = headerDict[lang];
 
+  // 主力3事業をトップレベルに置き、残りは「その他の事業」に畳む
   const navItems: NavItem[] = [
+    { label: h.navPhysicalAi, href: "/physical-ai" },
     { label: h.navRobotRental, href: "/robot-rental" },
-    { label: h.navSpatialScan, href: "/spatial-scan" },
+    { label: h.navTraining, href: "/training" },
     {
-      label: h.navFde,
+      label: h.navOther,
       href: "/ai-consulting",
       children: [
         { label: h.navAiAgent, href: "/ai-agent", description: h.navAiAgentDesc },
+        { label: h.navSpatialScan, href: "/spatial-scan", description: h.navSpatialScanDesc },
         { label: h.navAdvisor, href: "/advisor", description: h.navAdvisorDesc },
-        { label: h.navTraining, href: "/training", description: h.navTrainingDesc },
+        { label: h.navAiConsulting, href: "/ai-consulting", description: h.navAiConsultingDesc },
         { label: h.navSubsidy, href: "/subsidy", description: h.navSubsidyDesc },
         { label: h.navClaude, href: "/claude", description: h.navClaudeDesc },
-        { label: h.navAiConsulting, href: "/ai-consulting", description: h.navAiConsultingDesc },
         { label: h.navWebsite, href: "/website", description: h.navWebsiteDesc },
         { label: h.navAdvertising, href: "/advertising", description: h.navAdvertisingDesc },
         { label: h.navSns, href: "/sns", description: h.navSnsDesc },
@@ -45,12 +47,14 @@ export default function Header() {
   ];
 
   const utilityItems: { label: string; href: string }[] = [
+    { label: h.navEstimate, href: "/#simulation" },
     { label: h.navNews, href: "/blog" },
     { label: h.navAbout, href: "/about" },
   ];
   const isClaude = pathname?.startsWith("/claude");
   const isAiConsulting =
     pathname?.startsWith("/ai-consulting") ||
+    pathname?.startsWith("/physical-ai") ||
     pathname?.startsWith("/advisor") ||
     pathname?.startsWith("/ai-agent") ||
     pathname?.startsWith("/training") ||
@@ -80,8 +84,10 @@ export default function Header() {
     ? "bg-white/95 backdrop-blur-xl border-b border-gray-200 shadow-sm"
     : "bg-white border-b border-gray-100";
 
-  const contactFilledClass = "executive-consultation-cta";
-  const contactBtnClass = "executive-consultation-cta";
+  const contactFilledClass = "bg-neutral-900 hover:bg-neutral-800 text-white";
+  // Filled CTA for the desktop header (solid + soft neutral shadow + hover lift)
+  const contactBtnClass =
+    "bg-neutral-900 hover:bg-black shadow-[0_6px_20px_-6px_rgba(0,0,0,0.45)] hover:shadow-[0_12px_28px_-6px_rgba(0,0,0,0.6)]";
 
   return (
     <>
@@ -109,7 +115,7 @@ export default function Header() {
                         href={item.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={`text-sm font-semibold tracking-wide px-3 py-2 transition-colors duration-200 inline-flex items-center gap-1 ${navColor}`}
+                        className={`relative text-sm font-semibold tracking-wide px-3 py-2 transition-colors duration-200 inline-flex items-center gap-1 after:pointer-events-none after:absolute after:bottom-1 after:left-3 after:right-3 after:h-px after:origin-left after:scale-x-0 after:bg-neutral-900 after:transition-transform after:duration-300 hover:after:scale-x-100 ${navColor}`}
                       >
                         {item.label}
                       </a>
@@ -118,7 +124,7 @@ export default function Header() {
                         href={item.href}
                         prefetch
                         onMouseEnter={() => router.prefetch(item.href)}
-                        className={`text-sm font-semibold tracking-wide px-3 py-2 transition-colors duration-200 inline-flex items-center gap-1 ${navColor}`}
+                        className={`relative text-sm font-semibold tracking-wide px-3 py-2 transition-colors duration-200 inline-flex items-center gap-1 after:pointer-events-none after:absolute after:bottom-1 after:left-3 after:right-3 after:h-px after:origin-left after:scale-x-0 after:bg-neutral-900 after:transition-transform after:duration-300 hover:after:scale-x-100 ${navColor}`}
                       >
                         {item.label}
                         {hasChildren && (
@@ -240,14 +246,14 @@ export default function Header() {
                           onClick={() => setMobileExpanded(expanded ? null : item.label)}
                           aria-label={`${item.label}${h.subMenuAria}`}
                           aria-expanded={expanded}
-                          className="p-3 text-gray-500"
+                          className="p-3 -mr-1 text-gray-700"
                         >
                           <svg
-                            className={`w-4 h-4 transition-transform duration-300 ${expanded ? "rotate-180" : ""}`}
+                            className={`w-7 h-7 transition-transform duration-300 ${expanded ? "rotate-180" : ""}`}
                             viewBox="0 0 16 16"
                             fill="none"
                             stroke="currentColor"
-                            strokeWidth="1.5"
+                            strokeWidth="2"
                           >
                             <path d="M4 6L8 10L12 6" strokeLinecap="round" strokeLinejoin="round" />
                           </svg>

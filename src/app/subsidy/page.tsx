@@ -21,8 +21,31 @@ function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; 
   );
 }
 
-function Label({ children }: { children: ReactNode }) {
-  return <p className="text-sm font-semibold text-neutral-900 mb-4">{children}</p>;
+function SectionHead({
+  index,
+  kicker,
+  title,
+  desc,
+  dark = false,
+}: {
+  index: string;
+  kicker: ReactNode;
+  title: ReactNode;
+  desc?: ReactNode;
+  dark?: boolean;
+}) {
+  return (
+    <Reveal className="mb-7 lg:mb-9 max-w-3xl">
+      <div className={`flex items-center gap-4 border-b pb-4 ${dark ? "border-white/25" : "border-neutral-900"}`}>
+        <span className={`font-mono text-xs font-bold tabular-nums ${dark ? "text-white" : "text-neutral-900"}`}>§{index}</span>
+        <span className={`font-mono text-[11px] font-medium uppercase tracking-[0.25em] ${dark ? "text-neutral-400" : "text-neutral-500"}`}>{kicker}</span>
+      </div>
+      <h2 className={`mt-8 text-[18px] sm:text-xl lg:text-2xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance ${dark ? "text-white" : "text-neutral-900"}`}>
+        {title}
+      </h2>
+      {desc && <p className={`mt-6 text-[15px] leading-relaxed text-pretty ${dark ? "text-neutral-400" : "text-neutral-600"}`}>{desc}</p>}
+    </Reveal>
+  );
 }
 
 type CompanySize = "small" | "large";
@@ -91,7 +114,7 @@ const COPY: Record<"ja" | "en", Copy> = {
   ja: {
     pageLabel: "Subsidy Support",
     pageTitle: "補助金サポート",
-    pageDesc: "人材開発支援助成金・IT導入補助金・茨城県独自の支援制度まで。研修費・AI導入費を最大75%削減できる制度を、計画策定から実施報告・支給申請までフルサポートします。",
+    pageDesc: "人材開発支援助成金・IT導入補助金・茨城県独自制度を活用し、研修費・AI導入費を最大75%削減できるよう計画策定から支給申請まで一貫サポートします。",
     programsLabel: "Programs",
     programsTitle: "対応する3つの支援制度",
     programsDesc: "AI研修・AI導入プロジェクトに最も適した制度を、貴社の事業ステージと目的に合わせてご提案します。",
@@ -100,7 +123,7 @@ const COPY: Record<"ja" | "en", Copy> = {
         tag: "国",
         title: "人材開発支援助成金",
         subtitle: "事業展開等リスキリング支援コース",
-        desc: "新規事業・DX推進のための研修に使える厚労省の制度。AI・生成AI研修と極めて相性が良く、経費の最大75%と受講者の賃金を助成。",
+        desc: "新規事業・DX推進の研修に使える厚労省の制度で、AI・生成AI研修に極めて相性が良く、経費最大75%と受講者賃金を助成。",
         metrics: [
           { label: "経費助成（中小）", value: "75%" },
           { label: "賃金助成", value: "960円/人・時間" },
@@ -113,7 +136,7 @@ const COPY: Record<"ja" | "en", Copy> = {
         tag: "国",
         title: "IT導入補助金",
         subtitle: "通常枠 / インボイス対応枠 等",
-        desc: "AIツール・SaaS・業務自動化システムの導入費用を補助。clearAIのコンサル＋導入パッケージと組み合わせて活用可能。",
+        desc: "AIツール・SaaS・業務自動化システムの導入費用を補助する制度で、clearAIのコンサル＋導入パッケージと組み合わせて活用できます。",
         metrics: [
           { label: "補助率", value: "最大 1/2〜3/4" },
           { label: "補助額", value: "〜450万円" },
@@ -126,7 +149,7 @@ const COPY: Record<"ja" | "en", Copy> = {
         tag: "県・市",
         title: "茨城県・地方自治体支援",
         subtitle: "DX推進／中小企業人材開発等",
-        desc: "茨城県および県内市町村が独自に実施するDX・生成AI活用・人材育成の助成制度。全国対応ですが、当社拠点の茨城県は特に精通しています。",
+        desc: "茨城県および県内市町村が独自に実施するDX・生成AI・人材育成の助成制度で、当社拠点の茨城県制度に特に精通しています。",
         metrics: [
           { label: "対象", value: "県内中小企業等" },
           { label: "補助率", value: "制度により50〜75%" },
@@ -138,7 +161,7 @@ const COPY: Record<"ja" | "en", Copy> = {
     ],
     simulatorLabel: "Simulator",
     simulatorTitle: "実質負担額を、その場で計算。",
-    simulatorDesc: "受講人数・研修時間・企業規模を入れるだけ。人材開発支援助成金（事業展開等リスキリング支援コース）を前提にした概算が即座に表示されます。",
+    simulatorDesc: "受講人数・研修時間・企業規模を入力するだけで、人材開発支援助成金（事業展開等リスキリング支援コース）の概算が即座に表示されます。",
     simCondTitle: "シミュレーション条件",
     simCompanySize: "企業規模",
     simSmall: "中小企業（75%）",
@@ -167,7 +190,7 @@ const COPY: Record<"ja" | "en", Copy> = {
       { num: "04", title: "実施・記録", desc: "研修の実施から出席簿・賃金台帳までのエビデンス管理をサポート。" },
     ],
     supportDisclaimer: "書類の最終提出は事業主または提携社労士が行います",
-    supportDisclaimerBody: "clearAIは計画策定・研修実施・エビデンス管理までを責任を持って伴走。労働局への正式な申請手続きは有資格者である提携社労士がおこないます（紹介可）。",
+    supportDisclaimerBody: "clearAIは計画策定・研修実施・エビデンス管理まで責任を持って伴走し、労働局への正式申請は提携社労士（紹介可）が担当します。",
     flowLabel: "Flow",
     flowTitle: "申請から受給までの流れ",
     flow: [
@@ -183,32 +206,32 @@ const COPY: Record<"ja" | "en", Copy> = {
     faq: [
       {
         q: "人材開発支援助成金は誰でも使えますか？",
-        a: "雇用保険適用事業所であり、一定の要件を満たす訓練計画を事前に労働局に届け出た上で、計画通り実施できれば受給可能です。中小企業は経費助成率が75%になります。",
+        a: "雇用保険適用事業所が要件を満たす訓練計画を事前に届け出て計画通り実施すれば受給可能で、中小企業の経費助成率は75%です。",
       },
       {
         q: "申請手続きはclearAIが代行してくれますか？",
-        a: "連携する社労士と共に、訓練計画届・実施報告・支給申請までの書類作成を伴走支援します。書類の最終提出は事業主または提携社労士が行います。",
+        a: "提携社労士と連携し、訓練計画届・実施報告・支給申請まで書類作成を伴走支援します（最終提出は事業主または提携社労士が行います）。",
       },
       {
         q: "費用の立替は必要ですか？",
-        a: "助成金は後払い方式のため、研修費用は一旦お支払いいただき、実施後に助成金が支給される流れになります。資金繰りのご相談にも応じます。",
+        a: "助成金は後払い方式で研修費用は一旦お支払いいただきますが、資金繰りのご相談にも対応しています。",
       },
       {
         q: "どれくらいの期間で受給できますか？",
-        a: "訓練開始の1ヶ月前に計画届を提出し、研修終了後2ヶ月以内に支給申請。その後労働局の審査を経て支給となります。全体で4〜8ヶ月程度を見込んでください。",
+        a: "計画届（開始1ヶ月前）→研修実施→支給申請（終了後2ヶ月以内）→労働局審査の流れで、全体で4〜8ヶ月程度を見込んでください。",
       },
       {
         q: "IT導入補助金と人材開発支援助成金は併用できますか？",
-        a: "基本的に同一費用の二重受給はできませんが、AIツール導入費はIT導入補助金、研修費は人材開発支援助成金、と分けて活用することは可能です。個別にご提案します。",
+        a: "同一費用の二重受給は不可ですが、AIツール導入費はIT導入補助金・研修費は人材開発支援助成金と用途を分けての併用は可能で、個別にご提案します。",
       },
       {
         q: "茨城県内の企業向けの補助金はありますか？",
-        a: "茨城県独自のDX推進・人材育成関連助成金や、市町村単位での支援制度があります。clearAIは茨城県に拠点を置く企業として地域特有の制度にも精通しています。",
+        a: "茨城県および市町村独自のDX推進・人材育成関連助成金があり、茨城県拠点のclearAIは地域制度に精通しています。",
       },
     ],
     ctaLabel: "Contact",
     ctaTitle: "補助金を、損なく使い切る。",
-    ctaDesc: "「どの制度が合うかわからない」「書類作成に自信がない」——そんな段階からご相談いただけます。30分の無料診断から。",
+    ctaDesc: "「どの制度が合うか」「書類が不安」という段階から、30分の無料診断でご相談いただけます。",
     ctaButton: "無料相談を予約する",
     ctaSecondary: "研修プログラムを見る →",
   },
@@ -250,7 +273,7 @@ const COPY: Record<"ja" | "en", Copy> = {
         tag: "Pref. / City",
         title: "Ibaraki Prefecture & Local Government Programs",
         subtitle: "DX Promotion / SME Human Resource Development, etc.",
-        desc: "Subsidy programs independently run by Ibaraki Prefecture and its municipalities for DX, generative AI use, and talent development. We serve nationwide, but have deep expertise in Ibaraki-specific programs as our home base.",
+        desc: "Subsidy programs run by Ibaraki Prefecture and its municipalities for DX, generative AI, and talent development — with deep expertise in local programs as our home base.",
         metrics: [
           { label: "Eligible", value: "Ibaraki-based SMEs" },
           { label: "Subsidy rate", value: "50–75% (varies by program)" },
@@ -262,7 +285,7 @@ const COPY: Record<"ja" | "en", Copy> = {
     ],
     simulatorLabel: "Simulator",
     simulatorTitle: "Calculate your net cost on the spot.",
-    simulatorDesc: "Just enter headcount, training hours, and company size. An instant estimate based on the Human Resources Development Subsidy (Business Expansion / Reskilling Support Course) is displayed immediately.",
+    simulatorDesc: "Enter headcount, training hours, and company size to get an instant estimate based on the Human Resources Development Subsidy (Business Expansion / Reskilling Support Course).",
     simCondTitle: "Simulation parameters",
     simCompanySize: "Company size",
     simSmall: "SME (75%)",
@@ -291,7 +314,7 @@ const COPY: Record<"ja" | "en", Copy> = {
       { num: "04", title: "Implementation & records", desc: "We support evidence management from training delivery through attendance records and payroll ledgers." },
     ],
     supportDisclaimer: "Final document submission is made by the employer or an affiliated licensed consultant",
-    supportDisclaimerBody: "clearAI provides end-to-end support for planning, training delivery, and evidence management. Formal application to the Labour Bureau is handled by our affiliated licensed social insurance and labor consultant (referral available).",
+    supportDisclaimerBody: "clearAI provides end-to-end support for planning, training delivery, and evidence management; formal application to the Labour Bureau is handled by our affiliated licensed consultant (referral available).",
     flowLabel: "Flow",
     flowTitle: "From application to grant receipt",
     flow: [
@@ -307,32 +330,32 @@ const COPY: Record<"ja" | "en", Copy> = {
     faq: [
       {
         q: "Is the Human Resources Development Subsidy available to any company?",
-        a: "Any business covered by employment insurance that files a compliant training plan with the Labour Bureau in advance and carries it out as planned is eligible. SMEs qualify for a 75% expense subsidy rate.",
+        a: "Any employment-insurance-covered business that files a compliant training plan in advance and carries it out as planned is eligible, with SMEs qualifying for a 75% expense subsidy rate.",
       },
       {
         q: "Will clearAI handle the application process on our behalf?",
-        a: "Together with our affiliated labor/social insurance consultant, we provide hands-on support for all documentation — training plan filings, implementation reports, and grant applications. Final submission is made by the employer or the affiliated licensed consultant.",
+        a: "Together with our affiliated consultant, we support all documentation — training plan filings, implementation reports, and grant applications — with final submission made by the employer or affiliated licensed consultant.",
       },
       {
         q: "Do we need to front the costs?",
-        a: "Subsidies are paid after the fact, so training costs must be paid first and the grant is received after delivery. We can also discuss cash-flow concerns with you.",
+        a: "Subsidies are paid after training delivery, so costs must be fronted — we're available to discuss cash-flow concerns.",
       },
       {
         q: "How long does it take to receive the grant?",
-        a: "Plan the filing one month before training starts, submit the grant application within two months of completion, then await Labour Bureau review. Expect roughly 4–8 months in total.",
+        a: "File one month before training, submit the grant application within two months of completion, then await Labour Bureau review — roughly 4–8 months in total.",
       },
       {
         q: "Can the IT Introduction Subsidy and Human Resources Development Subsidy be combined?",
-        a: "Double-claiming the same expense is not permitted, but it is possible to apply the IT Introduction Subsidy to AI tool adoption costs and the Human Resources Development Subsidy to training costs separately. We will propose an approach tailored to your situation.",
+        a: "Double-claiming the same expense is not permitted, but applying the IT Introduction Subsidy to tool costs and the Human Resources Development Subsidy to training costs separately is possible — we'll propose a tailored approach.",
       },
       {
         q: "Are there subsidies specifically for companies in Ibaraki Prefecture?",
-        a: "Yes — Ibaraki Prefecture and its municipalities offer their own DX promotion and talent development subsidies. As a company headquartered in Ibaraki, clearAI has deep expertise in local programs.",
+        a: "Yes — Ibaraki Prefecture and its municipalities offer their own DX and talent development subsidies, and as an Ibaraki-based company, clearAI has deep expertise in local programs.",
       },
     ],
     ctaLabel: "Contact",
     ctaTitle: "Use every subsidy yen available to you.",
-    ctaDesc: "'Not sure which program fits us' or 'Not confident about the paperwork' — reach out at any stage. Start with a free 30-minute diagnosis.",
+    ctaDesc: "'Not sure which program fits' or 'not confident about the paperwork' — start with a free 30-minute diagnosis at any stage.",
     ctaButton: "Book a free consultation",
     ctaSecondary: "View training programs →",
   },
@@ -379,14 +402,17 @@ function Simulator() {
   }, [people, hours, hourlyFee, wage, size]);
 
   return (
-    <div className="bg-white rounded-lg border border-neutral-200 shadow-xl p-6 lg:p-10">
-      <div className="grid lg:grid-cols-2 gap-10">
+    <div className="border border-neutral-900 bg-white">
+      <div className="grid lg:grid-cols-2">
         {/* Input */}
-        <div>
-          <h3 className="text-xl font-bold text-gray-900 mb-6">{t.simCondTitle}</h3>
-          <div className="space-y-6">
+        <div className="border-b border-neutral-900 p-6 lg:border-b-0 lg:border-r lg:p-10">
+          <div className="mb-8 flex items-center justify-between border-b border-neutral-200 pb-3">
+            <h3 className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-neutral-900">{t.simCondTitle}</h3>
+            <span className="font-mono text-[10px] tabular-nums text-neutral-400">INPUT</span>
+          </div>
+          <div className="space-y-7">
             <div>
-              <label className="flex items-center justify-between text-sm font-semibold text-gray-700 mb-2">
+              <label className="mb-2.5 flex items-center justify-between font-mono text-[11px] uppercase tracking-[0.15em] text-neutral-500">
                 <span>{t.simCompanySize}</span>
               </label>
               <div className="grid grid-cols-2 gap-2">
@@ -395,10 +421,10 @@ function Simulator() {
                     key={s}
                     type="button"
                     onClick={() => setSize(s)}
-                    className={`py-3 rounded-md text-sm font-semibold transition-all ${
+                    className={`py-3 font-mono text-[12px] font-bold uppercase tracking-[0.06em] transition-[color,background-color,border-color,scale] duration-200 active:scale-[0.96] ${
                       size === s
-                        ? "bg-neutral-900 text-white border border-neutral-900"
-                        : "bg-white text-gray-600 border border-gray-200 hover:border-neutral-300"
+                        ? "border border-neutral-900 bg-neutral-900 text-white"
+                        : "border border-neutral-300 bg-white text-neutral-600 hover:border-neutral-900"
                     }`}
                   >
                     {s === "small" ? t.simSmall : t.simLarge}
@@ -408,36 +434,36 @@ function Simulator() {
             </div>
 
             <div>
-              <label className="flex items-center justify-between text-sm font-semibold text-gray-700 mb-2">
+              <label className="mb-2.5 flex items-center justify-between font-mono text-[11px] uppercase tracking-[0.15em] text-neutral-500">
                 <span>{t.simPeople}</span>
-                <span className="text-neutral-900">{people}{t.simPeopleUnit}</span>
+                <span className="tabular-nums text-neutral-900">{people}{t.simPeopleUnit}</span>
               </label>
               <input type="range" min={1} max={100} value={people} onChange={(e) => setPeople(Number(e.target.value))} className="w-full accent-neutral-900" />
             </div>
 
             <div>
-              <label className="flex items-center justify-between text-sm font-semibold text-gray-700 mb-2">
+              <label className="mb-2.5 flex items-center justify-between font-mono text-[11px] uppercase tracking-[0.15em] text-neutral-500">
                 <span>{t.simHours}</span>
-                <span className="text-neutral-900">{hours}{t.simHoursUnit}</span>
+                <span className="tabular-nums text-neutral-900">{hours}{t.simHoursUnit}</span>
               </label>
               <input type="range" min={1} max={300} value={hours} onChange={(e) => setHours(Number(e.target.value))} className="w-full accent-neutral-900" />
               {!result.hoursEligible && (
-                <p className="text-xs text-neutral-900 mt-2">{t.simHoursWarning}</p>
+                <p className="mt-2 font-mono text-[11px] text-neutral-900">{t.simHoursWarning}</p>
               )}
             </div>
 
             <div>
-              <label className="flex items-center justify-between text-sm font-semibold text-gray-700 mb-2">
+              <label className="mb-2.5 flex items-center justify-between font-mono text-[11px] uppercase tracking-[0.15em] text-neutral-500">
                 <span>{t.simHourlyFee}</span>
-                <span className="text-neutral-900">{formatYen(hourlyFee)}</span>
+                <span className="tabular-nums text-neutral-900">{formatYen(hourlyFee)}</span>
               </label>
               <input type="range" min={1000} max={20000} step={500} value={hourlyFee} onChange={(e) => setHourlyFee(Number(e.target.value))} className="w-full accent-neutral-900" />
             </div>
 
             <div>
-              <label className="flex items-center justify-between text-sm font-semibold text-gray-700 mb-2">
+              <label className="mb-2.5 flex items-center justify-between font-mono text-[11px] uppercase tracking-[0.15em] text-neutral-500">
                 <span>{t.simWage}</span>
-                <span className="text-neutral-900">{formatYen(wage)}</span>
+                <span className="tabular-nums text-neutral-900">{formatYen(wage)}</span>
               </label>
               <input type="range" min={1000} max={6000} step={100} value={wage} onChange={(e) => setWage(Number(e.target.value))} className="w-full accent-neutral-900" />
             </div>
@@ -445,30 +471,33 @@ function Simulator() {
         </div>
 
         {/* Result */}
-        <div className="bg-neutral-50 rounded-lg p-6 lg:p-8 border border-neutral-200">
-          <h3 className="text-xl font-bold text-gray-900 mb-6">{t.simResultTitle}</h3>
-          <div className="space-y-4">
-            <div className="flex justify-between items-baseline border-b border-neutral-200 pb-3">
-              <span className="text-sm text-gray-600">{t.simRowTraining}</span>
-              <span className="text-lg font-bold text-gray-900">{formatYen(result.totalTrainingCost)}</span>
+        <div className="bg-neutral-50 p-6 lg:p-10">
+          <div className="mb-8 flex items-center justify-between border-b border-neutral-200 pb-3">
+            <h3 className="font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-neutral-900">{t.simResultTitle}</h3>
+            <span className="font-mono text-[10px] tabular-nums text-neutral-400">OUTPUT</span>
+          </div>
+          <div className="space-y-0">
+            <div className="flex items-baseline justify-between border-b border-neutral-200 py-3.5">
+              <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-neutral-500">{t.simRowTraining}</span>
+              <span className="font-mono text-lg font-bold tabular-nums text-neutral-900">{formatYen(result.totalTrainingCost)}</span>
             </div>
-            <div className="flex justify-between items-baseline border-b border-neutral-200 pb-3">
-              <span className="text-sm text-gray-600">{t.simRowExpense(size === "small" ? "75" : "60")}</span>
-              <span className="text-lg font-bold text-neutral-900">− {formatYen(result.expenseSubsidy)}</span>
+            <div className="flex items-baseline justify-between border-b border-neutral-200 py-3.5">
+              <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-neutral-500">{t.simRowExpense(size === "small" ? "75" : "60")}</span>
+              <span className="font-mono text-lg font-bold tabular-nums text-neutral-900">− {formatYen(result.expenseSubsidy)}</span>
             </div>
-            <div className="flex justify-between items-baseline border-b border-neutral-200 pb-3">
-              <span className="text-sm text-gray-600">{t.simRowWage(size === "small" ? "960" : "480")}</span>
-              <span className="text-lg font-bold text-neutral-900">+ {formatYen(result.wageSubsidy)}</span>
+            <div className="flex items-baseline justify-between border-b border-neutral-200 py-3.5">
+              <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-neutral-500">{t.simRowWage(size === "small" ? "960" : "480")}</span>
+              <span className="font-mono text-lg font-bold tabular-nums text-neutral-900">+ {formatYen(result.wageSubsidy)}</span>
             </div>
-            <div className="bg-white rounded-lg p-5 mt-6 border border-neutral-300">
-              <p className="text-xs font-semibold text-gray-500 mb-1">{t.simNetLabel}</p>
-              <p className="text-3xl lg:text-4xl font-bold text-gray-900">{formatYen(result.netCost)}</p>
-              <p className="text-xs text-gray-500 mt-2">
-                {t.simTotalLabel} <span className="font-semibold text-neutral-900">{formatYen(result.totalSubsidy)}</span>
+            <div className="mt-6 border border-neutral-900 bg-white p-5">
+              <p className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400">{t.simNetLabel}</p>
+              <p className="mt-1.5 text-3xl lg:text-4xl font-bold tabular-nums tracking-tight text-neutral-900">{formatYen(result.netCost)}</p>
+              <p className="mt-3 font-mono text-[11px] uppercase tracking-[0.12em] text-neutral-500">
+                {t.simTotalLabel} <span className="font-bold tabular-nums text-neutral-900">{formatYen(result.totalSubsidy)}</span>
               </p>
             </div>
-            <p className="text-xs text-gray-500 leading-relaxed mt-4">{t.simNote}</p>
-            <a href="/contact?service=subsidy" className="mt-4 block w-full text-center rounded-md bg-neutral-900 text-white font-semibold px-6 py-3.5 hover:bg-neutral-800 transition-colors">
+            <p className="mt-4 text-xs leading-relaxed text-pretty text-neutral-500">{t.simNote}</p>
+            <a href="/contact?service=subsidy" className="group mt-4 flex w-full items-center justify-center gap-3 border border-neutral-900 bg-neutral-900 px-6 py-3.5 text-center font-mono text-sm font-bold uppercase tracking-[0.08em] text-white transition-[color,background-color,border-color,scale] duration-300 hover:bg-transparent hover:text-neutral-900 active:scale-[0.96]">
               {t.simCta}
             </a>
           </div>
@@ -484,41 +513,56 @@ export default function SubsidyPage() {
 
   return (
     <>
-      {/* PAGE HEADER */}
-      <section className="pt-24 pb-10 lg:pt-28 lg:pb-12 bg-white border-b border-gray-100">
+      {/* PAGE HEADER / MASTHEAD */}
+      <section className="bg-white pt-32 pb-16 lg:pt-40 lg:pb-20">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <p className="text-sm font-semibold text-neutral-900 mb-3">{t.pageLabel}</p>
-          <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4">{t.pageTitle}</h1>
-          <p className="text-base text-gray-600 leading-relaxed w-full">{t.pageDesc}</p>
+          <Reveal>
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 border-b border-neutral-900 pb-4 font-mono text-[11px] uppercase tracking-[0.2em] text-neutral-500">
+              <span className="font-bold text-neutral-900">§00</span>
+              <span>{t.pageLabel}</span>
+              <span className="text-neutral-300">/</span>
+              <span>Grants</span>
+              <span className="text-neutral-300">/</span>
+              <span>Reskilling</span>
+              <span className="text-neutral-300">/</span>
+              <span>Ibaraki</span>
+            </div>
+          </Reveal>
+          <Reveal delay={90}>
+            <h1 className="mt-10 text-[7vw] sm:text-3xl lg:text-4xl font-bold leading-[0.95] tracking-[-0.04em] text-balance text-neutral-900">{t.pageTitle}</h1>
+          </Reveal>
+          <Reveal delay={180}>
+            <p className="mt-8 max-w-2xl text-base lg:text-lg leading-relaxed text-pretty text-neutral-600">{t.pageDesc}</p>
+          </Reveal>
         </div>
       </section>
 
       {/* 3 programs */}
-      <section className="py-14 lg:py-20 bg-white">
+      <section className="py-12 lg:py-16 bg-white border-t border-neutral-900">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <Reveal>
-            <Label>{t.programsLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.programsTitle}</h2>
-            <p className="text-sm text-gray-500 mb-8 w-full leading-relaxed">{t.programsDesc}</p>
-          </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <SectionHead index="01" kicker={t.programsLabel} title={t.programsTitle} desc={t.programsDesc} />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {t.programs.map((p, i) => (
               <Reveal key={p.title} delay={i * 100}>
-                <div className="rounded-lg border border-gray-200 bg-white p-8 h-full flex flex-col hover:border-neutral-300 hover:shadow-lg transition-all duration-300">
-                  <span className="inline-block text-xs font-bold tracking-widest text-neutral-900 uppercase mb-3">{p.tag}</span>
-                  <h3 className="text-xl font-bold text-gray-900 mb-1">{p.title}</h3>
-                  <p className="text-xs text-gray-500 mb-4">{p.subtitle}</p>
-                  <p className="text-sm text-gray-600 leading-relaxed mb-6 flex-1">{p.desc}</p>
-                  <div className="space-y-2 border-t border-gray-100 pt-4 mb-4">
+                <div className="flex h-full flex-col border border-neutral-900 bg-white p-7 lg:p-8">
+                  <div className="mb-6 flex items-center justify-between border-b border-neutral-200 pb-3">
+                    <span className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-neutral-900">{p.tag}</span>
+                    <span className="font-mono text-[10px] tabular-nums text-neutral-400">{String(i + 1).padStart(2, "0")}</span>
+                  </div>
+                  <h3 className="mb-1 text-lg lg:text-xl font-bold tracking-tight text-balance text-neutral-900">{p.title}</h3>
+                  <p className="mb-4 font-mono text-[11px] uppercase tracking-[0.12em] text-neutral-400">{p.subtitle}</p>
+                  <p className="mb-6 flex-1 text-sm leading-relaxed text-pretty text-neutral-600">{p.desc}</p>
+                  <div className="mb-4 border-t border-neutral-200 pt-4">
                     {p.metrics.map((m) => (
-                      <div key={m.label} className="flex items-baseline justify-between gap-3">
-                        <span className="text-xs text-gray-500">{m.label}</span>
-                        <span className="text-sm font-bold text-gray-900">{m.value}</span>
+                      <div key={m.label} className="flex items-baseline justify-between gap-3 border-b border-neutral-100 py-2 last:border-b-0">
+                        <span className="font-mono text-[11px] uppercase tracking-[0.1em] text-neutral-500">{m.label}</span>
+                        <span className="font-mono text-sm font-bold tabular-nums text-neutral-900">{m.value}</span>
                       </div>
                     ))}
                   </div>
-                  <div className="text-xs text-gray-500 bg-gray-50 rounded-lg px-3 py-2">
-                    <span className="font-semibold text-gray-700">{p.idealLabel}</span>{p.ideal}
+                  <div className="mt-auto flex items-start gap-2 border-t border-neutral-900 pt-4 font-mono text-xs text-neutral-500">
+                    <span className="flex-shrink-0 text-neutral-900">→</span>
+                    <span><span className="text-neutral-900">{p.idealLabel}</span>{p.ideal}</span>
                   </div>
                 </div>
               </Reveal>
@@ -528,13 +572,9 @@ export default function SubsidyPage() {
       </section>
 
       {/* Simulator */}
-      <section id="simulator" className="py-14 lg:py-20 bg-neutral-50">
+      <section id="simulator" className="py-12 lg:py-16 bg-neutral-50 border-y border-neutral-900">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <Reveal>
-            <Label>{t.simulatorLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.simulatorTitle}</h2>
-            <p className="text-sm text-gray-500 mb-10 w-full leading-relaxed">{t.simulatorDesc}</p>
-          </Reveal>
+          <SectionHead index="02" kicker={t.simulatorLabel} title={t.simulatorTitle} desc={t.simulatorDesc} />
           <Reveal delay={150}>
             <Simulator />
           </Reveal>
@@ -542,33 +582,36 @@ export default function SubsidyPage() {
       </section>
 
       {/* Support scope */}
-      <section className="py-14 lg:py-20 bg-white">
+      <section className="py-12 lg:py-16 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <Reveal>
-            <Label>{t.supportLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-8">{t.supportTitle}</h2>
-          </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <SectionHead index="03" kicker={t.supportLabel} title={t.supportTitle} />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {t.support.map((item, i) => (
               <Reveal key={item.num} delay={i * 80}>
-                <div className="border-t-2 border-neutral-900 pt-6">
-                  <span className="text-xs font-semibold text-neutral-900 tracking-widest">{item.num}</span>
-                  <h3 className="text-lg font-bold text-gray-900 mt-2 mb-3">{item.title}</h3>
-                  <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
+                <div className="group h-full border border-neutral-900 bg-white p-7 lg:p-8 transition-colors duration-300 hover:bg-neutral-900">
+                  <div className="flex items-baseline justify-between border-b border-neutral-200 pb-3 transition-colors duration-300 group-hover:border-neutral-700">
+                    <span className="font-mono text-xl font-bold tabular-nums text-neutral-900 transition-colors duration-300 group-hover:text-white">{item.num}</span>
+                    <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-400">Support / {item.num}</span>
+                  </div>
+                  <h3 className="mb-3 mt-6 text-lg font-bold tracking-tight text-balance text-neutral-900 transition-colors duration-300 group-hover:text-white">{item.title}</h3>
+                  <p className="text-sm leading-relaxed text-pretty text-neutral-600 transition-colors duration-300 group-hover:text-neutral-300">{item.desc}</p>
                 </div>
               </Reveal>
             ))}
           </div>
           <Reveal delay={400}>
-            <div className="mt-12 bg-neutral-50 border border-neutral-200 rounded-lg p-6 lg:p-8 flex flex-col lg:flex-row lg:items-center gap-4 lg:gap-6">
-              <div className="flex-shrink-0 w-12 h-12 rounded-full bg-neutral-900 flex items-center justify-center">
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+            <div className="mt-12 flex flex-col gap-4 border border-neutral-900 bg-neutral-50 p-6 lg:flex-row lg:items-center lg:gap-6 lg:p-8">
+              <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center border border-neutral-900 bg-neutral-900">
+                <svg className="h-6 w-6 text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
                 </svg>
               </div>
               <div className="flex-1">
-                <p className="text-sm font-bold text-gray-900 mb-1">{t.supportDisclaimer}</p>
-                <p className="text-sm text-gray-600 leading-relaxed">{t.supportDisclaimerBody}</p>
+                <p className="mb-1 flex items-start gap-2 text-sm font-bold text-neutral-900">
+                  <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-400 mt-1">NOTE</span>
+                  <span>{t.supportDisclaimer}</span>
+                </p>
+                <p className="text-sm leading-relaxed text-pretty text-neutral-600">{t.supportDisclaimerBody}</p>
               </div>
             </div>
           </Reveal>
@@ -576,47 +619,48 @@ export default function SubsidyPage() {
       </section>
 
       {/* FLOW */}
-      <section className="py-14 lg:py-20 bg-gray-50">
+      <section className="py-12 lg:py-16 bg-neutral-50 border-y border-neutral-900">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <Reveal>
-            <Label>{t.flowLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-8">{t.flowTitle}</h2>
-          </Reveal>
-          <div className="space-y-6">
-            {t.flow.map((f, i) => (
-              <Reveal key={f.step} delay={i * 60}>
-                <div className="bg-white rounded-lg border border-gray-200 p-6 lg:p-8 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
-                  <div className="flex-shrink-0 sm:w-40">
-                    <span className="inline-block text-xs font-bold text-neutral-900 tracking-widest mb-1">{f.step}</span>
-                    <p className="text-xs text-gray-400">{f.duration}</p>
-                  </div>
-                  <div className="flex-1 sm:border-l sm:border-gray-200 sm:pl-6">
-                    <h3 className="text-lg font-bold text-gray-900 mb-1">{f.title}</h3>
-                    <p className="text-sm text-gray-600 leading-relaxed">{f.desc}</p>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
+          <SectionHead index="04" kicker={t.flowLabel} title={t.flowTitle} />
+          {/* table header */}
+          <div className="hidden lg:grid grid-cols-12 gap-6 border-b border-neutral-900 pb-3 font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-400">
+            <div className="col-span-2">Step</div>
+            <div className="col-span-7">Detail</div>
+            <div className="col-span-3 text-right">Duration</div>
           </div>
+          {t.flow.map((f, i) => (
+            <Reveal key={f.step} delay={i * 60}>
+              <div className="group grid grid-cols-1 gap-2 border-b border-neutral-300 py-7 transition-colors duration-300 hover:bg-white lg:grid-cols-12 lg:gap-6">
+                <div className="lg:col-span-2">
+                  <span className="font-mono text-xs font-bold uppercase tracking-[0.15em] text-neutral-900">{f.step}</span>
+                </div>
+                <div className="lg:col-span-7">
+                  <h3 className="text-lg font-bold tracking-tight text-balance text-neutral-900">{f.title}</h3>
+                  <p className="mt-1 text-[15px] leading-relaxed text-pretty text-neutral-600">{f.desc}</p>
+                </div>
+                <div className="lg:col-span-3 lg:text-right">
+                  <span className="font-mono text-xs tabular-nums text-neutral-500">{f.duration}</span>
+                </div>
+              </div>
+            </Reveal>
+          ))}
         </div>
       </section>
 
       {/* FAQ */}
-      <section className="py-14 lg:py-20 bg-white">
+      <section className="py-12 lg:py-16 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <Reveal>
-            <Label>{t.faqLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-8">{t.faqTitle}</h2>
-          </Reveal>
-          <div className="max-w-3xl space-y-4">
+          <SectionHead index="05" kicker={t.faqLabel} title={t.faqTitle} />
+          <div className="max-w-3xl border-t border-neutral-900">
             {t.faq.map((f, i) => (
               <Reveal key={f.q} delay={i * 40}>
-                <details className="group bg-white border border-gray-200 rounded-xl overflow-hidden">
-                  <summary className="cursor-pointer list-none p-5 flex items-start justify-between gap-4 hover:bg-gray-50 transition-colors">
-                    <span className="text-sm lg:text-base font-semibold text-gray-900">{f.q}</span>
-                    <span className="flex-shrink-0 text-neutral-900 text-xl transition-transform group-open:rotate-45">+</span>
+                <details className="group border-b border-neutral-300 py-5">
+                  <summary className="flex cursor-pointer list-none items-start gap-4 text-base font-semibold text-neutral-900">
+                    <span className="mt-0.5 font-mono text-xs tabular-nums text-neutral-400">Q{String(i + 1).padStart(2, "0")}</span>
+                    <span className="flex-1">{f.q}</span>
+                    <span className="flex-shrink-0 font-mono text-lg leading-none text-neutral-400 transition-transform duration-300 group-open:rotate-45">+</span>
                   </summary>
-                  <div className="px-5 pb-5 text-sm text-gray-600 leading-relaxed">{f.a}</div>
+                  <p className="mt-4 pl-9 text-sm leading-relaxed text-pretty text-neutral-600">{f.a}</p>
                 </details>
               </Reveal>
             ))}
@@ -625,19 +669,30 @@ export default function SubsidyPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-14 lg:py-20 bg-white">
-        <div className="max-w-2xl mx-auto px-6 text-center">
+      <section className="bg-neutral-900 py-16 lg:py-20">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
-            <Label>{t.ctaLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">{t.ctaTitle}</h2>
-            <p className="text-base text-gray-600 leading-relaxed mb-10">{t.ctaDesc}</p>
-            <div className="flex items-center justify-center gap-4 flex-wrap">
-              <a href="/contact?service=subsidy" className="rounded-md bg-neutral-900 text-white font-semibold px-10 py-4 hover:bg-neutral-800 transition-colors duration-300 inline-block">
-                {t.ctaButton}
-              </a>
-              <a href="/training" className="text-sm text-gray-500 font-semibold hover:text-gray-900 transition-colors duration-300">
-                {t.ctaSecondary}
-              </a>
+            <div className="flex items-center gap-4 border-b border-neutral-700 pb-4 font-mono text-[11px] uppercase tracking-[0.25em] text-neutral-500">
+              <span className="font-bold text-white">§06</span>
+              <span>{t.ctaLabel}</span>
+            </div>
+            <div className="mt-12 grid grid-cols-1 items-end gap-10 lg:grid-cols-12">
+              <div className="lg:col-span-8">
+                <h2 className="text-[18px] sm:text-xl lg:text-2xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance text-white">{t.ctaTitle}</h2>
+                <p className="mt-6 max-w-2xl text-base leading-relaxed text-pretty text-neutral-400">{t.ctaDesc}</p>
+              </div>
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-center lg:col-span-4 lg:flex-col lg:items-end">
+                <a
+                  href="/reserve"
+                  className="group inline-flex items-center justify-center gap-3 border border-white bg-white px-8 py-4 font-mono text-sm font-bold uppercase tracking-[0.08em] text-neutral-900 transition-[color,background-color,border-color,scale] duration-300 hover:bg-transparent hover:text-white active:scale-[0.96]"
+                >
+                  {t.ctaButton}
+                  <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                </a>
+                <a href="/training" className="inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-[0.12em] text-neutral-400 transition-colors duration-300 hover:text-white">
+                  {t.ctaSecondary}
+                </a>
+              </div>
             </div>
           </Reveal>
         </div>

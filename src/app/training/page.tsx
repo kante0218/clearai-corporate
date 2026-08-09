@@ -39,10 +39,10 @@ function SectionHead({
   return (
     <Reveal className="mb-7 lg:mb-9 max-w-4xl">
       <div className={`flex items-center gap-4 border-b pb-4 ${dark ? "border-white/25" : "border-neutral-900"}`}>
-        <span className={`text-xs font-bold ${dark ? "text-white" : "text-neutral-900"}`}>§{index}</span>
-        <span className={`text-xs font-semibold uppercase tracking-widest ${dark ? "text-neutral-400" : "text-neutral-500"}`}>{kicker}</span>
+        <span className={`font-mono text-xs font-bold tabular-nums ${dark ? "text-white" : "text-neutral-900"}`}>§{index}</span>
+        <span className={`font-mono text-[11px] font-medium uppercase tracking-[0.25em] ${dark ? "text-neutral-400" : "text-neutral-500"}`}>{kicker}</span>
       </div>
-      <h2 className={`mt-8 text-2xl sm:text-3xl lg:text-4xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance ${dark ? "text-white" : "text-neutral-900"}`}>
+      <h2 className={`mt-8 text-[18px] sm:text-xl lg:text-2xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance ${dark ? "text-white" : "text-neutral-900"}`}>
         {title}
       </h2>
       {desc && <p className={`mt-5 max-w-2xl text-[15px] leading-relaxed text-pretty ${dark ? "text-neutral-400" : "text-neutral-600"}`}>{desc}</p>}
@@ -391,7 +391,7 @@ export default function TrainingPage() {
       <section className="bg-white pt-32 lg:pt-40">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
-            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 border-b border-gray-200 pb-4 font-mono text-[11px] uppercase tracking-[0.2em] text-neutral-500">
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 border-b border-neutral-900 pb-4 font-mono text-[11px] uppercase tracking-[0.2em] text-neutral-500">
               <span className="font-bold text-neutral-900">§00</span>
               <span>{t.heroKicker}</span>
               <span className="text-neutral-300">/</span>
@@ -425,7 +425,7 @@ export default function TrainingPage() {
                 {t.ctaButton}
                 <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
               </a>
-              <a href="/subsidy" className="group inline-flex items-center gap-2 border-b border-gray-200 pb-1 font-mono text-xs font-bold uppercase tracking-[0.15em] text-neutral-900 transition-colors duration-300 hover:text-neutral-600">
+              <a href="/subsidy" className="group inline-flex items-center gap-2 border-b border-neutral-900 pb-1 font-mono text-xs font-bold uppercase tracking-[0.15em] text-neutral-900 transition-colors duration-300 hover:text-neutral-600">
                 {t.heroSubsidyLink} <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
             </a>
             </div>
@@ -478,18 +478,18 @@ export default function TrainingPage() {
       </section>
 
       {/* PRICING */}
-      <section className="py-12 lg:py-16 bg-sky-50/60 border-y border-sky-100">
+      <section className="py-12 lg:py-16 bg-neutral-50 border-y border-neutral-900">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <SectionHead
             index="01"
             kicker={t.pricingLabel}
             title={t.pricingTitle}
-            desc={<>{t.pricingDescA}<a href="/subsidy" className="border-b border-gray-200 font-semibold text-neutral-900 hover:text-neutral-600">{t.pricingSim}</a>{t.pricingDescB}</>}
+            desc={<>{t.pricingDescA}<a href="/subsidy" className="border-b border-neutral-900 font-semibold text-neutral-900 hover:text-neutral-600">{t.pricingSim}</a>{t.pricingDescB}</>}
           />
           <PricingCarousel>
             {t.plans.map((plan, i) => (
               <Reveal key={plan.name} delay={i * 100} className="flex">
-                <div className={`group flex w-full flex-col rounded-lg border border-gray-200 bg-white shadow-sm p-7 lg:p-8 ${plan.featured ? "bg-neutral-900 text-white" : "bg-white"}`}>
+                <div className={`group flex w-full flex-col border border-neutral-900 p-7 lg:p-8 ${plan.featured ? "bg-neutral-900 text-white" : "bg-white"}`}>
                   <div className={`mb-5 flex items-center justify-between border-b pb-3 ${plan.featured ? "border-neutral-700" : "border-neutral-200"}`}>
                     <span className={`font-mono text-[10px] font-bold uppercase tracking-[0.18em] ${plan.featured ? "text-white" : "text-neutral-900"}`}>{plan.name}</span>
                     <span className={`font-mono text-[10px] tabular-nums ${plan.featured ? "text-neutral-500" : "text-neutral-400"}`}>{plan.featured && plan.badge ? plan.badge : String(i + 1).padStart(2, "0")}</span>
@@ -528,7 +528,7 @@ export default function TrainingPage() {
           <CardCarousel gridClass="md:grid-cols-3">
             {t.targets.map((item, i) => (
               <Reveal key={item.role} delay={i * 80}>
-                <div className="flex h-full flex-col rounded-lg border border-gray-200 bg-white shadow-sm p-7 lg:p-8">
+                <div className="flex h-full flex-col border border-neutral-900 bg-white p-7 lg:p-8">
                   <div className="mb-6 flex items-center justify-between border-b border-neutral-200 pb-3">
                     <span className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-neutral-900">{item.role}</span>
                     <span className="font-mono text-[10px] tabular-nums text-neutral-400">{String(i + 1).padStart(2, "0")}</span>
@@ -543,13 +543,13 @@ export default function TrainingPage() {
       </section>
 
       {/* PROGRAMS */}
-      <section id="programs" className="py-12 lg:py-16 bg-sky-50/60 border-y border-sky-100">
+      <section id="programs" className="py-12 lg:py-16 bg-neutral-50 border-y border-neutral-900">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <SectionHead index="03" kicker={t.programsLabel} title={t.programsTitle} desc={t.programsDesc} />
           <CardCarousel gridClass="md:grid-cols-2">
             {t.programs.map((item, i) => (
               <Reveal key={item.num} delay={i * 70}>
-                <div className="group h-full rounded-lg border border-gray-200 bg-white shadow-sm p-7 lg:p-8 transition-colors duration-300 hover:bg-neutral-900">
+                <div className="group h-full border border-neutral-900 bg-white p-7 lg:p-8 transition-colors duration-300 hover:bg-neutral-900">
                   <div className="mb-4 flex items-center justify-between border-b border-neutral-200 pb-3 transition-colors duration-300 group-hover:border-neutral-700">
                     <span className="font-mono text-2xl font-bold tabular-nums text-neutral-900 transition-colors duration-300 group-hover:text-white">{item.num}</span>
                     <span className="border border-neutral-300 px-2 py-0.5 font-mono text-[10px] tabular-nums uppercase tracking-[0.1em] text-neutral-500 transition-colors duration-300 group-hover:border-neutral-600 group-hover:text-neutral-300">{item.hours}</span>
@@ -570,7 +570,7 @@ export default function TrainingPage() {
           <CardCarousel gridClass="md:grid-cols-2">
             {t.claudePoints.map((p, i) => (
               <Reveal key={p.title} delay={i * 70}>
-                <div className="flex h-full flex-col rounded-lg border border-gray-200 bg-white shadow-sm p-7 lg:p-8">
+                <div className="flex h-full flex-col border border-neutral-900 bg-white p-7 lg:p-8">
                   <span className="mb-4 block font-mono text-[10px] font-bold tabular-nums uppercase tracking-[0.18em] text-neutral-400">
                     CLD.{String(i + 1).padStart(2, "0")}
                   </span>
@@ -616,7 +616,7 @@ export default function TrainingPage() {
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <SectionHead index="06" kicker={t.curriculumLabel} title={t.curriculumTitle} desc={t.curriculumDesc} />
           {/* table header */}
-          <div className="hidden lg:grid grid-cols-12 gap-6 border-b border-gray-200 pb-3 font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-400">
+          <div className="hidden lg:grid grid-cols-12 gap-6 border-b border-neutral-900 pb-3 font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-400">
             <div className="col-span-2">Time</div>
             <div className="col-span-3">Session</div>
             <div className="col-span-7">Detail</div>
@@ -643,13 +643,13 @@ export default function TrainingPage() {
       </section>
 
       {/* OUTCOMES */}
-      <section className="py-12 lg:py-16 bg-sky-50/60 border-y border-sky-100">
+      <section className="py-12 lg:py-16 bg-neutral-50 border-y border-neutral-900">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <SectionHead index="07" kicker={t.outcomesLabel} title={t.outcomesTitle} desc={t.outcomesDesc} />
           <CardCarousel gridClass="md:grid-cols-2">
             {t.outcomes.map((o, i) => (
               <Reveal key={o.dept} delay={i * 70}>
-                <div className="flex h-full flex-col rounded-lg border border-gray-200 bg-white shadow-sm p-7 lg:p-8">
+                <div className="flex h-full flex-col border border-neutral-900 bg-white p-7 lg:p-8">
                   <div className="mb-5 flex items-center justify-between border-b border-neutral-200 pb-3">
                     <span className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-neutral-900">{o.dept}</span>
                     <span className="border border-neutral-900 bg-neutral-900 px-2 py-0.5 font-mono text-[10px] font-bold uppercase tracking-[0.08em] text-white">{o.metric}</span>
@@ -679,7 +679,7 @@ export default function TrainingPage() {
           <CardCarousel gridClass="md:grid-cols-4">
             {t.formats.map((f, i) => (
               <Reveal key={f.title} delay={i * 70}>
-                <div className="flex h-full flex-col rounded-lg border border-gray-200 bg-white shadow-sm p-6">
+                <div className="flex h-full flex-col border border-neutral-900 bg-white p-6">
                   <span className="mb-4 block font-mono text-[10px] font-bold tabular-nums uppercase tracking-[0.18em] text-neutral-400">{String(i + 1).padStart(2, "0")}</span>
                   <h3 className="mb-2 text-sm font-bold tracking-tight text-balance text-neutral-900">{f.title}</h3>
                   <p className="text-xs leading-relaxed text-pretty text-neutral-600">{f.desc}</p>
@@ -694,13 +694,13 @@ export default function TrainingPage() {
       </section>
 
       {/* FEATURES */}
-      <section className="py-12 lg:py-16 bg-sky-50/60 border-y border-sky-100">
+      <section className="py-12 lg:py-16 bg-neutral-50 border-y border-neutral-900">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <SectionHead index="09" kicker={t.featuresLabel} title={t.featuresTitle} />
           <CardCarousel gridClass="md:grid-cols-2">
             {t.features.map((item, i) => (
               <Reveal key={item.title} delay={i * 80}>
-                <div className="group h-full rounded-lg border border-gray-200 bg-white shadow-sm p-7 lg:p-8 transition-colors duration-300 hover:bg-neutral-900">
+                <div className="group h-full border border-neutral-900 bg-white p-7 lg:p-8 transition-colors duration-300 hover:bg-neutral-900">
                   <div className="mb-4 flex items-baseline justify-between border-b border-neutral-200 pb-4 transition-colors duration-300 group-hover:border-neutral-700">
                     <span className="font-mono text-2xl font-bold tabular-nums text-neutral-900 transition-colors duration-300 group-hover:text-white">{item.num}</span>
                     <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-400">Feature / {item.num}</span>
@@ -719,7 +719,7 @@ export default function TrainingPage() {
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <SectionHead index="10" kicker={t.flowLabel} title={t.flowTitle} desc={t.flowDesc} />
           {/* table header */}
-          <div className="hidden lg:grid grid-cols-12 gap-6 border-b border-gray-200 pb-3 font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-400">
+          <div className="hidden lg:grid grid-cols-12 gap-6 border-b border-neutral-900 pb-3 font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-400">
             <div className="col-span-1">No.</div>
             <div className="col-span-4">Phase</div>
             <div className="col-span-7">Detail</div>
@@ -743,7 +743,7 @@ export default function TrainingPage() {
       </section>
 
       {/* 補助金 CTA SECTION */}
-      <section className="py-12 lg:py-16 bg-sky-50/60 border-y border-sky-100">
+      <section className="py-12 lg:py-16 bg-neutral-50 border-y border-neutral-900">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <SectionHead
             index="11"
@@ -754,7 +754,7 @@ export default function TrainingPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
             {t.subsidyCards.map((card, i) => (
               <Reveal key={card.label} delay={i * 80}>
-                <div className="flex h-full flex-col rounded-lg border border-gray-200 bg-white shadow-sm p-7 lg:p-8">
+                <div className="flex h-full flex-col border border-neutral-900 bg-white p-7 lg:p-8">
                   <div className="mb-6 flex items-center justify-between border-b border-neutral-200 pb-3">
                     <span className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-neutral-900">{card.label}</span>
                     <span className="font-mono text-[10px] tabular-nums text-neutral-400">{String(i + 1).padStart(2, "0")}</span>
@@ -773,7 +773,7 @@ export default function TrainingPage() {
                 {t.subsidyCtaPrimary}
                 <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
               </a>
-              <a href="/contact?service=subsidy" className="border-b border-gray-200 pb-1 font-mono text-xs font-bold uppercase tracking-[0.1em] text-neutral-900 transition-colors duration-300 hover:text-neutral-600">
+              <a href="/contact?service=subsidy" className="border-b border-neutral-900 pb-1 font-mono text-xs font-bold uppercase tracking-[0.1em] text-neutral-900 transition-colors duration-300 hover:text-neutral-600">
                 {t.subsidyCtaSecondary}
               </a>
             </div>
@@ -785,7 +785,7 @@ export default function TrainingPage() {
       <section className="py-12 lg:py-16 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <SectionHead index="12" kicker={t.faqLabel} title={t.faqTitle} />
-          <div className="max-w-3xl border-t border-gray-200">
+          <div className="max-w-3xl border-t border-neutral-900">
             {t.faqItems.map((item, i) => (
               <Reveal key={item.q} delay={i * 50}>
                 <details className="group border-b border-neutral-300 py-5">
@@ -812,7 +812,7 @@ export default function TrainingPage() {
             </div>
             <div className="mt-12 grid grid-cols-1 items-end gap-10 lg:grid-cols-12">
               <div className="lg:col-span-8">
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance text-white">{t.ctaTitle}</h2>
+                <h2 className="text-[18px] sm:text-xl lg:text-2xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance text-white">{t.ctaTitle}</h2>
                 <p className="mt-6 max-w-2xl text-base leading-relaxed text-pretty text-neutral-400">{t.ctaDesc}</p>
               </div>
               <div className="lg:col-span-4 lg:text-right">

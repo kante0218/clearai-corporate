@@ -126,33 +126,54 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <div className="max-w-5xl mx-auto px-6 pt-40">
-        <Link href="/blog" className="inline-block text-sm font-semibold text-neutral-900 hover:text-neutral-600 transition-colors duration-300 mb-10">
-          ← お知らせ一覧
-        </Link>
+        {/* breadcrumb / back — dossier meta row */}
+        <div className="flex items-center gap-4 border-b border-neutral-900 pb-4 mb-10">
+          <span className="font-mono text-[11px] font-medium uppercase tracking-[0.25em] text-neutral-500">
+            Journal
+          </span>
+          <Link
+            href="/blog"
+            className="group ml-auto inline-flex items-center gap-2 font-mono text-[11px] font-medium uppercase tracking-[0.2em] text-neutral-900 transition-colors duration-300 hover:text-neutral-500"
+          >
+            <span className="transition-transform duration-300 group-hover:-translate-x-1">←</span>
+            Index
+          </Link>
+        </div>
 
-        {post.eyecatch && (
-          <div className="w-full aspect-[2/1] rounded-lg overflow-hidden mb-8">
-            <Image
-              src={post.eyecatch.url}
-              alt={post.title}
-              width={post.eyecatch.width ?? 1200}
-              height={post.eyecatch.height ?? 600}
-              className="w-full h-full object-cover"
-              priority
-            />
-          </div>
-        )}
-
-        <div className="flex items-center gap-3 mb-5">
+        {/* category / date — mono meta */}
+        <div className="flex flex-wrap items-center gap-3 mb-6">
           {post.category && (
-            <span className="inline-block rounded-lg px-3 py-1 text-xs font-semibold text-neutral-900 bg-neutral-100">
+            <span className="inline-block border border-neutral-900 px-3 py-1 font-mono text-[11px] font-medium uppercase tracking-[0.15em] text-neutral-900">
               {post.category.name}
             </span>
           )}
-          <time className="text-sm text-gray-400">{formatDate(post.publishedAt!)}</time>
+          <time className="font-mono text-[11px] uppercase tracking-[0.15em] tabular-nums text-neutral-500">
+            {formatDate(post.publishedAt!)}
+          </time>
         </div>
 
-        <h1 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight mb-8">{post.title}</h1>
+        <h1 className="text-[20px] sm:text-xl lg:text-2xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance text-neutral-900 mb-10">
+          {post.title}
+        </h1>
+
+        {post.eyecatch && (
+          <figure className="mb-4">
+            <div className="w-full aspect-[2/1] overflow-hidden border border-neutral-900">
+              <Image
+                src={post.eyecatch.url}
+                alt={post.title}
+                width={post.eyecatch.width ?? 1200}
+                height={post.eyecatch.height ?? 600}
+                className="w-full h-full object-cover"
+                priority
+              />
+            </div>
+            <figcaption className="flex items-center gap-3 border-x border-b border-neutral-900 bg-neutral-50 px-3 py-2 font-mono text-[10px] uppercase tracking-[0.18em] text-neutral-500">
+              <span className="font-bold text-neutral-900">FIG.01</span>
+              <span className="truncate">{post.title}</span>
+            </figcaption>
+          </figure>
+        )}
       </div>
 
       <div className="max-w-5xl mx-auto px-6 py-12">
@@ -163,9 +184,16 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       </div>
 
       <div className="max-w-5xl mx-auto px-6 pb-20 lg:pb-28">
-        <div className="border-t border-gray-200 pt-8">
-          <Link href="/blog" className="text-sm font-semibold text-neutral-900 hover:text-neutral-600 transition-colors duration-300">
-            ← お知らせ一覧に戻る
+        <div className="flex flex-col gap-6 border-t border-neutral-900 pt-8 sm:flex-row sm:items-center sm:justify-between">
+          <span className="font-mono text-[11px] font-medium uppercase tracking-[0.25em] text-neutral-500">
+            End of Document
+          </span>
+          <Link
+            href="/blog"
+            className="group inline-flex items-center justify-center gap-3 border border-neutral-900 px-8 py-4 font-mono text-sm font-bold uppercase tracking-[0.08em] text-neutral-900 transition-colors duration-300 hover:bg-neutral-900 hover:text-white"
+          >
+            <span className="transition-transform duration-300 group-hover:-translate-x-1">←</span>
+            お知らせ一覧に戻る
           </Link>
         </div>
       </div>

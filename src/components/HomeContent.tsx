@@ -1,12 +1,23 @@
 "use client";
 
+/*
+ * トップページ構成（ノーコード総合研究所型のセクション順を踏襲）
+ *   HERO → REASON(選ばれる理由) → SIMULATION(1分見積り) → SERVICE(事業内容)
+ *   → WORKS(実績) → PROCESS(導入の流れ) → TEAM → TECH → Q&A → BLOGS/NEWS → CONTACT
+ *
+ * 事業内容は3本柱:
+ *   01 フィジカルAI受託開発 / 02 ロボットレンタル / 03 AI研修
+ * その他の支援（顧問・Web・広告 等）は補助導線として下段に残し、内部リンクを維持する。
+ */
+
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
-import HeroParticlesBg from "@/components/HeroParticlesBg";
+import CardCarousel from "@/components/CardCarousel";
 import CountUp from "@/components/CountUp";
 import InlineContactForm from "@/components/InlineContactForm";
+import QuoteSimulator from "@/components/QuoteSimulator";
 
 /* Scroll-triggered reveal - simplified, up direction only */
 function Reveal({ children, className = "", delay = 0, variant = "up" }: { children: ReactNode; className?: string; delay?: number; variant?: "up" | "scale" | "left" }) {
@@ -33,7 +44,7 @@ function Reveal({ children, className = "", delay = 0, variant = "up" }: { child
   );
 }
 
-/* Shared section heading in the softer butterfly-era visual language. */
+/* Dossier section header — §NN chapter marker + mono kicker (dark-capable) */
 function SectionHead({
   index,
   kicker,
@@ -51,62 +62,72 @@ function SectionHead({
 }) {
   return (
     <Reveal className={`mb-8 md:mb-7 lg:mb-9 ${className}`}>
-      <span className="sr-only">{index}</span>
-      <p className={`mb-4 text-xs font-semibold uppercase tracking-widest ${dark ? "text-neutral-300" : "text-neutral-900"}`}>{kicker}</p>
-      <h2 className={`text-3xl font-bold leading-tight ${dark ? "text-white" : "text-gray-900"}`}>
+      <div className={`flex items-center gap-4 border-b pb-4 ${dark ? "border-white/25" : "border-neutral-900"}`}>
+        <span className={`font-mono text-xs font-bold tabular-nums ${dark ? "text-white" : "text-neutral-900"}`}>§{index}</span>
+        <span className={`font-mono text-[11px] font-medium uppercase tracking-[0.25em] ${dark ? "text-neutral-400" : "text-neutral-500"}`}>{kicker}</span>
+      </div>
+      <h2 className={`mt-6 md:mt-8 text-[18px] sm:text-xl lg:text-2xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance ${dark ? "text-white" : "text-neutral-900"}`}>
         {title}
       </h2>
-      {desc && <p className={`mt-4 w-full text-base leading-relaxed ${dark ? "text-neutral-300" : "text-gray-500"}`}>{desc}</p>}
+      {desc && <p className={`mt-5 max-w-2xl text-[15px] leading-relaxed text-pretty ${dark ? "text-neutral-400" : "text-neutral-600"}`}>{desc}</p>}
     </Reveal>
   );
 }
 
-type SvcColor = "indigo" | "amber" | "sky" | "blue" | "rose" | "cyan";
-
-const colorMap: Record<SvcColor, { hoverBorder: string; code: string; cta: string; ctaHover: string }> = {
-  indigo: { hoverBorder: "hover:border-neutral-300", code: "text-neutral-900", cta: "text-neutral-900", ctaHover: "group-hover:text-neutral-700" },
-  amber: { hoverBorder: "hover:border-neutral-300", code: "text-neutral-900", cta: "text-neutral-900", ctaHover: "group-hover:text-neutral-700" },
-  sky: { hoverBorder: "hover:border-neutral-300", code: "text-neutral-900", cta: "text-neutral-900", ctaHover: "group-hover:text-neutral-700" },
-  blue: { hoverBorder: "hover:border-neutral-300", code: "text-neutral-900", cta: "text-neutral-900", ctaHover: "group-hover:text-neutral-700" },
-  rose: { hoverBorder: "hover:border-neutral-300", code: "text-neutral-900", cta: "text-neutral-900", ctaHover: "group-hover:text-neutral-700" },
-  cyan: { hoverBorder: "hover:border-neutral-300", code: "text-neutral-900", cta: "text-neutral-900", ctaHover: "group-hover:text-neutral-700" },
+type CoreSvc = {
+  code: string;
+  title: string;
+  lead: string;
+  points: string[];
+  tags: string[];
+  price: string;
+  priceNote: string;
+  href: string;
+  cta: string;
+  badge?: string;
 };
 
-type Svc = {
-  code: string; title: string; desc: string; tags: string[];
-  href: string; cta: string; color: SvcColor; badge?: string; claudeNote?: string;
-};
+type SubSvc = { code: string; title: string; desc: string; href: string };
+
+type WorkItem = { tag: string; title: string; desc: string; metrics: string[]; href: string };
 
 type HomeCopy = {
-  heroChips: string[];
   heroTitle: ReactNode;
   heroDesc: ReactNode;
+  heroChecks: { strong: string; rest: string }[];
   heroPrimary: string;
   heroSecondary: string;
   trustStats: { value: string; label: string }[];
-  whyLabel: string; whyTitle: string; whyDesc: string;
-  why: { title: string; desc: string }[];
-  visionLabel: string; visionTitle: string; visionBody1: string; visionBody2: string;
-  visionStats: { value: string; label: string }[];
-  getStartedLabel: string; getStartedTitle: string; getStartedDesc: string;
-  steps: { step: string; title: string; desc: string; points: string[]; cta: string; href: string; color: SvcColor }[];
+  clientLogosLabel: string;
+
+  reasonLabel: string; reasonTitle: string; reasonDesc: string;
+  reasons: { title: string; desc: string }[];
+
+  simLabel: string; simTitle: string; simDesc: string;
+
   servicesLabel: string; servicesTitle: string; servicesDesc: string;
-  primaryHeading: string; secondaryHeading: string;
-  claudeBadge: string;
-  primaryServices: Svc[]; secondaryServices: Svc[];
-  approachLabel: string; approachTitle: string;
-  approach: { num: string; title: string; desc: string }[];
+  coreHeading: string; subHeading: string;
+  coreServices: CoreSvc[];
+  subServices: SubSvc[];
+
+  worksLabel: string; worksTitle: string; worksDesc: string; worksNote: string;
+  works: WorkItem[];
+
   processLabel: string; processTitle: string; processDesc: string;
-  process: { num: string; title: string; desc: string }[];
+  process: { num: string; title: string; desc: string; duration: string }[];
+
   teamLabel: string; teamTitle: ReactNode; teamDesc: string;
   teamCard1Label: string; teamCard1Title: string; teamCard1Desc: string; teamCard1Tags: string[];
   teamCard2Label: string; teamCard2Title: string; teamCard2Desc: string; teamCard2Tags: string[];
+
   techLabel: string; techTitle: string; techDesc: string;
-  techGroups: { frontend: string; backend: string; aiml: string; database: string; cloud: string; ec: string; biz: string };
   techMoreTitle: string; techMoreDesc: string;
+
   faqLabel: string; faqTitle: string; faqDesc: string; faqCta: string;
   faq: { q: string; a: string }[];
-  newsLabel: string; newsTitle: string; newsCta: string; clientLogosLabel: string;
+
+  newsLabel: string; newsTitle: string; newsCta: string;
+
   ctaLabel: string; ctaTitle: string; ctaDesc: ReactNode;
   ctaCards: { label: string; service: string }[];
   ctaCardAction: string; ctaOthers: string;
@@ -114,112 +135,156 @@ type HomeCopy = {
 
 const COPY: Record<"ja" | "en", HomeCopy> = {
   ja: {
-    heroChips: ["ロボットレンタル × AIコンサル", "戦略から現場実装まで", "中小企業特化"],
     heroTitle: (
-      <>Saving Japanese Industry with <span className="whitespace-nowrap">Physical AI</span></>
+      <>
+        <span className="block">フィジカルAIの受託開発・</span>
+        <span className="block">ロボットレンタル・AI研修</span>
+      </>
     ),
     heroDesc: (
-      <>ヒューマノイド・ロボットのレンタルとAIコンサルティングを軸に、<br className="hidden md:inline" />
-      経営の意思決定から現場で動くものまで、責任を持って伴走します。</>
+      <>ロボットとAIを、中小企業の現場で本当に動くところまで。<br className="hidden md:inline" />
+      構想・開発・実証・内製化まで、clearAIが一社で伴走します。</>
     ),
-    heroPrimary: "役員無料相談する",
-    heroSecondary: "サービスを見る",
+    heroChecks: [
+      { strong: "1/3の期間とコスト", rest: "で現場実装まで到達" },
+      { strong: "助成金で最大75%OFF", rest: "、研修費の実質負担を圧縮" },
+    ],
+    heroPrimary: "無料で相談する",
+    heroSecondary: "1分見積りをする",
     trustStats: [
       { value: "最大75%", label: "研修費を助成金で削減" },
-      { value: "無料", label: "30分のAI診断" },
-      { value: "全国対応", label: "オンライン実施可" },
+      { value: "無料", label: "30分のAI・ロボット診断" },
+      { value: "全国対応", label: "オンライン／現地実施" },
       { value: "2営業日", label: "初回返信" },
     ],
-    whyLabel: "Why clearAI",
-    whyTitle: "「提案で終わらない」を、約束します。",
-    whyDesc: "コンサルの戦略視点と現場で鍛えたエンジニアリングを一社で担うから、絵に描いた餅で終わりません。",
-    why: [
-      { title: "実装まで責任を持つ", desc: "戦略提案で終わらせず、稼働するシステムと運用定着まで、エンジニアが手を動かして仕上げます。" },
-      { title: "中立な立場で伴走", desc: "特定ツールを売り込まず、Claude・ChatGPT・Geminiから貴社の課題に本当に合うものを中立に選びます。" },
-      { title: "補助金をフル活用", desc: "人材開発支援助成金・IT導入補助金などを活用し、研修・導入コストを最大75%削減して始められます。" },
+    clientLogosLabel: "取引・支援実績",
+
+    reasonLabel: "Reason",
+    reasonTitle: "clearAIが選ばれる理由",
+    reasonDesc: "ソフトウェアだけでも、ハードウェアだけでもない。現場で動く一台と、それを使いこなす人まで一気通貫で用意できることが私たちの強みです。",
+    reasons: [
+      { title: "ロボットとAIを一社で", desc: "機体の調達・レンタルから、AIによる制御・業務連携の受託開発、現場オペレーションの設計まで、切れ目なく一社で担います。ベンダーをまたぐ調整コストが発生しません。" },
+      { title: "買う前に、現場で試せる", desc: "数百万〜数千万円の機体をいきなり購入する必要はありません。1日単位のレンタルで自社の現場に持ち込み、本当に使えるかを確かめてから投資判断ができます。" },
+      { title: "作って終わりにしない", desc: "納品して撤収ではなく、社員がAIで自分の業務システムを作れるようになるまで研修で伴走します。外注依存を残さず、社内に運用能力を残します。" },
+      { title: "補助金・助成金をフル活用", desc: "人材開発支援助成金・IT導入補助金などの活用を前提に設計するため、研修費は最大75%、導入コストも大幅に圧縮した状態でスタートできます。" },
     ],
-    visionLabel: "Our Vision",
-    visionTitle: "AIを、日本の現場へ届ける。",
-    visionBody1: "難しい、コストが高い、何から始めればいいかわからない——AIはまだ多くの企業にとって遠い存在だという声を、何度も聞いてきました。",
-    visionBody2: "私たちはそのギャップを埋めるため、最先端のAI技術をビジネスの言葉に翻訳し、エンジニアの力で一社一社の経営に寄り添い、確かな価値を届けます。",
-    visionStats: [
-      { value: "顧問・研修・Web", label: "3つの主力支援" },
-      { value: "日本", label: "市場特化" },
-      { value: "2026", label: "創業" },
-    ],
-    getStartedLabel: "Get Started",
-    getStartedTitle: "まずは、小さく始められます。",
-    getStartedDesc: "いきなりの大型契約は不要、30分の無料診断と3分で読める資料から貴社に合うかを見極めてください。",
-    steps: [
-      { step: "STEP 01", title: "無料AI診断（30分）", desc: "営業色の強い提案はせず、現状の業務・課題をヒアリングしてAI活用で効果の高そうな領域を1つ特定してお返しします。", points: ["Zoom / 対面いずれも可", "NDA締結のうえ、機密情報も扱えます", "その場で簡易レポートを口頭共有"], cta: "申し込む →", href: "/contact?service=advisor", color: "indigo" },
-      { step: "STEP 02", title: "3分でわかる会社資料", desc: "事業内容・代表的な支援パターン・料金レンジ・補助金活用例をまとめた1枚PDFを、社内稟議用に送付します。", points: ["PDF 1ページ", "料金レンジと進め方の目安入り", "登録不要・当日返信"], cta: "資料をもらう →", href: "/contact?service=advisor&doc=company-deck", color: "amber" },
-      { step: "STEP 03", title: "1部署・1業務からのPoC", desc: "最も効果が出そうな1部署・1業務に絞って小さく試行導入し、効果が見えてから拡張します。", points: ["PoC期間 1〜2ヶ月", "成功基準を事前合意", "小さく確かめてから拡張"], cta: "相談する →", href: "/contact?service=training", color: "sky" },
-    ],
-    servicesLabel: "Our Services",
-    servicesTitle: "AIで、日本の未来をつくる。",
-    servicesDesc: "AI顧問・社員研修・ウェブサイト制作を主力に、戦略から実装・運用まで確実に成果を届けます。",
-    primaryHeading: "主力サービス",
-    secondaryHeading: "その他の支援",
-    claudeBadge: "Claude対応",
-    primaryServices: [
+
+    simLabel: "Simulation",
+    simTitle: "料金シミュレーションで1分見積り",
+    simDesc: "受託開発・ロボットレンタル・AI研修のいずれも、選択式で概算の費用と期間をその場で確認できます。",
+
+    servicesLabel: "Service",
+    servicesTitle: "事業内容",
+    servicesDesc: "フィジカルAI受託開発・ロボットレンタル・AI研修の3本柱。試す・作る・使いこなす、のすべてを支えます。",
+    coreHeading: "3つの主力事業",
+    subHeading: "その他の支援",
+    coreServices: [
       {
-        code: "01", title: "AI顧問", color: "indigo",
-        desc: "月2.5万円〜、外部AI顧問として技術選定からPoC評価・IT全般の相談まで、チャット相談・会議参加・内製化支援で継続伴走します。",
-        tags: ["月額契約", "限定10社枠", "経営伴走", "内製化支援"],
-        href: "/advisor", cta: "顧問契約のご相談",
-        claudeNote: "Claude（Anthropic）の業務導入・運用定着まで、顧問として継続的に伴走します。",
+        code: "01",
+        title: "フィジカルAI受託開発",
+        lead: "ロボット・現場設備とAIをつなぎ、実際に動くシステムとして開発・納品します。",
+        points: [
+          "ロボット制御・業務システム連携の受託開発",
+          "PoCから本番実装・運用保守まで一貫対応",
+          "ソースコード・IPはすべて顧客に帰属",
+        ],
+        tags: ["ロボット制御", "AIエージェント", "画像認識", "現場統合"],
+        price: "150万円〜",
+        priceNote: "PoCパック（約4〜6週間）／本番開発は600万円〜",
+        href: "/physical-ai",
+        cta: "詳しく見る",
       },
       {
-        code: "02", title: "AI研修", color: "amber", badge: "補助金 最大75%OFF",
-        desc: "導入研修から部門別ワークショップ・実務適用まで、社員が主役になる学習プログラムでチームのAIリテラシーを底上げします。",
-        tags: ["社員研修", "部門別ワークショップ", "プロンプト設計", "業務適用"],
-        href: "/training", cta: "研修プログラムを見る",
-        claudeNote: "Claudeを実務で使いこなす実践研修も。現場のユースケースに即したプロンプト・運用ルールまで指南します。",
+        code: "02",
+        title: "ロボットレンタル",
+        lead: "ヒューマノイド・四足歩行ロボットを1日から。買う前に、自社の現場で確かめられます。",
+        points: [
+          "Unitree・AgiBot・Boston Dynamics 等を取り扱い",
+          "四足歩行は1日1万円から、ヒューマノイドは10万円から",
+          "オペレーター同行・搬入設置代行にも対応",
+        ],
+        tags: ["Unitree", "AgiBot", "1日〜", "PoC・展示"],
+        price: "1万円〜/日",
+        priceNote: "Unitree Go2（四足歩行）1日あたり・税込",
+        href: "/robot-rental",
+        cta: "機体一覧を見る",
       },
       {
-        code: "03", title: "ウェブサイト作成", color: "sky",
-        desc: "Next.js + Vercel + Headless CMSで、表示速度・SEO・運用しやすさを最高水準にしたサイトを高速制作します。",
-        tags: ["Next.js", "Vercel", "SEO", "Headless CMS"],
-        href: "/website", cta: "詳しく見る",
+        code: "03",
+        title: "AI研修",
+        lead: "社員が自分の業務システムを作り切れるようになる、実践型のAI研修プログラム。",
+        points: [
+          "経営層・管理職・現場担当まで階層別に設計",
+          "Claude / Vibe Coding での内製化ハンズオン",
+          "助成金申請までサポート、実質負担は最大1/4",
+        ],
+        tags: ["階層別研修", "Vibe Coding", "Claude", "助成金対応"],
+        price: "20万円〜",
+        priceNote: "スポット研修1回あたり／パッケージは80万円〜（3ヶ月）",
+        href: "/training",
+        cta: "研修プログラムを見る",
+        badge: "助成金 最大75%OFF",
       },
     ],
-    secondaryServices: [
+    subServices: [
+      { code: "04", title: "AIエージェント開発", desc: "業務を任せられる自律型AIエージェントを設計・開発・運用します。", href: "/ai-agent" },
+      { code: "05", title: "空間3Dスキャン", desc: "現場をカメラで3Dデータ化し、ロボット導入の台数・ルートを事前設計します。", href: "/spatial-scan" },
+      { code: "06", title: "AI顧問", desc: "外部AI顧問として、技術選定からPoC評価・内製化まで継続的に伴走します。", href: "/advisor" },
+      { code: "07", title: "AIコンサル・DX", desc: "大手コンサル出身者の監修で、戦略策定から実装・運用まで一気通貫で支援します。", href: "/ai-consulting" },
+      { code: "08", title: "補助金サポート", desc: "対象制度の見極めから申請書類まで、研修・導入費の圧縮をサポートします。", href: "/subsidy" },
+      { code: "09", title: "Claude特化導入", desc: "Anthropic Claudeの業務導入・運用定着に特化した支援を提供します。", href: "/claude" },
+      { code: "10", title: "ウェブサイト作成", desc: "Next.js + Vercel で、表示速度・SEO・運用性を最高水準にしたサイトを制作します。", href: "/website" },
+      { code: "11", title: "AI広告運用", desc: "クリエイティブ生成から効果検証までAIで最適化し、ROAS改善に伴走します。", href: "/advertising" },
+      { code: "12", title: "SNS運用代行", desc: "AI活用でSNSの企画・制作・投稿・分析までを代行します。", href: "/sns" },
+    ],
+
+    worksLabel: "Works",
+    worksTitle: "現場で動かしてきた領域",
+    worksDesc: "点検・巡回から接客・展示、製造ラインの効率化まで。ロボットとAIを組み合わせて成果を出せる領域を、業種横断で扱っています。",
+    worksNote: "※ 掲載内容は当社が対応可能なプロジェクト類型です。個別の導入事例は守秘義務の範囲で個別にご説明します。",
+    works: [
       {
-        code: "04", title: "コンサル・DX", color: "blue",
-        desc: "大手コンサル出身者の監修で、戦略策定から実装・運用までAI活用を一気通貫で支援します。",
-        tags: ["AI戦略策定", "業務自動化", "生成AI活用"],
-        href: "/ai-consulting", cta: "詳しく見る",
+        tag: "点検・巡回",
+        title: "四足歩行ロボットによる設備点検の自動化",
+        desc: "工場・プラント・倉庫を四足歩行ロボットが自律巡回し、計器の読み取り・異音検知・異常箇所の撮影までを自動化。夜間・休日の無人点検にも対応します。",
+        metrics: ["Unitree Go2 / B2", "自律巡回ルート設計", "画像認識による異常検知"],
+        href: "/physical-ai",
       },
       {
-        code: "05", title: "AI広告運用", color: "rose",
-        desc: "クリエイティブ生成から効果検証までAIで広告運用を最適化・自動化し、ROAS改善を伴走します。",
-        tags: ["広告運用", "クリエイティブ生成", "効果検証"],
-        href: "/advertising", cta: "詳しく見る",
+        tag: "接客・展示",
+        title: "ヒューマノイドによる受付・イベント演出",
+        desc: "展示会・商業施設・企業受付でヒューマノイドが案内・対話・撮影対応を行う体験を構築。集客とメディア露出を同時に取りにいく施策として設計します。",
+        metrics: ["Unitree G1 / AgiBot A2", "対話シナリオ設計", "レンタル1日から"],
+        href: "/robot-rental",
       },
       {
-        code: "06", title: "ロボットレンタル", color: "cyan", badge: "Coming Soon",
-        desc: "【準備中】Unitree・AGIBOT等の最先端ロボットを輸入・レンタルし、高額な機体を購入前に自社の現場で試せます。",
-        tags: ["Unitree / AGIBOT", "輸入レンタル", "Coming Soon"],
-        href: "/robot-rental", cta: "詳しく見る",
+        tag: "業務自動化",
+        title: "AIエージェントによる基幹業務の自動化",
+        desc: "問い合わせ対応・書類作成・データ集計といった定型業務を、社内システムに接続した自律型AIエージェントへ移管。例外処理はHuman-in-the-loopで担保します。",
+        metrics: ["社内システム連携", "評価・監視ダッシュボード", "運用Runbook納品"],
+        href: "/ai-agent",
+      },
+      {
+        tag: "内製化",
+        title: "非エンジニア社員による業務ツールの内製",
+        desc: "Claude・Vibe Coding の実践研修を通じて、現場社員がExcel集計・申請フォーム・日報集約といったツールを自分で作れる状態へ。外注依存を段階的に解消します。",
+        metrics: ["階層別カリキュラム", "助成金 最大75%", "研修後のSlackサポート"],
+        href: "/training",
       },
     ],
-    approachLabel: "Our Approach",
-    approachTitle: "私たちが大切にする3つのこと",
-    approach: [
-      { num: "01", title: "正直であること", desc: "過度な期待を煽らず、実現可能性を率直に見極めて効果の高い領域から着実に進めます。" },
-      { num: "02", title: "伴走すること", desc: "導入して終わりではなく、お客様のチームの一員として運用が定着するまでともに歩みます。" },
-      { num: "03", title: "現場に落とし込むこと", desc: "技術選定から運用設計まで、専門知識がなくても扱える現場で使える形に落とし込みます。" },
-    ],
-    processLabel: "How It Works",
+
+    processLabel: "Flow",
     processTitle: "ご相談から導入までの流れ",
     processDesc: "初回相談は無料。無理な営業はせず、貴社のペースに合わせて進めます。",
     process: [
-      { num: "01", title: "無料相談・AI診断", desc: "現状の課題をヒアリングし、AI活用で効果の高い領域を一緒に特定します（30分・オンライン可）。" },
-      { num: "02", title: "ご提案・お見積り", desc: "顧問・研修・Web制作のうち、最適な進め方と料金・補助金活用をご提案します。" },
-      { num: "03", title: "スモールスタート", desc: "1部署・1業務に絞ったPoCや単発研修から始め、効果を確認しながら無理なく拡張します。" },
-      { num: "04", title: "継続伴走・定着", desc: "運用が現場に根付くまで継続的に伴走し、成果と体制を定期的に見直します。" },
+      { num: "01", title: "無料相談・現場ヒアリング", desc: "現状の課題と現場条件をうかがい、ロボット・AIで効果が出そうな領域を一緒に特定します（30分・オンライン可）。", duration: "30分" },
+      { num: "02", title: "ご提案・お見積り", desc: "受託開発・レンタル・研修のうち最適な組み合わせと、費用・スケジュール・使える補助金をご提案します。", duration: "1〜2週間" },
+      { num: "03", title: "レンタル実証・PoC", desc: "いきなり買わず・作らず、まずはレンタル機体や小規模PoCで現場適合性を検証します。", duration: "1日〜6週間" },
+      { num: "04", title: "本番開発・導入", desc: "検証結果をもとに本番システムを開発し、既存システム連携・監視・運用手順の整備まで行います。", duration: "3〜6ヶ月" },
+      { num: "05", title: "研修・内製化・運用", desc: "社員向け研修で運用能力を社内に残し、稼働後も品質モニタリングと改善を継続します。", duration: "継続" },
     ],
-    teamLabel: "Our Team",
+
+    teamLabel: "Team",
     teamTitle: (<>戦略から実装・運用まで、<br className="hidden sm:inline" />信頼できるプロフェッショナルが担います。</>),
     teamDesc: "経営コンサルの視座と現場で鍛え上げたエンジニアリングの実装力を掛け合わせ、提案だけで終わらせず稼働するシステムと継続的な価値創出まで一貫して責任を持ちます。",
     teamCard1Label: "Strategy & DX",
@@ -228,148 +293,198 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
     teamCard1Tags: ["大手コンサルファーム出身", "業務改革", "DX戦略", "全社展開"],
     teamCard2Label: "Engineering",
     teamCard2Title: "開発・デプロイ・メンテナンス",
-    teamCard2Desc: "AIコンサルティング経験が豊富なエンジニア、シリコンバレーでバックエンド開発に従事した技術者、高専から筑波大学に進学し応用情報技術者を持つ情報技術者などが、ウェブアプリケーションの開発・デプロイ・運用保守からリリース後の信頼性の担保まで一貫して責任を持ちます。",
+    teamCard2Desc: "AIコンサルティング経験が豊富なエンジニア、シリコンバレーでバックエンド開発に従事した技術者、高専から筑波大学に進学し応用情報技術者を持つ情報技術者などが、システムの開発・デプロイ・運用保守からリリース後の信頼性の担保まで一貫して責任を持ちます。",
     teamCard2Tags: ["AIコンサル経験豊富", "シリコンバレー開発経験", "高専→筑波大学", "応用情報技術者"],
+
     techLabel: "Tech Stack",
     techTitle: "使用技術",
     techDesc: "中小企業でも安心して導入できるよう、実績・安定性・サポート体制が確立された技術のみを採用しています。",
-    techGroups: { frontend: "フロントエンド", backend: "バックエンド", aiml: "AI・機械学習", database: "データベース", cloud: "クラウド・インフラ", ec: "EC・決済", biz: "業務連携・コラボレーション" },
     techMoreTitle: "上記以外の技術にも対応可能",
     techMoreDesc: "お客様の既存環境・社内標準・業界要件に合わせて、記載以外の言語・フレームワーク・クラウド・SaaS連携にも柔軟に対応いたしますので、まずはお気軽にご相談ください。",
-    faqLabel: "FAQ",
-    faqTitle: "よくあるご質問",
+
+    faqLabel: "Q&A",
+    faqTitle: "よくある質問",
     faqDesc: "ご相談前によく寄せられる質問をまとめました。",
     faqCta: "すべての質問を見る →",
     faq: [
-      { q: "AIの知識がなくても相談できますか？", a: "もちろんです。「何から始めればいいかわからない」段階からのご相談が最も多く、専門用語を使わず現場の言葉でご説明します。" },
-      { q: "小さく始めることはできますか？", a: "できます。単発の研修や、1部署・1業務に絞ったPoCなど、いきなり大型契約をせずに効果を確かめてから拡張いただけます。" },
-      { q: "補助金は使えますか？", a: "研修・AI導入では各種助成金・補助金を活用でき、実質負担を最大75%削減できる場合があり、対象制度の見極めから申請書類までサポートします。" },
+      { q: "フィジカルAIとは何ですか？", a: "カメラ・センサー・ロボットなど物理的な機器と生成AIを組み合わせ、現実世界で作業や判断を行わせる技術領域を指します。画面の中だけで完結する従来のAIと異なり、点検・搬送・接客といった現場作業そのものを対象にできる点が特徴です。clearAIはこの領域の受託開発を行っています。" },
+      { q: "ロボットは買わずにレンタルだけでも使えますか？", a: "はい。四足歩行ロボットは1日1万円から、ヒューマノイドは1日10万円からレンタルいただけます。展示会での1日利用から、現場PoCのための1ヶ月利用まで対応しており、購入前の適合性検証としてご利用いただくケースが最も多いです。" },
+      { q: "AIの知識がない社員でも研修についていけますか？", a: "問題ありません。コードを書いた経験がない社員を前提に設計しており、AIへ日本語で指示するだけで業務ツールを作る「Vibe Coding」形式のハンズオンから始めます。階層別（経営層・管理職・現場担当）にカリキュラムを分けているため、役割に必要な内容だけを学べます。" },
+      { q: "補助金・助成金は使えますか？", a: "使えます。研修では厚生労働省の人材開発支援助成金により、中小企業は研修経費の最大75%と受講者の賃金が助成対象になります。AI導入・システム開発ではIT導入補助金などが該当する場合があり、対象制度の見極めから申請書類の作成までサポートします。" },
+      { q: "開発期間と費用はどのくらいかかりますか？", a: "フィジカルAIの受託開発は、PoCパックが150万円・約4〜6週間、本番実装が600万円〜・3〜6ヶ月が目安です。研修はスポット20万円〜、パッケージ80万円〜（3ヶ月）。上部の料金シミュレーションで、条件を選ぶだけで概算をその場で確認できます。" },
+      { q: "地方の中小企業でも対応してもらえますか？", a: "対応可能です。clearAIは茨城県を拠点に全国対応しており、研修・打ち合わせはオンラインで実施できます。ロボットの搬入設置やオペレーター同行が必要な場合も、現地への出張対応を行っています。" },
     ],
+
     newsLabel: "News",
-    newsTitle: "お知らせ",
+    newsTitle: "ブログ・お知らせ",
     newsCta: "一覧を見る →",
-    clientLogosLabel: "実績企業",
+
     ctaLabel: "Contact",
     ctaTitle: "まずは、お話ししませんか。",
-    ctaDesc: (<>AIのことがわからなくても大丈夫、<br />貴社の状況に合わせて一緒に考えます。</>),
+    ctaDesc: (<>AIやロボットのことがわからなくても大丈夫、<br />貴社の状況に合わせて一緒に考えます。</>),
     ctaCards: [
-      { label: "AI顧問", service: "advisor" },
-      { label: "AI研修・教育", service: "training" },
-      { label: "ウェブサイト作成", service: "website" },
-      { label: "コンサル・DX", service: "consulting" },
-      { label: "AI広告運用", service: "advertising" },
+      { label: "フィジカルAI受託開発", service: "physical-ai" },
       { label: "ロボットレンタル", service: "robot-rental" },
+      { label: "AI研修・教育", service: "education" },
+      { label: "AIエージェント開発", service: "ai-agent" },
+      { label: "空間3Dスキャン", service: "spatial-scan" },
+      { label: "AI顧問", service: "advisor" },
     ],
     ctaCardAction: "お問い合わせ →",
     ctaOthers: "その他のお問い合わせはこちら →",
   },
+
   en: {
-    heroChips: ["Robot Rental × AI Consulting", "Strategy to deployment", "Built for SMEs"],
     heroTitle: (
-      <>Saving Japanese Industry with <span className="whitespace-nowrap">Physical AI</span></>
+      <>
+        <span className="block">Physical AI development,</span>
+        <span className="block">robot rental &amp; AI training</span>
+      </>
     ),
     heroDesc: (
-      <>Centered on humanoid robot rental and AI consulting —<br className="hidden md:inline" />
-      we partner with you from management decisions to systems that actually run on the floor.</>
+      <>Robots and AI, taken all the way to working on your floor.<br className="hidden md:inline" />
+      From concept and build to on-site proof and in-house capability — one partner throughout.</>
     ),
+    heroChecks: [
+      { strong: "One third the time and cost", rest: " to reach real deployment" },
+      { strong: "Up to 75% off with subsidies", rest: " on training investment" },
+    ],
     heroPrimary: "Book a free consultation",
-    heroSecondary: "View services",
+    heroSecondary: "Get a 1-minute estimate",
     trustStats: [
       { value: "Up to 75%", label: "Training cost cut by subsidies" },
-      { value: "Free", label: "30-min AI assessment" },
-      { value: "Nationwide", label: "Online delivery available" },
+      { value: "Free", label: "30-min AI & robotics assessment" },
+      { value: "Nationwide", label: "Online or on-site" },
       { value: "2 business days", label: "First reply" },
     ],
-    whyLabel: "Why clearAI",
-    whyTitle: "We promise to never stop at a proposal.",
-    whyDesc: "A consultant's strategic view and field-forged engineering under one roof, so plans don't stay on paper.",
-    why: [
-      { title: "We own the implementation", desc: "Our engineers don't stop at strategy decks — they build working systems and see them through to real adoption." },
-      { title: "Neutral, on your side", desc: "Without pushing a specific tool, we neutrally pick what truly fits your problem from Claude, ChatGPT, and Gemini." },
-      { title: "Full use of subsidies", desc: "Using Japan's HR development and IT-introduction subsidies, we cut training and adoption costs by up to 75%, so you can start with minimal net cost." },
+    clientLogosLabel: "Client Work",
+
+    reasonLabel: "Reason",
+    reasonTitle: "Why companies choose clearAI",
+    reasonDesc: "Not software alone, not hardware alone. Our strength is delivering both the machine that works on your floor and the people who can run it.",
+    reasons: [
+      { title: "Robots and AI from one partner", desc: "Sourcing and rental of the machine, custom development of the AI control and system integration, and the design of on-site operations — all handled in-house, with no cross-vendor coordination overhead." },
+      { title: "Try it before you buy it", desc: "You don't have to commit millions of yen up front. Rent by the day, bring the robot onto your own site, and decide on the investment only after you've seen it work." },
+      { title: "We don't stop at delivery", desc: "Instead of handing over and leaving, we train your staff until they can build their own systems with AI — leaving operational capability inside your company rather than dependence on us." },
+      { title: "Subsidies used to the full", desc: "We design engagements around Japan's HR development and IT-introduction subsidies, so training costs drop by up to 75% and rollout costs shrink substantially from day one." },
     ],
-    visionLabel: "Our Vision",
-    visionTitle: "Bringing AI to Japan's front lines.",
-    visionBody1: "For most companies, AI still feels out of reach — too hard, too expensive, with no obvious place to start — a story we've heard many times.",
-    visionBody2: "We exist to close that gap — translating state-of-the-art AI into the language of business and using engineering to support real operations, staying close to each company and delivering tangible value.",
-    visionStats: [
-      { value: "Advisor · Training · Web", label: "Three core services" },
-      { value: "Japan", label: "market focus" },
-      { value: "2026", label: "founded" },
-    ],
-    getStartedLabel: "Get Started",
-    getStartedTitle: "Start small. Scale when it works.",
-    getStartedDesc: "No big contract required — start with a free 30-minute assessment and a 3-minute company deck to see whether we're a fit.",
-    steps: [
-      { step: "STEP 01", title: "Free AI assessment (30 min)", desc: "With no hard sell, we listen to your current workflows and challenges, then identify one high-impact area for AI.", points: ["Zoom or in-person", "NDA on request — we can handle confidential data", "Verbal summary on the spot"], cta: "Book a session →", href: "/contact?service=advisor", color: "indigo" },
-      { step: "STEP 02", title: "3-minute company deck", desc: "A one-page PDF summarizing our services, typical engagements, price ranges, and subsidy examples — perfect for internal review.", points: ["1-page PDF", "Price ranges and engagement model included", "No signup, same-day delivery"], cta: "Get the deck →", href: "/contact?service=advisor&doc=company-deck", color: "amber" },
-      { step: "STEP 03", title: "PoC from a single team", desc: "Rather than a company-wide rollout upfront, we focus on the one team or workflow where AI is most likely to pay off, then expand from proven results.", points: ["1–2 month PoC", "Success criteria agreed up front", "Verify small, then expand"], cta: "Get in touch →", href: "/contact?service=training", color: "sky" },
-    ],
-    servicesLabel: "Our Services",
-    servicesTitle: "Building Japan's future with AI.",
-    servicesDesc: "Centered on AI advisory, employee training, and website production — delivering real outcomes from strategy to implementation and operation.",
-    primaryHeading: "Core services",
-    secondaryHeading: "Other support",
-    claudeBadge: "Claude-ready",
-    primaryServices: [
+
+    simLabel: "Simulation",
+    simTitle: "Get a ballpark in one minute",
+    simDesc: "For development, rental, or training alike — pick a few options and see an estimated cost and timeline immediately.",
+
+    servicesLabel: "Service",
+    servicesTitle: "What we do",
+    servicesDesc: "Three core businesses — physical AI development, robot rental, and AI training — covering trying it, building it, and mastering it.",
+    coreHeading: "Three core businesses",
+    subHeading: "Other support",
+    coreServices: [
       {
-        code: "01", title: "AI Advisor", color: "indigo",
-        desc: "From JPY 25K/month, as your outside AI advisor we provide chat support, meeting participation, and in-house enablement — from tool selection to PoC review and broader IT advice.",
-        tags: ["Monthly contract", "Limited slots", "Management partner", "In-house enablement"],
-        href: "/advisor", cta: "Discuss an advisory engagement",
-        claudeNote: "We support adopting and embedding Claude (Anthropic) into your operations — as an ongoing advisor.",
+        code: "01",
+        title: "Physical AI development",
+        lead: "We connect robots and on-site equipment with AI, and deliver it as a system that actually runs.",
+        points: [
+          "Custom development of robot control and system integration",
+          "End-to-end from PoC to production and maintenance",
+          "Source code and IP belong entirely to you",
+        ],
+        tags: ["Robot control", "AI agents", "Computer vision", "Site integration"],
+        price: "From JPY 1.5M",
+        priceNote: "PoC pack (approx. 4–6 weeks); production builds from JPY 6M",
+        href: "/physical-ai",
+        cta: "Learn more",
       },
       {
-        code: "02", title: "AI Training", color: "amber", badge: "Up to 75% subsidy",
-        desc: "Raise your team's AI literacy with learning programs where employees take the lead — from onboarding workshops to department-specific sessions and hands-on application.",
-        tags: ["Employee training", "Department workshops", "Prompt design", "Workflow application"],
-        href: "/training", cta: "View training programs",
-        claudeNote: "Hands-on Claude training too — prompts and operating rules tailored to your real use cases.",
+        code: "02",
+        title: "Robot rental",
+        lead: "Humanoids and quadrupeds from a single day — verify on your own site before you buy.",
+        points: [
+          "Unitree, AgiBot, Boston Dynamics and more",
+          "Quadrupeds from JPY 10,000/day, humanoids from JPY 100,000/day",
+          "Operator accompaniment and delivery/setup available",
+        ],
+        tags: ["Unitree", "AgiBot", "From 1 day", "PoC & events"],
+        price: "From JPY 10,000/day",
+        priceNote: "Unitree Go2 (quadruped), per day, tax included",
+        href: "/robot-rental",
+        cta: "See the lineup",
       },
       {
-        code: "03", title: "Website Production", color: "sky",
-        desc: "Fast production of websites that perform in the AI era, built on Next.js + Vercel + Headless CMS for top-tier speed, SEO, and ease of operation.",
-        tags: ["Next.js", "Vercel", "SEO", "Headless CMS"],
-        href: "/website", cta: "Learn more",
+        code: "03",
+        title: "AI training",
+        lead: "Hands-on programs that take employees all the way to building their own working systems.",
+        points: [
+          "Designed by level — executives, managers, front-line staff",
+          "In-house build workshops with Claude and Vibe Coding",
+          "Subsidy paperwork included; net cost as low as a quarter",
+        ],
+        tags: ["By level", "Vibe Coding", "Claude", "Subsidy-ready"],
+        price: "From JPY 200,000",
+        priceNote: "Per one-off session; packages from JPY 800,000 (3 months)",
+        href: "/training",
+        cta: "View programs",
+        badge: "Up to 75% subsidy",
       },
     ],
-    secondaryServices: [
+    subServices: [
+      { code: "04", title: "AI agent development", desc: "Design, build, and operate autonomous AI agents you can delegate work to.", href: "/ai-agent" },
+      { code: "05", title: "3D spatial scan", desc: "Turn your site into 3D data and plan robot fleet size and routes before deployment.", href: "/spatial-scan" },
+      { code: "06", title: "AI advisor", desc: "An outside AI advisor for tool selection, PoC review, and in-house enablement.", href: "/advisor" },
+      { code: "07", title: "AI consulting & DX", desc: "Overseen by ex-top-tier consultants, from strategy through implementation and operation.", href: "/ai-consulting" },
+      { code: "08", title: "Subsidy support", desc: "From identifying the right program to preparing the paperwork that cuts your costs.", href: "/subsidy" },
+      { code: "09", title: "Claude specialization", desc: "Dedicated support for adopting and embedding Anthropic Claude into your operations.", href: "/claude" },
+      { code: "10", title: "Website production", desc: "Next.js + Vercel builds with top-tier speed, SEO, and ease of operation.", href: "/website" },
+      { code: "11", title: "AI advertising", desc: "AI-optimized ad operations from creative generation through measurement and ROAS.", href: "/advertising" },
+      { code: "12", title: "SNS management", desc: "AI-powered planning, production, posting, and analytics for your social channels.", href: "/sns" },
+    ],
+
+    worksLabel: "Works",
+    worksTitle: "Where we put robots and AI to work",
+    worksDesc: "From inspection and patrol to reception and events, and on to manufacturing efficiency — we work across industries wherever robots and AI can produce a result.",
+    worksNote: "* These are the types of project we can take on. Individual client engagements are discussed privately, within our confidentiality obligations.",
+    works: [
       {
-        code: "04", title: "Consulting & DX", color: "blue",
-        desc: "Overseen by ex-top-tier consultants, with end-to-end support for AI adoption from strategy through implementation and operation.",
-        tags: ["AI strategy", "Workflow automation", "Generative AI"],
-        href: "/ai-consulting", cta: "Learn more",
+        tag: "Inspection",
+        title: "Automated equipment inspection with quadruped robots",
+        desc: "A quadruped patrols your plant, factory, or warehouse autonomously — reading gauges, detecting abnormal sounds, and photographing anomalies, including unmanned checks at night and on weekends.",
+        metrics: ["Unitree Go2 / B2", "Autonomous route design", "Vision-based anomaly detection"],
+        href: "/physical-ai",
       },
       {
-        code: "05", title: "AI Advertising", color: "rose",
-        desc: "We optimize and automate ad operations with AI — from creative generation to measurement — and partner on ROAS.",
-        tags: ["Ad operations", "Creative generation", "Measurement"],
-        href: "/advertising", cta: "Learn more",
+        tag: "Reception & events",
+        title: "Humanoid reception and event experiences",
+        desc: "Humanoids that guide, converse, and pose for photos at trade shows, commercial facilities, and corporate receptions — designed to win footfall and media coverage at the same time.",
+        metrics: ["Unitree G1 / AgiBot A2", "Dialogue scenario design", "Rental from one day"],
+        href: "/robot-rental",
       },
       {
-        code: "06", title: "Robot Rental", color: "cyan", badge: "Coming Soon",
-        desc: "Coming soon — importing and renting cutting-edge robots like Unitree and AGIBOT so you can try the latest humanoids on-site before you commit.",
-        tags: ["Unitree / AGIBOT", "Import rental", "Coming Soon"],
-        href: "/robot-rental", cta: "Learn more",
+        tag: "Automation",
+        title: "Core workflows automated with AI agents",
+        desc: "Routine work — inquiry handling, document preparation, data aggregation — moved onto autonomous AI agents wired into your internal systems, with exceptions held by a human in the loop.",
+        metrics: ["Internal system integration", "Evaluation dashboards", "Operations runbook delivered"],
+        href: "/ai-agent",
+      },
+      {
+        tag: "In-house capability",
+        title: "Non-engineers building their own tools",
+        desc: "Through hands-on Claude and Vibe Coding training, front-line staff learn to build their own spreadsheets, forms, and reporting tools — steadily reducing dependence on outsourcing.",
+        metrics: ["Curriculum by level", "Up to 75% subsidy", "Post-training Slack support"],
+        href: "/training",
       },
     ],
-    approachLabel: "Our Approach",
-    approachTitle: "Three things we stand for",
-    approach: [
-      { num: "01", title: "Honesty", desc: "Without hype, we candidly judge what's feasible and move forward where impact is highest, in order of demonstrated results." },
-      { num: "02", title: "Partnership", desc: "Delivery isn't the finish line — we stay engaged until adoption takes root, walking alongside your team." },
-      { num: "03", title: "Grounded execution", desc: "From technology choice to operational design, we translate everything into a form your team can actually use." },
-    ],
-    processLabel: "How It Works",
-    processTitle: "From first call to adoption",
+
+    processLabel: "Flow",
+    processTitle: "From first call to deployment",
     processDesc: "The first consultation is free. No hard sell — we move at your pace.",
     process: [
-      { num: "01", title: "Free consult & AI assessment", desc: "We listen to your challenges and identify high-impact areas for AI together (30 min, online available)." },
-      { num: "02", title: "Proposal & quote", desc: "We propose the best path among advisory, training, and web production — with pricing and subsidy options." },
-      { num: "03", title: "Start small", desc: "Begin with a focused PoC or a one-off training, expanding at a comfortable pace as results show." },
-      { num: "04", title: "Ongoing partnership", desc: "We stay engaged until it sticks on the ground, reviewing outcomes and structure regularly." },
+      { num: "01", title: "Free consult & site review", desc: "We listen to your challenges and site conditions and identify together where robots and AI would pay off (30 min, online available).", duration: "30 min" },
+      { num: "02", title: "Proposal & quote", desc: "We propose the right mix of development, rental, and training — with cost, schedule, and applicable subsidies.", duration: "1–2 weeks" },
+      { num: "03", title: "Rental trial / PoC", desc: "Before buying or building anything, we validate fit on your site with a rental unit or a small PoC.", duration: "1 day – 6 weeks" },
+      { num: "04", title: "Production build & rollout", desc: "We build the production system from what the trial proved, including integrations, monitoring, and operating procedures.", duration: "3–6 months" },
+      { num: "05", title: "Training, enablement & operations", desc: "Training leaves the operating capability inside your team, and we keep monitoring and improving after go-live.", duration: "Ongoing" },
     ],
-    teamLabel: "Our Team",
+
+    teamLabel: "Team",
     teamTitle: (<>From strategy to implementation and operation,<br className="hidden sm:inline" />trusted professionals see it through.</>),
     teamDesc: "Combining management-consulting perspective with field-forged engineering execution, we don't stop at proposals — we own working systems and continuous value all the way through.",
     teamCard1Label: "Strategy & DX",
@@ -378,37 +493,42 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
     teamCard1Tags: ["Top-tier consulting background", "Business transformation", "DX strategy", "Company-wide rollout"],
     teamCard2Label: "Engineering",
     teamCard2Title: "Development, deployment & maintenance",
-    teamCard2Desc: "Engineers with deep AI-consulting experience, backend developers who worked in Silicon Valley, and Applied Information Technology engineers (Kosen → University of Tsukuba) build, deploy, and maintain our web applications — owning reliability after release.",
+    teamCard2Desc: "Engineers with deep AI-consulting experience, backend developers who worked in Silicon Valley, and Applied Information Technology engineers (Kosen → University of Tsukuba) build, deploy, and maintain our systems — owning reliability after release.",
     teamCard2Tags: ["AI consulting experience", "Silicon Valley development", "Kosen → U. of Tsukuba", "Applied Information Technology"],
+
     techLabel: "Tech Stack",
     techTitle: "Technologies we use",
     techDesc: "We only adopt technologies with proven track record, stability, and strong support — so SMEs can deploy with confidence.",
-    techGroups: { frontend: "Frontend", backend: "Backend", aiml: "AI / ML", database: "Database", cloud: "Cloud & Infrastructure", ec: "EC / Commerce", biz: "Business Integrations" },
     techMoreTitle: "We also support technologies beyond this list",
     techMoreDesc: "We flexibly support languages, frameworks, clouds, and SaaS integrations beyond this list — tailored to your environment, internal standards, and industry requirements — so please reach out.",
-    faqLabel: "FAQ",
+
+    faqLabel: "Q&A",
     faqTitle: "Frequently asked questions",
     faqDesc: "A few questions we're often asked before getting started.",
     faqCta: "See all questions →",
     faq: [
-      { q: "Can we consult even without AI knowledge?", a: "Absolutely — 'We don't know where to start' is the most common starting point we hear, and we explain in plain language, not jargon." },
-      { q: "Can we start small?", a: "Yes. With one-off training or a PoC scoped to a single team or workflow, you can verify results before any large commitment." },
-      { q: "Can we use subsidies?", a: "For training and AI adoption, various government subsidies can cut your net cost by up to 75%, and we help identify the right programs and handle the paperwork." },
+      { q: "What is physical AI?", a: "It refers to combining generative AI with physical devices — cameras, sensors, robots — so that work and judgement happen in the real world. Unlike AI that stays on a screen, it can take on the actual floor work: inspection, transport, reception. clearAI builds custom systems in this space." },
+      { q: "Can we rent robots without buying them?", a: "Yes. Quadrupeds start at JPY 10,000 per day and humanoids at JPY 100,000 per day. Engagements range from a single day at a trade show to a month-long on-site PoC — most often as a fit check before purchase." },
+      { q: "Can staff with no AI knowledge keep up with the training?", a: "Yes. The programs assume participants have never written code, starting with hands-on 'Vibe Coding' where you build a working tool by instructing AI in plain Japanese. Curricula are split by level — executives, managers, front-line staff — so people learn only what their role needs." },
+      { q: "Can we use government subsidies?", a: "Yes. For training, Japan's HR Development Support Subsidy covers up to 75% of course costs plus participant wages for SMEs. For AI adoption and system development, programs such as the IT Introduction Subsidy may apply, and we support everything from eligibility assessment to the application paperwork." },
+      { q: "How long does development take and what does it cost?", a: "For physical AI development, the PoC pack is JPY 1.5M over roughly 4–6 weeks, and production implementation starts at JPY 6M over 3–6 months. Training starts at JPY 200,000 for a one-off and JPY 800,000 for a 3-month package. The simulator above gives you an instant estimate." },
+      { q: "Do you work with SMEs outside major cities?", a: "Yes. clearAI is based in Ibaraki Prefecture and works nationwide, with training and meetings available online. Where robot delivery, setup, or an operator on site is needed, we travel to you." },
     ],
+
     newsLabel: "News",
-    newsTitle: "News",
+    newsTitle: "Blog & News",
     newsCta: "View all →",
-    clientLogosLabel: "Client Work",
+
     ctaLabel: "Contact",
     ctaTitle: "Let's start with a conversation.",
-    ctaDesc: (<>No AI expertise needed —<br />we'll think it through with you, tailored to your situation.</>),
+    ctaDesc: (<>No AI or robotics expertise needed —<br />we'll think it through with you, tailored to your situation.</>),
     ctaCards: [
-      { label: "AI Advisor", service: "advisor" },
-      { label: "AI Training & Education", service: "training" },
-      { label: "Website Production", service: "website" },
-      { label: "Consulting & DX", service: "consulting" },
-      { label: "AI Advertising", service: "advertising" },
-      { label: "Robot Rental", service: "robot-rental" },
+      { label: "Physical AI development", service: "physical-ai" },
+      { label: "Robot rental", service: "robot-rental" },
+      { label: "AI training", service: "education" },
+      { label: "AI agent development", service: "ai-agent" },
+      { label: "3D spatial scan", service: "spatial-scan" },
+      { label: "AI advisor", service: "advisor" },
     ],
     ctaCardAction: "Get in touch →",
     ctaOthers: "Other inquiries →",
@@ -432,58 +552,29 @@ const CLIENT_LOGOS = [
 ];
 
 // 使用技術ロゴは public/logos/tech/ にself-host（外部CDN依存を排除・確実に色付き表示）。
-// 各SVGは iconify (下記 icon/color) から取得し、ファイル名は techSlug(name) と一致させる。
 const techSlug = (name: string) => name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 
-const TECH_GROUPS: { key: keyof typeof COPY["ja"]["techGroups"]; items: { name: string; icon: string; color?: string }[] }[] = [
-  { key: "frontend", items: [
-    { name: "Next.js", icon: "logos:nextjs-icon" },
-    { name: "React", icon: "logos:react" },
-    { name: "TypeScript", icon: "logos:typescript-icon" },
-    { name: "Tailwind CSS", icon: "logos:tailwindcss-icon" },
-    { name: "Vite", icon: "logos:vitejs" },
+const TECH_GROUPS: { items: { name: string }[] }[] = [
+  { items: [
+    { name: "Next.js" }, { name: "React" }, { name: "TypeScript" }, { name: "Tailwind CSS" }, { name: "Vite" },
   ]},
-  { key: "backend" as const, items: [
-    { name: "Python", icon: "logos:python" },
-    { name: "Node.js", icon: "logos:nodejs-icon" },
-    { name: "FastAPI", icon: "logos:fastapi-icon" },
-    { name: "Go", icon: "logos:go" },
-    { name: "Rails", icon: "logos:rails" },
+  { items: [
+    { name: "Python" }, { name: "Node.js" }, { name: "FastAPI" }, { name: "Go" }, { name: "Rails" },
   ]},
-  { key: "aiml" as const, items: [
-    { name: "Claude", icon: "logos:claude-icon" },
-    { name: "OpenAI", icon: "simple-icons:openai", color: "10A37F" },
-    { name: "Gemini", icon: "logos:google-gemini" },
-    { name: "PyTorch", icon: "logos:pytorch-icon" },
-    { name: "LangChain", icon: "simple-icons:langchain", color: "1C3C3C" },
+  { items: [
+    { name: "Claude" }, { name: "OpenAI" }, { name: "Gemini" }, { name: "PyTorch" }, { name: "LangChain" },
   ]},
-  { key: "database" as const, items: [
-    { name: "PostgreSQL", icon: "logos:postgresql" },
-    { name: "MySQL", icon: "logos:mysql-icon" },
-    { name: "Redis", icon: "logos:redis" },
-    { name: "Supabase", icon: "logos:supabase-icon" },
-    { name: "Firebase", icon: "logos:firebase-icon" },
+  { items: [
+    { name: "PostgreSQL" }, { name: "MySQL" }, { name: "Redis" }, { name: "Supabase" }, { name: "Firebase" },
   ]},
-  { key: "cloud" as const, items: [
-    { name: "AWS", icon: "logos:aws" },
-    { name: "Google Cloud", icon: "logos:google-cloud" },
-    { name: "Vercel", icon: "logos:vercel-icon" },
-    { name: "Cloudflare", icon: "logos:cloudflare-icon" },
-    { name: "Docker", icon: "logos:docker-icon" },
+  { items: [
+    { name: "AWS" }, { name: "Google Cloud" }, { name: "Vercel" }, { name: "Cloudflare" }, { name: "Docker" },
   ]},
-  { key: "ec" as const, items: [
-    { name: "Shopify", icon: "logos:shopify" },
-    { name: "Stripe", icon: "logos:stripe" },
-    { name: "Square", icon: "simple-icons:square", color: "000000" },
-    { name: "WooCommerce", icon: "logos:woocommerce-icon" },
-    { name: "Amazon Pay", icon: "simple-icons:amazonpay", color: "FF9900" },
+  { items: [
+    { name: "Shopify" }, { name: "Stripe" }, { name: "Square" }, { name: "WooCommerce" }, { name: "Amazon Pay" },
   ]},
-  { key: "biz" as const, items: [
-    { name: "Salesforce", icon: "logos:salesforce" },
-    { name: "Slack", icon: "logos:slack-icon" },
-    { name: "Microsoft 365", icon: "logos:microsoft-icon" },
-    { name: "Notion", icon: "logos:notion-icon" },
-    { name: "Jira", icon: "logos:jira" },
+  { items: [
+    { name: "Salesforce" }, { name: "Slack" }, { name: "Microsoft 365" }, { name: "Notion" }, { name: "Jira" },
   ]},
 ];
 
@@ -516,34 +607,48 @@ function ClientLogoMarquee({ label }: { label: string }) {
   );
 }
 
-function ServiceCard({ svc, claudeBadge, compact }: { svc: Svc; claudeBadge: string; compact?: boolean }) {
-  const c = colorMap[svc.color];
+/* 主力事業カード — 事業名 / リード文 / 3つの提供内容 / 価格 / CTA */
+function CoreServiceCard({ svc }: { svc: CoreSvc }) {
   return (
     <Link href={svc.href} className="group block h-full">
-      <div className={`relative flex h-full flex-col rounded-lg border border-gray-200 bg-white ${compact ? "p-6 lg:p-7" : "p-8 lg:p-10"} ${c.hoverBorder} transition-all duration-300 hover:shadow-lg`}>
+      <article className="relative flex h-full flex-col border border-neutral-900 bg-white p-8 transition-colors duration-300 hover:bg-neutral-900 lg:p-10">
         {svc.badge && (
-          <span className="absolute right-4 top-4 inline-flex items-center gap-1 rounded-md bg-neutral-900 px-2.5 py-1 text-[10px] font-bold tracking-wide text-white">
+          <span className="absolute right-0 top-0 inline-flex items-center border-b border-l border-neutral-900 bg-neutral-900 px-2.5 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-white transition-colors duration-300 group-hover:bg-white group-hover:text-neutral-900">
             {svc.badge}
           </span>
         )}
-        <span className={`mb-3 inline-block text-xs font-semibold uppercase tracking-widest ${c.code}`}>{svc.code}</span>
-        <h3 className={`${compact ? "text-lg" : "text-xl"} mb-3 font-bold text-gray-900`}>{svc.title}</h3>
-        <p className={`${compact ? "text-[13px]" : "text-sm"} mb-5 flex-1 leading-relaxed text-gray-600`}>{svc.desc}</p>
-        {svc.claudeNote && (
-          <div className="mb-5 min-h-[104px] rounded-lg border border-neutral-200 bg-neutral-50 px-3.5 py-2.5">
-            <span className="mb-1 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wide text-neutral-900">
-              <span className="h-1.5 w-1.5 rounded-full bg-neutral-900" />{claudeBadge}
-            </span>
-            <p className="text-[12px] leading-relaxed text-neutral-700">{svc.claudeNote}</p>
-          </div>
-        )}
-        <div className="mb-5 flex flex-wrap items-center gap-2">
+        <div className="mb-4 flex items-baseline gap-3 border-b border-neutral-200 pb-4 transition-colors duration-300 group-hover:border-neutral-700">
+          <span className="font-mono text-xs font-bold tabular-nums text-neutral-900 transition-colors duration-300 group-hover:text-white">{svc.code}</span>
+          <h3 className="text-xl font-bold tracking-tight text-balance text-neutral-900 transition-colors duration-300 group-hover:text-white">{svc.title}</h3>
+        </div>
+
+        <p className="mb-6 text-sm leading-relaxed text-pretty text-neutral-600 transition-colors duration-300 group-hover:text-neutral-300">{svc.lead}</p>
+
+        <ul className="mb-6 space-y-2.5 border-t border-neutral-200 pt-5 transition-colors duration-300 group-hover:border-neutral-700">
+          {svc.points.map((p) => (
+            <li key={p} className="flex items-start gap-2.5 text-[13px] leading-relaxed text-neutral-700 transition-colors duration-300 group-hover:text-neutral-300">
+              <span aria-hidden className="mt-[7px] h-1.5 w-1.5 flex-shrink-0 bg-neutral-900 transition-colors duration-300 group-hover:bg-white" />
+              <span>{p}</span>
+            </li>
+          ))}
+        </ul>
+
+        <div className="mb-6 mt-auto border-t border-neutral-200 pt-5 transition-colors duration-300 group-hover:border-neutral-700">
+          <p className="font-mono text-2xl font-bold tabular-nums tracking-tight text-neutral-900 transition-colors duration-300 group-hover:text-white">{svc.price}</p>
+          <p className="mt-1.5 text-[11px] leading-relaxed text-neutral-500 transition-colors duration-300 group-hover:text-neutral-400">{svc.priceNote}</p>
+        </div>
+
+        <div className="mb-5 flex flex-wrap items-center gap-2 font-mono">
           {svc.tags.map((tag) => (
-            <span key={tag} className="rounded border border-gray-200 px-2.5 py-1 text-xs text-gray-500">{tag}</span>
+            <span key={tag} className="border border-neutral-300 px-2.5 py-1 text-xs text-neutral-500 transition-colors duration-300 group-hover:border-neutral-600 group-hover:text-neutral-400">{tag}</span>
           ))}
         </div>
-        <span className={`text-sm font-semibold ${c.cta} ${c.ctaHover} transition-colors`}>{svc.cta} →</span>
-      </div>
+
+        <span className="inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-[0.08em] text-neutral-900 transition-colors duration-300 group-hover:text-white">
+          {svc.cta}
+          <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+        </span>
+      </article>
     </Link>
   );
 }
@@ -557,6 +662,51 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
   const techRowA = allTech.slice(0, techMid);
   const techRowB = allTech.slice(techMid);
   useEffect(() => { setTimeout(() => setHeroLoaded(true), 100); }, []);
+
+  // Adaptive hero text color: sample the video region behind the copy each frame
+  // and switch between dark/light text so the catchphrase stays legible whether
+  // the dithered background is bright or dark. Hysteresis avoids flicker.
+  const heroVideoRef = useRef<HTMLVideoElement | null>(null);
+  const [heroTextDark, setHeroTextDark] = useState(true);
+  useEffect(() => {
+    const video = heroVideoRef.current;
+    if (!video) return;
+    const canvas = document.createElement("canvas");
+    canvas.width = 48;
+    canvas.height = 32;
+    const ctx = canvas.getContext("2d", { willReadFrequently: true });
+    if (!ctx) return;
+    let raf = 0;
+    let last = 0;
+    let dark = true; // current decision: true = dark text
+    const sample = (ts: number) => {
+      raf = requestAnimationFrame(sample);
+      if (ts - last < 180) return;
+      last = ts;
+      if (video.readyState < 2 || video.videoWidth === 0) return;
+      // Sample the left-center band of the frame — where the copy sits (left-aligned).
+      const sx = 0;
+      const sy = video.videoHeight * 0.12;
+      const sw = video.videoWidth * 0.55;
+      const sh = video.videoHeight * 0.76;
+      try {
+        ctx.drawImage(video, sx, sy, sw, sh, 0, 0, canvas.width, canvas.height);
+        const { data } = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        let sum = 0;
+        for (let i = 0; i < data.length; i += 4) {
+          sum += 0.2126 * data[i] + 0.7152 * data[i + 1] + 0.0722 * data[i + 2];
+        }
+        const avg = sum / (data.length / 4) / 255; // 0 (black) .. 1 (white)
+        if (dark && avg < 0.45) dark = false;      // background got dark -> light text
+        else if (!dark && avg > 0.58) dark = true; // background got bright -> dark text
+        setHeroTextDark(dark);
+      } catch {
+        /* canvas tainted or frame not ready — keep last decision */
+      }
+    };
+    raf = requestAnimationFrame(sample);
+    return () => cancelAnimationFrame(raf);
+  }, []);
 
   const heroFeatures = lang === "ja"
     ? [
@@ -584,37 +734,66 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
   return (
     <>
       {/* ═══ HERO ═══ */}
-      <section className="relative min-h-[70svh] md:min-h-screen flex items-start md:items-center overflow-hidden bg-white">
-        <HeroParticlesBg />
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/images/hero-robot.png"
-          alt="clearAI ヒューマノイドロボットと四足歩行ロボット"
-          className="pointer-events-none select-none absolute bottom-0 right-0 z-0 h-[78%] sm:h-[84%] w-auto object-contain object-bottom md:hidden"
-          style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateX(0)" : "translateX(24px)", transition: "opacity 1s ease 300ms, transform 1s ease 300ms" }}
-        />
-        <div className="pointer-events-none absolute inset-0 z-[5] bg-gradient-to-br from-white from-5% via-white/35 to-transparent to-70% md:hidden" />
-        <div className="relative z-10 w-full max-w-[1800px] mx-auto px-6 lg:px-10 pt-24 pb-6 md:py-24 pointer-events-none">
-          <div className="max-w-[18.5rem] sm:max-w-md md:max-w-2xl lg:max-w-3xl text-left pointer-events-auto">
-            <div className="hidden md:flex md:flex-wrap md:justify-start gap-2 mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "200ms" }}>
-              {t.heroChips.map((tag) => (
-                <span key={tag} className="inline-flex items-center rounded-md bg-neutral-100 text-neutral-900 border border-neutral-200 px-3 py-1 text-xs font-semibold">
-                  {tag}
-                </span>
-              ))}
-            </div>
-            <h1 className="text-[1.9rem] sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-[1.12] tracking-tight mb-8 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0)" : "translateY(24px)", transitionDelay: "400ms" }}>
+      <section className="relative overflow-hidden bg-white md:flex md:min-h-screen md:items-center">
+        {/* SP: 映像を16:9で表示。ヘッダー直下にぴったり付ける（上余白なし） */}
+        <div className="md:hidden w-full">
+          <video
+            className="w-full aspect-video object-cover"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            poster="/videos/hero-dither-poster.jpg"
+            aria-hidden
+          >
+            <source src="/videos/hero-dither-hq.mp4" type="video/mp4" />
+          </video>
+        </div>
+        {/* PC: 背景動画（全面・テキスト重ね） */}
+        <video
+          ref={heroVideoRef}
+          className="hidden md:block pointer-events-none absolute inset-0 z-0 h-full w-full object-cover object-[62%_center] sm:object-center"
+          width={2160}
+          height={1216}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          crossOrigin="anonymous"
+          poster="/videos/hero-dither-poster.jpg"
+          aria-hidden
+        >
+          <source src="/videos/hero-dither-hq.mp4" type="video/mp4" />
+        </video>
+        <div className="relative z-10 w-full max-w-[1800px] mx-auto px-6 lg:px-10 pt-4 pb-6 md:py-24 pointer-events-none">
+          <div className="max-w-none sm:max-w-md md:max-w-2xl lg:max-w-3xl text-left pointer-events-auto">
+            <h1 className={`text-[1.5rem] sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.12] tracking-tight mb-6 transition-[color,opacity,transform] duration-500 text-gray-900 ${heroTextDark ? "md:text-gray-900" : "md:text-white"}`} style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0)" : "translateY(24px)", transitionDelay: "400ms", textShadow: heroTextDark ? "0 1px 3px rgba(255,255,255,0.75),0 2px 22px rgba(255,255,255,0.55)" : "0 1px 3px rgba(0,0,0,0.6),0 2px 22px rgba(0,0,0,0.65)" }}>
               {t.heroTitle}
             </h1>
-            <p className="text-base md:text-lg text-gray-600 leading-relaxed max-w-[17rem] sm:max-w-sm md:max-w-xl mb-10 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "650ms" }}>
+
+            {/* 2つのチェックポイント */}
+            <ul className={`mb-6 space-y-2 transition-[color,opacity] duration-500 text-gray-900 ${heroTextDark ? "md:text-gray-900" : "md:text-white"}`} style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "550ms", textShadow: heroTextDark ? "0 1px 2px rgba(255,255,255,0.95),0 1px 12px rgba(255,255,255,0.85)" : "0 1px 2px rgba(0,0,0,0.75),0 1px 12px rgba(0,0,0,0.7)" }}>
+              {t.heroChecks.map((c) => (
+                <li key={c.strong} className="flex items-start gap-2.5 text-[15px] md:text-lg font-semibold leading-snug">
+                  <svg aria-hidden className="mt-1 h-[18px] w-[18px] flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="12" cy="12" r="9.5" /><path d="m8 12.5 2.8 2.8L16 9.8" />
+                  </svg>
+                  <span><span className="underline decoration-2 underline-offset-4">{c.strong}</span>{c.rest}</span>
+                </li>
+              ))}
+            </ul>
+
+            <p className={`text-base md:text-lg font-medium leading-relaxed max-w-none sm:max-w-sm md:max-w-xl mb-9 transition-[color,opacity] duration-500 text-gray-900 ${heroTextDark ? "md:text-gray-900" : "md:text-white"}`} style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "700ms", textShadow: heroTextDark ? "0 1px 2px rgba(255,255,255,0.95),0 1px 12px rgba(255,255,255,0.85)" : "0 1px 2px rgba(0,0,0,0.75),0 1px 12px rgba(0,0,0,0.7)" }}>
               {t.heroDesc}
             </p>
-            <div className="flex flex-wrap justify-start items-center gap-5 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "850ms" }}>
-              <Link href="/reserve" className="executive-consultation-cta inline-flex items-center gap-2 rounded-md font-semibold px-7 py-3.5 transition-colors duration-300">
+            <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3 sm:gap-5 transition-[opacity,transform] duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "850ms" }}>
+              <Link href="/reserve" className="inline-flex w-full sm:w-auto justify-center items-center gap-2 bg-neutral-900 text-white font-mono text-sm font-bold uppercase tracking-[0.08em] px-8 min-h-[52px] py-3.5 border border-neutral-900 hover:bg-neutral-800 transition-[background-color,scale] duration-300 active:scale-[0.96]">
                 {t.heroPrimary}
                 <span aria-hidden>→</span>
               </Link>
-              <Link href="#services" className="inline-flex items-center gap-1.5 text-sm text-gray-700 font-semibold hover:text-neutral-900 transition-colors duration-300">
+              <Link href="#simulation" className={`inline-flex w-full sm:w-auto justify-center sm:justify-start items-center gap-1.5 min-h-[44px] py-2 text-sm font-semibold transition-colors duration-300 text-gray-700 hover:text-neutral-900 ${heroTextDark ? "" : "md:text-white/90 md:hover:text-white"}`} style={{ textShadow: heroTextDark ? "none" : "0 1px 6px rgba(0,0,0,0.6)" }}>
                 {t.heroSecondary}
                 <span aria-hidden>→</span>
               </Link>
@@ -642,13 +821,13 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
         </div>
       </section>
 
-      {/* ═══ TRUST METRICS ═══ */}
-      <section className="py-12 bg-white border-b border-gray-100">
+      {/* ═══ TRUST METRICS + CLIENTS ═══ */}
+      <section className="py-6 md:py-12 bg-white border-b border-gray-100">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal variant="scale">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-y-8 gap-x-4 md:gap-0 md:divide-x divide-gray-200">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-y-2 gap-x-4 md:gap-0 md:divide-x divide-gray-200">
               {t.trustStats.map((stat) => (
-                <div key={stat.label} className="flex flex-col items-center justify-center py-6 px-4 text-center">
+                <div key={stat.label} className="flex flex-col items-center justify-center py-3 md:py-6 px-4 text-center">
                   <span className="text-lg font-bold text-gray-900"><CountUp value={stat.value} /></span>
                   <span className="text-xs text-gray-500 mt-1">{stat.label}</span>
                 </div>
@@ -659,17 +838,20 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
         </div>
       </section>
 
-      {/* ═══ WHY clearAI ═══ */}
-      <section className="py-14 md:py-20 lg:py-28 bg-white">
+      {/* ═══ §01 REASON ═══ */}
+      <section id="reason" className="py-8 md:py-12 lg:py-16 bg-white scroll-mt-24">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <SectionHead index="01" kicker={t.whyLabel} title={t.whyTitle} desc={t.whyDesc} />
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {t.why.map((item, i) => (
-              <Reveal key={item.title} delay={i * 80}>
-                <div className="h-full rounded-lg border border-gray-200 bg-gray-50 p-8">
-                  <div className="mb-5 flex h-10 w-10 items-center justify-center rounded-full bg-neutral-900 font-bold text-white">{i + 1}</div>
-                  <h3 className="mb-3 text-lg font-bold text-gray-900">{item.title}</h3>
-                  <p className="text-sm leading-relaxed text-gray-600">{item.desc}</p>
+          <SectionHead index="01" kicker={t.reasonLabel} title={t.reasonTitle} desc={t.reasonDesc} />
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            {t.reasons.map((item, i) => (
+              <Reveal key={item.title} delay={i * 80} className="h-full">
+                <div className="group h-full border border-neutral-900 bg-white p-8 transition-colors duration-300 hover:bg-neutral-900 lg:p-10">
+                  <div className="flex items-baseline justify-between border-b border-neutral-200 pb-4 transition-colors duration-300 group-hover:border-neutral-700">
+                    <span className="font-mono text-2xl font-bold tabular-nums text-neutral-900 transition-colors duration-300 group-hover:text-white">{String(i + 1).padStart(2, "0")}</span>
+                    <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-400">Reason / {String(i + 1).padStart(2, "0")}</span>
+                  </div>
+                  <h3 className="mt-6 text-xl font-bold tracking-tight text-balance text-neutral-900 transition-colors duration-300 group-hover:text-white">{item.title}</h3>
+                  <p className="mt-4 text-[15px] leading-relaxed text-pretty text-neutral-600 transition-colors duration-300 group-hover:text-neutral-300">{item.desc}</p>
                 </div>
               </Reveal>
             ))}
@@ -677,58 +859,48 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
         </div>
       </section>
 
-      {/* ═══ VISION ═══ */}
-      <section className="py-14 md:py-20 lg:py-28 bg-gray-50">
-        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-start">
-            <SectionHead index="02" kicker={t.visionLabel} title={t.visionTitle} className="mb-0" />
-            <Reveal delay={100}>
-              <div>
-                <p className="text-base leading-relaxed text-gray-600">{t.visionBody1}</p>
-                <p className="mt-5 text-base leading-relaxed text-gray-600">{t.visionBody2}</p>
-                <div className="mt-6 h-px bg-gray-200" />
-                <div className="flex flex-wrap items-center gap-6 pt-4">
-                  {t.visionStats.map((s) => (
-                    <div key={s.label}>
-                      <p className="text-lg font-bold text-gray-900"><CountUp value={s.value} /></p>
-                      <p className="mt-1 text-xs text-gray-400">{s.label}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </Reveal>
-          </div>
+      {/* ═══ §02 SIMULATION ═══ */}
+      <section id="simulation" className="py-8 md:py-12 lg:py-16 bg-neutral-50 border-y border-neutral-900 scroll-mt-24">
+        <div className="max-w-5xl mx-auto px-6 lg:px-8">
+          <SectionHead index="02" kicker={t.simLabel} title={t.simTitle} desc={t.simDesc} />
+          <Reveal delay={100}>
+            <QuoteSimulator />
+          </Reveal>
         </div>
       </section>
 
-      {/* ═══ ENTRY PRODUCTS ═══ (SPでは非表示・PCは維持) */}
-      <section className="py-14 md:py-20 lg:py-28 bg-white border-t border-gray-100">
+      {/* ═══ §03 SERVICE ═══ */}
+      <section id="services" className="py-8 md:py-12 lg:py-16 bg-white scroll-mt-24">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <SectionHead index="03" kicker={t.getStartedLabel} title={t.getStartedTitle} desc={t.getStartedDesc} />
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {t.steps.map((step, i) => (
-              <Reveal key={step.step} delay={i * 80}>
-                <Link href={step.href} className="group block h-full">
-                  <div className="flex h-full flex-col rounded-lg border border-gray-200 bg-white p-8 transition-all duration-300 hover:border-neutral-300 hover:shadow-lg lg:p-10">
-                    <div className="mb-4 flex items-center justify-between border-b border-neutral-200 pb-4 transition-colors duration-300 group-hover:border-neutral-700">
-                      <span className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-neutral-900 transition-colors duration-300 group-hover:text-white">{step.step}</span>
-                      <span className="font-mono text-[10px] tabular-nums text-neutral-400">{String(i + 1).padStart(2, "0")}</span>
-                    </div>
-                    <h3 className="mb-3 text-xl font-bold tracking-tight text-balance text-neutral-900 transition-colors duration-300 group-hover:text-white">{step.title}</h3>
-                    <p className="mb-6 flex-1 text-sm leading-relaxed text-pretty text-neutral-600 transition-colors duration-300 group-hover:text-neutral-300">{step.desc}</p>
-                    <ul className="mb-6 space-y-2 border-t border-neutral-200 pt-4 font-mono transition-colors duration-300 group-hover:border-neutral-700">
-                      {step.points.map((p) => (
-                        <li key={p} className="flex items-start gap-2 text-xs text-neutral-500 transition-colors duration-300 group-hover:text-neutral-400">
-                          <span className="flex-shrink-0 text-neutral-900 transition-colors duration-300 group-hover:text-white">→</span>
-                          <span>{p}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <span className="mt-auto inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-[0.08em] text-neutral-900 transition-colors duration-300 group-hover:text-white">
-                      {step.cta}
-                      <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
-                    </span>
+          <SectionHead index="03" kicker={t.servicesLabel} title={t.servicesTitle} desc={t.servicesDesc} />
+
+          <Reveal>
+            <p className="mb-5 flex items-center gap-3 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-neutral-500">
+              <span className="h-px w-6 bg-neutral-900" />{t.coreHeading}
+            </p>
+          </Reveal>
+          <CardCarousel className="mb-7 md:mb-14">
+            {t.coreServices.map((svc, i) => (
+              <Reveal key={svc.code} delay={(i % 3) * 80} className="h-full">
+                <CoreServiceCard svc={svc} />
+              </Reveal>
+            ))}
+          </CardCarousel>
+
+          <Reveal>
+            <p className="mb-5 flex items-center gap-3 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-neutral-500">
+              <span className="h-px w-6 bg-neutral-900" />{t.subHeading}
+            </p>
+          </Reveal>
+          <div className="grid grid-cols-1 border-t border-neutral-900 sm:grid-cols-2 lg:grid-cols-3">
+            {t.subServices.map((s, i) => (
+              <Reveal key={s.code} delay={(i % 3) * 50}>
+                <Link href={s.href} className="group flex h-full flex-col gap-2 border-b border-r border-neutral-300 bg-white px-6 py-6 transition-colors duration-300 hover:bg-neutral-900">
+                  <div className="flex items-baseline gap-3">
+                    <span className="font-mono text-[11px] font-bold tabular-nums text-neutral-400 transition-colors duration-300 group-hover:text-neutral-500">{s.code}</span>
+                    <h3 className="text-base font-bold tracking-tight text-neutral-900 transition-colors duration-300 group-hover:text-white">{s.title}</h3>
                   </div>
+                  <p className="text-[13px] leading-relaxed text-pretty text-neutral-600 transition-colors duration-300 group-hover:text-neutral-400">{s.desc}</p>
                 </Link>
               </Reveal>
             ))}
@@ -736,86 +908,77 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
         </div>
       </section>
 
-      {/* ═══ SERVICES ═══ */}
-      <section id="services" className="py-14 md:py-20 lg:py-28 bg-gray-50">
+      {/* ═══ §04 WORKS ═══ */}
+      <section id="works" className="py-8 md:py-12 lg:py-16 bg-neutral-50 border-y border-neutral-900 scroll-mt-24">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <SectionHead index="04" kicker={t.servicesLabel} title={t.servicesTitle} desc={t.servicesDesc} />
-
-          <Reveal>
-            <p className="mb-5 flex items-center gap-3 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-neutral-500">
-              <span className="h-px w-6 bg-neutral-900" />{t.primaryHeading}
-            </p>
+          <SectionHead index="04" kicker={t.worksLabel} title={t.worksTitle} desc={t.worksDesc} />
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            {t.works.map((w, i) => (
+              <Reveal key={w.title} delay={i * 80} className="h-full">
+                <Link href={w.href} className="group block h-full">
+                  <article className="flex h-full flex-col border border-neutral-900 bg-white p-8 transition-colors duration-300 hover:bg-neutral-900 lg:p-10">
+                    <div className="mb-4 flex items-center justify-between border-b border-neutral-200 pb-4 transition-colors duration-300 group-hover:border-neutral-700">
+                      <span className="font-mono text-[11px] font-bold uppercase tracking-[0.16em] text-neutral-900 transition-colors duration-300 group-hover:text-white">{w.tag}</span>
+                      <span className="font-mono text-[10px] tabular-nums text-neutral-400">{String(i + 1).padStart(2, "0")}</span>
+                    </div>
+                    <h3 className="mb-4 text-lg font-bold tracking-tight text-balance text-neutral-900 transition-colors duration-300 group-hover:text-white lg:text-xl">{w.title}</h3>
+                    <p className="mb-6 flex-1 text-sm leading-relaxed text-pretty text-neutral-600 transition-colors duration-300 group-hover:text-neutral-300">{w.desc}</p>
+                    <ul className="flex flex-wrap items-center gap-2 font-mono">
+                      {w.metrics.map((m) => (
+                        <li key={m} className="border border-neutral-300 px-2.5 py-1 text-xs text-neutral-500 transition-colors duration-300 group-hover:border-neutral-600 group-hover:text-neutral-400">{m}</li>
+                      ))}
+                    </ul>
+                  </article>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+          <Reveal delay={200}>
+            <p className="mt-6 text-xs leading-relaxed text-neutral-500">{t.worksNote}</p>
           </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch mb-14">
-            {t.primaryServices.map((svc, i) => (
-              <Reveal key={svc.code} delay={(i % 3) * 80} className="h-full">
-                <ServiceCard svc={svc} claudeBadge={t.claudeBadge} />
-              </Reveal>
-            ))}
-          </div>
-
-          <Reveal>
-            <p className="mb-5 flex items-center gap-3 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-neutral-500">
-              <span className="h-px w-6 bg-neutral-900" />{t.secondaryHeading}
-            </p>
-          </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
-            {t.secondaryServices.map((svc, i) => (
-              <Reveal key={svc.code} delay={(i % 3) * 80} className="h-full">
-                <ServiceCard svc={svc} claudeBadge={t.claudeBadge} compact />
-              </Reveal>
-            ))}
-          </div>
         </div>
       </section>
 
-      {/* ═══ APPROACH ═══ (SPでは非表示・PCは維持) */}
-      <section className="py-14 md:py-20 lg:py-28 bg-white">
+      {/* ═══ §05 FLOW ═══ */}
+      <section id="flow" className="py-8 md:py-12 lg:py-16 bg-white scroll-mt-24">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <SectionHead index="05" kicker={t.approachLabel} title={t.approachTitle} />
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {t.approach.map((item, i) => (
-              <Reveal key={item.num} delay={i * 80}>
-                <div className="h-full border-t-2 border-neutral-900 pt-6">
-                  <div className="mb-3 flex items-baseline gap-3 font-mono">
-                    <span className="text-xs font-bold tabular-nums text-neutral-400">{item.num}</span>
-                    <h3 className="text-lg font-bold tracking-tight text-balance font-sans text-neutral-900">{item.title}</h3>
-                  </div>
-                  <p className="text-sm leading-relaxed text-pretty text-neutral-600">{item.desc}</p>
+          <SectionHead index="05" kicker={t.processLabel} title={t.processTitle} desc={t.processDesc} />
+          <div className="hidden lg:grid grid-cols-12 gap-6 border-b border-neutral-900 pb-3 font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-400">
+            <div className="col-span-1">No.</div>
+            <div className="col-span-3">Phase</div>
+            <div className="col-span-6">Detail</div>
+            <div className="col-span-2">Duration</div>
+          </div>
+          {t.process.map((step, i) => (
+            <Reveal key={step.num} delay={i * 60}>
+              <div className="group grid grid-cols-1 gap-2 border-b border-neutral-200 py-6 transition-colors duration-300 hover:bg-neutral-50 lg:grid-cols-12 lg:gap-6 lg:py-7">
+                <div className="lg:col-span-1">
+                  <span className="font-mono text-lg font-bold tabular-nums text-neutral-900">{step.num}</span>
                 </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ═══ PROCESS ═══ */}
-      <section className="py-14 md:py-20 lg:py-28 bg-gray-50">
-        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <SectionHead index="06" kicker={t.processLabel} title={t.processTitle} desc={t.processDesc} />
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {t.process.map((step, i) => (
-              <Reveal key={step.num} delay={i * 80}>
-                <div className="group relative h-full rounded-lg border border-gray-200 bg-white p-7 transition-colors duration-300 hover:border-gray-300">
-                  <span className="text-3xl font-bold text-neutral-200 transition-colors duration-300 group-hover:text-neutral-900">{step.num}</span>
-                  <h3 className="mt-2 mb-2 text-base font-bold text-gray-900">{step.title}</h3>
-                  <p className="text-sm leading-relaxed text-gray-600">{step.desc}</p>
+                <div className="lg:col-span-3">
+                  <h3 className="text-base font-bold tracking-tight text-balance text-neutral-900">{step.title}</h3>
                 </div>
-              </Reveal>
-            ))}
-          </div>
+                <div className="lg:col-span-6">
+                  <p className="text-[15px] leading-relaxed text-pretty text-neutral-600">{step.desc}</p>
+                </div>
+                <div className="lg:col-span-2">
+                  <span className="font-mono text-xs text-neutral-500">{step.duration}</span>
+                </div>
+              </div>
+            </Reveal>
+          ))}
         </div>
       </section>
 
-      {/* ═══ TEAM ═══ */}
-      <section className="py-14 md:py-20 lg:py-28 bg-white">
+      {/* ═══ §06 TEAM ═══ */}
+      <section className="py-8 md:py-12 lg:py-16 bg-neutral-50 border-y border-neutral-900">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <SectionHead index="07" kicker={t.teamLabel} title={t.teamTitle} desc={t.teamDesc} />
+          <SectionHead index="06" kicker={t.teamLabel} title={t.teamTitle} desc={t.teamDesc} />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-stretch">
             <Reveal delay={0} className="h-full">
-              <div className="flex h-full flex-col rounded-lg border border-gray-200 bg-gray-50 p-8 lg:p-10">
+              <div className="group flex h-full flex-col border border-neutral-900 bg-white p-8 lg:p-10 transition-colors duration-300 hover:bg-neutral-900">
                 <div className="mb-4 flex items-center justify-between border-b border-neutral-200 pb-4 transition-colors duration-300 group-hover:border-neutral-700">
-                  <span className="text-xs font-semibold uppercase tracking-widest text-neutral-900">{t.teamCard1Label}</span>
+                  <span className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-neutral-900 transition-colors duration-300 group-hover:text-white">{t.teamCard1Label}</span>
                   <span className="font-mono text-[10px] tabular-nums text-neutral-400">01</span>
                 </div>
                 <h3 className="mb-4 text-xl font-bold tracking-tight text-balance text-neutral-900 transition-colors duration-300 group-hover:text-white">{t.teamCard1Title}</h3>
@@ -828,9 +991,9 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
               </div>
             </Reveal>
             <Reveal delay={100} className="h-full">
-              <div className="flex h-full flex-col rounded-lg border border-gray-200 bg-gray-50 p-8 lg:p-10">
+              <div className="group flex h-full flex-col border border-neutral-900 bg-white p-8 lg:p-10 transition-colors duration-300 hover:bg-neutral-900">
                 <div className="mb-4 flex items-center justify-between border-b border-neutral-200 pb-4 transition-colors duration-300 group-hover:border-neutral-700">
-                  <span className="text-xs font-semibold uppercase tracking-widest text-neutral-900">{t.teamCard2Label}</span>
+                  <span className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-neutral-900 transition-colors duration-300 group-hover:text-white">{t.teamCard2Label}</span>
                   <span className="font-mono text-[10px] tabular-nums text-neutral-400">02</span>
                 </div>
                 <h3 className="mb-4 text-xl font-bold tracking-tight text-balance text-neutral-900 transition-colors duration-300 group-hover:text-white">{t.teamCard2Title}</h3>
@@ -846,12 +1009,11 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
         </div>
       </section>
 
-      {/* ═══ TECH STACK ═══ */}
-      <section className="py-14 md:py-20 lg:py-28 bg-gray-50 overflow-x-clip">
+      {/* ═══ §07 TECH STACK ═══ */}
+      <section className="py-8 md:py-12 lg:py-16 bg-white overflow-x-clip">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <SectionHead index="08" kicker={t.techLabel} title={t.techTitle} desc={t.techDesc} />
+          <SectionHead index="07" kicker={t.techLabel} title={t.techTitle} desc={t.techDesc} />
         </div>
-        {/* 使用技術：色付きロゴが流れるマーキー（2列・逆方向・両端フェード・hoverで一時停止） */}
         <div className="mt-8 md:mt-10 space-y-3 md:space-y-4">
           {[techRowA, techRowB].map((row, ri) => (
             <div key={ri} className="relative overflow-hidden">
@@ -865,7 +1027,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
                 {[...row, ...row].map((tech, i) => (
                   <span
                     key={`${tech.name}-${i}`}
-                    className="inline-flex shrink-0 items-center gap-2 rounded-xl border border-gray-200 bg-white px-3.5 py-2 text-[13px] text-gray-700 shadow-sm"
+                    className="inline-flex shrink-0 items-center gap-2 border border-neutral-300 bg-white px-3.5 py-2 font-mono text-[13px] text-neutral-700"
                   >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
@@ -883,8 +1045,8 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
         </div>
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
-            <div className="mt-10 rounded-lg border border-gray-200 bg-white p-6 lg:p-8 flex flex-col lg:flex-row lg:items-center gap-4 lg:gap-6">
-              <div className="flex-shrink-0 w-12 h-12 rounded-full bg-neutral-100 flex items-center justify-center">
+            <div className="mt-10 border border-neutral-900 bg-neutral-50 p-6 lg:p-8 flex flex-col lg:flex-row lg:items-center gap-4 lg:gap-6">
+              <div className="flex-shrink-0 w-11 h-11 border border-neutral-900 flex items-center justify-center">
                 <svg className="w-5 h-5 text-neutral-900" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
@@ -898,19 +1060,20 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
         </div>
       </section>
 
-      {/* ═══ FAQ TEASER ═══ */}
-      <section className="py-14 md:py-20 lg:py-28 bg-white">
+      {/* ═══ §08 Q&A ═══ */}
+      <section id="faq" className="py-8 md:py-12 lg:py-16 bg-neutral-50 border-y border-neutral-900 scroll-mt-24">
         <div className="max-w-3xl mx-auto px-6 lg:px-8">
-          <SectionHead index="09" kicker={t.faqLabel} title={t.faqTitle} desc={t.faqDesc} />
-          <div className="mb-8">
+          <SectionHead index="08" kicker={t.faqLabel} title={t.faqTitle} desc={t.faqDesc} />
+          <div className="mb-8 border-t border-neutral-900">
             {t.faq.map((item, i) => (
-              <Reveal key={i} delay={i * 70}>
-                <details className="group border-b border-gray-100 py-5">
-                  <summary className="flex cursor-pointer list-none items-start gap-4 font-semibold text-gray-900">
-                    <span className="flex-1">{item.q}</span>
-                    <span className="font-mono text-lg leading-none text-neutral-400 transition-transform duration-300 group-open:rotate-45">+</span>
+              <Reveal key={item.q} delay={i * 70}>
+                <details className="group border-b border-neutral-300 py-4 md:py-5">
+                  <summary className="flex cursor-pointer list-none items-start gap-4 text-base font-semibold text-neutral-900">
+                    <span className="mt-0.5 font-mono text-xs tabular-nums text-neutral-400">Q{String(i + 1).padStart(2, "0")}</span>
+                    <h3 className="flex-1 text-base font-semibold">{item.q}</h3>
+                    <span aria-hidden className="font-mono text-lg leading-none text-neutral-400 transition-transform duration-300 group-open:rotate-45">+</span>
                   </summary>
-                  <p className="mt-3 text-sm leading-relaxed text-gray-600">{item.a}</p>
+                  <p className="mt-4 pl-9 text-sm leading-relaxed text-pretty text-neutral-600">{item.a}</p>
                 </details>
               </Reveal>
             ))}
@@ -921,16 +1084,17 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
         </div>
       </section>
 
-      {/* ═══ NEWS / BLOG (moved below: lead with value & services first) ═══ */}
-      <section className="pt-8 pb-14 md:pt-10 md:pb-20 lg:pt-12 lg:pb-28 bg-gray-50">
+      {/* ═══ §09 BLOGS / NEWS ═══ */}
+      <section className="py-8 md:py-12 lg:py-16 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal className="mb-6 md:mb-12">
-            <div className="flex items-end justify-between">
+            <div className="flex items-end justify-between border-b border-neutral-900 pb-4">
               <div>
                 <div className="flex items-center gap-4">
-                  <span className="text-xs font-semibold uppercase tracking-widest text-neutral-900">{t.newsLabel}</span>
+                  <span className="font-mono text-xs font-bold tabular-nums text-neutral-900">§09</span>
+                  <span className="font-mono text-[11px] font-medium uppercase tracking-[0.25em] text-neutral-500">{t.newsLabel}</span>
                 </div>
-                <h2 className="mt-4 text-3xl font-bold leading-tight text-gray-900">{t.newsTitle}</h2>
+                <h2 className="mt-5 text-[18px] sm:text-xl lg:text-2xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance text-neutral-900">{t.newsTitle}</h2>
               </div>
               <Link href="/blog" className="hidden sm:inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-[0.08em] text-neutral-900 hover:text-neutral-600 transition-colors">
                 {t.newsCta}
@@ -944,16 +1108,17 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
         </div>
       </section>
 
-      {/* ═══ CTA ═══ */}
-      <section className="py-14 md:py-20 lg:py-28 bg-white border-t border-gray-100">
+      {/* ═══ §10 CONTACT ═══ */}
+      <section id="contact" className="py-8 md:py-12 lg:py-16 bg-neutral-50 border-t border-neutral-900 scroll-mt-24">
         <div className="max-w-4xl mx-auto px-6">
           <Reveal>
-            <div className="mb-8 md:mb-12 text-center">
+            <div className="mb-8 md:mb-12 border-b border-neutral-900 pb-6">
               <div className="flex items-center gap-4">
-                <span className="mx-auto text-xs font-semibold uppercase tracking-widest text-neutral-900">{t.ctaLabel}</span>
+                <span className="font-mono text-xs font-bold tabular-nums text-neutral-900">§10</span>
+                <span className="font-mono text-[11px] font-medium uppercase tracking-[0.25em] text-neutral-500">{t.ctaLabel}</span>
               </div>
-              <h2 className="mt-4 text-3xl font-bold leading-tight text-gray-900">{t.ctaTitle}</h2>
-              <p className="mx-auto mt-6 max-w-lg text-base leading-relaxed text-gray-600">{t.ctaDesc}</p>
+              <h2 className="mt-6 text-[18px] sm:text-xl lg:text-2xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance text-neutral-900">{t.ctaTitle}</h2>
+              <p className="mt-5 max-w-lg text-base leading-relaxed text-pretty text-neutral-600">{t.ctaDesc}</p>
             </div>
           </Reveal>
           <Reveal delay={120}>
@@ -977,7 +1142,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
                   </span>
                   <span className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.12em] text-neutral-400 transition-colors duration-300 group-hover:text-neutral-300">
                     {t.ctaCardAction}
-                    <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                    <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">→</span>
                   </span>
                 </Link>
               </Reveal>

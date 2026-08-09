@@ -41,24 +41,44 @@ export default function BlogList({ posts, categories }: { posts: Blog[]; categor
 
   return (
     <main className="min-h-screen bg-white">
-      <section className="max-w-5xl mx-auto px-6 pt-40 pb-16">
+      {/* ─── 00. MASTHEAD ────────────────────────────────────────────────── */}
+      <section className="max-w-5xl mx-auto px-6 pt-40 pb-16 lg:pb-24">
         <Reveal>
-          <p className="text-xs font-semibold tracking-widest uppercase text-neutral-900 mb-4">News</p>
-          <h1 className="text-3xl font-bold text-gray-900">お知らせ</h1>
+          <div className="flex items-center gap-4 border-b border-neutral-900 pb-4 font-mono text-[11px] uppercase tracking-[0.2em] text-neutral-500">
+            <span className="font-bold text-neutral-900">§00</span>
+            <span>News</span>
+            <span className="ml-auto tabular-nums text-neutral-400">
+              {String(posts.length).padStart(2, "0")} / ARCHIVE
+            </span>
+          </div>
+        </Reveal>
+        <Reveal delay={80}>
+          <h1 className="mt-10 text-[7vw] sm:text-3xl lg:text-4xl font-bold leading-[0.95] tracking-[-0.04em] text-balance text-neutral-900">
+            お知らせ
+          </h1>
         </Reveal>
       </section>
 
+      {/* ─── CATEGORY FILTER (angular mono chips) ────────────────────────── */}
       <section className="max-w-5xl mx-auto px-6 pb-12">
         <Reveal>
-          <div className="flex flex-wrap gap-3">
+          <div className="flex items-center gap-4 border-b border-neutral-900 pb-4 mb-6">
+            <span className="font-mono text-[11px] font-medium uppercase tracking-[0.25em] text-neutral-500">
+              Filter
+            </span>
+            <span className="ml-auto font-mono text-[10px] tabular-nums text-neutral-400">
+              {String(categories.length).padStart(2, "0")}
+            </span>
+          </div>
+          <div className="flex flex-wrap gap-0 -ml-px">
             {categories.map((category) => (
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
-                className={`px-4 py-2 text-sm font-semibold rounded-lg transition-all duration-300 ${
+                className={`-ml-px border px-4 py-2 font-mono text-[12px] uppercase tracking-[0.12em] transition-colors duration-200 ${
                   selectedCategory === category
-                    ? "bg-gray-900 text-white"
-                    : "text-gray-500 border border-gray-200 hover:text-gray-700 hover:border-gray-300"
+                    ? "border-neutral-900 bg-neutral-900 text-white"
+                    : "border-neutral-300 bg-white text-neutral-500 hover:border-neutral-900 hover:text-neutral-900"
                 }`}
               >
                 {category}
@@ -68,16 +88,25 @@ export default function BlogList({ posts, categories }: { posts: Blog[]; categor
         </Reveal>
       </section>
 
+      {/* ─── BLOG INDEX (mono ruled list) ────────────────────────────────── */}
       <section className="max-w-5xl mx-auto px-6 pb-20 lg:pb-28">
         {filteredPosts.length === 0 ? (
-          <p className="text-center text-gray-400 py-20 text-sm">該当する記事がありません</p>
+          <div className="border-y border-neutral-900 py-20 text-center">
+            <p className="font-mono text-[13px] uppercase tracking-[0.15em] text-neutral-400">該当する記事がありません</p>
+          </div>
         ) : (
-          <div className="divide-y divide-gray-100">
+          <div className="border-t border-neutral-900">
             {filteredPosts.map((post, i) => (
               <Reveal key={post.id} delay={i * 60}>
-                <Link href={`/blog/${post.id}`} className="group flex items-start gap-4 py-6 hover:bg-gray-50 -mx-4 px-4 rounded-lg transition-colors">
+                <Link
+                  href={`/blog/${post.id}`}
+                  className="group flex items-start gap-4 border border-transparent border-b-neutral-200 -mx-4 px-4 py-6 transition-colors duration-300 hover:border-neutral-900 hover:bg-neutral-50"
+                >
+                  <span className="hidden sm:block pt-1 font-mono text-[10px] tabular-nums text-neutral-400 group-hover:text-neutral-900">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
                   {post.eyecatch && (
-                    <div className="w-20 h-14 rounded-lg overflow-hidden flex-shrink-0 hidden sm:block">
+                    <div className="w-20 h-14 overflow-hidden flex-shrink-0 hidden sm:block border border-neutral-900">
                       <Image
                         src={post.eyecatch.url}
                         alt={post.title}
@@ -89,15 +118,20 @@ export default function BlogList({ posts, categories }: { posts: Blog[]; categor
                   )}
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-3 mb-1.5">
-                      <time className="text-xs text-gray-400 font-medium">{formatDate(post.publishedAt!)}</time>
+                      <time className="font-mono text-[11px] tabular-nums text-neutral-400">{formatDate(post.publishedAt!)}</time>
                       {post.category && (
-                        <span className="text-xs font-semibold text-neutral-900 bg-neutral-100 px-2 py-0.5 rounded">{post.category.name}</span>
+                        <span className="border border-neutral-300 px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.1em] text-neutral-500 group-hover:border-neutral-900 group-hover:text-neutral-900 transition-colors">
+                          {post.category.name}
+                        </span>
                       )}
                     </div>
-                    <h2 className="text-base font-medium text-gray-900 group-hover:text-neutral-600 transition-colors leading-relaxed">
+                    <h2 className="text-base font-medium text-neutral-900 leading-relaxed text-pretty">
                       {post.title}
                     </h2>
                   </div>
+                  <span className="ml-auto pt-1 font-mono text-neutral-300 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-neutral-900">
+                    →
+                  </span>
                 </Link>
               </Reveal>
             ))}

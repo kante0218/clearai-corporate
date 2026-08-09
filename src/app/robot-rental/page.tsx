@@ -38,10 +38,10 @@ function SectionHead({
   return (
     <Reveal className="mb-7 lg:mb-9 max-w-3xl">
       <div className={`flex items-center gap-4 border-b pb-4 ${dark ? "border-white/25" : "border-neutral-900"}`}>
-        <span className={`text-xs font-bold ${dark ? "text-white" : "text-neutral-900"}`}>§{index}</span>
-        <span className={`text-xs font-semibold uppercase tracking-widest ${dark ? "text-neutral-400" : "text-neutral-500"}`}>{kicker}</span>
+        <span className={`font-mono text-xs font-bold tabular-nums ${dark ? "text-white" : "text-neutral-900"}`}>§{index}</span>
+        <span className={`font-mono text-[11px] font-medium uppercase tracking-[0.25em] ${dark ? "text-neutral-400" : "text-neutral-500"}`}>{kicker}</span>
       </div>
-      <h2 className={`mt-8 text-2xl sm:text-3xl lg:text-4xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance ${dark ? "text-white" : "text-neutral-900"}`}>
+      <h2 className={`mt-8 text-[18px] sm:text-xl lg:text-2xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance ${dark ? "text-white" : "text-neutral-900"}`}>
         {title}
       </h2>
       {desc && <p className={`mt-6 text-[15px] leading-relaxed text-pretty ${dark ? "text-neutral-400" : "text-neutral-600"}`}>{desc}</p>}
@@ -530,7 +530,7 @@ export default function RobotRentalPage() {
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             {/* technical meta bar */}
-            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 border-b border-gray-200 pb-4 font-mono text-[11px] uppercase tracking-[0.2em] text-neutral-500">
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 border-b border-neutral-900 pb-4 font-mono text-[11px] uppercase tracking-[0.2em] text-neutral-500">
               <span className="font-bold text-neutral-900">§00</span>
               <span>{t.heroKicker}</span>
               <span className="text-neutral-300">/</span>
@@ -596,7 +596,7 @@ export default function RobotRentalPage() {
       </section>
 
       {/* LINEUP */}
-      <section className="py-12 lg:py-16 bg-sky-50/60 border-y border-sky-100">
+      <section className="py-12 lg:py-16 bg-neutral-50 border-y border-neutral-900">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <SectionHead index="01" kicker={t.lineupLabel} title={t.lineupTitle} desc={t.lineupDesc} />
           {/* MAKER TABS */}
@@ -622,7 +622,7 @@ export default function RobotRentalPage() {
           <div className="space-y-16">
             {visibleGroups.map((group, groupIndex) => (
               <Reveal key={`${maker}-${group.company}`} delay={groupIndex * 80}>
-                <div className="border-t border-gray-200 pt-8">
+                <div className="border-t border-neutral-900 pt-8">
                   <div className="mb-8 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
                     <div>
                       <p className="mb-2 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400">Maker / {String(groupIndex + 1).padStart(2, "0")}</p>
@@ -680,7 +680,7 @@ export default function RobotRentalPage() {
                                 <div className="mt-auto pt-5">
                                   <a
                                     href={`/contact?service=robot-rental&maker=${encodeURIComponent(group.company)}&robot=${encodeURIComponent(item.name)}`}
-                                    className="group flex w-full items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white shadow-sm px-3 sm:px-6 py-3 font-mono text-[12px] font-bold uppercase tracking-[0.08em] text-neutral-900 transition-[color,background-color,border-color,scale] duration-300 hover:bg-neutral-900 hover:text-white active:scale-[0.96]"
+                                    className="group flex w-full items-center justify-center gap-2 border border-neutral-900 bg-white px-3 sm:px-6 py-3 font-mono text-[12px] font-bold uppercase tracking-[0.08em] text-neutral-900 transition-[color,background-color,border-color,scale] duration-300 hover:bg-neutral-900 hover:text-white active:scale-[0.96]"
                                   >
                                     {t.heroCta}
                                     <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
@@ -710,8 +710,8 @@ export default function RobotRentalPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {t.plans.map((item, i) => (
               <Reveal key={item.title} delay={i * 80}>
-                <div className="group h-full rounded-lg border border-gray-200 bg-white shadow-sm p-7 lg:p-8 transition-colors duration-300 hover:bg-neutral-900">
-                  <span className="mb-4 block text-xs font-bold text-neutral-400 transition-colors duration-300 group-hover:text-white">
+                <div className="group h-full border border-neutral-900 bg-white p-7 lg:p-8 transition-colors duration-300 hover:bg-neutral-900">
+                  <span className="mb-4 block font-mono text-xs font-bold tabular-nums text-neutral-400 transition-colors duration-300 group-hover:text-white">
                     PLAN.{String(i + 1).padStart(2, "0")}
                   </span>
                   <h3 className="mb-3 text-lg lg:text-xl font-bold tracking-tight text-balance text-neutral-900 transition-colors duration-300 group-hover:text-white">
@@ -728,13 +728,13 @@ export default function RobotRentalPage() {
       </section>
 
       {/* USE CASES */}
-      <section className="py-12 lg:py-16 bg-sky-50/60 border-y border-sky-100">
+      <section className="py-12 lg:py-16 bg-neutral-50 border-y border-neutral-900">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <SectionHead index="03" kicker={t.useLabel} title={t.useTitle} desc={t.useDesc} />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {t.useCases.map((item, i) => (
               <Reveal key={item.name} delay={i * 80}>
-                <div className="flex h-full flex-col rounded-lg border border-gray-200 bg-white shadow-sm p-6 lg:p-7">
+                <div className="flex h-full flex-col border border-neutral-900 bg-white p-6 lg:p-7">
                   <div className="mb-6 flex items-center justify-between border-b border-neutral-200 pb-3">
                     <span className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-neutral-900">Case</span>
                     <span className="font-mono text-[10px] tabular-nums text-neutral-400">{String(i + 1).padStart(2, "0")}</span>
@@ -758,7 +758,7 @@ export default function RobotRentalPage() {
             </div>
             <div className="mt-12 grid grid-cols-1 items-end gap-10 lg:grid-cols-12">
               <div className="lg:col-span-8">
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance text-white">{t.ctaTitle}</h2>
+                <h2 className="text-[18px] sm:text-xl lg:text-2xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance text-white">{t.ctaTitle}</h2>
                 <p className="mt-6 max-w-2xl text-base leading-relaxed text-pretty text-neutral-400">{t.ctaDesc}</p>
               </div>
               <div className="lg:col-span-4 lg:text-right">

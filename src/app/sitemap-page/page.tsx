@@ -1,10 +1,67 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import Link from "next/link";
 import Script from "next/script";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { getBlogs } from "@/lib/microcms";
+
+function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setVisible(true); observer.unobserve(el); } },
+      { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      className={className}
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? "translateY(0)" : "translateY(32px)",
+        transition: `opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
+      }}
+    >
+      {children}
+    </div>
+  );
+}
+
+function SectionHead({
+  index,
+  kicker,
+  title,
+  desc,
+  dark = false,
+}: {
+  index: string;
+  kicker: ReactNode;
+  title: ReactNode;
+  desc?: ReactNode;
+  dark?: boolean;
+}) {
+  return (
+    <Reveal className="mb-7 lg:mb-9 max-w-3xl">
+      <div className={`flex items-center gap-4 border-b pb-4 ${dark ? "border-white/25" : "border-neutral-900"}`}>
+        <span className={`font-mono text-xs font-bold tabular-nums ${dark ? "text-white" : "text-neutral-900"}`}>§{index}</span>
+        <span className={`font-mono text-[11px] font-medium uppercase tracking-[0.25em] ${dark ? "text-neutral-400" : "text-neutral-500"}`}>{kicker}</span>
+      </div>
+      <h2 className={`mt-8 text-[18px] sm:text-xl lg:text-2xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance whitespace-pre-line ${dark ? "text-white" : "text-neutral-900"}`}>
+        {title}
+      </h2>
+      {desc && <p className={`mt-6 text-[15px] leading-relaxed text-pretty ${dark ? "text-neutral-400" : "text-neutral-600"}`}>{desc}</p>}
+    </Reveal>
+  );
+}
 
 type Copy = {
   label: string;
@@ -35,15 +92,18 @@ const COPY: Record<"ja" | "en", Copy> = {
       {
         title: "AI事業",
         links: [
+          { label: "フィジカルAI受託開発", href: "/physical-ai" },
+          { label: "ロボットレンタル", href: "/robot-rental" },
+          { label: "AI研修", href: "/training" },
+          { label: "AIエージェント開発", href: "/ai-agent" },
+          { label: "空間3Dスキャン", href: "/spatial-scan" },
           { label: "AIコンサルティング", href: "/ai-consulting" },
           { label: "AI顧問", href: "/advisor" },
-          { label: "AI研修", href: "/training" },
           { label: "補助金・助成金サポート", href: "/subsidy" },
           { label: "Claude特化", href: "/claude" },
           { label: "AI広告運用", href: "/advertising" },
           { label: "ウェブサイト作成", href: "/website" },
           { label: "SNS運用代行", href: "/sns" },
-          { label: "ロボットレンタル", href: "/robot-rental" },
         ],
       },
       {
@@ -76,15 +136,18 @@ const COPY: Record<"ja" | "en", Copy> = {
       {
         title: "AI Business",
         links: [
+          { label: "Physical AI Development", href: "/physical-ai" },
+          { label: "Robot Rental", href: "/robot-rental" },
+          { label: "AI Training", href: "/training" },
+          { label: "AI Agent Development", href: "/ai-agent" },
+          { label: "3D Spatial Scan", href: "/spatial-scan" },
           { label: "AI Consulting", href: "/ai-consulting" },
           { label: "AI Advisor", href: "/advisor" },
-          { label: "AI Training", href: "/training" },
           { label: "Subsidy Support", href: "/subsidy" },
           { label: "Claude Specialized", href: "/claude" },
           { label: "AI Advertising", href: "/advertising" },
           { label: "Website Production", href: "/website" },
           { label: "SNS Management", href: "/sns" },
-          { label: "Robot Rental", href: "/robot-rental" },
         ],
       },
       {
@@ -136,65 +199,119 @@ export default function HtmlSitemapPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
-      <section className="max-w-5xl mx-auto px-6 lg:px-10 pt-40 pb-24">
-        <p className="text-xs font-semibold tracking-widest uppercase text-neutral-900 mb-4">
-          {t.label}
-        </p>
-        <h1 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight mb-6">
-          {t.title}
-        </h1>
-        <p className="text-base text-gray-600 leading-relaxed mb-16 max-w-2xl">
-          {t.desc}
-        </p>
+      {/* ─── 00. MASTHEAD ────────────────────────────────────────────────── */}
+      <section className="max-w-[1800px] mx-auto px-6 lg:px-8 pt-40 pb-16 lg:pb-24">
+        <Reveal>
+          <div className="flex items-center gap-4 border-b border-neutral-900 pb-4 font-mono text-[11px] uppercase tracking-[0.2em] text-neutral-500">
+            <span className="font-bold text-neutral-900">§00</span>
+            <span>{t.label}</span>
+            <span className="ml-auto tabular-nums text-neutral-400">
+              {String(t.sections.length).padStart(2, "0")} / INDEX
+            </span>
+          </div>
+        </Reveal>
+        <Reveal delay={80}>
+          <h1 className="mt-10 text-[7vw] sm:text-3xl lg:text-4xl font-bold leading-[0.95] tracking-[-0.04em] text-balance text-neutral-900">
+            {t.title}
+          </h1>
+        </Reveal>
+        <Reveal delay={160}>
+          <p className="mt-8 max-w-2xl text-[15px] leading-relaxed text-pretty text-neutral-600">
+            {t.desc}
+          </p>
+        </Reveal>
+      </section>
 
-        <div className="grid md:grid-cols-2 gap-12">
-          {t.sections.map((section) => (
+      {/* ─── LINK INDEX (per-category mono lists) ────────────────────────── */}
+      <section className="max-w-[1800px] mx-auto px-6 lg:px-8 pb-8">
+        <div className="grid md:grid-cols-2 gap-x-8 gap-y-16">
+          {t.sections.map((section, si) => (
             <div key={section.title}>
-              <h2 className="text-lg font-bold text-gray-900 mb-4 pb-3 border-b border-gray-200">
-                {section.title}
-              </h2>
-              <ul className="space-y-3">
-                {section.links.map((link) => (
-                  <li key={link.href}>
+              <Reveal>
+                <div className="flex items-center gap-4 border-b border-neutral-900 pb-4">
+                  <span className="font-mono text-xs font-bold tabular-nums text-neutral-900">
+                    §{String(si + 1).padStart(2, "0")}
+                  </span>
+                  <span className="font-mono text-[11px] font-medium uppercase tracking-[0.25em] text-neutral-500">
+                    {section.title}
+                  </span>
+                  <span className="ml-auto font-mono text-[10px] tabular-nums text-neutral-400">
+                    {String(section.links.length).padStart(2, "0")}
+                  </span>
+                </div>
+              </Reveal>
+              <div className="border-t border-neutral-900">
+                {section.links.map((link, li) => (
+                  <Reveal key={link.href} delay={li * 40}>
                     <Link
                       href={link.href}
-                      className="text-sm text-gray-700 hover:text-neutral-900 transition-colors"
+                      className="group flex items-center gap-4 border-b border-neutral-200 py-4 transition-colors duration-200 hover:bg-neutral-50"
                     >
-                      → {link.label}
+                      <span className="font-mono text-[10px] tabular-nums text-neutral-400 group-hover:text-neutral-900">
+                        {String(li + 1).padStart(2, "0")}
+                      </span>
+                      <span className="text-[15px] text-neutral-900 group-hover:underline underline-offset-4 decoration-neutral-900">
+                        {link.label}
+                      </span>
+                      <span className="ml-auto font-mono text-neutral-300 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-neutral-900">
+                        →
+                      </span>
                     </Link>
-                  </li>
+                  </Reveal>
                 ))}
-              </ul>
+              </div>
             </div>
           ))}
         </div>
+      </section>
 
-        {posts.length > 0 && (
-          <div className="mt-16">
-            <h2 className="text-lg font-bold text-gray-900 mb-4 pb-3 border-b border-gray-200">
-              {t.blogHeading}
-            </h2>
-            <ul className="space-y-3">
-              {posts.map((p) => (
-                <li key={p.id}>
-                  <Link
-                    href={`/blog/${p.id}`}
-                    className="text-sm text-gray-700 hover:text-neutral-900 transition-colors"
-                  >
-                    → {p.title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+      {/* ─── BLOG INDEX ──────────────────────────────────────────────────── */}
+      {posts.length > 0 && (
+        <section className="max-w-[1800px] mx-auto px-6 lg:px-8 pt-16 pb-8">
+          <Reveal>
+            <div className="flex items-center gap-4 border-b border-neutral-900 pb-4">
+              <span className="font-mono text-xs font-bold tabular-nums text-neutral-900">
+                §{String(t.sections.length + 1).padStart(2, "0")}
+              </span>
+              <span className="font-mono text-[11px] font-medium uppercase tracking-[0.25em] text-neutral-500">
+                {t.blogHeading}
+              </span>
+              <span className="ml-auto font-mono text-[10px] tabular-nums text-neutral-400">
+                {String(posts.length).padStart(2, "0")}
+              </span>
+            </div>
+          </Reveal>
+          <div className="border-t border-neutral-900">
+            {posts.map((p, i) => (
+              <Reveal key={p.id} delay={i * 30}>
+                <Link
+                  href={`/blog/${p.id}`}
+                  className="group flex items-center gap-4 border-b border-neutral-200 py-4 transition-colors duration-200 hover:bg-neutral-50"
+                >
+                  <span className="font-mono text-[10px] tabular-nums text-neutral-400 group-hover:text-neutral-900">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span className="text-[15px] text-neutral-900 group-hover:underline underline-offset-4 decoration-neutral-900">
+                    {p.title}
+                  </span>
+                  <span className="ml-auto font-mono text-neutral-300 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-neutral-900">
+                    →
+                  </span>
+                </Link>
+              </Reveal>
+            ))}
           </div>
-        )}
+        </section>
+      )}
 
-        <div className="mt-20 pt-10 border-t border-gray-200 text-sm text-gray-500">
+      {/* ─── XML NOTE ────────────────────────────────────────────────────── */}
+      <section className="max-w-[1800px] mx-auto px-6 lg:px-8 pt-12 pb-28">
+        <div className="border-t border-neutral-900 pt-6 font-mono text-[13px] text-neutral-500">
           <p>
             {t.xmlNoteA}{" "}
             <a
               href="/sitemap.xml"
-              className="text-neutral-900 hover:text-neutral-700 underline"
+              className="text-neutral-900 underline underline-offset-4 decoration-neutral-400 transition-colors hover:decoration-neutral-900"
             >
               /sitemap.xml
             </a>{" "}

@@ -36,11 +36,15 @@ export const header = {
     navResearch: "研究開発",
     navResearchDesc: "産業特化ロボットOS・模倣学習・機械学習の研究開発",
     navCases: "導入事例",
+    navPhysicalAi: "フィジカルAI受託開発",
+    navPhysicalAiDesc: "ロボット×AIを現場で動くシステムとして受託開発",
+    navOther: "その他の事業",
+    navEstimate: "1分見積り",
     navNews: "お知らせ",
     navAbout: "会社概要",
     docsDl: "資料DL",
     diagnosis: "無料AI診断",
-    contact: "役員無料相談する",
+    contact: "お問い合わせ",
     menuAria: "メニュー",
     subMenuAria: "のサブメニュー",
   },
@@ -73,6 +77,10 @@ export const header = {
     navResearch: "R&D",
     navResearchDesc: "R&D in industry-specific robot OS, imitation learning & ML",
     navCases: "Case Studies",
+    navPhysicalAi: "Physical AI Development",
+    navPhysicalAiDesc: "Robots × AI, built into systems that run on your floor",
+    navOther: "Other Services",
+    navEstimate: "1-min estimate",
     navNews: "News",
     navAbout: "About",
     docsDl: "Download",
@@ -82,7 +90,6 @@ export const header = {
     subMenuAria: " submenu",
   },
 } as const;
-
 
 // --- FOOTER -----------------------------------------------------------------
 export const footer = {
@@ -94,9 +101,11 @@ export const footer = {
     companyLine3: "茨城県 / 2026年4月設立",
     servicesHeading: "事業",
     services: {
+      physicalAi: "フィジカルAI受託開発",
       aiConsulting: "AIコンサルティング",
       advisor: "AI顧問",
       aiAgent: "AIエージェント開発",
+      spatialScan: "空間3Dスキャン",
       training: "AI研修",
       subsidy: "補助金サポート",
       claude: "Claude特化",
@@ -133,9 +142,11 @@ export const footer = {
     companyLine3: "Ibaraki, Japan / Founded April 2026",
     servicesHeading: "Services",
     services: {
+      physicalAi: "Physical AI Development",
       aiConsulting: "AI Consulting",
       advisor: "AI Advisor",
       aiAgent: "AI Agent Development",
+      spatialScan: "3D Spatial Scan",
       training: "AI Training",
       subsidy: "Subsidy Support",
       claude: "Claude Specialized",
@@ -701,3 +712,4 @@ export const sitemap = {
     xmlNoteB: " (for search engines).",
   },
 } as const;
+
