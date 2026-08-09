@@ -8,11 +8,16 @@ export type InquiryType = (typeof INQUIRY_TYPES)[number];
 
 /** Service keys used via ?service= query param to pre-select inquiry context */
 export const SERVICE_KEYS = [
+  // 主力3事業
+  "physical-ai",
+  "robot-rental",
+  "education",
+  // その他
+  "ai-agent",
+  "spatial-scan",
   "consulting",
   "advisor",
-  "robot-rental",
   "sns",
-  "education",
   "ceo",
   "claude-code",
   "subsidy",
@@ -22,11 +27,14 @@ export const SERVICE_KEYS = [
 export type ServiceKey = (typeof SERVICE_KEYS)[number];
 
 export const SERVICE_LABELS: Record<ServiceKey, string> = {
+  "physical-ai": "フィジカルAI受託開発",
+  "robot-rental": "ロボットレンタル",
+  education: "AI研修",
+  "ai-agent": "AIエージェント開発",
+  "spatial-scan": "空間3Dスキャン",
   consulting: "AIコンサル・DX",
   advisor: "AI顧問",
-  "robot-rental": "ロボットレンタル",
   sns: "SNS運用代行",
-  education: "AI研修",
   ceo: "経営者向けAI活用",
   "claude-code": "Claude特化（スクール／導入支援）",
   subsidy: "補助金・助成金サポート",
