@@ -115,7 +115,7 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
       <>ヒューマノイド・ロボットのレンタルとAIコンサルティングを軸に、<br className="hidden md:inline" />
       経営の意思決定から現場で動くものまで、責任を持って伴走します。</>
     ),
-    heroPrimary: "まずは無料で相談する",
+    heroPrimary: "役員無料相談する",
     heroSecondary: "サービスを見る",
     trustStats: [
       { value: "最大75%", label: "研修費を助成金で削減" },
@@ -667,7 +667,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
               {t.heroDesc}
             </p>
             <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3 sm:gap-5 transition-[opacity,transform] duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "850ms" }}>
-              <Link href="/reserve" className="inline-flex w-full sm:w-auto justify-center items-center gap-2 bg-neutral-900 text-white font-mono text-sm font-bold uppercase tracking-[0.08em] px-8 min-h-[52px] py-3.5 border border-neutral-900 hover:bg-neutral-800 transition-[background-color,scale] duration-300 active:scale-[0.96]">
+              <Link href="/reserve" className="executive-consultation-cta inline-flex w-full sm:w-auto justify-center items-center gap-2 font-mono text-sm font-bold uppercase tracking-[0.08em] px-8 min-h-[52px] py-3.5 border transition-[background-color,box-shadow,scale] duration-300 active:scale-[0.96]">
                 {t.heroPrimary}
                 <span aria-hidden>→</span>
               </Link>
