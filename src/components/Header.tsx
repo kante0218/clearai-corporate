@@ -24,19 +24,21 @@ export default function Header() {
   const { lang } = useLanguage();
   const h = headerDict[lang];
 
+  // 主力3事業をトップレベルに置き、残りは「その他の事業」に畳む
   const navItems: NavItem[] = [
+    { label: h.navPhysicalAi, href: "/physical-ai" },
     { label: h.navRobotRental, href: "/robot-rental" },
-    { label: h.navSpatialScan, href: "/spatial-scan" },
+    { label: h.navTraining, href: "/training" },
     {
-      label: h.navFde,
+      label: h.navOther,
       href: "/ai-consulting",
       children: [
         { label: h.navAiAgent, href: "/ai-agent", description: h.navAiAgentDesc },
+        { label: h.navSpatialScan, href: "/spatial-scan", description: h.navSpatialScanDesc },
         { label: h.navAdvisor, href: "/advisor", description: h.navAdvisorDesc },
-        { label: h.navTraining, href: "/training", description: h.navTrainingDesc },
+        { label: h.navAiConsulting, href: "/ai-consulting", description: h.navAiConsultingDesc },
         { label: h.navSubsidy, href: "/subsidy", description: h.navSubsidyDesc },
         { label: h.navClaude, href: "/claude", description: h.navClaudeDesc },
-        { label: h.navAiConsulting, href: "/ai-consulting", description: h.navAiConsultingDesc },
         { label: h.navWebsite, href: "/website", description: h.navWebsiteDesc },
         { label: h.navAdvertising, href: "/advertising", description: h.navAdvertisingDesc },
         { label: h.navSns, href: "/sns", description: h.navSnsDesc },
@@ -45,12 +47,14 @@ export default function Header() {
   ];
 
   const utilityItems: { label: string; href: string }[] = [
+    { label: h.navEstimate, href: "/#simulation" },
     { label: h.navNews, href: "/blog" },
     { label: h.navAbout, href: "/about" },
   ];
   const isClaude = pathname?.startsWith("/claude");
   const isAiConsulting =
     pathname?.startsWith("/ai-consulting") ||
+    pathname?.startsWith("/physical-ai") ||
     pathname?.startsWith("/advisor") ||
     pathname?.startsWith("/ai-agent") ||
     pathname?.startsWith("/training") ||
