@@ -457,7 +457,7 @@ export default function AboutPage() {
           className="absolute inset-0 z-[1] pointer-events-none"
           style={{
             background:
-              "linear-gradient(180deg, rgba(3,7,18,0.55) 0%, rgba(3,7,18,0.7) 55%, rgba(3,7,18,0.85) 100%)",
+              "linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.7) 55%, rgba(0,0,0,0.85) 100%)",
           }}
         />
         <div className="relative z-10 max-w-[1800px] mx-auto px-6 lg:px-8">

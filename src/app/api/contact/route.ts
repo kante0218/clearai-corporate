@@ -73,7 +73,7 @@ function buildEmail(payload: EmailPayload) {
 
   const html = `
     <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 600px; margin: 0 auto; padding: 24px; color: #111;">
-      <h2 style="margin: 0 0 16px; font-size: 18px; border-bottom: 2px solid #111827; padding-bottom: 8px;">新しいお問い合わせ（${escapeHtml(typeLabel)}）</h2>
+      <h2 style="margin: 0 0 16px; font-size: 18px; border-bottom: 2px solid #111111; padding-bottom: 8px;">新しいお問い合わせ（${escapeHtml(typeLabel)}）</h2>
       <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
         ${htmlRows}
       </table>
