@@ -37,7 +37,7 @@ export const blogPosts: BlogPost[] = [
     date: "2026-03-15",
     readTime: "5分",
     author: "clearAI編集部",
-    thumbnail: "#111111",
+    thumbnail: "#111827",
   },
   {
     slug: "enterprise-ai-implementation-guide",
@@ -63,7 +63,7 @@ KPIを設定し、導入効果を定量的に測定します。
     date: "2026-03-10",
     readTime: "8分",
     author: "clearAI編集部",
-    thumbnail: "#111111",
+    thumbnail: "#111827",
   },
   {
     slug: "case-study-techforward",
@@ -87,7 +87,7 @@ KPIを設定し、導入効果を定量的に測定します。
     date: "2026-03-05",
     readTime: "6分",
     author: "clearAI編集部",
-    thumbnail: "#111111",
+    thumbnail: "#111827",
   },
   {
     slug: "chatgpt-business-use-cases",
@@ -109,7 +109,7 @@ clearAIでは、これらの活用シーンに応じたAI導入支援を提供�
     date: "2026-02-28",
     readTime: "7分",
     author: "clearAI編集部",
-    thumbnail: "#111111",
+    thumbnail: "#111827",
   },
   {
     slug: "clearai-series-a-announcement",
@@ -131,7 +131,7 @@ AI面接プラットフォームとして、求職者と企業のマッチング
     date: "2026-02-20",
     readTime: "3分",
     author: "clearAI広報",
-    thumbnail: "#111111",
+    thumbnail: "#111827",
   },
 ];
 

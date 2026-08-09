@@ -61,7 +61,7 @@ function buildEmail(payload: EmailPayload) {
   const htmlRows = rows
     .map(
       ([k, v]) =>
-        `<tr><td style="padding: 8px 0; color: #6b6b6b; width: 160px;">${escapeHtml(k)}</td><td style="padding: 8px 0;">${
+        `<tr><td style="padding: 8px 0; color: #6b7280; width: 160px;">${escapeHtml(k)}</td><td style="padding: 8px 0;">${
           k === "メール"
             ? `<a href="mailto:${escapeHtml(v)}">${escapeHtml(v)}</a>`
             : k === "ポートフォリオ/GitHub"
@@ -77,7 +77,7 @@ function buildEmail(payload: EmailPayload) {
       <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
         ${htmlRows}
       </table>
-      <h3 style="margin: 24px 0 8px; font-size: 14px; color: #6b6b6b;">${isEngineer ? "自己紹介" : "ご相談内容"}</h3>
+      <h3 style="margin: 24px 0 8px; font-size: 14px; color: #6b7280;">${isEngineer ? "自己紹介" : "ご相談内容"}</h3>
       <div style="white-space: pre-wrap; background: #f9fafb; border-radius: 8px; padding: 16px; font-size: 14px; line-height: 1.7;">${escapeHtml(payload.message)}</div>
     </div>
   `;
