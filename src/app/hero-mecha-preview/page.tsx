@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function HeroMechaPreviewPage() {
   return (
-    <main className="relative min-h-screen bg-black text-white overflow-hidden">
+    <main className="relative min-h-screen bg-[#02030a] text-white overflow-hidden">
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <video
           className="absolute inset-0 w-full h-full object-cover"

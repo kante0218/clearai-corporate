@@ -17,7 +17,7 @@ export default async function OpengraphImage() {
           justifyContent: "space-between",
           padding: "80px",
           background:
-            "linear-gradient(135deg, #0a0a0a 0%, #2a2a2a 60%, #000000 100%)",
+            "linear-gradient(135deg, #0a0a0a 0%, #1f2937 60%, #000000 100%)",
           color: "white",
           fontFamily: "sans-serif",
         }}
@@ -43,7 +43,7 @@ export default async function OpengraphImage() {
             style={{
               fontSize: 22,
               letterSpacing: 6,
-              color: "#a3a3a3",
+              color: "#9ca3af",
               textTransform: "uppercase",
             }}
           >
@@ -68,7 +68,7 @@ export default async function OpengraphImage() {
           <div
             style={{
               fontSize: 30,
-              color: "#d4d4d4",
+              color: "#cbd5e1",
               lineHeight: 1.4,
               maxWidth: 900,
             }}
@@ -83,7 +83,7 @@ export default async function OpengraphImage() {
             justifyContent: "space-between",
             alignItems: "flex-end",
             fontSize: 22,
-            color: "#a3a3a3",
+            color: "#94a3b8",
           }}
         >
           <div style={{ display: "flex", gap: 28 }}>
@@ -93,7 +93,7 @@ export default async function OpengraphImage() {
             <span>Claude特化</span>
             <span>補助金</span>
           </div>
-          <div style={{ fontWeight: 700, color: "#e5e5e5" }}>clearai.jp</div>
+          <div style={{ fontWeight: 700, color: "#e2e8f0" }}>clearai.jp</div>
         </div>
       </div>
     ),
