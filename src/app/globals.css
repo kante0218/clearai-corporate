@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 @theme {
-  /* Latin → Helvetica (≈ Helvetica Now Text); Japanese → Zen Kaku Gothic New (≈ 筑紫ゴシック) — mount.jp style */
-  --font-sans: "Helvetica Neue", Helvetica, Arial, var(--font-zen), "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", YuGothic, Meiryo, system-ui, sans-serif;
-  --font-display: "Helvetica Neue", Helvetica, Arial, var(--font-zen), "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", YuGothic, Meiryo, system-ui, sans-serif;
+  /* Reference-inspired Japanese gothic typography across every page. */
+  --font-sans: var(--font-noto-sans-jp), "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", YuGothic, Meiryo, system-ui, sans-serif;
+  --font-display: var(--font-noto-sans-jp), "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", YuGothic, Meiryo, system-ui, sans-serif;
 
   --color-navy-950: #111827;
   --color-navy-900: #1f2937;
@@ -64,6 +64,20 @@ body {
   word-break: auto-phrase;
   hanging-punctuation: allow-end;
   line-break: strict;
+}
+
+/* The sole brand-color exception: direct consultation with an executive. */
+.executive-consultation-cta {
+  background-color: #ff9500;
+  border-color: #ff9500;
+  color: #ffffff;
+  box-shadow: 0 6px 20px -8px rgba(255, 149, 0, 0.65);
+}
+.executive-consultation-cta:hover {
+  background-color: #e98400;
+  border-color: #e98400;
+  color: #ffffff;
+  box-shadow: 0 10px 26px -10px rgba(255, 149, 0, 0.72);
 }
 
 /* ── Japanese typography headings ── */

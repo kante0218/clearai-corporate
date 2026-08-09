@@ -40,7 +40,7 @@ export const header = {
     navAbout: "会社概要",
     docsDl: "資料DL",
     diagnosis: "無料AI診断",
-    contact: "お問い合わせ",
+    contact: "役員へ無料相談する",
     menuAria: "メニュー",
     subMenuAria: "のサブメニュー",
   },
@@ -700,4 +700,3 @@ export const sitemap = {
     xmlNoteB: " (for search engines).",
   },
 } as const;
-
