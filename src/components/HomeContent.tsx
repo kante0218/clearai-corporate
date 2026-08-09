@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
+import HeroParticlesBg from "@/components/HeroParticlesBg";
 import CardCarousel from "@/components/CardCarousel";
 import CountUp from "@/components/CountUp";
 import InlineContactForm from "@/components/InlineContactForm";
@@ -555,50 +556,6 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
   const techRowB = allTech.slice(techMid);
   useEffect(() => { setTimeout(() => setHeroLoaded(true), 100); }, []);
 
-  // Adaptive hero text color: sample the video region behind the copy each frame
-  // and switch between dark/light text so the catchphrase stays legible whether
-  // the dithered background is bright or dark. Hysteresis avoids flicker.
-  const heroVideoRef = useRef<HTMLVideoElement | null>(null);
-  const [heroTextDark, setHeroTextDark] = useState(true);
-  useEffect(() => {
-    const video = heroVideoRef.current;
-    if (!video) return;
-    const canvas = document.createElement("canvas");
-    canvas.width = 48;
-    canvas.height = 32;
-    const ctx = canvas.getContext("2d", { willReadFrequently: true });
-    if (!ctx) return;
-    let raf = 0;
-    let last = 0;
-    let dark = true; // current decision: true = dark text
-    const sample = (ts: number) => {
-      raf = requestAnimationFrame(sample);
-      if (ts - last < 180) return;
-      last = ts;
-      if (video.readyState < 2 || video.videoWidth === 0) return;
-      // Sample the left-center band of the frame — where the copy sits (left-aligned).
-      const sx = 0;
-      const sy = video.videoHeight * 0.12;
-      const sw = video.videoWidth * 0.55;
-      const sh = video.videoHeight * 0.76;
-      try {
-        ctx.drawImage(video, sx, sy, sw, sh, 0, 0, canvas.width, canvas.height);
-        const { data } = ctx.getImageData(0, 0, canvas.width, canvas.height);
-        let sum = 0;
-        for (let i = 0; i < data.length; i += 4) {
-          sum += 0.2126 * data[i] + 0.7152 * data[i + 1] + 0.0722 * data[i + 2];
-        }
-        const avg = sum / (data.length / 4) / 255; // 0 (black) .. 1 (white)
-        if (dark && avg < 0.45) dark = false;      // background got dark -> light text
-        else if (!dark && avg > 0.58) dark = true; // background got bright -> dark text
-        setHeroTextDark(dark);
-      } catch {
-        /* canvas tainted or frame not ready — keep last decision */
-      }
-    };
-    raf = requestAnimationFrame(sample);
-    return () => cancelAnimationFrame(raf);
-  }, []);
   const heroFeatures = lang === "ja"
     ? [
         { title: "伴走支援", sub: "責任を持って支援" },
@@ -625,53 +582,37 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
   return (
     <>
       {/* ═══ HERO ═══ */}
-      <section className="relative overflow-hidden bg-white md:flex md:min-h-screen md:items-center">
-        {/* SP: 映像を16:9で表示。ヘッダー直下にぴったり付ける（上余白なし） */}
-        <div className="md:hidden w-full">
-          <video
-            className="w-full aspect-video object-cover"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
-            poster="/videos/hero-dither-poster.jpg"
-            aria-hidden
-          >
-            <source src="/videos/hero-dither-hq.mp4" type="video/mp4" />
-          </video>
-        </div>
-        {/* PC: 背景動画（全面・テキスト重ね）— 不変 */}
-        <video
-          ref={heroVideoRef}
-          className="hidden md:block pointer-events-none absolute inset-0 z-0 h-full w-full object-cover object-[62%_center] sm:object-center"
-          width={2160}
-          height={1216}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          crossOrigin="anonymous"
-          poster="/videos/hero-dither-poster.jpg"
-          aria-hidden
-        >
-          <source src="/videos/hero-dither-hq.mp4" type="video/mp4" />
-        </video>
-        <div className="relative z-10 w-full max-w-[1800px] mx-auto px-6 lg:px-10 pt-4 pb-6 md:py-24 pointer-events-none">
-          <div className="max-w-none sm:max-w-md md:max-w-2xl lg:max-w-3xl text-left pointer-events-auto">
-            <h1 className={`text-[1.5rem] sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.12] tracking-tight mb-8 transition-[color,opacity,transform] duration-500 text-gray-900 ${heroTextDark ? "md:text-gray-900" : "md:text-white"}`} style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0)" : "translateY(24px)", transitionDelay: "400ms", textShadow: heroTextDark ? "0 1px 3px rgba(255,255,255,0.75),0 2px 22px rgba(255,255,255,0.55)" : "0 1px 3px rgba(0,0,0,0.6),0 2px 22px rgba(0,0,0,0.65)" }}>
+      <section className="relative min-h-[70svh] md:min-h-screen flex items-start md:items-center overflow-hidden bg-white">
+        <HeroParticlesBg />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/images/hero-robot.png"
+          alt="clearAI ヒューマノイドロボットと四足歩行ロボット"
+          className="pointer-events-none select-none absolute bottom-0 right-0 z-0 h-[78%] sm:h-[84%] w-auto object-contain object-bottom md:hidden"
+          style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateX(0)" : "translateX(24px)", transition: "opacity 1s ease 300ms, transform 1s ease 300ms" }}
+        />
+        <div className="pointer-events-none absolute inset-0 z-[5] bg-gradient-to-br from-white from-5% via-white/35 to-transparent to-70% md:hidden" />
+        <div className="relative z-10 w-full max-w-[1800px] mx-auto px-6 lg:px-10 pt-24 pb-6 md:py-24 pointer-events-none">
+          <div className="max-w-[18.5rem] sm:max-w-md md:max-w-2xl lg:max-w-3xl text-left pointer-events-auto">
+            <div className="hidden md:flex md:flex-wrap md:justify-start gap-2 mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "200ms" }}>
+              {t.heroChips.map((tag) => (
+                <span key={tag} className="inline-flex items-center rounded-md bg-neutral-100 text-neutral-900 border border-neutral-200 px-3 py-1 text-xs font-semibold">
+                  {tag}
+                </span>
+              ))}
+            </div>
+            <h1 className="text-[1.9rem] sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-[1.12] tracking-tight mb-8 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transform: heroLoaded ? "translateY(0)" : "translateY(24px)", transitionDelay: "400ms" }}>
               {t.heroTitle}
             </h1>
-            <p className={`text-base md:text-lg font-medium leading-relaxed max-w-none sm:max-w-sm md:max-w-xl mb-10 transition-[color,opacity] duration-500 text-gray-900 ${heroTextDark ? "md:text-gray-900" : "md:text-white"}`} style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "650ms", textShadow: heroTextDark ? "0 1px 2px rgba(255,255,255,0.95),0 1px 12px rgba(255,255,255,0.85)" : "0 1px 2px rgba(0,0,0,0.75),0 1px 12px rgba(0,0,0,0.7)" }}>
+            <p className="text-base md:text-lg text-gray-600 leading-relaxed max-w-[17rem] sm:max-w-sm md:max-w-xl mb-10 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "650ms" }}>
               {t.heroDesc}
             </p>
-            <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3 sm:gap-5 transition-[opacity,transform] duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "850ms" }}>
-              <Link href="/reserve" className="executive-consultation-cta inline-flex w-full sm:w-auto justify-center items-center gap-2 font-mono text-sm font-bold uppercase tracking-[0.08em] px-8 min-h-[52px] py-3.5 border transition-[background-color,box-shadow,scale] duration-300 active:scale-[0.96]">
+            <div className="flex flex-wrap justify-start items-center gap-5 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "850ms" }}>
+              <Link href="/reserve" className="executive-consultation-cta inline-flex items-center gap-2 rounded-md font-semibold px-7 py-3.5 transition-colors duration-300">
                 {t.heroPrimary}
                 <span aria-hidden>→</span>
               </Link>
-              <Link href="#services" className={`inline-flex w-full sm:w-auto justify-center sm:justify-start items-center gap-1.5 min-h-[44px] py-2 text-sm font-semibold transition-colors duration-300 text-gray-700 hover:text-neutral-900 ${heroTextDark ? "" : "md:text-white/90 md:hover:text-white"}`} style={{ textShadow: heroTextDark ? "none" : "0 1px 6px rgba(0,0,0,0.6)" }}>
+              <Link href="#services" className="inline-flex items-center gap-1.5 text-sm text-gray-700 font-semibold hover:text-neutral-900 transition-colors duration-300">
                 {t.heroSecondary}
                 <span aria-hidden>→</span>
               </Link>
