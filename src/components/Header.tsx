@@ -109,7 +109,7 @@ export default function Header() {
                         href={item.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={`relative text-sm font-semibold tracking-wide px-3 py-2 transition-colors duration-200 inline-flex items-center gap-1 after:pointer-events-none after:absolute after:bottom-1 after:left-3 after:right-3 after:h-px after:origin-left after:scale-x-0 after:bg-neutral-900 after:transition-transform after:duration-300 hover:after:scale-x-100 ${navColor}`}
+                        className={`text-sm font-semibold tracking-wide px-3 py-2 transition-colors duration-200 inline-flex items-center gap-1 ${navColor}`}
                       >
                         {item.label}
                       </a>
@@ -118,7 +118,7 @@ export default function Header() {
                         href={item.href}
                         prefetch
                         onMouseEnter={() => router.prefetch(item.href)}
-                        className={`relative text-sm font-semibold tracking-wide px-3 py-2 transition-colors duration-200 inline-flex items-center gap-1 after:pointer-events-none after:absolute after:bottom-1 after:left-3 after:right-3 after:h-px after:origin-left after:scale-x-0 after:bg-neutral-900 after:transition-transform after:duration-300 hover:after:scale-x-100 ${navColor}`}
+                        className={`text-sm font-semibold tracking-wide px-3 py-2 transition-colors duration-200 inline-flex items-center gap-1 ${navColor}`}
                       >
                         {item.label}
                         {hasChildren && (
@@ -240,14 +240,14 @@ export default function Header() {
                           onClick={() => setMobileExpanded(expanded ? null : item.label)}
                           aria-label={`${item.label}${h.subMenuAria}`}
                           aria-expanded={expanded}
-                          className="p-3 -mr-1 text-gray-700"
+                          className="p-3 text-gray-500"
                         >
                           <svg
-                            className={`w-7 h-7 transition-transform duration-300 ${expanded ? "rotate-180" : ""}`}
+                            className={`w-4 h-4 transition-transform duration-300 ${expanded ? "rotate-180" : ""}`}
                             viewBox="0 0 16 16"
                             fill="none"
                             stroke="currentColor"
-                            strokeWidth="2"
+                            strokeWidth="1.5"
                           >
                             <path d="M4 6L8 10L12 6" strokeLinecap="round" strokeLinejoin="round" />
                           </svg>

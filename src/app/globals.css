@@ -207,12 +207,6 @@ h1, h2, h3, h4, h5, h6 {
 .animate-float4 { animation: float4 15s ease-in-out infinite; }
 .animate-pulse-glow { animation: pulseGlow 3s ease-in-out infinite; }
 
-/* ── Page transition (app/template.tsx: replays on every navigation) ──
-   CSS-only opacity fade so it runs without JS and never leaves content
-   hidden. No transform → safe for position:fixed descendants. */
-@keyframes pageFade { from { opacity: 0; } to { opacity: 1; } }
-.page-transition { animation: pageFade 0.45s cubic-bezier(0.16, 1, 0.3, 1) both; }
-
 /* ── Horizontal rule ── */
 .divider {
   height: 1px;
@@ -420,105 +414,6 @@ details[open] summary {
   }
 }
 
-/* ── Compact mobile / narrow window rhythm ──
-   Keep desktop untouched, but make narrow screens denser: smaller type,
-   shorter sections, tighter cards, and less whitespace between blocks. */
-
-/* ── Desktop (>900px) contrast lift ──
-   The grey lifts below are scoped to ≤900px only, so on true desktop the
-   secondary copy still renders at the default Tailwind greys — text-gray-400
-   (#9ca3af) is ≈2.5:1 on white = WCAG fail. Mirror the same lifts on desktop. */
-@media (min-width: 901px) {
-  .text-gray-400 { color: #6b7280; }  /* was #9ca3af */
-  .text-gray-500 { color: #4b5563; }  /* was #6b7280 */
-  .text-gray-600 { color: #374151; }  /* was #4b5563 */
-}
-
-@media (max-width: 900px) {
-  body {
-    line-height: 1.58;
-    letter-spacing: 0.015em;
-  }
-  h1 { line-height: 1.14; }
-  h2 { line-height: 1.18; }
-  h3 { line-height: 1.25; }
-
-  .text-xs, .text-sm, caption, figcaption { letter-spacing: 0.02em; }
-  .text-xs { font-size: 0.72rem !important; line-height: 1.45 !important; }
-  .text-sm { font-size: 0.8rem !important; line-height: 1.5 !important; }
-  .text-base { font-size: 0.875rem !important; line-height: 1.55 !important; }
-  .text-lg { font-size: 1rem !important; line-height: 1.35 !important; }
-  .text-xl { font-size: 1.125rem !important; line-height: 1.3 !important; }
-  .text-2xl { font-size: 1.25rem !important; line-height: 1.24 !important; }
-  .text-3xl { font-size: 1.5rem !important; line-height: 1.2 !important; }
-  .text-4xl { font-size: 1.75rem !important; line-height: 1.16 !important; }
-  .text-5xl, .text-6xl, .text-7xl {
-    font-size: 2rem !important;
-    line-height: 1.12 !important;
-  }
-
-  /* Keep low-contrast greys readable even after shrinking type. */
-  .text-gray-400 { color: #6b7280; }  /* was #9ca3af */
-  .text-gray-500 { color: #4b5563; }  /* was #6b7280 */
-  .text-gray-600 { color: #374151; }  /* was #4b5563 */
-
-  main section {
-    padding-top: 2rem !important;
-    padding-bottom: 2rem !important;
-  }
-  main section:first-of-type {
-    min-height: auto !important;
-    padding-top: 4.75rem !important;
-    padding-bottom: 1.5rem !important;
-  }
-  [class*="min-h-[88svh]"],
-  [class*="min-h-screen"] {
-    min-height: auto !important;
-  }
-
-  .px-6 { padding-left: 1.25rem !important; padding-right: 1.25rem !important; }
-  .pt-28 { padding-top: 4.75rem !important; }
-  .pb-16 { padding-bottom: 1.5rem !important; }
-  .py-28, .py-20, .py-14, .py-12 {
-    padding-top: 2rem !important;
-    padding-bottom: 2rem !important;
-  }
-  .pt-10, .pt-8, .pt-6 { padding-top: 1.5rem !important; }
-  .pb-20, .pb-16, .pb-14, .pb-12, .pb-10 { padding-bottom: 2rem !important; }
-
-  .mb-14 { margin-bottom: 1.75rem !important; }
-  .mb-10 { margin-bottom: 1.5rem !important; }
-  .mb-8 { margin-bottom: 1.25rem !important; }
-  .mb-6 { margin-bottom: 1rem !important; }
-  .mb-5 { margin-bottom: 0.875rem !important; }
-  .mb-4 { margin-bottom: 0.75rem !important; }
-  .mt-8 { margin-top: 1.25rem !important; }
-  .mt-6 { margin-top: 1rem !important; }
-  .gap-8 { gap: 1.25rem !important; }
-  .gap-6 { gap: 1rem !important; }
-  .gap-5 { gap: 0.875rem !important; }
-  .gap-4 { gap: 0.75rem !important; }
-
-  .p-10, .p-8, .p-7, .p-6 { padding: 1.25rem !important; }
-  .p-5 { padding: 1rem !important; }
-  .px-10 { padding-left: 1.5rem !important; padding-right: 1.5rem !important; }
-  .px-7 { padding-left: 1.25rem !important; padding-right: 1.25rem !important; }
-  .py-4 { padding-top: 0.75rem !important; padding-bottom: 0.75rem !important; }
-  .py-3\.5, .py-3, .py-2\.5 {
-    padding-top: 0.625rem !important;
-    padding-bottom: 0.625rem !important;
-  }
-
-  .space-y-3 > :not([hidden]) ~ :not([hidden]),
-  .space-y-2\.5 > :not([hidden]) ~ :not([hidden]) {
-    --tw-space-y-reverse: 0;
-    margin-top: calc(0.45rem * calc(1 - var(--tw-space-y-reverse))) !important;
-    margin-bottom: calc(0.45rem * var(--tw-space-y-reverse)) !important;
-  }
-
-  .leading-relaxed { line-height: 1.55 !important; }
-}
-
 /* ── Reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -539,66 +434,4 @@ details[open] summary {
   .animate-pulse-glow {
     animation: none !important;
   }
-}
-
-/* ─────────────────────────────────────────────────────────────
-   SP(スマホ)専用: 縦余白を圧縮してスクロール量を削減。
-   md:/lg: は別セレクタのためPCは不変。pt-20/24/28はヘッダー
-   クリアランス確保のため対象外。
-   ───────────────────────────────────────────────────────────── */
-@media (max-width: 767px) {
-  .py-8  { padding-top: 1.5rem  !important; padding-bottom: 1.5rem  !important; }
-  .py-10 { padding-top: 1.5rem  !important; padding-bottom: 1.5rem  !important; }
-  .py-12 { padding-top: 1.75rem !important; padding-bottom: 1.75rem !important; }
-  .py-14 { padding-top: 2rem    !important; padding-bottom: 2rem    !important; }
-  .py-16 { padding-top: 2rem    !important; padding-bottom: 2rem    !important; }
-  .py-20 { padding-top: 2.25rem !important; padding-bottom: 2.25rem !important; }
-  .py-24 { padding-top: 2.5rem  !important; padding-bottom: 2.5rem  !important; }
-  .py-28 { padding-top: 2.5rem  !important; padding-bottom: 2.5rem  !important; }
-
-  .pt-8  { padding-top: 1rem    !important; }
-  .pt-10 { padding-top: 1.25rem !important; }
-  .pt-12 { padding-top: 1.5rem  !important; }
-
-  .pb-8  { padding-bottom: 1.25rem !important; }
-  .pb-10 { padding-bottom: 1.5rem  !important; }
-  .pb-12 { padding-bottom: 1.75rem !important; }
-  .pb-14 { padding-bottom: 2rem    !important; }
-  .pb-16 { padding-bottom: 2rem    !important; }
-  .pb-20 { padding-bottom: 2.25rem !important; }
-
-  .mb-8  { margin-bottom: 1rem    !important; }
-  .mb-10 { margin-bottom: 1.25rem !important; }
-  .mb-12 { margin-bottom: 1.5rem  !important; }
-  .mb-14 { margin-bottom: 1.5rem  !important; }
-  .mb-16 { margin-bottom: 1.75rem !important; }
-
-  .mt-8  { margin-top: 1rem    !important; }
-  .mt-10 { margin-top: 1.25rem !important; }
-  .mt-12 { margin-top: 1.5rem  !important; }
-
-  .gap-6   { gap: 1rem    !important; }
-  .gap-8   { gap: 1.25rem !important; }
-  .gap-y-6 { row-gap: 1rem !important; }
-  .gap-y-8 { row-gap: 1rem !important; }
-}
-
-/* SP: カルーセル内カードの登場アニメ(上下移動)を無効化し、横移動のみに固定 */
-@media (max-width: 767px) {
-  [data-cc-card] > *,
-  [data-plan-card] > * {
-    transform: none !important;
-    opacity: 1 !important;
-  }
-}
-
-/* SP(〜639px): フォントを全体的に2〜3px小さく（sm:以上のPC指定は別レンジなので不変） */
-@media (max-width: 639px) {
-  .text-sm   { font-size: 0.8125rem !important; line-height: 1.25rem  !important; }
-  .text-base { font-size: 0.875rem  !important; line-height: 1.375rem !important; }
-  .text-lg   { font-size: 1rem      !important; line-height: 1.5rem   !important; }
-  .text-xl   { font-size: 1.125rem  !important; line-height: 1.6rem   !important; }
-  .text-2xl  { font-size: 1.3125rem !important; line-height: 1.75rem  !important; }
-  .text-3xl  { font-size: 1.625rem  !important; line-height: 2rem     !important; }
-  .text-4xl  { font-size: 2rem      !important; line-height: 2.25rem  !important; }
 }

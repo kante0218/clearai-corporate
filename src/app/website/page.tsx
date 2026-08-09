@@ -2,8 +2,6 @@
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
-import PricingCarousel from "@/components/PricingCarousel";
-import CardCarousel from "@/components/CardCarousel";
 
 function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -23,31 +21,8 @@ function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; 
   );
 }
 
-function SectionHead({
-  index,
-  kicker,
-  title,
-  desc,
-  dark = false,
-}: {
-  index: string;
-  kicker: ReactNode;
-  title: ReactNode;
-  desc?: ReactNode;
-  dark?: boolean;
-}) {
-  return (
-    <Reveal className="mb-7 lg:mb-9 max-w-3xl">
-      <div className={`flex items-center gap-4 border-b pb-4 ${dark ? "border-white/25" : "border-neutral-900"}`}>
-        <span className={`font-mono text-xs font-bold tabular-nums ${dark ? "text-white" : "text-neutral-900"}`}>§{index}</span>
-        <span className={`font-mono text-[11px] font-medium uppercase tracking-[0.25em] ${dark ? "text-neutral-400" : "text-neutral-500"}`}>{kicker}</span>
-      </div>
-      <h2 className={`mt-5 text-[18px] sm:text-xl lg:text-2xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance ${dark ? "text-white" : "text-neutral-900"}`}>
-        {title}
-      </h2>
-      {desc && <p className={`mt-4 text-[15px] leading-relaxed text-pretty ${dark ? "text-neutral-400" : "text-neutral-600"}`}>{desc}</p>}
-    </Reveal>
-  );
+function Label({ children }: { children: ReactNode }) {
+  return <p className="text-sm font-semibold text-neutral-900 mb-4">{children}</p>;
 }
 
 type Copy = {
@@ -93,23 +68,23 @@ const COPY: Record<"ja" | "en", Copy> = {
   ja: {
     pageKicker: "Website Production",
     pageTitle: "ウェブサイト制作",
-    pageDesc: "clearai.jp と同じ Next.js + Vercel + Headless CMS スタックで、表示速度・SEO・運用しやすさを最高水準に仕上げます。",
+    pageDesc: "Next.js + Vercel + Headless CMS で、表示速度・SEO・運用しやすさを最高水準に。このサイト（clearai.jp）と同じ技術スタックで、貴社のサイトも制作します。",
     whyLabel: "Why Now",
     whyTitle: "なぜ今、AIネイティブなサイトが必要か。",
     whyItems: [
       { title: "AI検索への対応", desc: "Google AI Overviews / SGE、ChatGPT Searchなど、AIに引用されるための構造化データ・E-E-A-T設計が必須に。" },
-      { title: "速度＝信頼", desc: "表示が3秒遅れるだけで離脱率が大幅に増加し、Core Web Vitalsはコンバージョンと直結します。" },
-      { title: "更新運用のコスト", desc: "更新のたびに外部委託する時代は終わり、社内で安全に更新できるCMSと運用設計が必要です。" },
+      { title: "速度＝信頼", desc: "表示が3秒遅れるだけで離脱率が大幅に増加。Core Web Vitalsはコンバージョンと直結します。" },
+      { title: "更新運用のコスト", desc: "更新のたびに制作会社に依頼する時代は終わり。社内で安全に更新できるCMSと運用設計が必要です。" },
     ],
     typesLabel: "Types",
     typesTitle: "対応する制作タイプ",
     typesDesc: "すべての制作で「速い・直しやすい・AIに見つかる」を標準装備します。",
     typeItems: [
-      { num: "01", title: "コーポレートサイト", desc: "ブランド表現と採用・営業のコンバージョンを両立した、会社案内からSEO集客サイトまで対応します。" },
-      { num: "02", title: "サービスサイト / LP", desc: "1サービスに特化したLPから複数サービスのハブまで、広告連動で成果が出る構成を設計します。" },
-      { num: "03", title: "採用サイト", desc: "母集団形成と志望度向上に効くストーリー設計から、応募フォーム・ATS連携まで対応します。" },
+      { num: "01", title: "コーポレートサイト", desc: "ブランド表現と採用・営業のコンバージョンを両立。会社案内のレベルから、SEOで集客できるサイトまで。" },
+      { num: "02", title: "サービスサイト / LP", desc: "1サービスに特化したLPから、複数サービスのハブまで。広告連動で成果が出る構成を設計します。" },
+      { num: "03", title: "採用サイト", desc: "母集団形成と志望度向上に効くストーリー設計。応募フォーム・ATS連携まで対応。" },
       { num: "04", title: "メディア・オウンドメディア", desc: "Headless CMSとSEO設計で、運用しながら強くなるメディア基盤を構築します。" },
-      { num: "05", title: "リニューアル", desc: "既存サイトを全面刷新し、アクセス資産を引き継ぎながらCV率・表示速度・運用性を改善します。" },
+      { num: "05", title: "リニューアル", desc: "既存サイトの全面刷新。アクセス資産を引き継ぎつつ、CV率・表示速度・運用性を全面的に改善。" },
       { num: "06", title: "AI機能付きサイト", desc: "サイト内検索のAI化、LLMチャット、自動FAQ生成など、AI機能を組み込んだサイトを構築します。" },
     ],
     stackLabel: "Tech Stack",
@@ -124,14 +99,14 @@ const COPY: Record<"ja" | "en", Copy> = {
     processLabel: "Process",
     processTitle: "制作プロセス",
     processItems: [
-      { num: "01", title: "ヒアリング・要件定義", desc: "事業目標・ターゲット・KPIを言語化し、サイトの役割を明確に定義します。" },
-      { num: "02", title: "情報設計・ワイヤー", desc: "サイトマップ・ワイヤーフレーム・コンテンツ要件を整理し、AIで競合・検索意図も分析します。" },
-      { num: "03", title: "デザイン・実装", desc: "FigmaでデザインしNext.jsで実装、AI支援で開発スピードを2〜3倍に。" },
+      { num: "01", title: "ヒアリング・要件定義", desc: "事業目標・ターゲット・KPIを言語化。サイトの役割を明確に定義します。" },
+      { num: "02", title: "情報設計・ワイヤー", desc: "サイトマップ・ワイヤーフレーム・コンテンツ要件を整理。AIで競合・検索意図も分析。" },
+      { num: "03", title: "デザイン・実装", desc: "Figmaでデザイン → Next.jsで実装。AI支援で開発スピードを2〜3倍に。" },
       { num: "04", title: "公開・運用支援", desc: "公開後の運用設計、CMS研修、SEO継続改善まで伴走します。" },
     ],
     pricingLabel: "Pricing",
     pricingTitle: "料金の目安",
-    pricingDesc: "ページ数・機能要件・運用範囲により変動しますので、要件整理段階での無料お見積もりをご活用ください。",
+    pricingDesc: "ページ数・機能要件・運用範囲により変動します。要件整理段階での無料お見積もりが可能です。",
     plans: [
       {
         name: "6ヶ月パック",
@@ -170,29 +145,29 @@ const COPY: Record<"ja" | "en", Copy> = {
     pricingFootnote: "表示価格は税抜。要件・分量により個別見積もりとなります。IT導入補助金の活用も可能です。",
     ctaLabel: "Contact",
     ctaTitle: "サイトを、事業の武器に。",
-    ctaDesc: "「現状のサイトをどう変えるべきか」のご相談から、要件整理段階での無料診断まで承ります。",
+    ctaDesc: "「現状のサイトをどう変えるべきか」のご相談から承ります。要件整理段階での無料診断が可能です。",
     ctaButton: "無料相談を申し込む",
   },
   en: {
     pageKicker: "Website Production",
     pageTitle: "Website Production",
-    pageDesc: "We build your site with the same Next.js + Vercel + Headless CMS stack powering clearai.jp, delivering top-tier speed, SEO, and ease of operation.",
+    pageDesc: "Next.js + Vercel + Headless CMS — top-tier speed, SEO, and ease of operation. We build your site with the same stack powering clearai.jp.",
     whyLabel: "Why Now",
     whyTitle: "Why AI-native websites matter right now.",
     whyItems: [
       { title: "Visibility in AI search", desc: "Google AI Overviews/SGE, ChatGPT Search — structured data and E-E-A-T design are now essential to be cited by AI." },
-      { title: "Speed equals trust", desc: "A 3-second delay sharply raises bounce rates, and Core Web Vitals are directly tied to conversions." },
-      { title: "The cost of manual updates", desc: "Depending on an agency for every content change is over — you need a CMS and workflow your team can manage safely in-house." },
+      { title: "Speed equals trust", desc: "A 3-second delay sharply raises bounce rates. Core Web Vitals are directly tied to conversions." },
+      { title: "The cost of manual updates", desc: "Depending on an agency for every content change is over. You need a CMS and workflow your team can manage safely in-house." },
     ],
     typesLabel: "Types",
     typesTitle: "Production types we handle",
     typesDesc: "Every project ships fast, editable, and discoverable by AI — as standard.",
     typeItems: [
       { num: "01", title: "Corporate site", desc: "Balance brand expression with conversion for recruiting and sales — from a company profile to a site that earns traffic through SEO." },
-      { num: "02", title: "Service site / LP", desc: "From a single-service LP to a multi-service hub, we design structures that convert from ad traffic." },
-      { num: "03", title: "Recruiting site", desc: "Story-driven design that builds your candidate pool and raises intent, including application forms and ATS integration." },
+      { num: "02", title: "Service site / LP", desc: "From a single-service LP to a multi-service hub. We design structures that convert from ad traffic." },
+      { num: "03", title: "Recruiting site", desc: "Story-driven design that builds your candidate pool and raises intent. Includes application forms and ATS integration." },
       { num: "04", title: "Media / owned media", desc: "Headless CMS and SEO architecture — a media foundation that gets stronger as you publish." },
-      { num: "05", title: "Redesign", desc: "Full-site overhaul that carries over your traffic equity while improving conversion rate, speed, and operability." },
+      { num: "05", title: "Redesign", desc: "Full-site overhaul. Carry over your traffic equity while improving conversion rate, speed, and operability across the board." },
       { num: "06", title: "AI-powered site", desc: "AI site search, LLM chat, auto FAQ generation — we build sites with AI features embedded." },
     ],
     stackLabel: "Tech Stack",
@@ -209,12 +184,12 @@ const COPY: Record<"ja" | "en", Copy> = {
     processItems: [
       { num: "01", title: "Discovery & requirements", desc: "We articulate your business goals, target audience, and KPIs — and define the role your site will play." },
       { num: "02", title: "Information architecture & wireframes", desc: "Sitemap, wireframes, and content requirements — with AI-assisted competitive and search-intent analysis." },
-      { num: "03", title: "Design & build", desc: "Figma design → Next.js implementation, with AI assistance cutting development time by 2–3x." },
+      { num: "03", title: "Design & build", desc: "Figma design → Next.js implementation. AI assistance cuts development time by 2–3x." },
       { num: "04", title: "Launch & ongoing support", desc: "We partner on post-launch operations, CMS training, and continuous SEO improvement." },
     ],
     pricingLabel: "Pricing",
     pricingTitle: "Pricing guide",
-    pricingDesc: "Varies by page count, feature requirements, and operational scope — a free estimate is available at the requirements stage.",
+    pricingDesc: "Varies by page count, feature requirements, and operational scope. A free estimate is available at the requirements stage.",
     plans: [
       {
         name: "6-Month Pack",
@@ -253,7 +228,7 @@ const COPY: Record<"ja" | "en", Copy> = {
     pricingFootnote: "Prices shown exclude tax. Final quote based on scope and volume. Japan's IT Introduction Subsidy may apply.",
     ctaLabel: "Contact",
     ctaTitle: "Turn your website into a business asset.",
-    ctaDesc: "We start from 'how should we change our current site?' — with a free assessment available at the requirements stage.",
+    ctaDesc: "We start from 'how should we change our current site?' A free assessment is available at the requirements stage.",
     ctaButton: "Book a free consultation",
   },
 };
@@ -264,198 +239,160 @@ export default function WebsitePage() {
 
   return (
     <>
-      {/* MASTHEAD */}
-      <section className="bg-white pt-28 lg:pt-32 pb-8 lg:pb-10">
+      {/* PAGE HEADER */}
+      <section className="pt-24 pb-10 lg:pt-28 lg:pb-12 bg-white border-b border-gray-100">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <Reveal>
-            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 border-b border-neutral-900 pb-4 font-mono text-[11px] uppercase tracking-[0.2em] text-neutral-500">
-              <span className="font-bold text-neutral-900">§00</span>
-              <span>{t.pageKicker}</span>
-              <span className="text-neutral-300">/</span>
-              <span>Next.js</span>
-              <span className="text-neutral-300">/</span>
-              <span>Vercel</span>
-              <span className="text-neutral-300">/</span>
-              <span>Headless&nbsp;CMS</span>
-            </div>
-          </Reveal>
-          <Reveal delay={90}>
-            <h1 className="mt-10 text-[7vw] sm:text-3xl lg:text-4xl font-bold leading-[0.95] tracking-[-0.04em] text-balance text-neutral-900">
-              {t.pageTitle}
-            </h1>
-          </Reveal>
-          <Reveal delay={180}>
-            <p className="mt-8 max-w-2xl text-base lg:text-lg leading-relaxed text-pretty text-neutral-600">{t.pageDesc}</p>
-          </Reveal>
+          <p className="text-sm font-semibold text-neutral-900 mb-3">{t.pageKicker}</p>
+          <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4">{t.pageTitle}</h1>
+          <p className="text-base text-gray-600 leading-relaxed w-full">{t.pageDesc}</p>
         </div>
       </section>
 
       {/* PRICING */}
-      <section className="py-12 lg:py-16 bg-white">
+      <section className="py-14 lg:py-20 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <SectionHead index="01" kicker={t.pricingLabel} title={t.pricingTitle} desc={t.pricingDesc} />
-          <PricingCarousel>
+          <Reveal>
+            <Label>Pricing</Label>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.pricingTitle}</h2>
+            <p className="text-sm text-gray-500 mb-8 w-full leading-relaxed">
+              {t.pricingDesc}
+            </p>
+          </Reveal>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
             {t.plans.map((plan, i) => (
               <Reveal key={plan.name} delay={i * 100} className="flex">
-                <div className={`flex flex-col w-full border border-neutral-900 p-7 lg:p-8 ${plan.featured ? "bg-neutral-900 text-white" : "bg-white"}`}>
-                  <div className={`mb-5 flex items-center justify-between border-b pb-3 ${plan.featured ? "border-neutral-700" : "border-neutral-200"}`}>
-                    <span className={`font-mono text-[10px] font-bold uppercase tracking-[0.18em] ${plan.featured ? "text-white" : "text-neutral-900"}`}>{plan.name}</span>
-                    {plan.featured ? (
-                      <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-400">Popular</span>
-                    ) : (
-                      <span className="font-mono text-[10px] tabular-nums text-neutral-400">{String(i + 1).padStart(2, "0")}</span>
-                    )}
-                  </div>
+                <div className={`rounded-lg p-8 lg:p-10 transition-all duration-300 flex flex-col w-full ${plan.featured ? "bg-neutral-900 text-white shadow-xl" : "bg-white border border-gray-200 hover:shadow-lg"}`}>
+                  {plan.featured ? (
+                    <span className="inline-block rounded-md bg-white/20 text-white px-3 py-1 text-sm font-semibold mb-4 self-start">Popular</span>
+                  ) : (
+                    <span aria-hidden="true" className="invisible inline-block rounded-md px-3 py-1 text-sm font-semibold mb-4 self-start">Popular</span>
+                  )}
+                  <h3 className={`text-lg font-bold mb-2 ${plan.featured ? "text-white" : "text-gray-900"}`}>{plan.name}</h3>
                   <div className="mb-4">
-                    <div className="flex items-baseline gap-1.5 flex-wrap">
-                      <span className={`font-mono text-2xl font-bold tabular-nums tracking-tight ${plan.featured ? "text-white" : "text-neutral-900"}`}>{plan.price}</span>
-                      {plan.unit && <span className={`font-mono text-sm ${plan.featured ? "text-neutral-300" : "text-neutral-500"}`}>{plan.unit}</span>}
+                    <div className="flex items-baseline gap-1 flex-wrap">
+                      <span className={`text-3xl font-bold ${plan.featured ? "text-white" : "text-gray-900"}`}>{plan.price}</span>
+                      {plan.unit && <span className={`text-sm ${plan.featured ? "text-white/80" : "text-gray-500"}`}>{plan.unit}</span>}
                     </div>
                     {plan.bundleNote && (
-                      <p className={`mt-1.5 font-mono text-[11px] tabular-nums ${plan.featured ? "text-neutral-400" : "text-neutral-500"}`}>{plan.bundleNote}</p>
+                      <p className={`text-xs mt-1 ${plan.featured ? "text-white/80" : "text-gray-500"}`}>{plan.bundleNote}</p>
                     )}
                   </div>
-                  <p className={`mb-5 text-sm leading-relaxed text-pretty ${plan.featured ? "text-neutral-300" : "text-neutral-600"}`}>{plan.desc}</p>
-                  <ul className={`mb-6 flex-1 space-y-2.5 border-t pt-4 font-mono ${plan.featured ? "border-neutral-700" : "border-neutral-200"}`}>
+                  <p className={`text-sm leading-relaxed mb-6 ${plan.featured ? "text-white/80" : "text-gray-600"}`}>{plan.desc}</p>
+                  <ul className="space-y-3 mb-8 flex-1">
                     {plan.features.map((f) => (
-                      <li key={f} className="flex items-start gap-2 text-xs">
-                        <span className={`flex-shrink-0 ${plan.featured ? "text-white" : "text-neutral-900"}`}>→</span>
-                        <span className={plan.featured ? "text-neutral-300" : "text-neutral-600"}>{f}</span>
+                      <li key={f} className="flex items-start gap-3">
+                        <span className={`mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 ${plan.featured ? "bg-white/40" : "bg-neutral-900"}`} />
+                        <span className={`text-sm ${plan.featured ? "text-white/90" : "text-gray-600"}`}>{f}</span>
                       </li>
                     ))}
                   </ul>
-                  <a href={plan.href} className={`group mt-auto inline-flex items-center justify-center gap-2 border px-6 py-3 font-mono text-xs font-bold uppercase tracking-[0.08em] transition-[color,background-color,border-color,scale] duration-300 active:scale-[0.96] ${plan.featured ? "border-white bg-white text-neutral-900 hover:bg-transparent hover:text-white" : "border-neutral-900 bg-white text-neutral-900 hover:bg-neutral-900 hover:text-white"}`}>
-                    {plan.cta}
-                    <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
-                  </a>
+                  <a href={plan.href} className={`block text-center text-sm font-semibold py-3 rounded-lg transition-all duration-300 mt-auto ${plan.featured ? "bg-white text-neutral-900 hover:bg-neutral-50" : "border border-gray-200 text-gray-600 hover:border-gray-400 hover:text-gray-900"}`}>{plan.cta}</a>
                 </div>
               </Reveal>
             ))}
-          </PricingCarousel>
+          </div>
           <Reveal delay={300}>
-            <p className="mt-8 font-mono text-[11px] leading-relaxed text-neutral-400">{t.pricingFootnote}</p>
+            <p className="text-xs text-gray-500 text-center mt-8">{t.pricingFootnote}</p>
           </Reveal>
         </div>
       </section>
 
       {/* WHY */}
-      <section className="py-12 lg:py-16 bg-white">
+      <section className="py-14 lg:py-20 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <SectionHead index="02" kicker={t.whyLabel} title={t.whyTitle} />
-          <CardCarousel gridClass="md:grid-cols-3">
+          <Reveal>
+            <Label>Why Now</Label>
+            <h2 className="text-3xl font-bold text-gray-900 leading-snug mb-8 w-full">{t.whyTitle}</h2>
+          </Reveal>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {t.whyItems.map((item, i) => (
               <Reveal key={item.title} delay={i * 100}>
-                <div className="group h-full border border-neutral-900 bg-white p-8 lg:p-10 transition-colors duration-300 hover:bg-neutral-900">
-                  <span className="mb-4 block font-mono text-xs font-bold tabular-nums text-neutral-400 transition-colors duration-300 group-hover:text-white">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <h3 className="mb-3 text-lg lg:text-xl font-bold tracking-tight text-balance text-neutral-900 transition-colors duration-300 group-hover:text-white">{item.title}</h3>
-                  <p className="text-sm leading-relaxed text-pretty text-neutral-600 transition-colors duration-300 group-hover:text-neutral-300">{item.desc}</p>
+                <div className="rounded-lg border border-gray-200 bg-white p-8 hover:shadow-lg transition-all duration-300 h-full">
+                  <h3 className="text-lg font-bold text-gray-900 mb-3">{item.title}</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
                 </div>
               </Reveal>
             ))}
-          </CardCarousel>
+          </div>
         </div>
       </section>
 
       {/* TYPES */}
-      <section id="types" className="py-12 lg:py-16 bg-neutral-50 border-y border-neutral-900">
+      <section id="types" className="py-14 lg:py-20 bg-gray-50">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <SectionHead index="03" kicker={t.typesLabel} title={t.typesTitle} desc={t.typesDesc} />
-          <CardCarousel gridClass="md:grid-cols-2 lg:grid-cols-3">
+          <Reveal>
+            <Label>Types</Label>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.typesTitle}</h2>
+            <p className="text-sm text-gray-500 mb-8 w-full leading-relaxed">
+              {t.typesDesc}
+            </p>
+          </Reveal>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {t.typeItems.map((item, i) => (
               <Reveal key={item.num} delay={i * 80}>
-                <div className="flex h-full flex-col border border-neutral-900 bg-white p-7 lg:p-8">
-                  <div className="mb-6 flex items-center justify-between border-b border-neutral-200 pb-3">
-                    <span className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-neutral-900">Type</span>
-                    <span className="font-mono text-[10px] tabular-nums text-neutral-400">{item.num}</span>
-                  </div>
-                  <h3 className="mb-3 text-lg lg:text-xl font-bold tracking-tight text-balance text-neutral-900">{item.title}</h3>
-                  <p className="text-sm leading-relaxed text-pretty text-neutral-600">{item.desc}</p>
+                <div className="bg-white rounded-lg border border-gray-200 p-8 hover:border-neutral-300 hover:shadow-lg transition-all duration-300 h-full">
+                  <span className="text-sm font-bold text-neutral-900 mb-3 inline-block">{item.num}</span>
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">{item.title}</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
                 </div>
               </Reveal>
             ))}
-          </CardCarousel>
+          </div>
         </div>
       </section>
 
       {/* STACK */}
-      <section className="py-12 lg:py-16 bg-white">
+      <section className="py-14 lg:py-20 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <SectionHead index="04" kicker={t.stackLabel} title={t.stackTitle} />
-          <div className="border-t border-neutral-900">
+          <Reveal>
+            <Label>Tech Stack</Label>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-8">{t.stackTitle}</h2>
+          </Reveal>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {t.stackItems.map((f, i) => (
-              <Reveal key={f.title} delay={i * 60}>
-                <div className="grid grid-cols-1 gap-2 border-b border-neutral-300 py-6 lg:grid-cols-12 lg:gap-8">
-                  <div className="lg:col-span-4">
-                    <h3 className="flex items-baseline gap-2 font-mono text-xs font-bold uppercase tracking-[0.18em] text-neutral-900">
-                      <span className="text-neutral-400">{String(i + 1).padStart(2, "0")}</span>
-                      {f.title}
-                    </h3>
-                  </div>
-                  <div className="lg:col-span-8">
-                    <p className="text-sm leading-relaxed text-pretty text-neutral-600">{f.desc}</p>
-                  </div>
+              <Reveal key={f.title} delay={i * 80}>
+                <div className="rounded-xl border border-gray-200 bg-white p-5 h-full">
+                  <h3 className="text-sm font-bold text-gray-900 mb-2">{f.title}</h3>
+                  <p className="text-xs text-gray-600 leading-relaxed">{f.desc}</p>
                 </div>
               </Reveal>
             ))}
           </div>
           <Reveal delay={200}>
-            <p className="mt-6 font-mono text-[11px] leading-relaxed text-neutral-400">{t.stackNote}</p>
+            <p className="text-xs text-gray-500 mt-6">{t.stackNote}</p>
           </Reveal>
         </div>
       </section>
 
       {/* PROCESS */}
-      <section className="py-12 lg:py-16 bg-neutral-50 border-y border-neutral-900">
+      <section className="py-14 lg:py-20 bg-gray-50">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <SectionHead index="05" kicker={t.processLabel} title={t.processTitle} />
-          <div className="hidden lg:grid grid-cols-12 gap-6 border-b border-neutral-900 pb-3 font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-400">
-            <div className="col-span-1">No.</div>
-            <div className="col-span-4">Phase</div>
-            <div className="col-span-7">Detail</div>
+          <Reveal>
+            <Label>Process</Label>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-8">{t.processTitle}</h2>
+          </Reveal>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {t.processItems.map((item, i) => (
+              <Reveal key={item.title} delay={i * 100}>
+                <div className="rounded-lg border border-gray-200 bg-white p-8 hover:shadow-lg transition-all duration-300 h-full">
+                  <span className="text-xs font-semibold text-neutral-900 tracking-widest">{item.num}</span>
+                  <h3 className="text-lg font-bold text-gray-900 mt-2 mb-3">{item.title}</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
+                </div>
+              </Reveal>
+            ))}
           </div>
-          {t.processItems.map((item, i) => (
-            <Reveal key={item.title} delay={i * 60}>
-              <div className="group grid grid-cols-1 gap-2 border-b border-neutral-300 py-7 transition-colors duration-300 hover:bg-neutral-100 lg:grid-cols-12 lg:gap-6">
-                <div className="lg:col-span-1">
-                  <span className="font-mono text-lg font-bold tabular-nums text-neutral-900">{item.num}</span>
-                </div>
-                <div className="lg:col-span-4">
-                  <h3 className="text-lg font-bold tracking-tight text-balance text-neutral-900">{item.title}</h3>
-                </div>
-                <div className="lg:col-span-7">
-                  <p className="text-[15px] leading-relaxed text-pretty text-neutral-600">{item.desc}</p>
-                </div>
-              </div>
-            </Reveal>
-          ))}
         </div>
       </section>
 
       {/* CTA */}
-      <section className="bg-neutral-900 py-16 lg:py-20">
-        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
+      <section className="py-14 lg:py-20 bg-gray-50">
+        <div className="max-w-2xl mx-auto px-6 text-center">
           <Reveal>
-            <div className="flex items-center gap-4 border-b border-neutral-700 pb-4 font-mono text-[11px] uppercase tracking-[0.25em] text-neutral-500">
-              <span className="font-bold text-white">§06</span>
-              <span>{t.ctaLabel}</span>
-            </div>
-            <div className="mt-12 grid grid-cols-1 items-end gap-10 lg:grid-cols-12">
-              <div className="lg:col-span-8">
-                <h2 className="text-[18px] sm:text-xl lg:text-2xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance text-white">{t.ctaTitle}</h2>
-                <p className="mt-6 max-w-2xl text-base leading-relaxed text-pretty text-neutral-400">{t.ctaDesc}</p>
-              </div>
-              <div className="lg:col-span-4 lg:text-right">
-                <a
-                  href="/contact?service=website"
-                  className="group inline-flex items-center gap-3 border border-white bg-white px-8 py-4 font-mono text-sm font-bold uppercase tracking-[0.08em] text-neutral-900 transition-[color,background-color,border-color,scale] duration-300 hover:bg-transparent hover:text-white active:scale-[0.96]"
-                >
-                  {t.ctaButton}
-                  <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
-                </a>
-              </div>
-            </div>
+            <Label>Contact</Label>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">{t.ctaTitle}</h2>
+            <p className="text-base text-gray-600 leading-relaxed mb-10">{t.ctaDesc}</p>
+            <a href="/contact?service=website" className="rounded-lg bg-neutral-900 text-white font-semibold px-10 py-4 hover:bg-neutral-800 transition-colors duration-300 inline-block">{t.ctaButton}</a>
           </Reveal>
         </div>
       </section>

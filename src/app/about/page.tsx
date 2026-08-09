@@ -440,7 +440,7 @@ export default function AboutPage() {
     <main className="min-h-screen bg-white">
 
       {/* ─── 3. VISION 2030 ──────────────────────────────────────────────── */}
-      <section className="py-24 lg:py-40 bg-neutral-950 relative overflow-hidden">
+      <section className="py-40 lg:py-56 bg-neutral-950 relative overflow-hidden">
         <video
           autoPlay
           loop
@@ -461,17 +461,23 @@ export default function AboutPage() {
           }}
         />
         <div className="relative z-10 max-w-[1800px] mx-auto px-6 lg:px-8">
-          <SectionHead index="00" kicker={t.visionLabel} title={t.visionTitle} desc={t.visionDesc} dark />
-          <div className="grid md:grid-cols-3 gap-4">
+          <Reveal>
+            <p className="text-xs font-semibold tracking-widest uppercase text-neutral-300 mb-6">{t.visionLabel}</p>
+            <h2 className="text-3xl font-bold text-white leading-tight mb-6 w-full whitespace-pre-line">
+              {t.visionTitle}
+            </h2>
+            <p className="text-base text-gray-300 leading-relaxed w-full mb-16">
+              {t.visionDesc}
+            </p>
+          </Reveal>
+
+          <div className="grid md:grid-cols-3 gap-8 auto-rows-fr">
             {t.vision.map((item, i) => (
               <Reveal key={item.label} delay={i * 80} className="h-full">
-                <div className="flex h-full flex-col border border-white/15 bg-white/[0.04] p-8 lg:p-10 backdrop-blur-sm">
-                  <span className="mb-6 font-mono text-[11px] uppercase tracking-[0.2em] text-neutral-400">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <p className="text-4xl lg:text-5xl font-bold tabular-nums leading-none text-white">{item.num}</p>
-                  <p className="mt-3 font-mono text-[11px] uppercase tracking-[0.15em] text-neutral-300">{item.label}</p>
-                  <p className="mt-4 text-sm leading-relaxed text-pretty text-neutral-400">{item.desc}</p>
+                <div className="h-full border border-white/10 rounded-lg p-10 lg:p-12 bg-white/10 backdrop-blur-md flex flex-col">
+                  <p className="text-4xl lg:text-5xl font-bold text-white mb-2">{item.num}</p>
+                  <p className="text-sm font-semibold text-neutral-300 mb-3">{item.label}</p>
+                  <p className="text-sm text-gray-300 leading-relaxed">{item.desc}</p>
                 </div>
               </Reveal>
             ))}
@@ -480,17 +486,26 @@ export default function AboutPage() {
       </section>
 
       {/* ─── 7.5 MEMBERS ─────────────────────────────────────────────────── */}
-      <section className="py-12 lg:py-16 bg-white border-t border-neutral-900">
+      <section className="py-14 lg:py-20 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <SectionHead index="01" kicker={t.membersLabel} title={t.membersTitle} desc={t.membersDesc} />
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <Reveal>
+            <p className="text-xs font-semibold tracking-widest uppercase text-neutral-900 mb-6">{t.membersLabel}</p>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-6 w-full">
+              {t.membersTitle}
+            </h2>
+            <p className="text-base text-gray-600 leading-relaxed w-full mb-16">
+              {t.membersDesc}
+            </p>
+          </Reveal>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
             {t.members.map((m, i) => (
-              <Reveal key={m.nameEn} delay={i * 60} className="h-full">
-                <article className="group h-full border border-neutral-900 bg-white p-7 lg:p-8 transition-colors duration-300 hover:bg-neutral-50">
-                  <div className="mb-6 flex items-start justify-between gap-3 border-b border-neutral-200 pb-4">
+              <Reveal key={m.nameEn} delay={i * 80} className="h-full">
+                <article className="group h-full border border-gray-200 rounded-lg p-8 bg-white hover:border-neutral-300 hover:shadow-lg transition-all duration-300">
+                  <div className="mb-6 flex items-start justify-between gap-3">
                     <div>
-                      <h3 className="text-lg font-bold tracking-tight text-balance text-neutral-900 leading-tight">{m.name}</h3>
-                      <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.15em] text-neutral-400">{m.nameEn}</p>
+                      <h3 className="text-lg font-bold text-gray-900 leading-tight">{m.name}</h3>
+                      <p className="text-xs text-gray-400 font-medium tracking-wide mt-0.5">{m.nameEn}</p>
                     </div>
                     {CREST_BY_NAME[m.name] && (
                       // eslint-disable-next-line @next/next/no-img-element
@@ -502,8 +517,8 @@ export default function AboutPage() {
                       />
                     )}
                   </div>
-                  <p className="mb-3 text-sm font-semibold text-neutral-900">{m.role}</p>
-                  <p className="text-sm leading-relaxed text-pretty text-neutral-600">{m.bio}</p>
+                  <p className="text-sm font-semibold text-neutral-900 mb-3">{m.role}</p>
+                  <p className="text-sm text-gray-600 leading-relaxed">{m.bio}</p>
                 </article>
               </Reveal>
             ))}
@@ -512,90 +527,96 @@ export default function AboutPage() {
       </section>
 
       {/* ─── 9. HISTORY / TIMELINE ───────────────────────────────────────── */}
-      <section className="py-12 lg:py-16 bg-neutral-50 border-y border-neutral-900">
+      <section className="py-14 lg:py-20 bg-gray-50">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <SectionHead index="02" kicker={t.historyLabel} title={t.historyTitle} />
-          <div className="relative max-w-2xl ml-[1px] border-l border-neutral-300">
-            {t.timeline.map((item, i) => (
-              <Reveal key={i} delay={i * 80}>
-                <div className="relative pb-12 pl-10 last:pb-0">
-                  {/* square marker — filled past / outlined future */}
-                  <div
-                    className={`absolute -left-[5px] top-1 h-2.5 w-2.5 ${
-                      item.future ? "border border-neutral-400 bg-neutral-50" : "bg-neutral-900"
-                    }`}
-                  />
-                  <span
-                    className={`block font-mono text-[11px] uppercase tracking-[0.15em] mb-2 ${
-                      item.future ? "text-neutral-400" : "text-neutral-900"
-                    }`}
-                  >
-                    {item.year}
-                  </span>
-                  <h3
-                    className={`mb-2 text-base font-bold tracking-tight text-balance ${
-                      item.future ? "text-neutral-400" : "text-neutral-900"
-                    }`}
-                  >
-                    {item.title}
-                  </h3>
-                  <p className={`text-sm leading-relaxed text-pretty ${item.future ? "text-neutral-400" : "text-neutral-600"}`}>
-                    {item.description}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
+          <Reveal>
+            <p className="text-xs font-semibold tracking-widest uppercase text-neutral-900 mb-6">{t.historyLabel}</p>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-16">
+              {t.historyTitle}
+            </h2>
+          </Reveal>
+
+          <div className="relative max-w-2xl">
+            {/* Vertical line */}
+            <div className="absolute left-[5px] top-2 bottom-2 w-px bg-gray-200" />
+
+            <div className="space-y-12">
+              {t.timeline.map((item, i) => (
+                <Reveal key={i} delay={i * 100}>
+                  <div className="relative pl-12">
+                    {/* Dot — filled for past, outlined for future */}
+                    {item.future ? (
+                      <div className="absolute left-0 top-1.5 w-[11px] h-[11px] rounded-full border-2 border-neutral-300 bg-white" />
+                    ) : (
+                      <div className="absolute left-0 top-1.5 w-[11px] h-[11px] rounded-full bg-neutral-900" />
+                    )}
+
+                    <span className={`block text-xs font-bold tracking-wide mb-1.5 ${item.future ? "text-neutral-300" : "text-neutral-900"}`}>
+                      {item.year}
+                    </span>
+                    <h3 className={`text-base font-bold mb-2 ${item.future ? "text-gray-400" : "text-gray-900"}`}>
+                      {item.title}
+                    </h3>
+                    <p className={`text-sm leading-relaxed ${item.future ? "text-gray-400" : "text-gray-600"}`}>
+                      {item.description}
+                    </p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* ─── 10. CTA ─────────────────────────────────────────────────────── */}
-      <section className="bg-neutral-900 py-16 lg:py-20">
-        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
+      <section className="py-14 lg:py-20 bg-neutral-950 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-neutral-900/40 to-gray-950 pointer-events-none" />
+        <div className="relative max-w-[1800px] mx-auto px-6 lg:px-8 text-center">
           <Reveal>
-            <div className="flex items-center gap-4 border-b border-neutral-700 pb-4 font-mono text-[11px] uppercase tracking-[0.25em] text-neutral-500">
-              <span className="font-bold text-white">§03</span>
-              <span>{t.joinLabel}</span>
-            </div>
-            <div className="mt-12 grid grid-cols-1 items-end gap-10 lg:grid-cols-12">
-              <div className="lg:col-span-8">
-                <h2 className="text-[18px] sm:text-xl lg:text-2xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance whitespace-pre-line text-white">
-                  {t.joinTitle}
-                </h2>
-                <p className="mt-6 max-w-xl text-base leading-relaxed text-pretty text-neutral-400">{t.joinDesc}</p>
-              </div>
-              <div className="flex flex-col gap-3 sm:flex-row lg:col-span-4 lg:flex-col lg:items-end">
-                <Link
-                  href="/contact"
-                  className="group inline-flex items-center justify-center gap-3 border border-white bg-white px-8 py-4 font-mono text-sm font-bold uppercase tracking-[0.08em] text-neutral-900 transition-[color,background-color,border-color,scale] duration-300 hover:bg-transparent hover:text-white active:scale-[0.96]"
-                >
-                  {t.joinCta}
-                  <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
-                </Link>
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center justify-center gap-2 border border-white/25 px-8 py-4 font-mono text-sm font-bold uppercase tracking-[0.08em] text-neutral-400 transition-[color,border-color,scale] duration-300 hover:border-white hover:text-white active:scale-[0.96]"
-                >
-                  {t.joinRecruit}
-                </Link>
-              </div>
+            <p className="text-xs font-semibold tracking-widest uppercase text-neutral-300 mb-6">{t.joinLabel}</p>
+            <h2 className="text-3xl font-bold text-white leading-tight mb-6 max-w-2xl mx-auto whitespace-pre-line">
+              {t.joinTitle}
+            </h2>
+            <p className="text-base text-gray-400 leading-relaxed max-w-lg mx-auto mb-12">
+              {t.joinDesc}
+            </p>
+          </Reveal>
+          <Reveal delay={80}>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center gap-2 bg-neutral-900 hover:bg-neutral-800 text-white font-bold text-base rounded-lg px-8 py-4 transition-colors duration-200"
+              >
+                {t.joinCta}
+              </Link>
+              <Link href="/contact" className="inline-flex items-center justify-center gap-2 border border-white/20 text-white/60 font-semibold text-base rounded-lg px-8 py-4 hover:border-white/40 hover:text-white transition-colors duration-200">
+                {t.joinRecruit}
+              </Link>
             </div>
           </Reveal>
         </div>
       </section>
 
       {/* ─── 11. COMPANY INFORMATION (moved below Join Us) ───────────────── */}
-      <section className="py-12 lg:py-16 bg-white border-t border-neutral-900">
+      <section className="py-14 lg:py-20 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <SectionHead index="04" kicker={t.companyLabel} title={t.companyTitle} />
-          <div className="max-w-3xl border-t border-neutral-900">
+          <Reveal>
+            <p className="text-xs font-semibold tracking-widest uppercase text-neutral-900 mb-6">{t.companyLabel}</p>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-12">
+              {t.companyTitle}
+            </h2>
+          </Reveal>
+
+          <div className="max-w-2xl">
             {t.companyInfo.map((item, i) => (
-              <Reveal key={item.label} delay={i * 50}>
-                <div className="grid grid-cols-1 gap-1 border-b border-neutral-200 py-5 sm:grid-cols-12 sm:gap-6">
-                  <span className="pt-0.5 font-mono text-[11px] uppercase tracking-[0.15em] text-neutral-400 sm:col-span-3">
+              <Reveal key={item.label} delay={i * 60}>
+                <div className="flex flex-col sm:flex-row sm:items-baseline py-5 border-b border-gray-100 last:border-0">
+                  <span className="sm:w-48 shrink-0 text-sm font-semibold text-gray-500 mb-1 sm:mb-0">
                     {item.label}
                   </span>
-                  <span className="text-[15px] text-neutral-900 sm:col-span-9">{item.value}</span>
+                  <span className="text-base text-gray-900 font-medium">
+                    {item.value}
+                  </span>
                 </div>
               </Reveal>
             ))}

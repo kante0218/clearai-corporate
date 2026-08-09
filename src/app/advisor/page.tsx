@@ -49,6 +49,10 @@ function SectionHead({
   );
 }
 
+function Label({ children }: { children: ReactNode }) {
+  return <p className="text-sm font-semibold text-neutral-900 mb-4">{children}</p>;
+}
+
 type Plan = {
   name: string; price: string; unit: string; desc: string; features: string[];
   featured: boolean; href: string; cta: string; minTerm: string;
@@ -355,103 +359,90 @@ export default function AdvisorPage() {
 
   return (
     <>
-      {/* MASTHEAD */}
-      <section className="bg-white pt-32 lg:pt-40 pb-4 lg:pb-5">
+      {/* PAGE HEADER */}
+      <section className="pt-24 pb-10 lg:pt-28 lg:pb-12 bg-white border-b border-gray-100">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <Reveal>
-            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 border-b border-neutral-900 pb-4 font-mono text-[11px] uppercase tracking-[0.2em] text-neutral-500">
-              <span className="font-bold text-neutral-900">§00</span>
-              <span>{t.heroKicker}</span>
-              <span className="text-neutral-300">/</span>
-              <span>Advisory</span>
-              <span className="text-neutral-300">/</span>
-              <span>Ongoing</span>
-            </div>
-          </Reveal>
-          <Reveal delay={90}>
-            <h1 className="mt-10 text-[7vw] sm:text-3xl lg:text-4xl font-bold leading-[0.95] tracking-[-0.04em] text-balance text-neutral-900">
-              {t.heroTitle}
-            </h1>
-          </Reveal>
-          <Reveal delay={180}>
-            <p className="mt-8 max-w-2xl text-base lg:text-lg leading-relaxed text-pretty text-neutral-600">{t.heroDesc}</p>
-          </Reveal>
+          <p className="text-sm font-semibold text-neutral-900 mb-3">{t.heroKicker}</p>
+          <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4">{t.heroTitle}</h1>
+          <p className="text-base text-gray-600 leading-relaxed w-full">{t.heroDesc}</p>
         </div>
       </section>
 
       {/* PLANS */}
-      <section id="plans" className="py-12 lg:py-16 bg-neutral-50 border-y border-neutral-900">
+      <section id="plans" className="py-14 lg:py-20 bg-gray-50">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <SectionHead index="01" kicker={t.plansLabel} title={t.plansTitle} />
+          <Reveal>
+            <Label>{t.plansLabel}</Label>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-8">{t.plansTitle}</h2>
+          </Reveal>
           <PlansCarousel plans={t.plans} recommended={t.recommended} />
           <Reveal delay={300}>
-            <p className="mt-8 font-mono text-[11px] uppercase tracking-[0.12em] text-neutral-500 text-center">{t.plansNote}</p>
+            <p className="text-xs text-gray-500 text-center mt-8">{t.plansNote}</p>
           </Reveal>
         </div>
       </section>
 
       {/* WHY */}
-      <section className="py-12 lg:py-16 bg-white">
+      <section className="py-14 lg:py-20 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <SectionHead index="02" kicker={t.whyLabel} title={t.whyTitle} />
-          <CardCarousel gridClass="md:grid-cols-3">
+          <Reveal>
+            <Label>{t.whyLabel}</Label>
+            <h2 className="text-3xl font-bold text-gray-900 leading-snug mb-6 w-full">{t.whyTitle}</h2>
+          </Reveal>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {t.why.map((item, i) => (
-              <Reveal key={item.title} delay={i * 80}>
-                <div className="group h-full border border-neutral-900 bg-white p-8 lg:p-10 transition-colors duration-300 hover:bg-neutral-900">
-                  <div className="mb-6 flex items-center justify-between border-b border-neutral-200 pb-3 transition-colors duration-300 group-hover:border-neutral-700">
-                    <span className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-neutral-900 transition-colors duration-300 group-hover:text-white">Pain</span>
-                    <span className="font-mono text-[10px] tabular-nums text-neutral-400">{String(i + 1).padStart(2, "0")}</span>
-                  </div>
-                  <h3 className="mb-3 text-lg lg:text-xl font-bold tracking-tight text-balance text-neutral-900 transition-colors duration-300 group-hover:text-white">{item.title}</h3>
-                  <p className="text-sm leading-relaxed text-pretty text-neutral-600 transition-colors duration-300 group-hover:text-neutral-300">{item.desc}</p>
+              <Reveal key={item.title} delay={i * 100}>
+                <div className="rounded-lg border border-gray-200 bg-white p-8 hover:shadow-lg transition-all duration-300 h-full">
+                  <h3 className="text-lg font-bold text-gray-900 mb-3">{item.title}</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
                 </div>
               </Reveal>
             ))}
-          </CardCarousel>
+          </div>
         </div>
       </section>
 
       {/* SERVICES */}
-      <section className="py-12 lg:py-16 bg-neutral-50 border-y border-neutral-900">
+      <section className="py-14 lg:py-20 bg-gray-50">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <SectionHead index="03" kicker={t.whatLabel} title={t.whatTitle} />
-          <CardCarousel gridClass="md:grid-cols-2">
+          <Reveal>
+            <Label>{t.whatLabel}</Label>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-8">{t.whatTitle}</h2>
+          </Reveal>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {t.what.map((item, i) => (
-              <Reveal key={item.num} delay={i * 80}>
-                <div className="group h-full border border-neutral-900 bg-white p-8 lg:p-10 transition-colors duration-300 hover:bg-neutral-900">
-                  <div className="flex items-baseline justify-between border-b border-neutral-200 pb-4 transition-colors duration-300 group-hover:border-neutral-700">
-                    <span className="font-mono text-2xl font-bold tabular-nums text-neutral-900 transition-colors duration-300 group-hover:text-white">{item.num}</span>
-                    <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-400">Service / {item.num}</span>
-                  </div>
-                  <h3 className="mt-6 text-xl lg:text-2xl font-bold tracking-tight text-balance text-neutral-900 transition-colors duration-300 group-hover:text-white">{item.title}</h3>
-                  <p className="mt-4 text-[15px] leading-relaxed text-pretty text-neutral-600 transition-colors duration-300 group-hover:text-neutral-300">{item.desc}</p>
+              <Reveal key={item.num} delay={i * 100}>
+                <div className="bg-white rounded-lg border border-gray-200 p-8 hover:border-neutral-300 hover:shadow-lg transition-all duration-300">
+                  <span className="text-sm font-bold text-neutral-900">{item.num}</span>
+                  <h3 className="text-xl font-bold text-gray-900 mt-3 mb-4">{item.title}</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
                 </div>
               </Reveal>
             ))}
-          </CardCarousel>
+          </div>
         </div>
       </section>
 
       {/* CLAUDE INTEGRATION */}
-      <section className="py-12 lg:py-16 bg-white">
+      <section className="py-14 lg:py-20 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <div className="border border-neutral-900 bg-white">
-            <div className="grid lg:grid-cols-2">
-              <Reveal className="border-b border-neutral-900 p-8 lg:p-12 lg:border-b-0 lg:border-r">
-                <div className="flex items-center gap-4 border-b border-neutral-900 pb-4">
-                  <span className="font-mono text-xs font-bold tabular-nums text-neutral-900">§04</span>
-                  <span className="font-mono text-[11px] font-medium uppercase tracking-[0.25em] text-neutral-500">{t.claudeLabel}</span>
-                </div>
-                <h2 className="mt-8 text-[20px] sm:text-xl lg:text-2xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance text-neutral-900">{t.claudeTitle}</h2>
-                <p className="mt-5 text-[15px] leading-relaxed text-pretty text-neutral-600">{t.claudeDesc}</p>
+          <div className="rounded-lg border border-neutral-200 bg-neutral-50 p-8 lg:p-12">
+            <div className="grid lg:grid-cols-2 gap-10 items-start">
+              <Reveal>
+                <p className="inline-flex items-center gap-2 text-sm font-semibold text-neutral-900 mb-4">
+                  <span className="w-2 h-2 rounded-full bg-neutral-900" />{t.claudeLabel}
+                </p>
+                <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 leading-snug mb-5">{t.claudeTitle}</h2>
+                <p className="text-sm text-gray-600 leading-relaxed">{t.claudeDesc}</p>
               </Reveal>
-              <Reveal delay={120} className="p-8 lg:p-12">
-                <ul className="border-t border-neutral-200 font-mono">
-                  {t.claudePoints.map((p, i) => (
-                    <li key={p} className="flex items-start gap-3 border-b border-neutral-200 py-4">
-                      <span className="flex-shrink-0 font-mono text-[10px] tabular-nums text-neutral-400 mt-1">{String(i + 1).padStart(2, "0")}</span>
-                      <span className="flex-shrink-0 text-neutral-900">→</span>
-                      <span className="text-sm leading-snug text-neutral-700">{p}</span>
+              <Reveal delay={120}>
+                <ul className="space-y-3">
+                  {t.claudePoints.map((p) => (
+                    <li key={p} className="flex items-start gap-3 rounded-lg bg-white border border-neutral-200 p-4">
+                      <svg className="w-5 h-5 text-neutral-900 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span className="text-sm font-medium text-gray-800 leading-snug">{p}</span>
                     </li>
                   ))}
                 </ul>
@@ -462,27 +453,21 @@ export default function AdvisorPage() {
       </section>
 
       {/* PROCESS */}
-      <section className="py-12 lg:py-16 bg-neutral-50 border-y border-neutral-900">
+      <section className="py-14 lg:py-20 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <SectionHead index="05" kicker={t.processLabel} title={t.processTitle} />
-          <div className="hidden lg:grid grid-cols-12 gap-6 border-b border-neutral-900 pb-3 font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-400">
-            <div className="col-span-1">No.</div>
-            <div className="col-span-3">Phase</div>
-            <div className="col-span-8">Detail</div>
-          </div>
+          <Reveal>
+            <Label>{t.processLabel}</Label>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-8">{t.processTitle}</h2>
+          </Reveal>
           {t.process.map((step, i) => (
-            <Reveal key={step.num} delay={i * 60}>
-              <div className="group grid grid-cols-1 gap-2 border-b border-neutral-300 py-7 transition-colors duration-300 hover:bg-neutral-100 lg:grid-cols-12 lg:gap-6">
-                <div className="lg:col-span-1">
-                  <span className="font-mono text-lg font-bold tabular-nums text-neutral-900">{step.num}</span>
-                </div>
+            <Reveal key={step.num} delay={i * 100}>
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 py-10 border-b border-gray-100 last:border-0">
+                <div className="lg:col-span-1"><span className="text-sm font-bold text-neutral-900">{step.num}</span></div>
                 <div className="lg:col-span-3">
-                  <h3 className="text-lg font-bold tracking-tight text-balance text-neutral-900">{step.title}</h3>
-                  <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-400">{step.en}</p>
+                  <h3 className="text-xl font-bold text-gray-900">{step.title}</h3>
+                  <p className="text-sm text-gray-400 mt-1">{step.en}</p>
                 </div>
-                <div className="lg:col-span-8">
-                  <p className="text-[15px] leading-relaxed text-pretty text-neutral-600">{step.desc}</p>
-                </div>
+                <div className="lg:col-span-8"><p className="text-sm text-gray-600 leading-relaxed">{step.desc}</p></div>
               </div>
             </Reveal>
           ))}
@@ -490,19 +475,21 @@ export default function AdvisorPage() {
       </section>
 
       {/* FAQ */}
-      <section className="py-12 lg:py-16 bg-white">
+      <section className="py-14 lg:py-20 bg-gray-50">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <SectionHead index="06" kicker={t.faqLabel} title={t.faqTitle} />
-          <div className="max-w-3xl border-t border-neutral-900">
+          <Reveal>
+            <Label>{t.faqLabel}</Label>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-8">{t.faqTitle}</h2>
+          </Reveal>
+          <div className="max-w-3xl">
             {t.faq.map((item, i) => (
-              <Reveal key={i} delay={i * 50}>
-                <details className="group border-b border-neutral-300 py-5">
-                  <summary className="flex cursor-pointer list-none items-start gap-4 text-base font-semibold text-neutral-900">
-                    <span className="mt-0.5 font-mono text-xs tabular-nums text-neutral-400">Q{String(i + 1).padStart(2, "0")}</span>
-                    <span className="flex-1">{item.q}</span>
-                    <span className="font-mono text-lg leading-none text-neutral-400 transition-transform duration-300 group-open:rotate-45">+</span>
+              <Reveal key={i} delay={i * 80}>
+                <details className="border-b border-gray-100 py-5 group">
+                  <summary className="font-semibold text-gray-900 cursor-pointer list-none flex items-center justify-between gap-4">
+                    <span>{item.q}</span>
+                    <span className="text-gray-400 text-lg leading-none flex-shrink-0 transition-transform duration-300 group-open:rotate-45">+</span>
                   </summary>
-                  <p className="mt-4 pl-9 text-sm leading-relaxed text-pretty text-neutral-600">{item.a}</p>
+                  <p className="text-gray-600 text-sm leading-relaxed mt-3">{item.a}</p>
                 </details>
               </Reveal>
             ))}
@@ -511,28 +498,13 @@ export default function AdvisorPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-neutral-900 py-16 lg:py-20">
-        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
+      <section className="py-14 lg:py-20 bg-white">
+        <div className="max-w-2xl mx-auto px-6 text-center">
           <Reveal>
-            <div className="flex items-center gap-4 border-b border-neutral-700 pb-4 font-mono text-[11px] uppercase tracking-[0.25em] text-neutral-500">
-              <span className="font-bold text-white">§07</span>
-              <span>{t.ctaLabel}</span>
-            </div>
-            <div className="mt-12 grid grid-cols-1 items-end gap-10 lg:grid-cols-12">
-              <div className="lg:col-span-8">
-                <h2 className="text-[18px] sm:text-xl lg:text-2xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance text-white">{t.ctaTitle}</h2>
-                <p className="mt-6 max-w-2xl text-base leading-relaxed text-pretty text-neutral-400">{t.ctaDesc}</p>
-              </div>
-              <div className="lg:col-span-4 lg:text-right">
-                <a
-                  href="/contact?service=advisor"
-                  className="group inline-flex items-center gap-3 border border-white bg-white px-8 py-4 font-mono text-sm font-bold uppercase tracking-[0.08em] text-neutral-900 transition-[color,background-color,border-color,scale] duration-300 hover:bg-transparent hover:text-white active:scale-[0.96]"
-                >
-                  {t.ctaButton}
-                  <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
-                </a>
-              </div>
-            </div>
+            <Label>{t.ctaLabel}</Label>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">{t.ctaTitle}</h2>
+            <p className="text-base text-gray-600 leading-relaxed mb-10">{t.ctaDesc}</p>
+            <a href="/contact?service=advisor" className="rounded-md bg-neutral-900 text-white font-semibold px-10 py-4 hover:bg-neutral-800 transition-colors duration-300 inline-block">{t.ctaButton}</a>
           </Reveal>
         </div>
       </section>

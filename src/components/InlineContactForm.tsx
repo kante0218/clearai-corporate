@@ -77,7 +77,7 @@ export default function InlineContactForm({ lang = "ja" }: { lang?: "ja" | "en" 
 
   if (status === "ok") {
     return (
-      <div className="mx-auto max-w-xl rounded-2xl border border-gray-200 bg-white p-8 text-center shadow-sm">
+      <div className="mx-auto max-w-xl rounded-lg border border-gray-200 bg-white p-8 text-center">
         <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-neutral-900 text-white">✓</div>
         <p className="text-base font-semibold text-gray-900">{t.ok}</p>
       </div>
@@ -88,7 +88,7 @@ export default function InlineContactForm({ lang = "ja" }: { lang?: "ja" | "en" 
     "w-full rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:border-neutral-400 focus:outline-none focus:ring-2 focus:ring-neutral-900/10 transition";
 
   return (
-    <form onSubmit={onSubmit} className="mx-auto max-w-xl rounded-2xl border border-gray-200 bg-white p-6 sm:p-8 shadow-sm text-left">
+    <form onSubmit={onSubmit} className="mx-auto max-w-xl rounded-lg border border-gray-200 bg-white p-6 sm:p-8 text-left">
       <p className="text-base font-bold text-gray-900">{t.heading}</p>
       <p className="mt-1 mb-5 text-xs text-gray-500">{t.sub}</p>
       <div className="grid gap-3 sm:grid-cols-2">

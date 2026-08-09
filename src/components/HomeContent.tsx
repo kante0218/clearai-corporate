@@ -5,7 +5,6 @@ import Image from "next/image";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import HeroParticlesBg from "@/components/HeroParticlesBg";
-import CardCarousel from "@/components/CardCarousel";
 import CountUp from "@/components/CountUp";
 import InlineContactForm from "@/components/InlineContactForm";
 
@@ -34,7 +33,7 @@ function Reveal({ children, className = "", delay = 0, variant = "up" }: { child
   );
 }
 
-/* Dossier section header — §NN chapter marker + mono kicker (dark-capable) */
+/* Shared section heading in the softer butterfly-era visual language. */
 function SectionHead({
   index,
   kicker,
@@ -52,19 +51,26 @@ function SectionHead({
 }) {
   return (
     <Reveal className={`mb-8 md:mb-7 lg:mb-9 ${className}`}>
-      <div className={`flex items-center gap-4 border-b pb-4 ${dark ? "border-white/25" : "border-neutral-900"}`}>
-        <span className={`font-mono text-xs font-bold tabular-nums ${dark ? "text-white" : "text-neutral-900"}`}>§{index}</span>
-        <span className={`font-mono text-[11px] font-medium uppercase tracking-[0.25em] ${dark ? "text-neutral-400" : "text-neutral-500"}`}>{kicker}</span>
-      </div>
-      <h2 className={`mt-6 md:mt-8 text-[18px] sm:text-xl lg:text-2xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance ${dark ? "text-white" : "text-neutral-900"}`}>
+      <span className="sr-only">{index}</span>
+      <p className={`mb-4 text-xs font-semibold uppercase tracking-widest ${dark ? "text-neutral-300" : "text-neutral-900"}`}>{kicker}</p>
+      <h2 className={`text-3xl font-bold leading-tight ${dark ? "text-white" : "text-gray-900"}`}>
         {title}
       </h2>
-      {desc && <p className={`mt-5 max-w-2xl text-[15px] leading-relaxed text-pretty ${dark ? "text-neutral-400" : "text-neutral-600"}`}>{desc}</p>}
+      {desc && <p className={`mt-4 w-full text-base leading-relaxed ${dark ? "text-neutral-300" : "text-gray-500"}`}>{desc}</p>}
     </Reveal>
   );
 }
 
 type SvcColor = "indigo" | "amber" | "sky" | "blue" | "rose" | "cyan";
+
+const colorMap: Record<SvcColor, { hoverBorder: string; code: string; cta: string; ctaHover: string }> = {
+  indigo: { hoverBorder: "hover:border-neutral-300", code: "text-neutral-900", cta: "text-neutral-900", ctaHover: "group-hover:text-neutral-700" },
+  amber: { hoverBorder: "hover:border-neutral-300", code: "text-neutral-900", cta: "text-neutral-900", ctaHover: "group-hover:text-neutral-700" },
+  sky: { hoverBorder: "hover:border-neutral-300", code: "text-neutral-900", cta: "text-neutral-900", ctaHover: "group-hover:text-neutral-700" },
+  blue: { hoverBorder: "hover:border-neutral-300", code: "text-neutral-900", cta: "text-neutral-900", ctaHover: "group-hover:text-neutral-700" },
+  rose: { hoverBorder: "hover:border-neutral-300", code: "text-neutral-900", cta: "text-neutral-900", ctaHover: "group-hover:text-neutral-700" },
+  cyan: { hoverBorder: "hover:border-neutral-300", code: "text-neutral-900", cta: "text-neutral-900", ctaHover: "group-hover:text-neutral-700" },
+};
 
 type Svc = {
   code: string; title: string; desc: string; tags: string[];
@@ -511,36 +517,32 @@ function ClientLogoMarquee({ label }: { label: string }) {
 }
 
 function ServiceCard({ svc, claudeBadge, compact }: { svc: Svc; claudeBadge: string; compact?: boolean }) {
+  const c = colorMap[svc.color];
   return (
     <Link href={svc.href} className="group block h-full">
-      <div className={`relative flex h-full flex-col border border-neutral-900 bg-white ${compact ? "p-6 lg:p-7" : "p-8 lg:p-10"} transition-colors duration-300 hover:bg-neutral-900`}>
+      <div className={`relative flex h-full flex-col rounded-lg border border-gray-200 bg-white ${compact ? "p-6 lg:p-7" : "p-8 lg:p-10"} ${c.hoverBorder} transition-all duration-300 hover:shadow-lg`}>
         {svc.badge && (
-          <span className="absolute right-0 top-0 inline-flex items-center gap-1 border-b border-l border-neutral-900 bg-neutral-900 px-2.5 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-white transition-colors duration-300 group-hover:bg-white group-hover:text-neutral-900">
+          <span className="absolute right-4 top-4 inline-flex items-center gap-1 rounded-md bg-neutral-900 px-2.5 py-1 text-[10px] font-bold tracking-wide text-white">
             {svc.badge}
           </span>
         )}
-        <div className="mb-4 flex items-baseline gap-3 border-b border-neutral-200 pb-4 transition-colors duration-300 group-hover:border-neutral-700">
-          <span className="font-mono text-xs font-bold tabular-nums text-neutral-900 transition-colors duration-300 group-hover:text-white">{svc.code}</span>
-          <h3 className={`${compact ? "text-lg" : "text-xl"} font-bold tracking-tight text-balance text-neutral-900 transition-colors duration-300 group-hover:text-white`}>{svc.title}</h3>
-        </div>
-        <p className={`${compact ? "text-[13px]" : "text-sm"} leading-relaxed text-pretty text-neutral-600 mb-5 transition-colors duration-300 group-hover:text-neutral-300`}>{svc.desc}</p>
+        <span className={`mb-3 inline-block text-xs font-semibold uppercase tracking-widest ${c.code}`}>{svc.code}</span>
+        <h3 className={`${compact ? "text-lg" : "text-xl"} mb-3 font-bold text-gray-900`}>{svc.title}</h3>
+        <p className={`${compact ? "text-[13px]" : "text-sm"} mb-5 flex-1 leading-relaxed text-gray-600`}>{svc.desc}</p>
         {svc.claudeNote && (
-          <div className="mb-5 border border-neutral-300 bg-neutral-50 px-3.5 py-2.5 min-h-[104px] transition-colors duration-300 group-hover:border-neutral-700 group-hover:bg-neutral-800">
-            <span className="mb-1 inline-flex items-center gap-1.5 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-neutral-900 transition-colors duration-300 group-hover:text-white">
-              <span className="h-1.5 w-1.5 bg-neutral-900 transition-colors duration-300 group-hover:bg-white" />{claudeBadge}
+          <div className="mb-5 min-h-[104px] rounded-lg border border-neutral-200 bg-neutral-50 px-3.5 py-2.5">
+            <span className="mb-1 inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wide text-neutral-900">
+              <span className="h-1.5 w-1.5 rounded-full bg-neutral-900" />{claudeBadge}
             </span>
-            <p className="text-[12px] leading-relaxed text-neutral-700 transition-colors duration-300 group-hover:text-neutral-300">{svc.claudeNote}</p>
+            <p className="text-[12px] leading-relaxed text-neutral-700">{svc.claudeNote}</p>
           </div>
         )}
-        <div className="mb-5 mt-auto flex flex-wrap items-center gap-2 font-mono">
+        <div className="mb-5 flex flex-wrap items-center gap-2">
           {svc.tags.map((tag) => (
-            <span key={tag} className="border border-neutral-300 px-2.5 py-1 text-xs text-neutral-500 transition-colors duration-300 group-hover:border-neutral-600 group-hover:text-neutral-400">{tag}</span>
+            <span key={tag} className="rounded border border-gray-200 px-2.5 py-1 text-xs text-gray-500">{tag}</span>
           ))}
         </div>
-        <span className="inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-[0.08em] text-neutral-900 transition-colors duration-300 group-hover:text-white">
-          {svc.cta}
-          <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
-        </span>
+        <span className={`text-sm font-semibold ${c.cta} ${c.ctaHover} transition-colors`}>{svc.cta} →</span>
       </div>
     </Link>
   );
@@ -641,12 +643,12 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       </section>
 
       {/* ═══ TRUST METRICS ═══ */}
-      <section className="py-6 md:py-12 bg-white border-b border-gray-100">
+      <section className="py-12 bg-white border-b border-gray-100">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal variant="scale">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-y-2 gap-x-4 md:gap-0 md:divide-x divide-gray-200">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-y-8 gap-x-4 md:gap-0 md:divide-x divide-gray-200">
               {t.trustStats.map((stat) => (
-                <div key={stat.label} className="flex flex-col items-center justify-center py-3 md:py-6 px-4 text-center">
+                <div key={stat.label} className="flex flex-col items-center justify-center py-6 px-4 text-center">
                   <span className="text-lg font-bold text-gray-900"><CountUp value={stat.value} /></span>
                   <span className="text-xs text-gray-500 mt-1">{stat.label}</span>
                 </div>
@@ -658,41 +660,38 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       </section>
 
       {/* ═══ WHY clearAI ═══ */}
-      <section className="py-8 md:py-12 lg:py-16 bg-white">
+      <section className="py-14 md:py-20 lg:py-28 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <SectionHead index="01" kicker={t.whyLabel} title={t.whyTitle} desc={t.whyDesc} />
-          <CardCarousel>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {t.why.map((item, i) => (
               <Reveal key={item.title} delay={i * 80}>
-                <div className="group h-full border border-neutral-900 bg-white p-8 lg:p-10 transition-colors duration-300 hover:bg-neutral-900">
-                  <div className="flex items-baseline justify-between border-b border-neutral-200 pb-4 transition-colors duration-300 group-hover:border-neutral-700">
-                    <span className="font-mono text-2xl font-bold tabular-nums text-neutral-900 transition-colors duration-300 group-hover:text-white">{String(i + 1).padStart(2, "0")}</span>
-                    <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-400">Why / {String(i + 1).padStart(2, "0")}</span>
-                  </div>
-                  <h3 className="mt-6 text-xl font-bold tracking-tight text-balance text-neutral-900 transition-colors duration-300 group-hover:text-white">{item.title}</h3>
-                  <p className="mt-4 text-[15px] leading-relaxed text-pretty text-neutral-600 transition-colors duration-300 group-hover:text-neutral-300">{item.desc}</p>
+                <div className="h-full rounded-lg border border-gray-200 bg-gray-50 p-8">
+                  <div className="mb-5 flex h-10 w-10 items-center justify-center rounded-full bg-neutral-900 font-bold text-white">{i + 1}</div>
+                  <h3 className="mb-3 text-lg font-bold text-gray-900">{item.title}</h3>
+                  <p className="text-sm leading-relaxed text-gray-600">{item.desc}</p>
                 </div>
               </Reveal>
             ))}
-          </CardCarousel>
+          </div>
         </div>
       </section>
 
       {/* ═══ VISION ═══ */}
-      <section className="py-8 md:py-12 lg:py-16 bg-neutral-50 border-y border-neutral-900">
+      <section className="py-14 md:py-20 lg:py-28 bg-gray-50">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-start">
             <SectionHead index="02" kicker={t.visionLabel} title={t.visionTitle} className="mb-0" />
             <Reveal delay={100}>
               <div>
-                {/* C1: 抽象的な前置き(visionBody1)を省き、ミッション文だけに短縮して
-                    サービス節の見出しとのメッセージ重複を緩和 */}
-                <p className="text-base leading-relaxed text-pretty text-neutral-600">{t.visionBody2}</p>
-                <div className="mt-8 grid grid-cols-1 border-t border-neutral-900 sm:grid-cols-3">
+                <p className="text-base leading-relaxed text-gray-600">{t.visionBody1}</p>
+                <p className="mt-5 text-base leading-relaxed text-gray-600">{t.visionBody2}</p>
+                <div className="mt-6 h-px bg-gray-200" />
+                <div className="flex flex-wrap items-center gap-6 pt-4">
                   {t.visionStats.map((s) => (
-                    <div key={s.label} className="border-b border-neutral-300 py-5 sm:border-b-0 sm:border-r sm:last:border-r-0 sm:py-6 sm:pr-6">
-                      <p className="text-lg font-bold tabular-nums leading-tight text-neutral-900"><CountUp value={s.value} /></p>
-                      <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.15em] text-neutral-400">{s.label}</p>
+                    <div key={s.label}>
+                      <p className="text-lg font-bold text-gray-900"><CountUp value={s.value} /></p>
+                      <p className="mt-1 text-xs text-gray-400">{s.label}</p>
                     </div>
                   ))}
                 </div>
@@ -703,14 +702,14 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       </section>
 
       {/* ═══ ENTRY PRODUCTS ═══ (SPでは非表示・PCは維持) */}
-      <section className="hidden md:block md:py-12 lg:py-16 bg-white">
+      <section className="py-14 md:py-20 lg:py-28 bg-white border-t border-gray-100">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <SectionHead index="03" kicker={t.getStartedLabel} title={t.getStartedTitle} desc={t.getStartedDesc} />
-          <CardCarousel>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {t.steps.map((step, i) => (
               <Reveal key={step.step} delay={i * 80}>
                 <Link href={step.href} className="group block h-full">
-                  <div className="group flex h-full flex-col border border-neutral-900 bg-white p-8 lg:p-10 transition-colors duration-300 hover:bg-neutral-900">
+                  <div className="flex h-full flex-col rounded-lg border border-gray-200 bg-white p-8 transition-all duration-300 hover:border-neutral-300 hover:shadow-lg lg:p-10">
                     <div className="mb-4 flex items-center justify-between border-b border-neutral-200 pb-4 transition-colors duration-300 group-hover:border-neutral-700">
                       <span className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-neutral-900 transition-colors duration-300 group-hover:text-white">{step.step}</span>
                       <span className="font-mono text-[10px] tabular-nums text-neutral-400">{String(i + 1).padStart(2, "0")}</span>
@@ -733,12 +732,12 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
                 </Link>
               </Reveal>
             ))}
-          </CardCarousel>
+          </div>
         </div>
       </section>
 
       {/* ═══ SERVICES ═══ */}
-      <section id="services" className="py-8 md:py-12 lg:py-16 bg-white">
+      <section id="services" className="py-14 md:py-20 lg:py-28 bg-gray-50">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <SectionHead index="04" kicker={t.servicesLabel} title={t.servicesTitle} desc={t.servicesDesc} />
 
@@ -747,37 +746,37 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
               <span className="h-px w-6 bg-neutral-900" />{t.primaryHeading}
             </p>
           </Reveal>
-          <CardCarousel className="mb-7 md:mb-14">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch mb-14">
             {t.primaryServices.map((svc, i) => (
               <Reveal key={svc.code} delay={(i % 3) * 80} className="h-full">
                 <ServiceCard svc={svc} claudeBadge={t.claudeBadge} />
               </Reveal>
             ))}
-          </CardCarousel>
+          </div>
 
           <Reveal>
             <p className="mb-5 flex items-center gap-3 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-neutral-500">
               <span className="h-px w-6 bg-neutral-900" />{t.secondaryHeading}
             </p>
           </Reveal>
-          <CardCarousel>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
             {t.secondaryServices.map((svc, i) => (
               <Reveal key={svc.code} delay={(i % 3) * 80} className="h-full">
                 <ServiceCard svc={svc} claudeBadge={t.claudeBadge} compact />
               </Reveal>
             ))}
-          </CardCarousel>
+          </div>
         </div>
       </section>
 
       {/* ═══ APPROACH ═══ (SPでは非表示・PCは維持) */}
-      <section className="hidden md:block md:py-12 lg:py-16 bg-neutral-50 border-y border-neutral-900">
+      <section className="py-14 md:py-20 lg:py-28 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <SectionHead index="05" kicker={t.approachLabel} title={t.approachTitle} />
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border-t border-neutral-900">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {t.approach.map((item, i) => (
               <Reveal key={item.num} delay={i * 80}>
-                <div className="h-full border-b border-neutral-300 py-7 md:border-b-0 md:border-r md:last:border-r-0 md:px-8 md:first:pl-0">
+                <div className="h-full border-t-2 border-neutral-900 pt-6">
                   <div className="mb-3 flex items-baseline gap-3 font-mono">
                     <span className="text-xs font-bold tabular-nums text-neutral-400">{item.num}</span>
                     <h3 className="text-lg font-bold tracking-tight text-balance font-sans text-neutral-900">{item.title}</h3>
@@ -791,42 +790,32 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       </section>
 
       {/* ═══ PROCESS ═══ */}
-      <section className="py-8 md:py-12 lg:py-16 bg-white">
+      <section className="py-14 md:py-20 lg:py-28 bg-gray-50">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <SectionHead index="06" kicker={t.processLabel} title={t.processTitle} desc={t.processDesc} />
-          {/* table header */}
-          <div className="hidden lg:grid grid-cols-12 gap-6 border-b border-neutral-900 pb-3 font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-400">
-            <div className="col-span-1">No.</div>
-            <div className="col-span-3">Phase</div>
-            <div className="col-span-8">Detail</div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {t.process.map((step, i) => (
+              <Reveal key={step.num} delay={i * 80}>
+                <div className="group relative h-full rounded-lg border border-gray-200 bg-white p-7 transition-colors duration-300 hover:border-gray-300">
+                  <span className="text-3xl font-bold text-neutral-200 transition-colors duration-300 group-hover:text-neutral-900">{step.num}</span>
+                  <h3 className="mt-2 mb-2 text-base font-bold text-gray-900">{step.title}</h3>
+                  <p className="text-sm leading-relaxed text-gray-600">{step.desc}</p>
+                </div>
+              </Reveal>
+            ))}
           </div>
-          {t.process.map((step, i) => (
-            <Reveal key={step.num} delay={i * 60}>
-              <div className="group grid grid-cols-1 gap-2 border-b border-neutral-200 py-6 transition-colors duration-300 hover:bg-neutral-50 lg:grid-cols-12 lg:gap-6 lg:py-7">
-                <div className="lg:col-span-1">
-                  <span className="font-mono text-lg font-bold tabular-nums text-neutral-900">{step.num}</span>
-                </div>
-                <div className="lg:col-span-3">
-                  <h3 className="text-base font-bold tracking-tight text-balance text-neutral-900">{step.title}</h3>
-                </div>
-                <div className="lg:col-span-8">
-                  <p className="text-[15px] leading-relaxed text-pretty text-neutral-600">{step.desc}</p>
-                </div>
-              </div>
-            </Reveal>
-          ))}
         </div>
       </section>
 
       {/* ═══ TEAM ═══ */}
-      <section className="py-8 md:py-12 lg:py-16 bg-neutral-50 border-y border-neutral-900">
+      <section className="py-14 md:py-20 lg:py-28 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <SectionHead index="07" kicker={t.teamLabel} title={t.teamTitle} desc={t.teamDesc} />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-stretch">
             <Reveal delay={0} className="h-full">
-              <div className="group flex h-full flex-col border border-neutral-900 bg-white p-8 lg:p-10 transition-colors duration-300 hover:bg-neutral-900">
+              <div className="flex h-full flex-col rounded-lg border border-gray-200 bg-gray-50 p-8 lg:p-10">
                 <div className="mb-4 flex items-center justify-between border-b border-neutral-200 pb-4 transition-colors duration-300 group-hover:border-neutral-700">
-                  <span className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-neutral-900 transition-colors duration-300 group-hover:text-white">{t.teamCard1Label}</span>
+                  <span className="text-xs font-semibold uppercase tracking-widest text-neutral-900">{t.teamCard1Label}</span>
                   <span className="font-mono text-[10px] tabular-nums text-neutral-400">01</span>
                 </div>
                 <h3 className="mb-4 text-xl font-bold tracking-tight text-balance text-neutral-900 transition-colors duration-300 group-hover:text-white">{t.teamCard1Title}</h3>
@@ -839,9 +828,9 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
               </div>
             </Reveal>
             <Reveal delay={100} className="h-full">
-              <div className="group flex h-full flex-col border border-neutral-900 bg-white p-8 lg:p-10 transition-colors duration-300 hover:bg-neutral-900">
+              <div className="flex h-full flex-col rounded-lg border border-gray-200 bg-gray-50 p-8 lg:p-10">
                 <div className="mb-4 flex items-center justify-between border-b border-neutral-200 pb-4 transition-colors duration-300 group-hover:border-neutral-700">
-                  <span className="font-mono text-[11px] font-bold uppercase tracking-[0.18em] text-neutral-900 transition-colors duration-300 group-hover:text-white">{t.teamCard2Label}</span>
+                  <span className="text-xs font-semibold uppercase tracking-widest text-neutral-900">{t.teamCard2Label}</span>
                   <span className="font-mono text-[10px] tabular-nums text-neutral-400">02</span>
                 </div>
                 <h3 className="mb-4 text-xl font-bold tracking-tight text-balance text-neutral-900 transition-colors duration-300 group-hover:text-white">{t.teamCard2Title}</h3>
@@ -858,7 +847,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       </section>
 
       {/* ═══ TECH STACK ═══ */}
-      <section className="py-8 md:py-12 lg:py-16 bg-white overflow-x-clip">
+      <section className="py-14 md:py-20 lg:py-28 bg-gray-50 overflow-x-clip">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <SectionHead index="08" kicker={t.techLabel} title={t.techTitle} desc={t.techDesc} />
         </div>
@@ -876,7 +865,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
                 {[...row, ...row].map((tech, i) => (
                   <span
                     key={`${tech.name}-${i}`}
-                    className="inline-flex shrink-0 items-center gap-2 border border-neutral-300 bg-white px-3.5 py-2 font-mono text-[13px] text-neutral-700"
+                    className="inline-flex shrink-0 items-center gap-2 rounded-xl border border-gray-200 bg-white px-3.5 py-2 text-[13px] text-gray-700 shadow-sm"
                   >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
@@ -894,8 +883,8 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
         </div>
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
-            <div className="mt-10 border border-neutral-900 bg-neutral-50 p-6 lg:p-8 flex flex-col lg:flex-row lg:items-center gap-4 lg:gap-6">
-              <div className="flex-shrink-0 w-11 h-11 border border-neutral-900 flex items-center justify-center">
+            <div className="mt-10 rounded-lg border border-gray-200 bg-white p-6 lg:p-8 flex flex-col lg:flex-row lg:items-center gap-4 lg:gap-6">
+              <div className="flex-shrink-0 w-12 h-12 rounded-full bg-neutral-100 flex items-center justify-center">
                 <svg className="w-5 h-5 text-neutral-900" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
@@ -910,19 +899,18 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       </section>
 
       {/* ═══ FAQ TEASER ═══ */}
-      <section className="py-8 md:py-12 lg:py-16 bg-neutral-50 border-y border-neutral-900">
+      <section className="py-14 md:py-20 lg:py-28 bg-white">
         <div className="max-w-3xl mx-auto px-6 lg:px-8">
           <SectionHead index="09" kicker={t.faqLabel} title={t.faqTitle} desc={t.faqDesc} />
-          <div className="mb-8 border-t border-neutral-900">
+          <div className="mb-8">
             {t.faq.map((item, i) => (
               <Reveal key={i} delay={i * 70}>
-                <details className="group border-b border-neutral-300 py-4 md:py-5">
-                  <summary className="flex cursor-pointer list-none items-start gap-4 text-base font-semibold text-neutral-900">
-                    <span className="mt-0.5 font-mono text-xs tabular-nums text-neutral-400">Q{String(i + 1).padStart(2, "0")}</span>
+                <details className="group border-b border-gray-100 py-5">
+                  <summary className="flex cursor-pointer list-none items-start gap-4 font-semibold text-gray-900">
                     <span className="flex-1">{item.q}</span>
                     <span className="font-mono text-lg leading-none text-neutral-400 transition-transform duration-300 group-open:rotate-45">+</span>
                   </summary>
-                  <p className="mt-4 pl-9 text-sm leading-relaxed text-pretty text-neutral-600">{item.a}</p>
+                  <p className="mt-3 text-sm leading-relaxed text-gray-600">{item.a}</p>
                 </details>
               </Reveal>
             ))}
@@ -934,16 +922,15 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       </section>
 
       {/* ═══ NEWS / BLOG (moved below: lead with value & services first) ═══ */}
-      <section className="py-8 md:py-12 lg:py-16 bg-white">
+      <section className="pt-8 pb-14 md:pt-10 md:pb-20 lg:pt-12 lg:pb-28 bg-gray-50">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal className="mb-6 md:mb-12">
-            <div className="flex items-end justify-between border-b border-neutral-900 pb-4">
+            <div className="flex items-end justify-between">
               <div>
                 <div className="flex items-center gap-4">
-                  <span className="font-mono text-xs font-bold tabular-nums text-neutral-900">§10</span>
-                  <span className="font-mono text-[11px] font-medium uppercase tracking-[0.25em] text-neutral-500">{t.newsLabel}</span>
+                  <span className="text-xs font-semibold uppercase tracking-widest text-neutral-900">{t.newsLabel}</span>
                 </div>
-                <h2 className="mt-5 text-[18px] sm:text-xl lg:text-2xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance text-neutral-900">{t.newsTitle}</h2>
+                <h2 className="mt-4 text-3xl font-bold leading-tight text-gray-900">{t.newsTitle}</h2>
               </div>
               <Link href="/blog" className="hidden sm:inline-flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-[0.08em] text-neutral-900 hover:text-neutral-600 transition-colors">
                 {t.newsCta}
@@ -958,16 +945,15 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       </section>
 
       {/* ═══ CTA ═══ */}
-      <section className="py-8 md:py-12 lg:py-16 bg-neutral-50 border-t border-neutral-900">
+      <section className="py-14 md:py-20 lg:py-28 bg-white border-t border-gray-100">
         <div className="max-w-4xl mx-auto px-6">
           <Reveal>
-            <div className="mb-8 md:mb-12 border-b border-neutral-900 pb-6">
+            <div className="mb-8 md:mb-12 text-center">
               <div className="flex items-center gap-4">
-                <span className="font-mono text-xs font-bold tabular-nums text-neutral-900">§11</span>
-                <span className="font-mono text-[11px] font-medium uppercase tracking-[0.25em] text-neutral-500">{t.ctaLabel}</span>
+                <span className="mx-auto text-xs font-semibold uppercase tracking-widest text-neutral-900">{t.ctaLabel}</span>
               </div>
-              <h2 className="mt-6 text-[18px] sm:text-xl lg:text-2xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance text-neutral-900">{t.ctaTitle}</h2>
-              <p className="mt-5 max-w-lg text-base leading-relaxed text-pretty text-neutral-600">{t.ctaDesc}</p>
+              <h2 className="mt-4 text-3xl font-bold leading-tight text-gray-900">{t.ctaTitle}</h2>
+              <p className="mx-auto mt-6 max-w-lg text-base leading-relaxed text-gray-600">{t.ctaDesc}</p>
             </div>
           </Reveal>
           <Reveal delay={120}>

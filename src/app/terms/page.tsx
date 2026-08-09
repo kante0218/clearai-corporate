@@ -1,64 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, type ReactNode } from "react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
-
-function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setVisible(true); observer.unobserve(el); } },
-      { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <div
-      ref={ref}
-      className={className}
-      style={{
-        opacity: visible ? 1 : 0,
-        transform: visible ? "translateY(0)" : "translateY(32px)",
-        transition: `opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
-      }}
-    >
-      {children}
-    </div>
-  );
-}
-
-function SectionHead({
-  index,
-  kicker,
-  title,
-  desc,
-  dark = false,
-}: {
-  index: string;
-  kicker: ReactNode;
-  title: ReactNode;
-  desc?: ReactNode;
-  dark?: boolean;
-}) {
-  return (
-    <Reveal className="mb-7 lg:mb-9 max-w-3xl">
-      <div className={`flex items-center gap-4 border-b pb-4 ${dark ? "border-white/25" : "border-neutral-900"}`}>
-        <span className={`font-mono text-xs font-bold tabular-nums ${dark ? "text-white" : "text-neutral-900"}`}>§{index}</span>
-        <span className={`font-mono text-[11px] font-medium uppercase tracking-[0.25em] ${dark ? "text-neutral-400" : "text-neutral-500"}`}>{kicker}</span>
-      </div>
-      <h2 className={`mt-8 text-[18px] sm:text-xl lg:text-2xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance whitespace-pre-line ${dark ? "text-white" : "text-neutral-900"}`}>
-        {title}
-      </h2>
-      {desc && <p className={`mt-6 text-[15px] leading-relaxed text-pretty ${dark ? "text-neutral-400" : "text-neutral-600"}`}>{desc}</p>}
-    </Reveal>
-  );
-}
 
 type Section = {
   title: string;
@@ -158,65 +100,28 @@ export default function TermsPage() {
 
   return (
     <main className="min-h-screen bg-white">
+      <section className="max-w-3xl mx-auto px-6 pt-40 pb-20">
+        <p className="text-sm font-semibold text-neutral-900 mb-4">{t.label}</p>
+        <h1 className="text-3xl font-bold text-gray-900 mb-12">{t.title}</h1>
 
-      {/* ─── MASTHEAD ────────────────────────────────────────────────────── */}
-      <section className="pt-40 pb-16 lg:pb-20 bg-white border-b border-neutral-900">
-        <div className="max-w-3xl mx-auto px-6">
-          <Reveal>
-            <div className="flex items-center gap-4 border-b border-neutral-900 pb-4 font-mono text-[11px] uppercase tracking-[0.2em] text-neutral-500">
-              <span className="font-bold text-neutral-900">§00</span>
-              <span>{t.label}</span>
-              <span className="ml-auto tabular-nums text-neutral-400">
-                {String(t.sections.length).padStart(2, "0")} ARTICLES
-              </span>
+        <div className="prose text-gray-600 leading-relaxed space-y-8">
+          {t.sections.map((section) => (
+            <div key={section.title}>
+              <h2 className="text-lg font-bold text-gray-900 mb-3">{section.title}</h2>
+              <p>{section.body}</p>
+              {section.bullets && (
+                <ul className="list-disc pl-6 mt-2 space-y-1">
+                  {section.bullets.map((bullet) => (
+                    <li key={bullet}>{bullet}</li>
+                  ))}
+                </ul>
+              )}
             </div>
-            <h1 className="mt-8 text-[7vw] sm:text-3xl lg:text-4xl font-bold leading-[0.95] tracking-[-0.04em] text-balance text-neutral-900">
-              {t.title}
-            </h1>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ─── ARTICLES ────────────────────────────────────────────────────── */}
-      <section className="py-16 lg:py-24 bg-white">
-        <div className="max-w-3xl mx-auto px-6">
-          {t.sections.map((section, i) => (
-            <Reveal key={section.title} delay={i * 50}>
-              <article className="grid grid-cols-[auto_1fr] gap-x-5 sm:gap-x-8 border-t border-neutral-200 py-8 first:border-t-0 first:pt-0">
-                <span className="pt-1 font-mono text-sm font-bold tabular-nums text-neutral-400">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <div className="min-w-0">
-                  <h2 className="text-lg lg:text-xl font-bold tracking-tight text-balance text-neutral-900 mb-3">
-                    {section.title}
-                  </h2>
-                  <p className="text-[15px] leading-relaxed text-pretty text-neutral-600">{section.body}</p>
-                  {section.bullets && (
-                    <ul className="mt-4 border-t border-neutral-200">
-                      {section.bullets.map((bullet) => (
-                        <li
-                          key={bullet}
-                          className="grid grid-cols-[auto_1fr] gap-3 border-b border-neutral-200 py-2.5 text-[15px] leading-relaxed text-pretty text-neutral-600"
-                        >
-                          <span aria-hidden="true" className="font-mono text-neutral-400">→</span>
-                          <span>{bullet}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
-              </article>
-            </Reveal>
           ))}
 
-          <Reveal>
-            <p className="mt-12 border-t border-neutral-900 pt-6 font-mono text-[11px] uppercase tracking-[0.2em] text-neutral-400 tabular-nums">
-              {t.date}
-            </p>
-          </Reveal>
+          <p className="text-sm text-gray-400 mt-8">{t.date}</p>
         </div>
       </section>
-
     </main>
   );
 }

@@ -196,7 +196,7 @@ function Field({
 }
 
 const inputCls =
-  "w-full rounded-none border border-neutral-300 bg-white px-3 py-2.5 text-sm text-neutral-900 placeholder:text-neutral-400 outline-none transition-[border-color] duration-200 focus:border-neutral-900";
+  "w-full rounded-xl border border-gray-200 bg-white px-3 py-2.5 text-sm text-neutral-900 placeholder:text-neutral-400 outline-none transition-[border-color] duration-200 focus:border-neutral-900";
 
 function isValidEmail(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -322,7 +322,7 @@ export default function RobotReservePage() {
     return (
       <section className="min-h-[70vh] bg-white pt-32 pb-24 lg:pt-40">
         <div className="mx-auto max-w-xl px-6">
-          <div className="mx-auto max-w-md border border-neutral-900 bg-white px-8 py-14 text-center">
+          <div className="mx-auto max-w-md rounded-lg border border-gray-200 bg-white shadow-sm px-8 py-14 text-center">
             <div className="mx-auto mb-6 flex h-14 w-14 items-center justify-center border border-neutral-900 bg-neutral-900">
               <svg className="h-6 w-6 text-white" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
             </div>
@@ -330,7 +330,7 @@ export default function RobotReservePage() {
             <p className="mx-auto mb-8 max-w-sm text-sm leading-relaxed text-pretty text-neutral-600">{t.thanksBody}</p>
             <a
               href="/robot-rental"
-              className="group inline-flex items-center gap-3 border border-neutral-900 bg-white px-6 py-3 font-mono text-sm font-bold uppercase tracking-[0.08em] text-neutral-900 transition-[color,background-color,border-color,scale] duration-300 hover:bg-neutral-900 hover:text-white active:scale-[0.96]"
+              className="group inline-flex items-center gap-3 rounded-lg border border-gray-200 bg-white shadow-sm px-6 py-3 font-mono text-sm font-bold uppercase tracking-[0.08em] text-neutral-900 transition-[color,background-color,border-color,scale] duration-300 hover:bg-neutral-900 hover:text-white active:scale-[0.96]"
             >
               {t.backToList}
               <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">→</span>
@@ -346,7 +346,7 @@ export default function RobotReservePage() {
       <div className="mx-auto max-w-xl px-6">
         <Reveal>
           {/* technical meta bar */}
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 border-b border-neutral-900 pb-4 font-mono text-[11px] uppercase tracking-[0.2em] text-neutral-500">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 border-b border-gray-200 pb-4 font-mono text-[11px] uppercase tracking-[0.2em] text-neutral-500">
             <span className="font-bold text-neutral-900">§00</span>
             <span>{t.kicker}</span>
           </div>
@@ -376,7 +376,7 @@ export default function RobotReservePage() {
         {/* 選択中の機体 */}
         {selected.robot && (
           <Reveal delay={300}>
-            <div className="mt-6 border border-neutral-900 bg-white px-4 py-3">
+            <div className="mt-6 rounded-lg border border-gray-200 bg-white shadow-sm px-4 py-3">
               <p className="mb-1.5 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-neutral-400">
                 {t.selectedLabel}
               </p>

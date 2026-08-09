@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
+import Logo from "@/components/Logo";
 
 export default function IntroLoader() {
   const [fading, setFading] = useState(false);
@@ -37,13 +37,9 @@ export default function IntroLoader() {
       style={{ pointerEvents: fading ? "none" : "auto" }}
     >
       <div className="flex flex-col items-center gap-5">
-        <Image
-          src="/images/logo-symbol.png"
-          alt=""
-          width={72}
-          height={72}
-          priority
-          className="h-[72px] w-[72px] animate-[spin_3.6s_linear_infinite] object-contain [will-change:transform]"
+        <Logo
+          size={72}
+          className="w-auto animate-[spin_3.6s_linear_infinite] [will-change:transform]"
         />
         <span className="text-sm font-semibold tracking-[0.3em] text-neutral-900">
           clearAI

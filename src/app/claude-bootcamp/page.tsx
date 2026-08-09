@@ -40,10 +40,10 @@ function SectionHead({
   return (
     <Reveal className="mb-7 lg:mb-9">
       <div className={`flex items-center gap-4 border-b pb-4 ${dark ? "border-white/25" : "border-neutral-900"}`}>
-        <span className={`font-mono text-xs font-bold tabular-nums ${dark ? "text-white" : "text-neutral-900"}`}>§{index}</span>
-        <span className={`font-mono text-[11px] font-medium uppercase tracking-[0.25em] ${dark ? "text-neutral-400" : "text-neutral-500"}`}>{kicker}</span>
+        <span className={`text-xs font-bold ${dark ? "text-white" : "text-neutral-900"}`}>§{index}</span>
+        <span className={`text-xs font-semibold uppercase tracking-widest ${dark ? "text-neutral-400" : "text-neutral-500"}`}>{kicker}</span>
       </div>
-      <h2 className={`mt-8 max-w-4xl text-[18px] sm:text-xl lg:text-2xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance ${dark ? "text-white" : "text-neutral-900"}`}>
+      <h2 className={`mt-8 max-w-4xl text-2xl sm:text-3xl lg:text-4xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance ${dark ? "text-white" : "text-neutral-900"}`}>
         {title}
       </h2>
       {desc && <p className={`mt-5 max-w-2xl text-[15px] leading-relaxed text-pretty ${dark ? "text-neutral-400" : "text-neutral-600"}`}>{desc}</p>}
@@ -423,11 +423,11 @@ export default function ClaudeBootcampPage() {
   return (
     <>
       {/* HERO / MASTHEAD */}
-      <section className="bg-white pt-28 pb-14 lg:pt-32 lg:pb-20 border-b border-neutral-900">
+      <section className="bg-white pt-28 pb-14 lg:pt-32 lg:pb-20 border-b border-gray-200">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             {/* technical meta bar */}
-            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 border-b border-neutral-900 pb-4 font-mono text-[11px] uppercase tracking-[0.2em] text-neutral-500">
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 border-b border-gray-200 pb-4 font-mono text-[11px] uppercase tracking-[0.2em] text-neutral-500">
               <span className="font-bold text-neutral-900">§00</span>
               <span>{t.heroKicker}</span>
               <span className="text-neutral-300">/</span>
@@ -473,9 +473,9 @@ export default function ClaudeBootcampPage() {
       <ClientLogoMarquee label={t.marqueeLabel} note={t.marqueeNote} />
 
       {/* REASSURANCE BAND */}
-      <section className="py-14 lg:py-20 bg-neutral-50 border-b border-neutral-900">
+      <section className="py-14 lg:py-20 bg-sky-50/60 border-b border-sky-100">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <div className="grid grid-cols-2 border-l border-t border-neutral-900 lg:grid-cols-4">
+          <div className="grid grid-cols-2 border-l border-t border-gray-200 lg:grid-cols-4">
             {t.reassure.map((item, i) => (
               <Reveal key={item.t} delay={i * 70}>
                 <div className="h-full border-b border-r border-neutral-900 bg-white p-5 lg:p-6">
@@ -502,7 +502,7 @@ export default function ClaudeBootcampPage() {
       </section>
 
       {/* TECH STACK LOGOS */}
-      <section className="py-12 lg:py-16 bg-white border-b border-neutral-900">
+      <section className="py-12 lg:py-16 bg-white border-b border-gray-200">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <div className="mb-8 flex items-center gap-4 font-mono text-[11px] uppercase tracking-[0.25em] text-neutral-500">
@@ -555,7 +555,7 @@ export default function ClaudeBootcampPage() {
           <CardCarousel gridClass="md:grid-cols-2 lg:grid-cols-3">
             {t.pains.map((p, i) => (
               <Reveal key={p} delay={i * 60}>
-                <div className="flex h-full items-start gap-4 border border-neutral-900 bg-white p-6 lg:p-7">
+                <div className="flex h-full items-start gap-4 rounded-lg border border-gray-200 bg-white shadow-sm p-6 lg:p-7">
                   <span className="mt-0.5 flex-shrink-0 font-mono text-xs tabular-nums text-neutral-400">{String(i + 1).padStart(2, "0")}</span>
                   <p className="text-sm leading-relaxed text-pretty text-neutral-700">{p}</p>
                 </div>
@@ -566,13 +566,13 @@ export default function ClaudeBootcampPage() {
       </section>
 
       {/* PROMISE */}
-      <section className="py-12 lg:py-16 bg-neutral-50 border-y border-neutral-900">
+      <section className="py-12 lg:py-16 bg-sky-50/60 border-y border-sky-100">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <SectionHead index="03" kicker={t.promiseLabel} title={t.promiseTitle} desc={t.promiseDesc} />
           <CardCarousel gridClass="md:grid-cols-3">
             {t.promises.map((p, i) => (
               <Reveal key={p.num} delay={i * 100}>
-                <div className="group h-full border border-neutral-900 bg-white p-8 lg:p-10 transition-colors duration-300 hover:bg-neutral-900">
+                <div className="group h-full rounded-lg border border-gray-200 bg-white shadow-sm p-8 lg:p-10 transition-colors duration-300 hover:bg-neutral-900">
                   <div className="mb-6 flex h-8 items-center justify-between border-b border-neutral-200 pb-4 transition-colors duration-300 group-hover:border-neutral-700">
                     <span className="font-mono text-2xl font-bold tabular-nums text-neutral-900 transition-colors duration-300 group-hover:text-white">{p.num}</span>
                     <div className="flex items-center gap-2.5 opacity-100 transition-[filter] duration-300 group-hover:[filter:invert(1)_grayscale(1)_brightness(2)]">
@@ -614,7 +614,7 @@ export default function ClaudeBootcampPage() {
           <CardCarousel gridClass="md:grid-cols-2">
             {t.whyPoints.map((p, i) => (
               <Reveal key={p.title} delay={i * 80}>
-                <div className="group h-full border border-neutral-900 bg-white p-8 lg:p-10 transition-colors duration-300 hover:bg-neutral-900">
+                <div className="group h-full rounded-lg border border-gray-200 bg-white shadow-sm p-8 lg:p-10 transition-colors duration-300 hover:bg-neutral-900">
                   <div className="mb-6 flex h-8 items-center justify-between border-b border-neutral-200 pb-4 transition-colors duration-300 group-hover:border-neutral-700">
                     <span className="font-mono text-[10px] tabular-nums uppercase tracking-[0.2em] text-neutral-400">Why / {String(i + 1).padStart(2, "0")}</span>
                     <div className="flex items-center gap-3 transition-[filter] duration-300 group-hover:[filter:invert(1)_grayscale(1)_brightness(2)]">
@@ -634,16 +634,16 @@ export default function ClaudeBootcampPage() {
       </section>
 
       {/* ONE DAY TIMETABLE */}
-      <section className="py-12 lg:py-16 bg-neutral-50 border-y border-neutral-900">
+      <section className="py-12 lg:py-16 bg-sky-50/60 border-y border-sky-100">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <SectionHead index="05" kicker={t.dayLabel} title={t.dayTitle} desc={t.dayDesc} />
           {/* table header */}
-          <div className="hidden lg:grid grid-cols-12 gap-6 border-b border-neutral-900 pb-3 font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-400">
+          <div className="hidden lg:grid grid-cols-12 gap-6 border-b border-gray-200 pb-3 font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-400">
             <div className="col-span-2">Time</div>
             <div className="col-span-3">Phase</div>
             <div className="col-span-7">Detail</div>
           </div>
-          <div className="border-t border-neutral-900 lg:border-t-0">
+          <div className="border-t border-gray-200 lg:border-t-0">
             {t.dayRows.map((row, i) => (
               <Reveal key={row.time} delay={i * 50}>
                 <div className="group grid grid-cols-1 gap-2 border-b border-neutral-200 py-6 transition-colors duration-300 hover:bg-white lg:grid-cols-12 lg:gap-6">
@@ -691,7 +691,7 @@ export default function ClaudeBootcampPage() {
             {t.forItems.map((item, i) => (
               <Reveal key={item.text} delay={i * 60}>
                 <div className={`flex h-full items-start gap-4 border p-6 lg:p-7 ${item.ok ? "border-neutral-900 bg-white" : "border-neutral-300 bg-neutral-50"}`}>
-                  <span className={`mt-0.5 flex-shrink-0 font-mono text-xs font-bold tabular-nums ${item.ok ? "text-neutral-900" : "text-neutral-400"}`}>{item.ok ? "YES" : "NO"}</span>
+                  <span className={`mt-0.5 flex-shrink-0 text-xs font-bold ${item.ok ? "text-neutral-900" : "text-neutral-400"}`}>{item.ok ? "YES" : "NO"}</span>
                   <p className={`text-sm leading-relaxed text-pretty ${item.ok ? "font-medium text-neutral-800" : "text-neutral-400"}`}>{item.text}</p>
                 </div>
               </Reveal>
@@ -701,13 +701,13 @@ export default function ClaudeBootcampPage() {
       </section>
 
       {/* CARAVAN */}
-      <section className="py-12 lg:py-16 bg-neutral-50 border-y border-neutral-900">
+      <section className="py-12 lg:py-16 bg-sky-50/60 border-y border-sky-100">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <SectionHead index="08" kicker={t.caravanLabel} title={t.caravanTitle} desc={t.caravanDesc} />
           <CardCarousel gridClass="sm:grid-cols-2 lg:grid-cols-4">
             {t.caravanSteps.map((step, i) => (
               <Reveal key={step.num} delay={i * 80}>
-                <div className="group flex h-full flex-col border border-neutral-900 bg-white p-6 lg:p-7 transition-colors duration-300 hover:bg-neutral-900">
+                <div className="group flex h-full flex-col rounded-lg border border-gray-200 bg-white shadow-sm p-6 lg:p-7 transition-colors duration-300 hover:bg-neutral-900">
                   <div className="mb-5 flex items-center justify-between border-b border-neutral-200 pb-3 transition-colors duration-300 group-hover:border-neutral-700">
                     <span className="font-mono text-2xl font-bold tabular-nums text-neutral-900 transition-colors duration-300 group-hover:text-white">{step.num}</span>
                     <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-400">Step</span>
@@ -765,16 +765,16 @@ export default function ClaudeBootcampPage() {
       </section>
 
       {/* SUBSIDY */}
-      <section className="py-12 lg:py-16 bg-white border-b border-neutral-900">
+      <section className="py-12 lg:py-16 bg-white border-b border-gray-200">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
-            <div className="flex items-center gap-4 border-b border-neutral-900 pb-4 font-mono text-[11px] uppercase tracking-[0.25em] text-neutral-500">
+            <div className="flex items-center gap-4 border-b border-gray-200 pb-4 font-mono text-[11px] uppercase tracking-[0.25em] text-neutral-500">
               <span className="font-bold text-neutral-900">§10</span>
               <span>{t.subsidyLabel}</span>
             </div>
             <div className="mt-10 grid grid-cols-1 items-end gap-10 lg:grid-cols-12">
               <div className="lg:col-span-8">
-                <h2 className="max-w-3xl text-[18px] sm:text-xl lg:text-2xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance text-neutral-900">
+                <h2 className="max-w-3xl text-2xl sm:text-3xl lg:text-4xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance text-neutral-900">
                   {t.subsidyTitlePre}<span className="underline decoration-[3px] underline-offset-[6px]">{t.subsidyTitleHi}</span>{t.subsidyTitlePost}
                 </h2>
                 <p className="mt-6 max-w-2xl text-[15px] leading-relaxed text-pretty text-neutral-600">{t.subsidyDesc}</p>
@@ -791,18 +791,18 @@ export default function ClaudeBootcampPage() {
       </section>
 
       {/* INSTRUCTOR */}
-      <section className="py-12 lg:py-16 bg-neutral-50 border-b border-neutral-900">
+      <section className="py-12 lg:py-16 bg-sky-50/60 border-b border-sky-100">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <div className="border border-neutral-900 bg-white p-8 lg:p-14">
+          <div className="rounded-lg border border-gray-200 bg-white shadow-sm p-8 lg:p-14">
             <Reveal>
-              <div className="flex items-center gap-4 border-b border-neutral-900 pb-4 font-mono text-[11px] uppercase tracking-[0.25em] text-neutral-500">
+              <div className="flex items-center gap-4 border-b border-gray-200 pb-4 font-mono text-[11px] uppercase tracking-[0.25em] text-neutral-500">
                 <span className="font-bold text-neutral-900">§11</span>
                 <span>{t.instructorLabel}</span>
               </div>
               <h2 className="mt-8 max-w-3xl text-[20px] sm:text-xl lg:text-2xl font-bold leading-[1.2] tracking-[-0.02em] text-balance text-neutral-900">{t.instructorTitle}</h2>
               <p className="mt-5 max-w-3xl text-sm leading-relaxed text-pretty text-neutral-600">{t.instructorDesc}</p>
             </Reveal>
-            <div className="mt-10 grid grid-cols-1 border-l border-t border-neutral-900 md:grid-cols-2">
+            <div className="mt-10 grid grid-cols-1 border-l border-t border-gray-200 md:grid-cols-2">
               {t.instructorPoints.map((p, i) => (
                 <Reveal key={p} delay={i * 80}>
                   <div className="flex h-full items-start gap-4 border-b border-r border-neutral-900 bg-white p-5 lg:p-6">
@@ -820,7 +820,7 @@ export default function ClaudeBootcampPage() {
       <section className="py-12 lg:py-16 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <SectionHead index="12" kicker={t.faqLabel} title={t.faqTitle} />
-          <div className="max-w-3xl border-t border-neutral-900">
+          <div className="max-w-3xl border-t border-gray-200">
             {t.faqItems.map((item, i) => (
               <Reveal key={item.q} delay={i * 50}>
                 <details className="group border-b border-neutral-300 py-5">
@@ -838,10 +838,10 @@ export default function ClaudeBootcampPage() {
       </section>
 
       {/* 無料相談で行うこと */}
-      <section className="py-12 lg:py-16 bg-neutral-50 border-b border-neutral-900">
+      <section className="py-12 lg:py-16 bg-sky-50/60 border-b border-sky-100">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <SectionHead index="13" kicker={t.consultLabel} title={t.consultTitle} desc={t.consultDesc} />
-          <div className="max-w-3xl border-t border-neutral-900">
+          <div className="max-w-3xl border-t border-gray-200">
             {t.consultItems.map((item, i) => (
               <Reveal key={item} delay={i * 60}>
                 <div className="flex items-start gap-4 border-b border-neutral-300 py-4">
@@ -867,7 +867,7 @@ export default function ClaudeBootcampPage() {
             </div>
             <div className="mt-12 grid grid-cols-1 items-end gap-10 lg:grid-cols-12">
               <div className="lg:col-span-8">
-                <h2 className="text-[18px] sm:text-xl lg:text-2xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance text-white">{t.ctaTitle}</h2>
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold leading-[1.15] sm:leading-[1.05] tracking-[-0.02em] text-balance text-white">{t.ctaTitle}</h2>
                 <p className="mt-6 max-w-2xl text-base leading-relaxed text-pretty text-neutral-400">{t.ctaDesc}</p>
                 <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.12em] text-neutral-500">{t.ctaSub}</p>
               </div>
@@ -883,7 +883,7 @@ export default function ClaudeBootcampPage() {
       </section>
 
       {/* STICKY MOBILE CTA BAR */}
-      <div className="lg:hidden fixed bottom-0 inset-x-0 z-50 bg-white/95 backdrop-blur-md border-t border-neutral-900">
+      <div className="lg:hidden fixed bottom-0 inset-x-0 z-50 bg-white/95 backdrop-blur-md border-t border-gray-200">
         <div className="flex items-center justify-between gap-3 px-4 py-3">
           <div className="leading-tight">
             <p className="text-[13px] font-bold text-neutral-900">{t.stickyTitle}</p>
