@@ -1,9 +1,11 @@
 @import "tailwindcss";
 
 @theme {
-  /* Latin → Helvetica (≈ Helvetica Now Text); Japanese → Zen Kaku Gothic New (≈ 筑紫ゴシック) — mount.jp style */
-  --font-sans: "Helvetica Neue", Helvetica, Arial, var(--font-zen), "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", YuGothic, Meiryo, system-ui, sans-serif;
-  --font-display: "Helvetica Neue", Helvetica, Arial, var(--font-zen), "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", YuGothic, Meiryo, system-ui, sans-serif;
+  /* 游ゴシック体で全文統一（欧文・数字も游ゴシックの従属欧文をそのまま使う）。
+     macOS は "游ゴシック体"/YuGothic でしか当たらず、"Yu Gothic Medium" は解決されない。
+     Windows は "Yu Gothic Medium" が正で、regular は細すぎるため下の @font-face で 400 を Medium に差し替えている。 */
+  --font-sans: "游ゴシック体", YuGothic, "Yu Gothic Medium", "游ゴシック Medium", "Yu Gothic", "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+  --font-display: "游ゴシック体", YuGothic, "Yu Gothic Medium", "游ゴシック Medium", "Yu Gothic", "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
 
   --color-navy-950: #111827;
   --color-navy-900: #1f2937;
@@ -19,6 +21,25 @@
   --color-accent: #111827;
   --color-accent-light: #6b7280;
   --color-accent-dark: #000000;
+
+  /* 主要CTA（絶対に押してほしいボタン）専用の色。
+     文字も枠も黒で統一したうえで、ここだけ色を持たせて視線を集める。
+     単色フォールバック（グラデーション非対応環境用）。実際の塗りは下の .bg-cta を参照。 */
+  --color-cta: #da6936;
+  --color-cta-hover: #d2480a;
+}
+
+/* 主要CTAはロゴ（clear ワードマーク）と同じ 橙→桃→紫 のグラデーション。
+   2026-08-10 ユーザー指示で全ストップを白方向へ約18%混ぜた淡いトーンに変更
+   （白文字コントラストはAA未満になるがデザイン優先の判断）。hover は従来の濃い値で少し締まる。
+   Tailwind のユーティリティは @layer 内に出るため、レイヤー外のこの指定が確実に勝つ。 */
+.bg-cta {
+  background-color: transparent;
+  background-image: linear-gradient(95deg, #f1623f 0%, #e35aaf 38%, #e053dd 62%, #ae5df5 100%);
+}
+.hover\:bg-cta-hover:hover {
+  background-color: transparent;
+  background-image: linear-gradient(95deg, #ee4015 0%, #dd369d 38%, #d92dd5 62%, #9c39f3 100%);
 }
 
 /* Yu Gothic Windows weight fix */
@@ -39,6 +60,9 @@ html {
   -moz-osx-font-smoothing: grayscale;
   scrollbar-color: var(--accent-solid) transparent;
   scrollbar-width: thin;
+  /* iOSの自動文字拡大(font boosting)を止めて全ページのスケールを一定に保つ */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 
   /* Per-section accent colour. Consumed by the language toggle and any
      other widget that should adapt to the current page context. */
@@ -64,6 +88,18 @@ body {
   word-break: auto-phrase;
   hanging-punctuation: allow-end;
   line-break: strict;
+  overflow-x: clip; /* 保険。実効的な刈り込みは header/main/footer 側(下記) */
+}
+
+/* モバイルの横ムニムニ(横スクロール)防止。
+   1pxでもはみ出すとページ全体を横に動かせてしまう。bodyのoverflow-x:clipは
+   仕様上ビューポートへ委譲されてbody自体では刈れないため、
+   フロー内容の器(main/footer)とfixedのヘッダー自身で直接刈る。
+   内側のoverflow-x-auto(表など)はそのままスクロールできる。 */
+header,
+main,
+footer {
+  overflow-x: clip;
 }
 
 /* ── Japanese typography headings ── */
@@ -401,33 +437,92 @@ details[open] summary {
   }
 }
 
-/* ── Mobile (≤767px) reading rhythm — tighter, denser, prtimes-like ──
-   Desktop (≥768px) is untouched: every rule here is scoped to max-width:767px.
-   Diagnosis: on phones the global 1.8 line-height + 0.04em tracking + 12–14px
-   secondary text + 56–112px section padding made copy feel small, scattered
-   and spread out. We tighten the rhythm without shrinking the headline scale. */
-@media (max-width: 767px) {
+/* ── Compact mobile / narrow window rhythm ──
+   Keep desktop untouched, but make narrow screens denser: smaller type,
+   shorter sections, tighter cards, and less whitespace between blocks. */
+@media (max-width: 900px) {
   body {
-    line-height: 1.7;         /* was 1.8 */
-    letter-spacing: 0.02em;   /* was 0.04em — Japanese reads tighter, less scattered */
+    line-height: 1.58;
+    letter-spacing: 0.015em;
   }
-  h1 { line-height: 1.2; }    /* was 1.15 */
-  h2 { line-height: 1.3; }    /* was 1.25 */
+  h1 { line-height: 1.14; }
+  h2 { line-height: 1.18; }
+  h3 { line-height: 1.25; }
 
-  /* Lift the small body sizes — 12/14px was too small to read comfortably on a phone */
-  .text-xs, .text-sm, caption, figcaption { letter-spacing: 0.02em; } /* was 0.06em */
-  .text-xs { font-size: 0.875rem; line-height: 1.6; }  /* 12px → 14px */
-  .text-sm { font-size: 1rem;     line-height: 1.65; } /* 14px → 16px */
+  .text-xs, .text-sm, caption, figcaption { letter-spacing: 0.02em; }
+  .text-xs { font-size: 0.72rem !important; line-height: 1.45 !important; }
+  .text-sm { font-size: 0.8rem !important; line-height: 1.5 !important; }
+  .text-base { font-size: 0.875rem !important; line-height: 1.55 !important; }
+  .text-lg { font-size: 1rem !important; line-height: 1.35 !important; }
+  .text-xl { font-size: 1.125rem !important; line-height: 1.3 !important; }
+  .text-2xl { font-size: 1.25rem !important; line-height: 1.24 !important; }
+  .text-3xl { font-size: 1.5rem !important; line-height: 1.2 !important; }
+  .text-4xl { font-size: 1.75rem !important; line-height: 1.16 !important; }
+  .text-5xl, .text-6xl, .text-7xl {
+    font-size: 2rem !important;
+    line-height: 1.12 !important;
+  }
 
-  /* Lift low-contrast greys so body copy is actually legible on a bright phone screen */
+  /* Keep low-contrast greys readable even after shrinking type. */
   .text-gray-400 { color: #6b7280; }  /* was #9ca3af */
   .text-gray-500 { color: #4b5563; }  /* was #6b7280 */
   .text-gray-600 { color: #374151; }  /* was #4b5563 */
 
-  /* Trim oversized vertical section rhythm so content isn't so spread out */
-  .py-28 { padding-top: 3rem;   padding-bottom: 3rem;   }  /* 112px → 48px */
-  .py-20 { padding-top: 2.5rem; padding-bottom: 2.5rem; }  /*  80px → 40px */
-  .py-14 { padding-top: 2rem;   padding-bottom: 2rem;   }  /*  56px → 32px */
+  main section {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+  main section:first-of-type {
+    min-height: auto !important;
+    padding-top: 4.75rem !important;
+    padding-bottom: 1.5rem !important;
+  }
+  [class*="min-h-[88svh]"],
+  [class*="min-h-screen"] {
+    min-height: auto !important;
+  }
+
+  .px-6 { padding-left: 1.25rem !important; padding-right: 1.25rem !important; }
+  .pt-28 { padding-top: 4.75rem !important; }
+  .pb-16 { padding-bottom: 1.5rem !important; }
+  .py-28, .py-20, .py-14, .py-12 {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+  .pt-10, .pt-8, .pt-6 { padding-top: 1.5rem !important; }
+  .pb-20, .pb-16, .pb-14, .pb-12, .pb-10 { padding-bottom: 2rem !important; }
+
+  .mb-14 { margin-bottom: 1.75rem !important; }
+  .mb-10 { margin-bottom: 1.5rem !important; }
+  .mb-8 { margin-bottom: 1.25rem !important; }
+  .mb-6 { margin-bottom: 1rem !important; }
+  .mb-5 { margin-bottom: 0.875rem !important; }
+  .mb-4 { margin-bottom: 0.75rem !important; }
+  .mt-8 { margin-top: 1.25rem !important; }
+  .mt-6 { margin-top: 1rem !important; }
+  .gap-8 { gap: 1.25rem !important; }
+  .gap-6 { gap: 1rem !important; }
+  .gap-5 { gap: 0.875rem !important; }
+  .gap-4 { gap: 0.75rem !important; }
+
+  .p-10, .p-8, .p-7, .p-6 { padding: 1.25rem !important; }
+  .p-5 { padding: 1rem !important; }
+  .px-10 { padding-left: 1.5rem !important; padding-right: 1.5rem !important; }
+  .px-7 { padding-left: 1.25rem !important; padding-right: 1.25rem !important; }
+  .py-4 { padding-top: 0.75rem !important; padding-bottom: 0.75rem !important; }
+  .py-3\.5, .py-3, .py-2\.5 {
+    padding-top: 0.625rem !important;
+    padding-bottom: 0.625rem !important;
+  }
+
+  .space-y-3 > :not([hidden]) ~ :not([hidden]),
+  .space-y-2\.5 > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-y-reverse: 0;
+    margin-top: calc(0.45rem * calc(1 - var(--tw-space-y-reverse))) !important;
+    margin-bottom: calc(0.45rem * var(--tw-space-y-reverse)) !important;
+  }
+
+  .leading-relaxed { line-height: 1.55 !important; }
 }
 
 /* ── Reduced motion ── */
@@ -512,4 +607,115 @@ details[open] summary {
   .text-2xl  { font-size: 1.3125rem !important; line-height: 1.75rem  !important; }
   .text-3xl  { font-size: 1.625rem  !important; line-height: 2rem     !important; }
   .text-4xl  { font-size: 2rem      !important; line-height: 2.25rem  !important; }
+}
+
+/* ── 2026-08-12: site-wide mobile readability system ──
+   This final layer intentionally wins over older compact overrides. */
+@media (max-width: 767px) {
+  body {
+    font-size: 16px;
+    line-height: 1.7;
+    letter-spacing: 0.02em;
+  }
+
+  main {
+    width: 100%;
+  }
+
+  main section {
+    padding-top: 2.5rem !important;
+    padding-bottom: 2.5rem !important;
+  }
+
+  main section:first-of-type {
+    min-height: auto !important;
+    padding-top: 5rem !important;
+    padding-bottom: 1.75rem !important;
+  }
+
+  main section > [class*="max-w-"],
+  main > [class*="max-w-"] {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .text-xs { font-size: 0.75rem !important; line-height: 1.55 !important; }
+  .text-sm { font-size: 0.875rem !important; line-height: 1.6 !important; }
+  .text-base { font-size: 0.9375rem !important; line-height: 1.7 !important; }
+  .text-lg { font-size: 1.0625rem !important; line-height: 1.6 !important; }
+  .text-xl { font-size: 1.1875rem !important; line-height: 1.45 !important; }
+  .text-2xl { font-size: 1.375rem !important; line-height: 1.4 !important; }
+  .text-3xl { font-size: 1.75rem !important; line-height: 1.3 !important; }
+  .text-4xl { font-size: 2rem !important; line-height: 1.22 !important; }
+  .text-5xl, .text-6xl, .text-7xl {
+    font-size: 2.25rem !important;
+    line-height: 1.16 !important;
+  }
+
+  h1, h2, h3, h4 {
+    overflow-wrap: anywhere;
+    text-wrap: pretty;
+  }
+
+  p, li, dd, dt {
+    text-wrap: pretty;
+  }
+
+  button,
+  a[class*="inline-flex"],
+  a[class*="flex"] {
+    touch-action: manipulation;
+  }
+
+  input,
+  select,
+  textarea {
+    width: 100%;
+    min-height: 48px;
+    border-radius: 0.625rem;
+    font-size: 16px !important;
+  }
+
+  textarea {
+    min-height: 8rem;
+  }
+
+  .prose {
+    font-size: 0.9375rem;
+    line-height: 1.85;
+  }
+
+  .prose h2 { margin-top: 2rem; font-size: 1.375rem; }
+  .prose h3 { margin-top: 1.5rem; font-size: 1.125rem; }
+  .prose img { margin: 1rem 0; border-radius: 0.625rem; }
+  .prose pre { max-width: 100%; overflow-x: auto; font-size: 0.8125rem; }
+  .prose table { display: block; max-width: 100%; overflow-x: auto; white-space: nowrap; }
+
+  [class*="grid-cols-2"] > *,
+  [class*="grid-cols-3"] > *,
+  [class*="grid-cols-4"] > * {
+    min-width: 0;
+  }
+
+  [data-mobile-cta] a {
+    min-height: 46px;
+    font-size: 0.8125rem !important;
+  }
+
+  body:has(header [aria-expanded="true"]) [data-mobile-cta] {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+@media (max-width: 359px) {
+  main section > [class*="max-w-"],
+  main > [class*="max-w-"] {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .text-3xl { font-size: 1.625rem !important; }
+  .text-4xl, .text-5xl, .text-6xl, .text-7xl { font-size: 1.875rem !important; }
 }

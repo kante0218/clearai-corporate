@@ -852,7 +852,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       </section>
 
       <div className="h-20 md:hidden" aria-hidden="true" />
-      <nav aria-label={lang === "ja" ? "お問い合わせ" : "Contact actions"} className="fixed inset-x-0 bottom-0 z-50 border-t border-gray-200 bg-white/95 px-3 py-2 shadow-[0_-8px_24px_rgba(15,23,42,0.10)] backdrop-blur md:hidden">
+      <nav data-mobile-cta aria-label={lang === "ja" ? "お問い合わせ" : "Contact actions"} className="fixed inset-x-0 bottom-0 z-50 border-t border-gray-200 bg-white/95 px-3 pt-2 pb-[calc(0.5rem+env(safe-area-inset-bottom))] shadow-[0_-8px_24px_rgba(15,23,42,0.10)] backdrop-blur md:hidden">
         <div className="mx-auto grid max-w-md grid-cols-2 gap-2">
           <Link href="/download" className="inline-flex min-h-11 items-center justify-center rounded-md border border-[#315b73] px-3 text-xs font-bold text-neutral-900">
             {lang === "ja" ? "会社資料" : "Company guide"}

@@ -21,39 +21,22 @@ export default function Header() {
   const h = headerDict[lang];
 
   const navItems: NavItem[] = [
+    { label: h.navSoftwareDev, href: "/software-development" },
     { label: h.navRobotRental, href: "/robot-rental" },
-    {
-      label: h.navFde,
-      href: "/ai-consulting",
-      children: [
-        { label: h.navAiAgent, href: "/ai-agent", description: h.navAiAgentDesc },
-        { label: h.navAdvisor, href: "/advisor", description: h.navAdvisorDesc },
-        { label: h.navTraining, href: "/training", description: h.navTrainingDesc },
-        { label: h.navSubsidy, href: "/subsidy", description: h.navSubsidyDesc },
-        { label: h.navClaude, href: "/claude", description: h.navClaudeDesc },
-        { label: h.navAiConsulting, href: "/ai-consulting", description: h.navAiConsultingDesc },
-        { label: h.navWebsite, href: "/website", description: h.navWebsiteDesc },
-        { label: h.navAdvertising, href: "/advertising", description: h.navAdvertisingDesc },
-        { label: h.navSns, href: "/sns", description: h.navSnsDesc },
-      ],
-    },
-    { label: h.navResearch, href: "/research" },
+    { label: h.navFde, href: "/ai-consulting" },
+    { label: h.navTraining, href: "/training" },
   ];
 
+  // Column stays reachable from the footer — the header slot goes to 導入実績,
+  // which is what a prospect looks for before enquiring.
   const utilityItems: { label: string; href: string }[] = [
+    { label: h.navCases, href: "/case-studies" },
     { label: h.navNews, href: "/blog" },
     { label: h.navAbout, href: "/about" },
   ];
   const isClaude = pathname?.startsWith("/claude");
-  const isAiConsulting =
-    pathname?.startsWith("/ai-consulting") ||
-    pathname?.startsWith("/advisor") ||
-    pathname?.startsWith("/ai-agent") ||
-    pathname?.startsWith("/training") ||
-    pathname?.startsWith("/subsidy") ||
-    pathname?.startsWith("/advertising") ||
-    pathname?.startsWith("/website") ||
-    pathname?.startsWith("/sns");
+  const isAiConsulting = pathname?.startsWith("/ai-consulting");
+  const isStandaloneLp = pathname?.startsWith("/lp/ai-development-consultation");
 
   useEffect(() => {
     const onScroll = () => {
@@ -70,25 +53,33 @@ export default function Header() {
     else delete root.dataset.theme;
   }, [isClaude, isAiConsulting]);
 
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
 
   const navColor = "text-gray-600 hover:text-gray-900";
   const headerBg = scrolled
     ? "bg-white/95 backdrop-blur-xl border-b border-gray-200 shadow-sm"
     : "bg-white border-b border-gray-100";
 
-  const contactFilledClass = "bg-neutral-900 hover:bg-neutral-800 text-white";
+  const contactFilledClass = "bg-cta hover:bg-cta-hover text-white";
   // Filled CTA for the desktop header (solid + soft neutral shadow + hover lift)
   const contactBtnClass =
-    "bg-neutral-900 hover:bg-black shadow-[0_6px_20px_-6px_rgba(0,0,0,0.45)] hover:shadow-[0_12px_28px_-6px_rgba(0,0,0,0.6)]";
+    "bg-cta hover:bg-cta-hover shadow-[0_6px_20px_-6px_rgba(176,36,166,0.45)] hover:shadow-[0_12px_28px_-6px_rgba(176,36,166,0.6)]";
+
+  if (isStandaloneLp) return null;
 
   return (
     <>
       <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${headerBg}`}>
-        <div className="max-w-[1800px] mx-auto px-6 lg:px-10">
-          <div className="relative flex items-center justify-between h-18 lg:h-20">
-            <Link href="/" className="flex items-center gap-2.5 group" aria-label="clearAI株式会社（クリアエーアイ）">
-              <Logo size={36} className="h-8 lg:h-9 w-auto transition-transform duration-500 group-hover:rotate-12" />
-              <span className="text-xl lg:text-2xl font-semibold tracking-tight text-neutral-900">clearAI</span>
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
+          <div className="relative flex h-16 items-center justify-between lg:h-20">
+            <Link href="/" className="flex items-center gap-2.5 group" aria-label="ClearAI株式会社（クリアエーアイ）">
+              <Logo size={36} className="h-7 lg:h-8 w-auto transition-opacity duration-300 group-hover:opacity-80" />
             </Link>
 
             <nav className="hidden xl:flex items-center gap-1">
@@ -107,14 +98,14 @@ export default function Header() {
                         href={item.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={`text-sm font-semibold tracking-wide px-3 py-2 transition-colors duration-200 inline-flex items-center gap-1 ${navColor}`}
+                        className={`text-sm font-semibold tracking-wide px-2 2xl:px-3 py-2 whitespace-nowrap transition-colors duration-200 inline-flex items-center gap-1 ${navColor}`}
                       >
                         {item.label}
                       </a>
                     ) : (
                       <Link
                         href={item.href}
-                        className={`text-sm font-semibold tracking-wide px-3 py-2 transition-colors duration-200 inline-flex items-center gap-1 ${navColor}`}
+                        className={`text-sm font-semibold tracking-wide px-2 2xl:px-3 py-2 whitespace-nowrap transition-colors duration-200 inline-flex items-center gap-1 ${navColor}`}
                       >
                         {item.label}
                         {hasChildren && (
@@ -158,21 +149,26 @@ export default function Header() {
               })}
             </nav>
 
-            <div className="hidden xl:flex items-center gap-5">
-              <div className="flex items-center gap-5">
+            <div className="hidden xl:flex items-center gap-3 2xl:gap-5">
+              <div className="flex items-center gap-3 2xl:gap-5">
                 {utilityItems.map((u) => (
                   <Link
                     key={u.label}
                     href={u.href}
-                    className="text-sm font-semibold tracking-wide text-gray-600 hover:text-gray-900 transition-colors duration-300"
+                    className="text-sm font-semibold tracking-wide whitespace-nowrap text-gray-600 hover:text-gray-900 transition-colors duration-300"
                   >
                     {u.label}
                   </Link>
                 ))}
               </div>
               <LanguageToggle variant="desktop" />
+              {/* Secondary CTA: prospects who aren't ready to talk still convert here. */}
+              <Link href="/download"
+                className="inline-flex items-center justify-center text-sm font-semibold text-neutral-900 whitespace-nowrap px-4 py-2.5 rounded-md border border-neutral-300 hover:border-neutral-900 hover:bg-neutral-50 transition-all duration-300">
+                {h.navDownload}
+              </Link>
               <Link href="/contact"
-                className={`group inline-flex items-center justify-center gap-1.5 text-sm font-semibold text-white px-5 py-2.5 rounded-md transition-all duration-300 hover:-translate-y-0.5 ${contactBtnClass}`}>
+                className={`group inline-flex items-center justify-center gap-1.5 text-sm font-semibold text-white whitespace-nowrap px-4 2xl:px-5 py-2.5 rounded-md transition-all duration-300 hover:-translate-y-0.5 ${contactBtnClass}`}>
                 {h.contact}
                 <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-0.5">→</span>
               </Link>
@@ -194,9 +190,9 @@ export default function Header() {
           </div>
         </div>
 
-        <div className={`xl:hidden overflow-hidden transition-all duration-500 ${isOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"}`}>
-          <div className="bg-white/98 backdrop-blur-xl border-t border-gray-100">
-            <nav className="max-w-[1800px] mx-auto px-6 py-8 space-y-1">
+        <div className={`xl:hidden overflow-hidden bg-white transition-all duration-500 ${isOpen ? "h-[calc(100dvh-4rem)] opacity-100" : "h-0 opacity-0"}`}>
+          <div className="h-full bg-white/98 backdrop-blur-xl border-t border-gray-100">
+            <nav className="max-h-[calc(100dvh-4rem)] max-w-[1800px] mx-auto overflow-y-auto overscroll-contain px-5 py-4 space-y-1 pb-[calc(1rem+env(safe-area-inset-bottom))]">
               {navItems.map((item, i) => {
                 const hasChildren = item.children && item.children.length > 0;
                 const expanded = mobileExpanded === item.label;
@@ -264,7 +260,7 @@ export default function Header() {
                   </div>
                 );
               })}
-              <div className="mt-6 flex items-center justify-center gap-5">
+              <div className="mt-6 flex flex-wrap items-center justify-center gap-5">
                 {utilityItems.map((u) => (
                   <Link
                     key={u.label}
@@ -276,10 +272,14 @@ export default function Header() {
                   </Link>
                 ))}
               </div>
-              <div className="mt-4">
+              <div className="mt-4 space-y-3">
                 <Link href="/contact" onClick={() => setIsOpen(false)}
                   className={`block text-center px-4 py-3.5 rounded-lg text-sm font-semibold transition-colors min-h-[44px] flex items-center justify-center ${contactFilledClass}`}>
                   {h.contact}
+                </Link>
+                <Link href="/download" onClick={() => setIsOpen(false)}
+                  className="block text-center px-4 py-3.5 rounded-lg text-sm font-semibold border border-neutral-300 text-neutral-900 hover:border-neutral-900 hover:bg-neutral-50 transition-colors min-h-[44px] flex items-center justify-center">
+                  {h.navDownload}
                 </Link>
               </div>
             </nav>

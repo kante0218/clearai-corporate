@@ -4,28 +4,31 @@ import Link from "next/link";
 import Logo from "@/components/Logo";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { footer as footerDict } from "@/lib/i18n/translations";
+import { usePathname } from "next/navigation";
 
 export default function Footer() {
   const { lang } = useLanguage();
+  const pathname = usePathname();
   const f = footerDict[lang];
 
+  if (pathname?.startsWith("/lp/ai-development-consultation")) return null;
+
   const services = [
-    { label: f.services.advisor, href: "/advisor" },
-    { label: f.services.aiAgent, href: "/ai-agent" },
-    { label: f.services.training, href: "/training" },
-    { label: f.services.aiConsulting, href: "/ai-consulting" },
-    { label: f.services.website, href: "/website" },
-    { label: f.services.advertising, href: "/advertising" },
-    { label: f.services.sns, href: "/sns" },
+    { label: f.services.softwareDev, href: "/software-development" },
     { label: f.services.robotRental, href: "/robot-rental" },
-    { label: f.services.research, href: "/research" },
-    { label: f.services.subsidy, href: "/subsidy" },
-    { label: f.services.claude, href: "/claude" },
+    { label: f.services.aiConsulting, href: "/ai-consulting" },
+    { label: f.services.training, href: "/training" },
   ];
 
   const company = [
     { label: f.company.about, href: "/about" },
+    { label: f.company.careers, href: "/careers" },
+    { label: f.company.service, href: "/service" },
+    { label: f.company.flow, href: "/flow" },
+    { label: f.company.download, href: "/download" },
     { label: f.company.faq, href: "/faq" },
+    { label: f.company.cases, href: "/case-studies" },
+    { label: f.company.column, href: "/column" },
     { label: f.company.blog, href: "/blog" },
     { label: f.company.contact, href: "/contact" },
   ];
@@ -38,7 +41,7 @@ export default function Footer() {
 
   const socials = [
     {
-      label: "clearAI on X",
+      label: "ClearAI on X",
       href: "https://x.com/clearai0123",
       icon: (
         <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4" aria-hidden="true">
@@ -47,7 +50,7 @@ export default function Footer() {
       ),
     },
     {
-      label: "clearAI on note",
+      label: "ClearAI on note",
       href: "https://note.com/kante0123",
       icon: (
         <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4" aria-hidden="true">
@@ -56,7 +59,7 @@ export default function Footer() {
       ),
     },
     {
-      label: "clearAI on LinkedIn",
+      label: "ClearAI on LinkedIn",
       href: "https://www.linkedin.com/company/131713938/",
       icon: (
         <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4" aria-hidden="true">
@@ -68,12 +71,11 @@ export default function Footer() {
 
   return (
     <footer className="bg-neutral-950">
-      <div className="max-w-[1800px] mx-auto px-6 lg:px-10 pt-16 pb-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
-          <div>
+      <div className="max-w-[1800px] mx-auto px-5 sm:px-6 lg:px-8 pt-10 pb-8 sm:pt-16 sm:pb-12">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-9 lg:gap-8">
+          <div className="col-span-2 lg:col-span-1">
             <div className="flex items-center gap-2.5 mb-4" aria-label={f.logoAlt}>
-              <Logo size={28} white className="h-7 w-auto" />
-              <span className="text-lg font-semibold tracking-tight text-white">clearAI</span>
+              <Logo size={28} className="h-7 w-auto" />
             </div>
             <p className="text-sm text-white/40 leading-relaxed mb-2">{f.tagline}</p>
             <p className="text-xs text-white/25 leading-relaxed">
@@ -95,7 +97,7 @@ export default function Footer() {
             </div>
           </div>
 
-          <div>
+          <div className="col-span-1">
             <p className="text-xs font-semibold tracking-widest text-white/40 mb-4 uppercase">{f.servicesHeading}</p>
             <ul className="space-y-2.5">
               {services.map((link) => (
@@ -106,7 +108,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div>
+          <div className="col-span-1">
             <p className="text-xs font-semibold tracking-widest text-white/40 mb-4 uppercase">{f.companyHeading}</p>
             <ul className="space-y-2.5">
               {company.map((link) => (
@@ -117,7 +119,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div>
+          <div className="col-span-2 lg:col-span-1">
             <p className="text-xs font-semibold tracking-widest text-white/40 mb-4 uppercase">{f.otherHeading}</p>
             <ul className="space-y-2.5">
               {other.map((link) => (
@@ -136,11 +138,11 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="max-w-[1800px] mx-auto px-6 lg:px-10">
+      <div className="max-w-[1800px] mx-auto px-5 sm:px-6 lg:px-8">
         <div className="h-px bg-white/10" />
       </div>
 
-      <div className="max-w-[1800px] mx-auto px-6 lg:px-10 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div className="max-w-[1800px] mx-auto px-5 sm:px-6 lg:px-8 py-5 sm:py-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 sm:gap-4">
         <p className="text-xs text-white/25">
           &copy; {new Date().getFullYear()} {f.copyright}
         </p>
