@@ -1,68 +1,84 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 
 const description =
-  "【準備中／Coming Soon】clearAIのロボットレンタル。Unitree・Boston Dynamics・AGIBOT・JAKA・PUDUなど海外の最先端ヒューマノイド／四足歩行ロボット／協働ロボットを輸入し、短期レンタル・導入前トライアル・イベント活用で提供予定。先行のご相談を承っています。";
+  "ClearAI株式会社（クリアエーアイ）のロボットレンタル。Unitree R1・G1（ヒューマノイド）と Go2（四足歩行ロボット）を1泊2日から全国配送でレンタルできます。1泊2日 Go2は5,000円（税別）〜、R1・G1は50,000円（税別）〜。月単位の長期プラン・安心補償付き・免責費用なし。展示会・PoC・研究開発にご利用いただけます。";
 
 export const metadata: Metadata = {
-  title: "ロボットレンタル | ヒューマノイドの短期レンタル・PoC・実証",
+  title: "ロボットレンタル | Unitree R1・G1・Go2を1泊2日から",
   description,
   keywords: [
     "ロボットレンタル",
-    "ヒューマノイドレンタル",
+    "ロボット レンタル 料金",
+    "ヒューマノイド レンタル",
     "Unitree レンタル",
-    "AGIBOT",
-    "Unitree G1",
-    "Unitree Go2",
-    "Unitree H2",
-    "Unitree B2",
-    "Unitree A2",
-    "PUDU D7",
-    "AgiBot A2-W",
-    "Boston Dynamics Spot",
-    "Boston Dynamics Atlas",
-    "Boston Dynamics Stretch",
-    "JAKA ロボット",
-    "JAKA 協働ロボット",
-    "人型ロボット レンタル",
+    "Unitree R1 レンタル",
+    "Unitree G1 レンタル",
+    "Unitree Go2 レンタル",
     "四足歩行ロボット レンタル",
-    "協働ロボット レンタル",
-    "ロボット 輸入",
-    "ヒューマノイド",
-    "AI ロボット",
-    "ロボティクス",
+    "人型ロボット レンタル",
+    "ロボット 展示会 レンタル",
+    "ロボット PoC 実証実験",
+    "ロボット 短期レンタル",
+    "ClearAI",
+    "クリアエーアイ",
   ],
   alternates: { canonical: "https://clearai.jp/robot-rental" },
   openGraph: {
-    title: "ロボットレンタル | clearAI株式会社",
+    title: "ロボットレンタル | ClearAI株式会社",
     description,
     url: "https://clearai.jp/robot-rental",
     type: "website",
     locale: "ja_JP",
-    siteName: "clearAI株式会社",
-    images: ["/images/humanoid/workskin-hero-tricolor.png"],
+    siteName: "ClearAI株式会社",
+    images: ["/images/robot-rental/g1.png"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "ロボットレンタル | clearAI株式会社",
+    title: "ロボットレンタル | ClearAI株式会社",
     description,
-    images: ["/images/humanoid/workskin-hero-tricolor.png"],
+    images: ["/images/robot-rental/g1.png"],
   },
 };
 
 const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
-  serviceType: "ヒューマノイドロボット レンタル・PoC・実証実験支援",
+  serviceType: "ロボットレンタル（ヒューマノイド・四足歩行ロボット）",
   provider: {
     "@type": "Organization",
-    name: "clearAI株式会社",
+    name: "ClearAI株式会社",
     url: "https://clearai.jp",
   },
   areaServed: { "@type": "Country", name: "日本" },
-  name: "ロボットレンタル（ヒューマノイド）",
+  name: "ロボットレンタル",
   description,
   url: "https://clearai.jp/robot-rental",
+  offers: [
+    {
+      "@type": "Offer",
+      name: "Unitree R1（1泊2日・Basic）",
+      price: "50000",
+      priceCurrency: "JPY",
+      availability: "https://schema.org/InStock",
+      url: "https://clearai.jp/robot-rental#pricing-r1",
+    },
+    {
+      "@type": "Offer",
+      name: "Unitree G1（1泊2日・Basic）",
+      price: "50000",
+      priceCurrency: "JPY",
+      availability: "https://schema.org/InStock",
+      url: "https://clearai.jp/robot-rental#pricing-g1",
+    },
+    {
+      "@type": "Offer",
+      name: "Unitree Go2（1泊2日・Air）",
+      price: "5000",
+      priceCurrency: "JPY",
+      availability: "https://schema.org/InStock",
+      url: "https://clearai.jp/robot-rental#pricing-go2",
+    },
+  ],
 };
 
 const breadcrumbSchema = {
@@ -78,10 +94,14 @@ export default function RobotRentalLayout({ children }: { children: React.ReactN
   return (
     <>
       {children}
-      <Script id="schema-service-robot-rental" type="application/ld+json" strategy="afterInteractive"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
-      <Script id="schema-breadcrumb-robot-rental" type="application/ld+json" strategy="afterInteractive"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
     </>
   );
 }

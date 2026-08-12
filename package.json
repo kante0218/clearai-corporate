@@ -12,12 +12,15 @@
     "@anthropic-ai/sdk": "0.99.0",
     "@react-three/drei": "10.7.7",
     "@react-three/fiber": "9.6.0",
+    "botid": "1.5.11",
     "framer-motion": "^12.12.1",
+    "google-auth-library": "10.7.0",
     "microcms-js-sdk": "3.3.0",
     "next": "^15.3.3",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "resend": "6.11.0",
+    "stripe": "22.4.0",
     "three": "0.184.0"
   },
   "devDependencies": {
