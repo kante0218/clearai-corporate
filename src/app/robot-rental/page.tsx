@@ -508,20 +508,20 @@ export default function RobotRentalPage() {
   return (
     <>
       {/* PAGE HEADER */}
-      <section className="pt-24 pb-4 lg:pt-28 lg:pb-5 bg-white border-b border-gray-100">
-        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <p className="text-sm font-semibold text-neutral-900 mb-3">{t.heroKicker}</p>
-          <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight">{t.heroTitle}</h1>
+      <section className="border-b border-gray-100 bg-white pb-3 pt-20 sm:pb-4 sm:pt-24 lg:pt-28 lg:pb-5">
+        <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8">
+          <p className="mb-2 text-xs font-semibold text-neutral-900 sm:mb-3 sm:text-sm">{t.heroKicker}</p>
+          <h1 className="text-2xl font-bold leading-tight text-gray-900 sm:text-3xl lg:text-4xl">{t.heroTitle}</h1>
         </div>
       </section>
 
       {/* LINEUP */}
-      <section id="lineup" className="pt-6 pb-14 lg:pt-8 lg:pb-20 bg-gray-50">
-        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
+      <section id="lineup" className="bg-gray-50 pb-10 pt-5 sm:pb-14 sm:pt-6 lg:pb-20 lg:pt-8">
+        <div className="max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8">
           <Reveal>
             <Label>{t.lineupLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-3">{t.lineupTitle}</h2>
-            <p className="text-base text-gray-500 leading-relaxed mb-8">{t.lineupDesc}</p>
+            <h2 className="mb-2 text-2xl font-bold leading-tight text-gray-900 sm:mb-3 sm:text-3xl">{t.lineupTitle}</h2>
+            <p className="mb-5 text-sm leading-relaxed text-gray-500 sm:mb-8 sm:text-base">{t.lineupDesc}</p>
           </Reveal>
           <CardCarousel gridClass="md:grid-cols-2 lg:grid-cols-3">
             {MODELS.map((m, i) => {
@@ -529,10 +529,10 @@ export default function RobotRentalPage() {
               return (
                 <Reveal key={m.id} delay={i * 100} className="h-full">
                   <div className="bg-white rounded-lg border border-gray-200 h-full flex flex-col overflow-hidden transition-all duration-300 hover:shadow-lg">
-                    <div className="relative aspect-[4/3] bg-gray-50">
-                      <Image src={m.image} alt={m.name} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-contain p-6" />
+                    <div className="relative aspect-[16/10] bg-gray-50 sm:aspect-[4/3]">
+                      <Image src={m.image} alt={m.name} fill sizes="(max-width: 768px) 88vw, 33vw" className="object-contain p-4 sm:p-6" />
                     </div>
-                    <div className="p-6 lg:p-8 flex flex-col flex-1">
+                    <div className="flex flex-1 flex-col p-4 sm:p-6 lg:p-8">
                       <p className="text-xs font-semibold tracking-widest text-neutral-900 uppercase mb-1">{c.type}</p>
                       <h3 className="text-xl font-bold text-gray-900 mb-2">{m.name}</h3>
                       <p className="text-sm text-gray-600 leading-relaxed mb-5">{c.desc}</p>
@@ -564,13 +564,10 @@ export default function RobotRentalPage() {
                               {t.applyCta}
                             </Link>
                             <p className="mt-2 text-center text-[11px] leading-5 text-gray-500">{t.applyNote}</p>
-                            <a href={`#pricing-${m.id}`} className="mt-2 block text-center text-xs font-semibold text-neutral-900 underline-offset-4 hover:underline">
-                              {t.heroCta2}
-                            </a>
                           </>
                         ) : (
-                          <a href={`#pricing-${m.id}`} className="block rounded-md border border-gray-200 px-4 py-3 text-center text-sm font-semibold text-gray-600 transition-colors hover:border-gray-400 hover:text-gray-900">
-                            {t.heroCta2}
+                          <a href="#simulation" className="block rounded-md border border-gray-200 px-4 py-3 text-center text-sm font-semibold text-gray-600 transition-colors hover:border-gray-400 hover:text-gray-900">
+                            {lang === "ja" ? "料金を計算する" : "Calculate price"}
                           </a>
                         )}
                       </div>
@@ -584,15 +581,15 @@ export default function RobotRentalPage() {
       </section>
 
       {/* PRICE SIMULATOR */}
-      <section id="simulation" className="border-y border-gray-100 bg-white py-14 lg:py-20 scroll-mt-24">
-        <div className="mx-auto max-w-5xl px-6 lg:px-8">
+      <section id="simulation" className="scroll-mt-24 border-y border-gray-100 bg-white py-10 sm:py-14 lg:py-20">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <Label>{lang === "ja" ? "Price simulation" : "Price simulation"}</Label>
-            <h2 className="text-3xl font-bold text-gray-900">{lang === "ja" ? "料金シミュレーション" : "Rental price simulator"}</h2>
+            <h2 className="text-2xl font-bold text-gray-900 sm:text-3xl">{lang === "ja" ? "料金シミュレーション" : "Rental price simulator"}</h2>
             <p className="mt-3 text-sm leading-7 text-gray-500">{lang === "ja" ? "機体・期間・初日のエンジニア帯同時間を選ぶと、その場で概算を確認できます。初日のハードウェアエンジニア帯同は安全のため必須です。" : "Choose a robot, duration, and first-day engineer support. Hardware engineer attendance on day one is mandatory for safety."}</p>
           </Reveal>
-          <div className="mt-8 grid gap-8 rounded-xl border border-gray-200 bg-gray-50 p-6 lg:grid-cols-[1fr_320px] lg:p-8">
-            <div className="grid gap-5 sm:grid-cols-2">
+          <div className="mt-5 grid gap-5 rounded-xl border border-gray-200 bg-gray-50 p-4 sm:mt-8 sm:gap-8 sm:p-6 lg:grid-cols-[1fr_320px] lg:p-8">
+            <div className="grid gap-4 sm:grid-cols-2 sm:gap-5">
               <label className="text-sm font-semibold text-gray-700">{lang === "ja" ? "機種" : "Robot"}
                 <select value={simModelId} onChange={(event) => { setSimModelId(event.target.value as Model["id"]); setSimGradeIndex(0); }} className="mt-2 w-full rounded-md border border-gray-300 bg-white px-3 py-3">
                   {MODELS.map((model) => <option key={model.id} value={model.id}>{model.name}</option>)}
@@ -620,7 +617,7 @@ export default function RobotRentalPage() {
                 </select>
               </label>}
             </div>
-            <aside className="rounded-lg bg-white p-6 shadow-sm">
+            <aside className="rounded-lg bg-white p-4 shadow-sm sm:p-6">
               <dl className="space-y-3 text-sm">
                 <div className="flex justify-between"><dt className="text-gray-500">{lang === "ja" ? "レンタル料" : "Rental"}</dt><dd className="font-semibold">{yen(simRental ?? 0)}</dd></div>
                 <div className="flex justify-between"><dt className="text-gray-500">{lang === "ja" ? "初日エンジニア" : "Day-one engineer"}</dt><dd className="font-semibold">{yen(simEngineer)}</dd></div>
@@ -629,35 +626,6 @@ export default function RobotRentalPage() {
               {RENTAL_APPLICATION_ENABLED && <Link href={`/robot-rental/apply?model=${simModel.id}`} className="mt-6 block rounded-md bg-cta px-4 py-3 text-center text-sm font-bold text-white hover:bg-cta-hover">{lang === "ja" ? "この内容で申込・決済へ" : "Apply and continue to payment"}</Link>}
             </aside>
           </div>
-        </div>
-      </section>
-
-      {/* PRICING */}
-      <section id="pricing" className="py-14 lg:py-20 bg-white scroll-mt-24">
-        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <Reveal>
-            <Label>{t.pricingLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-3">{t.pricingTitle}</h2>
-            <p className="text-base text-gray-500 leading-relaxed mb-10">{t.pricingDesc}</p>
-          </Reveal>
-
-          <div className="space-y-12">
-            {MODELS.map((m, i) => (
-              <Reveal key={m.id} delay={i * 60}>
-                <div id={`pricing-${m.id}`} className="rounded-lg border border-gray-200 bg-gray-50 p-6 lg:p-8 scroll-mt-24">
-                  <div className="flex items-baseline gap-3 mb-6">
-                    <h3 className="text-xl font-bold text-gray-900">{m.name}</h3>
-                    <span className="text-xs text-gray-500">{t.models[m.id].type}</span>
-                  </div>
-                  <PriceTable model={m} t={t} />
-                </div>
-              </Reveal>
-            ))}
-          </div>
-
-          <Reveal>
-            <p className="text-xs text-gray-500 leading-relaxed mt-6">{t.taxNote}</p>
-          </Reveal>
         </div>
       </section>
 
