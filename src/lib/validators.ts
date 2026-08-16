@@ -8,9 +8,10 @@ export type InquiryType = (typeof INQUIRY_TYPES)[number];
 
 /** Service keys used via ?service= query param to pre-select inquiry context */
 export const SERVICE_KEYS = [
+  "software-development",
+  "robot-rental",
   "consulting",
   "advisor",
-  "robot-rental",
   "sns",
   "education",
   "ceo",
@@ -22,9 +23,10 @@ export const SERVICE_KEYS = [
 export type ServiceKey = (typeof SERVICE_KEYS)[number];
 
 export const SERVICE_LABELS: Record<ServiceKey, string> = {
+  "software-development": "システム・ソフトウェア開発",
+  "robot-rental": "ロボットレンタル",
   consulting: "AIコンサル・DX",
   advisor: "AI顧問",
-  "robot-rental": "ロボットレンタル",
   sns: "SNS運用代行",
   education: "AI研修",
   ceo: "経営者向けAI活用",
@@ -32,6 +34,22 @@ export const SERVICE_LABELS: Record<ServiceKey, string> = {
   subsidy: "補助金・助成金サポート",
   advertising: "AI広告運用",
   website: "ウェブサイト作成",
+};
+
+/** Downloadable business decks sent directly from /download. */
+export const DOCUMENT_KEYS = [
+  "company",
+  "software-development",
+  "robot-rental",
+  "training",
+] as const;
+export type DocumentKey = (typeof DOCUMENT_KEYS)[number];
+
+export const DOCUMENT_LABELS: Record<DocumentKey, string> = {
+  company: "会社紹介資料",
+  "software-development": "システム・ソフトウェア開発 事業紹介資料",
+  "robot-rental": "ロボットレンタル 事業紹介資料",
+  training: "AI内製化研修 事業紹介資料",
 };
 
 export interface ContactFormData {

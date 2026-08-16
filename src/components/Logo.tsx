@@ -1,22 +1,22 @@
 import Image from "next/image";
 
-// Intrinsic aspect ratio of the brand mark PNG (public/images/logo-mark*.png)
-const MARK_W = 743;
-const MARK_H = 866;
+// Intrinsic aspect ratio of the wordmark PNG (public/images/logo-clear-wordmark.png).
+// The artwork is a transparent-background gradient wordmark, so it reads on both
+// the white header and the dark footer without a separate light/dark variant.
+const MARK_W = 1435;
+const MARK_H = 445;
 
 export default function Logo({
   size = 32,
   className = "",
-  white = false,
 }: {
   size?: number;
   className?: string;
-  white?: boolean;
 }) {
   return (
     <Image
-      src={white ? "/images/logo-mark-white.png" : "/images/logo-mark.png"}
-      alt="clearAI"
+      src="/images/logo-clear-wordmark.png"
+      alt="ClearAI"
       width={Math.round((size * MARK_W) / MARK_H)}
       height={size}
       className={className}

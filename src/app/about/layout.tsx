@@ -1,31 +1,30 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 
 const description =
-  "clearAI株式会社（クリアエーアイ／読み方：クリアエーアイ）の会社概要。2026年4月設立、茨城県拠点、代表取締役 髙橋 敢輝。AI顧問・AI研修・AIコンサル/DX・ウェブ制作・ロボットレンタルを通じて、日本の中小企業のAI活用とDXを支援するAIスタートアップ。英文表記は clearAI Inc.。";
+  "ClearAI株式会社（クリアエーアイ／読み方：クリアエーアイ）の会社概要。2026年4月設立、茨城県拠点、代表取締役 髙橋 敢輝。AI顧問・AI研修・AIコンサル/DX・ウェブ制作を通じて、日本の中小企業のAI活用とDXを支援するAIスタートアップ。英文表記は ClearAI Inc.。";
 
 export const metadata: Metadata = {
-  title: "会社概要（clearAI / クリアエーアイ）",
+  title: "会社概要（ClearAI / クリアエーアイ）",
   description,
   keywords: [
-    "clearAI", "clearAI株式会社", "クリアエーアイ", "クリアAI",
-    "クリア・エーアイ", "クリアーエーアイ", "clearAI 読み方",
-    "clearAI 会社概要", "clearAI 茨城", "clearAI 設立",
+    "ClearAI", "ClearAI株式会社", "クリアエーアイ", "クリアAI",
+    "クリア・エーアイ", "クリアーエーアイ", "ClearAI 読み方",
+    "ClearAI 会社概要", "ClearAI 茨城", "ClearAI 設立",
     "clear AI", "clearai.jp", "髙橋 敢輝",
   ],
   alternates: { canonical: "https://clearai.jp/about" },
   openGraph: {
-    title: "会社概要 | clearAI株式会社",
+    title: "会社概要 | ClearAI株式会社",
     description,
     url: "https://clearai.jp/about",
     type: "website",
     locale: "ja_JP",
-    siteName: "clearAI株式会社",
+    siteName: "ClearAI株式会社",
     images: ["/images/logo.png"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "会社概要 | clearAI株式会社",
+    title: "会社概要 | ClearAI株式会社",
     description,
     images: ["/images/logo.png"],
   },
@@ -44,10 +43,8 @@ export default function AboutLayout({ children }: { children: React.ReactNode })
   return (
     <>
       {children}
-      <Script
-        id="schema-breadcrumb-about"
+      <script
         type="application/ld+json"
-        strategy="afterInteractive"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
     </>

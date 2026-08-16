@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 
 const description =
-  "clearAI株式会社（クリアエーアイ）のAI導入コンサルティング。生成AI活用・業務自動化・DX推進まで、戦略策定から開発・実装・運用まで一気通貫でサポート。中小企業から大企業まで、貴社に最適なAIソリューションを共に創り上げます。AI顧問・Claude特化導入・CEO向けAI活用にも対応。";
+  "ClearAI株式会社（クリアエーアイ）のAI導入コンサルティング。生成AI活用・業務自動化・DX推進まで、戦略策定から開発・実装・運用まで一気通貫でサポート。中小企業から大企業まで、貴社に最適なAIソリューションを共に創り上げます。AI顧問・Claude特化導入・CEO向けAI活用にも対応。";
 
 export const metadata: Metadata = {
   title: "AIコンサルティング | 戦略・実装・運用を一気通貫で伴走",
@@ -19,23 +18,23 @@ export const metadata: Metadata = {
     "LLM導入",
     "Claude導入",
     "CEO向けAI",
-    "clearAI",
+    "ClearAI",
     "クリアエーアイ",
     "クリアAI",
   ],
   alternates: { canonical: "https://clearai.jp/ai-consulting" },
   openGraph: {
-    title: "AIコンサルティング | clearAI株式会社",
+    title: "AIコンサルティング | ClearAI株式会社",
     description,
     url: "https://clearai.jp/ai-consulting",
     type: "website",
     locale: "ja_JP",
-    siteName: "clearAI株式会社",
+    siteName: "ClearAI株式会社",
     images: ["/images/logo.png"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "AIコンサルティング | clearAI株式会社",
+    title: "AIコンサルティング | ClearAI株式会社",
     description,
     images: ["/images/logo.png"],
   },
@@ -47,7 +46,7 @@ const serviceSchema = {
   serviceType: "AIコンサルティング",
   provider: {
     "@type": "Organization",
-    name: "clearAI株式会社",
+    name: "ClearAI株式会社",
     url: "https://clearai.jp",
   },
   areaServed: { "@type": "Country", name: "日本" },
@@ -73,16 +72,12 @@ export default function AiConsultingLayout({ children }: { children: React.React
   return (
     <>
       {children}
-      <Script
-        id="schema-service-consulting"
+      <script
         type="application/ld+json"
-        strategy="afterInteractive"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
       />
-      <Script
-        id="schema-breadcrumb-consulting"
+      <script
         type="application/ld+json"
-        strategy="afterInteractive"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
     </>

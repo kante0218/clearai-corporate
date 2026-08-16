@@ -26,7 +26,7 @@ const COPY = {
   ja: {
     kicker: "Free Consultation",
     title: "無料相談を予約する",
-    desc: "ご都合の日時を選ぶだけで、30分のオンライン相談でAI活用・ロボットレンタルの進め方をご提案します（強引な営業は一切ありません）。",
+    desc: "ご都合の日時を選ぶだけで、30分のオンライン相談でAI活用の進め方をご提案します（強引な営業は一切ありません）。",
     points: [
       { label: "30分", sub: "オンライン面談" },
       { label: "無料", sub: "事前準備不要" },
@@ -69,7 +69,7 @@ const COPY = {
   en: {
     kicker: "Free Consultation",
     title: "Book a free consultation",
-    desc: "Pick a time that works for you and we'll show you in a 30-minute online session how AI and robot rental can fit your business — no pushy sales, ever.",
+    desc: "Pick a time that works for you and we'll show you in a 30-minute online session how AI can fit your business — no pushy sales, ever.",
     points: [
       { label: "30 min", sub: "Online meeting" },
       { label: "Free", sub: "No prep needed" },

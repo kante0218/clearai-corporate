@@ -40,8 +40,8 @@ export const faqItems: FaqItem[] = [
       en: "Can we use government subsidies or grants?",
     },
     a: {
-      ja: "人材開発支援助成金（最大75%）・IT導入補助金・茨城県独自制度に対応し、連携社労士とともに計画策定から実施報告まで伴走します（詳細は /subsidy のシミュレーターで確認可）。",
-      en: "We support the Human Resource Development Support Grant (up to 75%), the IT Introduction Subsidy, and Ibaraki Prefecture's own programs, accompanying you from planning through final reporting alongside our partnered labour attorney (see the simulator at /subsidy for details).",
+      ja: "人材開発支援助成金（最大75%）・IT導入補助金・茨城県独自制度に対応し、連携社労士とともに計画策定から実施報告まで伴走します。",
+      en: "We support the Human Resource Development Support Grant (up to 75%), the IT Introduction Subsidy, and Ibaraki Prefecture's own programs, accompanying you from planning through final reporting alongside our partnered labour attorney.",
     },
   },
   {
@@ -86,12 +86,12 @@ export const faqItems: FaqItem[] = [
   },
   {
     q: {
-      ja: "AIコンサル・研修からロボットレンタルまで、なぜ幅広く手がけているのですか？",
-      en: "Why do you cover everything from AI consulting and training to robot rental?",
+      ja: "AIコンサル・研修からWeb制作まで、なぜ幅広く手がけているのですか？",
+      en: "Why do you cover everything from AI consulting and training to web production?",
     },
     a: {
-      ja: "事業のコアは「技術を現場が使える形に落とし込む」こと——AI顧問・研修もロボットレンタルも本質は現場の課題をエンジニアリングで解くことであり、ソフトからフィジカルまで一貫して支援します。",
-      en: "Our core is translating technology into what the field can actually use — AI advisory, training, and robot rental all share the same essence: listening to on-site challenges and solving them through engineering, spanning software and physical front lines.",
+      ja: "事業のコアは「技術を現場が使える形に落とし込む」こと——AI顧問・研修もWeb制作も本質は現場の課題をエンジニアリングで解くことであり、戦略から実装・運用まで一貫して支援します。",
+      en: "Our core is translating technology into what the field can actually use — AI advisory, training, and web production all share the same essence: listening to on-site challenges and solving them through engineering, from strategy to implementation and operation.",
     },
   },
   {
@@ -111,7 +111,7 @@ export const faqItems: FaqItem[] = [
     },
     a: {
       ja: "2026年4月設立の新設企業ですが、代表・中核メンバーは大手コンサル・シリコンバレー開発・応用情報技術者の経験者で構成しており、機動力とPoC・短期契約の柔軟性でリスクを抑えて検証いただけます。",
-      en: "Established in April 2026, clearAI's founder and core team bring substantial experience — major consulting, Silicon Valley development, and Applied IT certification — and our agility combined with PoC-first contracts lets you validate results with controlled risk.",
+      en: "Established in April 2026, ClearAI's founder and core team bring substantial experience — major consulting, Silicon Valley development, and Applied IT certification — and our agility combined with PoC-first contracts lets you validate results with controlled risk.",
     },
   },
   {

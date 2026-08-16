@@ -1,34 +1,43 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 
 const description =
-  "clearAIのAI研修サービス。経営層・管理職・現場担当者まで、階層別にAIリテラシーを底上げ。ChatGPT・Claudeなど生成AIの実務活用から、社内プロンプトガイドライン策定、チーム別ハンズオンまで、自走できる組織づくりを支援します。";
+  "ClearAI株式会社（クリアエーアイ）のAI内製化研修。AIを使って社内システムを自社で作れる人材を育てる実践型プログラム。Claude / ChatGPT / Gemini / Microsoft Copilot から選べるカリキュラムで、非エンジニアでも研修中に動く社内ツールが完成します。人材開発支援助成金の活用で実質負担を最大75%圧縮、計画届から支給申請まで伴走します。";
 
 export const metadata: Metadata = {
-  title: "AI研修 | 階層別・実務特化のAIリテラシー研修",
+  title: "AI内製化研修 | 社内システムを自社で作れるようになる",
   description,
   keywords: [
     "AI研修",
+    "AI内製化研修",
+    "社員研修",
     "生成AI研修",
-    "ChatGPT研修",
+    "内製化",
+    "人材開発支援助成金",
+    "事業展開等リスキリング支援コース",
     "Claude研修",
-    "企業AI研修",
-    "AIリテラシー",
-    "社内AI教育",
+    "Claude Code研修",
+    "ChatGPT研修",
+    "Gemini研修",
+    "Copilot研修",
+    "ノーコード開発",
+    "DX人材育成",
+    "ClearAI",
+    "クリアエーアイ",
+    "クリアAI",
   ],
   alternates: { canonical: "https://clearai.jp/training" },
   openGraph: {
-    title: "AI研修 | clearAI株式会社",
+    title: "AI内製化研修 | ClearAI株式会社",
     description,
     url: "https://clearai.jp/training",
     type: "website",
     locale: "ja_JP",
-    siteName: "clearAI株式会社",
+    siteName: "ClearAI株式会社",
     images: ["/images/logo.png"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "AI研修 | clearAI株式会社",
+    title: "AI内製化研修 | ClearAI株式会社",
     description,
     images: ["/images/logo.png"],
   },
@@ -37,13 +46,20 @@ export const metadata: Metadata = {
 const serviceSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
-  serviceType: "AI研修",
-  provider: { "@type": "Organization", name: "clearAI株式会社", url: "https://clearai.jp" },
+  serviceType: "AI内製化研修",
+  provider: {
+    "@type": "Organization",
+    name: "ClearAI株式会社",
+    url: "https://clearai.jp",
+  },
   areaServed: { "@type": "Country", name: "日本" },
-  name: "企業向けAI研修プログラム",
+  name: "AI内製化研修",
   description,
   url: "https://clearai.jp/training",
-  offers: { "@type": "Offer", availability: "https://schema.org/InStock" },
+  offers: {
+    "@type": "Offer",
+    availability: "https://schema.org/InStock",
+  },
 };
 
 const breadcrumbSchema = {
@@ -51,7 +67,7 @@ const breadcrumbSchema = {
   "@type": "BreadcrumbList",
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "ホーム", item: "https://clearai.jp" },
-    { "@type": "ListItem", position: 2, name: "AI研修", item: "https://clearai.jp/training" },
+    { "@type": "ListItem", position: 2, name: "AI内製化研修", item: "https://clearai.jp/training" },
   ],
 };
 
@@ -59,10 +75,14 @@ export default function TrainingLayout({ children }: { children: React.ReactNode
   return (
     <>
       {children}
-      <Script id="schema-service-training" type="application/ld+json" strategy="afterInteractive"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
-      <Script id="schema-breadcrumb-training" type="application/ld+json" strategy="afterInteractive"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
     </>
   );
 }

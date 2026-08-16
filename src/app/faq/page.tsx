@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { faqItems } from "./faq-data";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
+import { BOOKING_URL } from "@/lib/booking";
 
 function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -131,7 +132,7 @@ export default function FaqPage() {
                 <span key={i}>{line}{i < arr.length - 1 && <br />}</span>
               ))}
             </p>
-            <a href="/reserve" className="rounded-lg bg-neutral-900 text-white font-semibold px-10 py-4 hover:bg-neutral-800 transition-colors duration-300 inline-block">{t.ctaButton}</a>
+            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="rounded-lg bg-neutral-900 text-white font-semibold px-10 py-4 hover:bg-neutral-800 transition-colors duration-300 inline-block">{t.ctaButton}</a>
           </Reveal>
         </div>
       </section>

@@ -1,9 +1,12 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import PricingCarousel from "@/components/PricingCarousel";
 import CardCarousel from "@/components/CardCarousel";
+import { BOOKING_URL } from "@/lib/booking";
+import { STRIPE_PAYMENT_LINKS } from "@/lib/stripe-payment-links";
 
 function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -40,14 +43,13 @@ type Copy = {
   services: { num: string; title: string; desc: string; hoverBg: string }[];
   whyLabel: string;
   whyTitle: string;
-  why: { num: string; title: string; desc: string }[];
+  why: { num: string; title: string; desc: string; imageKey: "field" | "governance" | "embedded" | "executive" }[];
   processLabel: string;
   processTitle: string;
   process: { num: string; title: string; en: string; desc: string }[];
   pricingLabel: string;
   pricingTitle: string;
-  plans: { name: string; price: string; unit: string; desc: string; features: string[]; featured: boolean }[];
-  planCta: string;
+  plans: { key: "spot" | "standard" | "enterprise"; name: string; price: string; unit: string; desc: string; features: string[]; featured: boolean; cta: string }[];
   techLabel: string;
   techTitle: string;
   techDesc: string;
@@ -84,12 +86,12 @@ const COPY: Record<"ja" | "en", Copy> = {
       { num: "04", title: "生成AI活用", desc: "ChatGPT・Claudeなどの生成AIを業務フローに組み込み、社内ナレッジベース連携やカスタムチャットボット構築も対応します。", hoverBg: "hover:bg-neutral-50" },
     ],
     whyLabel: "Why Us",
-    whyTitle: "なぜclearAIが選ばれるのか",
+    whyTitle: "なぜClearAIが選ばれるのか",
     why: [
-      { num: "01", title: "課題ドリブン", desc: "流行ではなく、貴社の業務課題から逆算してAIを選定します。" },
-      { num: "02", title: "技術選定に中立", desc: "特定ベンダー縛りなく、OpenAI・Anthropic・Google・オープンソースを横断比較します。" },
-      { num: "03", title: "実装まで一気通貫", desc: "PoCから本番稼働・運用定着まで、戦略だけで終わらせません。" },
-      { num: "04", title: "経営との対話", desc: "現場と経営層の両方の言葉で話せるためROI議論がスムーズです。" },
+      { num: "01", title: "課題ドリブン", desc: "流行ではなく、貴社の業務課題から逆算してAIを選定します。", imageKey: "field" },
+      { num: "02", title: "技術選定に中立", desc: "特定ベンダー縛りなく、OpenAI・Anthropic・Google・オープンソースを横断比較します。", imageKey: "governance" },
+      { num: "03", title: "実装まで一気通貫", desc: "PoCから本番稼働・運用定着まで、戦略だけで終わらせません。", imageKey: "embedded" },
+      { num: "04", title: "経営との対話", desc: "現場と経営層の両方の言葉で話せるためROI議論がスムーズです。", imageKey: "executive" },
     ],
     processLabel: "Process",
     processTitle: "導入の流れ",
@@ -102,11 +104,10 @@ const COPY: Record<"ja" | "en", Copy> = {
     pricingLabel: "Pricing",
     pricingTitle: "料金プラン",
     plans: [
-      { name: "スポットコンサル", price: "50万円〜", unit: "/ 回", desc: "現状分析とAI活用の方向性をご提案。", features: ["現状ヒアリング（2時間）", "AI活用レポート作成", "導入ロードマップ素案", "2週間のメールサポート"], featured: false },
-      { name: "スタンダード", price: "150万円〜", unit: "/ 月", desc: "PoCから本番実装まで伴走する導入支援。", features: ["月次ヒアリング・進捗会議", "AI戦略策定・設計", "PoC開発・検証", "本番実装・テスト", "社内トレーニング"], featured: true },
-      { name: "エンタープライズ", price: "要相談", unit: "", desc: "大規模導入・複数部署展開に対応。", features: ["専任コンサルタント配置", "複数部署への横展開", "カスタムAI開発", "24/7サポート", "KPI計測・改善サイクル"], featured: false },
+      { key: "spot", name: "スポットコンサル", price: "50万円", unit: "（税込）/ 回", desc: "現状分析とAI活用の方向性をご提案。", features: ["現状ヒアリング（2時間）", "AI活用レポート作成", "導入ロードマップ素案", "2週間のメールサポート"], featured: false, cta: "Stripeで購入" },
+      { key: "standard", name: "スタンダード", price: "150万円", unit: "（税込）/ 1か月", desc: "PoCから本番実装まで伴走する1か月の導入支援。", features: ["週次ヒアリング・進捗会議", "AI戦略策定・設計", "PoC開発・検証", "本番実装・テスト", "社内トレーニング"], featured: true, cta: "Stripeで購入" },
+      { key: "enterprise", name: "エンタープライズ", price: "要相談", unit: "", desc: "大規模導入・複数部署展開に対応。", features: ["専任コンサルタント配置", "複数部署への横展開", "カスタムAI開発", "24/7サポート", "KPI計測・改善サイクル"], featured: false, cta: "相談する" },
     ],
-    planCta: "申し込む",
     techLabel: "Tech Stack",
     techTitle: "使用技術",
     techDesc: "中小企業でも安心して導入できるよう、実績・安定性・サポート体制が確立された技術のみを採用しています。",
@@ -188,7 +189,7 @@ const COPY: Record<"ja" | "en", Copy> = {
     ],
     aboutLabel: "About",
     aboutTitle: "AI is a tool, not magic.\nUsed correctly, it delivers real results.",
-    aboutDesc: "clearAI walks alongside you from the initial interview through to full operational adoption, helping even organizations with no AI expertise find practical solutions grounded in your actual business challenges.",
+    aboutDesc: "ClearAI walks alongside you from the initial interview through to full operational adoption, helping even organizations with no AI expertise find practical solutions grounded in your actual business challenges.",
     servicesLabel: "Service Areas",
     servicesTitle: "Four areas of support",
     services: [
@@ -198,12 +199,12 @@ const COPY: Record<"ja" | "en", Copy> = {
       { num: "04", title: "Generative AI integration", desc: "Embedding generative AI such as ChatGPT and Claude into your workflows, including internal knowledge-base integration and custom chatbot development.", hoverBg: "hover:bg-neutral-50" },
     ],
     whyLabel: "Why Us",
-    whyTitle: "Why companies choose clearAI",
+    whyTitle: "Why companies choose ClearAI",
     why: [
-      { num: "01", title: "Problem-driven", desc: "We select AI based on your operational challenges — not trends." },
-      { num: "02", title: "Vendor-neutral", desc: "No lock-in — we compare across OpenAI, Anthropic, Google, and open-source options." },
-      { num: "03", title: "End-to-end execution", desc: "We go from PoC to live production and stable operations, not stopping at strategy." },
-      { num: "04", title: "Boardroom fluency", desc: "We speak both the shop floor and the C-suite, making ROI conversations natural." },
+      { num: "01", title: "Problem-driven", desc: "We select AI based on your operational challenges — not trends.", imageKey: "field" },
+      { num: "02", title: "Vendor-neutral", desc: "No lock-in — we compare across OpenAI, Anthropic, Google, and open-source options.", imageKey: "governance" },
+      { num: "03", title: "End-to-end execution", desc: "We go from PoC to live production and stable operations, not stopping at strategy.", imageKey: "embedded" },
+      { num: "04", title: "Boardroom fluency", desc: "We speak both the shop floor and the C-suite, making ROI conversations natural.", imageKey: "executive" },
     ],
     processLabel: "Process",
     processTitle: "How we work together",
@@ -216,11 +217,10 @@ const COPY: Record<"ja" | "en", Copy> = {
     pricingLabel: "Pricing",
     pricingTitle: "Pricing plans",
     plans: [
-      { name: "Spot Consult", price: "JPY 500K~", unit: "/ session", desc: "Current-state analysis and AI direction proposal.", features: ["Discovery session (2 hrs)", "AI utilization report", "Roadmap draft", "2-week email support"], featured: false },
-      { name: "Standard", price: "JPY 1.5M~", unit: "/ mo", desc: "Hands-on adoption support from PoC through full implementation.", features: ["Monthly check-ins & progress reviews", "AI strategy & design", "PoC development & validation", "Production implementation & testing", "Internal training"], featured: true },
-      { name: "Enterprise", price: "Contact us", unit: "", desc: "Large-scale rollout and multi-department expansion.", features: ["Dedicated consultant", "Cross-department rollout", "Custom AI development", "24/7 support", "KPI tracking & improvement cycle"], featured: false },
+      { key: "spot", name: "Spot Consult", price: "JPY 500K", unit: "(tax incl.) / session", desc: "Current-state analysis and AI direction proposal.", features: ["Discovery session (2 hrs)", "AI utilization report", "Roadmap draft", "2-week email support"], featured: false, cta: "Purchase with Stripe" },
+      { key: "standard", name: "Standard", price: "JPY 1.5M", unit: "(tax incl.) / 1 month", desc: "One month of hands-on adoption support from PoC through implementation.", features: ["Weekly check-ins & progress reviews", "AI strategy & design", "PoC development & validation", "Production implementation & testing", "Internal training"], featured: true, cta: "Purchase with Stripe" },
+      { key: "enterprise", name: "Enterprise", price: "Contact us", unit: "", desc: "Large-scale rollout and multi-department expansion.", features: ["Dedicated consultant", "Cross-department rollout", "Custom AI development", "24/7 support", "KPI tracking & improvement cycle"], featured: false, cta: "Contact us" },
     ],
-    planCta: "Get started",
     techLabel: "Tech Stack",
     techTitle: "Technologies we use",
     techDesc: "We use only technologies with proven track records, stability, and established support — so even SMEs can adopt with confidence.",
@@ -292,6 +292,13 @@ const COPY: Record<"ja" | "en", Copy> = {
   },
 };
 
+const WHY_IMAGES = {
+  field: { src: "/images/generated-trust/consulting-field-observation.webp", alt: { ja: "業務の現場を観察するコンサルタント", en: "Consultants observing operations on site" } },
+  governance: { src: "/images/generated-trust/consulting-governance.webp", alt: { ja: "AI活用のガバナンスを設計する会議", en: "A team designing AI governance" } },
+  embedded: { src: "/images/generated-trust/consulting-embedded.webp", alt: { ja: "現場チームと実装を進める支援", en: "Embedded implementation support with an operations team" } },
+  executive: { src: "/images/generated-trust/consulting-executive-workshop.webp", alt: { ja: "経営課題を整理するワークショップ", en: "An executive workshop organizing business priorities" } },
+} as const;
+
 export default function AiConsultingPage() {
   const { lang } = useLanguage();
   const t = COPY[lang];
@@ -333,7 +340,11 @@ export default function AiConsultingPage() {
                       </li>
                     ))}
                   </ul>
-                  <a href="/contact" className={`block text-center text-sm font-semibold py-2 rounded-lg transition-all duration-300 mt-auto ${plan.featured ? "bg-white text-neutral-900 hover:bg-neutral-50" : "border border-gray-200 text-gray-600 hover:border-gray-400 hover:text-gray-900"}`}>{t.planCta}</a>
+                  {plan.key === "enterprise" ? (
+                    <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="block text-center text-sm font-semibold py-2 rounded-lg transition-all duration-300 mt-auto bg-cta text-white hover:bg-cta-hover">{plan.cta}</a>
+                  ) : (
+                    <a href={STRIPE_PAYMENT_LINKS[plan.key]} target="_blank" rel="noopener noreferrer" className="block text-center text-sm font-semibold py-2 rounded-lg transition-all duration-300 mt-auto bg-cta text-white hover:bg-cta-hover">{plan.cta}</a>
+                  )}
                 </div>
               </Reveal>
             ))}
@@ -352,25 +363,6 @@ export default function AiConsultingPage() {
                   <span className="text-xs text-gray-500 mt-1">{stat.label}</span>
                 </div>
               ))}
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* INTRO */}
-      <section className="py-14 lg:py-20 bg-white">
-        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <Reveal>
-            <Label>{t.aboutLabel}</Label>
-            <div className="max-w-3xl">
-              <h2 className="text-3xl font-bold text-gray-900 leading-snug mb-6">
-                {t.aboutTitle.split("\n").map((line, i, arr) => (
-                  <span key={i}>{line}{i < arr.length - 1 && <br />}</span>
-                ))}
-              </h2>
-              <p className="text-base text-gray-600 leading-relaxed">
-                {t.aboutDesc}
-              </p>
             </div>
           </Reveal>
         </div>
@@ -409,12 +401,23 @@ export default function AiConsultingPage() {
           <CardCarousel gridClass="md:grid-cols-2">
             {t.why.map((item, i) => (
               <Reveal key={item.title} delay={i * 100} className="h-full">
-                <div className="rounded-lg border border-gray-200 bg-white p-8 hover:shadow-lg transition-all duration-300 h-full flex flex-col">
+                <div className="rounded-lg border border-gray-200 bg-white overflow-hidden hover:shadow-lg transition-all duration-300 h-full flex flex-col">
+                  <div className="relative aspect-[16/7] bg-neutral-100">
+                    <Image
+                      src={WHY_IMAGES[item.imageKey].src}
+                      alt={WHY_IMAGES[item.imageKey].alt[lang]}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="p-8">
                   <div className="flex items-center gap-3 mb-2">
                     <span className="text-xs font-semibold text-neutral-900 tracking-widest flex-shrink-0">{item.num}</span>
                     <h3 className="text-lg font-bold text-gray-900">{item.title}</h3>
                   </div>
                   <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
+                  </div>
                 </div>
               </Reveal>
             ))}
@@ -457,7 +460,7 @@ export default function AiConsultingPage() {
           <div className="space-y-0">
             {t.techGroups.map((group, gi) => (
               <Reveal key={group.category} delay={gi * 40}>
-                <div className="border-t border-gray-200 py-8">
+                <div className="border-t border-gray-200 py-5">
                   <div className="grid lg:grid-cols-12 gap-6 items-center">
                     <div className="lg:col-span-2">
                       <p className="text-[10px] font-semibold tracking-widest text-neutral-900 uppercase">{group.category}</p>
@@ -466,7 +469,7 @@ export default function AiConsultingPage() {
                     <div className="lg:col-span-10">
                       <div className="grid grid-cols-3 lg:grid-cols-5 gap-2.5 sm:gap-3">
                         {group.items.map((tech) => (
-                          <div key={tech.name} className="bg-white border border-gray-200 rounded-xl p-3 sm:p-5 flex flex-col items-center justify-center gap-2 sm:gap-3 hover:border-gray-300 hover:shadow-sm transition-all aspect-square">
+                          <div key={tech.name} className="bg-white border border-gray-200 rounded-lg px-3.5 py-2 flex items-center gap-2.5 hover:border-gray-300 transition-colors">
                             {/* eslint-disable-next-line @next/next/no-img-element */}
                             <img src={`https://api.iconify.design/${tech.icon}.svg${tech.color ? `?color=%23${tech.color}` : ''}`} alt={tech.name} className="w-8 h-8 object-contain" loading="lazy" />
                             <p className="text-xs font-medium text-gray-600 text-center leading-tight">{tech.name}</p>
@@ -489,7 +492,7 @@ export default function AiConsultingPage() {
             <Label>{t.faqLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-8">{t.faqTitle}</h2>
           </Reveal>
-          <div className="max-w-3xl">
+          <div className="w-full">
             {t.faq.map((item, i) => (
               <Reveal key={i} delay={i * 80}>
                 <details className="border-b border-gray-100 py-2.5 md:py-5 group">
@@ -516,7 +519,7 @@ export default function AiConsultingPage() {
                 <span key={i}>{line}{i < arr.length - 1 && <br />}</span>
               ))}
             </p>
-            <a href="/contact" className="rounded-lg bg-neutral-900 text-white font-semibold px-10 py-4 hover:bg-neutral-800 transition-colors duration-300 inline-block">{t.ctaButton}</a>
+            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="rounded-lg bg-neutral-900 text-white font-semibold px-10 py-4 hover:bg-neutral-800 transition-colors duration-300 inline-block">{t.ctaButton}</a>
           </Reveal>
         </div>
       </section>

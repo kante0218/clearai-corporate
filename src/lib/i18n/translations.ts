@@ -1,5 +1,5 @@
 /**
- * i18n translation dictionaries for clearAI corporate site.
+ * i18n translation dictionaries for ClearAI corporate site.
  *
  * Each namespace exposes a `ja` and `en` object with the same shape, so
  * components can do `translations.ns[lang]` and get typed string access.
@@ -9,6 +9,10 @@
 export const header = {
   ja: {
     navAi: "AI",
+    navSoftwareDev: "システム・ソフトウェア開発",
+    navSoftwareDevDesc: "AI組込の業務システムを要件定義から運用まで受託開発",
+    navRobotRental: "ロボットレンタル",
+    navRobotRentalDesc: "Unitree R1・G1・Go2を1泊2日から全国配送でレンタル",
     navFde: "FDEコンサルティング",
     navFdeDesc: "現場に入り込むForward Deployed型でAI活用を一気通貫支援",
     navAiConsulting: "AIコンサル・DX",
@@ -27,15 +31,17 @@ export const header = {
     navSnsDesc: "AI活用でSNSの企画・制作・投稿・分析を代行",
     navSubsidy: "補助金",
     navSubsidyDesc: "研修・AI導入費を助成金で最大75%削減",
-    navRobotRental: "ロボットレンタル",
-    navRobotRentalDesc: "ヒューマノイドの短期レンタル・PoC・実証",
     navSpatialScan: "空間3Dスキャン",
     navSpatialScanDesc: "現場をカメラで3Dデータ化し、点検・巡回ロボット導入を設計",
     navAiAgent: "AIエージェント開発",
     navAiAgentDesc: "業務を任せられる自律型AIエージェントを設計・開発・運用",
     navResearch: "研究開発",
     navResearchDesc: "産業特化ロボットOS・模倣学習・機械学習の研究開発",
-    navCases: "導入事例",
+    navCases: "導入実績",
+    navColumn: "コラム",
+    navService: "事業内容",
+    navFlow: "ご依頼の流れ",
+    navDownload: "資料請求",
     navNews: "お知らせ",
     navAbout: "会社概要",
     docsDl: "資料DL",
@@ -45,6 +51,10 @@ export const header = {
   },
   en: {
     navAi: "AI",
+    navSoftwareDev: "Software Development",
+    navSoftwareDevDesc: "AI-embedded systems built from requirements to operations",
+    navRobotRental: "Robot Rental",
+    navRobotRentalDesc: "Rent the Unitree R1, G1, and Go2 from two days, delivered nationwide",
     navFde: "FDE Consulting",
     navFdeDesc: "Forward Deployed support, embedded in your team end to end",
     navAiConsulting: "AI Consulting & DX",
@@ -63,8 +73,6 @@ export const header = {
     navSnsDesc: "AI-powered planning, production, posting & analytics",
     navSubsidy: "Subsidy",
     navSubsidyDesc: "Cut training and AI rollout costs by up to 75% with subsidies",
-    navRobotRental: "Robot Rental",
-    navRobotRentalDesc: "Short-term humanoid rental, PoC & demos",
     navSpatialScan: "3D Spatial Scan",
     navSpatialScanDesc: "Turn sites into 3D data with a camera and plan robot rollout",
     navAiAgent: "AI Agent Development",
@@ -72,6 +80,10 @@ export const header = {
     navResearch: "R&D",
     navResearchDesc: "R&D in industry-specific robot OS, imitation learning & ML",
     navCases: "Case Studies",
+    navColumn: "Column",
+    navService: "Services",
+    navFlow: "Process",
+    navDownload: "Documents",
     navNews: "News",
     navAbout: "About",
     docsDl: "Download",
@@ -84,13 +96,15 @@ export const header = {
 // --- FOOTER -----------------------------------------------------------------
 export const footer = {
   ja: {
-    logoAlt: "clearAI株式会社（クリアエーアイ）ロゴ",
+    logoAlt: "ClearAI株式会社（クリアエーアイ）ロゴ",
     tagline: "中小企業に、戦略から実装まで一貫した、使えるAIと実装力を。",
-    companyLine1: "clearAI株式会社（読み方：クリアエーアイ）",
+    companyLine1: "ClearAI株式会社（読み方：クリアエーアイ）",
     companyLine2: "代表取締役 髙橋 敢輝",
     companyLine3: "茨城県 / 2026年4月設立",
     servicesHeading: "事業",
     services: {
+      softwareDev: "システム・ソフトウェア開発",
+      robotRental: "ロボットレンタル",
       aiConsulting: "AIコンサルティング",
       advisor: "AI顧問",
       aiAgent: "AIエージェント開発",
@@ -100,13 +114,18 @@ export const footer = {
       advertising: "AI広告運用",
       website: "ウェブサイト作成",
       sns: "SNS運用代行",
-      robotRental: "ロボットレンタル",
       research: "研究開発",
     },
     companyHeading: "企業情報",
     company: {
       about: "会社概要",
+      careers: "採用情報",
       faq: "よくある質問",
+      cases: "導入実績",
+      service: "事業内容",
+      flow: "ご依頼の流れ",
+      download: "資料請求",
+      column: "コラム",
       blog: "お知らせ",
       contact: "お問い合わせ",
     },
@@ -117,19 +136,21 @@ export const footer = {
       sitemap: "サイトマップ",
     },
     contactLabel: "お問い合わせ",
-    copyright: "clearAI Inc.（クリアエーアイ） All rights reserved.",
+    copyright: "ClearAI Inc.（クリアエーアイ） All rights reserved.",
     privacyShort: "Privacy Policy",
     termsShort: "Terms",
   },
   en: {
-    logoAlt: "clearAI Inc. logo",
+    logoAlt: "ClearAI Inc. logo",
     tagline:
       "Practical AI and engineering for SMEs — from strategy to implementation.",
-    companyLine1: "clearAI Inc. (Japanese name: clearAI Kabushiki Kaisha)",
+    companyLine1: "ClearAI Inc. (Japanese name: ClearAI Kabushiki Kaisha)",
     companyLine2: "CEO: kante takahashi",
     companyLine3: "Ibaraki, Japan / Founded April 2026",
     servicesHeading: "Services",
     services: {
+      softwareDev: "System & Software Development",
+      robotRental: "Robot Rental",
       aiConsulting: "AI Consulting",
       advisor: "AI Advisor",
       aiAgent: "AI Agent Development",
@@ -139,13 +160,18 @@ export const footer = {
       advertising: "AI Advertising",
       website: "Website Production",
       sns: "SNS Management",
-      robotRental: "Robot Rental",
       research: "Research & Development",
     },
     companyHeading: "Company",
     company: {
       about: "About",
+      careers: "Careers",
       faq: "FAQ",
+      cases: "Case Studies",
+      service: "Services",
+      flow: "Process",
+      download: "Documents",
+      column: "Column",
       blog: "News",
       contact: "Contact",
     },
@@ -156,7 +182,7 @@ export const footer = {
       sitemap: "Sitemap",
     },
     contactLabel: "Contact",
-    copyright: "clearAI Inc. All rights reserved.",
+    copyright: "ClearAI Inc. All rights reserved.",
     privacyShort: "Privacy Policy",
     termsShort: "Terms",
   },
@@ -528,7 +554,7 @@ export const privacy = {
     sections: [
       {
         title: "1. 個人情報の取り扱いについて",
-        body: "clearAI株式会社（以下「当社」）は、お客様の個人情報を適切に保護し、取り扱うことが社会的責務であると考え、以下の方針に基づき個人情報の保護に努めます。",
+        body: "ClearAI株式会社（以下「当社」）は、お客様の個人情報を適切に保護し、取り扱うことが社会的責務であると考え、以下の方針に基づき個人情報の保護に努めます。",
       },
       {
         title: "2. 個人情報の収集",
@@ -555,7 +581,7 @@ export const privacy = {
       {
         title: "6. お問い合わせ",
         body: "個人情報の取り扱いに関するお問い合わせは、以下までご連絡ください。",
-        extra: "clearAI株式会社\nメール: info@clearai.jp",
+        extra: "ClearAI株式会社\nメール: info@clearai.jp",
       },
     ],
     date: "制定日: 2025年1月1日",
@@ -566,7 +592,7 @@ export const privacy = {
     sections: [
       {
         title: "1. Handling of personal information",
-        body: "clearAI Inc. (\"the Company\") regards the proper protection and handling of personal information as a social responsibility, and will endeavor to protect personal information based on the policy below.",
+        body: "ClearAI Inc. (\"the Company\") regards the proper protection and handling of personal information as a social responsibility, and will endeavor to protect personal information based on the policy below.",
       },
       {
         title: "2. Collection of personal information",
@@ -593,7 +619,7 @@ export const privacy = {
       {
         title: "6. Contact",
         body: "Please direct inquiries regarding the handling of personal information to the address below.",
-        extra: "clearAI Inc.\nEmail: info@clearai.jp",
+        extra: "ClearAI Inc.\nEmail: info@clearai.jp",
       },
     ],
     date: "Effective date: January 1, 2025",
@@ -607,7 +633,7 @@ export const terms = {
     sections: [
       {
         title: "第1条（適用）",
-        body: "本規約は、clearAI株式会社（以下「当社」）が提供するすべてのサービス（以下「本サービス」）の利用に関する条件を定めるものです。",
+        body: "本規約は、ClearAI株式会社（以下「当社」）が提供するすべてのサービス（以下「本サービス」）の利用に関する条件を定めるものです。",
       },
       {
         title: "第2条（利用登録）",
@@ -645,7 +671,7 @@ export const terms = {
     sections: [
       {
         title: "Article 1 (Application)",
-        body: "These Terms set forth the conditions of use of all services (\"the Services\") provided by clearAI Inc. (\"the Company\").",
+        body: "These Terms set forth the conditions of use of all services (\"the Services\") provided by ClearAI Inc. (\"the Company\").",
       },
       {
         title: "Article 2 (User registration)",
@@ -683,7 +709,7 @@ export const sitemap = {
   ja: {
     label: "Sitemap",
     title: "サイトマップ",
-    desc: "clearAI株式会社（読み方：クリアエーアイ）の全ページ一覧です。目的のページへ素早くアクセスしてください。",
+    desc: "ClearAI株式会社（読み方：クリアエーアイ）の全ページ一覧です。目的のページへ素早くアクセスしてください。",
     blogHeading: "ブログ記事",
     xmlNoteA: "XMLサイトマップは",
     xmlNoteB: "にあります（検索エンジン向け）。",
@@ -692,7 +718,7 @@ export const sitemap = {
     label: "Sitemap",
     title: "Sitemap",
     desc:
-      "A full list of pages on clearAI Inc. Jump to the page you need.",
+      "A full list of pages on ClearAI Inc. Jump to the page you need.",
     blogHeading: "Blog posts",
     xmlNoteA: "XML sitemap is at ",
     xmlNoteB: " (for search engines).",

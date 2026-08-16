@@ -3,7 +3,7 @@ import { ImageResponse } from "next/og";
 export const runtime = "edge";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-export const alt = "clearAI株式会社（クリアエーアイ）| 中小企業向けAI導入支援を7領域でワンストップ";
+export const alt = "ClearAI株式会社（クリアエーアイ）| AI受託開発・FDEコンサルティング・AI内製化研修";
 
 export default async function TwitterImage() {
   return new ImageResponse(
@@ -25,12 +25,20 @@ export default async function TwitterImage() {
         <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
           <div
             style={{
-              width: 14,
-              height: 14,
-              borderRadius: 999,
-              background: "#ffffff",
+              width: 48,
+              height: 48,
+              borderRadius: 14,
+              border: "2px solid #e5e7eb",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              color: "#ffffff",
+              fontSize: 20,
+              fontWeight: 800,
             }}
-          />
+          >
+            AI
+          </div>
           <span
             style={{
               fontSize: 22,
@@ -39,7 +47,7 @@ export default async function TwitterImage() {
               textTransform: "uppercase",
             }}
           >
-            clearAI Inc. / クリアエーアイ
+            ClearAI Inc. / クリアエーアイ
           </span>
         </div>
 
@@ -64,7 +72,7 @@ export default async function TwitterImage() {
               maxWidth: 900,
             }}
           >
-            中小企業向けAI導入支援を7領域でワンストップ
+            AI受託開発・FDEコンサルティング・AI内製化研修
           </div>
         </div>
 

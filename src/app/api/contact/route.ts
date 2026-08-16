@@ -1,5 +1,5 @@
 import { Resend } from "resend";
-import { validateContactForm, INQUIRY_TYPES, SERVICE_KEYS, SERVICE_LABELS, type InquiryType, type ServiceKey } from "@/lib/validators";
+import { validateContactForm, INQUIRY_TYPES, SERVICE_KEYS, SERVICE_LABELS, DOCUMENT_KEYS, DOCUMENT_LABELS, type InquiryType, type ServiceKey, type DocumentKey } from "@/lib/validators";
 
 export const runtime = "nodejs";
 
@@ -8,12 +8,12 @@ export const runtime = "nodejs";
 const JSON_HEADERS = { "Content-Type": "application/json" };
 
 const TO_EMAIL = process.env.CONTACT_TO_EMAIL ?? "info@clearai.jp";
-const FROM_EMAIL = process.env.CONTACT_FROM_EMAIL ?? "clearAI <onboarding@resend.dev>";
+const FROM_EMAIL = process.env.CONTACT_FROM_EMAIL ?? "ClearAI <onboarding@resend.dev>";
 
 const INQUIRY_LABEL: Record<InquiryType, string> = {
   business: "ご相談・お見積もり",
   engineer: "エンジニア採用応募",
-  other: "その他",
+  other: "お問い合わせ",
 };
 
 function escapeHtml(s: string) {
@@ -28,6 +28,8 @@ function escapeHtml(s: string) {
 interface EmailPayload {
   inquiryType: InquiryType;
   service?: ServiceKey;
+  /** Set when the enquiry came from /download — a deck request rather than a general enquiry. */
+  document?: DocumentKey;
   company?: string;
   name: string;
   email: string;
@@ -43,7 +45,8 @@ function buildEmail(payload: EmailPayload) {
   const typeLabel = INQUIRY_LABEL[payload.inquiryType];
   const isEngineer = payload.inquiryType === "engineer";
 
-  const rows: Array<[string, string]> = [["種別", typeLabel]];
+  const rows: Array<[string, string]> = [["種別", payload.document ? "資料請求" : typeLabel]];
+  if (payload.document) rows.push(["請求資料", DOCUMENT_LABELS[payload.document]]);
   if (payload.service) rows.push(["対象サービス", SERVICE_LABELS[payload.service]]);
   if (payload.company) rows.push(["会社名", payload.company]);
   rows.push(["お名前", payload.name]);
@@ -107,6 +110,11 @@ export async function POST(request: Request) {
       ? (rawType as InquiryType)
       : "business";
 
+    const rawDocument = typeof body.document === "string" ? body.document : "";
+    const documentKey: DocumentKey | undefined = (DOCUMENT_KEYS as readonly string[]).includes(rawDocument)
+      ? (rawDocument as DocumentKey)
+      : undefined;
+
     const rawService = typeof body.service === "string" ? body.service : "";
     const service: ServiceKey | undefined = (SERVICE_KEYS as readonly string[]).includes(rawService)
       ? (rawService as ServiceKey)
@@ -115,6 +123,7 @@ export async function POST(request: Request) {
     const payload = {
       inquiryType,
       service,
+      document: documentKey,
       company: typeof body.company === "string" ? body.company : "",
       name: typeof body.name === "string" ? body.name : "",
       email: typeof body.email === "string" ? body.email : "",
@@ -146,8 +155,12 @@ export async function POST(request: Request) {
     const { text, html } = buildEmail(payload);
     const resend = new Resend(apiKey);
 
-    const subjectLabel = service ? SERVICE_LABELS[service] : INQUIRY_LABEL[inquiryType];
-    const subjectPrefix = `【clearAI ${subjectLabel}】`;
+    const subjectLabel = documentKey
+      ? `資料請求 / ${DOCUMENT_LABELS[documentKey]}`
+      : service
+        ? SERVICE_LABELS[service]
+        : INQUIRY_LABEL[inquiryType];
+    const subjectPrefix = `【ClearAI ${subjectLabel}】`;
     const subjectBody = payload.company ? `${payload.company} / ${payload.name}様` : `${payload.name}様`;
 
     const { data, error } = await resend.emails.send({

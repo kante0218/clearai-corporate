@@ -3,7 +3,7 @@
 import { Suspense, useState, useEffect, useRef, FormEvent, type ReactNode } from "react";
 import { useSearchParams } from "next/navigation";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
-import { validateContactForm, SERVICE_KEYS, SERVICE_LABELS, type ServiceKey } from "@/lib/validators";
+import { validateContactForm, SERVICE_KEYS, SERVICE_LABELS, type ServiceKey, DOCUMENT_KEYS, DOCUMENT_LABELS, type DocumentKey } from "@/lib/validators";
 
 // ---------------------------------------------------------------------------
 // Bilingual copy dictionary — co-located, NOT imported from translations.ts
@@ -121,13 +121,15 @@ function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; 
 // ---------------------------------------------------------------------------
 // Service may still arrive via ?service= (e.g. from a plan card) — it is sent
 // silently with the message for context, but no longer shown as a selector.
-type ExtendedServiceKey = ServiceKey | "robot-rental" | "sns";
-const EXTENDED_SERVICE_KEYS: readonly string[] = [...(SERVICE_KEYS as readonly string[]), "robot-rental", "sns"];
+type ExtendedServiceKey = ServiceKey | "sns";
+const EXTENDED_SERVICE_KEYS: readonly string[] = [...(SERVICE_KEYS as readonly string[]), "sns"];
 
 const EMPTY_FORM = {
   // General-inquiry form: "other" keeps only name / email / message required.
   inquiryType: "other" as const,
   service: "" as ExtendedServiceKey | "",
+  // Set from ?doc= when arriving from /download — turns this into a deck request.
+  document: "" as DocumentKey | "",
   company: "",
   name: "",
   email: "",
@@ -159,13 +161,19 @@ function ContactPageInner() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [serverError, setServerError] = useState<string | null>(null);
 
-  // Silently capture ?service= for context (no UI).
+  // Silently capture ?service= for context (no UI), and ?doc= for deck requests.
   useEffect(() => {
     const serviceParam = searchParams.get("service");
     if (serviceParam && EXTENDED_SERVICE_KEYS.includes(serviceParam)) {
       setForm((prev) => ({ ...prev, service: serviceParam as ExtendedServiceKey }));
     }
+    const docParam = searchParams.get("doc");
+    if (docParam && (DOCUMENT_KEYS as readonly string[]).includes(docParam)) {
+      setForm((prev) => ({ ...prev, document: docParam as DocumentKey }));
+    }
   }, [searchParams]);
+
+  const requestedDoc: DocumentKey | "" = form.document;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -221,6 +229,10 @@ function ContactPageInner() {
     if (serviceParam && EXTENDED_SERVICE_KEYS.includes(serviceParam)) {
       setForm((prev) => ({ ...prev, service: serviceParam as ExtendedServiceKey }));
     }
+    const docParam = searchParams.get("doc");
+    if (docParam && (DOCUMENT_KEYS as readonly string[]).includes(docParam)) {
+      setForm((prev) => ({ ...prev, document: docParam as DocumentKey }));
+    }
   };
 
   const inputClass = (field: string) =>
@@ -232,7 +244,7 @@ function ContactPageInner() {
     if (form.service) {
       const label =
         (SERVICE_LABELS as Record<string, string>)[form.service] ??
-        ({ "robot-rental": "ロボットレンタル", sns: "SNS運用代行" } as Record<string, string>)[form.service] ??
+        ({ sns: "SNS運用代行" } as Record<string, string>)[form.service] ??
         form.service;
       return `${label}${t.messagePlaceholderService}`;
     }
@@ -253,6 +265,25 @@ function ContactPageInner() {
           </p>
         </Reveal>
       </section>
+
+      {requestedDoc && status !== "success" && (
+        <section className="max-w-2xl mx-auto px-6 pb-6">
+          <div className="border border-neutral-900 bg-neutral-50 px-5 py-4">
+            <p className="text-sm font-bold text-neutral-900 mb-1">
+              {lang === "ja" ? "資料請求" : "Document request"}
+            </p>
+            <p className="text-sm text-gray-600 leading-relaxed">
+              {lang === "ja" ? (
+                <>
+                  「{DOCUMENT_LABELS[requestedDoc]}」をご請求いただいています。下記フォームの送信後、ご入力のメールアドレス宛にお送りします。
+                </>
+              ) : (
+                <>We&apos;ll email you “{DOCUMENT_LABELS[requestedDoc]}” once you submit the form below.</>
+              )}
+            </p>
+          </div>
+        </section>
+      )}
 
       <section className="max-w-2xl mx-auto px-6 pb-20 lg:pb-28">
         {status === "success" ? (

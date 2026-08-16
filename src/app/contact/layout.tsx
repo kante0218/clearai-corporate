@@ -1,34 +1,32 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 
 const description =
-  "clearAI株式会社（クリアエーアイ）へのお問い合わせ。AI顧問、AI研修、AIコンサル・DX、ウェブサイト作成、SNS運用代行、ロボットレンタル、補助金サポートなど、無料相談・お見積もりのご依頼はこちらから。メール・オンライン面談で全国対応、平日9:00〜18:00。";
+  "ClearAI株式会社（クリアエーアイ）へのお問い合わせ。AI顧問、AI研修、AIコンサル・DX、ウェブサイト作成、SNS運用代行、補助金サポートなど、無料相談・お見積もりのご依頼はこちらから。メール・オンライン面談で全国対応、平日9:00〜18:00。";
 
 export const metadata: Metadata = {
   title: "お問い合わせ | 無料相談受付中",
   description,
   keywords: [
-    "clearAI 問い合わせ",
+    "ClearAI 問い合わせ",
     "クリアエーアイ 問い合わせ",
     "AI導入 相談",
     "AI顧問 相談",
     "AIコンサル 見積もり",
     "AI研修 問い合わせ",
-    "ロボットレンタル 相談",
   ],
   alternates: { canonical: "https://clearai.jp/contact" },
   openGraph: {
-    title: "お問い合わせ | clearAI株式会社",
+    title: "お問い合わせ | ClearAI株式会社",
     description,
     url: "https://clearai.jp/contact",
     type: "website",
     locale: "ja_JP",
-    siteName: "clearAI株式会社",
+    siteName: "ClearAI株式会社",
     images: ["/images/logo.png"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "お問い合わせ | clearAI株式会社",
+    title: "お問い合わせ | ClearAI株式会社",
     description,
     images: ["/images/logo.png"],
   },
@@ -37,7 +35,7 @@ export const metadata: Metadata = {
 const contactSchema = {
   "@context": "https://schema.org",
   "@type": "ContactPage",
-  name: "お問い合わせ | clearAI株式会社",
+  name: "お問い合わせ | ClearAI株式会社",
   url: "https://clearai.jp/contact",
   description,
 };
@@ -55,16 +53,12 @@ export default function ContactLayout({ children }: { children: React.ReactNode 
   return (
     <>
       {children}
-      <Script
-        id="schema-contactpage"
+      <script
         type="application/ld+json"
-        strategy="afterInteractive"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(contactSchema) }}
       />
-      <Script
-        id="schema-breadcrumb-contact"
+      <script
         type="application/ld+json"
-        strategy="afterInteractive"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
     </>

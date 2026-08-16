@@ -2,8 +2,8 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "clearAI株式会社（クリアエーアイ）",
-    short_name: "clearAI",
+    name: "ClearAI株式会社（クリアエーアイ）",
+    short_name: "ClearAI",
     description:
       "AI導入コンサルティング・AI顧問・AI研修・補助金サポート・Claude特化導入・AI広告運用・ウェブサイト制作を提供する中小企業向けAI企業。",
     start_url: "/",

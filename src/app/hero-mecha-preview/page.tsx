@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Hero Mecha Preview — clearAI",
+  title: "Hero Mecha Preview — ClearAI",
   description: "Hero video preview (3D mecha turntable, 8s loop)",
   robots: { index: false, follow: false },
 };
@@ -36,7 +36,7 @@ export default function HeroMechaPreviewPage() {
             使えるAIと実装力を。
           </h1>
           <p className="text-base md:text-lg text-white/85 leading-relaxed max-w-lg mx-auto mb-10 drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]">
-            AI顧問・研修・コンサルからロボットレンタルまで、戦略から実装まで支援します。
+            AI顧問・研修・コンサルからWeb制作まで、戦略から実装まで支援します。
           </p>
           <div className="flex items-center justify-center gap-4">
             <Link

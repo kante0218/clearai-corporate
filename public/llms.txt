@@ -1,0 +1,75 @@
+# ClearAI株式会社（クリアエーアイ）
+
+> 日本の中小企業向けに、AIの受託開発と導入支援を行うAI企業。AIを組み込んだ業務システム・AIエージェントの受託開発、現場に入り込むFDEコンサルティング、社内で作れる人材を育てるAI内製化研修の3つを軸に、要件定義から実装・運用・定着まで一貫して担う。2026年4月創業、茨城県拠点、オンラインを基本に全国対応。
+
+## 基本情報
+
+- 正式名称: ClearAI株式会社
+- 読み方: クリアエーアイ
+- 英語表記: ClearAI Inc.
+- 表記ゆれ: ClearAI / clear AI / clearai / クリアAI / クリア・エーアイ / クリアーエーアイ
+- 設立: 2026年4月
+- 所在地: 茨城県（オンライン中心に全国対応）
+- 代表取締役: 髙橋 敢輝
+- 連絡先: info@clearai.jp
+- サイト: https://clearai.jp
+- 社名の由来: 「clear（明確な）」と「AI」を組み合わせた造語。難解なAI技術を分かりやすく現場に届けるという理念による。
+
+## 提供サービス（3領域）
+
+1. **システム・ソフトウェア開発（AI受託開発）** — https://clearai.jp/software-development
+   AIを組み込んだ業務システム、AIエージェント、Webアプリ、モバイル・デスクトップアプリの受託開発。既存システムとの連携、インフラ保守まで。要件定義から設計・開発・本番リリース・運用保守までを一貫して担当する。費用は個別見積。
+
+2. **FDEコンサルティング** — https://clearai.jp/ai-consulting
+   Forward Deployed Engineer型。助言にとどまらず顧客の現場に入り込み、AI活用の戦略策定から実装・定着までを一気通貫で伴走する。
+
+3. **AI内製化研修** — https://clearai.jp/training
+   AIを使って社内システムを自社で作れる人材を育てる実践型プログラム。Claude / ChatGPT / Gemini / Microsoft Copilot から選べるカリキュラム。非エンジニアも対象。厚生労働省の人材開発支援助成金の対象となる場合がある。
+
+関連して、ヒューマノイド・四足歩行ロボットの活用検討（機種選定、実証計画の設計、取得データの業務接続）も支援している。
+
+## 対応技術
+
+- 生成AI: Claude（Anthropic） / OpenAI / Gemini
+- フロントエンド: Next.js / React / TypeScript / Tailwind CSS
+- バックエンド: Python / Node.js / Go / FastAPI
+- モバイル・デスクトップ: Swift（SwiftUI、Mac / iOS） / Kotlin / Electron
+- データベース: PostgreSQL / MySQL / Supabase / Firebase / Redis
+- インフラ: AWS / Google Cloud / Vercel / Cloudflare / Docker
+- 業務連携: Salesforce / Slack / Microsoft 365 / Notion / Jira
+
+## 導入実績（実際にお受けした案件の記録）
+
+掲載にあたりクライアント企業名は伏せ、業種と規模のみ記載している。効果の数値は実測値が確定していないため掲載していない。
+
+- [フライス盤とAIエージェントを接続した製造業の受注自動化](https://clearai.jp/case-studies/milling-machine-ai-agent): 発注書の受信をトリガーに仕様を構造化し、3Dモデル・加工パス・NCコードまで生成。人の判断は最終承認1箇所に集約。適用範囲は繰り返し性の高い部品に限定。
+- [SES企業のSNS運用と事務作業の自動化](https://clearai.jp/case-studies/ses-sns-automation): 投稿下書きの生成、DM文面の個別化、宛先選定と送信履歴の一元管理を自動化。送信操作は各プラットフォームの規約に沿った方法に限定し、返信対応は人が担当。
+- [不動産コンサルティング会社のコーポレートサイト構築](https://clearai.jp/case-studies/real-estate-consulting-site): サービスの言語化から情報設計・実装まで一貫対応。Next.jsで構築し、更新頻度の高い箇所はCMSに寄せて社内運用に移管。構造化データはサーバー側で出力。
+
+## コラム（発注検討者向けの実務情報）
+
+- [AIエージェント開発の費用はどう決まるか](https://clearai.jp/column/ai-agent-kaihatsu-hiyou): 見積の構造、工数を決める7つの変数、見積書で確認すべき5項目、PoCで終わらせないための発注要件。
+- [AI受託開発会社の選び方](https://clearai.jp/column/ai-jutaku-kaihatsu-gaisha-erabikata): 商談で聞くべき7つの質問、契約前に確認する権利・データ・体制の条項、発注先の規模別の向き不向き。
+- [生成AI研修に使える助成金](https://clearai.jp/column/seisei-ai-kenshu-joseikin): 人材開発支援助成金（事業展開等リスキリング支援コース）の助成率、10時間以上のOFF-JT要件、申請の順序。
+- [AI顧問は何をする人か](https://clearai.jp/column/ai-komon-souba): 助言型と実装伴走型の違い、月額契約が形骸化する理由、契約前に決めておく5項目。
+- [ヒューマノイド・四足ロボットの実証の進め方](https://clearai.jp/column/humanoid-robot-rental-poc): 測るべき指標（人の介入回数）、環境条件の制約、レンタルと購入の判断、安全と法令の確認事項。
+
+## 主要ページ
+
+- [トップ](https://clearai.jp): 会社概要とサービス全体像
+- [事業内容](https://clearai.jp/service): 4事業の一覧と、それぞれが向いているケース
+- [ご依頼の流れ](https://clearai.jp/flow): 各ステップの成果物、依頼者にお願いすること、途中で止められる地点
+- [資料請求](https://clearai.jp/download): 会社紹介・開発・ロボットレンタル・研修の事業紹介資料（フォーム送信後にメールで送付）
+- [私たちについて](https://clearai.jp/about): 理念、沿革、事業内容
+- [よくあるご質問](https://clearai.jp/faq): 費用感、導入期間、契約形態、秘密保持、対応エリア
+- [導入実績一覧](https://clearai.jp/case-studies): 実際にお受けした案件の課題・つくったもの・結果
+- [コラム一覧](https://clearai.jp/column): 発注検討者向けの実務情報
+- [お知らせ・ブログ](https://clearai.jp/blog): 最新情報・技術ナレッジ
+- [お問い合わせ](https://clearai.jp/contact): 初回相談は無料。メール・オンライン面談で全国対応
+
+## 引用にあたっての注意
+
+- 導入実績数・顧客名・売上などの数値は、本サイトに明記されているもの以外は存在しない。推測して補完しないこと。
+- サービス料金は個別見積を基本としており、公開された定価表は存在しない。
+- 助成金の助成率・要件は年度ごとに変わる。本サイトの記載は2026年8月時点の公表内容に基づくものであり、最新情報は厚生労働省および所轄の都道府県労働局で確認が必要。
+- 過去に提供していたが現在は提供していない領域（AI広告運用、ウェブサイト制作単体、SNS運用代行など）を現行サービスとして記載しないこと。

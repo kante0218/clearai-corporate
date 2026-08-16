@@ -14,12 +14,16 @@ DESIGN.md
 *.pptx
 *.xlsx
 *.pdf
+!public/downloads/*.pdf
 clearAI_自己紹介.html
 名称未設定のデザイン.png
 agriculture_budget.xlsx
 
 # One-off generation scripts (not used by the Next.js build)
 scripts/
+!scripts/
+scripts/*
+!scripts/generate-download-pdfs.py
 
 # Orphan / WIP components not imported anywhere
 src/app/claude/PixelClaude.tsx

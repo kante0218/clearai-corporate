@@ -5,6 +5,7 @@ import { useLanguage } from "@/lib/i18n/LanguageContext";
 import PricingCarousel from "@/components/PricingCarousel";
 import CardCarousel from "@/components/CardCarousel";
 import ClientLogoMarquee from "@/components/ClientLogoMarquee";
+import { BOOKING_URL } from "@/lib/booking";
 
 function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -191,7 +192,7 @@ const COPY: Record<"ja" | "en", Copy> = {
     subsidyTitlePre: "内製化研修は、",
     subsidyTitleHi: "最大75%",
     subsidyTitlePost: "を助成金でまかなえます。",
-    subsidyDesc: "厚生労働省「人材開発支援助成金」活用で中小企業は研修経費の最大75%と受講者の賃金が助成対象となり、clearAIが社労士と連携して申請から実施報告まで伴走します（対象条件あり・無料相談で確認可）。",
+    subsidyDesc: "厚生労働省「人材開発支援助成金」活用で中小企業は研修経費の最大75%と受講者の賃金が助成対象となり、ClearAIが社労士と連携して申請から実施報告まで伴走します（対象条件あり・無料相談で確認可）。",
     subsidyCta: "助成金活用について相談する →",
     instructorLabel: "Instructor",
     instructorTitle: "教えるのは、評論家ではなく実装者。",
@@ -350,7 +351,7 @@ const COPY: Record<"ja" | "en", Copy> = {
     subsidyTitlePre: "Cover ",
     subsidyTitleHi: "up to 75%",
     subsidyTitlePost: " of in-house training with subsidies.",
-    subsidyDesc: "With Japan's Human Resources Development Subsidy, SMEs can have up to 75% of training expenses and wages covered — clearAI partners with a labor consultant from application to completion report (conditions apply; eligibility confirmed in the free consultation).",
+    subsidyDesc: "With Japan's Human Resources Development Subsidy, SMEs can have up to 75% of training expenses and wages covered — ClearAI partners with a labor consultant from application to completion report (conditions apply; eligibility confirmed in the free consultation).",
     subsidyCta: "Ask about using subsidies →",
     instructorLabel: "Instructor",
     instructorTitle: "Taught by builders, not pundits.",
@@ -412,10 +413,10 @@ export default function ClaudeBootcampPage() {
             </h1>
             <p className="text-base lg:text-lg text-gray-600 leading-relaxed max-w-3xl mb-8">{t.heroDesc}</p>
             <div className="flex flex-wrap items-center gap-4 mb-5">
-              <a href="/contact?service=training" className="rounded-md bg-neutral-900 text-white font-semibold px-8 py-3.5 hover:bg-neutral-800 transition-colors duration-300">
+              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="rounded-md bg-neutral-900 text-white font-semibold px-8 py-3.5 hover:bg-neutral-800 transition-colors duration-300">
                 {t.heroCtaPrimary}
               </a>
-              <a href="/contact?service=training" className="group inline-flex items-center gap-2 text-sm font-semibold text-neutral-900 hover:text-neutral-700 transition-colors">
+              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="group inline-flex items-center gap-2 text-sm font-semibold text-neutral-900 hover:text-neutral-700 transition-colors">
                 {t.heroCtaSecondary} <span className="group-hover:translate-x-1 transition-transform">→</span>
               </a>
             </div>
@@ -447,7 +448,7 @@ export default function ClaudeBootcampPage() {
           </div>
           <Reveal delay={300}>
             <div className="text-center mt-8">
-              <a href="/contact?service=training" className="rounded-md bg-neutral-900 text-white font-semibold px-8 py-3.5 hover:bg-neutral-800 transition-colors duration-300 inline-block">
+              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="rounded-md bg-neutral-900 text-white font-semibold px-8 py-3.5 hover:bg-neutral-800 transition-colors duration-300 inline-block">
                 {t.reassureCta}
               </a>
               <p className="text-xs text-gray-500 mt-3">{t.reassureCtaSub}</p>
@@ -703,7 +704,7 @@ export default function ClaudeBootcampPage() {
                       </li>
                     ))}
                   </ul>
-                  <a href="/contact?service=training" className={`block text-center text-sm font-semibold py-2 rounded-md transition-all duration-300 mt-auto ${plan.featured ? "bg-white text-neutral-900 hover:bg-neutral-100" : "border border-gray-200 text-gray-600 hover:border-gray-400 hover:text-gray-900"}`}>{t.planCta}</a>
+                  <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className={`block text-center text-sm font-semibold py-2 rounded-md transition-all duration-300 mt-auto ${plan.featured ? "bg-white text-neutral-900 hover:bg-neutral-100" : "border border-gray-200 text-gray-600 hover:border-gray-400 hover:text-gray-900"}`}>{t.planCta}</a>
                 </div>
               </Reveal>
             ))}
@@ -724,7 +725,7 @@ export default function ClaudeBootcampPage() {
                 {t.subsidyTitlePre}<span className="underline decoration-2 underline-offset-4">{t.subsidyTitleHi}</span>{t.subsidyTitlePost}
               </h2>
               <p className="text-base text-gray-600 max-w-2xl mx-auto leading-relaxed mb-8">{t.subsidyDesc}</p>
-              <a href="/contact?service=training" className="rounded-md bg-neutral-900 text-white font-semibold px-8 py-3.5 hover:bg-neutral-800 transition-colors duration-300 inline-block">
+              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="rounded-md bg-neutral-900 text-white font-semibold px-8 py-3.5 hover:bg-neutral-800 transition-colors duration-300 inline-block">
                 {t.subsidyCta}
               </a>
             </div>
@@ -811,7 +812,7 @@ export default function ClaudeBootcampPage() {
             <p className="text-sm font-semibold text-white/60 mb-4">{t.ctaLabel}</p>
             <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4 leading-tight">{t.ctaTitle}</h2>
             <p className="text-base text-white/70 leading-relaxed mb-10">{t.ctaDesc}</p>
-            <a href="/contact?service=training" className="rounded-md bg-white text-neutral-900 font-semibold px-10 py-4 hover:bg-neutral-100 transition-colors duration-300 inline-block">{t.ctaButton}</a>
+            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="rounded-md bg-white text-neutral-900 font-semibold px-10 py-4 hover:bg-neutral-100 transition-colors duration-300 inline-block">{t.ctaButton}</a>
             <p className="text-xs text-white/50 mt-5">{t.ctaSub}</p>
           </Reveal>
         </div>
@@ -824,7 +825,7 @@ export default function ClaudeBootcampPage() {
             <p className="text-[13px] font-bold text-gray-900">{t.stickyTitle}</p>
             <p className="text-[10px] text-gray-500">{t.stickySub}</p>
           </div>
-          <a href="/contact?service=training" className="rounded-md bg-neutral-900 text-white text-sm font-semibold px-6 py-3 hover:bg-neutral-800 transition-colors whitespace-nowrap">
+          <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="rounded-md bg-neutral-900 text-white text-sm font-semibold px-6 py-3 hover:bg-neutral-800 transition-colors whitespace-nowrap">
             {t.stickyBtn}
           </a>
         </div>

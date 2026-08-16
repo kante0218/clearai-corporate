@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 const description =
-  "clearAI株式会社（クリアエーアイ）のプライバシーポリシー。個人情報の取り扱い・利用目的・第三者提供・開示請求などの方針について。";
+  "ClearAI株式会社（クリアエーアイ）のプライバシーポリシー。個人情報の取り扱い・利用目的・第三者提供・開示請求などの方針について。";
 
 export const metadata: Metadata = {
   title: "プライバシーポリシー",
@@ -13,12 +13,12 @@ export const metadata: Metadata = {
     googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
   },
   openGraph: {
-    title: "プライバシーポリシー | clearAI株式会社",
+    title: "プライバシーポリシー | ClearAI株式会社",
     description,
     url: "https://clearai.jp/privacy",
     type: "website",
     locale: "ja_JP",
-    siteName: "clearAI株式会社",
+    siteName: "ClearAI株式会社",
   },
 };
 

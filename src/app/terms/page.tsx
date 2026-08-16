@@ -22,7 +22,7 @@ const COPY: Record<"ja" | "en", Copy> = {
     sections: [
       {
         title: "第1条（適用）",
-        body: "本規約は、clearAI株式会社（以下「当社」）が提供するすべてのサービス（以下「本サービス」）の利用に関する条件を定めるものです。",
+        body: "本規約は、ClearAI株式会社（以下「当社」）が提供するすべてのサービス（以下「本サービス」）の利用に関する条件を定めるものです。",
       },
       {
         title: "第2条（利用登録）",
@@ -60,7 +60,7 @@ const COPY: Record<"ja" | "en", Copy> = {
     sections: [
       {
         title: "Article 1 (Application)",
-        body: 'These Terms set forth the conditions of use of all services ("the Services") provided by clearAI Inc. ("the Company").',
+        body: 'These Terms set forth the conditions of use of all services ("the Services") provided by ClearAI Inc. ("the Company").',
       },
       {
         title: "Article 2 (User registration)",

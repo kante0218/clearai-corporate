@@ -1,9 +1,11 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import PricingCarousel from "@/components/PricingCarousel";
 import CardCarousel from "@/components/CardCarousel";
+import { BOOKING_URL } from "@/lib/booking";
 
 function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -27,307 +29,464 @@ function Label({ children }: { children: ReactNode }) {
   return <p className="text-sm font-semibold text-neutral-900 mb-4">{children}</p>;
 }
 
-type Plan = { name: string; price: string; unit: string; desc: string; features: string[]; featured: boolean; badge?: string };
+const LP_URL = "https://clearai-kensyuu.jp/";
+
+const TRAINING_FEATURE_IMAGES = [
+  {
+    src: "/images/generated-pages/training-workshop-20260809.webp",
+    alt: { ja: "社内の実務課題を題材にAIツールを制作する研修風景", en: "Employees building an internal AI tool around a real workflow" },
+  },
+  {
+    src: "/images/generated-pages/training-onsite-20260809.webp",
+    alt: { ja: "製造現場でタブレットを使いながら研修成果を確認する様子", en: "Operations staff reviewing training outcomes on site" },
+  },
+  {
+    src: "/images/generated-pages/training-classroom-20260809.webp",
+    alt: { ja: "少人数で進める法人向けAI研修の受講風景", en: "A small-group corporate AI training session" },
+  },
+  {
+    src: "/images/generated-trust/training-individual.webp",
+    alt: { ja: "自分の担当業務に合わせてAIツールを使い分ける受講者", en: "A participant applying AI tools to their own day-to-day work" },
+  },
+  {
+    src: "/images/generated-trust/training-followup.webp",
+    alt: { ja: "オンラインで全国から受講できる研修の様子", en: "A remote session joined from anywhere in the country" },
+  },
+  {
+    src: "/images/generated-trust/training-small-group.webp",
+    alt: { ja: "研修後も社内で改善を回すチームの様子", en: "A team continuing to improve their tool in-house after the program" },
+  },
+] as const;
 
 type Copy = {
-  heroKicker: string; heroTitle: string; heroDesc: string; heroSubsidyLink: string;
-  forLabel: string; forTitle: string;
-  targets: { role: string; title: string; desc: string }[];
-  programsLabel: string; programsTitle: string; programsDesc: string;
-  programs: { num: string; title: string; hours: string; desc: string }[];
-  claudeLabel: string; claudeTitle: string; claudeDesc: string;
-  claudePoints: { title: string; desc: string }[];
-  formatsLabel: string; formatsTitle: string;
-  formats: { title: string; desc: string }[];
-  formatsNote: string;
-  featuresLabel: string; featuresTitle: string;
-  features: { num: string; title: string; desc: string }[];
-  subsidyLabel: string; subsidyTitlePre: string; subsidyTitleHighlight: string; subsidyTitlePost: string;
-  subsidyDescA: string; subsidyDescB: string;
-  subsidyCards: { label: string; value: string; unit: string; desc: string }[];
-  subsidyCtaPrimary: string; subsidyCtaSecondary: string;
-  pricingLabel: string; pricingTitle: string; pricingDescA: string; pricingSim: string; pricingDescB: string;
-  plans: Plan[];
-  planCta: string; pricingNote: string;
-  vibeLabel: string; vibeTitle: string; vibeDesc: string;
-  vibePoints: { title: string; desc: string }[];
-  vibeExamplesLabel: string; vibeExamples: string[];
-  curriculumLabel: string; curriculumTitle: string; curriculumDesc: string; curriculumNote: string;
-  curriculumRows: { time: string; title: string; desc: string }[];
-  outcomesLabel: string; outcomesTitle: string; outcomesDesc: string;
-  outcomes: { dept: string; before: string; after: string; metric: string }[];
-  flowLabel: string; flowTitle: string; flowDesc: string;
-  flowSteps: { num: string; title: string; desc: string }[];
-  faqLabel: string; faqTitle: string;
-  faqItems: { q: string; a: string }[];
-  ctaLabel: string; ctaTitle: string; ctaDesc: string; ctaButton: string;
+  heroKicker: string;
+  heroBadge: string;
+  heroTitle: string;
+  heroDesc: string;
+  heroNote: string;
+  heroCta: string;
+  heroCta2: string;
+  stats: { value: string; label: string }[];
+  aboutLabel: string;
+  aboutTitle: string;
+  aboutDesc: string;
+  about: { num: string; tag: string; title: string }[];
+  featuresLabel: string;
+  featuresTitle: string;
+  features: { num: string; title: string; desc: string; note?: string }[];
+  curriculumLabel: string;
+  curriculumTitle: string;
+  curriculumDesc: string;
+  coursesTitle: string;
+  courses: { name: string; badge?: string; icon: string; iconColor?: string }[];
+  curriculumGroups: { category: string; label: string; items: string[] }[];
+  curriculumNote: string;
+  reformLabel: string;
+  reformTitle: string;
+  reformDesc: string;
+  reformCards: { heading: string; body: string }[];
+  reformNote: string;
+  flowLabel: string;
+  flowTitle: string;
+  flowDesc: string;
+  flow: { num: string; title: string; duration: string; desc: string }[];
+  flowNote: string;
+  pricingLabel: string;
+  pricingTitle: string;
+  pricingDesc: string;
+  plans: { name: string; scale: string; normalLabel: string; normalPrice: string; netLabel: string; netPrice: string; features: string[]; featured: boolean; badge?: string }[];
+  planCta: string;
+  pricingNotes: string[];
+  faqLabel: string;
+  faqTitle: string;
+  faq: { q: string; a: string }[];
+  lpLabel: string;
+  lpTitle: string;
+  lpDesc: string;
+  lpCta: string;
+  ctaKicker: string;
+  ctaTitle: string;
+  ctaDesc: string;
+  ctaButton: string;
 };
 
 const COPY: Record<"ja" | "en", Copy> = {
   ja: {
     heroKicker: "AI Training",
-    heroTitle: "AI研修",
-    heroDesc: "経営層から現場まで、階層別に設計したAI実務研修。最大75%の研修費を助成金で削減可能。",
-    heroSubsidyLink: "助成金の活用について詳しく見る",
-    forLabel: "For",
-    forTitle: "階層別に、必要なスキルを。",
-    targets: [
-      { role: "経営層", title: "意思決定のためのAI", desc: "AI投資判断・競合動向把握・事業インパクト試算。経営会議で使えるレベルの理解を身につけます。" },
-      { role: "管理職", title: "チームを動かすAI", desc: "業務の棚卸し、AI活用ポイントの見極め、部下の評価への反映。現場導入のリーダーを育成します。" },
-      { role: "現場担当", title: "日々使えるAI", desc: "議事録・メール・資料作成など、明日から実務で使えるプロンプトとワークフローを習得。" },
+    heroBadge: "人材開発支援助成金 対象｜実質 最大75%オフ",
+    heroTitle: "AI内製化研修",
+    heroDesc: "外注に頼りきりの状態から、AIで業務システムを自社で作れる会社へ。非エンジニアでも、研修が終わるころには社内システムを自分たちで作れるようになります。",
+    heroNote: "※ 成果には個人差があります。助成金は条件・審査があり、対象可否は無料相談でご案内します。",
+    heroCta: "研修について相談する",
+    heroCta2: "料金プランを見る",
+    stats: [
+      { value: "最大75%", label: "助成金で研修費を圧縮" },
+      { value: "実質50万円前後", label: "スタンダードプラン" },
+      { value: "全10回・20時間〜", label: "標準カリキュラム" },
+      { value: "全国対応", label: "オンライン / 対面" },
     ],
-    programsLabel: "Programs",
-    programsTitle: "主な研修プログラム",
-    programsDesc: "標準時間は助成金の要件（10時間以上）を満たす設計。貴社の目的に合わせて8h／40h／100hのボリュームで自由に組み合わせ可能です。",
-    programs: [
-      { num: "01", title: "生成AI入門（2時間）", hours: "2h", desc: "ChatGPT・Claude・Geminiを実際に触りながら「何ができて・何ができないか」を体感し、情報リテラシーと著作権・セキュリティの基礎も押さえます。" },
-      { num: "02", title: "業務活用ハンズオン（半日）", hours: "4h", desc: "部署別に業務を棚卸してAIで効率化できる工程を特定し、自分の業務に使えるプロンプトを持ち帰れる設計です。" },
-      { num: "03", title: "プロンプトエンジニアリング（半日）", hours: "4h", desc: "再現性のある指示の出し方、Few-shot、Chain of Thought、RAGの基礎など、一段深いスキルを習得します。" },
-      { num: "04", title: "社内ガイドライン策定ワークショップ", hours: "6h", desc: "情シス・法務・現場を巻き込んでAI利用ポリシーを共同策定し、ドキュメント化までサポートします。" },
-      { num: "05", title: "経営層向けエグゼクティブセッション（90分）", hours: "1.5h", desc: "役員会前後に実施する少人数セッションで、自社の事業・KPIに引きつけてAI戦略を議論します。" },
-      { num: "06", title: "継続型スキルアップ（月次定期）", hours: "月2h〜", desc: "毎月新しいテーマの継続研修で、最新モデル検証・事例共有・質疑応答を通じて社内知を蓄積します。" },
-      { num: "07", title: "バイブコーディング入門（非エンジニア向け・半日）", hours: "4h", desc: "コードを書かずAIへの自然言語の指示だけで業務ツールやアプリを作る実践ハンズオンで、現場の小さな手作業を自分でツール化できるようになります。" },
+    aboutLabel: "What is",
+    aboutTitle: "AIを使って「社内システムを自社で作れる人材」を育てる、実践型の研修です。",
+    aboutDesc: "外注に頼っていた業務システムやツールを内製化し、コスト削減から人材育成まで、投資効率の高いDXを実現します。座学で終わらせず、自社の実際の業務課題を題材に、研修期間中にそのまま現場で使える社内ツールを1つ完成させます。",
+    about: [
+      { num: "01", tag: "コスト削減", title: "業務システムの内製化" },
+      { num: "02", tag: "生産性向上", title: "生成AIの実務活用" },
+      { num: "03", tag: "外注ゼロ化", title: "開発コストの圧縮" },
+      { num: "04", tag: "人材育成", title: "作れるDX人材の輩出" },
     ],
-    claudeLabel: "Training × Claude",
-    claudeTitle: "Claudeを「使いこなす」実践研修。",
-    claudeDesc: "AnthropicのClaudeに特化した実践研修を、貴社の現場ユースケースに即して明日から成果につながる使い方まで落とし込んで提供します。",
-    claudePoints: [
-      { title: "Claude実務ハンズオン", desc: "Projects・Artifacts・ファイル添付など、Claudeの機能を実際の業務データで体験。" },
-      { title: "現場ユースケース別プロンプト", desc: "議事録・提案書・分析・カスタマー対応など、部署別に再現性のあるプロンプトを設計。" },
-      { title: "Claude Code / 開発組織向け", desc: "エンジニア向けにClaude Code・MCP・サブエージェント活用の実践セッションも対応。" },
-      { title: "安全な社内運用ルール", desc: "機密情報の扱い、社内ガイドライン、定着の仕組みづくりまでカバー。" },
-    ],
-    formatsLabel: "Formats",
-    formatsTitle: "4つの実施形態から選べる",
-    formats: [
-      { title: "eラーニング", desc: "好きな時間に各自で視聴。録画＋確認テスト形式。" },
-      { title: "オンライン集合", desc: "Zoomで一斉実施。講師と双方向でQ&A可能。" },
-      { title: "対面研修", desc: "会議室で対面実施。チームビルディング効果も。" },
-      { title: "ハイブリッド併用", desc: "eラーニング＋ワークショップで定着率最大化。" },
-    ],
-    formatsNote: "※ すべての形態で修了証明書（電子版）を発行します。",
     featuresLabel: "Features",
-    featuresTitle: "clearAI研修の特徴",
+    featuresTitle: "「学んで終わり」にしない。",
     features: [
-      { num: "01", title: "貴社の実務に合わせて設計", desc: "事前ヒアリングで業務課題を把握し、実際の業務データを題材に組み立てます。" },
-      { num: "02", title: "実装者が直接登壇", desc: "机上の空論ではなく、現場でAIを実装してきたエンジニア・コンサル出身者が講師を務めます。" },
-      { num: "03", title: "研修後のフォロー込み", desc: "Slackでの質問対応や、1か月後の振り返りセッションもセットで提供可能です。" },
-      { num: "04", title: "オンライン／オンサイト両対応", desc: "全国どこでも実施可能で、録画アーカイブの納品にも対応します。" },
+      {
+        num: "01",
+        title: "実務課題を題材に、研修中に成果物が完成する",
+        desc: "自社の実際の業務課題を題材に、研修期間中にそのまま現場で使える社内ツールを1つ完成させます。「学んだが使えない」を起こさせない、成果物ベースの設計です。",
+        note: "※ 完成物は自社の資産として研修後もそのまま利用可能",
+      },
+      {
+        num: "02",
+        title: "非エンジニアでも、即戦力の作り手になる",
+        desc: "AIに指示して作る前提のカリキュラムなので、これまで数週間かかっていた開発が短時間で回るようになります。試して直す、を社内のスピードでできることが、内製化の最大の価値です。",
+      },
+      {
+        num: "03",
+        title: "助成金活用で、実質負担を最大75%圧縮",
+        desc: "人材開発支援助成金（事業展開等リスキリング支援コース）などの対象です。2026年8月3日の改正で職務直結性の確認が厳しくなりましたが、当社は職務と担当作業を先に特定して設計するため、そこを説明できる形で計画届を組み立てられます。制度の選定から申請書類まで伴走します。",
+        note: "※「最大75%」は中小企業の経費助成率。条件・審査があり、支給を保証するものではありません",
+      },
+      {
+        num: "04",
+        title: "職務に合わせて、使うAIツールを選べる",
+        desc: "Claude / Claude Code、ChatGPT、Gemini、Microsoft Copilotから、その職務の作業と社内の利用環境に合うものを選びます。ツールの操作習得が目的ではなく、担当作業をそのツールで回せる状態がゴールです。",
+      },
+      {
+        num: "05",
+        title: "オンライン・対面で全国に対応",
+        desc: "オンライン研修は全国から受講可能です。対面研修にも対応し、受講人数や業務環境に合わせて進め方を設計します。",
+      },
+      {
+        num: "06",
+        title: "研修後も、内製が定着するまで支援",
+        desc: "研修で作ったツールを実務へ定着させ、社内で改善を回せる状態になるまで、レビューとアフターフォローを継続します。",
+      },
     ],
-    subsidyLabel: "Subsidy",
-    subsidyTitlePre: "研修費を、",
-    subsidyTitleHighlight: "最大75%",
-    subsidyTitlePost: "削減できます。",
-    subsidyDescA: "厚生労働省「人材開発支援助成金」を活用すれば、中小企業は研修経費の75%＋受講者の賃金も助成対象に。",
-    subsidyDescB: "clearAIは申請計画から実施報告まで、社労士と連携して伴走します。",
-    subsidyCards: [
-      { label: "経費助成", value: "75", unit: "%", desc: "中小企業の研修経費。大企業は60%が上限。" },
-      { label: "賃金助成", value: "960", unit: "円/人・時間", desc: "受講者の研修中の賃金も助成対象。中小企業の場合。" },
-      { label: "上限額", value: "50", unit: "万円", desc: "200時間以上の研修で1人あたりの上限。" },
+    curriculumLabel: "Curriculum",
+    curriculumTitle: "職務別カリキュラム",
+    curriculumDesc: "助成の対象になるのは「その職務で実際にやっている作業」をAIで回せるようにする訓練です。受講者の職務を先に確定し、その職務の実作業をそのまま教材にします。以下は代表例で、実際は貴社の業務に合わせて設計します。",
+    coursesTitle: "使用するAIツールは職務に合わせて選べます",
+    courses: [
+      { name: "Claude / Claude Code", badge: "推奨", icon: "logos:claude-icon" },
+      { name: "ChatGPT", icon: "logos:openai-icon" },
+      { name: "Gemini", icon: "simple-icons:googlegemini", iconColor: "4285F4" },
+      { name: "Microsoft Copilot", icon: "logos:microsoft-icon" },
     ],
-    subsidyCtaPrimary: "補助金の詳細と実質負担額を計算 →",
-    subsidyCtaSecondary: "補助金活用について相談する",
-    pricingLabel: "Pricing",
-    pricingTitle: "料金の目安",
-    pricingDescA: "下記は通常価格。助成金適用後の実質負担額は",
-    pricingSim: "シミュレーター",
-    pricingDescB: "でご確認いただけます。",
-    plans: [
-      { name: "スポット研修", price: "20万円〜", unit: "/ 回", desc: "単発で完結する研修。2時間〜半日程度。", features: ["事前ヒアリング", "オリジナル教材作成", "当日の実施（講師1名）", "Q&A対応"], featured: false },
-      { name: "パッケージ研修", price: "80万円〜", unit: "/ 3ヶ月", desc: "複数回の研修を組み合わせて全社展開。", features: ["階層別3〜5コース実施", "参加者アンケート分析", "社内展開用の録画配信", "研修後Slackサポート", "助成金申請サポート付き"], featured: true, badge: "Popular" },
-      { name: "カスタム", price: "ご相談", unit: "", desc: "全社AI変革プロジェクトに合わせて設計。", features: ["年間研修ロードマップ策定", "部署別カリキュラム作成", "講師チーム編成", "効果測定・レポート", "助成金申請フルサポート"], featured: false },
+    curriculumGroups: [
+      {
+        category: "Sales",
+        label: "営業",
+        items: ["自社商材の提案書・見積書のドラフト作成", "商談メモから議事録と次アクションを生成", "既存顧客への案内文面の作成と出し分け", "受注・失注データの集計と要因整理"],
+      },
+      {
+        category: "Back Office",
+        label: "経理・総務",
+        items: ["請求書・経費データの突合と入力", "契約書の条項チェックと差分の洗い出し", "社内問い合わせへの定型回答の整備", "月次レポート・稟議資料のドラフト作成"],
+      },
+      {
+        category: "Manufacturing",
+        label: "製造・品質管理",
+        items: ["検査記録・日報の集計と異常値の抽出", "作業手順書の作成と改訂", "不具合報告の分類と再発防止メモの作成", "設備保全記録の整理と検索"],
+      },
+      {
+        category: "Support",
+        label: "カスタマーサポート",
+        items: ["問い合わせへの一次回答ドラフト作成", "FAQ・対応マニュアルの整備", "対応履歴の要約とタグ付け", "エスカレーション判断基準の言語化"],
+      },
+      {
+        category: "HR",
+        label: "人事・採用",
+        items: ["求人票・スカウト文面の作成", "面接記録の要約と評価コメント整理", "社内規程に関する問い合わせ対応", "教育計画・研修報告のドラフト作成"],
+      },
     ],
-    planCta: "申し込む",
-    pricingNote: "表示価格は税抜。参加人数・地域・業種により個別見積もりとなる場合があります。",
-    vibeLabel: "Training × Vibe Coding",
-    vibeTitle: "コードが書けなくても、自分で業務ツールが作れる。",
-    vibeDesc: "AIに自然言語で話しかけるだけで業務アプリ・自動化ツール・社内システムを形にする「バイブコーディング」を、非エンジニアの業務担当者・管理職が明日から活用できるまで育てる研修です。",
-    vibePoints: [
-      { title: "自然言語でアプリを作る", desc: "ClaudeやCursorなどのAIツールに「こういうものが欲しい」と話しかけるだけで、動くツールを形にする流れを体験します。" },
-      { title: "現場の困りごとを自分で解決", desc: "Excel集計・申請フォーム・日報集約など、現場の小さな手作業をその場でツール化し、情シスを待たずに解決できます。" },
-      { title: "つまずき所と安全の勘所", desc: "AIに任せきりで失敗しないチェック観点、機密データの扱い、社内で共有・公開する際の注意点まで押さえます。" },
-      { title: "作ったものを社内へ広げる", desc: "個人の試作で終わらせず、チームで使える形に整え、社内に横展開する進め方まで学びます。" },
+    curriculumNote: "職務は上記に限りません。受講者の実際の担当業務を伺ったうえで、その作業を教材に置き換えて設計します。逆に、職務を特定せず「AIの概要を広く学ぶ」形にすると助成の対象外になります。",
+    reformLabel: "Reskilling 2026",
+    reformTitle: "2026年8月3日の制度改正に対応した、職務直結型の設計です。",
+    reformDesc: "人材開発支援助成金（事業展開等リスキリング支援コース）は、2026年8月3日以降に提出する計画届から、訓練内容の「職務直結性」が明確に確認されるようになりました。研修名に「AI」「DX」と付いているだけでは対象になりません。",
+    reformCards: [
+      {
+        heading: "対象外になりやすい研修",
+        body: "職務に間接的にしか必要でない知識・技能や、職種を問わず職業人として共通して必要な内容は対象外です。「AIの概念」「デジタル技術の概要」「データ活用の考え方」といった概念理解にとどまる研修は、具体的な作業として業務に適用されないため該当します。",
+      },
+      {
+        heading: "ClearAIの設計",
+        body: "先に受講者の職務と担当作業を特定し、その作業そのものを教材にします。「見積書を作る」「検査記録を集計する」など、訓練後に同じ作業をAIで回せる状態をゴールに置くため、職務直結性を計画届で説明できます。",
+      },
+      {
+        heading: "eラーニングの回数制限",
+        body: "同一労働者につき1年度3回までの受講制限のうち、eラーニングは1年度1回までに制限されました。通学制と組み合わせた訓練もeラーニング1回に含まれます。そのため当社は集合・対面での実施を軸に設計します。",
+      },
+      {
+        heading: "認定支援機関の確認",
+        body: "中小企業が人事・人材育成計画に基づく訓練で申請する場合、計画届の提出前に認定経営革新等支援機関による計画内容の確認が必要になりました。この段取りも含めて伴走します。",
+      },
     ],
-    vibeExamplesLabel: "受講者が研修中に作れるものの例",
-    vibeExamples: ["問い合わせ自動分類ツール", "見積書PDFの自動生成", "日報集計ダッシュボード", "社内FAQチャットボット", "アンケート集計・可視化", "在庫アラートの自動通知"],
-    curriculumLabel: "Sample Curriculum",
-    curriculumTitle: "サンプルカリキュラム（業務活用ハンズオン・半日）",
-    curriculumDesc: "貴社の業務内容・参加者のレベルに合わせてオーダーメイドで設計する、実際の半日研修の一例です。",
-    curriculumRows: [
-      { time: "0:00", title: "オリエンテーション", desc: "AIで「できること／できないこと」の現在地を共有し、本日のゴールを設定。" },
-      { time: "0:20", title: "基本操作ハンズオン", desc: "実際にClaude／ChatGPTを触り、文章生成・要約・翻訳・アイデア出しを体験。" },
-      { time: "1:15", title: "自部署の業務を棚卸し", desc: "参加者が自分の業務を洗い出し、AIで効率化できる工程を特定します。" },
-      { time: "2:15", title: "実務プロンプト作成", desc: "議事録・メール・資料作成など、自分の業務で使えるプロンプトを実際に作成。" },
-      { time: "3:15", title: "成果共有・質疑応答", desc: "各自が作ったプロンプトを共有し、明日からの実践計画に落とし込みます。" },
-      { time: "3:45", title: "まとめ・持ち帰り", desc: "テンプレート集とチェックリストを配布し、研修後のフォロー体制を案内します。" },
-    ],
-    curriculumNote: "※ これは一例です。経営層向け90分セッションから全社100時間プログラムまで、目的に応じて構成します。",
-    outcomesLabel: "Outcomes",
-    outcomesTitle: "研修後、現場はこう変わる。",
-    outcomesDesc: "受講後に多くの現場で起きる、典型的な変化のイメージです。（業務内容・習熟度により効果には差があります）",
-    outcomes: [
-      { dept: "営業", before: "提案書のたたき台に半日", after: "30分でドラフト完成", metric: "約80%短縮" },
-      { dept: "管理部門", before: "議事録の清書に1時間", after: "録音から要約まで10分", metric: "約85%短縮" },
-      { dept: "カスタマー対応", before: "返信文を毎回ゼロから作成", after: "AIドラフト＋微修正で即返信", metric: "対応件数 約1.5倍" },
-      { dept: "企画・マーケ", before: "市場・競合調査に数日", after: "初期リサーチが数時間に", metric: "立ち上がり大幅短縮" },
-    ],
+    reformNote: "※ 本記載は2026年8月3日改正時点の情報にもとづく一般的な説明です。制度の要件は変更される場合があり、最終的な支給可否は労働局の審査によります。貴社が対象になるかは、最新の支給要領にもとづき無料相談で個別にご確認ください。",
     flowLabel: "Flow",
-    flowTitle: "ご相談から実施まで",
-    flowDesc: "最短2週間で初回研修を実施でき、助成金を活用する場合は申請計画から実施報告まで伴走します。",
-    flowSteps: [
-      { num: "01", title: "お問い合わせ・ヒアリング", desc: "課題・対象者・目的をオンライン30分のご相談からお伺いします。" },
-      { num: "02", title: "カリキュラム設計・お見積り", desc: "貴社専用のカリキュラムと費用、助成金の活用プランをご提案します。" },
-      { num: "03", title: "事前準備・教材作成", desc: "実際の業務データを題材に、オリジナル教材を作成します。" },
-      { num: "04", title: "研修実施", desc: "オンライン／対面／ハイブリッドで実施し、修了証明書を発行します。" },
-      { num: "05", title: "フォローアップ", desc: "Slackでの質問対応、1か月後の振り返り、助成金の実施報告まで。" },
+    flowTitle: "受講の流れ",
+    flowDesc: "お問い合わせから内製の定着まで、標準プランで約3〜4ヶ月です。",
+    flow: [
+      { num: "01", title: "無料相談・内製化診断", duration: "30分〜", desc: "現状の課題と内製化したい業務をヒアリング。助成金の対象可否もこの場で試算します。" },
+      { num: "02", title: "プラン確定・助成金の計画届", duration: "2〜4週間", desc: "受講人数・時間数を確定し、訓練開始前に必要な計画届の提出まで伴走します。" },
+      { num: "03", title: "研修の実施", duration: "全10回・計20時間〜", desc: "週1回×2時間を目安に約2〜3ヶ月。自社の実務課題を題材に、動く社内システムを作り上げます。" },
+      { num: "04", title: "内製の定着・アフターフォロー", duration: "3ヶ月〜", desc: "研修後も社内で開発が回るまで継続フォロー。助成金の支給申請もサポートします。" },
+    ],
+    flowNote: "※ 回数・時間はスタンダードプランの標準例です。助成金要件（10時間以上のOFF-JT等）を満たす形で設計します。",
+    pricingLabel: "Pricing",
+    pricingTitle: "料金プラン",
+    pricingDesc: "通常価格200万円のスタンダードを、助成金活用で実質50万円前後に。受講人数・目的に応じてプランをご用意しています。",
+    plans: [
+      {
+        name: "ライト",
+        scale: "3〜5名・体験",
+        normalLabel: "通常価格（税別）",
+        normalPrice: "¥800,000〜",
+        netLabel: "助成金適用後（実質）",
+        netPrice: "¥200,000〜",
+        features: ["対象人数 3〜5名", "全5回・計10時間", "オンライン", "成果物づくり 1テーマ", "助成金申請サポート"],
+        featured: false,
+      },
+      {
+        name: "スタンダード",
+        scale: "5〜10名・部門導入",
+        normalLabel: "通常価格（税別）",
+        normalPrice: "¥2,000,000",
+        netLabel: "助成金適用後（実質）",
+        netPrice: "¥500,000 前後",
+        features: ["対象人数 5〜10名", "全10回・計20時間〜", "オンライン / 対面", "成果物づくり 実務テーマ", "助成金申請サポート", "アフターフォロー 3ヶ月"],
+        featured: true,
+        badge: "いちばん人気",
+      },
+      {
+        name: "プレミアム",
+        scale: "10〜20名・全社",
+        normalLabel: "通常価格（税別）",
+        normalPrice: "¥3,000,000〜",
+        netLabel: "助成金適用後（実質）",
+        netPrice: "¥750,000〜",
+        features: ["対象人数 10〜20名", "部門別に設計", "対面中心", "成果物づくり 複数部門テーマ", "助成金申請サポート", "アフターフォロー 6ヶ月〜"],
+        featured: false,
+      },
+    ],
+    planCta: "相談する",
+    pricingNotes: [
+      "※1 「最大75%」は中小企業の経費助成率です。賃金助成・助成限度額により実質負担は変動し、補助を保証するものではありません。",
+      "※2 人材開発支援助成金（事業展開等リスキリング支援コース）等の要件を満たす場合が対象です。訓練開始前の計画届提出など、条件・審査があります。",
+      "※3 金額・実質負担は受講人数・研修時間・企業規模により変動します。無料相談で試算します。",
+      "※4 事業展開等リスキリング支援コースは令和8年度末（2027年3月）までの時限措置です。",
+      "※5 制度情報は2026年7月時点です。最新の要件は厚生労働省の公表情報をご確認ください。",
     ],
     faqLabel: "FAQ",
     faqTitle: "よくあるご質問",
-    faqItems: [
-      { q: "AIにまったく触れたことのない社員でも大丈夫ですか？", a: "はい——PCの基本操作ができれば参加できる入門コースから開発者向けの実践コースまで、受講者のレベルに合わせて内容を調整します。" },
-      { q: "最低何名から依頼できますか？", a: "1名のエグゼクティブセッションから数百名規模の全社研修まで対応でき、少人数ほど一人ひとりの業務に密着した内容にできます。" },
-      { q: "オンラインと対面、どちらがおすすめですか？", a: "定着重視なら対面またはハイブリッドがおすすめですが、全国どこでもオンライン実施・録画アーカイブの納品にも対応します。" },
-      { q: "助成金は必ず使えますか？", a: "要件（研修10時間以上など）を満たせば経費の最大75%が対象で、要件確認から申請・社労士連携まで伴走しますが、支給可否は審査により決定されます。" },
-      { q: "研修で使うAIツールは何ですか？", a: "ChatGPT・Claude・Geminiなど主要な生成AIを扱い、Anthropic Claude特化の実践研修や非エンジニア向けのバイブコーディング研修もご用意しています。" },
-      { q: "自社の業務に合わせた内容にできますか？", a: "はい——事前ヒアリングで業務課題を把握し、実際の業務データを題材にカリキュラムをオーダーメイドします。" },
-      { q: "研修後のサポートはありますか？", a: "Slackでの質問対応と1か月後の振り返りセッションをセットで、学んだことが現場に定着するまで伴走します。" },
+    faq: [
+      { q: "本当に、自社でシステムを作れるようになりますか？", a: "自社の実務課題を題材に「動く成果物が完成するまで」伴走する設計です。個人差はありますが、研修中に1つ社内ツールを完成させることを標準にしています。" },
+      { q: "プログラミング未経験でも受講できますか？", a: "はい。AIに指示してシステムを作る前提のカリキュラムなので、非エンジニアの方でも受講いただけます。" },
+      { q: "補助金は必ず使えますか？", a: "企業規模や導入内容により対象制度が異なります。無料相談で使える制度と申請の可否をご案内します。" },
+      { q: "2026年8月3日の改正で、生成AI研修は助成対象外になったと聞きました。", a: "対象外になったのは「AIの概念」「デジタル技術の概要」といった、職務の種類を問わず職業人として共通して必要な内容にとどまる研修です。特定の職務の実作業に直接必要な訓練であれば引き続き対象になり得ます。当社は受講者の職務と担当作業を先に特定し、その作業自体を教材にするため、計画届で職務直結性を説明できる形にしています。最終的な支給可否は労働局の審査によります。" },
+      { q: "eラーニングだけで受講できますか？", a: "改正により、eラーニングは同一労働者につき1年度1回までに制限されました（通学制と組み合わせた訓練もこの1回に含まれます）。そのため当社は集合・対面での実施を軸に設計しています。" },
+      { q: "何名から受講できますか？", a: "少人数から対応可能です。人数に応じて料金・進め方をご提案します。" },
+      { q: "オンラインと対面、どちらですか？", a: "いずれも対応可能です。オンライン研修は全国対応、対面研修は関東圏を中心に対応しています（その他エリアは応相談）。" },
+      { q: "研修後のサポートはありますか？", a: "内製が社内で定着するまで、継続的にご相談いただけます。助成金の支給申請もサポートします。" },
+      { q: "どのような支払い方法がありますか？", a: "請求書払い（銀行振込）に対応しています。詳細はお問い合わせください。" },
     ],
-    ctaLabel: "Contact",
-    ctaTitle: "「使える」を、研修から。",
-    ctaDesc: "貴社の課題に合わせてカリキュラムからご提案し、助成金活用についてもあわせて相談できます。",
+    lpLabel: "Guide",
+    lpTitle: "カリキュラムの全項目・助成金の試算例まで見る",
+    lpDesc: "AIモデル別の詳細カリキュラム、助成金かんたん診断、資料ダウンロードは専用サイトでご覧いただけます。",
+    lpCta: "AI内製化研修サイトを見る",
+    ctaKicker: "Contact",
+    ctaTitle: "まずは、無料相談から。",
+    ctaDesc: "内製化したい業務のイメージがなくても構いません。現状をお聞きしたうえで、最適な研修設計と使える助成金をご提案します。",
     ctaButton: "無料で相談する",
   },
   en: {
     heroKicker: "AI Training",
-    heroTitle: "AI Training",
-    heroDesc: "Role-based, hands-on AI training from leadership to the front line. Up to 75% of training costs can be covered by subsidies.",
-    heroSubsidyLink: "Learn how to use subsidies",
-    forLabel: "For",
-    forTitle: "The right skills, by role.",
-    targets: [
-      { role: "Leadership", title: "AI for decisions", desc: "AI investment calls, competitive trends, business-impact estimates — an understanding you can use in the boardroom." },
-      { role: "Managers", title: "AI to move teams", desc: "Inventory workflows, spot where AI helps, and reflect it in evaluation — developing the leaders of on-the-ground adoption." },
-      { role: "Front line", title: "AI you use daily", desc: "Minutes, email, document drafting — prompts and workflows you can use in real work starting tomorrow." },
+    heroBadge: "Eligible for Japan's HR development subsidy — up to 75% off",
+    heroTitle: "In-house AI Development Training",
+    heroDesc: "Move from depending on outside vendors to building your own business systems with AI. Even non-engineers finish the program able to build internal tools themselves.",
+    heroNote: "Results vary by individual. Subsidy eligibility depends on conditions and review — we assess yours in the free consultation.",
+    heroCta: "Discuss training",
+    heroCta2: "See pricing",
+    stats: [
+      { value: "Up to 75%", label: "Training cost covered by subsidy" },
+      { value: "~JPY 500K net", label: "Standard plan" },
+      { value: "10 sessions / 20 hrs+", label: "Core curriculum" },
+      { value: "Nationwide", label: "Online / on-site" },
     ],
-    programsLabel: "Programs",
-    programsTitle: "Core training programs",
-    programsDesc: "Standard durations are designed to meet subsidy requirements (10+ hours). Freely combine into 8h / 40h / 100h volumes to fit your goals.",
-    programs: [
-      { num: "01", title: "Intro to Generative AI (2h)", hours: "2h", desc: "Hands-on with ChatGPT, Claude, and Gemini to feel 'what they can and can't do,' covering information literacy plus copyright and security basics." },
-      { num: "02", title: "Workflow Hands-on (half day)", hours: "4h", desc: "Inventory workflows by department, identify steps AI can streamline, and leave with prompts ready for your own work." },
-      { num: "03", title: "Prompt Engineering (half day)", hours: "4h", desc: "Reproducible instructions, few-shot, chain of thought, and RAG basics — a deeper level of skill." },
-      { num: "04", title: "Internal Guideline Workshop", hours: "6h", desc: "Co-author your AI usage policy with IT, legal, and the field — including documentation support." },
-      { num: "05", title: "Executive Session (90 min)", hours: "1.5h", desc: "A small-group session around board meetings, discussing AI strategy tied to your business and KPIs." },
-      { num: "06", title: "Continuous Upskilling (monthly)", hours: "2h+/mo", desc: "Ongoing training on a new theme each month — latest-model testing, case sharing, and Q&A to build internal knowledge." },
-      { num: "07", title: "Intro to Vibe Coding (non-engineers, half day)", hours: "4h", desc: "A hands-on session to build internal tools and apps with plain-language instructions to AI — no coding — so you can turn small manual tasks into tools yourself." },
+    aboutLabel: "What is",
+    aboutTitle: "A hands-on program that grows people who can build internal systems with AI.",
+    aboutDesc: "Bring the business systems and tools you used to outsource in-house — cutting costs and developing talent at the same time. This is not a lecture series: teams work on a real internal problem and finish the program with one working tool they can use on day one.",
+    about: [
+      { num: "01", tag: "Cost reduction", title: "Build business systems in-house" },
+      { num: "02", tag: "Productivity", title: "Generative AI in daily work" },
+      { num: "03", tag: "Zero outsourcing", title: "Compress development costs" },
+      { num: "04", tag: "Talent", title: "Grow DX people who can build" },
     ],
-    claudeLabel: "Training × Claude",
-    claudeTitle: "Hands-on training to truly master Claude.",
-    claudeDesc: "Training dedicated to Anthropic's Claude, grounded in your real use cases — down to ways of working that drive results from day one.",
-    claudePoints: [
-      { title: "Claude hands-on practice", desc: "Experience Claude features — Projects, Artifacts, file attachments — with your actual work data." },
-      { title: "Prompts by real use case", desc: "Design reproducible prompts by department: minutes, proposals, analysis, customer support." },
-      { title: "Claude Code / for dev teams", desc: "Practical sessions on Claude Code, MCP, and sub-agents for engineering organizations." },
-      { title: "Safe internal operating rules", desc: "Covers handling of confidential data, internal guidelines, and mechanisms for adoption." },
-    ],
-    formatsLabel: "Formats",
-    formatsTitle: "Choose from four delivery formats",
-    formats: [
-      { title: "e-Learning", desc: "Watch anytime, individually. Recordings plus comprehension checks." },
-      { title: "Online live", desc: "Delivered together via Zoom, with interactive Q&A." },
-      { title: "In-person", desc: "Run on-site in a meeting room, with team-building effect." },
-      { title: "Hybrid", desc: "e-Learning plus workshops to maximize retention." },
-    ],
-    formatsNote: "* A digital certificate of completion is issued for every format.",
     featuresLabel: "Features",
-    featuresTitle: "What sets clearAI training apart",
+    featuresTitle: "Not a course you forget the week after.",
     features: [
-      { num: "01", title: "Designed around your work", desc: "We capture your challenges in an upfront interview and build around your real work data." },
-      { num: "02", title: "Implementers as instructors", desc: "Not theory — engineers and ex-consultants who've implemented AI in the field lead the sessions." },
-      { num: "03", title: "Post-training follow-up included", desc: "Slack Q&A support and a one-month retrospective session can be bundled in." },
-      { num: "04", title: "Online & on-site", desc: "Deliverable nationwide, with recorded archives available." },
+      {
+        num: "01",
+        title: "Built around your real work — you finish with a working tool",
+        desc: "Teams take an actual problem from their own operations and finish the program with one internal tool ready for the floor. Deliverable-based by design, so \"we learned it but never used it\" never happens.",
+        note: "The finished tool stays yours to use and extend after the program.",
+      },
+      {
+        num: "02",
+        title: "Non-engineers become capable builders",
+        desc: "The curriculum assumes you build by instructing AI, so work that used to take weeks now cycles in hours. Being able to try and fix at your own pace is the real value of building in-house.",
+      },
+      {
+        num: "03",
+        title: "Subsidies cut your net cost by up to 75%",
+        desc: "The program qualifies for Japan's HR development subsidy (business-transformation reskilling course) and similar schemes. The 3 August 2026 revision tightened how directly training must relate to the job — because we fix the role and its tasks first, the filing can show exactly that. We guide you from choosing the scheme through the paperwork.",
+        note: "\"Up to 75%\" is the expense subsidy rate for SMEs. Conditions and review apply; approval is not guaranteed.",
+      },
+      {
+        num: "04",
+        title: "Choose the AI tool that fits the role",
+        desc: "Select from Claude / Claude Code, ChatGPT, Gemini, and Microsoft Copilot to match the role's actual tasks and your internal environment. The goal is not tool proficiency — it is running that work with the tool.",
+      },
+      {
+        num: "05",
+        title: "Online and on-site, nationwide",
+        desc: "Join online from anywhere in Japan or arrange an on-site program designed around your team size and working environment.",
+      },
+      {
+        num: "06",
+        title: "Support continues after the program",
+        desc: "We keep reviewing and supporting the tool your team built until it is embedded in daily work and your people can improve it themselves.",
+      },
     ],
-    subsidyLabel: "Subsidy",
-    subsidyTitlePre: "Cut training costs by ",
-    subsidyTitleHighlight: "up to 75%",
-    subsidyTitlePost: ".",
-    subsidyDescA: "With Japan's Human Resources Development Subsidy, SMEs can have 75% of training expenses — plus participants' wages — subsidized.",
-    subsidyDescB: "clearAI partners with a labor consultant to support you from application planning to completion reports.",
-    subsidyCards: [
-      { label: "Expense subsidy", value: "75", unit: "%", desc: "Training expenses for SMEs. Large companies cap at 60%." },
-      { label: "Wage subsidy", value: "960", unit: "JPY/person·hour", desc: "Participants' wages during training are also covered (for SMEs)." },
-      { label: "Cap", value: "JPY 500K", unit: "", desc: "Per-person cap for 200+ hours of training." },
+    curriculumLabel: "Curriculum",
+    curriculumTitle: "Curriculum by job role",
+    curriculumDesc: "Subsidy-eligible training has to make the work a person actually does runnable with AI. We fix the participant's role first, then use that role's real tasks as the teaching material. The tracks below are representative — the actual program is built around your operations.",
+    coursesTitle: "Pick the AI tool that fits the role",
+    courses: [
+      { name: "Claude / Claude Code", badge: "Recommended", icon: "logos:claude-icon" },
+      { name: "ChatGPT", icon: "logos:openai-icon" },
+      { name: "Gemini", icon: "simple-icons:googlegemini", iconColor: "4285F4" },
+      { name: "Microsoft Copilot", icon: "logos:microsoft-icon" },
     ],
-    subsidyCtaPrimary: "See details & estimate net cost →",
-    subsidyCtaSecondary: "Ask about using subsidies",
-    pricingLabel: "Pricing",
-    pricingTitle: "Indicative pricing",
-    pricingDescA: "Below are standard prices. Check your net cost after subsidies with the ",
-    pricingSim: "simulator",
-    pricingDescB: ".",
-    plans: [
-      { name: "Spot training", price: "From JPY 200K", unit: "/ session", desc: "A self-contained one-off session, 2 hours to half a day.", features: ["Upfront interview", "Original materials", "Delivery (1 instructor)", "Q&A support"], featured: false },
-      { name: "Package", price: "From JPY 800K", unit: "/ 3 mo", desc: "Combine multiple sessions for company-wide rollout.", features: ["3–5 role-based courses", "Participant survey analysis", "Recorded distribution for rollout", "Post-training Slack support", "Subsidy application support"], featured: true, badge: "Popular" },
-      { name: "Custom", price: "Let's talk", unit: "", desc: "Designed around a company-wide AI transformation.", features: ["Annual training roadmap", "Department-specific curriculum", "Instructor team assembly", "Impact measurement & reports", "Full subsidy application support"], featured: false },
+    curriculumGroups: [
+      {
+        category: "Sales",
+        label: "Sales",
+        items: ["Drafting proposals and quotes for your own products", "Turning meeting notes into minutes and next actions", "Writing and tailoring outreach to existing accounts", "Aggregating won/lost data and identifying drivers"],
+      },
+      {
+        category: "Back Office",
+        label: "Finance & admin",
+        items: ["Reconciling and entering invoice and expense data", "Checking contract clauses and surfacing differences", "Building standard answers for internal enquiries", "Drafting monthly reports and approval documents"],
+      },
+      {
+        category: "Manufacturing",
+        label: "Production & quality",
+        items: ["Aggregating inspection records and flagging outliers", "Writing and revising work instructions", "Classifying defect reports and drafting prevention notes", "Organising and searching maintenance records"],
+      },
+      {
+        category: "Support",
+        label: "Customer support",
+        items: ["Drafting first-response replies to enquiries", "Maintaining FAQs and response manuals", "Summarising and tagging case history", "Articulating escalation criteria"],
+      },
+      {
+        category: "HR",
+        label: "HR & recruiting",
+        items: ["Writing job postings and outreach messages", "Summarising interview notes and evaluation comments", "Answering questions about internal policies", "Drafting training plans and reports"],
+      },
     ],
-    planCta: "Get started",
-    pricingNote: "Prices exclude tax. Custom quotes may apply depending on headcount, region, and industry.",
-    vibeLabel: "Training × Vibe Coding",
-    vibeTitle: "Build your own work tools — no coding required.",
-    vibeDesc: "\"Vibe coding\" means describing what you want to AI in plain language and it builds the tool — this program grows non-engineer staff and managers into people who can start their own 'small DX' from day one.",
-    vibePoints: [
-      { title: "Build apps in plain language", desc: "Experience turning 'I want something like this' into a working tool, just by talking to AI tools like Claude and Cursor." },
-      { title: "Solve your own pain points", desc: "Turn small manual tasks — Excel aggregation, request forms, daily-report roll-ups — into tools on the spot, without waiting on IT." },
-      { title: "Pitfalls and safety basics", desc: "Learn the checks that keep you from failing by over-trusting AI, how to handle confidential data, and what to watch when sharing or publishing." },
-      { title: "Roll it out across the company", desc: "Go beyond a personal prototype — shape it into something the team can use and spread it internally." },
+    curriculumNote: "Roles are not limited to the above. We interview the participants about the work they actually own and rebuild the material around those tasks. Conversely, a program that does not fix a role and instead teaches AI broadly falls outside the subsidy.",
+    reformLabel: "Reskilling 2026",
+    reformTitle: "Built for the 3 August 2026 rule change: training tied directly to the job.",
+    reformDesc: "For Japan's HR development subsidy (business-transformation reskilling course), plans filed on or after 3 August 2026 are explicitly checked for how directly the training relates to the participant's job. Simply having \"AI\" or \"DX\" in the course title no longer qualifies.",
+    reformCards: [
+      { heading: "What now falls outside", body: "Knowledge only indirectly needed for the job, and content every professional needs regardless of role, are excluded. Courses that stop at concepts — what AI is, an overview of digital technology, how to think about data — do not translate into specific work tasks and therefore fall outside." },
+      { heading: "How we design it", body: "We identify the participant's role and tasks first, then use those tasks themselves as the material. The goal is that the same work — producing a quote, aggregating inspection records — runs with AI afterwards, which is what makes the job-relevance defensible in the filing." },
+      { heading: "E-learning is now capped", body: "Within the limit of three sessions per worker per year, e-learning is capped at one per year, and blended programmes count against that single e-learning slot. We therefore design around in-person delivery." },
+      { heading: "Certified-institution review", body: "SMEs applying on the basis of an HR development plan must now have the plan reviewed by a certified management innovation support organisation before filing. We walk you through that step too." },
     ],
-    vibeExamplesLabel: "Examples participants can build during the session",
-    vibeExamples: ["Inquiry auto-classifier", "Auto-generated quote PDFs", "Daily-report dashboard", "Internal FAQ chatbot", "Survey aggregation & charts", "Inventory alert notifications"],
-    curriculumLabel: "Sample Curriculum",
-    curriculumTitle: "Sample curriculum (Workflow Hands-on, half day)",
-    curriculumDesc: "An example of an actual half-day session, designed to order around your workflows and participants' levels.",
-    curriculumRows: [
-      { time: "0:00", title: "Orientation", desc: "Share where AI stands on 'what it can and can't do,' and set the day's goals." },
-      { time: "0:20", title: "Hands-on basics", desc: "Use Claude / ChatGPT directly — generation, summarizing, translation, ideation." },
-      { time: "1:15", title: "Inventory your team's work", desc: "Participants map their own work and pinpoint steps AI can streamline." },
-      { time: "2:15", title: "Build real-work prompts", desc: "Create prompts you can use in your own work — minutes, email, documents." },
-      { time: "3:15", title: "Share & Q&A", desc: "Share the prompts each person built and turn them into a plan for tomorrow." },
-      { time: "3:45", title: "Wrap-up & takeaways", desc: "Distribute a template set and checklist; explain post-training follow-up." },
-    ],
-    curriculumNote: "* This is one example. We compose anything from a 90-minute executive session to a company-wide 100-hour program.",
-    outcomesLabel: "Outcomes",
-    outcomesTitle: "How the front line changes after training.",
-    outcomesDesc: "A picture of the typical change many teams see after training (results vary by work and proficiency).",
-    outcomes: [
-      { dept: "Sales", before: "Half a day for a proposal draft", after: "A draft in 30 minutes", metric: "~80% faster" },
-      { dept: "Back office", before: "An hour to clean up minutes", after: "Recording to summary in 10 min", metric: "~85% faster" },
-      { dept: "Customer support", before: "Every reply from scratch", after: "AI draft + light edits, sent fast", metric: "~1.5× volume" },
-      { dept: "Planning & marketing", before: "Days of market & competitor research", after: "Initial research in hours", metric: "Much faster ramp-up" },
-    ],
+    reformNote: "This is a general explanation based on the rules as revised on 3 August 2026. Requirements can change, and final eligibility is determined by the Labour Bureau. We confirm your specific case against the current guidelines in the free consultation.",
     flowLabel: "Flow",
-    flowTitle: "From inquiry to delivery",
-    flowDesc: "We can run a first session in as little as two weeks, supporting subsidy users from application planning to the completion report.",
-    flowSteps: [
-      { num: "01", title: "Inquiry & interview", desc: "We learn your challenges, audience, and goals — starting from a 30-minute online chat." },
-      { num: "02", title: "Curriculum design & quote", desc: "We propose a curriculum built for you, the cost, and a subsidy plan." },
-      { num: "03", title: "Prep & materials", desc: "We create original materials based on your real work data." },
-      { num: "04", title: "Delivery", desc: "Delivered online / in-person / hybrid, with a certificate of completion issued." },
-      { num: "05", title: "Follow-up", desc: "Slack Q&A, a one-month retrospective, and the subsidy completion report." },
+    flowTitle: "How it runs",
+    flowDesc: "From first contact to in-house adoption takes roughly 3–4 months on the standard plan.",
+    flow: [
+      { num: "01", title: "Free consultation & readiness check", duration: "30 min+", desc: "We review your current challenges and the workflows you want to bring in-house, and estimate subsidy eligibility on the spot." },
+      { num: "02", title: "Plan confirmation & subsidy filing", duration: "2–4 weeks", desc: "We finalize headcount and hours, and support the pre-training filing the subsidy requires." },
+      { num: "03", title: "The program", duration: "10 sessions / 20 hrs+", desc: "About 2–3 months at roughly two hours a week, building a working internal system around your own operational problem." },
+      { num: "04", title: "Adoption & follow-up", duration: "3 months+", desc: "Continued support until development runs on its own internally, including the subsidy payment application." },
+    ],
+    flowNote: "Session count and hours are the standard-plan example. We design around subsidy requirements such as 10+ hours of off-the-job training.",
+    pricingLabel: "Pricing",
+    pricingTitle: "Pricing plans",
+    pricingDesc: "The JPY 2M standard plan comes to roughly JPY 500K net with subsidies applied. Plans scale with headcount and scope.",
+    plans: [
+      {
+        name: "Light",
+        scale: "3–5 people · trial",
+        normalLabel: "List price (excl. tax)",
+        normalPrice: "JPY 800K~",
+        netLabel: "Net after subsidy",
+        netPrice: "JPY 200K~",
+        features: ["3–5 participants", "5 sessions / 10 hours", "Online", "One deliverable theme", "Subsidy application support"],
+        featured: false,
+      },
+      {
+        name: "Standard",
+        scale: "5–10 people · team rollout",
+        normalLabel: "List price (excl. tax)",
+        normalPrice: "JPY 2,000,000",
+        netLabel: "Net after subsidy",
+        netPrice: "approx. JPY 500K",
+        features: ["5–10 participants", "10 sessions / 20 hours+", "Online or on-site", "Real operational deliverable", "Subsidy application support", "3 months of follow-up"],
+        featured: true,
+        badge: "Most popular",
+      },
+      {
+        name: "Premium",
+        scale: "10–20 people · company-wide",
+        normalLabel: "List price (excl. tax)",
+        normalPrice: "JPY 3,000,000~",
+        netLabel: "Net after subsidy",
+        netPrice: "JPY 750K~",
+        features: ["10–20 participants", "Designed per department", "Primarily on-site", "Deliverables across departments", "Subsidy application support", "6+ months of follow-up"],
+        featured: false,
+      },
+    ],
+    planCta: "Get in touch",
+    pricingNotes: [
+      "1. \"Up to 75%\" is the expense subsidy rate for SMEs. Net cost varies with wage subsidies and per-scheme caps; approval is not guaranteed.",
+      "2. Eligibility requires meeting the criteria of Japan's HR development subsidy (business-transformation reskilling course) or similar. Conditions and review apply, including filing before training begins.",
+      "3. Pricing and net cost vary with headcount, hours, and company size. We estimate yours in the free consultation.",
+      "4. The business-transformation reskilling course is a time-limited scheme running through the end of FY2026 (March 2027).",
+      "5. Scheme details are as of July 2026. Please check the latest requirements published by Japan's Ministry of Health, Labour and Welfare.",
     ],
     faqLabel: "FAQ",
     faqTitle: "Frequently asked questions",
-    faqItems: [
-      { q: "Is it OK for staff who've never touched AI?", a: "Yes — we tailor the content to participants' levels, from an intro course ('if you can use a PC') to practical courses for developers." },
-      { q: "What's the minimum headcount?", a: "Anything from a one-person executive session to a company-wide program of several hundred; the smaller the group, the more closely tied to each person's work." },
-      { q: "Online or in-person — which do you recommend?", a: "In-person or hybrid is best for retention, but online delivery is available nationwide with recorded archives too." },
-      { q: "Can I always use subsidies?", a: "Japan's Human Resources Development Subsidy covers up to 75% for SMEs if requirements are met (e.g., 10+ training hours); we support you from eligibility through application, but approval is by review." },
-      { q: "Which AI tools do you use in training?", a: "Major generative AI including ChatGPT, Claude, and Gemini — plus training dedicated to Anthropic Claude and vibe-coding training for non-engineers." },
-      { q: "Can it be tailored to our work?", a: "Yes — we capture your challenges in an upfront interview and build the curriculum to order around your real work data, never just generic how-tos." },
-      { q: "Is there post-training support?", a: "We can bundle Slack Q&A and a one-month retrospective session, supporting you until what was learned takes hold on the ground." },
+    faq: [
+      { q: "Will our team really be able to build systems ourselves?", a: "The program is designed to walk with you until a working deliverable is finished, using a real problem from your own operations. Results vary by individual, but completing one internal tool during the program is our standard." },
+      { q: "Can people with no programming experience join?", a: "Yes. The curriculum assumes you build by instructing AI, so non-engineers can take part." },
+      { q: "Are we guaranteed to qualify for a subsidy?", a: "The applicable scheme depends on company size and scope. We identify which schemes you can use, and whether you qualify, in the free consultation." },
+      { q: "We heard the 3 August 2026 revision excluded generative-AI training.", a: "What was excluded is training that stops at content every professional needs regardless of role — AI concepts, an overview of digital technology. Training directly required for a specific job's real tasks can still qualify. We fix the participant's role and tasks first and use those tasks as the material, so the filing can demonstrate that direct relevance. Final eligibility is determined by the Labour Bureau." },
+      { q: "Can the programme be delivered entirely as e-learning?", a: "The revision caps e-learning at one session per worker per year, and blended programmes count against that slot. We therefore design around in-person delivery." },
+      { q: "What is the minimum number of participants?", a: "We can run small groups. Pricing and format are proposed to match your headcount." },
+      { q: "Is it online or on-site?", a: "Either. Online sessions cover the whole country; on-site is centered on the Kanto region, with other areas by arrangement." },
+      { q: "Is there support after the program ends?", a: "Yes — ongoing consultation until in-house development is self-sustaining, including the subsidy payment application." },
+      { q: "What payment methods do you accept?", a: "Invoice-based bank transfer. Please contact us for details." },
     ],
-    ctaLabel: "Contact",
-    ctaTitle: "Start with training that sticks.",
-    ctaDesc: "We tailor the curriculum to your challenges — ask about subsidies too.",
+    lpLabel: "Guide",
+    lpTitle: "See the full module list and subsidy worked example",
+    lpDesc: "The dedicated site carries the per-model curriculum in full, a quick subsidy eligibility check, and the downloadable brochure.",
+    lpCta: "Visit the training site",
+    ctaKicker: "Contact",
+    ctaTitle: "Start with a free consultation.",
+    ctaDesc: "You don't need a clear picture of what to build first. Tell us where you are today and we'll propose the right program design and the subsidies you can use.",
     ctaButton: "Book a free consultation",
   },
 };
@@ -338,39 +497,35 @@ export default function TrainingPage() {
 
   return (
     <>
-      {/* PAGE HEADER */}
+      {/* PAGE HEADER — /robot-rental と同一の標準ヘッダー帯 */}
       <section className="pt-24 pb-4 lg:pt-28 lg:pb-5 bg-white border-b border-gray-100">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <p className="text-sm font-semibold text-neutral-900 mb-3">{t.heroKicker}</p>
-          <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4">{t.heroTitle}</h1>
-          <p className="text-base text-gray-600 leading-relaxed w-full mb-5">{t.heroDesc}</p>
-          <a href="/subsidy" className="group inline-flex items-center gap-2 text-sm font-semibold text-neutral-900 hover:text-neutral-700 transition-colors duration-300">
-            {t.heroSubsidyLink} <span className="group-hover:translate-x-1 transition-transform">→</span>
-          </a>
+          <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight">{t.heroTitle}</h1>
         </div>
       </section>
 
       {/* PRICING */}
-      <section className="pt-6 pb-10 lg:pt-8 lg:pb-12 bg-gray-50">
+      <section id="pricing" className="pt-6 pb-10 lg:pt-8 lg:pb-12 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.pricingLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.pricingTitle}</h2>
-            <p className="text-sm text-gray-500 mb-6 w-full leading-relaxed">
-              {t.pricingDescA}<a href="/subsidy" className="text-neutral-900 font-semibold hover:underline">{t.pricingSim}</a>{t.pricingDescB}
-            </p>
+            <p className="text-base text-gray-500 leading-relaxed w-full mb-8">{t.pricingDesc}</p>
           </Reveal>
           <PricingCarousel>
             {t.plans.map((plan, i) => (
               <Reveal key={plan.name} delay={i * 100} className="flex">
                 <div className={`rounded-lg p-5 lg:p-6 transition-all duration-300 flex flex-col w-full ${plan.featured ? "bg-neutral-900 text-white shadow-xl" : "bg-white border border-gray-200 hover:shadow-lg"}`}>
-                  {plan.featured && plan.badge && <span className="inline-block rounded-md bg-white/20 text-white px-3 py-1 text-sm font-semibold mb-3 self-start">{plan.badge}</span>}
-                  <h3 className={`text-base font-bold mb-1.5 ${plan.featured ? "text-white" : "text-gray-900"}`}>{plan.name}</h3>
-                  <div className="mb-2 flex items-baseline gap-1">
-                    <span className={`text-xl font-bold ${plan.featured ? "text-white" : "text-gray-900"}`}>{plan.price}</span>
-                    {plan.unit && <span className={`text-sm ${plan.featured ? "text-white/80" : "text-gray-500"}`}>{plan.unit}</span>}
+                  {plan.badge && <span className="inline-block rounded-md bg-white/20 text-white px-3 py-1 text-sm font-semibold mb-3 self-start">{plan.badge}</span>}
+                  <h3 className={`text-base font-bold mb-0.5 ${plan.featured ? "text-white" : "text-gray-900"}`}>{plan.name}</h3>
+                  <p className={`text-xs mb-3 ${plan.featured ? "text-white/70" : "text-gray-500"}`}>{plan.scale}</p>
+                  <div className="mb-3">
+                    <p className={`text-[11px] ${plan.featured ? "text-white/60" : "text-gray-400"}`}>{plan.normalLabel}</p>
+                    <p className={`text-sm line-through ${plan.featured ? "text-white/50" : "text-gray-400"}`}>{plan.normalPrice}</p>
+                    <p className={`text-[11px] mt-1.5 ${plan.featured ? "text-white/70" : "text-gray-500"}`}>{plan.netLabel}</p>
+                    <p className={`text-xl font-bold ${plan.featured ? "text-white" : "text-gray-900"}`}>{plan.netPrice}</p>
                   </div>
-                  <p className={`text-xs leading-relaxed mb-3 ${plan.featured ? "text-white/80" : "text-gray-600"}`}>{plan.desc}</p>
                   <ul className="space-y-2 mb-4 flex-1">
                     {plan.features.map((f) => (
                       <li key={f} className="flex items-start gap-3">
@@ -379,225 +534,181 @@ export default function TrainingPage() {
                       </li>
                     ))}
                   </ul>
-                  <a href="/contact?service=training" className={`block text-center text-sm font-semibold py-2 rounded-md transition-all duration-300 mt-auto ${plan.featured ? "bg-white text-neutral-900 hover:bg-neutral-100" : "border border-gray-200 text-gray-600 hover:border-gray-400 hover:text-gray-900"}`}>{t.planCta}</a>
+                  <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="block text-center text-sm font-semibold py-2 rounded-lg transition-all duration-300 mt-auto bg-cta text-white hover:bg-cta-hover">{t.planCta}</a>
                 </div>
               </Reveal>
             ))}
           </PricingCarousel>
-          <Reveal delay={300}>
-            <p className="text-xs text-gray-500 text-center mt-8">{t.pricingNote}</p>
+          <Reveal>
+            <div className="mt-6 space-y-1">
+              {t.pricingNotes.map((note) => (
+                <p key={note} className="text-xs text-gray-400 leading-relaxed">{note}</p>
+              ))}
+            </div>
           </Reveal>
         </div>
       </section>
 
-      {/* TARGET */}
+      {/* TRUST */}
+      <section className="py-12 bg-white border-y border-gray-100">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
+          <Reveal>
+            <div className="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-gray-200">
+              {t.stats.map((stat) => (
+                <div key={stat.label} className="flex flex-col items-center justify-center py-6 px-4 text-center">
+                  <span className="text-2xl font-bold text-gray-900">{stat.value}</span>
+                  <span className="text-xs text-gray-500 mt-1">{stat.label}</span>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* INTRO */}
       <section className="py-14 lg:py-20 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
-            <Label>{t.forLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-snug mb-8 w-full">{t.forTitle}</h2>
+            <Label>{t.aboutLabel}</Label>
+            <h2 className="text-3xl font-bold text-gray-900 leading-snug mb-6">{t.aboutTitle}</h2>
+            <p className="text-base text-gray-600 leading-relaxed">{t.aboutDesc}</p>
           </Reveal>
-          <CardCarousel gridClass="md:grid-cols-3">
-            {t.targets.map((item, i) => (
-              <Reveal key={item.role} delay={i * 100}>
-                <div className="rounded-lg border border-gray-200 bg-white p-8 hover:shadow-lg transition-all duration-300 h-full">
-                  <span className="inline-block text-xs font-bold tracking-widest text-neutral-900 uppercase mb-3">{item.role}</span>
-                  <h3 className="text-lg font-bold text-gray-900 mb-3">{item.title}</h3>
-                  <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
-                </div>
-              </Reveal>
-            ))}
-          </CardCarousel>
-        </div>
-      </section>
-
-      {/* PROGRAMS */}
-      <section id="programs" className="py-14 lg:py-20 bg-gray-50">
-        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <Reveal>
-            <Label>{t.programsLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.programsTitle}</h2>
-            <p className="text-sm text-gray-500 mb-8 w-full leading-relaxed">{t.programsDesc}</p>
-          </Reveal>
-          <CardCarousel gridClass="md:grid-cols-2">
-            {t.programs.map((item, i) => (
-              <Reveal key={item.num} delay={i * 80}>
-                <div className="bg-white rounded-lg border border-gray-200 p-8 hover:border-neutral-300 hover:shadow-lg transition-all duration-300 h-full">
-                  <div className="flex items-start justify-between mb-3">
-                    <span className="text-sm font-bold text-neutral-900">{item.num}</span>
-                    <span className="text-xs font-semibold text-gray-500 bg-gray-100 rounded-md px-3 py-1">{item.hours}</span>
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">{item.title}</h3>
-                  <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
-                </div>
-              </Reveal>
-            ))}
-          </CardCarousel>
-        </div>
-      </section>
-
-      {/* CLAUDE INTEGRATION */}
-      <section className="py-14 lg:py-20 bg-white">
-        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <div className="rounded-lg border border-neutral-200 bg-neutral-50 p-8 lg:p-12">
-            <Reveal>
-              <p className="inline-flex items-center gap-2 text-sm font-semibold text-neutral-900 mb-4">
-                <span className="w-2 h-2 rounded-full bg-neutral-900" />{t.claudeLabel}
-              </p>
-              <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 leading-snug mb-4 w-full">{t.claudeTitle}</h2>
-              <p className="text-sm text-gray-600 leading-relaxed mb-10 w-full">{t.claudeDesc}</p>
-            </Reveal>
-            <CardCarousel gridClass="md:grid-cols-2">
-              {t.claudePoints.map((p, i) => (
-                <Reveal key={p.title} delay={i * 80}>
-                  <div className="rounded-lg bg-white border border-neutral-200 p-6 h-full">
-                    <h3 className="text-base font-bold text-gray-900 mb-2">{p.title}</h3>
-                    <p className="text-sm text-gray-600 leading-relaxed">{p.desc}</p>
+          <div className="mt-10">
+            <CardCarousel gridClass="md:grid-cols-4">
+              {t.about.map((item, i) => (
+                <Reveal key={item.num} delay={i * 80} className="h-full">
+                  <div className="h-full rounded-lg border border-gray-200 bg-white p-6 transition-all duration-300 hover:shadow-lg">
+                    <span className="text-xs font-bold text-neutral-900">{item.num}</span>
+                    <p className="text-xs text-gray-500 mt-3">{item.tag}</p>
+                    <h3 className="text-base font-bold text-gray-900 mt-1 leading-snug">{item.title}</h3>
                   </div>
                 </Reveal>
               ))}
             </CardCarousel>
           </div>
-        </div>
-      </section>
-
-      {/* VIBE CODING */}
-      <section className="py-14 lg:py-20 bg-white">
-        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <div className="rounded-lg border border-neutral-900 bg-neutral-900 text-white p-8 lg:p-12">
-            <Reveal>
-              <p className="inline-flex items-center gap-2 text-sm font-semibold text-white mb-4">
-                <span className="w-2 h-2 rounded-full bg-white" />{t.vibeLabel}
-              </p>
-              <h2 className="text-2xl lg:text-3xl font-bold text-white leading-snug mb-4 w-full">{t.vibeTitle}</h2>
-              <p className="text-sm text-white/80 leading-relaxed mb-10 w-full">{t.vibeDesc}</p>
-            </Reveal>
-            <CardCarousel gridClass="md:grid-cols-2" className="mb-10">
-              {t.vibePoints.map((p, i) => (
-                <Reveal key={p.title} delay={i * 80}>
-                  <div className="rounded-lg bg-white/5 border border-white/15 p-6 h-full">
-                    <h3 className="text-base font-bold text-white mb-2">{p.title}</h3>
-                    <p className="text-sm text-white/75 leading-relaxed">{p.desc}</p>
-                  </div>
-                </Reveal>
-              ))}
-            </CardCarousel>
-            <Reveal>
-              <p className="text-xs font-semibold text-white/60 tracking-wide mb-3">{t.vibeExamplesLabel}</p>
-              <div className="flex flex-wrap gap-2.5">
-                {t.vibeExamples.map((ex) => (
-                  <span key={ex} className="rounded-md bg-white/10 border border-white/15 text-white/90 text-xs font-medium px-3 py-1.5">{ex}</span>
-                ))}
-              </div>
-            </Reveal>
-          </div>
-        </div>
-      </section>
-
-      {/* SAMPLE CURRICULUM */}
-      <section className="py-14 lg:py-20 bg-gray-50">
-        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <Reveal>
-            <Label>{t.curriculumLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.curriculumTitle}</h2>
-            <p className="text-sm text-gray-500 mb-8 w-full leading-relaxed">{t.curriculumDesc}</p>
-          </Reveal>
-          <div className="rounded-lg border border-gray-200 bg-white overflow-hidden">
-            {t.curriculumRows.map((row, i) => (
-              <Reveal key={row.time} delay={i * 60}>
-                <div className={`flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-6 px-6 py-5 ${i > 0 ? "border-t border-gray-100" : ""}`}>
-                  <span className="text-sm font-bold text-neutral-900 tabular-nums sm:w-16 flex-shrink-0">{row.time}</span>
-                  <div className="flex-1">
-                    <h3 className="text-base font-bold text-gray-900 mb-1">{row.title}</h3>
-                    <p className="text-sm text-gray-600 leading-relaxed">{row.desc}</p>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-          <Reveal delay={200}>
-            <p className="text-xs text-gray-500 mt-6">{t.curriculumNote}</p>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* OUTCOMES */}
-      <section className="py-14 lg:py-20 bg-white">
-        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <Reveal>
-            <Label>{t.outcomesLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.outcomesTitle}</h2>
-            <p className="text-sm text-gray-500 mb-8 w-full leading-relaxed">{t.outcomesDesc}</p>
-          </Reveal>
-          <CardCarousel gridClass="md:grid-cols-2">
-            {t.outcomes.map((o, i) => (
-              <Reveal key={o.dept} delay={i * 80}>
-                <div className="rounded-lg border border-gray-200 bg-white p-6 lg:p-8 hover:shadow-lg transition-all duration-300 h-full">
-                  <div className="flex items-center justify-between mb-5">
-                    <span className="inline-block text-xs font-bold tracking-widest text-neutral-900 uppercase">{o.dept}</span>
-                    <span className="rounded-md bg-neutral-900 text-white text-xs font-semibold px-3 py-1">{o.metric}</span>
-                  </div>
-                  <div className="flex items-stretch gap-4">
-                    <div className="flex-1 rounded-md bg-gray-50 border border-gray-100 p-4">
-                      <p className="text-[10px] font-bold tracking-widest text-gray-400 uppercase mb-1.5">Before</p>
-                      <p className="text-sm text-gray-500 leading-relaxed">{o.before}</p>
-                    </div>
-                    <div className="flex items-center text-neutral-300 font-bold">→</div>
-                    <div className="flex-1 rounded-md bg-neutral-900 p-4">
-                      <p className="text-[10px] font-bold tracking-widest text-white/50 uppercase mb-1.5">After</p>
-                      <p className="text-sm text-white leading-relaxed font-medium">{o.after}</p>
-                    </div>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </CardCarousel>
-        </div>
-      </section>
-
-      {/* FORMATS */}
-      <section className="py-14 lg:py-20 bg-gray-50">
-        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <Reveal>
-            <Label>{t.formatsLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-8">{t.formatsTitle}</h2>
-          </Reveal>
-          <CardCarousel gridClass="md:grid-cols-4">
-            {t.formats.map((f, i) => (
-              <Reveal key={f.title} delay={i * 80}>
-                <div className="rounded-lg border border-gray-200 bg-white p-5 h-full">
-                  <h3 className="text-sm font-bold text-gray-900 mb-2">{f.title}</h3>
-                  <p className="text-xs text-gray-600 leading-relaxed">{f.desc}</p>
-                </div>
-              </Reveal>
-            ))}
-          </CardCarousel>
-          <Reveal delay={200}>
-            <p className="text-xs text-gray-500 mt-6">{t.formatsNote}</p>
-          </Reveal>
         </div>
       </section>
 
       {/* FEATURES */}
-      <section className="py-14 lg:py-20 bg-white">
+      <section className="py-14 lg:py-20 bg-gray-50">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.featuresLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-8">{t.featuresTitle}</h2>
           </Reveal>
-          <CardCarousel gridClass="md:grid-cols-2">
-            {t.features.map((item, i) => (
-              <Reveal key={item.title} delay={i * 100}>
-                <div className="rounded-lg border border-gray-200 bg-white p-8 hover:shadow-lg transition-all duration-300 h-full">
-                  <div className="flex items-center gap-3 mb-2">
-                    <span className="text-xs font-semibold text-neutral-900 tracking-widest flex-shrink-0">{item.num}</span>
-                    <h3 className="text-lg font-bold text-gray-900 mb-3">{item.title}</h3>
+          <CardCarousel gridClass="md:grid-cols-3">
+            {t.features.map((item, i) => {
+              const image = TRAINING_FEATURE_IMAGES[i];
+              return (
+                <Reveal key={item.num} delay={i * 100} className="h-full">
+                  <div className="flex h-full flex-col overflow-hidden rounded-lg border border-gray-200 bg-white transition-all duration-300 hover:shadow-lg">
+                    {image && (
+                      <Image
+                        src={image.src}
+                        alt={image.alt[lang]}
+                        width={1536}
+                        height={1024}
+                        sizes="(min-width: 768px) 33vw, 88vw"
+                        className="aspect-[3/2] w-full object-cover"
+                      />
+                    )}
+                    <div className="flex flex-1 flex-col p-6 lg:p-8">
+                      <span className="text-sm font-bold text-neutral-900">{item.num}</span>
+                      <h3 className="mt-2 mb-2 text-lg font-bold text-gray-900">{item.title}</h3>
+                      <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
+                      {item.note && <p className="mt-auto pt-5 text-xs leading-6 text-gray-500">{item.note}</p>}
+                    </div>
                   </div>
-                  <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
+                </Reveal>
+              );
+            })}
+          </CardCarousel>
+        </div>
+      </section>
+
+      {/* RESKILLING REFORM — 2026-08-03 の制度改正への対応（職務直結性） */}
+      <section id="reskilling" className="py-14 lg:py-20 bg-gray-50">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
+          <Reveal>
+            <Label>{t.reformLabel}</Label>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.reformTitle}</h2>
+            <p className="text-base text-gray-500 leading-relaxed w-full mb-8">{t.reformDesc}</p>
+          </Reveal>
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            {t.reformCards.map((card, i) => (
+              <Reveal key={card.heading} delay={i * 80} className="h-full">
+                <div className="h-full rounded-lg border border-gray-200 bg-white p-6 transition-all duration-300 hover:shadow-lg">
+                  <h3 className="text-lg font-bold text-gray-900 mb-2">{card.heading}</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed">{card.body}</p>
                 </div>
               </Reveal>
             ))}
-          </CardCarousel>
+          </div>
+          <Reveal>
+            <p className="text-xs text-gray-400 leading-relaxed mt-8">{t.reformNote}</p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* CURRICULUM */}
+      <section id="curriculum" className="py-14 lg:py-20 bg-white">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
+          <Reveal>
+            <Label>{t.curriculumLabel}</Label>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.curriculumTitle}</h2>
+            <p className="text-base text-gray-500 leading-relaxed w-full mb-8">{t.curriculumDesc}</p>
+          </Reveal>
+
+          <Reveal>
+            <p className="text-sm font-semibold text-gray-900 mb-4">{t.coursesTitle}</p>
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3 mb-12">
+              {t.courses.map((course) => (
+                <div key={course.name} className={`rounded-lg border p-4 sm:p-5 flex flex-col justify-between gap-3 ${course.badge ? "border-neutral-900 bg-neutral-900 text-white" : "border-gray-200 bg-white"}`}>
+                  <div className="flex items-center gap-2.5">
+                    {/* 各社の公式ロゴ（Iconify の logos セット＝ブランド公式マーク） */}
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={`https://api.iconify.design/${course.icon}.svg${course.iconColor ? `?color=%23${course.iconColor}` : ""}`}
+                      alt=""
+                      aria-hidden
+                      className={`w-6 h-6 object-contain shrink-0 ${course.badge ? "rounded bg-white p-0.5" : ""}`}
+                      loading="lazy"
+                    />
+                    <p className={`text-sm font-bold leading-snug ${course.badge ? "text-white" : "text-gray-900"}`}>{course.name}</p>
+                  </div>
+                  {course.badge && <span className="inline-block self-start rounded-md bg-white/20 text-white px-2 py-0.5 text-[10px] font-semibold">{course.badge}</span>}
+                </div>
+              ))}
+            </div>
+          </Reveal>
+
+          <div className="space-y-0">
+            {t.curriculumGroups.map((group, gi) => (
+              <Reveal key={group.category} delay={gi * 60}>
+                <div className="border-t border-gray-200 py-8">
+                  <div className="grid lg:grid-cols-12 gap-6">
+                    <div className="lg:col-span-2">
+                      <p className="text-[10px] font-semibold tracking-widest text-neutral-900 uppercase">{group.category}</p>
+                      <h3 className="text-sm font-bold text-gray-900 mt-0.5">{group.label}</h3>
+                    </div>
+                    <div className="lg:col-span-10">
+                      <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-2.5">
+                        {group.items.map((item) => (
+                          <li key={item} className="flex items-start gap-3">
+                            <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-neutral-900 flex-shrink-0" />
+                            <span className="text-sm text-gray-600 leading-relaxed">{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+          <Reveal>
+            <p className="text-xs text-gray-400 leading-relaxed border-t border-gray-200 pt-6">{t.curriculumNote}</p>
+          </Reveal>
         </div>
       </section>
 
@@ -607,79 +718,42 @@ export default function TrainingPage() {
           <Reveal>
             <Label>{t.flowLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.flowTitle}</h2>
-            <p className="text-sm text-gray-500 mb-8 w-full leading-relaxed">{t.flowDesc}</p>
+            <p className="text-base text-gray-500 leading-relaxed w-full mb-8">{t.flowDesc}</p>
           </Reveal>
-          <CardCarousel gridClass="sm:grid-cols-2 lg:grid-cols-5">
-            {t.flowSteps.map((step, i) => (
-              <Reveal key={step.num} delay={i * 80}>
-                <div className="relative rounded-lg border border-gray-200 bg-white p-6 h-full">
-                  <div className="flex items-center gap-3 mb-2">
-                    <span className="text-2xl font-bold text-neutral-200 flex-shrink-0">{step.num}</span>
-                    <h3 className="text-sm font-bold text-gray-900 mb-2">{step.title}</h3>
-                  </div>
-                  <p className="text-xs text-gray-600 leading-relaxed">{step.desc}</p>
+          {t.flow.map((step, i) => (
+            <Reveal key={step.num} delay={i * 100}>
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 py-10 border-b border-gray-200 last:border-0">
+                <div className="lg:col-span-1"><span className="text-sm font-bold text-neutral-900">{step.num}</span></div>
+                <div className="lg:col-span-3">
+                  <h3 className="text-xl font-bold text-gray-900">{step.title}</h3>
+                  <p className="text-sm text-gray-400 mt-1">{step.duration}</p>
                 </div>
-              </Reveal>
-            ))}
-          </CardCarousel>
-        </div>
-      </section>
-
-      {/* 補助金 CTA SECTION */}
-      <section className="py-14 lg:py-20 bg-neutral-50">
-        <div className="max-w-5xl mx-auto px-6 lg:px-8">
+                <div className="lg:col-span-8"><p className="text-sm text-gray-600 leading-relaxed">{step.desc}</p></div>
+              </div>
+            </Reveal>
+          ))}
           <Reveal>
-            <div className="text-center mb-10">
-              <Label>{t.subsidyLabel}</Label>
-              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4">
-                {t.subsidyTitlePre}<span className="text-neutral-900">{t.subsidyTitleHighlight}</span>{t.subsidyTitlePost}
-              </h2>
-              <p className="text-base text-gray-600 w-full mx-auto leading-relaxed">
-                {t.subsidyDescA}
-                <br />{t.subsidyDescB}
-              </p>
-            </div>
-          </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-            {t.subsidyCards.map((card, i) => (
-              <Reveal key={card.label} delay={i * 100}>
-                <div className="bg-white rounded-lg border border-neutral-200 p-8 h-full">
-                  <span className="inline-block text-xs font-bold tracking-widest text-neutral-900 uppercase mb-3">{card.label}</span>
-                  <p className="text-4xl font-bold text-gray-900 mb-2">{card.value}<span className="text-xl">{card.unit}</span></p>
-                  <p className="text-sm text-gray-600 leading-relaxed">{card.desc}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-          <Reveal>
-            <div className="flex items-center justify-center gap-4 flex-wrap">
-              <a href="/subsidy" className="rounded-md bg-neutral-900 text-white font-semibold px-8 py-3.5 hover:bg-neutral-800 transition-colors duration-300">
-                {t.subsidyCtaPrimary}
-              </a>
-              <a href="/contact?service=subsidy" className="text-sm text-gray-700 font-semibold hover:text-gray-900 transition-colors duration-300">
-                {t.subsidyCtaSecondary}
-              </a>
-            </div>
+            <p className="text-xs text-gray-400 leading-relaxed mt-6">{t.flowNote}</p>
           </Reveal>
         </div>
       </section>
 
       {/* FAQ */}
       <section className="py-14 lg:py-20 bg-white">
-        <div className="max-w-3xl mx-auto px-6 lg:px-8">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.faqLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-8">{t.faqTitle}</h2>
           </Reveal>
-          <div className="space-y-3">
-            {t.faqItems.map((item, i) => (
-              <Reveal key={item.q} delay={i * 50}>
-                <details className="group rounded-lg border border-gray-200 bg-white open:shadow-sm transition-all duration-300">
-                  <summary className="flex items-center justify-between gap-4 cursor-pointer list-none px-6 py-5">
-                    <span className="text-sm lg:text-base font-bold text-gray-900">{item.q}</span>
-                    <span className="text-neutral-400 text-xl font-light flex-shrink-0 transition-transform duration-300 group-open:rotate-45">+</span>
+          <div>
+            {t.faq.map((item, i) => (
+              <Reveal key={i} delay={i * 80}>
+                <details className="border-b border-gray-100 py-2.5 md:py-5 group">
+                  <summary className="font-semibold text-gray-900 cursor-pointer list-none flex items-center justify-between gap-4">
+                    <span>{item.q}</span>
+                    <span className="text-gray-400 text-lg leading-none flex-shrink-0 transition-transform duration-300 group-open:rotate-45">+</span>
                   </summary>
-                  <p className="px-6 pb-5 text-sm text-gray-600 leading-relaxed">{item.a}</p>
+                  <p className="text-gray-600 text-sm leading-relaxed mt-3">{item.a}</p>
                 </details>
               </Reveal>
             ))}
@@ -687,14 +761,37 @@ export default function TrainingPage() {
         </div>
       </section>
 
+      {/* DETAILED SITE */}
+      <section className="py-14 lg:py-20 bg-white border-t border-gray-200">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
+          <Reveal>
+            <Label>{t.lpLabel}</Label>
+            <div className="rounded-lg border border-gray-200 p-8 lg:p-10 flex flex-col lg:flex-row lg:items-center gap-6 lg:gap-10">
+              <div className="flex-1">
+                <h2 className="text-xl lg:text-2xl font-bold text-gray-900 leading-snug mb-3">{t.lpTitle}</h2>
+                <p className="text-sm text-gray-600 leading-relaxed">{t.lpDesc}</p>
+              </div>
+              <a
+                href={LP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-lg border border-neutral-900 text-neutral-900 font-semibold px-8 py-3 text-sm hover:bg-neutral-900 hover:text-white transition-colors duration-300 text-center flex-shrink-0"
+              >
+                {t.lpCta} ↗
+              </a>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="py-14 lg:py-20 bg-gray-50">
-        <div className="max-w-2xl mx-auto px-6 text-center">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8 text-center">
           <Reveal>
-            <Label>{t.ctaLabel}</Label>
+            <Label>{t.ctaKicker}</Label>
             <h2 className="text-3xl font-bold text-gray-900 mb-4">{t.ctaTitle}</h2>
             <p className="text-base text-gray-600 leading-relaxed mb-10">{t.ctaDesc}</p>
-            <a href="/reserve" className="rounded-md bg-neutral-900 text-white font-semibold px-10 py-4 hover:bg-neutral-800 transition-colors duration-300 inline-block">{t.ctaButton}</a>
+            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="rounded-lg bg-neutral-900 text-white font-semibold px-10 py-4 hover:bg-neutral-800 transition-colors duration-300 inline-block">{t.ctaButton}</a>
           </Reveal>
         </div>
       </section>

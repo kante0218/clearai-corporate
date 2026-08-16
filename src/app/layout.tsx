@@ -1,70 +1,66 @@
 import type { Metadata, Viewport } from "next";
-import { Zen_Kaku_Gothic_New } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import IntroLoader from "@/components/IntroLoader";
 import { LanguageProvider } from "@/lib/i18n/LanguageContext";
 
-// Japanese face — refined humanist gothic, closest free match to 筑紫ゴシック (mount.jp).
-// Latin uses a system Helvetica stack (≈ Helvetica Now Text) set in globals.css @theme.
-const zenKaku = Zen_Kaku_Gothic_New({
-  subsets: ["latin"],
-  weight: ["400", "500", "700", "900"],
-  variable: "--font-zen",
-});
-
+// 2026-08-11: 固定幅ビューポート(PC縮小表示)を試したが、横並びレイアウトが
+// 電話幅に押し込まれて変な改行が多発するため標準のレスポンシブへ回帰。
+// モバイルの不満点(ヒーローが画面を使いすぎる/横ムニムニ)は
+// コンポーネント側のモバイル用スタイルで解消している。
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  maximumScale: 5,
   themeColor: "#111827",
 };
 
 const ogDescription =
-  "clearAI株式会社（クリアエーアイ／読み方：クリアエーアイ）は、日本の中小企業向けにAI導入支援を提供。AI戦略策定から実装・運用、AI顧問、AI研修、補助金サポート、Claude特化導入、AI広告運用、ウェブサイト制作まで7領域で一気通貫に伴走します。2026年創業、茨城県拠点。";
+  "ClearAI株式会社（クリアエーアイ／読み方：クリアエーアイ）は、日本の中小企業向けにAIの受託開発・導入支援を行うAI企業です。AIを組み込んだ業務システムやAIエージェントの受託開発、現場に入り込むFDEコンサルティング、社内で作れる人材を育てるAI内製化研修の3つを軸に、要件定義から実装・運用・定着まで一気通貫で伴走します。2026年4月創業、茨城県拠点、全国対応。";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://clearai.jp"),
   title: {
-    default: "clearAI株式会社",
-    template: "%s | clearAI株式会社",
+    default: "ClearAI株式会社｜AI受託開発・FDEコンサルティング・AI内製化研修",
+    template: "%s | ClearAI株式会社",
   },
   description: ogDescription,
   keywords: [
     // 正式名称・主要表記
-    "clearAI", "clearAI株式会社", "clear AI", "Clear AI", "Clear Ai",
+    "ClearAI", "ClearAI株式会社", "clear AI", "Clear AI", "Clear Ai",
     "クリアエーアイ", "クリアAI", "クリア・エーアイ", "クリアーエーアイ",
     "クリアエイアイ", "clearai", "clearai.jp", "クリアエーアイ株式会社",
     // 事業キーワード
+    "AI受託開発", "AIエージェント開発", "業務システム開発", "システム開発会社",
     "AIコンサルティング", "AI導入", "AI顧問", "AI導入支援", "AI活用",
-    "生成AI", "LLM活用", "DX推進", "業務自動化", "AI研修",
-    "AI補助金", "Claude", "Claude Code", "Claude導入", "CEO向けAI",
+    "生成AI", "LLM活用", "DX推進", "業務自動化", "AI研修", "AI内製化",
+    "生成AI研修", "AI研修 助成金", "Claude", "Claude Code", "Claude導入",
     // 地域・業種
     "茨城県 AI", "関東 AIコンサル", "中小企業 AI導入", "日本 AI企業",
   ],
-  authors: [{ name: "clearAI株式会社" }],
-  creator: "clearAI株式会社",
-  publisher: "clearAI株式会社",
+  authors: [{ name: "ClearAI株式会社" }],
+  creator: "ClearAI株式会社",
+  publisher: "ClearAI株式会社",
   openGraph: {
     type: "website",
     locale: "ja_JP",
-    siteName: "clearAI株式会社",
+    siteName: "ClearAI株式会社",
     url: "https://clearai.jp",
-    title: "clearAI株式会社",
+    title: "ClearAI株式会社",
     description: ogDescription,
     images: [
       {
         url: "/images/logo.png",
-        width: 1207,
-        height: 366,
-        alt: "clearAI株式会社",
+        width: 1254,
+        height: 1254,
+        alt: "ClearAI株式会社",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "clearAI株式会社",
+    title: "ClearAI株式会社",
     description: ogDescription,
     images: ["/images/logo.png"],
   },
@@ -89,7 +85,14 @@ export const metadata: Metadata = {
     google: "nE6Ji9Kv43p2EsW5odNprPtSSmKWya33nWYBZNJ5lSc",
   },
   category: "technology",
-  applicationName: "clearAI",
+  applicationName: "ClearAI",
+  icons: {
+    icon: [
+      { url: "/icon.png?v=20260812", type: "image/png", sizes: "512x512" },
+    ],
+    shortcut: "/icon.png?v=20260812",
+    apple: "/apple-icon.png?v=20260812",
+  },
   referrer: "origin-when-cross-origin",
   formatDetection: {
     email: false,
@@ -102,11 +105,11 @@ const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
   "@id": "https://clearai.jp/#organization",
-  "name": "clearAI株式会社",
-  "legalName": "clearAI株式会社",
+  "name": "ClearAI株式会社",
+  "legalName": "ClearAI株式会社",
   "alternateName": [
-    "clearAI Inc.",
-    "clearAI",
+    "ClearAI Inc.",
+    "ClearAI",
     "clear AI",
     "Clear AI",
     "clearai",
@@ -122,8 +125,8 @@ const organizationSchema = {
   "logo": {
     "@type": "ImageObject",
     "url": "https://clearai.jp/images/logo.png",
-    "width": 1207,
-    "height": 366,
+    "width": 1254,
+    "height": 1254,
   },
   "image": "https://clearai.jp/images/logo.png",
   "foundingDate": "2026-04",
@@ -133,7 +136,7 @@ const organizationSchema = {
     "address": { "@type": "PostalAddress", "addressRegion": "茨城県", "addressCountry": "JP" },
   },
   "description":
-    "clearAI株式会社（読み方：クリアエーアイ）は、日本の中小企業向けAI導入支援を提供するAI企業。",
+    "ClearAI株式会社（読み方：クリアエーアイ）は、日本の中小企業向けにAIの受託開発・導入支援を行うAI企業。AIを組み込んだ業務システムやAIエージェントの受託開発、FDEコンサルティング、AI内製化研修の3領域を提供する。",
   "slogan": "AIで、すべてをクリアにする。",
   "founder": { "@type": "Person", "name": "髙橋 敢輝" },
   "address": {
@@ -161,26 +164,26 @@ const organizationSchema = {
   "email": "info@clearai.jp",
   "sameAs": [],
   "knowsAbout": [
+    "AI受託開発",
+    "AIエージェント開発",
+    "業務システム開発",
     "AIコンサルティング",
     "AI導入支援",
     "AI顧問",
-    "AI研修",
+    "AI内製化研修",
     "生成AI",
     "LLM活用",
     "DX推進",
     "業務自動化",
     "Claude",
     "Claude Code",
-    "CEO向けAI活用",
+    "ヒューマノイドロボット",
+    "四足歩行ロボット",
   ],
   "makesOffer": [
-    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AIコンサルティング", "url": "https://clearai.jp/ai-consulting" } },
-    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI顧問", "url": "https://clearai.jp/advisor" } },
-    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI研修", "url": "https://clearai.jp/training" } },
-    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "補助金サポート", "url": "https://clearai.jp/subsidy" } },
-    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Claude特化導入", "url": "https://clearai.jp/claude" } },
-    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI広告運用", "url": "https://clearai.jp/advertising" } },
-    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "ウェブサイト作成", "url": "https://clearai.jp/website" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "システム・ソフトウェア開発（AI受託開発）", "url": "https://clearai.jp/software-development" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "FDEコンサルティング", "url": "https://clearai.jp/ai-consulting" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI内製化研修", "url": "https://clearai.jp/training" } },
   ],
 };
 
@@ -188,13 +191,13 @@ const professionalServiceSchema = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   "@id": "https://clearai.jp/#professionalservice",
-  "name": "clearAI株式会社（クリアエーアイ）",
-  "alternateName": ["clearAI Inc.", "clearAI", "クリアエーアイ", "クリアAI"],
+  "name": "ClearAI株式会社（クリアエーアイ）",
+  "alternateName": ["ClearAI Inc.", "ClearAI", "クリアエーアイ", "クリアAI"],
   "url": "https://clearai.jp",
   "logo": "https://clearai.jp/images/logo.png",
   "image": "https://clearai.jp/images/logo.png",
   "description":
-    "AIコンサルティング・AI顧問・AI研修・補助金サポート・Claude特化導入・AI広告運用・ウェブサイト制作を提供する日本のAI専門企業。",
+    "AIを組み込んだ業務システム・AIエージェントの受託開発、現場に入り込むFDEコンサルティング、社内で作れる人材を育てるAI内製化研修を提供する日本のAI専門企業。",
   "address": {
     "@type": "PostalAddress",
     "addressRegion": "茨城県",
@@ -206,82 +209,54 @@ const professionalServiceSchema = {
   "email": "info@clearai.jp",
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
-    "name": "clearAI サービス一覧",
+    "name": "ClearAI サービス一覧",
     "itemListElement": [
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AIコンサルティング", "url": "https://clearai.jp/ai-consulting" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI顧問", "url": "https://clearai.jp/advisor" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI研修", "url": "https://clearai.jp/training" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "補助金サポート", "url": "https://clearai.jp/subsidy" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Claude特化導入", "url": "https://clearai.jp/claude" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI広告運用", "url": "https://clearai.jp/advertising" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "ウェブサイト作成", "url": "https://clearai.jp/website" } },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "システム・ソフトウェア開発（AI受託開発）",
+          "description": "AIを組み込んだ業務システム・AIエージェント・Webアプリ・モバイルアプリを、要件定義から設計・開発・リリース・運用保守まで一貫して受託開発。",
+          "url": "https://clearai.jp/software-development",
+        },
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "FDEコンサルティング",
+          "description": "Forward Deployed Engineer型で現場に入り込み、AI活用の戦略策定から実装・定着まで一気通貫で伴走するコンサルティング。",
+          "url": "https://clearai.jp/ai-consulting",
+        },
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "AI内製化研修",
+          "description": "AIを使って社内システムを自社で作れる人材を育てる実践型研修。Claude / ChatGPT / Gemini / Microsoft Copilot から選べるカリキュラム。",
+          "url": "https://clearai.jp/training",
+        },
+      },
     ],
   },
 };
 
-const brandFaqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "@id": "https://clearai.jp/#brand-faq",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "clearAI株式会社の読み方は？",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "「クリアエーアイ」と読みます。英語表記は clearAI Inc. で、「クリアAI」「クリア・エーアイ」「クリアーエーアイ」などの表記でも呼ばれます。",
-      },
-    },
-    {
-      "@type": "Question",
-      "name": "clearAI（クリアエーアイ）は何をしている会社ですか？",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "clearAI株式会社は、日本の中小企業向けにAI導入支援をワンストップで提供するAIスタートアップです。AI戦略策定から実装・運用、AI顧問、AI研修、補助金サポート、Claude特化導入、AI広告運用、ウェブサイト制作まで7領域を一気通貫で支援しています。",
-      },
-    },
-    {
-      "@type": "Question",
-      "name": "clearAI（クリアエーアイ）はどこにありますか？",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "茨城県に本社を置く日本のAI企業で、2026年4月に設立されました。代表取締役は髙橋 敢輝。お問い合わせは info@clearai.jp まで。",
-      },
-    },
-    {
-      "@type": "Question",
-      "name": "社名「clearAI」の由来は？",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "「clear（明確な・クリアな）」と「AI」を組み合わせた造語です。難解なAI技術を分かりやすく・誠実に、現場に根ざした形で届けるという理念を社名に込めています。",
-      },
-    },
-    {
-      "@type": "Question",
-      "name": "中小企業や個人事業主でもAI導入の相談はできますか？",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "はい。clearAIは中小企業・個人事業主のAI導入支援を中心に据えています。月10万円〜のAI顧問、補助金活用による研修費削減（最大75%）など、規模に合わせた選択肢があります。初回相談は無料、メール・オンライン面談にて全国対応しています。",
-      },
-    },
-  ],
-};
 
 const siteNavigationSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
   "itemListElement": [
-    { "@type": "SiteNavigationElement", "position": 1, "name": "AIコンサルティング", "url": "https://clearai.jp/ai-consulting" },
-    { "@type": "SiteNavigationElement", "position": 2, "name": "AI顧問", "url": "https://clearai.jp/advisor" },
-    { "@type": "SiteNavigationElement", "position": 3, "name": "AI研修", "url": "https://clearai.jp/training" },
-    { "@type": "SiteNavigationElement", "position": 4, "name": "補助金サポート", "url": "https://clearai.jp/subsidy" },
-    { "@type": "SiteNavigationElement", "position": 5, "name": "Claude特化導入", "url": "https://clearai.jp/claude" },
-    { "@type": "SiteNavigationElement", "position": 6, "name": "AI広告運用", "url": "https://clearai.jp/advertising" },
-    { "@type": "SiteNavigationElement", "position": 7, "name": "ウェブサイト作成", "url": "https://clearai.jp/website" },
-    { "@type": "SiteNavigationElement", "position": 8, "name": "私たちについて", "url": "https://clearai.jp/about" },
-    { "@type": "SiteNavigationElement", "position": 9, "name": "お問い合わせ", "url": "https://clearai.jp/contact" },
-    { "@type": "SiteNavigationElement", "position": 10, "name": "よくある質問", "url": "https://clearai.jp/faq" },
-    { "@type": "SiteNavigationElement", "position": 11, "name": "ブログ", "url": "https://clearai.jp/blog" },
+    { "@type": "SiteNavigationElement", "position": 1, "name": "システム・ソフトウェア開発", "url": "https://clearai.jp/software-development" },
+    { "@type": "SiteNavigationElement", "position": 2, "name": "ロボットレンタル", "url": "https://clearai.jp/robot-rental" },
+    { "@type": "SiteNavigationElement", "position": 3, "name": "FDEコンサルティング", "url": "https://clearai.jp/ai-consulting" },
+    { "@type": "SiteNavigationElement", "position": 4, "name": "AI内製化研修", "url": "https://clearai.jp/training" },
+    { "@type": "SiteNavigationElement", "position": 5, "name": "導入実績", "url": "https://clearai.jp/case-studies" },
+    { "@type": "SiteNavigationElement", "position": 6, "name": "コラム", "url": "https://clearai.jp/column" },
+    { "@type": "SiteNavigationElement", "position": 7, "name": "私たちについて", "url": "https://clearai.jp/about" },
+    { "@type": "SiteNavigationElement", "position": 8, "name": "お問い合わせ", "url": "https://clearai.jp/contact" },
+    { "@type": "SiteNavigationElement", "position": 9, "name": "よくある質問", "url": "https://clearai.jp/faq" },
+    { "@type": "SiteNavigationElement", "position": 10, "name": "お知らせ・ブログ", "url": "https://clearai.jp/blog" },
   ],
 };
 
@@ -289,9 +264,9 @@ const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   "@id": "https://clearai.jp/#website",
-  "name": "clearAI株式会社",
+  "name": "ClearAI株式会社",
   "alternateName": [
-    "clearAI",
+    "ClearAI",
     "clear AI",
     "クリアエーアイ",
     "クリアAI",
@@ -309,21 +284,9 @@ const websiteSchema = {
   },
 };
 
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "@id": "https://clearai.jp/#breadcrumb",
-  "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "ホーム", "item": "https://clearai.jp" },
-    { "@type": "ListItem", "position": 2, "name": "AIコンサルティング", "item": "https://clearai.jp/ai-consulting" },
-    { "@type": "ListItem", "position": 3, "name": "AI顧問", "item": "https://clearai.jp/advisor" },
-    { "@type": "ListItem", "position": 4, "name": "AI研修", "item": "https://clearai.jp/training" },
-    { "@type": "ListItem", "position": 5, "name": "Claude特化導入", "item": "https://clearai.jp/claude" },
-    { "@type": "ListItem", "position": 6, "name": "補助金サポート", "item": "https://clearai.jp/subsidy" },
-    { "@type": "ListItem", "position": 7, "name": "お問い合わせ", "item": "https://clearai.jp/contact" },
-  ],
-};
-
+// NOTE: no site-wide BreadcrumbList here on purpose. A breadcrumb emitted from the
+// root layout would declare the same trail on every URL, which contradicts the
+// per-page BreadcrumbList each route already emits.
 const jsonLdGraph = {
   "@context": "https://schema.org",
   "@graph": [
@@ -331,8 +294,6 @@ const jsonLdGraph = {
     websiteSchema,
     professionalServiceSchema,
     siteNavigationSchema,
-    breadcrumbSchema,
-    brandFaqSchema,
   ],
 };
 
@@ -342,7 +303,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ja" suppressHydrationWarning className={`${zenKaku.variable}`}>
+    <html lang="ja" suppressHydrationWarning>
       <head>
         <script
           type="application/ld+json"

@@ -20,31 +20,30 @@ const COPY: Record<"ja" | "en", Copy> = {
   ja: {
     label: "Sitemap",
     title: "サイトマップ",
-    desc: "clearAI株式会社（クリアエーアイ）の全ページ一覧から、目的のページへ素早くアクセスできます。",
+    desc: "ClearAI株式会社（クリアエーアイ）の全ページ一覧から、目的のページへ素早くアクセスできます。",
     sections: [
       {
         title: "会社情報",
         links: [
           { label: "ホーム", href: "/" },
-          { label: "会社概要（clearAI / クリアエーアイ）", href: "/about" },
+          { label: "会社概要（ClearAI / クリアエーアイ）", href: "/about" },
           { label: "よくあるご質問", href: "/faq" },
           { label: "お問い合わせ", href: "/contact" },
+          { label: "導入実績", href: "/case-studies" },
+          { label: "事業内容", href: "/service" },
+          { label: "ご依頼の流れ", href: "/flow" },
+          { label: "資料請求", href: "/download" },
+          { label: "コラム", href: "/column" },
           { label: "お知らせ・ブログ", href: "/blog" },
         ],
       },
       {
-        title: "AI事業",
+        title: "事業",
         links: [
-          { label: "AIコンサルティング", href: "/ai-consulting" },
-          { label: "AI顧問", href: "/advisor" },
-          { label: "AI研修", href: "/training" },
-          { label: "補助金・助成金サポート", href: "/subsidy" },
-          { label: "Claude特化", href: "/claude" },
-          { label: "AI広告運用", href: "/advertising" },
-          { label: "ウェブサイト作成", href: "/website" },
-          { label: "SNS運用代行", href: "/sns" },
+          { label: "システム・ソフトウェア開発", href: "/software-development" },
           { label: "ロボットレンタル", href: "/robot-rental" },
-          { label: "研究開発", href: "/research" },
+          { label: "FDEコンサルティング", href: "/ai-consulting" },
+          { label: "AI内製化研修", href: "/training" },
         ],
       },
       {
@@ -62,31 +61,30 @@ const COPY: Record<"ja" | "en", Copy> = {
   en: {
     label: "Sitemap",
     title: "Sitemap",
-    desc: "A full list of clearAI Inc. pages — jump directly to what you need.",
+    desc: "A full list of ClearAI Inc. pages — jump directly to what you need.",
     sections: [
       {
         title: "Company",
         links: [
           { label: "Home", href: "/" },
-          { label: "About clearAI Inc.", href: "/about" },
+          { label: "About ClearAI Inc.", href: "/about" },
           { label: "FAQ", href: "/faq" },
           { label: "Contact", href: "/contact" },
+          { label: "Case Studies", href: "/case-studies" },
+          { label: "Services", href: "/service" },
+          { label: "Process", href: "/flow" },
+          { label: "Documents", href: "/download" },
+          { label: "Column", href: "/column" },
           { label: "News & Blog", href: "/blog" },
         ],
       },
       {
-        title: "AI Business",
+        title: "Business",
         links: [
-          { label: "AI Consulting", href: "/ai-consulting" },
-          { label: "AI Advisor", href: "/advisor" },
-          { label: "AI Training", href: "/training" },
-          { label: "Subsidy Support", href: "/subsidy" },
-          { label: "Claude Specialized", href: "/claude" },
-          { label: "AI Advertising", href: "/advertising" },
-          { label: "Website Production", href: "/website" },
-          { label: "SNS Management", href: "/sns" },
+          { label: "System & Software Development", href: "/software-development" },
           { label: "Robot Rental", href: "/robot-rental" },
-          { label: "Research & Development", href: "/research" },
+          { label: "FDE Consulting", href: "/ai-consulting" },
+          { label: "In-house AI Development Training", href: "/training" },
         ],
       },
       {
@@ -138,7 +136,7 @@ export default function HtmlSitemapPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
-      <section className="max-w-5xl mx-auto px-6 lg:px-10 pt-40 pb-24">
+      <section className="max-w-[1800px] mx-auto px-6 lg:px-8 pt-24 lg:pt-28 pb-24">
         <p className="text-xs font-semibold tracking-widest uppercase text-neutral-900 mb-4">
           {t.label}
         </p>

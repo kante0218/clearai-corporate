@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return {
       title: post.title,
       description,
-      keywords: ["clearAI", "クリアエーアイ", post.category?.name, "AIコンサルティング", "AI導入"].filter(Boolean) as string[],
+      keywords: ["ClearAI", "クリアエーアイ", post.category?.name, "AIコンサルティング", "AI導入"].filter(Boolean) as string[],
       alternates: { canonical: url },
       openGraph: {
         title: post.title,
@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         url,
         type: "article",
         locale: "ja_JP",
-        siteName: "clearAI株式会社",
+        siteName: "ClearAI株式会社",
         publishedTime: post.publishedAt,
         modifiedTime: post.revisedAt ?? post.publishedAt,
         images,
@@ -81,11 +81,11 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     image: post.eyecatch?.url ? [post.eyecatch.url] : ["https://clearai.jp/images/logo.png"],
     datePublished: post.publishedAt,
     dateModified: post.revisedAt ?? post.publishedAt,
-    author: { "@type": "Organization", name: "clearAI株式会社", url: "https://clearai.jp" },
+    author: { "@type": "Organization", name: "ClearAI株式会社", url: "https://clearai.jp" },
     publisher: {
       "@type": "Organization",
       "@id": "https://clearai.jp/#organization",
-      name: "clearAI株式会社",
+      name: "ClearAI株式会社",
       logo: { "@type": "ImageObject", url: "https://clearai.jp/images/logo.png" },
     },
     mainEntityOfPage: { "@type": "WebPage", "@id": `https://clearai.jp/blog/${slug}` },
@@ -95,7 +95,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     wordCount,
     articleSection: post.category?.name ?? "お知らせ",
     keywords: [
-      "clearAI",
+      "ClearAI",
       "クリアエーアイ",
       post.category?.name,
       "AIコンサルティング",
@@ -125,7 +125,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <div className="max-w-5xl mx-auto px-6 pt-40">
+      <div className="max-w-[1800px] mx-auto px-6 lg:px-8 pt-24 lg:pt-28">
         <Link href="/blog" className="inline-block text-sm font-semibold text-neutral-900 hover:text-neutral-600 transition-colors duration-300 mb-10">
           ← お知らせ一覧
         </Link>
@@ -155,14 +155,14 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         <h1 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight mb-8">{post.title}</h1>
       </div>
 
-      <div className="max-w-5xl mx-auto px-6 py-12">
+      <div className="max-w-[1800px] mx-auto px-6 lg:px-8 py-12">
         <article
           className="prose prose-lg lg:prose-xl prose-gray max-w-none"
           dangerouslySetInnerHTML={{ __html: post.content }}
         />
       </div>
 
-      <div className="max-w-5xl mx-auto px-6 pb-20 lg:pb-28">
+      <div className="max-w-[1800px] mx-auto px-6 lg:px-8 pb-20 lg:pb-28">
         <div className="border-t border-gray-200 pt-8">
           <Link href="/blog" className="text-sm font-semibold text-neutral-900 hover:text-neutral-600 transition-colors duration-300">
             ← お知らせ一覧に戻る

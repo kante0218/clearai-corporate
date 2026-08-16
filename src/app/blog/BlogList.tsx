@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, type ReactNode } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import type { Blog } from "@/lib/microcms";
+import PageHeader from "@/components/PageHeader";
 
 function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -31,49 +32,21 @@ function formatDate(dateStr: string) {
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
 }
 
-export default function BlogList({ posts, categories }: { posts: Blog[]; categories: string[] }) {
-  const [selectedCategory, setSelectedCategory] = useState("すべて");
-
-  const filteredPosts =
-    selectedCategory === "すべて"
-      ? posts
-      : posts.filter((post) => post.category?.name === selectedCategory);
-
+export default function BlogList({ posts }: { posts: Blog[] }) {
   return (
     <main className="min-h-screen bg-white">
-      <section className="max-w-5xl mx-auto px-6 pt-40 pb-16">
-        <Reveal>
-          <p className="text-xs font-semibold tracking-widest uppercase text-neutral-900 mb-4">News</p>
-          <h1 className="text-3xl font-bold text-gray-900">お知らせ</h1>
-        </Reveal>
-      </section>
+      <PageHeader
+        kicker="News"
+        title="お知らせ"
+        crumbs={[{ label: "ホーム", href: "/" }, { label: "お知らせ" }]}
+      />
 
-      <section className="max-w-5xl mx-auto px-6 pb-12">
-        <Reveal>
-          <div className="flex flex-wrap gap-3">
-            {categories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setSelectedCategory(category)}
-                className={`px-4 py-2 text-sm font-semibold rounded-lg transition-all duration-300 ${
-                  selectedCategory === category
-                    ? "bg-gray-900 text-white"
-                    : "text-gray-500 border border-gray-200 hover:text-gray-700 hover:border-gray-300"
-                }`}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
-        </Reveal>
-      </section>
-
-      <section className="max-w-5xl mx-auto px-6 pb-20 lg:pb-28">
-        {filteredPosts.length === 0 ? (
+      <section className="max-w-[1800px] mx-auto px-6 lg:px-8 pt-14 lg:pt-20 pb-20 lg:pb-28">
+        {posts.length === 0 ? (
           <p className="text-center text-gray-400 py-20 text-sm">該当する記事がありません</p>
         ) : (
           <div className="divide-y divide-gray-100">
-            {filteredPosts.map((post, i) => (
+            {posts.map((post, i) => (
               <Reveal key={post.id} delay={i * 60}>
                 <Link href={`/blog/${post.id}`} className="group flex items-start gap-4 py-6 hover:bg-gray-50 -mx-4 px-4 rounded-lg transition-colors">
                   {post.eyecatch && (

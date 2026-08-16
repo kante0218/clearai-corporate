@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 const description =
-  "clearAI株式会社（クリアエーアイ）の利用規約。当社サービスのご利用にあたっての規約をご確認いただけます。";
+  "ClearAI株式会社（クリアエーアイ）の利用規約。当社サービスのご利用にあたっての規約をご確認いただけます。";
 
 export const metadata: Metadata = {
   title: "利用規約",
@@ -13,12 +13,12 @@ export const metadata: Metadata = {
     googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
   },
   openGraph: {
-    title: "利用規約 | clearAI株式会社",
+    title: "利用規約 | ClearAI株式会社",
     description,
     url: "https://clearai.jp/terms",
     type: "website",
     locale: "ja_JP",
-    siteName: "clearAI株式会社",
+    siteName: "ClearAI株式会社",
   },
 };
 

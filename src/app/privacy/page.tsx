@@ -23,11 +23,11 @@ const COPY: Record<"ja" | "en", Copy> = {
     sections: [
       {
         title: "1. 個人情報の取り扱いについて",
-        body: "clearAI株式会社（以下「当社」）は、お客様の個人情報を適切に保護し、取り扱うことが社会的責務であると考え、以下の方針に基づき個人情報の保護に努めます。",
+        body: "ClearAI株式会社（以下「当社」）は、お客様の個人情報を適切に保護し、取り扱うことが社会的責務であると考え、以下の方針に基づき個人情報の保護に努めます。",
       },
       {
         title: "2. 個人情報の収集",
-        body: "当社は、サービスの提供にあたり、お客様の同意のもと、お名前、メールアドレス、電話番号、会社名等の個人情報を収集することがあります。",
+        body: "当社は、サービスの提供にあたり、お客様の同意のもと、お名前、メールアドレス、電話番号、会社名、配送先、利用目的等の個人情報を収集することがあります。ロボットレンタルの本人確認では、Stripe Identityを通じて本人確認書類、顔写真および確認結果を取り扱います。本人確認書類と顔写真の画像は当社のサーバーには保存しません。",
       },
       {
         title: "3. 個人情報の利用目的",
@@ -37,6 +37,7 @@ const COPY: Record<"ja" | "en", Copy> = {
           "お問い合わせへの対応",
           "サービスの改善・新サービスの開発",
           "お客様への重要なお知らせの連絡",
+          "ロボットレンタルの本人確認、審査、契約、請求および不正利用防止",
         ],
       },
       {
@@ -44,16 +45,20 @@ const COPY: Record<"ja" | "en", Copy> = {
         body: "当社は、法令に基づく場合を除き、お客様の同意なく第三者に個人情報を提供することはありません。",
       },
       {
-        title: "5. 個人情報の管理",
+        title: "5. 外部サービスへの取り扱いの委託",
+        body: "当社は、本人確認および決済・請求のためStripe, Inc.およびその関連会社が提供するStripe Identity・Stripe Billing等を利用します。これらのサービスへ提供された情報は、Stripeのプライバシーポリシーおよびサービス条件に従って取り扱われます。当社は本人確認結果を受領し、申込審査・契約管理に必要な範囲で利用します。",
+      },
+      {
+        title: "6. 個人情報の管理",
         body: "当社は、個人情報の漏洩、滅失またはき損の防止のために、適切なセキュリティ対策を講じます。",
       },
       {
-        title: "6. お問い合わせ",
+        title: "7. お問い合わせ",
         body: "個人情報の取り扱いに関するお問い合わせは、以下までご連絡ください。",
-        extra: "clearAI株式会社\nメール: info@clearai.jp",
+        extra: "ClearAI株式会社\nメール: info@clearai.jp",
       },
     ],
-    date: "制定日: 2025年1月1日",
+    date: "制定日: 2025年1月1日 / 最終改定日: 2026年8月9日",
   },
   en: {
     label: "Privacy Policy",
@@ -61,11 +66,11 @@ const COPY: Record<"ja" | "en", Copy> = {
     sections: [
       {
         title: "1. Handling of personal information",
-        body: 'clearAI Inc. ("the Company") regards the proper protection and handling of personal information as a social responsibility, and will endeavor to protect personal information based on the policy below.',
+        body: 'ClearAI Inc. ("the Company") regards the proper protection and handling of personal information as a social responsibility, and will endeavor to protect personal information based on the policy below.',
       },
       {
         title: "2. Collection of personal information",
-        body: "In providing services, the Company may collect personal information such as name, email address, phone number, and company name, with the customer's consent.",
+        body: "In providing services, the Company may collect personal information such as name, email address, phone number, company name, delivery address, and intended use with the customer's consent. For robot-rental identity checks, identification documents, facial images, and verification results are handled through Stripe Identity. Images of identity documents and faces are not stored on the Company's servers.",
       },
       {
         title: "3. Purposes of use",
@@ -75,6 +80,7 @@ const COPY: Record<"ja" | "en", Copy> = {
           "Response to inquiries",
           "Improvement of services and development of new services",
           "Important communications to customers",
+          "Identity verification, screening, contracting, billing, and fraud prevention for robot rentals",
         ],
       },
       {
@@ -82,16 +88,20 @@ const COPY: Record<"ja" | "en", Copy> = {
         body: "Except as required by law, the Company does not provide personal information to third parties without the customer's consent.",
       },
       {
-        title: "5. Management of personal information",
+        title: "5. Service providers",
+        body: "For identity verification, payments, and billing, the Company uses Stripe Identity, Stripe Billing, and related services provided by Stripe, Inc. and its affiliates. Information provided to these services is handled in accordance with Stripe's privacy policy and service terms. The Company receives verification results and uses them only as needed to review applications and manage contracts.",
+      },
+      {
+        title: "6. Management of personal information",
         body: "The Company implements appropriate security measures to prevent leakage, loss, or damage of personal information.",
       },
       {
-        title: "6. Contact",
+        title: "7. Contact",
         body: "Please direct inquiries regarding the handling of personal information to the address below.",
-        extra: "clearAI Inc.\nEmail: info@clearai.jp",
+        extra: "ClearAI Inc.\nEmail: info@clearai.jp",
       },
     ],
-    date: "Effective date: January 1, 2025",
+    date: "Effective date: January 1, 2025 / Last updated: August 9, 2026",
   },
 };
 
