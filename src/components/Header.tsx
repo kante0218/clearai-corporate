@@ -272,6 +272,11 @@ export default function Header() {
                   </Link>
                 ))}
               </div>
+              {/* The desktop toggle is hidden below xl, so this is the only
+                  place a phone can switch language. Leaves the menu open. */}
+              <div className="mt-5 flex justify-center">
+                <LanguageToggle variant="mobile" />
+              </div>
               <div className="mt-4 space-y-3">
                 <Link href="/contact" onClick={() => setIsOpen(false)}
                   className={`block text-center px-4 py-3.5 rounded-lg text-sm font-semibold transition-colors min-h-[44px] flex items-center justify-center ${contactFilledClass}`}>

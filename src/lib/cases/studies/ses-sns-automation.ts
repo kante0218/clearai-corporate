@@ -180,4 +180,13 @@ export const study: CaseStudy = {
   },
   related: ["milling-machine-ai-agent", "real-estate-consulting-site"],
   relatedColumns: ["ai-agent-kaihatsu-hiyou", "ai-komon-souba"],
+  en: {
+    h1: "Handing social posts and DMs to an AI agent, and cutting the admin work. An SES company",
+    summary:
+      "The company relied on social media for both engineer recruiting and winning projects, yet every post and every DM was still written by hand — so the busier the week, the more it stalled. Drafting posts, personalising DM copy, selecting recipients, and keeping the send history in one place all moved to an AI agent, leaving people to approve and to reply. Taking the writing-and-searching time out of the admin work turned it into an operation that no longer stops.",
+    category: "AI Agents / Workflow Automation",
+    industry: "SES (system engineering services)",
+    companySize: "A small team covering both sales and recruiting",
+    imageAlt: "A team reviewing an operations dashboard",
+  },
 };

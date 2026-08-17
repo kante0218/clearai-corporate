@@ -52,6 +52,19 @@ export type CaseStudy = {
   related: string[];
   /** Column slugs worth reading alongside this case. */
   relatedColumns?: string[];
+  /**
+   * English copy for the /case-studies listing. Only covers what the index
+   * renders — the article body stays Japanese. Missing entries fall back to
+   * the Japanese fields, so a case without `en` still lists correctly.
+   */
+  en?: {
+    h1: string;
+    summary: string;
+    category: string;
+    industry: string;
+    companySize: string;
+    imageAlt: string;
+  };
 };
 
 /** Headings that become the table of contents and the anchor ids. */

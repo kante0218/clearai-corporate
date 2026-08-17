@@ -201,4 +201,13 @@ export const study: CaseStudy = {
   },
   related: ["ses-sns-automation", "real-estate-consulting-site"],
   relatedColumns: ["ai-agent-kaihatsu-hiyou", "ai-jutaku-kaihatsu-gaisha-erabikata"],
+  en: {
+    h1: "From purchase order to NC output the moment it lands. Connecting a milling machine to an AI agent",
+    summary:
+      "For every order, someone had to read the purchase order, draw it up in CAD, build the toolpath in CAM, and push the NC code to the milling machine — a chain only a couple of people could actually run. Triggered by an incoming purchase order, an AI agent now structures the specification, applies it to in-house geometry templates to generate the 3D model, and produces the toolpath and the NC code, leaving people a single final approval. For high-repetition parts, the manual drafting step between order and machining is gone.",
+    category: "System Development",
+    industry: "Manufacturing (metal machining and cutting)",
+    companySize: "A factory with several dozen employees",
+    imageAlt: "An operator checking equipment data on the factory floor",
+  },
 };

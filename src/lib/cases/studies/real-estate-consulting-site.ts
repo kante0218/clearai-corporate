@@ -178,4 +178,13 @@ export const study: CaseStudy = {
   },
   related: ["milling-machine-ai-agent", "ses-sns-automation"],
   relatedColumns: ["ai-jutaku-kaihatsu-gaisha-erabikata"],
+  en: {
+    h1: "A site that finally says what the firm does. Building a corporate site for a real estate consultancy",
+    summary:
+      "The firm had a company-profile site, but reading it left you unsure what you could actually hire them for, and enquiries depended on referrals and phone calls. We started by putting the services into words, then restructured the site so the first screen answers who they help and in what situations. It was built in Next.js and set up so the team can update it in-house, and it shipped with structured data and page-speed work included.",
+    category: "Web Development",
+    industry: "Real estate consulting",
+    companySize: "A small consulting firm",
+    imageAlt: "Checking a website across several devices during production",
+  },
 };
