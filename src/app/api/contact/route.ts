@@ -1,4 +1,5 @@
 import { Resend } from "resend";
+import { createHash, createHmac } from "node:crypto";
 import { validateContactForm, INQUIRY_TYPES, SERVICE_KEYS, SERVICE_LABELS, DOCUMENT_KEYS, DOCUMENT_LABELS, type InquiryType, type ServiceKey, type DocumentKey } from "@/lib/validators";
 
 export const runtime = "nodejs";
@@ -39,6 +40,49 @@ interface EmailPayload {
   experience?: string;
   portfolio?: string;
   message: string;
+}
+
+/**
+ * 社内ダッシュボードへ問い合わせを転送する。
+ * メール送信を主経路として維持し、社内連携の一時障害で訪問者の送信を失敗させない。
+ */
+async function forwardToDashboard(
+  payload: EmailPayload,
+  submissionId: string,
+  fingerprint: string,
+): Promise<boolean> {
+  const endpoint = process.env.CONTACT_DASHBOARD_ENDPOINT;
+  const secret = process.env.CONTACT_INGEST_SECRET;
+  if (!endpoint || !secret) {
+    console.warn("[contact] dashboard forwarding is not configured");
+    return false;
+  }
+
+  try {
+    const response = await fetch(endpoint, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${secret}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        ...payload,
+        source: "clearai.jp",
+        submissionId,
+        fingerprint,
+      }),
+      signal: AbortSignal.timeout(8_000),
+      cache: "no-store",
+    });
+    if (!response.ok) {
+      console.error("[contact] dashboard forwarding failed", { status: response.status });
+      return false;
+    }
+    return true;
+  } catch (error) {
+    console.error("[contact] dashboard forwarding error", error);
+    return false;
+  }
 }
 
 function buildEmail(payload: EmailPayload) {
@@ -90,6 +134,14 @@ function buildEmail(payload: EmailPayload) {
 
 export async function POST(request: Request) {
   try {
+    const contentLength = Number(request.headers.get("content-length") ?? "0");
+    if (Number.isFinite(contentLength) && contentLength > 20_000) {
+      return new Response(
+        JSON.stringify({ ok: false, errors: { _form: "リクエストが大きすぎます。" } }),
+        { status: 413, headers: JSON_HEADERS }
+      );
+    }
+
     let body: Record<string, unknown>;
     try {
       body = await request.json();
@@ -143,6 +195,41 @@ export async function POST(request: Request) {
       );
     }
 
+    const relaySecret = process.env.CONTACT_INGEST_SECRET;
+    if (!relaySecret) {
+      console.error("[contact] CONTACT_INGEST_SECRET is not configured");
+      return new Response(
+        JSON.stringify({ ok: false, errors: { _form: "問い合わせ受付設定が未完了です。" } }),
+        { status: 500, headers: JSON_HEADERS }
+      );
+    }
+    const sourceIp =
+      request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+      request.headers.get("x-real-ip")?.trim() ||
+      "unknown";
+    const fingerprint = createHmac("sha256", relaySecret).update(sourceIp).digest("hex");
+    // 同一内容のネットワーク再試行を10分単位で同じIDに束ねる。
+    const bucket = Math.floor(Date.now() / 600_000);
+    const submissionDigest = createHash("sha256")
+      .update(`${fingerprint}\0${JSON.stringify(payload)}\0${bucket}`)
+      .digest("hex");
+    // ダッシュボード側のUUID契約を満たす決定的ID（同一内容の再試行で不変）。
+    const submissionId = [
+      submissionDigest.slice(0, 8),
+      submissionDigest.slice(8, 12),
+      `5${submissionDigest.slice(13, 16)}`,
+      `a${submissionDigest.slice(17, 20)}`,
+      submissionDigest.slice(20, 32),
+    ].join("-");
+
+    const dashboardForwarded = await forwardToDashboard(payload, submissionId, fingerprint);
+    if (!dashboardForwarded) {
+      return new Response(
+        JSON.stringify({ ok: false, errors: { _form: "受付処理に失敗しました。時間をおいて再度お試しください。" } }),
+        { status: 502, headers: JSON_HEADERS }
+      );
+    }
+
     const apiKey = process.env.RESEND_API_KEY;
     if (!apiKey) {
       console.error("[contact] RESEND_API_KEY is not configured");
@@ -180,7 +267,12 @@ export async function POST(request: Request) {
       );
     }
 
-    console.log("[contact] sent", { id: data?.id, to: TO_EMAIL, type: inquiryType });
+    console.log("[contact] sent", {
+      id: data?.id,
+      to: TO_EMAIL,
+      type: inquiryType,
+      dashboardForwarded,
+    });
 
     return new Response(JSON.stringify({ ok: true }), { status: 200, headers: JSON_HEADERS });
   } catch (err) {
