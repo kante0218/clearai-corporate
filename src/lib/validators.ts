@@ -92,6 +92,8 @@ export function validateContactForm(data: ContactFormData): Record<string, strin
 
   if (!data.email || data.email.trim().length === 0) {
     errors.email = "メールアドレスは必須です。";
+  } else if (data.email.trim().length > 254) {
+    errors.email = "メールアドレスは254文字以内でご入力ください。";
   } else if (!isValidEmail(data.email.trim())) {
     errors.email = "有効なメールアドレスを入力してください。";
   }

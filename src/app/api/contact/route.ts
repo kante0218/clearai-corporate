@@ -144,7 +144,16 @@ export async function POST(request: Request) {
 
     let body: Record<string, unknown>;
     try {
-      body = await request.json();
+      const rawBody = await request.text();
+      if (new TextEncoder().encode(rawBody).byteLength > 20_000) {
+        return new Response(
+          JSON.stringify({ ok: false, errors: { _form: "リクエストが大きすぎます。" } }),
+          { status: 413, headers: JSON_HEADERS }
+        );
+      }
+      const parsed: unknown = JSON.parse(rawBody);
+      if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) throw new Error("invalid body");
+      body = parsed as Record<string, unknown>;
     } catch {
       return new Response(
         JSON.stringify({ ok: false, errors: { _form: "リクエストの形式が正しくありません。" } }),
