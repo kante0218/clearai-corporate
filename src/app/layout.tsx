@@ -88,10 +88,10 @@ export const metadata: Metadata = {
   applicationName: "ClearAI",
   icons: {
     icon: [
-      { url: "/icon.png?v=20260812", type: "image/png", sizes: "512x512" },
+      { url: "/icon.png?v=20260819", type: "image/png", sizes: "512x512" },
     ],
-    shortcut: "/icon.png?v=20260812",
-    apple: "/apple-icon.png?v=20260812",
+    shortcut: "/icon.png?v=20260819",
+    apple: "/apple-icon.png?v=20260819",
   },
   referrer: "origin-when-cross-origin",
   formatDetection: {
