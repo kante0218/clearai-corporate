@@ -43,6 +43,16 @@ function withinRateLimit(request: Request) {
   return true;
 }
 
+// Stripe Identityのprovided_details.phoneはE.164必須（例: +81701234567）。日本式表記を変換し、変換不能なら省略する
+function toE164Japan(phone: string) {
+  const compact = phone.replace(/[^\d+]/g, "");
+  if (/^\+\d{8,15}$/.test(compact)) return compact;
+  const digits = compact.replace(/\D/g, "");
+  if (/^0\d{9,10}$/.test(digits)) return `+81${digits.slice(1)}`;
+  if (/^81\d{9,10}$/.test(digits)) return `+${digits}`;
+  return null;
+}
+
 function applicationFingerprint(parts: string[]) {
   const secret = process.env.ROBOT_RENTAL_SESSION_SECRET ?? process.env.STRIPE_SECRET_KEY;
   if (!secret) throw new Error("Robot rental session secret is not configured");
@@ -139,6 +149,7 @@ export async function POST(request: Request) {
       },
       { idempotencyKey: `rental-customer-${fingerprint}` },
     );
+    const phoneE164 = toE164Japan(application.phone);
     const verification = await stripe.identity.verificationSessions.create(
       {
         type: "document",
@@ -146,7 +157,7 @@ export async function POST(request: Request) {
         related_customer: customer.id,
         provided_details: {
           email: application.email,
-          phone: application.phone,
+          ...(phoneE164 ? { phone: phoneE164 } : {}),
         },
         options: {
           document: {
@@ -163,7 +174,7 @@ export async function POST(request: Request) {
           grade: application.grade,
         },
       },
-      { idempotencyKey: `rental-identity-${fingerprint}` },
+      { idempotencyKey: `rental-identity-v2-${fingerprint}` },
     );
 
     await stripe.customers.update(customer.id, {
