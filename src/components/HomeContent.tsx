@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import CardCarousel from "@/components/CardCarousel";
+import { CLIENT_LOGOS } from "@/components/ClientLogoGrid";
 import { BOOKING_URL } from "@/lib/booking";
 
 /* NOTE (2026-08-08): the VISION / GET STARTED / SERVICES / APPROACH / TEAM sections were
@@ -462,23 +463,6 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
   },
 };
 
-// 各ロゴはコンテンツにタイトクロップした透過PNG（実寸）。表示は固定高さ＋等間隔gapで、
-// ロゴ同士の距離が全て均一になるようにする。
-const CLIENT_LOGOS = [
-  { name: "JASO", src: "/images/clients/jaso.png", width: 1007, height: 424 },
-  { name: "MIG", src: "/images/clients/mig.png", width: 337, height: 175 },
-  { name: "TicketMe", src: "/images/clients/ticketme.png", width: 1200, height: 426 },
-  { name: "エンジニアのミカタ", src: "/images/clients/engineer-no-mikata.png", width: 991, height: 143 },
-  { name: "Gugen", src: "/images/clients/gugen.png", width: 1111, height: 346 },
-  { name: "DiaL Shift", src: "/images/clients/dial-shift.png", width: 1950, height: 342 },
-  { name: "Wave Leaf", src: "/images/clients/wave-leaf.png", width: 1164, height: 324 },
-  { name: "AT", src: "/images/clients/at.png", width: 1030, height: 838 },
-  { name: "Crew Robotics", src: "/images/clients/crew-robotics.png", width: 1791, height: 261 },
-  { name: "ICONIQ", src: "/images/clients/iconiq.png", width: 1436, height: 304 },
-  { name: "明成", src: "/images/clients/meisei.png", width: 968, height: 452 },
-  { name: "お宿 いけがみ", src: "/images/clients/oyado-ikegami.png", width: 460, height: 98 },
-];
-
 const TECH_GROUPS: { key: keyof typeof COPY["ja"]["techGroups"]; category: string; items: { name: string; icon: string; color?: string }[] }[] = [
   { key: "frontend", category: "Frontend", items: [
     { name: "Next.js", icon: "logos:nextjs-icon" },
@@ -549,16 +533,12 @@ function ClientLogoMarquee({ label }: { label: string }) {
         <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-white to-transparent md:w-28" />
         <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-white to-transparent md:w-28" />
         <div className="flex w-max items-center gap-14 animate-[marquee_38s_linear_infinite] hover:[animation-play-state:paused] md:gap-20">
-          {logos.map((logo, index) => (
-            <Image
-              key={`${logo.name}-${index}`}
-              src={logo.src}
-              alt={`${logo.name} logo`}
-              width={logo.width}
-              height={logo.height}
-              className="h-9 w-auto shrink-0 object-contain opacity-90 transition duration-300 hover:opacity-100 md:h-11"
-              sizes="(max-width: 768px) 160px, 220px"
-            />
+          {logos.map((logo, index) => logo.href ? (
+            <a key={`${logo.name}-${index}`} href={logo.href} target="_blank" rel="noopener noreferrer" aria-label={`${logo.name} 公式サイト`} className="shrink-0">
+              <Image src={logo.src} alt={`${logo.name} logo`} width={logo.width} height={logo.height} className="h-9 w-auto object-contain opacity-90 transition duration-300 hover:opacity-100 md:h-11" sizes="(max-width: 768px) 160px, 220px" />
+            </a>
+          ) : (
+            <Image key={`${logo.name}-${index}`} src={logo.src} alt={`${logo.name} logo`} width={logo.width} height={logo.height} className="h-9 w-auto shrink-0 object-contain opacity-90 md:h-11" sizes="(max-width: 768px) 160px, 220px" />
           ))}
         </div>
       </div>
