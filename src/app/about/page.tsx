@@ -11,7 +11,6 @@ const CREST_BY_NAME: Record<string, string> = {
   "飯島 聡太": "/images/crests/kosen.png",
   "アニ": "/images/crests/kosen.png",
   "石嶋 悠一": "/images/crests/keio.svg",
-  "西村 吉正": "/images/crests/tokyo.svg",
   "吉次 優太": "/images/crests/tokyo.svg",
   "菊池 秀弥": "/images/crests/aoyama-fit.svg",
   "伊藤 愛基": "/images/crests/tsukuba-fit.svg",
@@ -105,12 +104,6 @@ const COPY: Record<"ja" | "en", Copy> = {
         nameEn: "yuichi ishijima",
         role: "Co-Founder & COO / 事業開発・営業（慶應義塾大学）",
         bio: "慶應義塾大学経済学部在学中、経済学の定量的視点を武器に市場分析から営業まで担い、経営課題を成長につなげる提案でClearAIのビジネス基盤を推進する。",
-      },
-      {
-        name: "西村 吉正",
-        nameEn: "yoshimasa nishimura",
-        role: "Co-Founder & CSO / オペレーション（東京大学）",
-        bio: "東京大学在学中、共同創業者兼CSOとして事業オペレーション全般を統括し、現場と経営を繋ぐ実行力で組織のスケールを支える。",
       },
       {
         name: "菊池 秀弥",
@@ -239,12 +232,6 @@ const COPY: Record<"ja" | "en", Copy> = {
         nameEn: "yuichi ishijima",
         role: "Co-Founder & COO / Business Development & Sales (Keio University)",
         bio: "An economics student at Keio University, leveraging quantitative analysis to cover everything from market research to sales, turning clients' management challenges into growth for ClearAI.",
-      },
-      {
-        name: "西村 吉正",
-        nameEn: "yoshimasa nishimura",
-        role: "Co-Founder & CSO / Operations (University of Tokyo)",
-        bio: "University of Tokyo student and Co-Founder & CSO overseeing all business operations, bridging the field and management to support organizational scale.",
       },
       {
         name: "菊池 秀弥",
