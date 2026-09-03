@@ -81,6 +81,11 @@ type Copy = {
   courses: { name: string; badge?: string; icon: string; iconColor?: string }[];
   curriculumGroups: { category: string; label: string; items: string[] }[];
   curriculumNote: string;
+  outcomesLabel: string;
+  outcomesTitle: string;
+  outcomesDesc: string;
+  outcomes: { num: string; who: string; title: string; body: string }[];
+  outcomesNote: string;
   reformLabel: string;
   reformTitle: string;
   reformDesc: string;
@@ -208,6 +213,18 @@ const COPY: Record<"ja" | "en", Copy> = {
       },
     ],
     curriculumNote: "職務は上記に限りません。受講者の実際の担当業務を伺ったうえで、その作業を教材に置き換えて設計します。逆に、職務を特定せず「AIの概要を広く学ぶ」形にすると助成の対象外になります。",
+    outcomesLabel: "What you get",
+    outcomesTitle: "研修を終えたとき、手元に残るもの。",
+    outcomesDesc: "「受けて終わり」にしないために、修了時に会社と受講者それぞれへお渡しするものを決めています。すべて標準プラン（スタンダード）に含まれます。",
+    outcomes: [
+      { num: "01", who: "会社に残る", title: "実務で動く社内ツール", body: "研修中に自社の実業務を題材に作った成果物を、ソースコード・設定ごと納品します。研修翌日からそのまま現場で使えます。" },
+      { num: "02", who: "会社に残る", title: "自社専用のプロンプト集と運用マニュアル", body: "受講者が研修中に実際に使ったプロンプトと手順を、職務ごとに整理した社内文書として納品。受講していない社員にも展開できます。" },
+      { num: "03", who: "会社に残る", title: "経営層向け「業務時間の前後比較」報告書", body: "対象作業ごとに研修前後の所要時間を計測し、削減時間と年間換算の効果を1枚にまとめます。投資判断と次の展開の根拠になります。" },
+      { num: "04", who: "受講者に残る", title: "受講者ごとの修了証", body: "受講した職務トラック名・時間数・制作した成果物を記載した修了証をPDFで発行します。社内の評価や配置、履歴書への記載に使えます。" },
+      { num: "05", who: "受講者に残る", title: "修了後90日間の質問・相談枠", body: "研修で作ったツールの改修や、新しい業務への応用について、修了後90日間はチャットで質問いただけます。詰まった所で止まらないための保険です。" },
+      { num: "06", who: "会社に残る", title: "助成金の計画届・支給申請の書類サポート", body: "訓練開始前の計画届から終了後の支給申請まで、必要書類のひな形と記入例をお渡しし、作成を伴走します。最終的な支給可否は労働局の審査によります。" },
+    ],
+    outcomesNote: "※ 修了証は当社が独自に発行するものであり、国家資格・公的資格ではありません。成果物の内容・削減時間は業務内容により異なります。",
     reformLabel: "Reskilling 2026",
     reformTitle: "2026年8月3日の制度改正に対応した、職務直結型の設計です。",
     reformDesc: "人材開発支援助成金（事業展開等リスキリング支援コース）は、2026年8月3日以降に提出する計画届から、訓練内容の「職務直結性」が明確に確認されるようになりました。研修名に「AI」「DX」と付いているだけでは対象になりません。",
@@ -294,6 +311,7 @@ const COPY: Record<"ja" | "en", Copy> = {
       { q: "eラーニングだけで受講できますか？", a: "改正により、eラーニングは同一労働者につき1年度1回までに制限されました（通学制と組み合わせた訓練もこの1回に含まれます）。そのため当社は集合・対面での実施を軸に設計しています。" },
       { q: "何名から受講できますか？", a: "少人数から対応可能です。人数に応じて料金・進め方をご提案します。" },
       { q: "オンラインと対面、どちらですか？", a: "いずれも対応可能です。オンライン研修は全国対応、対面研修は関東圏を中心に対応しています（その他エリアは応相談）。" },
+      { q: "修了証は発行されますか？", a: "はい。受講者ごとに、受講した職務トラック名・時間数・制作した成果物を記載した修了証をPDFで発行します。当社独自の証明であり公的資格ではありませんが、社内評価や配置の記録としてお使いいただけます。" },
       { q: "研修後のサポートはありますか？", a: "内製が社内で定着するまで、継続的にご相談いただけます。助成金の支給申請もサポートします。" },
       { q: "どのような支払い方法がありますか？", a: "請求書払い（銀行振込）に対応しています。詳細はお問い合わせください。" },
     ],
@@ -403,6 +421,18 @@ const COPY: Record<"ja" | "en", Copy> = {
       },
     ],
     curriculumNote: "Roles are not limited to the above. We interview the participants about the work they actually own and rebuild the material around those tasks. Conversely, a program that does not fix a role and instead teaches AI broadly falls outside the subsidy.",
+    outcomesLabel: "What you get",
+    outcomesTitle: "What stays with you when the program ends.",
+    outcomesDesc: "So that training does not end at attendance, we define what the company and each participant walk away with. Everything below is included in the Standard plan.",
+    outcomes: [
+      { num: "01", who: "For the company", title: "A working internal tool", body: "The tool built during the program around your own workflow is delivered with its source code and configuration, ready for use the next day." },
+      { num: "02", who: "For the company", title: "Your own prompt library and operating manual", body: "The prompts and procedures participants actually used, organised by role into an internal document you can roll out to staff who did not attend." },
+      { num: "03", who: "For the company", title: "A before/after time report for management", body: "We measure how long each target task took before and after the program and summarise hours saved and the annualised effect on one page." },
+      { num: "04", who: "For each participant", title: "An individual certificate of completion", body: "A PDF certificate stating the role track, hours completed and the deliverable built, usable for internal evaluation, placement and CVs." },
+      { num: "05", who: "For each participant", title: "90 days of follow-up questions", body: "For 90 days after completion, participants can ask us by chat about improving the tool they built or applying it to new tasks." },
+      { num: "06", who: "For the company", title: "Subsidy paperwork support", body: "Templates and worked examples for the pre-training plan and the post-training payment application, with our help completing them. Final approval rests with the labour bureau." },
+    ],
+    outcomesNote: "The certificate is issued by clear AI Inc. and is not a national or public qualification. Deliverables and time savings vary by workflow.",
     reformLabel: "Reskilling 2026",
     reformTitle: "Built for the 3 August 2026 rule change: training tied directly to the job.",
     reformDesc: "For Japan's HR development subsidy (business-transformation reskilling course), plans filed on or after 3 August 2026 are explicitly checked for how directly the training relates to the participant's job. Simply having \"AI\" or \"DX\" in the course title no longer qualifies.",
@@ -477,6 +507,7 @@ const COPY: Record<"ja" | "en", Copy> = {
       { q: "Can the programme be delivered entirely as e-learning?", a: "The revision caps e-learning at one session per worker per year, and blended programmes count against that slot. We therefore design around in-person delivery." },
       { q: "What is the minimum number of participants?", a: "We can run small groups. Pricing and format are proposed to match your headcount." },
       { q: "Is it online or on-site?", a: "Either. Online sessions cover the whole country; on-site is centered on the Kanto region, with other areas by arrangement." },
+      { q: "Do participants receive a certificate?", a: "Yes. Each participant receives a PDF certificate stating the role track, hours completed and the deliverable built. It is issued by clear AI Inc. rather than a public body, and is intended for internal evaluation and placement records." },
       { q: "Is there support after the program ends?", a: "Yes — ongoing consultation until in-house development is self-sustaining, including the subsidy payment application." },
       { q: "What payment methods do you accept?", a: "Invoice-based bank transfer. Please contact us for details." },
     ],
@@ -623,6 +654,34 @@ export default function TrainingPage() {
               );
             })}
           </CardCarousel>
+        </div>
+      </section>
+
+      {/* OUTCOMES — 修了時に会社・受講者へ渡すもの */}
+      <section id="outcomes" className="py-14 lg:py-20 bg-white">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
+          <Reveal>
+            <Label>{t.outcomesLabel}</Label>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.outcomesTitle}</h2>
+            <p className="text-base text-gray-500 leading-relaxed w-full mb-8">{t.outcomesDesc}</p>
+          </Reveal>
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+            {t.outcomes.map((item, i) => (
+              <Reveal key={item.num} delay={i * 80} className="h-full">
+                <div className="h-full rounded-lg border border-gray-200 bg-gray-50 p-6 transition-all duration-300 hover:shadow-lg">
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-xs font-semibold text-gray-400">{item.num}</span>
+                    <span className="text-xs font-semibold text-gray-900 border border-gray-900 rounded-full px-2.5 py-0.5">{item.who}</span>
+                  </div>
+                  <h3 className="text-lg font-bold text-gray-900 mb-2">{item.title}</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed">{item.body}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+          <Reveal>
+            <p className="text-xs text-gray-400 leading-relaxed mt-8">{t.outcomesNote}</p>
+          </Reveal>
         </div>
       </section>
 
