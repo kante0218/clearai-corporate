@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 const description =
-  "ClearAI株式会社（クリアエーアイ）のAI内製化研修。AIを使って社内システムを自社で作れる人材を育てる実践型プログラム。Claude / ChatGPT / Gemini / Microsoft Copilot から選べるカリキュラムで、非エンジニアでも研修中に動く社内ツールが完成します。人材開発支援助成金の活用で実質負担を最大75%圧縮、計画届から支給申請まで伴走します。";
+  "ClearAI株式会社（クリアエーアイ）のAI内製化研修。AIを使って社内システムを自社で作れる人材を育てる実践型プログラム。Claude / ChatGPT / Gemini / Microsoft Copilot から選べるカリキュラムで、非エンジニアでも研修中に動く社内ツールが完成します。人材開発支援助成金の活用を見据え、訓練実施機関として必要な添付資料を提供します。";
 
 export const metadata: Metadata = {
   title: "AI内製化研修 | 社内システムを自社で作れるようになる",

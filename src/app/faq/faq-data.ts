@@ -40,8 +40,8 @@ export const faqItems: FaqItem[] = [
       en: "Can we use government subsidies or grants?",
     },
     a: {
-      ja: "人材開発支援助成金（最大75%）・IT導入補助金・茨城県独自制度に対応し、連携社労士とともに計画策定から実施報告まで伴走します。",
-      en: "We support the Human Resource Development Support Grant (up to 75%), the IT Introduction Subsidy, and Ibaraki Prefecture's own programs, accompanying you from planning through final reporting alongside our partnered labour attorney.",
+      ja: "人材開発支援助成金・IT導入補助金・茨城県独自制度の活用を見据えて設計し、当社が訓練実施機関となる場合はカリキュラム・訓練実施記録・出席記録などの添付資料を提供します。申請書類の作成代行が必要な場合は社会保険労務士をご利用ください。",
+      en: "We design engagements with Japan's HR development grant, IT Introduction Subsidy and Ibaraki programs in mind. Where we are the training provider, we supply the curriculum, training and attendance records; a licensed labour and social security attorney should be used if filing preparation is delegated.",
     },
   },
   {
