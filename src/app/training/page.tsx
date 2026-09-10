@@ -304,6 +304,7 @@ const COPY: Record<"ja" | "en", Copy> = {
     faqLabel: "FAQ",
     faqTitle: "よくあるご質問",
     faq: [
+      { q: "AI内製化研修に向いている業務は、どう選べばよいですか？", a: "担当者・入力する情報・期待する出力が決まっていて、人が結果を確認できる小さな業務から選びます。商談メモの整理、日報の集計、社内問い合わせの回答案づくりなどが例です。個人情報や機密情報を扱う場合は、社内の利用ルールと権限を先に確認します。決済など誤りの影響が大きい処理や基幹システムとの連携は、研修だけで本番運用を判断せず、外部の専門家による設計・検証も含めて検討してください。無料相談では、対象業務と現在の手順、利用中のツールをもとに、研修で扱う範囲を整理します。" },
       { q: "本当に、自社でシステムを作れるようになりますか？", a: "自社の実務課題を題材に「動く成果物が完成するまで」伴走する設計です。個人差はありますが、研修中に1つ社内ツールを完成させることを標準にしています。" },
       { q: "プログラミング未経験でも受講できますか？", a: "はい。AIに指示してシステムを作る前提のカリキュラムなので、非エンジニアの方でも受講いただけます。" },
       { q: "補助金は必ず使えますか？", a: "企業規模や導入内容により対象制度が異なります。無料相談で使える制度と申請の可否をご案内します。" },
@@ -501,6 +502,7 @@ const COPY: Record<"ja" | "en", Copy> = {
     faqLabel: "FAQ",
     faqTitle: "Frequently asked questions",
     faq: [
+      { q: "How do we choose tasks suited to in-house AI development training?", a: "Start with a small task that has a clear owner, defined inputs and expected outputs, and results a person can check. Examples include organizing sales meeting notes, aggregating daily reports and drafting replies to internal questions. Before using personal or confidential information, check your internal usage rules and access permissions. For high-impact processes such as payments or integrations with core business systems, consider design and testing by external specialists before production use, rather than relying on training alone. In the free consultation, we use your target task, current process and existing tools to define the scope of training." },
       { q: "Will our team really be able to build systems ourselves?", a: "The program is designed to walk with you until a working deliverable is finished, using a real problem from your own operations. Results vary by individual, but completing one internal tool during the program is our standard." },
       { q: "Can people with no programming experience join?", a: "Yes. The curriculum assumes you build by instructing AI, so non-engineers can take part." },
       { q: "Are we guaranteed to qualify for a subsidy?", a: "The applicable scheme depends on company size and scope. We identify which schemes you can use, and whether you qualify, in the free consultation." },

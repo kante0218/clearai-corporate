@@ -1,0 +1,23 @@
+[
+  {
+    "source": "websearch",
+    "capturedAt": "2026-09-10T17:47:19.832868+00:00",
+    "query": "AI内製化研修",
+    "note": "GSC ADC invalid_grant。WebSearchで対象と競合を確認したがGoogle順位は測定不能。表示回数・クリック数も不明。初回のため前回比較なし。",
+    "urls": [
+      "https://clearai.jp/training",
+      "https://www.ranasoft.co.jp/ai-code-training/",
+      "https://ai-training-management.seekad.co.jp/",
+      "https://sera-inc.co.jp/service/ai-training"
+    ],
+    "ranks": [
+      {
+        "keyword": "AI内製化研修",
+        "targetPath": "/training",
+        "rank": null,
+        "impressions": null,
+        "clicks": null
+      }
+    ]
+  }
+]
