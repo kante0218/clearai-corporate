@@ -1,3 +1,30 @@
 [
-  { "keyword": "AI内製化研修", "targetPath": "/training", "status": "active", "actions": [], "reviews": [] }
+  {
+    "keyword": "AI内製化研修",
+    "targetPath": "/training",
+    "status": "observing",
+    "actions": [
+      {
+        "date": "2026-09-11T02:50:17.654439+09:00",
+        "rankAtAction": null,
+        "baseline7": null,
+        "baselineUnavailableReason": "GSC ADC invalid_grant。WebSearchではGoogle順位を測定できず、前後比較用GSCデータなし。",
+        "needs": "自社でAIによる業務改善を進めたい経営者・DX担当者が、研修に適した業務と専門家による設計・検証が必要な業務を区別し、自社に合う研修を選びたい。",
+        "gap": "対象ページにカリキュラム・料金・成果物はあるが、最初に選ぶ業務の判断基準がまとまっていない。",
+        "sources": [
+          "https://www.ranasoft.co.jp/ai-code-training/",
+          "https://ai-training-management.seekad.co.jp/",
+          "https://sera-inc.co.jp/service/ai-training"
+        ],
+        "done": "既存FAQに内製化研修に向く業務の選び方を1件追加（日英）。担当者・入力・出力、人による確認、業務例、データ利用ルール、専門家の検証が必要な範囲を説明。",
+        "deployedAt": "2026-09-11T02:50:17.654439+09:00",
+        "productionUrl": "https://clearai.jp/training",
+        "deploymentUrl": "https://clearai-corporate-j37auxubm-pupila2007cante00-8148s-projects.vercel.app",
+        "contentCommit": "a528a71"
+      }
+    ],
+    "reviews": [],
+    "deployedAt": "2026-09-11T02:50:17.654439+09:00",
+    "nextReviewDate": "2026-09-18"
+  }
 ]
