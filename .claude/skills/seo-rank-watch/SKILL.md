@@ -21,7 +21,9 @@ node .claude/skills/seo-rank-watch/scripts/fetch_gsc_ranks.mjs --repo '<REPO_PAT
 node .claude/skills/seo-rank-watch/scripts/fetch_gsc_ranks.mjs --self-test
 ```
 
-GSC を正とする。既存 `google-auth-library` の ADC または `GOOGLE_APPLICATION_CREDENTIALS` を利用し、認証情報は出力・コミットしない。既定プロパティは `sc-domain:clearai.jp`、必要なら `GSC_SITE_URL` を指定する。アカウントには当該 GSC プロパティの閲覧権限が必要。秘密ファイルを作成・変更する場合はリポジトリの承認ルールに従う。
+GSC を正とする。既存 `google-auth-library` の ADC または `GOOGLE_APPLICATION_CREDENTIALS` を利用し、認証情報は出力・コミットしない。既定プロパティは確認済みの URL プレフィックス `https://clearai.jp/`、必要なら `GSC_SITE_URL` を指定する。アカウントには当該 GSC プロパティの閲覧権限が必要。秘密ファイルを作成・変更する場合はリポジトリの承認ルールに従う。
+
+2026-09-11 にブラウザで `pupila2007cante00@gmail.com` で `https://clearai.jp/` の閲覧権限を確認した。`t.kante@clearai.jp` では当該プロパティを確認できなかった。ブラウザのログインと API の ADC 認証は別であり、この確認で API 認証が直ったとは扱わない（確認時の ADC は `invalid_grant`）。API が使えない場合は、既存ブラウザの Search Console でこのアカウントへ切り替え、当該プロパティの「検索パフォーマンス」を読み取り専用で確認できる。期間・検索種別・クエリ完全一致・ページ完全一致・地域/デバイス条件を合わせ、画面または公式エクスポートで取得した値と取得経路を明記する。丸めた画面表示や確定状況が不明な期間を、丸め前の1位判定や API の final データに置き換えない。権限・所有権・サイト設定は変更しない。
 
 既定28日、終了日は GSC の America/Los_Angeles 日付で今日−3日、`dataState: final`、検索種別 web、全デバイス・全地域。監視語は query と対象 URL の完全一致で取得する。snapshot は `source`, `capturedAt`, `range`, `scope`, `ranks`, `discoveries` を保持。`rank` は丸めない平均順位。discovery は別クエリの上位25,000行で、API自身の制限もあり網羅的ではない。`rank: null, impressions: 0` は成功応答で行がない意味であり、未インデックスとは断定しない。API/認証失敗時は失敗を報告し、測定値を作らず履歴に追記しない。
 

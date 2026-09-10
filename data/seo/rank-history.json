@@ -19,5 +19,71 @@
         "clicks": null
       }
     ]
+  },
+  {
+    "source": "gsc",
+    "collectionMethod": "browser-ui",
+    "capturedAt": "2026-09-10T17:55:34.291594+00:00",
+    "range": {
+      "startDate": "2026-08-12",
+      "endDate": "2026-09-08",
+      "days": 28
+    },
+    "scope": {
+      "siteUrl": "https://clearai.jp/",
+      "device": "all",
+      "country": "all",
+      "type": "web",
+      "dataState": "ui-not-confirmed",
+      "timeZone": "America/Los_Angeles",
+      "aggregationType": "ui-not-confirmed",
+      "dimensions": "ui-query-table",
+      "queryFilter": "equals",
+      "pageFilter": "equals"
+    },
+    "ranks": [
+      {
+        "keyword": "AI内製化研修",
+        "targetPath": "/training",
+        "rank": null,
+        "impressions": 0,
+        "clicks": 0
+      }
+    ],
+    "discoveries": [],
+    "note": "GSCブラウザ画面の完全一致クエリ・完全一致ページ。No data、表示回数0、クリック0を確認。画面の平均順位0は順位欠測としてnull。API確定データとは比較しない。未インデックスや改善効果は判断しない。"
+  },
+  {
+    "source": "gsc",
+    "collectionMethod": "browser-ui",
+    "capturedAt": "2026-09-10T17:55:34.291594+00:00",
+    "range": {
+      "startDate": "2026-09-02",
+      "endDate": "2026-09-08",
+      "days": 7
+    },
+    "scope": {
+      "siteUrl": "https://clearai.jp/",
+      "device": "all",
+      "country": "all",
+      "type": "web",
+      "dataState": "ui-not-confirmed",
+      "timeZone": "America/Los_Angeles",
+      "aggregationType": "ui-not-confirmed",
+      "dimensions": "ui-query-table",
+      "queryFilter": "equals",
+      "pageFilter": "equals"
+    },
+    "ranks": [
+      {
+        "keyword": "AI内製化研修",
+        "targetPath": "/training",
+        "rank": null,
+        "impressions": 0,
+        "clicks": 0
+      }
+    ],
+    "discoveries": [],
+    "note": "GSCブラウザ画面の完全一致クエリ・完全一致ページ。No data、表示回数0、クリック0を確認。画面の平均順位0は順位欠測としてnull。API確定データとは比較しない。未インデックスや改善効果は判断しない。"
   }
 ]

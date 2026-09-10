@@ -97,7 +97,7 @@ async function selfTest() {
   const missing = await collect([word], 7, 'sc-domain:clearai.jp', async () => ({}), now);
   assert.deepEqual(missing.range, { startDate: '2026-09-01', endDate: '2026-09-07', days: 7 });
   assert.equal(missing.ranks[0].rank, null);
-  const measured = await collect([word], 7, 'sc-domain:clearai.jp', async (body) => {
+  const measured = await collect([word], 7, 'https://clearai.jp/', async (body) => {
     assert.equal(body.dataState, 'final');
     if (body.dimensionFilterGroups) {
       assert.equal(body.dimensionFilterGroups[0].filters[1].expression, 'https://clearai.jp/services');
@@ -105,6 +105,7 @@ async function selfTest() {
     }
     return { rows: [{ keys: ['別の検索', 'https://clearai.jp/other'], position: 8, impressions: 12, clicks: 1 }] };
   }, now);
+  assert.equal(measured.scope.siteUrl, 'https://clearai.jp/');
   assert.equal(measured.ranks[0].rank, 1.04);
   assert.equal(measured.discoveries[0].keyword, '別の検索');
   const directory = await mkdtemp(join(tmpdir(), 'seo-rank-watch-'));
@@ -133,7 +134,7 @@ async function main() {
   const words = await readArray(join(directory, 'watchwords.json'));
   validateWatchwords(words);
   validateHistory(await readArray(join(directory, 'rank-history.json')));
-  const siteUrl = process.env.GSC_SITE_URL || 'sc-domain:clearai.jp';
+  const siteUrl = process.env.GSC_SITE_URL || 'https://clearai.jp/';
   if (!/^(sc-domain:[a-zA-Z0-9.-]+|https?:\/\/[^\s]+)$/.test(siteUrl)) fail('Invalid GSC_SITE_URL.');
   const { GoogleAuth } = await import('google-auth-library');
   const auth = new GoogleAuth({ scopes: ['https://www.googleapis.com/auth/webmasters.readonly'] });
