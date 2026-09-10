@@ -4,6 +4,16 @@ import type { ReactNode } from "react";
 export type Crumb = { label: string; href?: string };
 
 /**
+ * Shared full-bleed container.
+ *
+ * Single definition of the site's 1800px gutter so section bands stay in the
+ * same rhythm without each file restating the width.
+ */
+export function Container({ children }: { children: ReactNode }) {
+  return <div className="max-w-[1800px] mx-auto px-5 sm:px-6 lg:px-8">{children}</div>;
+}
+
+/**
  * Standard page header band.
  *
  * Matches /robot-rental exactly — full-bleed 1800px container, left-aligned,
@@ -24,7 +34,7 @@ export default function PageHeader({
 }) {
   return (
     <section className="pt-20 pb-5 sm:pt-24 lg:pt-28 lg:pb-5 bg-white border-b border-gray-100">
-      <div className="max-w-[1800px] mx-auto px-5 sm:px-6 lg:px-8">
+      <Container>
         {crumbs && crumbs.length > 0 && (
           <nav aria-label="パンくず" className="mb-4 overflow-x-auto whitespace-nowrap text-xs text-neutral-500 sm:mb-6">
             {crumbs.map((c, i) => (
@@ -48,7 +58,7 @@ export default function PageHeader({
           <p className="max-w-4xl text-base text-gray-600 leading-relaxed w-full mb-5 sm:mb-6">{description}</p>
         )}
         {actions && <div className="flex flex-wrap gap-3">{actions}</div>}
-      </div>
+      </Container>
     </section>
   );
 }
@@ -57,7 +67,7 @@ export default function PageHeader({
 export function StatBand({ stats }: { stats: { value: string; label: string }[] }) {
   return (
     <section className="py-8 sm:py-12 bg-white border-b border-gray-100">
-      <div className="max-w-[1800px] mx-auto px-5 sm:px-6 lg:px-8">
+      <Container>
         <div className="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-gray-200">
           {stats.map((stat) => (
             <div key={stat.label} className="flex flex-col items-center justify-center py-4 px-2 text-center sm:py-6 sm:px-4">
@@ -66,7 +76,7 @@ export function StatBand({ stats }: { stats: { value: string; label: string }[] 
             </div>
           ))}
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

@@ -1,10 +1,15 @@
 import type { Metadata } from "next";
+import RelatedReading from "@/components/seo/RelatedReading";
 
+// 検索結果向けの短い説明。長文は Service スキーマと OG/Twitter 側に温存する。
 const description =
+  "ヒューマノイド・四足歩行ロボットのレンタル。Unitree R1・G1・Go2を1泊2日から全国配送。展示会・PoC・研究開発向け、補償付き・免責費用なし。";
+
+const serviceDescription =
   "ClearAI株式会社（クリアエーアイ）のロボットレンタル。Unitree R1・G1（ヒューマノイド）と Go2（四足歩行ロボット）を1泊2日から全国配送でレンタルできます。1泊2日 Go2は5,000円（税別）〜、R1・G1は50,000円（税別）〜。月単位の長期プラン・安心補償付き・免責費用なし。展示会・PoC・研究開発にご利用いただけます。";
 
 export const metadata: Metadata = {
-  title: "ロボットレンタル | Unitree R1・G1・Go2を1泊2日から",
+  title: { absolute: "ヒューマノイド・四足歩行ロボットレンタル | ClearAI" },
   description,
   keywords: [
     "ロボットレンタル",
@@ -25,7 +30,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://clearai.jp/robot-rental" },
   openGraph: {
     title: "ロボットレンタル | ClearAI株式会社",
-    description,
+    description: serviceDescription,
     url: "https://clearai.jp/robot-rental",
     type: "website",
     locale: "ja_JP",
@@ -35,7 +40,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "ロボットレンタル | ClearAI株式会社",
-    description,
+    description: serviceDescription,
     images: ["/images/robot-rental/g1.png"],
   },
 };
@@ -51,7 +56,7 @@ const serviceSchema = {
   },
   areaServed: { "@type": "Country", name: "日本" },
   name: "ロボットレンタル",
-  description,
+  description: serviceDescription,
   url: "https://clearai.jp/robot-rental",
   offers: [
     {
@@ -94,6 +99,41 @@ export default function RobotRentalLayout({ children }: { children: React.ReactN
   return (
     <>
       {children}
+      <RelatedReading
+        description="借りる前に決めておくことと、ロボットを使った検証の進め方をまとめています。"
+        links={[
+          {
+            href: "/column/humanoid-robot-rental-poc",
+            label: "ヒューマノイド・四足ロボットの実証（PoC）の進め方",
+            note: "レンタルで検証を始める前に決めておく項目を整理しています。",
+          },
+          {
+            href: "/software-development",
+            label: "AI受託開発",
+            note: "検証のあと、実運用のシステムまで作る場合はこちらです。",
+          },
+          {
+            href: "/ai-consulting",
+            label: "FDEコンサル・AI顧問",
+            note: "検証の設計から社内展開まで伴走してほしい場合はこちらです。",
+          },
+          {
+            href: "/download",
+            label: "資料請求",
+            note: "機体仕様と料金をまとめた資料をその場でダウンロードできます。",
+          },
+          {
+            href: "/faq",
+            label: "よくあるご質問",
+            note: "配送・補償・操作の可否についてまとめています。",
+          },
+          {
+            href: "/column",
+            label: "コラム一覧",
+            note: "ロボットとAI活用の実務記事をまとめています。",
+          },
+        ]}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}

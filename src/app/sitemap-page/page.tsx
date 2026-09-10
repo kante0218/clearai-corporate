@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import Script from "next/script";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { getBlogs } from "@/lib/microcms";
 
@@ -103,15 +102,6 @@ const COPY: Record<"ja" | "en", Copy> = {
 
 type BlogItem = { id: string; title: string };
 
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: [
-    { "@type": "ListItem", position: 1, name: "ホーム", item: "https://clearai.jp" },
-    { "@type": "ListItem", position: 2, name: "サイトマップ", item: "https://clearai.jp/sitemap-page" },
-  ],
-};
-
 export default function HtmlSitemapPage() {
   const { lang } = useLanguage();
   const t = COPY[lang];
@@ -130,12 +120,6 @@ export default function HtmlSitemapPage() {
 
   return (
     <main className="min-h-screen bg-white">
-      <Script
-        id="schema-breadcrumb-sitemap"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
-
       <section className="max-w-[1800px] mx-auto px-6 lg:px-8 pt-24 lg:pt-28 pb-24">
         <p className="text-xs font-semibold tracking-widest uppercase text-neutral-900 mb-4">
           {t.label}
@@ -143,7 +127,7 @@ export default function HtmlSitemapPage() {
         <h1 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight mb-6">
           {t.title}
         </h1>
-        <p className="text-base text-gray-600 leading-relaxed mb-16 max-w-2xl">
+        <p className="text-base text-gray-600 leading-relaxed mb-16 w-full">
           {t.desc}
         </p>
 

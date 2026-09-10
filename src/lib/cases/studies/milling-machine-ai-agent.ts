@@ -2,7 +2,7 @@ import type { CaseStudy } from "../types";
 
 export const study: CaseStudy = {
   slug: "milling-machine-ai-agent",
-  title: "発注書が届いた瞬間に設計からNC出力まで — フライス盤とAIエージェントを接続した製造業の事例",
+  title: "フライス盤×AIエージェント｜製造業の導入事例",
   h1: "発注書が届いた瞬間に、設計からNC出力まで走る。フライス盤とAIエージェントを接続した事例",
   description:
     "製造業（金属加工）の工場で、発注書の受信をトリガーにAIエージェントが仕様を構造化し、3Dモデル・加工パス・NCコードの生成までを自動実行する仕組みを構築。人の判断は最終承認1箇所に集約しました。ClearAI株式会社の導入実績です。",

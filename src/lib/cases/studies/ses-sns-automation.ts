@@ -2,7 +2,7 @@ import type { CaseStudy } from "../types";
 
 export const study: CaseStudy = {
   slug: "ses-sns-automation",
-  title: "SNSの投稿とDMをAIエージェントに任せ、事務作業を減らす — SES企業の事例",
+  title: "SNS投稿とDMの自動化｜SES企業の導入事例",
   h1: "SNSの投稿とDMをAIエージェントに任せ、事務作業を減らした。SES企業の事例",
   description:
     "SES企業で、SNSの投稿案作成・DM文面の個別化・宛先の選定・送信履歴の一元管理をAIエージェントで自動化。担当者の作業を「書く・探す」から「確認して返す」に切り替えた、ClearAI株式会社の導入実績です。",

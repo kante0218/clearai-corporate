@@ -2,7 +2,7 @@ import type { CaseStudy } from "../types";
 
 export const study: CaseStudy = {
   slug: "real-estate-consulting-site",
-  title: "「何をしてくれる会社か」が伝わるサイトへ — 不動産コンサルティング会社のHP開発事例",
+  title: "伝わるサイトへ｜不動産コンサルのHP開発事例",
   h1: "「何をしてくれる会社か」が伝わるサイトへ。不動産コンサルティング会社のHP開発事例",
   description:
     "紹介と電話に依存していた不動産コンサルティング会社のコーポレートサイトを、サービスの言語化から情報設計、Next.jsでの実装、構造化データ・表示速度対応まで一貫して再構築した、ClearAI株式会社の導入実績です。",
