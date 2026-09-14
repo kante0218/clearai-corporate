@@ -118,5 +118,38 @@
     ],
     "discoveries": [],
     "note": "GSCブラウザ完全一致クエリ・ページ、28日、Web、全地域・デバイス。No data、表示0、クリック0、UI平均順位0を欠測nullとして記録。前回同条件も欠測で変動判断不可。API取得失敗継続。レビュー期限9/18前のため効果判定・ページ変更なし。"
+  },
+  {
+    "source": "gsc",
+    "collectionMethod": "browser-ui",
+    "capturedAt": "2026-09-14T00:01:40.113498+00:00",
+    "range": {
+      "startDate": "2026-08-15",
+      "endDate": "2026-09-11",
+      "days": 28
+    },
+    "scope": {
+      "siteUrl": "https://clearai.jp/",
+      "device": "all",
+      "country": "all",
+      "type": "web",
+      "dataState": "ui-not-confirmed",
+      "timeZone": "America/Los_Angeles",
+      "aggregationType": "ui-not-confirmed",
+      "dimensions": "ui-query-table",
+      "queryFilter": "equals",
+      "pageFilter": "equals"
+    },
+    "ranks": [
+      {
+        "keyword": "AI内製化研修",
+        "targetPath": "/training",
+        "rank": null,
+        "impressions": 0,
+        "clicks": 0
+      }
+    ],
+    "discoveries": [],
+    "note": "GSCブラウザ完全一致クエリ・ページ、28日、Web、全地域・デバイス。No data、表示0、クリック0、平均順位0は欠測null。前回も欠測のため順位変動は判断不可。API取得失敗継続。レビュー9/18前で効果判定なし、観察中ページ変更なし。新規クエリのAPI取得不可、未登録候補は未評価。"
   }
 ]
