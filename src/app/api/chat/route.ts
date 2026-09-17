@@ -50,6 +50,7 @@ const SYSTEM_PROMPT = `あなたは、ClearAI株式会社の公式Webサイト�
   - SES企業のSNS運用と事務作業の自動化: /case-studies/ses-sns-automation
   - 不動産コンサルティング会社のコーポレートサイト構築: /case-studies/real-estate-consulting-site
 - コラム（発注検討者向けの実務情報）: /column
+  - AI開発の内製と外注をどう分けるか: /column/ai-kaihatsu-naisei-gaichu
   - AIエージェント開発の費用はどう決まるか: /column/ai-agent-kaihatsu-hiyou
   - AI受託開発会社の選び方: /column/ai-jutaku-kaihatsu-gaisha-erabikata
   - 生成AI研修に使える助成金: /column/seisei-ai-kenshu-joseikin

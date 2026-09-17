@@ -19,13 +19,17 @@ export const viewport: Viewport = {
 const ogDescription =
   "ClearAI株式会社（クリアエーアイ／読み方：クリアエーアイ）は、日本の中小企業向けにAIの受託開発・導入支援を行うAI企業です。AIを組み込んだ業務システムやAIエージェントの受託開発、現場に入り込むFDEコンサルティング、社内で作れる人材を育てるAI内製化研修の3つを軸に、要件定義から実装・運用・定着まで一気通貫で伴走します。2026年4月創業、茨城県拠点、全国対応。";
 
+// Search snippet: kept under 120 chars. The long form above stays on OG/Twitter.
+const description =
+  "ClearAI株式会社（クリアエーアイ）は茨城県拠点・全国対応のAI企業です。AI受託開発・AIエージェント開発、FDEコンサルティング・AI顧問、AI内製化研修、ロボットレンタルで中小企業のAI活用を支援します。";
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://clearai.jp"),
   title: {
     default: "ClearAI株式会社｜AI受託開発・FDEコンサルティング・AI内製化研修",
     template: "%s | ClearAI株式会社",
   },
-  description: ogDescription,
+  description,
   keywords: [
     // 正式名称・主要表記
     "ClearAI", "ClearAI株式会社", "clear AI", "Clear AI", "Clear Ai",

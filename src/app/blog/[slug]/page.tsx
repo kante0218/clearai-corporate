@@ -1,9 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
-import Script from "next/script";
 import type { Metadata } from "next";
 import { getBlogBySlug, getAllBlogSlugs } from "@/lib/microcms";
 import { notFound } from "next/navigation";
+import { RelatedReading } from "@/components/PageHeader";
 
 export const revalidate = 60;
 
@@ -16,9 +16,22 @@ export async function generateStaticParams() {
   }
 }
 
-function stripHtml(html: string, max = 160): string {
+function stripHtml(html: string, max = 119): string {
   const text = html.replace(/<[^>]*>/g, "").replace(/\s+/g, " ").trim();
   return text.length > max ? text.slice(0, max) + "…" : text;
+}
+
+/**
+ * Titles over 35 chars are cut only at a separator the author placed (｜。),
+ * so the remaining head still reads as a sentence. Otherwise kept as-is.
+ */
+function shortenTitle(title: string, max = 35): string {
+  if (title.length <= max) return title;
+  const idx = ["｜", "。"]
+    .map((sep) => title.indexOf(sep))
+    .filter((i) => i >= 12 && i <= max)
+    .sort((a, b) => a - b)[0];
+  return idx === undefined ? title : title.slice(0, idx);
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
@@ -29,7 +42,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     const url = `https://clearai.jp/blog/${slug}`;
     const images = post.eyecatch?.url ? [post.eyecatch.url] : ["/images/logo.png"];
     return {
-      title: post.title,
+      title: shortenTitle(post.title),
       description,
       keywords: ["ClearAI", "クリアエーアイ", post.category?.name, "AIコンサルティング", "AI導入"].filter(Boolean) as string[],
       alternates: { canonical: url },
@@ -55,6 +68,39 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return { title: "記事が見つかりません" };
   }
 }
+
+const BLOG_RELATED = [
+  {
+    href: "/software-development",
+    label: "AI受託開発・AIエージェント開発",
+    note: "業務システムやAIエージェントを、要件定義から運用保守まで一貫して開発します。",
+  },
+  {
+    href: "/training",
+    label: "AI内製化研修",
+    note: "社内でシステムを作れる人材を育てる実践型研修。人材開発支援助成金の対象になる場合があります。",
+  },
+  {
+    href: "/ai-consulting",
+    label: "FDEコンサルティング・AI顧問",
+    note: "何から自動化するかの整理から、実装・定着まで現場に入って伴走します。",
+  },
+  {
+    href: "/column/ai-agent-kaihatsu-hiyou",
+    label: "AIエージェント開発の費用はどう決まるか",
+    note: "工数を左右する7つの変数と、見積書で確認すべき5項目。",
+  },
+  {
+    href: "/column/ai-kaihatsu-naisei-gaichu",
+    label: "AI開発の内製と外注をどう分けるか",
+    note: "社内に残す工程と外部に任せる工程を、業務ごとに決める基準。",
+  },
+  {
+    href: "/case-studies",
+    label: "導入実績",
+    note: "実際にお受けした案件の記録（企業名は伏せ、業種と規模を掲載）。",
+  },
+];
 
 function formatDate(dateStr: string) {
   const d = new Date(dateStr);
@@ -103,27 +149,11 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     ].filter(Boolean),
   };
 
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "ホーム", item: "https://clearai.jp" },
-      { "@type": "ListItem", position: 2, name: "お知らせ", item: "https://clearai.jp/blog" },
-      { "@type": "ListItem", position: 3, name: post.title, item: `https://clearai.jp/blog/${slug}` },
-    ],
-  };
-
   return (
     <main className="min-h-screen bg-white">
-      <Script
-        id={`schema-article-${slug}`}
+      <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
-      />
-      <Script
-        id={`schema-breadcrumb-${slug}`}
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <div className="max-w-[1800px] mx-auto px-6 lg:px-8 pt-24 lg:pt-28">
         <Link href="/blog" className="inline-block text-sm font-semibold text-neutral-900 hover:text-neutral-600 transition-colors duration-300 mb-10">
@@ -161,6 +191,17 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           dangerouslySetInnerHTML={{ __html: post.content }}
         />
       </div>
+
+      <RelatedReading
+        heading="この記事に関連するサービス"
+        intro="記事の内容を自社で進めるときに、ClearAIがお手伝いできる範囲と、発注前に読んでおきたい実務情報です。"
+        links={BLOG_RELATED}
+        more={[
+          { href: "/column", label: "コラム一覧" },
+          { href: "/case-studies", label: "導入実績一覧" },
+        ]}
+        tone="white"
+      />
 
       <div className="max-w-[1800px] mx-auto px-6 lg:px-8 pb-20 lg:pb-28">
         <div className="border-t border-gray-200 pt-8">

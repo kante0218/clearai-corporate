@@ -48,6 +48,7 @@
 
 ## コラム（発注検討者向けの実務情報）
 
+- [AI開発の内製と外注をどう分けるか](https://clearai.jp/column/ai-kaihatsu-naisei-gaichu): 内製・外注を工程単位で決める4つの基準（変更頻度・業務知識への依存度・失敗時の損害・担い手）、工程別の分担表、外注時に契約で決める5項目。
 - [AIエージェント開発の費用はどう決まるか](https://clearai.jp/column/ai-agent-kaihatsu-hiyou): 見積の構造、工数を決める7つの変数、見積書で確認すべき5項目、PoCで終わらせないための発注要件。
 - [AI受託開発会社の選び方](https://clearai.jp/column/ai-jutaku-kaihatsu-gaisha-erabikata): 商談で聞くべき7つの質問、契約前に確認する権利・データ・体制の条項、発注先の規模別の向き不向き。
 - [生成AI研修に使える助成金](https://clearai.jp/column/seisei-ai-kenshu-joseikin): 人材開発支援助成金（事業展開等リスキリング支援コース）の助成率、10時間以上のOFF-JT要件、申請の順序。

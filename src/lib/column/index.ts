@@ -1,4 +1,5 @@
 import type { Article } from "./types";
+import { article as aiKaihatsuNaiseiGaichu } from "./articles/ai-kaihatsu-naisei-gaichu";
 import { article as aiAgentKaihatsuHiyou } from "./articles/ai-agent-kaihatsu-hiyou";
 import { article as aiJutakuKaihatsuGaishaErabikata } from "./articles/ai-jutaku-kaihatsu-gaisha-erabikata";
 import { article as seiseiAiKenshuJoseikin } from "./articles/seisei-ai-kenshu-joseikin";
@@ -7,6 +8,7 @@ import { article as humanoidRobotRentalPoc } from "./articles/humanoid-robot-ren
 
 /** Newest first — this order drives the /column listing. */
 export const articles: Article[] = [
+  aiKaihatsuNaiseiGaichu,
   aiAgentKaihatsuHiyou,
   aiJutakuKaihatsuGaishaErabikata,
   seiseiAiKenshuJoseikin,
