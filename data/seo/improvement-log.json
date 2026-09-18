@@ -23,8 +23,27 @@
         "contentCommit": "a528a71"
       }
     ],
-    "reviews": [],
+    "reviews": [
+      {
+        "date": "2026-09-18T04:27:07.536065+00:00",
+        "result": "deferred",
+        "status": "observing",
+        "range": {
+          "startDate": "2026-09-09",
+          "endDate": "2026-09-15",
+          "days": 7
+        },
+        "source": "gsc",
+        "collectionMethod": "browser-ui",
+        "rank": null,
+        "impressions": 0,
+        "clicks": 0,
+        "baseline7": null,
+        "reason": "168時間は経過したが、公開PT日9/10を除く最短の公開後7日窓9/11〜9/17が未充足。現在の7日表示は9/9〜9/15で公開前を含む。UI確定状態不明、順位欠測、改善前baseline7もないため効果なしとは判定しない。",
+        "nextReviewDate": "2026-09-21"
+      }
+    ],
     "deployedAt": "2026-09-11T02:50:17.654439+09:00",
-    "nextReviewDate": "2026-09-18"
+    "nextReviewDate": "2026-09-21"
   }
 ]

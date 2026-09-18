@@ -184,5 +184,71 @@
     ],
     "discoveries": [],
     "note": "GSCブラウザ完全一致クエリ・ページ、28日、Web、全地域・デバイス。No data、表示0、クリック0、平均順位0は欠測null。前回も欠測のため順位変動判断不可。レビュー9/18前で効果判定・ページ変更なし。未登録候補は未評価。"
+  },
+  {
+    "source": "gsc",
+    "collectionMethod": "browser-ui",
+    "capturedAt": "2026-09-18T04:27:07.536065+00:00",
+    "range": {
+      "startDate": "2026-08-19",
+      "endDate": "2026-09-15",
+      "days": 28
+    },
+    "scope": {
+      "siteUrl": "https://clearai.jp/",
+      "device": "all",
+      "country": "all",
+      "type": "web",
+      "dataState": "ui-not-confirmed",
+      "timeZone": "America/Los_Angeles",
+      "aggregationType": "ui-not-confirmed",
+      "dimensions": "ui-query-table",
+      "queryFilter": "equals",
+      "pageFilter": "equals"
+    },
+    "ranks": [
+      {
+        "keyword": "AI内製化研修",
+        "targetPath": "/training",
+        "rank": null,
+        "impressions": 0,
+        "clicks": 0
+      }
+    ],
+    "discoveries": [],
+    "note": "GSCブラウザでクエリ・ページ完全一致、Web、全地域・全デバイスを確認。No data、表示0、クリック0。平均順位表示0は欠測null。画面データの確定状態は不明。前回も欠測で順位変動判断不能。未登録候補は未評価。公開後7日窓未充足のため効果判定保留。"
+  },
+  {
+    "source": "gsc",
+    "collectionMethod": "browser-ui",
+    "capturedAt": "2026-09-18T04:27:07.536065+00:00",
+    "range": {
+      "startDate": "2026-09-09",
+      "endDate": "2026-09-15",
+      "days": 7
+    },
+    "scope": {
+      "siteUrl": "https://clearai.jp/",
+      "device": "all",
+      "country": "all",
+      "type": "web",
+      "dataState": "ui-not-confirmed",
+      "timeZone": "America/Los_Angeles",
+      "aggregationType": "ui-not-confirmed",
+      "dimensions": "ui-query-table",
+      "queryFilter": "equals",
+      "pageFilter": "equals"
+    },
+    "ranks": [
+      {
+        "keyword": "AI内製化研修",
+        "targetPath": "/training",
+        "rank": null,
+        "impressions": 0,
+        "clicks": 0
+      }
+    ],
+    "discoveries": [],
+    "note": "GSCブラウザでクエリ・ページ完全一致、Web、全地域・全デバイスを確認。No data、表示0、クリック0。平均順位表示0は欠測null。画面データの確定状態は不明。前回も欠測で順位変動判断不能。未登録候補は未評価。公開後7日窓未充足のため効果判定保留。"
   }
 ]
