@@ -1,3 +1,12 @@
 [
-  { "keyword": "AI内製化研修", "targetPath": "/training", "priority": 1 }
+  {
+    "keyword": "AI内製化研修",
+    "targetPath": "/training",
+    "priority": 1
+  },
+  {
+    "keyword": "メール返信 ai",
+    "targetPath": "/blog/ai-email-reply-three-decisions",
+    "priority": 2
+  }
 ]

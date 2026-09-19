@@ -250,5 +250,104 @@
     ],
     "discoveries": [],
     "note": "GSCブラウザでクエリ・ページ完全一致、Web、全地域・全デバイスを確認。No data、表示0、クリック0。平均順位表示0は欠測null。画面データの確定状態は不明。前回も欠測で順位変動判断不能。未登録候補は未評価。公開後7日窓未充足のため効果判定保留。"
+  },
+  {
+    "source": "gsc",
+    "collectionMethod": "browser-ui",
+    "capturedAt": "2026-09-19T03:46:35.476264+00:00",
+    "range": {
+      "startDate": "2026-08-20",
+      "endDate": "2026-09-16",
+      "days": 28
+    },
+    "scope": {
+      "siteUrl": "https://clearai.jp/",
+      "device": "all",
+      "country": "all",
+      "type": "web",
+      "dataState": "ui-not-confirmed",
+      "timeZone": "America/Los_Angeles",
+      "aggregationType": "ui-not-confirmed",
+      "dimensions": "ui-query-table",
+      "queryFilter": "equals",
+      "pageFilter": "equals"
+    },
+    "ranks": [
+      {
+        "keyword": "AI内製化研修",
+        "targetPath": "/training",
+        "rank": null,
+        "impressions": 0,
+        "clicks": 0
+      }
+    ],
+    "discoveries": [],
+    "note": "GSCブラウザ、クエリ・ページ完全一致、Web、全地域・全デバイス。画面の平均順位は丸め値、確定状態不明。API finalや丸め前順位とは比較しない。研修は欠測で順位変動不明、観察維持9/21。サイト全体クエリ先頭10件/70件を確認し、メール返信 aiを発見・ページ表で対象確認。全クエリ網羅はしていない。"
+  },
+  {
+    "source": "gsc",
+    "collectionMethod": "browser-ui",
+    "capturedAt": "2026-09-19T03:46:35.476264+00:00",
+    "range": {
+      "startDate": "2026-08-20",
+      "endDate": "2026-09-16",
+      "days": 28
+    },
+    "scope": {
+      "siteUrl": "https://clearai.jp/",
+      "device": "all",
+      "country": "all",
+      "type": "web",
+      "dataState": "ui-not-confirmed",
+      "timeZone": "America/Los_Angeles",
+      "aggregationType": "ui-not-confirmed",
+      "dimensions": "ui-query-table",
+      "queryFilter": "equals",
+      "pageFilter": "equals"
+    },
+    "ranks": [
+      {
+        "keyword": "メール返信 ai",
+        "targetPath": "/blog/ai-email-reply-three-decisions",
+        "rank": 7.2,
+        "impressions": 91,
+        "clicks": 1
+      }
+    ],
+    "discoveries": [],
+    "note": "GSCブラウザ、クエリ・ページ完全一致、Web、全地域・全デバイス。画面の平均順位は丸め値、確定状態不明。API finalや丸め前順位とは比較しない。研修は欠測で順位変動不明、観察維持9/21。サイト全体クエリ先頭10件/70件を確認し、メール返信 aiを発見・ページ表で対象確認。全クエリ網羅はしていない。"
+  },
+  {
+    "source": "gsc",
+    "collectionMethod": "browser-ui",
+    "capturedAt": "2026-09-19T03:46:35.476264+00:00",
+    "range": {
+      "startDate": "2026-09-10",
+      "endDate": "2026-09-16",
+      "days": 7
+    },
+    "scope": {
+      "siteUrl": "https://clearai.jp/",
+      "device": "all",
+      "country": "all",
+      "type": "web",
+      "dataState": "ui-not-confirmed",
+      "timeZone": "America/Los_Angeles",
+      "aggregationType": "ui-not-confirmed",
+      "dimensions": "ui-query-table",
+      "queryFilter": "equals",
+      "pageFilter": "equals"
+    },
+    "ranks": [
+      {
+        "keyword": "メール返信 ai",
+        "targetPath": "/blog/ai-email-reply-three-decisions",
+        "rank": 7.5,
+        "impressions": 51,
+        "clicks": 0
+      }
+    ],
+    "discoveries": [],
+    "note": "GSCブラウザ、クエリ・ページ完全一致、Web、全地域・全デバイス。画面の平均順位は丸め値、確定状態不明。API finalや丸め前順位とは比較しない。研修は欠測で順位変動不明、観察維持9/21。サイト全体クエリ先頭10件/70件を確認し、メール返信 aiを発見・ページ表で対象確認。全クエリ網羅はしていない。"
   }
 ]
