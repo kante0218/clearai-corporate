@@ -41,10 +41,27 @@
         "baseline7": null,
         "reason": "168時間は経過したが、公開PT日9/10を除く最短の公開後7日窓9/11〜9/17が未充足。現在の7日表示は9/9〜9/15で公開前を含む。UI確定状態不明、順位欠測、改善前baseline7もないため効果なしとは判定しない。",
         "nextReviewDate": "2026-09-21"
+      },
+      {
+        "date": "2026-09-20T20:44:23.532529+00:00",
+        "result": "deferred",
+        "status": "observing",
+        "range": {
+          "startDate": "2026-09-12",
+          "endDate": "2026-09-18",
+          "days": 7
+        },
+        "source": "gsc",
+        "collectionMethod": "browser-ui",
+        "rank": null,
+        "impressions": 0,
+        "clicks": 0,
+        "reason": "公開後168時間と完全な公開後7日窓は充足。ただしGSC画面はNo dataで順位欠測、確定状態未確認、改善前baseline7も欠測のため効果判定不能。効果なし・悪化・1位達成とは扱わない。",
+        "nextReviewDate": "2026-09-24"
       }
     ],
     "deployedAt": "2026-09-11T02:50:17.654439+09:00",
-    "nextReviewDate": "2026-09-21"
+    "nextReviewDate": "2026-09-24"
   },
   {
     "keyword": "メール返信 ai",

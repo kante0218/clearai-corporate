@@ -349,5 +349,104 @@
     ],
     "discoveries": [],
     "note": "GSCブラウザ、クエリ・ページ完全一致、Web、全地域・全デバイス。画面の平均順位は丸め値、確定状態不明。API finalや丸め前順位とは比較しない。研修は欠測で順位変動不明、観察維持9/21。サイト全体クエリ先頭10件/70件を確認し、メール返信 aiを発見・ページ表で対象確認。全クエリ網羅はしていない。"
+  },
+  {
+    "source": "gsc",
+    "collectionMethod": "browser-ui",
+    "capturedAt": "2026-09-20T20:44:23.532529+00:00",
+    "range": {
+      "startDate": "2026-08-22",
+      "endDate": "2026-09-18",
+      "days": 28
+    },
+    "scope": {
+      "siteUrl": "https://clearai.jp/",
+      "device": "all",
+      "country": "all",
+      "type": "web",
+      "dataState": "ui-not-confirmed",
+      "timeZone": "America/Los_Angeles",
+      "aggregationType": "ui-not-confirmed",
+      "dimensions": "ui-query-table",
+      "queryFilter": "equals",
+      "pageFilter": "equals"
+    },
+    "ranks": [
+      {
+        "keyword": "AI内製化研修",
+        "targetPath": "/training",
+        "rank": null,
+        "impressions": 0,
+        "clicks": 0
+      }
+    ],
+    "discoveries": [],
+    "note": "GSCブラウザ、クエリ・ページ完全一致、Web、全地域・全デバイス。順位は画面丸め値、確定状態不明。研修はNo dataのため順位null、未インデックスとは断定しない。メール返信28日は前回7.2から7.5で大きな変動なし。サイト全体先頭10/70クエリを確認、メール返信類似語は同一観察ページのため除外、その他は今回明確な不足を特定せず変更なし。"
+  },
+  {
+    "source": "gsc",
+    "collectionMethod": "browser-ui",
+    "capturedAt": "2026-09-20T20:44:23.532529+00:00",
+    "range": {
+      "startDate": "2026-08-22",
+      "endDate": "2026-09-18",
+      "days": 28
+    },
+    "scope": {
+      "siteUrl": "https://clearai.jp/",
+      "device": "all",
+      "country": "all",
+      "type": "web",
+      "dataState": "ui-not-confirmed",
+      "timeZone": "America/Los_Angeles",
+      "aggregationType": "ui-not-confirmed",
+      "dimensions": "ui-query-table",
+      "queryFilter": "equals",
+      "pageFilter": "equals"
+    },
+    "ranks": [
+      {
+        "keyword": "メール返信 ai",
+        "targetPath": "/blog/ai-email-reply-three-decisions",
+        "rank": 7.5,
+        "impressions": 103,
+        "clicks": 1
+      }
+    ],
+    "discoveries": [],
+    "note": "GSCブラウザ、クエリ・ページ完全一致、Web、全地域・全デバイス。順位は画面丸め値、確定状態不明。研修はNo dataのため順位null、未インデックスとは断定しない。メール返信28日は前回7.2から7.5で大きな変動なし。サイト全体先頭10/70クエリを確認、メール返信類似語は同一観察ページのため除外、その他は今回明確な不足を特定せず変更なし。"
+  },
+  {
+    "source": "gsc",
+    "collectionMethod": "browser-ui",
+    "capturedAt": "2026-09-20T20:44:23.532529+00:00",
+    "range": {
+      "startDate": "2026-09-12",
+      "endDate": "2026-09-18",
+      "days": 7
+    },
+    "scope": {
+      "siteUrl": "https://clearai.jp/",
+      "device": "all",
+      "country": "all",
+      "type": "web",
+      "dataState": "ui-not-confirmed",
+      "timeZone": "America/Los_Angeles",
+      "aggregationType": "ui-not-confirmed",
+      "dimensions": "ui-query-table",
+      "queryFilter": "equals",
+      "pageFilter": "equals"
+    },
+    "ranks": [
+      {
+        "keyword": "AI内製化研修",
+        "targetPath": "/training",
+        "rank": null,
+        "impressions": 0,
+        "clicks": 0
+      }
+    ],
+    "discoveries": [],
+    "note": "GSCブラウザ、クエリ・ページ完全一致、Web、全地域・全デバイス。順位は画面丸め値、確定状態不明。研修はNo dataのため順位null、未インデックスとは断定しない。メール返信28日は前回7.2から7.5で大きな変動なし。サイト全体先頭10/70クエリを確認、メール返信類似語は同一観察ページのため除外、その他は今回明確な不足を特定せず変更なし。"
   }
 ]
