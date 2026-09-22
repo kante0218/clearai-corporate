@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 const description =
-  "ClearAI株式会社（クリアエーアイ）のロボットレンタル。Unitree R1・G1（ヒューマノイド）と Go2（四足歩行ロボット）を1泊2日から全国配送でレンタルできます。1泊2日 Go2は5,000円（税別）〜、R1・G1は50,000円（税別）〜。月単位の長期プラン・安心補償付き・免責費用なし。展示会・PoC・研究開発にご利用いただけます。";
+  "ClearAI株式会社（クリアエーアイ）のロボットレンタル。Unitree R1・G1（ヒューマノイド）と Go2（四足歩行ロボット）を1泊2日から全国配送でレンタルできます。1泊2日 Go2は10,000円（税別）〜、R1・G1は50,000円（税別）〜。月単位の長期プラン・安心補償付き・免責費用なし。展示会・PoC・研究開発にご利用いただけます。";
 
 export const metadata: Metadata = {
   title: "ロボットレンタル | Unitree R1・G1・Go2を1泊2日から",
@@ -73,7 +73,7 @@ const serviceSchema = {
     {
       "@type": "Offer",
       name: "Unitree Go2（1泊2日・Air）",
-      price: "5000",
+      price: "10000",
       priceCurrency: "JPY",
       availability: "https://schema.org/InStock",
       url: "https://clearai.jp/robot-rental#pricing-go2",

@@ -45,7 +45,7 @@ const SERVICES: Service[] = [
     points: [
       { label: "最短", value: "1泊2日から" },
       { label: "補償", value: "全商品付き・免責費用なし" },
-      { label: "料金", value: "¥5,000〜（税別）" },
+      { label: "料金", value: "¥10,000〜（税別）" },
     ],
     bullets: [
       "購入前の実機検証",

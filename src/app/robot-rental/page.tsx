@@ -108,7 +108,7 @@ const MODELS: Model[] = [
     image: "/images/robot-rental/go2.png",
     grades: ["Air", "R&D"],
     daily: [
-      { nights: 1, prices: [5000, 25000] },
+      { nights: 1, prices: [10000, 25000] },
       { nights: 2, prices: [25000, 40000] },
       { nights: 3, prices: [30000, 60000] },
       { nights: 4, prices: [40000, 80000] },
@@ -126,7 +126,7 @@ const MODELS: Model[] = [
       { months: 7, prices: [null, 1700000] },
     ],
     extension: 5000,
-    from: { excl: 5000, incl: 5500 },
+    from: { excl: 10000, incl: 11000 },
   },
 ];
 
