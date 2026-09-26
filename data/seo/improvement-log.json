@@ -85,7 +85,7 @@
     "targetPath": "/blog/ai-email-reply-three-decisions",
     "status": "observing",
     "deployedAt": "2026-09-19T03:48:58.537956+00:00",
-    "nextReviewDate": "2026-09-26",
+    "nextReviewDate": "2026-09-29",
     "actions": [
       {
         "date": "2026-09-19T03:48:58.537956+00:00",
@@ -140,6 +140,36 @@
         "measurementCommit": "8b2111e"
       }
     ],
-    "reviews": []
+    "reviews": [
+      {
+        "date": "2026-09-26T00:03:51.987096+00:00",
+        "result": "deferred",
+        "status": "observing",
+        "range": {
+          "startDate": "2026-09-17",
+          "endDate": "2026-09-23",
+          "days": 7
+        },
+        "scope": {
+          "siteUrl": "https://clearai.jp/",
+          "device": "all",
+          "country": "all",
+          "type": "web",
+          "dataState": "ui-not-confirmed",
+          "timeZone": "America/Los_Angeles",
+          "aggregationType": "ui-not-confirmed",
+          "dimensions": "ui-query-table",
+          "queryFilter": "equals",
+          "pageFilter": "equals"
+        },
+        "source": "gsc",
+        "collectionMethod": "browser-ui",
+        "rank": 8.8,
+        "impressions": 21,
+        "clicks": 0,
+        "reason": "取得時点で公開後164.2時間。7日窓9/17〜9/23は公開PT日9/18以前を含み、完全な公開後7日9/19〜9/25が未充足。UI確定状態も不明。baseline7は7.5位・51表示・0クリックだが、今回8.8位・21表示・0クリックを改善効果や悪化とは判定しない。",
+        "nextReviewDate": "2026-09-29"
+      }
+    ]
   }
 ]
