@@ -724,5 +724,45 @@
     ],
     "discoveries": [],
     "note": "GSCブラウザ、クエリ・ページ完全一致、Web、全地域・全デバイス。UI丸め値、確定状態不明。公開前を含む期間のため改善効果を判定しない。"
+  },
+  {
+    "source": "gsc",
+    "collectionMethod": "browser-ui",
+    "capturedAt": "2026-09-27T00:03:02.528946+00:00",
+    "range": {
+      "startDate": "2026-08-28",
+      "endDate": "2026-09-24",
+      "days": 28
+    },
+    "scope": {
+      "siteUrl": "https://clearai.jp/",
+      "device": "all",
+      "country": "all",
+      "type": "web",
+      "dataState": "ui-not-confirmed",
+      "timeZone": "America/Los_Angeles",
+      "aggregationType": "ui-not-confirmed",
+      "dimensions": "ui-query-table",
+      "queryFilter": "equals",
+      "pageFilter": "equals"
+    },
+    "ranks": [
+      {
+        "keyword": "AI内製化研修",
+        "targetPath": "/training",
+        "rank": null,
+        "impressions": 0,
+        "clicks": 0
+      },
+      {
+        "keyword": "メール返信 ai",
+        "targetPath": "/blog/ai-email-reply-three-decisions",
+        "rank": 7.5,
+        "impressions": 112,
+        "clicks": 1
+      }
+    ],
+    "discoveries": [],
+    "note": "GSCブラウザ、登録語はクエリ・ページ完全一致、Web、全地域・全デバイス。UI丸め値、確定状態不明。研修No dataは順位null、未インデックスとは断定しない。メール返信は7.5位112表示1クリックで前回同様。両語observing、期限前でレビューなし。サイト全体先頭10/68件確認。unitree レンタルはページフィルタなしのクエリ表で6.0位10表示1クリック（前回5.9位9表示1クリック）、前日の検索意図調査で不足を特定していないため変更なし。指名語に新たな明確な不足なし、メール類似語は観察ページで除外。候補探索は網羅的ではない。改善・効果判定・1位達成判定なし。"
   }
 ]
