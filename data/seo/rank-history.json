@@ -804,5 +804,78 @@
     ],
     "discoveries": [],
     "note": "GSCブラウザ、登録語はクエリ・ページ完全一致、Web、全地域・全デバイス。UI丸め値、確定状態不明。研修No dataは順位null、未インデックスとは断定しない。メール返信は7.5位112表示1クリックで前回同様。両語observing、期限前でレビューなし。サイト全体先頭10/67件確認。unitree レンタルはページフィルタなしのクエリ表で6.0位10表示1クリック、前回同様。9/26の検索意図調査で不足を特定していないため変更なし。指名語に新たな明確な不足なし、メール類似語は観察ページで除外。候補探索は網羅的ではない。改善・効果判定・1位達成判定なし。"
+  },
+  {
+    "source": "gsc",
+    "collectionMethod": "browser-ui",
+    "capturedAt": "2026-09-29T04:19:33.973693+00:00",
+    "range": {
+      "startDate": "2026-08-30",
+      "endDate": "2026-09-26",
+      "days": 28
+    },
+    "scope": {
+      "siteUrl": "https://clearai.jp/",
+      "device": "all",
+      "country": "all",
+      "type": "web",
+      "dataState": "ui-not-confirmed",
+      "timeZone": "America/Los_Angeles",
+      "aggregationType": "ui-not-confirmed",
+      "dimensions": "ui-query-table",
+      "queryFilter": "equals",
+      "pageFilter": "equals"
+    },
+    "ranks": [
+      {
+        "keyword": "AI内製化研修",
+        "targetPath": "/training",
+        "rank": null,
+        "impressions": 0,
+        "clicks": 0
+      },
+      {
+        "keyword": "メール返信 ai",
+        "targetPath": "/blog/ai-email-reply-three-decisions",
+        "rank": 7.5,
+        "impressions": 112,
+        "clicks": 1
+      }
+    ],
+    "discoveries": [],
+    "note": "GSCブラウザ、登録語はクエリ・ページ完全一致、Web、全地域・全デバイス。UI丸め値・確定状態不明。登録語28日指標は前回同様。サイト全体先頭10/66件確認、指名語clear aiはページ未指定で8.2→4.8位（16表示4クリック）。改善効果と断定しない。unitree レンタルは6.0位10表示1クリックで前回同様、9/26調査で追加不足未特定。メール類似語は観察ページで除外。新たな明確な不足を特定せずページ変更なし。"
+  },
+  {
+    "source": "gsc",
+    "collectionMethod": "browser-ui",
+    "capturedAt": "2026-09-29T04:19:33.973693+00:00",
+    "range": {
+      "startDate": "2026-09-20",
+      "endDate": "2026-09-26",
+      "days": 7
+    },
+    "scope": {
+      "siteUrl": "https://clearai.jp/",
+      "device": "all",
+      "country": "all",
+      "type": "web",
+      "dataState": "ui-not-confirmed",
+      "timeZone": "America/Los_Angeles",
+      "aggregationType": "ui-not-confirmed",
+      "dimensions": "ui-query-table",
+      "queryFilter": "equals",
+      "pageFilter": "equals"
+    },
+    "ranks": [
+      {
+        "keyword": "メール返信 ai",
+        "targetPath": "/blog/ai-email-reply-three-decisions",
+        "rank": 7.6,
+        "impressions": 5,
+        "clicks": 0
+      }
+    ],
+    "discoveries": [],
+    "note": "GSCブラウザ、クエリ・ページ完全一致、Web、全地域・全デバイス。公開後7日窓は充足。UI丸め値、確定状態未確認のため効果判定保留。改善前7日7.5位51表示0クリックに対し、今回7.6位5表示0クリック。"
   }
 ]
