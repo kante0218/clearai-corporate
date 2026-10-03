@@ -990,5 +990,45 @@
     ],
     "discoveries": [],
     "note": "GSCブラウザ、AI内製化研修とhttps://clearai.jp/trainingを完全一致指定。Web、全地域・全デバイス。7日窓9/22〜9/28の画面はNo data、表示0・クリック0。順位はnull。確定状態不明、順位欠測のため効果判定保留。"
+  },
+  {
+    "source": "gsc",
+    "collectionMethod": "browser-ui",
+    "capturedAt": "2026-10-03T15:24:04.738419+00:00",
+    "range": {
+      "startDate": "2026-09-02",
+      "endDate": "2026-09-29",
+      "days": 28
+    },
+    "scope": {
+      "siteUrl": "https://clearai.jp/",
+      "device": "all",
+      "country": "all",
+      "type": "web",
+      "dataState": "ui-not-confirmed",
+      "timeZone": "America/Los_Angeles",
+      "aggregationType": "ui-not-confirmed",
+      "dimensions": "ui-query-table",
+      "queryFilter": "equals",
+      "pageFilter": "equals"
+    },
+    "ranks": [
+      {
+        "keyword": "AI内製化研修",
+        "targetPath": "/training",
+        "rank": null,
+        "impressions": 0,
+        "clicks": 0
+      },
+      {
+        "keyword": "メール返信 ai",
+        "targetPath": "/blog/ai-email-reply-three-decisions",
+        "rank": 7.5,
+        "impressions": 111,
+        "clicks": 1
+      }
+    ],
+    "discoveries": [],
+    "note": "10/3 heartbeatの処理を10/4 JSTに完了。取得日時は実取得時刻。10/2の未実施分を遡及補完しない。GSCブラウザ、所有アカウント・プロパティ確認、クエリ・ページ完全一致、Web、全地域・全デバイス。UI丸め値・確定状態不明。研修No dataでrank null・表示0・クリック0、未インデックスと断定しない。メール返信7.5位111表示1クリック、前回7.5位112表示1クリックから大きな変動なし。両語observing、メール10/6・研修10/8で期限前、レビュー・ページ変更なし。サイト全体先頭10/67件を確認（非網羅）。clear ai 4.9位16表示4クリック、unitree レンタル6.0位10表示1クリック。既存調査で明確な不足未特定、人物指名語も不足未特定、メール類似語は観察ページのため除外。新規改善対象なし。"
   }
 ]
