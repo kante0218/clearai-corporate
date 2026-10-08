@@ -104,10 +104,39 @@
         "clicks": 0,
         "reason": "公開後168時間と完全な公開後7日窓は充足。9/22〜9/28のGSC画面はNo dataで順位欠測、確定状態不明、改善前baseline7も欠測。効果なし・悪化・未インデックス・1位達成とは判定しない。欠測継続のため10/8へレビュー延期、日次監視は継続する。",
         "nextReviewDate": "2026-10-08"
+      },
+      {
+        "date": "2026-10-08T00:01:59.206867+00:00",
+        "result": "deferred",
+        "status": "observing",
+        "range": {
+          "startDate": "2026-09-28",
+          "endDate": "2026-10-04",
+          "days": 7
+        },
+        "scope": {
+          "siteUrl": "https://clearai.jp/",
+          "device": "all",
+          "country": "all",
+          "type": "web",
+          "dataState": "ui-not-confirmed",
+          "timeZone": "America/Los_Angeles",
+          "aggregationType": "ui-not-confirmed",
+          "dimensions": "ui-query-table",
+          "queryFilter": "equals",
+          "pageFilter": "equals"
+        },
+        "source": "gsc",
+        "collectionMethod": "browser-ui",
+        "rank": null,
+        "impressions": 0,
+        "clicks": 0,
+        "reason": "公開後168時間・完全な公開後7日窓は充足。9/28〜10/4のGSC画面はNo dataで順位欠測、表示0・クリック0。確定状態未確認、改善前baseline7も欠測。効果なし・悪化・未インデックス・1位達成とは判定しない。observingを維持し10/15に再レビュー、日次監視継続。",
+        "nextReviewDate": "2026-10-15"
       }
     ],
     "deployedAt": "2026-09-11T02:50:17.654439+09:00",
-    "nextReviewDate": "2026-10-08"
+    "nextReviewDate": "2026-10-15"
   },
   {
     "keyword": "メール返信 ai",
