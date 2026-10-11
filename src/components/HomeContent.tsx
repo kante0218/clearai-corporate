@@ -124,7 +124,7 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
     ],
     servicesLabel: "Our Services",
     servicesTitle: "AIで、日本の未来をつくる。",
-    servicesDesc: "システム・ソフトウェア開発を軸に、ロボットレンタル・FDEコンサルティング・AI内製化研修まで、戦略から実装・運用まで確実に成果を届けます。",
+    servicesDesc: "システム・ソフトウェア開発を軸に、ロボットレンタル・FDEコンサルティング・AI内製化研修・ホームページ制作まで、事業の課題に合わせて支援します。",
     primaryHeading: "主力サービス",
     secondaryHeading: "その他の支援",
     claudeBadge: "Claude対応",
@@ -157,10 +157,10 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
         claudeNote: "Claudeを実務で使いこなす実践研修も。現場のユースケースに即したプロンプト・運用ルールまで指南します。",
       },
       {
-        code: "05", title: "ウェブサイト作成", color: "cyan",
-        desc: "Next.js + Vercel + Headless CMSで、表示速度・SEO・運用しやすさを最高水準にしたサイトを高速制作します。",
-        tags: ["Next.js", "Vercel", "SEO", "Headless CMS"],
-        href: "/website", cta: "詳しく見る",
+        code: "05", title: "ホームページ制作", color: "cyan",
+        desc: "事業の強みと伝えたい内容を整理し、構成・デザイン・実装・公開まで支援します。スマートフォンでの読みやすさと、問い合わせにつながる導線を大切にします。",
+        tags: ["構成・文章整理", "デザイン", "スマートフォン対応", "公開支援"],
+        href: "/website-production", cta: "詳しく見る",
       },
     ],
     secondaryServices: [
@@ -314,7 +314,7 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
     ],
     servicesLabel: "Our Services",
     servicesTitle: "Building Japan's future with AI.",
-    servicesDesc: "Centered on system and software development, plus robot rental, FDE consulting, and in-house AI enablement training — delivering real outcomes from strategy to implementation and operation.",
+    servicesDesc: "Centered on system and software development, plus robot rental, FDE consulting, in-house AI training, and website production, with support tailored to your business.",
     primaryHeading: "Core services",
     secondaryHeading: "Other support",
     claudeBadge: "Claude-ready",
@@ -348,9 +348,9 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
       },
       {
         code: "05", title: "Website Production", color: "cyan",
-        desc: "Fast production of websites that perform in the AI era, built on Next.js + Vercel + Headless CMS for top-tier speed, SEO, and ease of operation.",
-        tags: ["Next.js", "Vercel", "SEO", "Headless CMS"],
-        href: "/website", cta: "Learn more",
+        desc: "We clarify your business and message, then support site structure, design, development, and launch, with readable mobile layouts and clear contact paths.",
+        tags: ["Content structure", "Design", "Mobile layouts", "Launch support"],
+        href: "/website-production", cta: "Learn more",
       },
     ],
     secondaryServices: [
@@ -635,6 +635,21 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       <section className="pb-10 pt-2 md:pb-16 md:pt-4 bg-white border-b border-gray-100">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <ClientLogoMarquee label={t.clientLogosLabel} />
+        </div>
+      </section>
+
+      <section className="bg-white py-10 md:py-16" aria-labelledby="home-services-title">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
+          <h2 id="home-services-title" className="text-3xl font-bold text-neutral-900 mb-7">{lang === "ja" ? "事業内容" : "Our services"}</h2>
+          <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-10">
+            {[
+              { href: "/software-development", title: lang === "ja" ? "システム・ソフトウェア開発" : "System & Software Development" },
+              { href: "/robot-rental", title: lang === "ja" ? "ロボットレンタル" : "Robot Rental" },
+              { href: "/ai-consulting", title: lang === "ja" ? "FDEコンサルティング" : "FDE Consulting" },
+              { href: "/training", title: lang === "ja" ? "AI内製化研修" : "In-house AI Training" },
+              { href: "/website-production", title: lang === "ja" ? "ホームページ制作" : "Website Production", desc: lang === "ja" ? "事業の強みを整理し、読む人に伝わる構成・デザイン・公開まで支援します。" : "We clarify your message and support site structure, design, development, and launch." },
+            ].map((service) => <li key={service.href} className="border-t border-neutral-200 py-5"><Link href={service.href} className="font-semibold text-neutral-900 underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-4">{service.title}</Link>{service.desc && <p className="mt-3 text-sm text-neutral-600 leading-relaxed">{service.desc}</p>}</li>)}
+          </ul>
         </div>
       </section>
 

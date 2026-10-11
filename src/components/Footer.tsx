@@ -14,6 +14,7 @@ export default function Footer() {
   if (pathname?.startsWith("/lp/ai-development-consultation")) return null;
 
   const services = [
+    { label: f.services.websiteProduction, href: "/website-production" },
     { label: f.services.softwareDev, href: "/software-development" },
     { label: f.services.robotRental, href: "/robot-rental" },
     { label: f.services.aiConsulting, href: "/ai-consulting" },

@@ -171,6 +171,7 @@ const organizationSchema = {
     "AI導入支援",
     "AI顧問",
     "AI内製化研修",
+    "ホームページ制作",
     "生成AI",
     "LLM活用",
     "DX推進",
@@ -181,6 +182,7 @@ const organizationSchema = {
     "四足歩行ロボット",
   ],
   "makesOffer": [
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "ホームページ制作", "url": "https://clearai.jp/website-production" } },
     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "システム・ソフトウェア開発（AI受託開発）", "url": "https://clearai.jp/software-development" } },
     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "FDEコンサルティング", "url": "https://clearai.jp/ai-consulting" } },
     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI内製化研修", "url": "https://clearai.jp/training" } },
@@ -211,6 +213,7 @@ const professionalServiceSchema = {
     "@type": "OfferCatalog",
     "name": "ClearAI サービス一覧",
     "itemListElement": [
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "ホームページ制作", "url": "https://clearai.jp/website-production" } },
       {
         "@type": "Offer",
         "itemOffered": {
@@ -251,12 +254,13 @@ const siteNavigationSchema = {
     { "@type": "SiteNavigationElement", "position": 2, "name": "ロボットレンタル", "url": "https://clearai.jp/robot-rental" },
     { "@type": "SiteNavigationElement", "position": 3, "name": "FDEコンサルティング", "url": "https://clearai.jp/ai-consulting" },
     { "@type": "SiteNavigationElement", "position": 4, "name": "AI内製化研修", "url": "https://clearai.jp/training" },
-    { "@type": "SiteNavigationElement", "position": 5, "name": "導入実績", "url": "https://clearai.jp/case-studies" },
-    { "@type": "SiteNavigationElement", "position": 6, "name": "コラム", "url": "https://clearai.jp/column" },
-    { "@type": "SiteNavigationElement", "position": 7, "name": "私たちについて", "url": "https://clearai.jp/about" },
-    { "@type": "SiteNavigationElement", "position": 8, "name": "お問い合わせ", "url": "https://clearai.jp/contact" },
-    { "@type": "SiteNavigationElement", "position": 9, "name": "よくある質問", "url": "https://clearai.jp/faq" },
-    { "@type": "SiteNavigationElement", "position": 10, "name": "お知らせ・ブログ", "url": "https://clearai.jp/blog" },
+    { "@type": "SiteNavigationElement", "position": 5, "name": "ホームページ制作", "url": "https://clearai.jp/website-production" },
+    { "@type": "SiteNavigationElement", "position": 6, "name": "導入実績", "url": "https://clearai.jp/case-studies" },
+    { "@type": "SiteNavigationElement", "position": 7, "name": "コラム", "url": "https://clearai.jp/column" },
+    { "@type": "SiteNavigationElement", "position": 8, "name": "私たちについて", "url": "https://clearai.jp/about" },
+    { "@type": "SiteNavigationElement", "position": 9, "name": "お問い合わせ", "url": "https://clearai.jp/contact" },
+    { "@type": "SiteNavigationElement", "position": 10, "name": "よくある質問", "url": "https://clearai.jp/faq" },
+    { "@type": "SiteNavigationElement", "position": 11, "name": "お知らせ・ブログ", "url": "https://clearai.jp/blog" },
   ],
 };
 

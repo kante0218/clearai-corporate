@@ -41,6 +41,7 @@ const COPY: Record<"ja" | "en", Copy> = {
         title: "事業",
         links: [
           { label: "システム・ソフトウェア開発", href: "/software-development" },
+          { label: "ホームページ制作", href: "/website-production" },
           { label: "ロボットレンタル", href: "/robot-rental" },
           { label: "FDEコンサルティング", href: "/ai-consulting" },
           { label: "AI内製化研修", href: "/training" },
@@ -82,6 +83,7 @@ const COPY: Record<"ja" | "en", Copy> = {
         title: "Business",
         links: [
           { label: "System & Software Development", href: "/software-development" },
+          { label: "Website Production", href: "/website-production" },
           { label: "Robot Rental", href: "/robot-rental" },
           { label: "FDE Consulting", href: "/ai-consulting" },
           { label: "In-house AI Development Training", href: "/training" },

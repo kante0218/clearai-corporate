@@ -119,10 +119,17 @@ function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; 
 // ---------------------------------------------------------------------------
 // Types & constants
 // ---------------------------------------------------------------------------
-// Service may still arrive via ?service= (e.g. from a plan card) — it is sent
-// silently with the message for context, but no longer shown as a selector.
+// Preserve existing service query keys so inbound links keep their context.
 type ExtendedServiceKey = ServiceKey | "sns";
 const EXTENDED_SERVICE_KEYS: readonly string[] = [...(SERVICE_KEYS as readonly string[]), "sns"];
+
+const CONTACT_SERVICES: { key: ServiceKey; ja: string; en: string }[] = [
+  { key: "software-development", ja: "システム・ソフトウェア開発", en: "System & Software Development" },
+  { key: "robot-rental", ja: "ロボットレンタル", en: "Robot Rental" },
+  { key: "consulting", ja: "FDEコンサルティング", en: "FDE Consulting" },
+  { key: "education", ja: "AI内製化研修", en: "In-house AI Training" },
+  { key: "website", ja: "ホームページ制作", en: "Website Production" },
+];
 
 const EMPTY_FORM = {
   // General-inquiry form: "other" keeps only name / email / message required.
@@ -161,7 +168,7 @@ function ContactPageInner() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [serverError, setServerError] = useState<string | null>(null);
 
-  // Silently capture ?service= for context (no UI), and ?doc= for deck requests.
+  // Preselect the service context and capture document requests.
   useEffect(() => {
     const serviceParam = searchParams.get("service");
     if (serviceParam && EXTENDED_SERVICE_KEYS.includes(serviceParam)) {
@@ -175,7 +182,7 @@ function ContactPageInner() {
 
   const requestedDoc: DocumentKey | "" = form.document;
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
     if (errors[e.target.name]) {
       setErrors((prev) => { const next = { ...prev }; delete next[e.target.name]; return next; });
@@ -343,6 +350,17 @@ function ContactPageInner() {
                   placeholder={t.placeholderCompany} autoComplete="organization"
                   aria-invalid={!!errors.company} className={inputClass("company")} />
                 {errors.company && <p className="mt-1.5 text-xs text-neutral-900 font-medium">{errors.company}</p>}
+              </div>
+
+              <div>
+                <label htmlFor="service" className="block text-xs font-semibold text-gray-600 mb-1.5">
+                  {lang === "ja" ? "ご相談のサービス（任意）" : "Service (optional)"}
+                </label>
+                <select id="service" name="service" value={form.service} onChange={handleChange} className={inputClass("service")}>
+                  <option value="">{lang === "ja" ? "未定・その他" : "Undecided / other"}</option>
+                  {CONTACT_SERVICES.map((service) => <option key={service.key} value={service.key}>{service[lang]}</option>)}
+                  {form.service && !CONTACT_SERVICES.some((service) => service.key === form.service) && <option value={form.service}>{SERVICE_LABELS[form.service]}</option>}
+                </select>
               </div>
 
               {/* Message */}
