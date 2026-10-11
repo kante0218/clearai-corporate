@@ -42,12 +42,13 @@ export default function PageHeader({
           </nav>
         )}
 
-        <p className="text-sm font-semibold text-neutral-900 mb-2 sm:mb-3">{kicker}</p>
-        <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-3 sm:mb-4">{title}</h1>
+        <p data-motion="reading" className="text-sm font-semibold text-neutral-900 mb-2 sm:mb-3">{kicker}</p>
+        <h1 data-motion="heading" className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-3 sm:mb-4">{title}</h1>
         {description && (
-          <p className="max-w-4xl text-base text-gray-600 leading-relaxed w-full mb-5 sm:mb-6">{description}</p>
+          <p data-motion="reading" data-reading className="max-w-4xl text-base text-gray-600 leading-relaxed w-full mb-5 sm:mb-6">{description}</p>
         )}
-        {actions && <div className="flex flex-wrap gap-3">{actions}</div>}
+        <div data-motion="rule" aria-hidden="true" className="mb-5 h-px w-16 bg-neutral-200" />
+        {actions && <div data-motion="reading" className="flex flex-wrap gap-3">{actions}</div>}
       </div>
     </section>
   );

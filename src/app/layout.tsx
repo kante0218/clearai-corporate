@@ -3,6 +3,7 @@ import Script from "next/script";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SiteMotion from "@/components/SiteMotion";
 import IntroLoader from "@/components/IntroLoader";
 import { LanguageProvider } from "@/lib/i18n/LanguageContext";
 
@@ -318,6 +319,7 @@ export default function RootLayout({
         <IntroLoader />
         <LanguageProvider>
           <Header />
+          <SiteMotion />
           <main className="min-h-screen">{children}</main>
           <Footer />
         </LanguageProvider>

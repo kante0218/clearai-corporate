@@ -15,7 +15,7 @@ import { BOOKING_URL } from "@/lib/booking";
 
 /* Keep reading content visible without scroll-triggered motion. */
 function Reveal({ children, className = "" }: { children: ReactNode; className?: string; delay?: number }) {
-  return <div className={className}>{children}</div>;
+  return <div data-motion="reading" className={className}>{children}</div>;
 }
 
 type SvcColor = "indigo" | "amber" | "sky" | "blue" | "rose" | "cyan";
@@ -567,12 +567,12 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
             {/* モバイルは負マージンで動画(高さ56.25vw)の上へタイトルを重ねる(h1の重複を作らない) */}
             <div className="-mt-[56.25vw] flex h-[56.25vw] w-full items-center md:mt-0 md:h-auto md:flex-1">
               <div className="w-full max-w-[760px]">
-                <h1 className="text-[1.9rem] font-black leading-[1.15] tracking-[-0.045em] text-neutral-900 sm:text-6xl lg:text-[4.2rem] xl:text-[4.45rem] [@media(max-height:800px)_and_(min-width:768px)]:text-[3.25rem] [@media(max-height:800px)_and_(min-width:768px)]:leading-[1.04]">
+                <h1 data-motion="heading" className="text-[1.9rem] font-black leading-[1.15] tracking-[-0.045em] text-neutral-900 sm:text-6xl lg:text-[4.2rem] xl:text-[4.45rem] [@media(max-height:800px)_and_(min-width:768px)]:text-[3.25rem] [@media(max-height:800px)_and_(min-width:768px)]:leading-[1.04]">
                   {t.heroTitle}
                 </h1>
               </div>
             </div>
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-neutral-700 md:mt-0 md:mb-5">{t.heroDesc}</p>
+            <p data-reading data-motion="reading" className="mt-5 max-w-xl text-base leading-relaxed text-neutral-700 md:mt-0 md:mb-5">{t.heroDesc}</p>
             <div className="mx-auto mb-2 mt-5 w-full max-w-[760px] rounded-md border border-[#d4dde5] bg-white px-5 py-6 text-left shadow-[0_16px_40px_-32px_rgba(18,49,75,0.34)] sm:px-7 md:mb-16 md:mt-0 md:block md:py-5 [@media(max-height:800px)_and_(min-width:768px)]:py-3">
             <p className="mb-4 text-base font-black text-neutral-900 md:text-lg [@media(max-height:800px)_and_(min-width:768px)]:mb-2 [@media(max-height:800px)_and_(min-width:768px)]:text-base">
               {lang === "ja" ? "代表との面談・会社資料" : "Consultation and company information"}
@@ -585,7 +585,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
               </svg>
               {t.heroSecondary}
             </Link>
-            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[58px] items-center justify-center gap-3 rounded-md bg-cta px-6 py-3 text-sm font-bold text-white transition hover:bg-cta-hover md:min-h-[52px] md:text-base [@media(max-height:800px)_and_(min-width:768px)]:min-h-11 [@media(max-height:800px)_and_(min-width:768px)]:py-2">
+            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[58px] items-center justify-center gap-3 motion-cta rounded-md bg-cta px-6 py-3 text-sm font-bold text-white transition hover:bg-cta-hover md:min-h-[52px] md:text-base [@media(max-height:800px)_and_(min-width:768px)]:min-h-11 [@media(max-height:800px)_and_(min-width:768px)]:py-2">
               <svg aria-hidden viewBox="0 0 24 24" className="h-5 w-5 fill-none stroke-current" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <rect x="3" y="4" width="18" height="17" rx="2" />
                 <path d="M8 2v4M16 2v4M3 9h18M8 13h3M8 17h6" />
@@ -611,7 +611,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
 
       <section id="support" className="scroll-mt-24 bg-white py-10 md:py-16" aria-labelledby="home-services-title">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <h2 id="home-services-title" className="text-3xl font-bold text-neutral-900 mb-7">{lang === "ja" ? "事業内容" : "Our services"}</h2>
+          <h2 data-motion="heading" id="home-services-title" className="text-3xl font-bold text-neutral-900 mb-7">{lang === "ja" ? "事業内容" : "Our services"}</h2>
           <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-10">
             {[
               { href: "/software-development", title: lang === "ja" ? "システム・ソフトウェア開発" : "System & Software Development", desc: lang === "ja" ? "繰り返しの事務作業を減らしたい。業務に合うシステムをつくり、運用まで支援します。" : "Build systems that fit your workflows, from design to operation." },
@@ -619,7 +619,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
               { href: "/ai-consulting", title: lang === "ja" ? "FDEコンサルティング" : "FDE Consulting", desc: lang === "ja" ? "AIをどこから使うか決めたい。現場の課題を整理し、実装につながる進め方を考えます。" : "Clarify where AI can help and plan a path to implementation." },
               { href: "/training", title: lang === "ja" ? "AI内製化研修" : "In-house AI Training", desc: lang === "ja" ? "社員がAIを仕事に使えるようにしたい。実務に沿った研修で、社内で使う力を育てます。" : "Help your team apply AI through practical training." },
               { href: "/website-production", title: lang === "ja" ? "ホームページ制作" : "Website Production", desc: lang === "ja" ? "事業の強みを整理し、読む人に伝わる構成・デザイン・公開まで支援します。" : "We clarify your message and support site structure, design, development, and launch." },
-            ].map((service) => <li key={service.href} className="border-t border-neutral-200 py-5"><Link href={service.href} className="font-semibold text-neutral-900 underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-4">{service.title}</Link>{service.desc && <p className="mt-3 text-sm text-neutral-600 leading-relaxed">{service.desc}</p>}</li>)}
+            ].map((service) => <li data-motion="card" key={service.href} className="motion-card border-t border-neutral-200 py-5"><Link href={service.href} className="font-semibold text-neutral-900 underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-4">{service.title}</Link>{service.desc && <p className="mt-3 text-sm text-neutral-600 leading-relaxed">{service.desc}</p>}</li>)}
           </ul>
         </div>
       </section>
@@ -629,7 +629,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
           <div className="mb-7 flex flex-wrap items-end justify-between gap-4">
             <div>
               <p className="mb-2 text-sm font-semibold text-neutral-600">Products</p>
-              <h2 id="home-products-title" className="text-3xl font-bold text-neutral-900">サービス・プロダクト</h2>
+              <h2 data-motion="heading" id="home-products-title" className="text-3xl font-bold text-neutral-900">サービス・プロダクト</h2>
               <p className="mt-3 text-sm leading-relaxed text-neutral-600">仕事の記録、英語学習、日々の暮らし。公開中と準備中のサービスをご紹介します。</p>
             </div>
             <Link href="/products" className="text-sm font-semibold text-neutral-900 underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4">サービス一覧を見る →</Link>
@@ -645,7 +645,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
             <div className="flex items-end justify-between mb-6 md:mb-12 gap-6">
               <div>
                 <SectionLabel>{t.casesLabel}</SectionLabel>
-                <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.casesTitle}</h2>
+                <h2 data-motion="heading" className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.casesTitle}</h2>
                 <p className="text-base text-gray-500 leading-relaxed max-w-2xl">{t.casesDesc}</p>
               </div>
               <Link
@@ -659,7 +659,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
           <CardCarousel>
             {t.cases.map((c, i) => (
               <Reveal key={c.href} delay={i * 80}>
-                <Link href={c.href} className="group block h-full">
+                <Link href={c.href} className="motion-card group block h-full">
                   <div className="bg-white border border-gray-200 rounded-lg overflow-hidden h-full flex flex-col hover:border-neutral-900 hover:shadow-lg transition-all duration-300">
                     <div className="relative aspect-[3/2] w-full overflow-hidden bg-neutral-100">
                       <Image
@@ -701,7 +701,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <SectionLabel>{t.processLabel}</SectionLabel>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.processTitle}</h2>
+            <h2 data-motion="heading" className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.processTitle}</h2>
             <p className="text-base text-gray-500 mb-7 md:mb-14 w-full leading-relaxed">{t.processDesc}</p>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -726,7 +726,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
           <Reveal>
             <div className="text-center mb-8 md:mb-12">
               <SectionLabel>{t.ctaLabel}</SectionLabel>
-              <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-6">{t.ctaTitle}</h2>
+              <h2 data-motion="heading" className="text-3xl font-bold text-gray-900 leading-tight mb-6">{t.ctaTitle}</h2>
               <p className="mb-3 text-sm font-semibold text-neutral-600">{lang === "ja" ? "ClearAI 代表 髙橋敢輝" : "ClearAI founder Kanki Takahashi"}</p>
               <p className="mx-auto max-w-2xl text-base text-gray-600 leading-relaxed">{lang === "ja" ? "「この作業を減らしたい」「AIを使うべきか迷っている」「ホームページを見直したい」。いまの状況から、次に取り組むことを一緒に整理します。" : "Tell us what you want to change: repetitive work, AI adoption, or your website. We will discuss the next steps together."}</p>
               <p className="mt-4 text-sm leading-relaxed text-neutral-600">{lang === "ja" ? "相談内容がまとまっていなくても、いま困っていることからお聞かせください。" : "You can start with the problem you are facing, even if your requirements are not yet defined."}</p>
@@ -741,7 +741,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
               { title: "Choose a time", desc: "Check available dates on the booking page." },
               { title: "Enter your information", desc: "Follow the booking page instructions." },
               { title: "Confirm your booking", desc: "Check the completion screen. The meeting is 30 minutes." },
-            ]).map((step, index) => <li key={step.title} className="border-t border-neutral-200 pt-4"><p className="mb-2 text-sm font-bold text-neutral-900">{index + 1}. {step.title}</p><p className="text-sm leading-relaxed text-neutral-600">{step.desc}</p></li>)}
+            ]).map((step, index) => <li key={step.title} className="relative pt-4"><span data-motion="rule" aria-hidden="true" className="absolute inset-x-0 top-0 h-px bg-neutral-200" /><p className="mb-2 text-sm font-bold text-neutral-900">{index + 1}. {step.title}</p><p className="text-sm leading-relaxed text-neutral-600">{step.desc}</p></li>)}
           </ol>
           <Reveal delay={100}>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -749,7 +749,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
                 href={BOOKING_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex w-full sm:w-auto justify-center items-center gap-2 rounded-md bg-cta text-white text-sm font-semibold px-8 min-h-[52px] py-3.5 hover:bg-cta-hover transition-colors duration-300"
+                className="inline-flex w-full sm:w-auto justify-center items-center gap-2 motion-cta rounded-md bg-cta text-white text-sm font-semibold px-8 min-h-[52px] py-3.5 hover:bg-cta-hover transition-colors duration-300"
               >
                 {t.ctaPrimary}
                 <span aria-hidden>→</span>
@@ -771,13 +771,13 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <SectionLabel>{t.faqLabel}</SectionLabel>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.faqTitle}</h2>
+            <h2 data-motion="heading" className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.faqTitle}</h2>
             <p className="text-base text-gray-500 mb-10 leading-relaxed">{t.faqDesc}</p>
           </Reveal>
           <div className="mb-8">
             {t.faq.map((item, i) => (
               <Reveal key={i} delay={i * 70}>
-                <details className="border-b border-gray-100 py-2.5 md:py-5 group">
+                <details data-motion-disclosure className="border-b border-gray-100 py-2.5 md:py-5 group">
                   <summary className="font-semibold text-gray-900 cursor-pointer list-none flex items-center justify-between gap-4">
                     <span>{item.q}</span>
                     <span className="text-gray-400 text-lg leading-none flex-shrink-0 transition-transform duration-300 group-open:rotate-45">+</span>
@@ -796,7 +796,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       {/* ═══ TECH STACK ═══ */}
       <section className="py-14 lg:py-20 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <details className="group">
+          <details data-motion-disclosure className="group">
             <summary className="cursor-pointer text-lg font-bold text-neutral-900">{lang === "ja" ? "技術担当の方へ：使用技術を見る" : "For technical teams: explore our technology"}</summary>
             <p className="mt-5 mb-8 max-w-3xl text-sm leading-relaxed text-neutral-600">{t.techDesc}</p>
           <div className="space-y-0">
@@ -849,7 +849,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
           <div className="flex items-end justify-between mb-6 md:mb-12">
             <div>
               <SectionLabel>{t.newsLabel}</SectionLabel>
-              <h2 className="text-3xl font-bold text-gray-900 leading-tight">{t.newsTitle}</h2>
+              <h2 data-motion="heading" className="text-3xl font-bold text-gray-900 leading-tight">{t.newsTitle}</h2>
             </div>
             <Link href="/blog" className="hidden sm:inline-flex items-center gap-2 text-sm font-semibold text-neutral-900 hover:text-neutral-700 transition-colors">
               {t.newsCta}
@@ -875,7 +875,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
           <Link href="/download" className="inline-flex min-h-11 items-center justify-center rounded-md border border-[#315b73] px-3 text-xs font-bold text-neutral-900">
             {lang === "ja" ? "会社資料" : "Company guide"}
           </Link>
-          <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center justify-center rounded-md bg-cta px-3 text-xs font-bold text-white">
+          <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center justify-center motion-cta rounded-md bg-cta px-3 text-xs font-bold text-white">
             {lang === "ja" ? "代表と面談を予約する" : "Meet our founder"}
           </a>
         </div>

@@ -11,14 +11,14 @@ const products = [
 export default function ProductList() {
   return (
     <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-      {products.map((product) => (
-        <li key={product.name} className="flex flex-col rounded-lg border border-neutral-200 bg-white p-6 sm:p-7">
+      {products.map((product, index) => (
+        <li data-motion="card" data-motion-delay={index % 3 * 70} key={product.name} className="motion-card flex flex-col rounded-lg border border-neutral-200 bg-white p-6 sm:p-7">
           <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
             <p className="text-xs font-medium text-neutral-600">{product.category}</p>
             {!product.href && <span className="rounded-full bg-neutral-100 px-3 py-1 text-xs font-semibold text-neutral-700">準備中</span>}
           </div>
           <h3 className="text-xl font-bold text-neutral-900">{product.name}</h3>
-          <p className="mt-3 mb-6 text-sm leading-relaxed text-neutral-600">{product.description}</p>
+          <p data-reading className="mt-3 mb-6 text-sm leading-relaxed text-neutral-600">{product.description}</p>
           <div className="mt-auto">
             {product.href ? (
               <a href={product.href} className="inline-block font-semibold text-sm text-neutral-900 underline underline-offset-4 hover:text-neutral-600 focus-visible:outline-2 focus-visible:outline-offset-4">

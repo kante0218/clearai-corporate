@@ -39,21 +39,21 @@ export default function WebsiteProductionPage() {
           </ul>
         </nav>
         <section id="offering" className="scroll-mt-28 pb-16">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-5">伝える内容から、公開後の使い方まで。</h2>
-          <p className="max-w-3xl text-neutral-600 leading-[1.9] mb-8">会社紹介・サービス紹介など、サイトの目的に合わせて必要な内容を選びます。具体的な対応範囲は、ご相談のうえ決定します。</p>
-          <div className="grid gap-x-12 sm:grid-cols-2">{offerings.map(([title, body]) => <div key={title} className="border-t border-neutral-200 py-7"><h3 className="font-bold text-lg mb-3">{title}</h3><p className="text-sm text-neutral-600 leading-[1.95]">{body}</p></div>)}</div>
+          <h2 data-motion="heading" className="text-2xl sm:text-3xl font-bold mb-5">伝える内容から、公開後の使い方まで。</h2>
+          <p data-reading className="max-w-3xl text-neutral-600 leading-[1.9] mb-8">会社紹介・サービス紹介など、サイトの目的に合わせて必要な内容を選びます。具体的な対応範囲は、ご相談のうえ決定します。</p>
+          <div className="grid gap-x-12 sm:grid-cols-2">{offerings.map(([title, body]) => <div data-motion="card" key={title} className="motion-card border-t border-neutral-200 py-7"><h3 className="font-bold text-lg mb-3">{title}</h3><p className="text-sm text-neutral-600 leading-[1.95]">{body}</p></div>)}</div>
         </section>
         <section id="process" className="scroll-mt-28 pb-16">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-8">制作の流れ</h2>
-          <ol className="divide-y divide-neutral-200 border-y border-neutral-200">{steps.map(([title, body], index) => <li key={title} className="flex gap-5 sm:gap-8 py-7"><span className="text-neutral-400 font-semibold" aria-hidden="true">{index + 1}</span><div><h3 className="font-bold text-lg mb-2">{title}</h3><p className="max-w-3xl text-sm text-neutral-600 leading-[1.95]">{body}</p></div></li>)}</ol>
+          <h2 data-motion="heading" className="text-2xl sm:text-3xl font-bold mb-8">制作の流れ</h2>
+          <ol className="divide-y divide-neutral-200 border-y border-neutral-200">{steps.map(([title, body], index) => <li data-motion="reading" key={title} className="flex gap-5 sm:gap-8 py-7"><span className="text-neutral-400 font-semibold" aria-hidden="true">{index + 1}</span><div><h3 className="font-bold text-lg mb-2">{title}</h3><p data-reading className="max-w-3xl text-sm text-neutral-600 leading-[1.95]">{body}</p></div></li>)}</ol>
         </section>
         <section id="faq" className="scroll-mt-28 pb-16">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-8">よくあるご質問</h2>
-          <div className="divide-y divide-neutral-200 border-y border-neutral-200">{faqs.map(([question, answer]) => <details key={question} className="py-5"><summary className="cursor-pointer font-semibold leading-relaxed rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4">{question}</summary><p className="max-w-3xl pt-4 text-sm text-neutral-600 leading-[1.95]">{answer}</p></details>)}</div>
+          <h2 data-motion="heading" className="text-2xl sm:text-3xl font-bold mb-8">よくあるご質問</h2>
+          <div className="divide-y divide-neutral-200 border-y border-neutral-200">{faqs.map(([question, answer]) => <details data-motion-disclosure key={question} className="py-5"><summary className="cursor-pointer font-semibold leading-relaxed rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4">{question}</summary><p data-reading className="max-w-3xl pt-4 text-sm text-neutral-600 leading-[1.95]">{answer}</p></details>)}</div>
         </section>
         <section id="consultation" className="scroll-mt-28 border-t border-neutral-200 pt-10">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-4">まずは、伝えたいことをお聞かせください。</h2>
-          <p className="max-w-3xl text-neutral-600 leading-[1.9] mb-7">現在のサイトURL、制作の目的、困っていることなど、わかる範囲でお知らせください。ご要望を伺って、必要な内容と進め方をご案内します。</p>
+          <h2 data-motion="heading" className="text-2xl sm:text-3xl font-bold mb-4">まずは、伝えたいことをお聞かせください。</h2>
+          <p data-reading className="max-w-3xl text-neutral-600 leading-[1.9] mb-7">現在のサイトURL、制作の目的、困っていることなど、わかる範囲でお知らせください。ご要望を伺って、必要な内容と進め方をご案内します。</p>
           <Link href="/contact?service=website" className="inline-flex bg-cta hover:bg-cta-hover text-white px-7 py-4 font-semibold rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-900">ホームページ制作を相談する</Link>
         </section>
       </div>

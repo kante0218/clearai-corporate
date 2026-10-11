@@ -719,3 +719,22 @@ details[open] summary {
   .text-3xl { font-size: 1.625rem !important; }
   .text-4xl, .text-5xl, .text-6xl, .text-7xl { font-size: 1.875rem !important; }
 }
+
+/* Opt-in reading and motion treatments; no content is hidden at rest. */
+[data-reading] { max-width: 68ch; line-height: 1.9; }
+.site-reading-progress { position: fixed; inset: 0 0 auto; z-index: 70; height: 3px; background: var(--color-cta, #b024a6); transform: scaleX(0); transform-origin: left; pointer-events: none; }
+[data-motion="rule"] { transform-origin: left; }
+.motion-cta { position: relative; overflow: hidden; isolation: isolate; }
+.motion-cta::after { content: ""; position: absolute; inset: 0; background: linear-gradient(110deg, transparent 25%, #ffffff30 50%, transparent 75%); transform: translateX(-130%); pointer-events: none; }
+@media (prefers-reduced-motion: no-preference) {
+  .motion-card { transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease; }
+  .motion-card:hover { transform: translateY(-3px); border-color: #b4bcc7; box-shadow: 0 10px 24px -20px #1e293b66; }
+  .motion-cta:hover::after, .motion-cta:focus-visible::after { transform: translateX(130%); transition: transform .65s ease; }
+  [data-motion] a:not(.motion-cta) { text-decoration-thickness: 1px; transition: text-underline-offset .2s ease; }
+  [data-motion] a:not(.motion-cta):hover { text-underline-offset: 6px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .site-reading-progress { display: none; }
+  .motion-cta::after { display: none; }
+  .motion-card { transform: none !important; transition: none !important; }
+}
