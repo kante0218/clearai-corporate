@@ -83,7 +83,7 @@ export default function Header() {
               <Logo size={36} className="h-7 lg:h-8 w-auto transition-opacity duration-300 group-hover:opacity-80" />
             </Link>
 
-            <nav className="hidden 2xl:flex items-center gap-1">
+            <nav className="hidden min-[1700px]:flex items-center gap-1">
               {navItems.map((item) => {
                 const hasChildren = item.children && item.children.length > 0;
                 const isMenuOpen = openMenu === item.label;
@@ -150,7 +150,7 @@ export default function Header() {
               })}
             </nav>
 
-            <div className="hidden 2xl:flex items-center gap-3 2xl:gap-5">
+            <div className="hidden min-[1700px]:flex items-center gap-3 2xl:gap-5">
               <div className="flex items-center gap-3 2xl:gap-5">
                 {utilityItems.map((u) => (
                   <Link
@@ -175,7 +175,7 @@ export default function Header() {
               </Link>
             </div>
 
-            <button onClick={() => setIsOpen(!isOpen)} className="2xl:hidden p-2 z-10 min-h-[44px] min-w-[44px] flex items-center justify-center" aria-label={h.menuAria} aria-expanded={isOpen}>
+            <button onClick={() => setIsOpen(!isOpen)} className="min-[1700px]:hidden p-2 z-10 min-h-[44px] min-w-[44px] flex items-center justify-center" aria-label={h.menuAria} aria-expanded={isOpen}>
               <div className="w-6 h-5 flex flex-col justify-between">
                 <span className={`w-full h-0.5 bg-gray-900 transition-all duration-300 ${
                   isOpen ? "rotate-45 translate-y-[9px]" : ""
@@ -191,7 +191,7 @@ export default function Header() {
           </div>
         </div>
 
-        <div className={`2xl:hidden overflow-hidden bg-white transition-all duration-500 ${isOpen ? "h-[calc(100dvh-4rem)] opacity-100" : "h-0 opacity-0"}`}>
+        <div className={`min-[1700px]:hidden overflow-hidden bg-white transition-all duration-500 ${isOpen ? "h-[calc(100dvh-4rem)] opacity-100" : "h-0 opacity-0"}`}>
           <div className="h-full bg-white/98 backdrop-blur-xl border-t border-gray-100">
             <nav className="max-h-[calc(100dvh-4rem)] max-w-[1800px] mx-auto overflow-y-auto overscroll-contain px-5 py-4 space-y-1 pb-[calc(1rem+env(safe-area-inset-bottom))]">
               {navItems.map((item, i) => {
