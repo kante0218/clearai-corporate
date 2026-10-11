@@ -3,7 +3,7 @@
 import Link from "next/link";
 import ProductList from "@/components/ProductList";
 import Image from "next/image";
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { type ReactNode } from "react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import CardCarousel from "@/components/CardCarousel";
 import { CLIENT_LOGOS } from "@/components/ClientLogoGrid";
@@ -13,27 +13,9 @@ import { BOOKING_URL } from "@/lib/booking";
    removed from the homepage on request. Their COPY entries below are intentionally kept so the
    sections can be restored without rewriting the copy; they are not rendered anywhere today. */
 
-/* Scroll-triggered reveal - simplified, up direction only */
-function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) { setVisible(true); obs.unobserve(el); } },
-      { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
-  return (
-    <div ref={ref} className={className} style={{
-      opacity: visible ? 1 : 0,
-      transform: visible ? "none" : "translateY(24px)",
-      transition: `opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
-    }}>{children}</div>
-  );
+/* Keep reading content visible without scroll-triggered motion. */
+function Reveal({ children, className = "" }: { children: ReactNode; className?: string; delay?: number }) {
+  return <div className={className}>{children}</div>;
 }
 
 type SvcColor = "indigo" | "amber" | "sky" | "blue" | "rose" | "cyan";
@@ -90,7 +72,7 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
     heroDesc: (
       <>経営課題の整理、AI戦略、システム開発、本番運用。<br className="hidden md:inline" />現場で使われる仕組みを、ひとつのチームでつくります。</>
     ),
-    heroPrimary: "代表に無料で相談する",
+    heroPrimary: "代表と面談を予約する",
     heroSecondary: "会社資料を受け取る",
     trustStats: [
       { value: "最大75%", label: "研修費を助成金で削減" },
@@ -187,9 +169,9 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
     ],
     processLabel: "How It Works",
     processTitle: "ご相談から導入までの流れ",
-    processDesc: "初回相談は無料。無理な営業はせず、貴社のペースに合わせて進めます。",
+    processDesc: "課題の整理から、実装・運用まで。必要な支援と進め方を一緒に考えます。",
     process: [
-      { num: "01", title: "無料相談・AI診断", desc: "現状の課題をヒアリングし、AI活用で効果の高い領域を一緒に特定します（30分・オンライン可）。" },
+      { num: "01", title: "課題を整理する", desc: "現状の業務や困りごとを伺い、AI活用やシステム開発で検討する領域を整理します。" },
       { num: "02", title: "ご提案・お見積り", desc: "システム開発・顧問・研修・Web制作のうち、最適な進め方と料金・補助金活用をご提案します。" },
       { num: "03", title: "スモールスタート", desc: "1部署・1業務に絞ったPoCや単発研修から始め、効果を確認しながら無理なく拡張します。" },
       { num: "04", title: "継続伴走・定着", desc: "運用が現場に根付くまで継続的に伴走し、成果と体制を定期的に見直します。" },
@@ -216,9 +198,10 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
     faqDesc: "ご相談前によく寄せられる質問をまとめました。",
     faqCta: "すべての質問を見る →",
     faq: [
-      { q: "AIの知識がなくても相談できますか？", a: "もちろんです。「何から始めればいいかわからない」段階からのご相談が最も多く、専門用語を使わず現場の言葉でご説明します。" },
-      { q: "小さく始めることはできますか？", a: "できます。単発の研修や、1部署・1業務に絞ったPoCなど、いきなり大型契約をせずに効果を確かめてから拡張いただけます。" },
-      { q: "補助金は使えますか？", a: "研修・AI導入では人材開発支援助成金やIT導入補助金などを活用でき、実質負担を最大75%削減できる場合があり、申請書類もサポートします。" },
+      { q: "相談したいことが、まだまとまっていなくても大丈夫ですか？", a: "いま困っている作業や、変えたいことからお聞かせください。AIを使うかどうかも含め、課題と進め方を一緒に整理します。" },
+      { q: "代表との面談では、何を相談できますか？", a: "業務の自動化、システム開発、AIの導入・研修、ホームページ制作などについて相談できます。現在の状況と、目指したい状態をお聞かせください。" },
+      { q: "費用や進め方を先に確認できますか？", a: "必要な支援の範囲を伺ってから、進め方とお見積りをご案内します。予算や社内の制約がある場合も、相談時にお伝えください。" },
+      { q: "予約前に、文章で問い合わせたいのですが。", a: "お問い合わせフォームをご利用ください。ご相談内容を書いて送ることができます。会社資料や各サービスのページもご覧いただけます。" },
     ],
     newsLabel: "News",
     newsTitle: "お知らせ",
@@ -268,9 +251,9 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
     ctaLabel: "Contact",
     ctaTitle: "まずは、代表と話してみませんか。",
     ctaDesc: (<>AIのことがわからなくても大丈夫、<br />貴社の状況に合わせて一緒に考えます。</>),
-    ctaPrimary: "代表とのミーティングを予約する",
-    ctaSecondary: "メールで問い合わせる",
-    ctaNote: "オンライン30分・無料。営業色の強い提案はいたしません。",
+    ctaPrimary: "代表と面談を予約する",
+    ctaSecondary: "文章で問い合わせる",
+    ctaNote: "外部の予約ページ（TimeRex）が新しいタブで開きます。",
   },
   en: {
     heroChips: ["We own delivery through production operations", "Start with one workflow, prove value, then scale"],
@@ -280,7 +263,7 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
     heroDesc: (
       <>Business priorities, AI strategy, system delivery, and live operations.<br className="hidden md:inline" />One accountable team builds what people actually use.</>
     ),
-    heroPrimary: "Talk with our founder",
+    heroPrimary: "Book a meeting with our founder",
     heroSecondary: "Get the company deck",
     trustStats: [
       { value: "Up to 75%", label: "Training cost cut by subsidies" },
@@ -377,9 +360,9 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
     ],
     processLabel: "How It Works",
     processTitle: "From first call to adoption",
-    processDesc: "The first consultation is free. No hard sell — we move at your pace.",
+    processDesc: "From clarifying the problem to delivery and operations, we discuss the support and approach you need.",
     process: [
-      { num: "01", title: "Free consult & AI assessment", desc: "We listen to your challenges and identify high-impact areas for AI together (30 min, online available)." },
+      { num: "01", title: "Clarify your challenges", desc: "Tell us about your workflows and challenges so we can identify areas to explore with AI or software development." },
       { num: "02", title: "Proposal & quote", desc: "We propose the best path among software development, advisory, training, and web production — with pricing and subsidy options." },
       { num: "03", title: "Start small", desc: "Begin with a focused PoC or a one-off training, expanding at a comfortable pace as results show." },
       { num: "04", title: "Ongoing partnership", desc: "We stay engaged until it sticks on the ground, reviewing outcomes and structure regularly." },
@@ -406,9 +389,10 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
     faqDesc: "A few questions we're often asked before getting started.",
     faqCta: "See all questions →",
     faq: [
-      { q: "Can we consult even without AI knowledge?", a: "Absolutely — 'We don't know where to start' is the most common starting point we hear, and we explain in plain language, not jargon." },
-      { q: "Can we start small?", a: "Yes. With one-off training or a PoC scoped to a single team or workflow, you can verify results before any large commitment." },
-      { q: "Can we use subsidies?", a: "For training and AI adoption, programs like the HR Development Subsidy and IT Introduction Subsidy can cut your net cost by up to 75%, and we support the paperwork too." },
+      { q: "Can I talk to you before I have clear requirements?", a: "Start with the work you want to change. We can discuss the problem and possible next steps, including whether AI is appropriate." },
+      { q: "What can I discuss with the founder?", a: "Workflow automation, software development, AI adoption and training, or website production. Tell us where you are now and what you want to achieve." },
+      { q: "Can I check costs and the approach first?", a: "We discuss the scope of support before preparing an approach and estimate. Please share your budget or internal constraints." },
+      { q: "Can I contact you in writing before booking?", a: "Use our contact form to send your questions. You can also explore the company guide and service pages." },
     ],
     newsLabel: "News",
     newsTitle: "News",
@@ -460,7 +444,7 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
     ctaDesc: (<>No AI expertise needed —<br />we&apos;ll think it through with you, tailored to your situation.</>),
     ctaPrimary: "Book a meeting with our founder",
     ctaSecondary: "Contact us by email",
-    ctaNote: "30 minutes online, free of charge. No hard sell.",
+    ctaNote: "The external booking page (TimeRex) opens in a new tab.",
   },
 };
 
@@ -568,7 +552,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
               muted
               loop
               playsInline
-              preload="auto"
+              preload="metadata"
               aria-hidden
               className="absolute inset-0 h-full w-full object-cover object-center"
             />
@@ -588,9 +572,10 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
                 </h1>
               </div>
             </div>
-            <div className="mx-auto mb-2 mt-5 hidden w-full max-w-[760px] rounded-md border border-[#d4dde5] bg-white px-5 py-6 text-left shadow-[0_16px_40px_-32px_rgba(18,49,75,0.34)] sm:px-7 md:mb-16 md:mt-0 md:block md:py-5 [@media(max-height:800px)_and_(min-width:768px)]:py-3">
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-neutral-700 md:mt-0 md:mb-5">{t.heroDesc}</p>
+            <div className="mx-auto mb-2 mt-5 w-full max-w-[760px] rounded-md border border-[#d4dde5] bg-white px-5 py-6 text-left shadow-[0_16px_40px_-32px_rgba(18,49,75,0.34)] sm:px-7 md:mb-16 md:mt-0 md:block md:py-5 [@media(max-height:800px)_and_(min-width:768px)]:py-3">
             <p className="mb-4 text-base font-black text-neutral-900 md:text-lg [@media(max-height:800px)_and_(min-width:768px)]:mb-2 [@media(max-height:800px)_and_(min-width:768px)]:text-base">
-              {lang === "ja" ? "導入のご相談・会社資料" : "Consultation and company information"}
+              {lang === "ja" ? "代表との面談・会社資料" : "Consultation and company information"}
             </p>
             <div className="grid gap-3 md:grid-cols-2">
             <Link href="/download" className="inline-flex min-h-[58px] items-center justify-center gap-3 rounded-md border border-[#315b73] bg-white px-6 py-3 text-sm font-bold text-neutral-900 transition hover:bg-[#eef2f5] md:min-h-[52px] md:text-base [@media(max-height:800px)_and_(min-width:768px)]:min-h-11 [@media(max-height:800px)_and_(min-width:768px)]:py-2">
@@ -613,41 +598,26 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
         </div>
       </section>
 
-      {/* ═══ NEWS / BLOG ═══ */}
-      <section className="pt-4 pb-8 md:pt-10 md:pb-20 lg:pt-12 lg:pb-28 bg-gray-50">
-        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <div className="flex items-end justify-between mb-6 md:mb-12">
-            <div>
-              <SectionLabel>{t.newsLabel}</SectionLabel>
-              <h2 className="text-3xl font-bold text-gray-900 leading-tight">{t.newsTitle}</h2>
-            </div>
-            <Link href="/blog" className="hidden sm:inline-flex items-center gap-2 text-sm font-semibold text-neutral-900 hover:text-neutral-700 transition-colors">
-              {t.newsCta}
-            </Link>
-          </div>
-          {newsSlot}
-          <div className="text-center mt-8 sm:hidden">
-            <Link href="/blog" className="text-sm font-semibold text-neutral-900">{t.newsCta}</Link>
+      <nav aria-label={lang === "ja" ? "まず知りたいこと" : "Explore ClearAI"} className="border-b border-neutral-200 bg-white py-6">
+        <div className="mx-auto max-w-[1800px] px-6 lg:px-8">
+          <p className="mb-3 text-sm font-semibold text-neutral-600">{lang === "ja" ? "まず知りたいこと" : "What would you like to know?"}</p>
+          <div className="flex flex-wrap gap-x-8 gap-y-3 text-sm font-bold text-neutral-900">
+            <a href="#support" className="underline underline-offset-4">{lang === "ja" ? "どんな課題を相談できる？" : "How can we help?"}</a>
+            <a href="#cases" className="underline underline-offset-4">{lang === "ja" ? "どんな支援をしてきた？" : "See our work"}</a>
+            <a href="#meeting" className="underline underline-offset-4">{lang === "ja" ? "代表と話してみたい" : "Meet our founder"}</a>
           </div>
         </div>
-      </section>
+      </nav>
 
-      {/* ═══ CLIENT LOGOS ═══ */}
-      <section className="pb-10 pt-2 md:pb-16 md:pt-4 bg-white border-b border-gray-100">
-        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <ClientLogoMarquee label={t.clientLogosLabel} />
-        </div>
-      </section>
-
-      <section className="bg-white py-10 md:py-16" aria-labelledby="home-services-title">
+      <section id="support" className="scroll-mt-24 bg-white py-10 md:py-16" aria-labelledby="home-services-title">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <h2 id="home-services-title" className="text-3xl font-bold text-neutral-900 mb-7">{lang === "ja" ? "事業内容" : "Our services"}</h2>
           <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-10">
             {[
-              { href: "/software-development", title: lang === "ja" ? "システム・ソフトウェア開発" : "System & Software Development" },
-              { href: "/robot-rental", title: lang === "ja" ? "ロボットレンタル" : "Robot Rental" },
-              { href: "/ai-consulting", title: lang === "ja" ? "FDEコンサルティング" : "FDE Consulting" },
-              { href: "/training", title: lang === "ja" ? "AI内製化研修" : "In-house AI Training" },
+              { href: "/software-development", title: lang === "ja" ? "システム・ソフトウェア開発" : "System & Software Development", desc: lang === "ja" ? "繰り返しの事務作業を減らしたい。業務に合うシステムをつくり、運用まで支援します。" : "Build systems that fit your workflows, from design to operation." },
+              { href: "/robot-rental", title: lang === "ja" ? "ロボットレンタル" : "Robot Rental", desc: lang === "ja" ? "実機を試してから検討したい。展示会や実証実験で使うロボットをレンタルできます。" : "Try robots for exhibitions and practical experiments." },
+              { href: "/ai-consulting", title: lang === "ja" ? "FDEコンサルティング" : "FDE Consulting", desc: lang === "ja" ? "AIをどこから使うか決めたい。現場の課題を整理し、実装につながる進め方を考えます。" : "Clarify where AI can help and plan a path to implementation." },
+              { href: "/training", title: lang === "ja" ? "AI内製化研修" : "In-house AI Training", desc: lang === "ja" ? "社員がAIを仕事に使えるようにしたい。実務に沿った研修で、社内で使う力を育てます。" : "Help your team apply AI through practical training." },
               { href: "/website-production", title: lang === "ja" ? "ホームページ制作" : "Website Production", desc: lang === "ja" ? "事業の強みを整理し、読む人に伝わる構成・デザイン・公開まで支援します。" : "We clarify your message and support site structure, design, development, and launch." },
             ].map((service) => <li key={service.href} className="border-t border-neutral-200 py-5"><Link href={service.href} className="font-semibold text-neutral-900 underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-4">{service.title}</Link>{service.desc && <p className="mt-3 text-sm text-neutral-600 leading-relaxed">{service.desc}</p>}</li>)}
           </ul>
@@ -669,7 +639,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       </section>
 
       {/* ═══ CASE STUDIES ═══ */}
-      <section className="py-8 md:py-20 lg:py-28 bg-gray-50">
+      <section id="cases" className="scroll-mt-24 py-8 md:py-20 lg:py-28 bg-gray-50">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <div className="flex items-end justify-between mb-6 md:mb-12 gap-6">
@@ -750,14 +720,85 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
         </div>
       </section>
 
+      {/* ═══ CTA ═══ */}
+      <section id="meeting" className="scroll-mt-24 py-8 md:py-20 lg:py-28 bg-white border-t border-gray-100">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
+          <Reveal>
+            <div className="text-center mb-8 md:mb-12">
+              <SectionLabel>{t.ctaLabel}</SectionLabel>
+              <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-6">{t.ctaTitle}</h2>
+              <p className="mb-3 text-sm font-semibold text-neutral-600">{lang === "ja" ? "ClearAI 代表 髙橋敢輝" : "ClearAI founder Kanki Takahashi"}</p>
+              <p className="mx-auto max-w-2xl text-base text-gray-600 leading-relaxed">{lang === "ja" ? "「この作業を減らしたい」「AIを使うべきか迷っている」「ホームページを見直したい」。いまの状況から、次に取り組むことを一緒に整理します。" : "Tell us what you want to change: repetitive work, AI adoption, or your website. We will discuss the next steps together."}</p>
+              <p className="mt-4 text-sm leading-relaxed text-neutral-600">{lang === "ja" ? "相談内容がまとまっていなくても、いま困っていることからお聞かせください。" : "You can start with the problem you are facing, even if your requirements are not yet defined."}</p>
+            </div>
+          </Reveal>
+          <ol className="mx-auto mb-8 grid max-w-3xl gap-5 sm:grid-cols-3">
+            {(lang === "ja" ? [
+              { title: "日程を選ぶ", desc: "予約ページで空き日時を確認し、都合のよい時間を選びます。" },
+              { title: "情報を入力する", desc: "予約ページの案内に沿って、必要な情報を入力します。" },
+              { title: "予約を確認する", desc: "日程調整完了の表示を確認してください。面談時間は30分です。" },
+            ] : [
+              { title: "Choose a time", desc: "Check available dates on the booking page." },
+              { title: "Enter your information", desc: "Follow the booking page instructions." },
+              { title: "Confirm your booking", desc: "Check the completion screen. The meeting is 30 minutes." },
+            ]).map((step, index) => <li key={step.title} className="border-t border-neutral-200 pt-4"><p className="mb-2 text-sm font-bold text-neutral-900">{index + 1}. {step.title}</p><p className="text-sm leading-relaxed text-neutral-600">{step.desc}</p></li>)}
+          </ol>
+          <Reveal delay={100}>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <a
+                href={BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex w-full sm:w-auto justify-center items-center gap-2 rounded-md bg-cta text-white text-sm font-semibold px-8 min-h-[52px] py-3.5 hover:bg-cta-hover transition-colors duration-300"
+              >
+                {t.ctaPrimary}
+                <span aria-hidden>→</span>
+              </a>
+              <Link
+                href="/contact"
+                className="inline-flex w-full sm:w-auto justify-center items-center rounded-md border border-gray-200 text-gray-600 text-sm font-semibold px-8 min-h-[52px] py-3.5 hover:border-gray-400 hover:text-gray-900 transition-colors duration-300"
+              >
+                {t.ctaSecondary}
+              </Link>
+            </div>
+            <p className="text-center text-xs text-gray-400 mt-5">{t.ctaNote}</p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ═══ FAQ TEASER ═══ */}
+      <section className="py-8 md:py-20 lg:py-28 bg-white">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
+          <Reveal>
+            <SectionLabel>{t.faqLabel}</SectionLabel>
+            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.faqTitle}</h2>
+            <p className="text-base text-gray-500 mb-10 leading-relaxed">{t.faqDesc}</p>
+          </Reveal>
+          <div className="mb-8">
+            {t.faq.map((item, i) => (
+              <Reveal key={i} delay={i * 70}>
+                <details className="border-b border-gray-100 py-2.5 md:py-5 group">
+                  <summary className="font-semibold text-gray-900 cursor-pointer list-none flex items-center justify-between gap-4">
+                    <span>{item.q}</span>
+                    <span className="text-gray-400 text-lg leading-none flex-shrink-0 transition-transform duration-300 group-open:rotate-45">+</span>
+                  </summary>
+                  <p className="text-gray-600 text-sm leading-relaxed mt-3">{item.a}{i === 3 && <Link href="/contact" className="ml-2 underline underline-offset-4">{lang === "ja" ? "お問い合わせフォームへ" : "Contact form"}</Link>}</p>
+                </details>
+              </Reveal>
+            ))}
+          </div>
+          <Reveal delay={200}>
+            <Link href="/faq" className="text-sm font-semibold text-neutral-900 hover:text-neutral-700 transition-colors">{t.faqCta}</Link>
+          </Reveal>
+        </div>
+      </section>
+
       {/* ═══ TECH STACK ═══ */}
       <section className="py-14 lg:py-20 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <Reveal>
-            <SectionLabel>{t.techLabel}</SectionLabel>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.techTitle}</h2>
-            <p className="text-base text-gray-500 w-full leading-relaxed mb-8">{t.techDesc}</p>
-          </Reveal>
+          <details className="group">
+            <summary className="cursor-pointer text-lg font-bold text-neutral-900">{lang === "ja" ? "技術担当の方へ：使用技術を見る" : "For technical teams: explore our technology"}</summary>
+            <p className="mt-5 mb-8 max-w-3xl text-sm leading-relaxed text-neutral-600">{t.techDesc}</p>
           <div className="space-y-0">
             {TECH_GROUPS.map((group, gi) => (
               <Reveal key={group.key} delay={gi * 40}>
@@ -798,66 +839,33 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
               </div>
             </div>
           </Reveal>
+          </details>
         </div>
       </section>
 
-      {/* ═══ FAQ TEASER ═══ */}
-      <section className="py-8 md:py-20 lg:py-28 bg-white">
+      {/* ═══ NEWS / BLOG ═══ */}
+      <section className="pt-4 pb-8 md:pt-10 md:pb-20 lg:pt-12 lg:pb-28 bg-gray-50">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <Reveal>
-            <SectionLabel>{t.faqLabel}</SectionLabel>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.faqTitle}</h2>
-            <p className="text-base text-gray-500 mb-10 leading-relaxed">{t.faqDesc}</p>
-          </Reveal>
-          <div className="mb-8">
-            {t.faq.map((item, i) => (
-              <Reveal key={i} delay={i * 70}>
-                <details className="border-b border-gray-100 py-2.5 md:py-5 group">
-                  <summary className="font-semibold text-gray-900 cursor-pointer list-none flex items-center justify-between gap-4">
-                    <span>{item.q}</span>
-                    <span className="text-gray-400 text-lg leading-none flex-shrink-0 transition-transform duration-300 group-open:rotate-45">+</span>
-                  </summary>
-                  <p className="text-gray-600 text-sm leading-relaxed mt-3">{item.a}</p>
-                </details>
-              </Reveal>
-            ))}
+          <div className="flex items-end justify-between mb-6 md:mb-12">
+            <div>
+              <SectionLabel>{t.newsLabel}</SectionLabel>
+              <h2 className="text-3xl font-bold text-gray-900 leading-tight">{t.newsTitle}</h2>
+            </div>
+            <Link href="/blog" className="hidden sm:inline-flex items-center gap-2 text-sm font-semibold text-neutral-900 hover:text-neutral-700 transition-colors">
+              {t.newsCta}
+            </Link>
           </div>
-          <Reveal delay={200}>
-            <Link href="/faq" className="text-sm font-semibold text-neutral-900 hover:text-neutral-700 transition-colors">{t.faqCta}</Link>
-          </Reveal>
+          {newsSlot}
+          <div className="text-center mt-8 sm:hidden">
+            <Link href="/blog" className="text-sm font-semibold text-neutral-900">{t.newsCta}</Link>
+          </div>
         </div>
       </section>
 
-      {/* ═══ CTA ═══ */}
-      <section className="py-8 md:py-20 lg:py-28 bg-white border-t border-gray-100">
+      {/* ═══ CLIENT LOGOS ═══ */}
+      <section className="pb-10 pt-2 md:pb-16 md:pt-4 bg-white border-b border-gray-100">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <Reveal>
-            <div className="text-center mb-8 md:mb-12">
-              <SectionLabel>{t.ctaLabel}</SectionLabel>
-              <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-6">{t.ctaTitle}</h2>
-              <p className="text-base text-gray-600 leading-relaxed">{t.ctaDesc}</p>
-            </div>
-          </Reveal>
-          <Reveal delay={100}>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a
-                href={BOOKING_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex w-full sm:w-auto justify-center items-center gap-2 rounded-md bg-cta text-white text-sm font-semibold px-8 min-h-[52px] py-3.5 hover:bg-cta-hover transition-colors duration-300"
-              >
-                {t.ctaPrimary}
-                <span aria-hidden>→</span>
-              </a>
-              <Link
-                href="/contact"
-                className="inline-flex w-full sm:w-auto justify-center items-center rounded-md border border-gray-200 text-gray-600 text-sm font-semibold px-8 min-h-[52px] py-3.5 hover:border-gray-400 hover:text-gray-900 transition-colors duration-300"
-              >
-                {t.ctaSecondary}
-              </Link>
-            </div>
-            <p className="text-center text-xs text-gray-400 mt-5">{t.ctaNote}</p>
-          </Reveal>
+          <ClientLogoMarquee label={t.clientLogosLabel} />
         </div>
       </section>
 
@@ -868,7 +876,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
             {lang === "ja" ? "会社資料" : "Company guide"}
           </Link>
           <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center justify-center rounded-md bg-cta px-3 text-xs font-bold text-white">
-            {lang === "ja" ? "無料相談" : "Free consultation"}
+            {lang === "ja" ? "代表と面談を予約する" : "Meet our founder"}
           </a>
         </div>
       </nav>

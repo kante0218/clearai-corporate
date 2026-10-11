@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Logo from "@/components/Logo";
+import { BOOKING_URL } from "@/lib/booking";
 import { usePathname } from "next/navigation";
 import LanguageToggle from "@/components/LanguageToggle";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
@@ -168,11 +169,11 @@ export default function Header() {
                 className="inline-flex items-center justify-center text-sm font-semibold text-neutral-900 whitespace-nowrap px-4 py-2.5 rounded-md border border-neutral-300 hover:border-neutral-900 hover:bg-neutral-50 transition-all duration-300">
                 {h.navDownload}
               </Link>
-              <Link href="/contact"
+              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer"
                 className={`group inline-flex items-center justify-center gap-1.5 text-sm font-semibold text-white whitespace-nowrap px-4 2xl:px-5 py-2.5 rounded-md transition-all duration-300 hover:-translate-y-0.5 ${contactBtnClass}`}>
-                {h.contact}
+                {lang === "ja" ? "代表と面談" : "Meet founder"}
                 <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-0.5">→</span>
-              </Link>
+              </a>
             </div>
 
             <button onClick={() => setIsOpen(!isOpen)} className="min-[1700px]:hidden p-2 z-10 min-h-[44px] min-w-[44px] flex items-center justify-center" aria-label={h.menuAria} aria-expanded={isOpen}>
@@ -279,10 +280,10 @@ export default function Header() {
                 <LanguageToggle variant="mobile" />
               </div>
               <div className="mt-4 space-y-3">
-                <Link href="/contact" onClick={() => setIsOpen(false)}
+                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" onClick={() => setIsOpen(false)}
                   className={`block text-center px-4 py-3.5 rounded-lg text-sm font-semibold transition-colors min-h-[44px] flex items-center justify-center ${contactFilledClass}`}>
-                  {h.contact}
-                </Link>
+                  {lang === "ja" ? "代表と面談" : "Meet founder"}
+                </a>
                 <Link href="/download" onClick={() => setIsOpen(false)}
                   className="block text-center px-4 py-3.5 rounded-lg text-sm font-semibold border border-neutral-300 text-neutral-900 hover:border-neutral-900 hover:bg-neutral-50 transition-colors min-h-[44px] flex items-center justify-center">
                   {h.navDownload}
