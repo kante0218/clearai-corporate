@@ -5,6 +5,7 @@ import { caseStudies } from "@/lib/cases";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticPages: MetadataRoute.Sitemap = [
+    { url: "https://clearai.jp/products", lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
     { url: "https://clearai.jp", lastModified: new Date(), changeFrequency: "weekly", priority: 1 },
     { url: "https://clearai.jp/about", lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
     { url: "https://clearai.jp/careers", lastModified: new Date(), changeFrequency: "monthly", priority: 0.6 },

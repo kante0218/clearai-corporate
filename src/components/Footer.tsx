@@ -22,6 +22,7 @@ export default function Footer() {
   ];
 
   const company = [
+    { label: lang === "ja" ? "サービス・プロダクト" : "Products", href: "/products" },
     { label: f.company.about, href: "/about" },
     { label: f.company.careers, href: "/careers" },
     { label: f.company.service, href: "/service" },

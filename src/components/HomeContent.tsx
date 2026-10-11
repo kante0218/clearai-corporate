@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import ProductList from "@/components/ProductList";
 import Image from "next/image";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
@@ -650,6 +651,20 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
               { href: "/website-production", title: lang === "ja" ? "ホームページ制作" : "Website Production", desc: lang === "ja" ? "事業の強みを整理し、読む人に伝わる構成・デザイン・公開まで支援します。" : "We clarify your message and support site structure, design, development, and launch." },
             ].map((service) => <li key={service.href} className="border-t border-neutral-200 py-5"><Link href={service.href} className="font-semibold text-neutral-900 underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-4">{service.title}</Link>{service.desc && <p className="mt-3 text-sm text-neutral-600 leading-relaxed">{service.desc}</p>}</li>)}
           </ul>
+        </div>
+      </section>
+
+      <section className="bg-neutral-50 py-10 md:py-16" aria-labelledby="home-products-title">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
+          <div className="mb-7 flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p className="mb-2 text-sm font-semibold text-neutral-600">Products</p>
+              <h2 id="home-products-title" className="text-3xl font-bold text-neutral-900">サービス・プロダクト</h2>
+              <p className="mt-3 text-sm leading-relaxed text-neutral-600">仕事の記録、英語学習、日々の暮らし。公開中と準備中のサービスをご紹介します。</p>
+            </div>
+            <Link href="/products" className="text-sm font-semibold text-neutral-900 underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4">サービス一覧を見る →</Link>
+          </div>
+          <ProductList />
         </div>
       </section>
 
