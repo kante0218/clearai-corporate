@@ -1416,5 +1416,78 @@
     ],
     "discoveries": [],
     "note": "10/12 GSCブラウザ。所有アカウントpupila2007cante00@gmail.com・https://clearai.jp/確認済み。登録語はクエリ・ページ完全一致、Web、全地域・全デバイス。UI丸め値・確定状態不明、Last update 4 hours ago。研修No dataでrank null・表示0・クリック0、未インデックスとは断定しない。メール返信7.7位52表示0クリック（前回7.7位58表示0クリック）。28日移動窓の画面比較で大きな順位変動なし、改善効果は判定しない。両語observing、メール10/13・研修10/15で期限前、レビュー・再改善なし。サイト全体先頭10/69件のみ確認、非網羅。ページ未指定表でunitree レンタル4.4位27表示2クリック、unitree g1 レンタル4.8位14表示1クリック、ヒューマノイドロボット レンタル13.5位2表示1クリック。既存レンタル調査で明確な不足未特定。指名語の具体的不足未特定、メール類似語は観察ページのため除外。新規改善選定・ページ変更なし。"
+  },
+  {
+    "source": "gsc",
+    "collectionMethod": "browser-ui",
+    "capturedAt": "2026-10-13T00:02:35.957854+00:00",
+    "range": {
+      "startDate": "2026-09-13",
+      "endDate": "2026-10-10",
+      "days": 28
+    },
+    "scope": {
+      "siteUrl": "https://clearai.jp/",
+      "device": "all",
+      "country": "all",
+      "type": "web",
+      "dataState": "ui-not-confirmed",
+      "timeZone": "America/Los_Angeles",
+      "aggregationType": "ui-not-confirmed",
+      "dimensions": "ui-query-table",
+      "queryFilter": "equals",
+      "pageFilter": "equals"
+    },
+    "ranks": [
+      {
+        "keyword": "AI内製化研修",
+        "targetPath": "/training",
+        "rank": null,
+        "impressions": 0,
+        "clicks": 0
+      },
+      {
+        "keyword": "メール返信 ai",
+        "targetPath": "/blog/ai-email-reply-three-decisions",
+        "rank": 7.7,
+        "impressions": 49,
+        "clicks": 0
+      }
+    ],
+    "discoveries": [],
+    "note": "10/13 GSCブラウザ。所有アカウント・プロパティ確認済み、クエリ・ページ完全一致、Web、全地域・全デバイス。UI丸め値・確定状態不明、Last update 8 hours ago。研修No dataでrank null・0表示0クリック。メール7.7位49表示0クリック、前回7.7位52表示から大きな順位変動なし。メール7日レビューは別snapshotに記録、欠測のため10/20へ延期。研修10/15まで観察。サイト全体先頭10/69件のみ確認、非網羅。ページ未指定clear aiは2.7位20表示5クリック（前回4.2位）、指名語の具体的不足未特定。unitree レンタル4.4位26表示2クリック、G1レンタル4.8位14表示1クリック、ヒューマノイド13.5位2表示1クリック。既存レンタル調査で明確な不足未特定。観察ページの類似語は除外。新規改善選定・ページ変更なし。"
+  },
+  {
+    "source": "gsc",
+    "collectionMethod": "browser-ui",
+    "capturedAt": "2026-10-13T00:02:35.957854+00:00",
+    "range": {
+      "startDate": "2026-10-04",
+      "endDate": "2026-10-10",
+      "days": 7
+    },
+    "scope": {
+      "siteUrl": "https://clearai.jp/",
+      "device": "all",
+      "country": "all",
+      "type": "web",
+      "dataState": "ui-not-confirmed",
+      "timeZone": "America/Los_Angeles",
+      "aggregationType": "ui-not-confirmed",
+      "dimensions": "ui-query-table",
+      "queryFilter": "equals",
+      "pageFilter": "equals"
+    },
+    "ranks": [
+      {
+        "keyword": "メール返信 ai",
+        "targetPath": "/blog/ai-email-reply-three-decisions",
+        "rank": null,
+        "impressions": 0,
+        "clicks": 0
+      }
+    ],
+    "discoveries": [],
+    "note": "公開後168時間・完全な公開後7日窓は充足。10/4〜10/10のGSC画面はNo dataで順位欠測、表示0・クリック0。改善前7日9/10〜9/16は7.5位51表示0クリック。今回も順位比較不能かつ確定状態未確認のため、効果なし・悪化・未インデックスとは判定しない。observingを維持し10/20に再レビュー、日次監視継続。 collectionMethod browser-ui、対象クエリ・ページ完全一致、Web・全地域・全デバイス、Last update 8 hours ago。"
   }
 ]
