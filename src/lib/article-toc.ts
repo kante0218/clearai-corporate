@@ -1,3 +1,5 @@
+import { parse } from "node-html-parser";
+
 export type TocHeading = { id: string; text: string; level: 2 | 3 };
 
 /** Preserve existing column anchors; repeated headings receive stable suffixes. */
@@ -19,18 +21,8 @@ export function headingIds(reserved: Iterable<string> = []) {
   };
 }
 
-type HtmlElement = {
-  range: [number, number];
-  tagName: string;
-  text: string;
-  getAttribute(name: string): string | undefined;
-  querySelectorAll(selector: string): HtmlElement[];
-};
-
 /** Only heading opening tags change; CMS markup, images and inline content stay intact. */
 export function articleHtmlToc(html: string): { html: string; headings: TocHeading[] } {
-  // Next.js already ships this HTML parser; no browser DOM or client hydration required.
-  const { parse } = require("next/dist/compiled/node-html-parser") as { parse(html: string): HtmlElement };
   const root = parse(html);
   const elements = root.querySelectorAll("h2, h3");
   const identified = root.querySelectorAll("[id]");
