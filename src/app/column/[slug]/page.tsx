@@ -3,7 +3,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Prose from "@/components/column/Prose";
 import { articles, getArticle, relatedArticles } from "@/lib/column";
-import { headingId, tocOf } from "@/lib/column/types";
+import ArticleToc from "@/components/ArticleToc";
+import { tocOf } from "@/lib/column/types";
 import { BOOKING_URL } from "@/lib/booking";
 
 export function generateStaticParams() {
@@ -163,34 +164,14 @@ export default async function ColumnArticlePage({
               </ul>
             </section>
 
-            {/* Table of contents */}
-            {toc.length > 1 && (
-              <nav aria-label="目次" className="mb-14 bg-neutral-50 p-6 md:p-8">
-                <p className="mb-4 text-sm font-bold text-neutral-900">目次</p>
-                <ol className="space-y-2.5">
-                  {toc.map((h, i) => (
-                    <li key={h.id} className="flex gap-3 text-sm leading-relaxed">
-                      <span className="shrink-0 tabular-nums text-neutral-400">
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
-                      <a
-                        href={`#${h.id}`}
-                        className="text-neutral-700 underline-offset-4 hover:text-neutral-900 hover:underline transition-colors"
-                      >
-                        {h.text}
-                      </a>
-                    </li>
-                  ))}
-                </ol>
-              </nav>
-            )}
+            <ArticleToc headings={toc} />
 
             <Prose blocks={article.body} />
 
             {/* FAQ */}
             {article.faq.length > 0 && (
               <section className="mt-20 border-t border-neutral-200 pt-14">
-                <h2 id={headingId("よくあるご質問")} className="scroll-mt-28 mb-8 text-2xl lg:text-3xl font-bold text-gray-900">
+                <h2 id={toc.at(-1)?.id} className="scroll-mt-28 mb-8 text-2xl lg:text-3xl font-bold text-gray-900">
                   よくあるご質問
                 </h2>
                 <dl className="divide-y divide-neutral-200 border-y border-neutral-200">

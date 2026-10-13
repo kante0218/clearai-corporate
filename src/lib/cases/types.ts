@@ -8,7 +8,7 @@
  */
 
 import type { Block, FaqItem, CtaService } from "@/lib/column/types";
-import { headingId } from "@/lib/column/types";
+import { bodyHeadings, headingId } from "@/lib/column/types";
 
 export type { Block, FaqItem, CtaService };
 export { headingId };
@@ -69,7 +69,5 @@ export type CaseStudy = {
 
 /** Headings that become the table of contents and the anchor ids. */
 export function tocOf(study: CaseStudy): { id: string; text: string }[] {
-  return study.body
-    .filter((b): b is { t: "h2"; text: string } => b.t === "h2")
-    .map((b) => ({ id: headingId(b.text), text: b.text }));
+  return bodyHeadings(study.body).filter((heading) => heading.level === 2);
 }

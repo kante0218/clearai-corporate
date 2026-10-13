@@ -598,18 +598,24 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
         </div>
       </section>
 
-      <nav aria-label={lang === "ja" ? "まず知りたいこと" : "Explore ClearAI"} className="border-b border-neutral-200 bg-white py-6">
-        <div className="mx-auto max-w-[1800px] px-6 lg:px-8">
-          <p className="mb-3 text-sm font-semibold text-neutral-600">{lang === "ja" ? "まず知りたいこと" : "What would you like to know?"}</p>
-          <div className="flex flex-wrap gap-x-8 gap-y-3 text-sm font-bold text-neutral-900">
-            <a href="#support" className="underline underline-offset-4">{lang === "ja" ? "どんな課題を相談できる？" : "How can we help?"}</a>
-            <a href="#cases" className="underline underline-offset-4">{lang === "ja" ? "どんな支援をしてきた？" : "See our work"}</a>
-            <a href="#meeting" className="underline underline-offset-4">{lang === "ja" ? "代表と話してみたい" : "Meet our founder"}</a>
-          </div>
+      <nav aria-label={lang === "ja" ? "ホームページの目次" : "On this page"} className="border-b border-neutral-200 bg-white">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8 py-5">
+          <p className="mb-3 text-sm font-semibold text-neutral-900">{lang === "ja" ? "知りたい内容から読む" : "Explore this page"}</p>
+          <ul className="flex flex-wrap gap-x-6 gap-y-1">
+            {[
+              ["support", lang === "ja" ? "事業内容" : "Services"],
+              ["home-products", lang === "ja" ? "サービス・プロダクト" : "Products"],
+              ["cases", lang === "ja" ? "導入実績" : "Case studies"],
+              ["home-process", lang === "ja" ? "ご依頼の流れ" : "Process"],
+              ["meeting", lang === "ja" ? "代表と話してみたい" : "Meet our founder"],
+              ["home-faq", lang === "ja" ? "よくあるご質問" : "FAQ"],
+              ["home-news", lang === "ja" ? "お知らせ" : "News"],
+            ].map(([id, label]) => <li key={id}><a href={`#${id}`} className="inline-block py-2 text-sm text-neutral-600 underline underline-offset-4 hover:text-neutral-900 focus-visible:outline-2 focus-visible:outline-offset-4">{label}</a></li>)}
+          </ul>
         </div>
       </nav>
 
-      <section id="support" className="scroll-mt-24 bg-white py-10 md:py-16" aria-labelledby="home-services-title">
+      <section id="support" className="scroll-mt-28 bg-white py-10 md:py-16" aria-labelledby="home-services-title">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <h2 data-motion="heading" id="home-services-title" className="text-3xl font-bold text-neutral-900 mb-7">{lang === "ja" ? "事業内容" : "Our services"}</h2>
           <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-10">
@@ -624,7 +630,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
         </div>
       </section>
 
-      <section className="bg-neutral-50 py-10 md:py-16" aria-labelledby="home-products-title">
+      <section id="home-products" className="scroll-mt-28 bg-neutral-50 py-10 md:py-16" aria-labelledby="home-products-title">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <div className="mb-7 flex flex-wrap items-end justify-between gap-4">
             <div>
@@ -639,7 +645,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       </section>
 
       {/* ═══ CASE STUDIES ═══ */}
-      <section id="cases" className="scroll-mt-24 py-8 md:py-20 lg:py-28 bg-gray-50">
+      <section id="cases" className="scroll-mt-28 py-8 md:py-20 lg:py-28 bg-gray-50">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <div className="flex items-end justify-between mb-6 md:mb-12 gap-6">
@@ -697,7 +703,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       </section>
 
       {/* ═══ PROCESS ═══ */}
-      <section className="py-8 md:py-20 lg:py-28 bg-gray-50">
+      <section id="home-process" className="scroll-mt-28 py-8 md:py-20 lg:py-28 bg-gray-50">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <SectionLabel>{t.processLabel}</SectionLabel>
@@ -721,7 +727,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       </section>
 
       {/* ═══ CTA ═══ */}
-      <section id="meeting" className="scroll-mt-24 py-8 md:py-20 lg:py-28 bg-white border-t border-gray-100">
+      <section id="meeting" className="scroll-mt-28 py-8 md:py-20 lg:py-28 bg-white border-t border-gray-100">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <div className="text-center mb-8 md:mb-12">
@@ -767,7 +773,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       </section>
 
       {/* ═══ FAQ TEASER ═══ */}
-      <section className="py-8 md:py-20 lg:py-28 bg-white">
+      <section id="home-faq" className="scroll-mt-28 py-8 md:py-20 lg:py-28 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <SectionLabel>{t.faqLabel}</SectionLabel>
@@ -844,7 +850,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       </section>
 
       {/* ═══ NEWS / BLOG ═══ */}
-      <section className="pt-4 pb-8 md:pt-10 md:pb-20 lg:pt-12 lg:pb-28 bg-gray-50">
+      <section id="home-news" className="scroll-mt-28 pt-4 pb-8 md:pt-10 md:pb-20 lg:pt-12 lg:pb-28 bg-gray-50">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <div className="flex items-end justify-between mb-6 md:mb-12">
             <div>

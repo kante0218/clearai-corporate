@@ -56,18 +56,19 @@ export type Article = {
   sources?: { label: string; url: string }[];
 };
 
-/** Headings that become the table of contents and the anchor ids. */
-export function tocOf(article: Article): { id: string; text: string }[] {
-  return article.body
-    .filter((b): b is { t: "h2"; text: string } => b.t === "h2")
-    .map((b) => ({ id: headingId(b.text), text: b.text }));
+import { headingIds, type TocHeading } from "@/lib/article-toc";
+export { headingId } from "@/lib/article-toc";
+
+export function bodyHeadings(blocks: Block[]): (TocHeading & { blockIndex: number })[] {
+  const allocate = headingIds();
+  return blocks.flatMap((block, blockIndex) => block.t === "h2" || block.t === "h3"
+    ? [{ id: allocate(block.text), text: block.text, level: block.t === "h2" ? 2 as const : 3 as const, blockIndex }]
+    : []);
 }
 
-/** Deterministic, ASCII-safe anchor id (Japanese headings would otherwise be percent-encoded). */
-export function headingId(text: string): string {
-  let hash = 0;
-  for (let i = 0; i < text.length; i++) {
-    hash = (hash * 31 + text.charCodeAt(i)) >>> 0;
-  }
-  return `s-${hash.toString(36)}`;
+export function tocOf(article: Article): TocHeading[] {
+  const headings = bodyHeadings(article.body);
+  if (!article.faq.length) return headings;
+  const allocate = headingIds(headings.map((heading) => heading.id));
+  return [...headings, { id: allocate("よくあるご質問"), text: "よくあるご質問", level: 2 }];
 }

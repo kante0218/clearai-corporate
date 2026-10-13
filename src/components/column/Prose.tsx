@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import type { Block } from "@/lib/column/types";
-import { headingId } from "@/lib/column/types";
+import { bodyHeadings } from "@/lib/column/types";
 
 /** Renders `[text](href)` and `**bold**` inside a plain string. */
 function inline(text: string, keyPrefix: string): ReactNode[] {
@@ -43,6 +43,7 @@ function inline(text: string, keyPrefix: string): ReactNode[] {
 }
 
 export default function Prose({ blocks }: { blocks: Block[] }) {
+  const headings = new Map(bodyHeadings(blocks).map((heading) => [heading.blockIndex, heading.id]));
   return (
     <div className="max-w-none">
       {blocks.map((block, idx) => {
@@ -52,7 +53,7 @@ export default function Prose({ blocks }: { blocks: Block[] }) {
             return (
               <h2
                 key={k}
-                id={headingId(block.text)}
+                id={headings.get(idx)}
                 className="scroll-mt-28 text-2xl lg:text-3xl font-bold text-gray-900 leading-snug mt-16 mb-5 pt-8 border-t border-neutral-200 first:mt-0 first:pt-0 first:border-0"
               >
                 {block.text}
@@ -60,7 +61,7 @@ export default function Prose({ blocks }: { blocks: Block[] }) {
             );
           case "h3":
             return (
-              <h3 key={k} className="text-lg lg:text-xl font-bold text-gray-900 leading-snug mt-10 mb-3">
+              <h3 key={k} id={headings.get(idx)} className="scroll-mt-28 text-lg lg:text-xl font-bold text-gray-900 leading-snug mt-10 mb-3">
                 {block.text}
               </h3>
             );

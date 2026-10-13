@@ -1,4 +1,6 @@
 import Link from "next/link";
+import ArticleToc from "@/components/ArticleToc";
+import { articleHtmlToc } from "@/lib/article-toc";
 import Image from "next/image";
 import Script from "next/script";
 import type { Metadata } from "next";
@@ -71,6 +73,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     notFound();
   }
 
+  const content = articleHtmlToc(post.content ?? "");
   const plainText = (post.content ?? "").replace(/<[^>]*>/g, "").replace(/\s+/g, " ").trim();
   const wordCount = plainText.length;
 
@@ -156,9 +159,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       </div>
 
       <div className="max-w-[1800px] mx-auto px-6 lg:px-8 py-12">
+        <ArticleToc headings={content.headings} />
         <article
-          className="prose prose-lg lg:prose-xl prose-gray max-w-none"
-          dangerouslySetInnerHTML={{ __html: post.content }}
+          className="[&_h2]:scroll-mt-28 [&_h3]:scroll-mt-28 prose prose-lg lg:prose-xl prose-gray max-w-none"
+          dangerouslySetInnerHTML={{ __html: content.html }}
         />
       </div>
 
