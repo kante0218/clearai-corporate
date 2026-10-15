@@ -3,6 +3,8 @@ import { getBlogs } from "@/lib/microcms";
 import { articles as columnArticles } from "@/lib/column";
 import { caseStudies } from "@/lib/cases";
 
+export const revalidate = 60;
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticPages: MetadataRoute.Sitemap = [
     { url: "https://clearai.jp/products", lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
