@@ -21,6 +21,27 @@
         "productionUrl": "https://clearai.jp/training",
         "deploymentUrl": "https://clearai-corporate-j37auxubm-pupila2007cante00-8148s-projects.vercel.app",
         "contentCommit": "a528a71"
+      },
+      {
+        "date": "2026-10-15T04:35:17.588Z",
+        "rankAtAction": null,
+        "baseline7": null,
+        "baselineUnavailableReason": "既存GSC ADCはinvalid_grant、Chromeは本人操作待ち。変更直前の同条件7日baselineは未取得。",
+        "needs": "研修の内容に応じてWebアプリ内製化ブートキャンプや助成金要件を確認したい。",
+        "gap": "研修本文から関連する既存詳細ページへ直接進む導線が不足。",
+        "sources": [
+          "https://clearai.jp/training",
+          "https://clearai.jp/claude-bootcamp",
+          "https://clearai.jp/column/seisei-ai-kenshu-joseikin"
+        ],
+        "done": "/training料金セクションの説明後へ関連本文リンク2本を追加し、既存51リンクとCTAを保持。",
+        "deployedAt": "2026-10-15T04:35:17.588Z",
+        "explicitUserAuthorization": "2026-10-15 13:29 JST、本人が観察中の対象ページへの本文リンク変更を明示承認。",
+        "previousObservation": {
+          "deployedAt": "2026-09-11T02:50:17.654439+09:00",
+          "nextReviewDate": "2026-10-22"
+        },
+        "measurementNote": "観察中に本人承認の追加施策が入ったため以前の施策単独の効果と扱わない。公開後168時間と完全な7日final窓を再確認し、欠測なら延期する。"
       }
     ],
     "reviews": [
@@ -164,8 +185,8 @@
         "nextReviewDate": "2026-10-22"
       }
     ],
-    "deployedAt": "2026-09-11T02:50:17.654439+09:00",
-    "nextReviewDate": "2026-10-22"
+    "deployedAt": "2026-10-15T04:35:17.588Z",
+    "nextReviewDate": "2026-10-26"
   },
   {
     "keyword": "メール返信 ai",
