@@ -1529,5 +1529,78 @@
     ],
     "discoveries": [],
     "note": "10/14 GSCブラウザ。所有アカウント・プロパティ確認済み、登録語はクエリ・ページ完全一致、Web・全地域・全デバイス。期間は研修チャート・メール日付ダイアログで確認。UI丸め値、確定状態不明、Last update 9.5 hours ago。研修No dataでrank null・0表示0クリック、未インデックスとは断定しない。メール7.7位44表示0クリック（前回7.7位49表示）、大きな順位変動なし。両語observing、研修10/15・メール10/20は期限前、レビュー・再改善なし。サイト全体先頭10/69件のみ確認、非網羅。ページ未指定clear ai2.9位18表示3クリック、unitree レンタル4.4位26表示2クリック、G1レンタル4.8位14表示1クリック、ヒューマノイド13.5位2表示1クリック。既存レンタル調査から新たな明確な不足は未特定。指名語の具体的不足未特定、メール類似語は観察ページのため除外。新規改善選定・ページ変更なし。"
+  },
+  {
+    "source": "gsc",
+    "collectionMethod": "browser-ui",
+    "capturedAt": "2026-10-15T00:03:18.606292+00:00",
+    "range": {
+      "startDate": "2026-09-15",
+      "endDate": "2026-10-12",
+      "days": 28
+    },
+    "scope": {
+      "siteUrl": "https://clearai.jp/",
+      "device": "all",
+      "country": "all",
+      "type": "web",
+      "dataState": "ui-not-confirmed",
+      "timeZone": "America/Los_Angeles",
+      "aggregationType": "ui-not-confirmed",
+      "dimensions": "ui-query-table",
+      "queryFilter": "equals",
+      "pageFilter": "equals"
+    },
+    "ranks": [
+      {
+        "keyword": "AI内製化研修",
+        "targetPath": "/training",
+        "rank": null,
+        "impressions": 0,
+        "clicks": 0
+      },
+      {
+        "keyword": "メール返信 ai",
+        "targetPath": "/blog/ai-email-reply-three-decisions",
+        "rank": 8.1,
+        "impressions": 35,
+        "clicks": 0
+      }
+    ],
+    "discoveries": [],
+    "note": "10/15 GSCブラウザ。所有アカウント・プロパティ確認済み。登録語クエリ・ページ完全一致、Web・全地域・全デバイス。UI丸め値・確定状態不明、Last update 9 hours ago。研修No dataでrank null・0表示0クリック。メール8.1位35表示0クリック、前回7.7位44表示から0.4位低下だが28日移動窓のため改善効果は判断しない。研修7日レビューは欠測で10/22へ延期、メール10/20まで観察。サイト全体先頭10/67件のみ確認、非網羅。ページ未指定clear ai2.9位18表示3クリック、unitree レンタル4.4位28表示2クリック、G1レンタル4.8位14表示1クリック、ヒューマノイド13.5位2表示1クリック。既存レンタル調査で明確な不足未特定。新たに先頭10件に現れたaiに絶対にしてはいけない質問は10.6位14表示0クリック、対象ページ・具体的不足未確認のため改善対象として未選定。指名語の具体的不足未特定、観察ページのメール類似語は除外。新規改善・ページ変更なし。"
+  },
+  {
+    "source": "gsc",
+    "collectionMethod": "browser-ui",
+    "capturedAt": "2026-10-15T00:03:18.606292+00:00",
+    "range": {
+      "startDate": "2026-10-06",
+      "endDate": "2026-10-12",
+      "days": 7
+    },
+    "scope": {
+      "siteUrl": "https://clearai.jp/",
+      "device": "all",
+      "country": "all",
+      "type": "web",
+      "dataState": "ui-not-confirmed",
+      "timeZone": "America/Los_Angeles",
+      "aggregationType": "ui-not-confirmed",
+      "dimensions": "ui-query-table",
+      "queryFilter": "equals",
+      "pageFilter": "equals"
+    },
+    "ranks": [
+      {
+        "keyword": "AI内製化研修",
+        "targetPath": "/training",
+        "rank": null,
+        "impressions": 0,
+        "clicks": 0
+      }
+    ],
+    "discoveries": [],
+    "note": "公開後168時間・完全な公開後7日窓は充足。10/6〜10/12のGSC画面はNo dataで順位欠測、表示0・クリック0。確定状態未確認、改善前baseline7も欠測のため効果判定不能。効果なし・悪化・未インデックス・1位達成とは扱わない。observingを維持し10/22に再レビュー、日次監視継続。 GSCブラウザ、対象クエリ・ページ完全一致、Web・全地域・全デバイス、Last update 9 hours ago。"
   }
 ]
