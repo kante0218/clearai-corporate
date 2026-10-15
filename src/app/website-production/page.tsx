@@ -4,7 +4,7 @@ import PageHeader from "@/components/PageHeader";
 
 const description = "ClearAIのホームページ制作。事業の強みと伝えたい内容を整理し、構成・デザイン・実装・公開まで支援します。新規制作・リニューアルの範囲、費用、スケジュールはご相談のうえ決定します。";
 export const metadata: Metadata = {
-  title: "ホームページ制作 | ClearAI株式会社",
+  title: "ホームページ制作",
   description,
   alternates: { canonical: "https://clearai.jp/website-production" },
   openGraph: { title: "ホームページ制作 | ClearAI株式会社", description, url: "https://clearai.jp/website-production", type: "website", locale: "ja_JP" },

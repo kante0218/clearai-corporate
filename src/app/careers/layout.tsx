@@ -4,7 +4,7 @@ const description =
   "ClearAI株式会社の採用情報。ハードウェアエンジニア、共同創業者、営業、バックオフィスを募集しています。AIとロボティクスで日本の現場を変えるチームに参加してください。茨城・東京・リモート併用可。";
 
 export const metadata: Metadata = {
-  title: "採用情報 | ClearAI株式会社",
+  title: "採用情報",
   description,
   alternates: { canonical: "https://clearai.jp/careers" },
   openGraph: {

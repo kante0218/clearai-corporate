@@ -547,6 +547,10 @@ export default function TrainingPage() {
             <Label>{t.pricingLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.pricingTitle}</h2>
             <p className="text-base text-gray-500 leading-relaxed w-full mb-8">{t.pricingDesc}</p>
+              <div className="mb-6 flex flex-col items-center gap-3 text-sm">
+                <a href="/column/seisei-ai-kenshu-joseikin" className="underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4">{lang === "ja" ? "助成金の要件と申請の流れを確認する" : "Read about subsidy requirements and the application process"}</a>
+                <a href="/claude-bootcamp" className="underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4">{lang === "ja" ? "Webアプリ内製化ブートキャンプを見る" : "Explore the web app development bootcamp"}</a>
+              </div>
           </Reveal>
           <PricingCarousel>
             {t.plans.map((plan, i) => (
