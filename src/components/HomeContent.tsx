@@ -598,22 +598,12 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
         </div>
       </section>
 
-      <nav aria-label={lang === "ja" ? "ホームページの目次" : "On this page"} className="border-b border-neutral-200 bg-white">
-        <div className="max-w-[1800px] mx-auto px-6 lg:px-8 py-5">
-          <p className="mb-3 text-sm font-semibold text-neutral-900">{lang === "ja" ? "知りたい内容から読む" : "Explore this page"}</p>
-          <ul className="flex flex-wrap gap-x-6 gap-y-1">
-            {[
-              ["support", lang === "ja" ? "事業内容" : "Services"],
-              ["home-products", lang === "ja" ? "サービス・プロダクト" : "Products"],
-              ["cases", lang === "ja" ? "導入実績" : "Case studies"],
-              ["home-process", lang === "ja" ? "ご依頼の流れ" : "Process"],
-              ["meeting", lang === "ja" ? "代表と話してみたい" : "Meet our founder"],
-              ["home-faq", lang === "ja" ? "よくあるご質問" : "FAQ"],
-              ["home-news", lang === "ja" ? "お知らせ" : "News"],
-            ].map(([id, label]) => <li key={id}><a href={`#${id}`} className="inline-block py-2 text-sm text-neutral-600 underline underline-offset-4 hover:text-neutral-900 focus-visible:outline-2 focus-visible:outline-offset-4">{label}</a></li>)}
-          </ul>
+      {/* ═══ CLIENT LOGOS ═══ */}
+      <section className="pb-10 pt-2 md:pb-16 md:pt-4 bg-white border-b border-gray-100">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
+          <ClientLogoMarquee label={t.clientLogosLabel} />
         </div>
-      </nav>
+      </section>
 
       <section id="support" className="scroll-mt-28 bg-white py-10 md:py-16" aria-labelledby="home-services-title">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
@@ -868,12 +858,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
         </div>
       </section>
 
-      {/* ═══ CLIENT LOGOS ═══ */}
-      <section className="pb-10 pt-2 md:pb-16 md:pt-4 bg-white border-b border-gray-100">
-        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <ClientLogoMarquee label={t.clientLogosLabel} />
-        </div>
-      </section>
+
 
       <div className="h-20 md:hidden" aria-hidden="true" />
       <nav data-mobile-cta aria-label={lang === "ja" ? "お問い合わせ" : "Contact actions"} className="fixed inset-x-0 bottom-0 z-50 border-t border-gray-200 bg-white/95 px-3 pt-2 pb-[calc(0.5rem+env(safe-area-inset-bottom))] shadow-[0_-8px_24px_rgba(15,23,42,0.10)] backdrop-blur md:hidden">
