@@ -129,6 +129,7 @@ const CONTACT_SERVICES: { key: ServiceKey; ja: string; en: string }[] = [
   { key: "consulting", ja: "FDEコンサルティング", en: "FDE Consulting" },
   { key: "education", ja: "AI内製化研修", en: "In-house AI Training" },
   { key: "website", ja: "ホームページ制作", en: "Website Production" },
+  { key: "sns", ja: "SNS運用代行", en: "SNS Management" },
 ];
 
 const EMPTY_FORM = {

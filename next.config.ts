@@ -31,7 +31,7 @@ const nextConfig: NextConfig = {
       { source: "/claude", destination: "/ai-consulting", permanent: false },
       { source: "/website", destination: "/website-production", permanent: false },
       { source: "/advertising", destination: "/ai-consulting", permanent: false },
-      { source: "/sns", destination: "/ai-consulting", permanent: false },
+      { source: "/sns", destination: "/sns-management", permanent: false },
       { source: "/research", destination: "/ai-consulting", permanent: false },
     ];
   },

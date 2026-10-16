@@ -23,6 +23,7 @@ export default function Header() {
 
   const navItems: NavItem[] = [
     { label: h.navWebsiteProduction, href: "/website-production" },
+    { label: h.navSns, href: "/sns-management" },
     { label: h.navSoftwareDev, href: "/software-development" },
     { label: h.navRobotRental, href: "/robot-rental" },
     { label: h.navFde, href: "/ai-consulting" },

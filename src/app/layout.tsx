@@ -184,6 +184,7 @@ const organizationSchema = {
   ],
   "makesOffer": [
     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "ホームページ制作", "url": "https://clearai.jp/website-production" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "SNS運用代行", "url": "https://clearai.jp/sns-management" } },
     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "システム・ソフトウェア開発（AI受託開発）", "url": "https://clearai.jp/software-development" } },
     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "FDEコンサルティング", "url": "https://clearai.jp/ai-consulting" } },
     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI内製化研修", "url": "https://clearai.jp/training" } },
@@ -215,6 +216,7 @@ const professionalServiceSchema = {
     "name": "ClearAI サービス一覧",
     "itemListElement": [
     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "ホームページ制作", "url": "https://clearai.jp/website-production" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "SNS運用代行", "url": "https://clearai.jp/sns-management" } },
       {
         "@type": "Offer",
         "itemOffered": {
