@@ -101,14 +101,14 @@ export default function Header() {
                         href={item.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={`text-sm font-semibold tracking-wide px-2 2xl:px-3 py-2 whitespace-nowrap transition-colors duration-200 inline-flex items-center gap-1 ${navColor}`}
+                        className={`text-sm font-semibold tracking-wide px-2 py-2 whitespace-nowrap transition-colors duration-200 inline-flex items-center gap-1 ${navColor}`}
                       >
                         {item.label}
                       </a>
                     ) : (
                       <Link
                         href={item.href}
-                        className={`text-sm font-semibold tracking-wide px-2 2xl:px-3 py-2 whitespace-nowrap transition-colors duration-200 inline-flex items-center gap-1 ${navColor}`}
+                        className={`text-sm font-semibold tracking-wide px-2 py-2 whitespace-nowrap transition-colors duration-200 inline-flex items-center gap-1 ${navColor}`}
                       >
                         {item.label}
                         {hasChildren && (
@@ -152,8 +152,8 @@ export default function Header() {
               })}
             </nav>
 
-            <div className="hidden min-[1700px]:flex items-center gap-3 2xl:gap-5">
-              <div className="flex items-center gap-3 2xl:gap-5">
+            <div className="hidden min-[1700px]:flex items-center gap-3">
+              <div className="flex items-center gap-3">
                 {utilityItems.map((u) => (
                   <Link
                     key={u.label}
