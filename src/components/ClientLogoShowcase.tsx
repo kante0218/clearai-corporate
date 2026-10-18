@@ -71,7 +71,7 @@ export default function ClientLogoShowcase({ label }: { label: string }) {
     const tick = (time: number) => {
       if (visible && !document.hidden && !viewport.matches(":focus-within")) {
         if (previousTime !== undefined && distance) {
-          position = (position + Math.min(time - previousTime, 100) * 0.048) % distance;
+          position = (position + Math.min(time - previousTime, 100) * 0.064) % distance;
           viewport.scrollLeft = position;
         }
         previousTime = time;
@@ -87,8 +87,8 @@ export default function ClientLogoShowcase({ label }: { label: string }) {
   }, [flowing, paused, hovered, focused]);
 
   return (
-    <div className="logo-flow mt-12 border-t border-gray-200 pt-10" data-flowing={flowing}>
-      <div className="mb-7 flex flex-wrap items-center justify-between gap-3">
+    <div className="logo-flow mt-16 border-t border-gray-200 pt-14 pb-6 md:pb-8" data-flowing={flowing}>
+      <div className="mb-9 flex flex-wrap items-center justify-between gap-3">
         <p className="text-[11px] font-semibold tracking-[0.22em] uppercase text-gray-400">{label}</p>
         {flowing && <button type="button" aria-pressed={paused} onClick={() => setPaused(!paused)} className="logo-flow-controls min-h-11 px-3 text-sm text-neutral-600 underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4">{lang === "ja" ? paused ? "ロゴの流れを再生" : "ロゴの流れを一時停止" : paused ? "Resume logo movement" : "Pause logo movement"}</button>}
       </div>
@@ -119,10 +119,10 @@ export default function ClientLogoShowcase({ label }: { label: string }) {
         .logo-flow-copy { display: none; }
         .logo-flow[data-flowing="true"] .logo-flow-viewport { overflow: hidden; scroll-behavior: auto; }
         .logo-flow[data-flowing="true"] .logo-flow-track { display: flex; width: max-content; }
-        .logo-flow[data-flowing="true"] .logo-flow-group { display: flex; flex-shrink: 0; width: max-content; gap: 40px; padding-right: 40px; }
+        .logo-flow[data-flowing="true"] .logo-flow-group { display: flex; flex-shrink: 0; width: max-content; gap: 56px; padding-right: 56px; }
         .logo-flow[data-flowing="true"] .logo-flow-group > li { width: 176px; flex-shrink: 0; }
         @media (min-width: 768px) {
-          .logo-flow[data-flowing="true"] .logo-flow-group { gap: 64px; padding-right: 64px; }
+          .logo-flow[data-flowing="true"] .logo-flow-group { gap: 88px; padding-right: 88px; }
           .logo-flow[data-flowing="true"] .logo-flow-group > li { width: 220px; }
         }
         @media (prefers-reduced-motion: reduce) {
