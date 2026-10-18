@@ -547,7 +547,6 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
                 </h1>
               </div>
             </div>
-            <p data-reading data-motion="reading" className="mt-5 max-w-xl text-base leading-relaxed text-neutral-700 md:mt-0 md:mb-5">{t.heroDesc}</p>
             <div className="mx-auto mb-2 mt-5 w-full max-w-[760px] rounded-md border border-[#d4dde5] bg-white px-5 py-6 text-left shadow-[0_16px_40px_-32px_rgba(18,49,75,0.34)] sm:px-7 md:mb-16 md:mt-0 md:block md:py-5 [@media(max-height:800px)_and_(min-width:768px)]:py-3">
             <p className="mb-4 text-base font-black text-neutral-900 md:text-lg [@media(max-height:800px)_and_(min-width:768px)]:mb-2 [@media(max-height:800px)_and_(min-width:768px)]:text-base">
               {lang === "ja" ? "代表との面談・会社資料" : "Consultation and company information"}
