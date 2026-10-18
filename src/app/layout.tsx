@@ -18,12 +18,12 @@ export const viewport: Viewport = {
 };
 
 const ogDescription =
-  "ClearAI株式会社（クリアエーアイ／読み方：クリアエーアイ）は、日本の中小企業向けにAIの受託開発・導入支援を行うAI企業です。AIを組み込んだ業務システムやAIエージェントの受託開発、現場に入り込むFDEコンサルティング、社内で作れる人材を育てるAI内製化研修の3つを軸に、要件定義から実装・運用・定着まで一気通貫で伴走します。2026年4月創業、茨城県拠点、全国対応。";
+  "ClearAI株式会社（クリアエーアイ／読み方：クリアエーアイ）は、日本の中小企業向けにAIの受託開発・導入支援を行うAI企業です。AIを組み込んだ業務システムやAIエージェントの受託開発、AI検索で企業情報が正しく理解・参照されるためのAIO支援、社内で作れる人材を育てるAI内製化研修をはじめ、ロボットレンタル・ホームページ制作・SNS運用代行まで、事業の課題に合わせて支援します。2026年4月創業、茨城県拠点、全国対応。";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://clearai.jp"),
   title: {
-    default: "ClearAI株式会社｜AI受託開発・FDEコンサルティング・AI内製化研修",
+    default: "ClearAI株式会社｜AI受託開発・AIO・AI内製化研修",
     template: "%s | ClearAI株式会社",
   },
   description: ogDescription,
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     "クリアエイアイ", "clearai", "clearai.jp", "クリアエーアイ株式会社",
     // 事業キーワード
     "AI受託開発", "AIエージェント開発", "業務システム開発", "システム開発会社",
-    "AIコンサルティング", "AI導入", "AI顧問", "AI導入支援", "AI活用",
+    "AIO", "AI検索最適化", "AI導入", "AI顧問", "AI導入支援", "AI活用",
     "生成AI", "LLM活用", "DX推進", "業務自動化", "AI研修", "AI内製化",
     "生成AI研修", "AI研修 助成金", "Claude", "Claude Code", "Claude導入",
     // 地域・業種
@@ -137,7 +137,7 @@ const organizationSchema = {
     "address": { "@type": "PostalAddress", "addressRegion": "茨城県", "addressCountry": "JP" },
   },
   "description":
-    "ClearAI株式会社（読み方：クリアエーアイ）は、日本の中小企業向けにAIの受託開発・導入支援を行うAI企業。AIを組み込んだ業務システムやAIエージェントの受託開発、FDEコンサルティング、AI内製化研修の3領域を提供する。",
+    "ClearAI株式会社（読み方：クリアエーアイ）は、日本の中小企業向けにAIの受託開発・導入支援を行うAI企業。AIを組み込んだ業務システムやAIエージェントの受託開発、AIO（AI検索最適化）、AI内製化研修をはじめ、ロボットレンタル・ホームページ制作・SNS運用代行を提供する。",
   "slogan": "AIで、すべてをクリアにする。",
   "founder": { "@type": "Person", "name": "髙橋 敢輝" },
   "address": {
@@ -168,7 +168,7 @@ const organizationSchema = {
     "AI受託開発",
     "AIエージェント開発",
     "業務システム開発",
-    "AIコンサルティング",
+    "AIO（AI検索最適化）",
     "AI導入支援",
     "AI顧問",
     "AI内製化研修",
@@ -186,7 +186,7 @@ const organizationSchema = {
     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "ホームページ制作", "url": "https://clearai.jp/website-production" } },
     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "SNS運用代行", "url": "https://clearai.jp/sns-management" } },
     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "システム・ソフトウェア開発（AI受託開発）", "url": "https://clearai.jp/software-development" } },
-    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "FDEコンサルティング", "url": "https://clearai.jp/ai-consulting" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AIO（AI検索最適化）", "url": "https://clearai.jp/aio" } },
     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI内製化研修", "url": "https://clearai.jp/training" } },
   ],
 };
@@ -201,7 +201,7 @@ const professionalServiceSchema = {
   "logo": "https://clearai.jp/images/logo.png",
   "image": "https://clearai.jp/images/logo.png",
   "description":
-    "AIを組み込んだ業務システム・AIエージェントの受託開発、現場に入り込むFDEコンサルティング、社内で作れる人材を育てるAI内製化研修を提供する日本のAI専門企業。",
+    "AIを組み込んだ業務システム・AIエージェントの受託開発、AI検索で企業情報が正しく理解・参照されるためのAIO支援、社内で作れる人材を育てるAI内製化研修を提供する日本のAI専門企業。",
   "address": {
     "@type": "PostalAddress",
     "addressRegion": "茨城県",
@@ -230,9 +230,9 @@ const professionalServiceSchema = {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "FDEコンサルティング",
-          "description": "Forward Deployed Engineer型で現場に入り込み、AI活用の戦略策定から実装・定着まで一気通貫で伴走するコンサルティング。",
-          "url": "https://clearai.jp/ai-consulting",
+          "name": "AIO（AI検索最適化）",
+          "description": "AI検索で企業情報が正しく理解・参照されるために、現状確認、コンテンツや技術面の改善、継続的な測定を支援します。引用・掲載・順位・売上を保証するものではありません。",
+          "url": "https://clearai.jp/aio",
         },
       },
       {
@@ -255,7 +255,7 @@ const siteNavigationSchema = {
   "itemListElement": [
     { "@type": "SiteNavigationElement", "position": 1, "name": "システム・ソフトウェア開発", "url": "https://clearai.jp/software-development" },
     { "@type": "SiteNavigationElement", "position": 2, "name": "ロボットレンタル", "url": "https://clearai.jp/robot-rental" },
-    { "@type": "SiteNavigationElement", "position": 3, "name": "FDEコンサルティング", "url": "https://clearai.jp/ai-consulting" },
+    { "@type": "SiteNavigationElement", "position": 3, "name": "AIO（AI検索最適化）", "url": "https://clearai.jp/aio" },
     { "@type": "SiteNavigationElement", "position": 4, "name": "AI内製化研修", "url": "https://clearai.jp/training" },
     { "@type": "SiteNavigationElement", "position": 5, "name": "ホームページ制作", "url": "https://clearai.jp/website-production" },
     { "@type": "SiteNavigationElement", "position": 6, "name": "導入実績", "url": "https://clearai.jp/case-studies" },

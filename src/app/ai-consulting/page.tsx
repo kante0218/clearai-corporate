@@ -105,7 +105,7 @@ const COPY: Record<"ja" | "en", Copy> = {
     pricingTitle: "料金プラン",
     plans: [
       { key: "spot", name: "スポットコンサル", price: "50万円", unit: "（税込）/ 回", desc: "現状分析とAI活用の方向性をご提案。", features: ["現状ヒアリング（2時間）", "AI活用レポート作成", "導入ロードマップ素案", "2週間のメールサポート"], featured: false, cta: "Stripeで購入" },
-      { key: "standard", name: "スタンダード", price: "150万円", unit: "（税込）/ 1か月", desc: "PoCから本番実装まで伴走する1か月の導入支援。", features: ["週次ヒアリング・進捗会議", "AI戦略策定・設計", "PoC開発・検証", "本番実装・テスト", "社内トレーニング"], featured: true, cta: "Stripeで購入" },
+      { key: "standard", name: "スタンダード", price: "150万円", unit: "（税込）/ 1か月", desc: "1か月の導入支援プランです。対象範囲と到達点は事前に合意し、本番化の時期は案件条件に応じて決めます。", features: ["週次ヒアリング・進捗会議", "AI戦略策定・設計", "PoC開発・検証", "本番実装・テスト", "社内トレーニング"], featured: true, cta: "Stripeで購入" },
       { key: "enterprise", name: "エンタープライズ", price: "要相談", unit: "", desc: "大規模導入・複数部署展開に対応。", features: ["専任コンサルタント配置", "複数部署への横展開", "カスタムAI開発", "24/7サポート", "KPI計測・改善サイクル"], featured: false, cta: "相談する" },
     ],
     techLabel: "Tech Stack",
@@ -166,7 +166,7 @@ const COPY: Record<"ja" | "en", Copy> = {
     faqTitle: "よくあるご質問",
     faq: [
       { q: "AIについての知識がなくても相談できますか？", a: "「AIの専門知識ゼロ」の企業様を最も得意としており、現状把握から一緒に取り組みますのでお気軽にご相談ください。" },
-      { q: "どのくらいの期間でAI導入ができますか？", a: "PoCフェーズで1〜3ヶ月、本番実装で3〜6ヶ月が目安で、業務範囲と複雑性により変動します。" },
+      { q: "どのくらいの期間でAI導入ができますか？", a: "導入に必要な期間は、対象業務、データの準備状況、既存システムとの連携、検証・承認の進め方によって変わります。スタンダードの1か月は支援期間を示し、PoCや本番実装で取り組む範囲と到達点は事前に合意します。ご相談後にスケジュールをご案内します。" },
       { q: "費用感を教えてください。", a: "サービス内容・規模に応じて異なるため、ヒアリングの上で最適なプランと費用感をご提案いたします。" },
       { q: "特定のAIベンダーに縛られますか？", a: "ベンダーニュートラルな立場でOpenAI・Anthropic・Google・オープンソース（Llama等）を横断的に比較・選定します。" },
       { q: "既存システムとの連携は可能ですか？", a: "ERP・CRM・SaaS等、お使いのシステムとのAPI連携やデータ統合を前提に設計します。" },
@@ -218,7 +218,7 @@ const COPY: Record<"ja" | "en", Copy> = {
     pricingTitle: "Pricing plans",
     plans: [
       { key: "spot", name: "Spot Consult", price: "JPY 500K", unit: "(tax incl.) / session", desc: "Current-state analysis and AI direction proposal.", features: ["Discovery session (2 hrs)", "AI utilization report", "Roadmap draft", "2-week email support"], featured: false, cta: "Purchase with Stripe" },
-      { key: "standard", name: "Standard", price: "JPY 1.5M", unit: "(tax incl.) / 1 month", desc: "One month of hands-on adoption support from PoC through implementation.", features: ["Weekly check-ins & progress reviews", "AI strategy & design", "PoC development & validation", "Production implementation & testing", "Internal training"], featured: true, cta: "Purchase with Stripe" },
+      { key: "standard", name: "Standard", price: "JPY 1.5M", unit: "(tax incl.) / 1 month", desc: "A one-month adoption support plan. We agree on scope and milestones in advance; production timing depends on the project requirements.", features: ["Weekly check-ins & progress reviews", "AI strategy & design", "PoC development & validation", "Production implementation & testing", "Internal training"], featured: true, cta: "Purchase with Stripe" },
       { key: "enterprise", name: "Enterprise", price: "Contact us", unit: "", desc: "Large-scale rollout and multi-department expansion.", features: ["Dedicated consultant", "Cross-department rollout", "Custom AI development", "24/7 support", "KPI tracking & improvement cycle"], featured: false, cta: "Contact us" },
     ],
     techLabel: "Tech Stack",
@@ -279,7 +279,7 @@ const COPY: Record<"ja" | "en", Copy> = {
     faqTitle: "Frequently asked questions",
     faq: [
       { q: "Can we consult without any AI knowledge?", a: "Our specialty is companies starting from zero AI expertise, and we work through the current-state assessment together — reach out at any stage." },
-      { q: "How long does an AI implementation take?", a: "The PoC phase typically runs 1–3 months and full production 3–6 months, varying by scope and complexity." },
+      { q: "How long does an AI implementation take?", a: "Timing depends on the workflow, data readiness, system integrations, validation, and approvals. The Standard plan covers one month of support, with the scope and milestones for PoC or production implementation agreed in advance. We discuss a project schedule after reviewing your needs." },
       { q: "What does it cost?", a: "Costs vary by scope and scale; we'll listen to your situation first and propose the right plan with a realistic estimate." },
       { q: "Are we tied to a specific AI vendor?", a: "We maintain a vendor-neutral position and compare across OpenAI, Anthropic, Google, and open-source options (Llama, etc.)." },
       { q: "Can you integrate with our existing systems?", a: "We design with API integration and data connectivity to your existing ERP, CRM, SaaS, and other tools from the start." },

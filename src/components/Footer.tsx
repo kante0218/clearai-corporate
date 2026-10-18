@@ -18,7 +18,7 @@ export default function Footer() {
     { label: f.services.sns, href: "/sns-management" },
     { label: f.services.softwareDev, href: "/software-development" },
     { label: f.services.robotRental, href: "/robot-rental" },
-    { label: f.services.aiConsulting, href: "/ai-consulting" },
+    { label: f.services.aiConsulting, href: "/aio" },
     { label: f.services.training, href: "/training" },
   ];
 

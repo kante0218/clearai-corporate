@@ -3,7 +3,7 @@ import { ImageResponse } from "next/og";
 export const runtime = "edge";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-export const alt = "ClearAI株式会社（クリアエーアイ）| AI受託開発・FDEコンサルティング・AI内製化研修";
+export const alt = "ClearAI株式会社（クリアエーアイ）| AI受託開発・AIO・AI内製化研修";
 
 export default async function TwitterImage() {
   return new ImageResponse(
@@ -72,7 +72,7 @@ export default async function TwitterImage() {
               maxWidth: 900,
             }}
           >
-            AI受託開発・FDEコンサルティング・AI内製化研修
+            AI受託開発・AIO・AI内製化研修
           </div>
         </div>
 
@@ -86,10 +86,10 @@ export default async function TwitterImage() {
           }}
         >
           <div style={{ display: "flex", gap: 28 }}>
-            <span>AIコンサル</span>
-            <span>AI顧問</span>
+            <span>AIO</span>
+            <span>AI開発</span>
             <span>AI研修</span>
-            <span>Claude特化</span>
+            <span>Web制作</span>
             <span>補助金</span>
           </div>
           <div style={{ fontWeight: 700, color: "#e2e8f0" }}>clearai.jp</div>

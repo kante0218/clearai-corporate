@@ -146,7 +146,7 @@ export const study: CaseStudy = {
     },
     {
       t: "p",
-      text: "SNS運用に限らず、社内の事務作業のどこをAIエージェントに任せられるかという整理からのご相談も承っています。進め方は[システム・ソフトウェア開発](/software-development)、判断の伴走が必要な場合は[FDEコンサルティング](/ai-consulting)をご覧ください。",
+      text: "SNS運用に限らず、社内の事務作業のどこをAIエージェントに任せられるかという整理からのご相談も承っています。進め方は[システム・ソフトウェア開発](/software-development)、判断の伴走が必要な場合は[AI導入コンサルティング](/ai-consulting)をご覧ください。",
     },
   ],
   faq: [

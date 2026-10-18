@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import PageHeader from "@/components/PageHeader";
 
 const description = "ClearAIのホームページ制作。事業の強みと伝えたい内容を整理し、構成・デザイン・実装・公開まで支援します。新規制作・リニューアルの範囲、費用、スケジュールはご相談のうえ決定します。";
 export const metadata: Metadata = {
-  title: "ホームページ制作",
+  title: "ホームページ制作・リニューアル",
   description,
   alternates: { canonical: "https://clearai.jp/website-production" },
   openGraph: { title: "ホームページ制作 | ClearAI株式会社", description, url: "https://clearai.jp/website-production", type: "website", locale: "ja_JP" },
@@ -30,33 +29,52 @@ const faqs = [
 export default function WebsiteProductionPage() {
   return (
     <div className="bg-white">
-      <PageHeader kicker="ホームページ制作" title="事業の価値が、読む人に伝わるホームページへ。" description="見た目を整えるだけでなく、何をどの順番で伝えるかから考えます。新規制作も、既存サイトの見直しも。構成・デザイン・実装・公開まで、目的に合わせて一緒に進めます。" crumbs={[{ label: "ホーム", href: "/" }, { label: "事業内容", href: "/service" }, { label: "ホームページ制作" }]} />
-      <div className="mx-auto max-w-6xl px-5 sm:px-6 lg:px-8 py-10 sm:py-16">
+      <header className="border-b border-gray-100 bg-white pt-24 pb-10 lg:pt-28 lg:pb-14">
+        <div className="mx-auto max-w-[1800px] px-6 lg:px-8">
+          <nav aria-label="パンくずリスト" className="mb-7 text-sm text-neutral-500"><Link href="/" className="underline underline-offset-4">ホーム</Link><span aria-hidden="true" className="mx-3">/</span><Link href="/service" className="underline underline-offset-4">事業内容</Link><span aria-hidden="true" className="mx-3">/</span><span>ホームページ制作</span></nav>
+          <p className="mb-3 text-sm font-semibold text-neutral-600">ホームページ制作・リニューアル</p>
+          <h1 data-motion="heading" className="max-w-4xl text-3xl font-bold leading-tight text-neutral-900 sm:text-4xl lg:text-5xl">事業の価値が、読む人に伝わるホームページへ。</h1>
+          <p data-reading className="mt-6 max-w-3xl text-base leading-[1.9] text-neutral-600">何を、どの順番で伝えるか。事業の強みを整理するところから、構成・デザイン・実装・公開まで。新規制作も、既存サイトの見直しも、目的に合わせて一緒に進めます。</p>
+          <div className="mt-8 flex flex-wrap gap-4">
+            <Link href="/contact?service=website" className="motion-cta inline-flex min-h-12 items-center justify-center rounded-lg bg-cta px-7 py-3.5 font-semibold text-white transition-colors hover:bg-cta-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-900">ホームページ制作を相談する</Link>
+            <a href="#offering" className="inline-flex min-h-12 items-center rounded-lg border border-neutral-200 px-6 py-3.5 font-semibold text-neutral-700 hover:border-neutral-500 focus-visible:outline-2 focus-visible:outline-offset-4">提供内容を読む</a>
+          </div>
+        </div>
+      </header>
+      <div className="mx-auto max-w-[1800px] px-6 lg:px-8 py-10 sm:py-14">
         <nav aria-label="このページの目次" className="border-y border-neutral-200 py-5 mb-12">
           <p className="text-sm font-semibold mb-3">知りたい内容から読む</p>
           <ul className="flex flex-wrap gap-x-6 gap-y-3 text-sm text-neutral-600">
             {[['offering', '提供内容'], ['process', '制作の流れ'], ['faq', 'よくあるご質問'], ['consultation', 'ご相談']].map(([id, label]) => <li key={id}><a href={`#${id}`} className="underline underline-offset-4 hover:text-neutral-900 focus-visible:outline-2 focus-visible:outline-offset-4">{label}</a></li>)}
           </ul>
         </nav>
-        <section id="offering" className="scroll-mt-28 pb-16">
+        <section id="offering" className="scroll-mt-28 pb-16 lg:pb-24">
           <h2 data-motion="heading" className="text-2xl sm:text-3xl font-bold mb-5">伝える内容から、公開後の使い方まで。</h2>
           <p data-reading className="max-w-3xl text-neutral-600 leading-[1.9] mb-8">会社紹介・サービス紹介など、サイトの目的に合わせて必要な内容を選びます。具体的な対応範囲は、ご相談のうえ決定します。</p>
-          <div className="grid gap-x-12 sm:grid-cols-2">{offerings.map(([title, body]) => <div data-motion="card" key={title} className="motion-card border-t border-neutral-200 py-7"><h3 className="font-bold text-lg mb-3">{title}</h3><p className="text-sm text-neutral-600 leading-[1.95]">{body}</p></div>)}</div>
+          <div className="grid gap-5 sm:grid-cols-2 lg:gap-7">{offerings.map(([title, body]) => <div data-motion="card" key={title} className="motion-card relative overflow-hidden rounded-lg border border-neutral-200 bg-white p-6 sm:p-8"><div aria-hidden="true" className="mb-6 h-1 w-12 rounded-full bg-gradient-to-r from-violet-500 to-sky-500" /><h3 className="font-bold text-xl mb-3">{title}</h3><p data-reading className="text-sm text-neutral-600 leading-[1.95]">{body}</p></div>)}</div>
         </section>
-        <section id="process" className="scroll-mt-28 pb-16">
+        <section id="process" className="scroll-mt-28 pb-16 lg:pb-24">
           <h2 data-motion="heading" className="text-2xl sm:text-3xl font-bold mb-8">制作の流れ</h2>
-          <ol className="divide-y divide-neutral-200 border-y border-neutral-200">{steps.map(([title, body], index) => <li data-motion="reading" key={title} className="flex gap-5 sm:gap-8 py-7"><span className="text-neutral-400 font-semibold" aria-hidden="true">{index + 1}</span><div><h3 className="font-bold text-lg mb-2">{title}</h3><p data-reading className="max-w-3xl text-sm text-neutral-600 leading-[1.95]">{body}</p></div></li>)}</ol>
+          <ol className="divide-y divide-neutral-200 border-y border-neutral-200">{steps.map(([title, body], index) => <li data-motion="reading" key={title} className="flex gap-5 sm:gap-8 py-7"><span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-neutral-200 text-sm font-semibold text-neutral-600" aria-hidden="true">{index + 1}</span><div><h3 className="font-bold text-lg mb-2">{title}</h3><p data-reading className="max-w-3xl text-sm text-neutral-600 leading-[1.95]">{body}</p></div></li>)}</ol>
         </section>
-        <section id="faq" className="scroll-mt-28 pb-16">
+        <section id="faq" className="scroll-mt-28 pb-16 lg:pb-24">
           <h2 data-motion="heading" className="text-2xl sm:text-3xl font-bold mb-8">よくあるご質問</h2>
           <div className="divide-y divide-neutral-200 border-y border-neutral-200">{faqs.map(([question, answer]) => <details data-motion-disclosure key={question} className="py-5"><summary className="cursor-pointer font-semibold leading-relaxed rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4">{question}</summary><p data-reading className="max-w-3xl pt-4 text-sm text-neutral-600 leading-[1.95]">{answer}</p></details>)}</div>
         </section>
-        <section id="consultation" className="scroll-mt-28 border-t border-neutral-200 pt-10">
+        <section id="consultation" className="relative scroll-mt-28 rounded-xl border border-neutral-200 bg-neutral-50 p-6 sm:p-10 lg:p-12">
           <h2 data-motion="heading" className="text-2xl sm:text-3xl font-bold mb-4">まずは、伝えたいことをお聞かせください。</h2>
           <p data-reading className="max-w-3xl text-neutral-600 leading-[1.9] mb-7">現在のサイトURL、制作の目的、困っていることなど、わかる範囲でお知らせください。ご要望を伺って、必要な内容と進め方をご案内します。</p>
-          <Link href="/contact?service=website" className="inline-flex bg-cta hover:bg-cta-hover text-white px-7 py-4 font-semibold rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-900">ホームページ制作を相談する</Link>
+          <Link href="/contact?service=website" className="motion-cta inline-flex min-h-12 items-center justify-center bg-cta hover:bg-cta-hover text-white px-7 py-4 font-semibold rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-900">ホームページ制作を相談する</Link>
         </section>
+        <aside aria-labelledby="related-title" className="mt-16 border-t border-neutral-200 pt-8">
+          <h2 id="related-title" className="mb-5 text-xl font-bold text-neutral-900">あわせて読みたい</h2>
+          <ul className="grid gap-5 text-sm sm:grid-cols-2">
+            <li><Link href="/case-studies/real-estate-consulting-site" className="font-semibold text-neutral-900 underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4">不動産コンサルティング会社のホームページ開発事例</Link><p className="mt-2 leading-relaxed text-neutral-600">事業の説明と相談までの道筋を、どのように整理したか。</p></li>
+            <li><Link href="/software-development" className="font-semibold text-neutral-900 underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4">システム・ソフトウェア開発</Link><p className="mt-2 leading-relaxed text-neutral-600">ホームページに加えて、業務に合う仕組みづくりを検討したい方へ。</p></li>
+          </ul>
+        </aside>
       </div>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faqs.map(([question, answer]) => ({ "@type": "Question", name: question, acceptedAnswer: { "@type": "Answer", text: answer } })) }) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "Service", name: "ホームページ制作", description, url: "https://clearai.jp/website-production", provider: { "@type": "Organization", name: "ClearAI株式会社", url: "https://clearai.jp" } }) }} />
     </div>
   );

@@ -26,7 +26,7 @@ export default function Header() {
     { label: h.navSns, href: "/sns-management" },
     { label: h.navSoftwareDev, href: "/software-development" },
     { label: h.navRobotRental, href: "/robot-rental" },
-    { label: h.navFde, href: "/ai-consulting" },
+    { label: h.navFde, href: "/aio" },
     { label: h.navTraining, href: "/training" },
   ];
 

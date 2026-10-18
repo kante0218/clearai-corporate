@@ -23,7 +23,7 @@ const SUPPORT_AREAS = [
 const CHOICE_STEPS = [
   { key: "challenge", label: "現在、最も解決したい課題を教えてください", options: ["業務を自動化したい", "AIを事業に組み込みたい", "新しいシステムを開発したい", "AI人材を育成したい", "まだ整理できていない"] },
   { key: "status", label: "AI・システム導入の検討状況を教えてください", options: ["情報収集中", "社内で検討中", "要件を整理中", "委託先を比較中", "すぐに相談したい"] },
-  { key: "service", label: "関心のある支援内容を教えてください", options: ["AI受託開発", "システム・ソフトウェア開発", "FDEコンサルティング", "AI内製化研修", "相談して決めたい"] },
+  { key: "service", label: "関心のある支援内容を教えてください", options: ["AI受託開発", "システム・ソフトウェア開発", "AIO（AI検索最適化）", "AI内製化研修", "相談して決めたい"] },
   { key: "size", label: "従業員規模を教えてください", options: ["~50名", "51-200名", "201-500名", "501-1000名", "1001名~"] },
   { key: "timing", label: "開始時期のイメージを教えてください", options: ["できるだけ早く", "1〜3ヶ月以内", "3〜6ヶ月以内", "半年以降", "未定"] },
 ] as const;
@@ -151,7 +151,7 @@ export default function AiDevelopmentConsultationPage() {
             </h1>
             <div className="mt-5 grid grid-cols-3 gap-2 text-center text-[#d5b56c] sm:mt-7 sm:max-w-[560px] sm:gap-5 lg:mt-8">
               {[
-                ["支援領域", "3領域", "戦略・開発・研修"],
+                ["支援内容", "目的別", "開発・AIO・研修など"],
                 ["プロトタイプ", "最短2週間", "動く画面で検証"],
                 ["対応エリア", "全国", "オンライン対応"],
               ].map(([label, value, note]) => (
@@ -196,7 +196,7 @@ export default function AiDevelopmentConsultationPage() {
           <div className="mx-auto mt-5 h-[3px] w-6 bg-[#0e5b94]" />
           <p className="mt-7 text-base font-bold leading-8 text-[#27384a] sm:text-lg">
             経営課題の整理から現場で動くシステムまで<br />
-            <span className="text-[#0e5b94]">3つの専門領域</span>を組み合わせてご支援
+            <span className="text-[#0e5b94]">目的に合う専門領域</span>を組み合わせてご支援
           </p>
         </div>
 

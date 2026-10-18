@@ -11,6 +11,7 @@ export const SERVICE_KEYS = [
   "software-development",
   "robot-rental",
   "consulting",
+  "aio",
   "advisor",
   "sns",
   "education",
@@ -25,7 +26,8 @@ export type ServiceKey = (typeof SERVICE_KEYS)[number];
 export const SERVICE_LABELS: Record<ServiceKey, string> = {
   "software-development": "システム・ソフトウェア開発",
   "robot-rental": "ロボットレンタル",
-  consulting: "AIコンサル・DX",
+  consulting: "AI導入コンサルティング",
+  aio: "AIO（AI検索最適化）",
   advisor: "AI顧問",
   sns: "SNS運用代行",
   education: "AI研修",

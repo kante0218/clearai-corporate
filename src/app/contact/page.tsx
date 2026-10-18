@@ -126,7 +126,8 @@ const EXTENDED_SERVICE_KEYS: readonly string[] = [...(SERVICE_KEYS as readonly s
 const CONTACT_SERVICES: { key: ServiceKey; ja: string; en: string }[] = [
   { key: "software-development", ja: "システム・ソフトウェア開発", en: "System & Software Development" },
   { key: "robot-rental", ja: "ロボットレンタル", en: "Robot Rental" },
-  { key: "consulting", ja: "FDEコンサルティング", en: "FDE Consulting" },
+  { key: "aio", ja: "AIO（AI検索最適化）", en: "AIO (AI Search Optimization)" },
+  { key: "consulting", ja: "AI導入コンサルティング", en: "AI Adoption Consulting" },
   { key: "education", ja: "AI内製化研修", en: "In-house AI Training" },
   { key: "website", ja: "ホームページ制作", en: "Website Production" },
   { key: "sns", ja: "SNS運用代行", en: "SNS Management" },

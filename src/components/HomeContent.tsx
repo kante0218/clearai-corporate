@@ -6,7 +6,7 @@ import Image from "next/image";
 import { type ReactNode } from "react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import CardCarousel from "@/components/CardCarousel";
-import { CLIENT_LOGOS } from "@/components/ClientLogoGrid";
+import ClientLogoShowcase from "@/components/ClientLogoShowcase";
 import { BOOKING_URL } from "@/lib/booking";
 
 /* NOTE (2026-08-08): the VISION / GET STARTED / SERVICES / APPROACH / TEAM sections were
@@ -107,7 +107,7 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
     ],
     servicesLabel: "Our Services",
     servicesTitle: "AIで、日本の未来をつくる。",
-    servicesDesc: "システム・ソフトウェア開発を軸に、ロボットレンタル・FDEコンサルティング・AI内製化研修・ホームページ制作まで、事業の課題に合わせて支援します。",
+    servicesDesc: "システム・ソフトウェア開発を軸に、ロボットレンタル・AIO（AI検索最適化）・AI内製化研修・ホームページ制作まで、事業の課題に合わせて支援します。",
     primaryHeading: "主力サービス",
     secondaryHeading: "その他の支援",
     claudeBadge: "Claude対応",
@@ -148,10 +148,10 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
     ],
     secondaryServices: [
       {
-        code: "06", title: "コンサル・DX", color: "blue",
-        desc: "大手コンサル出身者の監修で、戦略策定から実装・運用までAI活用を一気通貫で支援します。",
-        tags: ["AI戦略策定", "業務自動化", "生成AI活用"],
-        href: "/ai-consulting", cta: "詳しく見る",
+        code: "06", title: "AIO（AI検索最適化）", color: "blue",
+        desc: "AI検索で会社情報が正しく理解・参照されるための情報整理、改善、継続的な確認を支援します。",
+        tags: ["現状確認", "情報整理", "継続測定"],
+        href: "/aio", cta: "詳しく見る",
       },
       {
         code: "07", title: "AI広告運用", color: "rose",
@@ -298,7 +298,7 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
     ],
     servicesLabel: "Our Services",
     servicesTitle: "Building Japan's future with AI.",
-    servicesDesc: "Centered on system and software development, plus robot rental, FDE consulting, in-house AI training, and website production, with support tailored to your business.",
+    servicesDesc: "Centered on system and software development, plus robot rental, AIO (AI search optimization), in-house AI training, and website production, with support tailored to your business.",
     primaryHeading: "Core services",
     secondaryHeading: "Other support",
     claudeBadge: "Claude-ready",
@@ -339,10 +339,10 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
     ],
     secondaryServices: [
       {
-        code: "06", title: "Consulting & DX", color: "blue",
-        desc: "Overseen by ex-top-tier consultants, with end-to-end support for AI adoption from strategy through implementation and operation.",
-        tags: ["AI strategy", "Workflow automation", "Generative AI"],
-        href: "/ai-consulting", cta: "Learn more",
+        code: "06", title: "AIO (AI Search Optimization)", color: "blue",
+        desc: "Support clearer company information, improvements, and ongoing checks so AI search can understand and reference it.",
+        tags: ["Current state", "Clear information", "Monitoring"],
+        href: "/aio", cta: "Learn more",
       },
       {
         code: "07", title: "AI Advertising", color: "rose",
@@ -506,46 +506,6 @@ function SectionLabel({ children }: { children: ReactNode }) {
   );
 }
 
-function ClientLogoShowcase({ label }: { label: string }) {
-  const homeLogos = [
-    ...CLIENT_LOGOS,
-    { name: "かんでんエンジニアリング", href: "https://www.kanden-eng.co.jp/", src: "/images/clients/kanden-engineering.png", width: 696, height: 391 },
-    { name: "デジタル情報戦略室", href: "https://disr-inc.com/", src: "/images/clients/digital-strategy-room.png", width: 659, height: 465 },
-  ];
-
-  return (
-    <div className="mt-12 border-t border-gray-200 pt-10">
-      <p className="text-[11px] font-semibold tracking-[0.22em] uppercase text-gray-400 mb-7">
-        {label}
-      </p>
-      <ul className="grid grid-cols-2 items-center gap-x-6 gap-y-8 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
-        {homeLogos.map((logo) => {
-          const image = logo.src === "/images/clients/kanden-engineering.png" ? (
-            <span className="block aspect-[696/201] w-full max-w-[calc(36px*696/201)] overflow-hidden md:max-w-[calc(44px*696/201)]">
-              <Image src={logo.src} alt={`${logo.name} ロゴ`} width={logo.width} height={logo.height} className="h-full w-full object-cover object-center opacity-90" sizes="(max-width: 767px) 125px, 153px" />
-            </span>
-          ) : logo.src === "/images/clients/digital-strategy-room.png" ? (
-            <span className="relative block aspect-[530/120] w-full max-w-[176px] overflow-hidden">
-              <Image src={logo.src} alt={`${logo.name} ロゴ`} width={logo.width} height={logo.height} className="absolute left-1/2 top-1/2 h-auto w-[124.34%] max-w-none -translate-x-1/2 -translate-y-1/2 opacity-90" sizes="219px" />
-            </span>
-          ) : (
-            <Image src={logo.src} alt={`${logo.name} ロゴ`} width={logo.width} height={logo.height} className="h-9 w-auto max-w-full object-contain opacity-90 md:h-11" sizes="(max-width: 640px) 40vw, (max-width: 1280px) 25vw, 250px" />
-          );
-          return (
-            <li key={logo.name} className="flex min-h-11 min-w-0 items-center justify-center">
-              {logo.href ? (
-                <a href={logo.href} target="_blank" rel="noopener noreferrer" aria-label={`${logo.name} 公式サイト`} className="flex min-h-11 w-full min-w-0 max-w-full items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-4">
-                  {image}
-                </a>
-              ) : image}
-            </li>
-          );
-        })}
-      </ul>
-    </div>
-  );
-}
-
 export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
   const { lang } = useLanguage();
   const t = COPY[lang];
@@ -627,7 +587,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
             {[
               { href: "/software-development", title: lang === "ja" ? "システム・ソフトウェア開発" : "System & Software Development", desc: lang === "ja" ? "繰り返しの事務作業を減らしたい。業務に合うシステムをつくり、運用まで支援します。" : "Build systems that fit your workflows, from design to operation." },
               { href: "/robot-rental", title: lang === "ja" ? "ロボットレンタル" : "Robot Rental", desc: lang === "ja" ? "実機を試してから検討したい。展示会や実証実験で使うロボットをレンタルできます。" : "Try robots for exhibitions and practical experiments." },
-              { href: "/ai-consulting", title: lang === "ja" ? "FDEコンサルティング" : "FDE Consulting", desc: lang === "ja" ? "AIをどこから使うか決めたい。現場の課題を整理し、実装につながる進め方を考えます。" : "Clarify where AI can help and plan a path to implementation." },
+              { href: "/aio", title: lang === "ja" ? "AIO（AI検索最適化）" : "AIO (AI Search Optimization)", desc: lang === "ja" ? "AI検索で会社情報を正確に理解してもらうために。情報の整理と改善、引用状況の確認を支援します。" : "Help AI search understand your company through clearer information, improvements, and citation monitoring." },
               { href: "/training", title: lang === "ja" ? "AI内製化研修" : "In-house AI Training", desc: lang === "ja" ? "社員がAIを仕事に使えるようにしたい。実務に沿った研修で、社内で使う力を育てます。" : "Help your team apply AI through practical training." },
               { href: "/website-production", title: lang === "ja" ? "ホームページ制作" : "Website Production", desc: lang === "ja" ? "事業の強みを整理し、読む人に伝わる構成・デザイン・公開まで支援します。" : "We clarify your message and support site structure, design, development, and launch." },
               { href: "/sns-management", title: lang === "ja" ? "SNS運用代行" : "SNS Management", desc: lang === "ja" ? "発信の目的を整理し、企画・文章や画像の制作・投稿管理・分析改善を支援します。" : "Support for social media planning, content creation, publishing management, and review." },

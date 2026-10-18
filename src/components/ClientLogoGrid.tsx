@@ -12,7 +12,7 @@ export const CLIENT_LOGOS = [
   { name: "エンジニアのミカタ", href: "https://engineer-mikata.com/", src: "/images/clients/engineer-no-mikata.png", width: 991, height: 143 },
   { name: "Gugen", href: "https://www.gugen-hd.com/", src: "/images/clients/gugen.png", width: 1111, height: 346 },
   { name: "DiaL Shift", href: "https://www.dial-shift.co.jp/", src: "/images/clients/dial-shift.png", width: 1950, height: 342 },
-  { name: "Wave Leaf", href: undefined, src: "/images/clients/wave-leaf.png", width: 1164, height: 324 },
+  { name: "Local Dive", href: "https://localdive.tech/", src: "/images/clients/local-dive.png", width: 542, height: 106 },
   { name: "あぐてく", href: "https://aguteku.com/", src: "/images/clients/at.png", width: 1030, height: 838 },
   { name: "Crew Robotics", href: "https://crewrobotics.ai/", src: "/images/clients/crew-robotics.png", width: 1791, height: 261 },
   { name: "ICONIQ", href: "https://www.iconiq.com/", src: "/images/clients/iconiq.png", width: 1436, height: 304 },
@@ -41,7 +41,7 @@ export default function ClientLogoGrid({
             <li key={logo.name} className="flex items-center justify-center border-r border-b border-gray-200 bg-white px-6 py-8">
               {logo.href ? (
                 <a href={logo.href} target="_blank" rel="noopener noreferrer" aria-label={`${logo.name} 公式サイト`}>
-                  <Image src={logo.src} alt={`${logo.name} ロゴ`} width={logo.width} height={logo.height} className="h-8 w-auto max-w-full object-contain md:h-10" sizes="(max-width: 640px) 40vw, (max-width: 1024px) 25vw, 180px" />
+                  <Image src={logo.src} alt={`${logo.name} ロゴ`} width={logo.width} height={logo.height} className="h-8 w-auto max-w-full object-contain md:h-10" style={logo.src === "/images/clients/local-dive.png" ? { maxWidth: "min(100%, 176px)" } : undefined} sizes="(max-width: 640px) 40vw, (max-width: 1024px) 25vw, 180px" />
                 </a>
               ) : (
                 <Image src={logo.src} alt={`${logo.name} ロゴ`} width={logo.width} height={logo.height} className="h-8 w-auto max-w-full object-contain md:h-10" sizes="(max-width: 640px) 40vw, (max-width: 1024px) 25vw, 180px" />

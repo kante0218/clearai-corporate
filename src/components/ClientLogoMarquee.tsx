@@ -14,7 +14,7 @@ export default function ClientLogoMarquee({ label, note }: { label: string; note
           <div className="flex w-max items-center gap-14 animate-[marquee_38s_linear_infinite] hover:[animation-play-state:paused] md:gap-20">
             {logos.map((logo, index) => logo.href ? (
               <a key={`${logo.name}-${index}`} href={logo.href} target="_blank" rel="noopener noreferrer" aria-label={`${logo.name} 公式サイト`} className="shrink-0">
-                <Image src={logo.src} alt={`${logo.name} logo`} width={logo.width} height={logo.height} className="h-8 w-auto object-contain opacity-90 transition duration-300 hover:opacity-100 md:h-10" sizes="(max-width: 768px) 150px, 200px" />
+                <Image src={logo.src} alt={`${logo.name} logo`} width={logo.width} height={logo.height} className="h-8 w-auto object-contain opacity-90 transition duration-300 hover:opacity-100 md:h-10" style={logo.src === "/images/clients/local-dive.png" ? { maxWidth: "min(100%, 176px)" } : undefined} sizes="(max-width: 768px) 150px, 200px" />
               </a>
             ) : (
               <Image key={`${logo.name}-${index}`} src={logo.src} alt={`${logo.name} logo`} width={logo.width} height={logo.height} className="h-8 w-auto shrink-0 object-contain opacity-90 md:h-10" sizes="(max-width: 768px) 150px, 200px" />
