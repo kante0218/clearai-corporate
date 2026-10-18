@@ -506,27 +506,42 @@ function SectionLabel({ children }: { children: ReactNode }) {
   );
 }
 
-function ClientLogoMarquee({ label }: { label: string }) {
-  const logos = [...CLIENT_LOGOS, ...CLIENT_LOGOS];
+function ClientLogoShowcase({ label }: { label: string }) {
+  const homeLogos = [
+    ...CLIENT_LOGOS,
+    { name: "かんでんエンジニアリング", href: "https://www.kanden-eng.co.jp/", src: "/images/clients/kanden-engineering.png", width: 696, height: 391 },
+    { name: "デジタル情報戦略室", href: "https://disr-inc.com/", src: "/images/clients/digital-strategy-room.png", width: 659, height: 465 },
+  ];
 
   return (
-    <div className="mt-12 border-t border-gray-200 pt-10 overflow-hidden">
+    <div className="mt-12 border-t border-gray-200 pt-10">
       <p className="text-[11px] font-semibold tracking-[0.22em] uppercase text-gray-400 mb-7">
         {label}
       </p>
-      <div className="relative -mx-6 lg:-mx-8">
-        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-white to-transparent md:w-28" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-white to-transparent md:w-28" />
-        <div className="flex w-max items-center gap-14 animate-[marquee_38s_linear_infinite] hover:[animation-play-state:paused] md:gap-20">
-          {logos.map((logo, index) => logo.href ? (
-            <a key={`${logo.name}-${index}`} href={logo.href} target="_blank" rel="noopener noreferrer" aria-label={`${logo.name} 公式サイト`} className="shrink-0">
-              <Image src={logo.src} alt={`${logo.name} logo`} width={logo.width} height={logo.height} className="h-9 w-auto object-contain opacity-90 transition duration-300 hover:opacity-100 md:h-11" sizes="(max-width: 768px) 160px, 220px" />
-            </a>
+      <ul className="grid grid-cols-2 items-center gap-x-6 gap-y-8 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
+        {homeLogos.map((logo) => {
+          const image = logo.src === "/images/clients/kanden-engineering.png" ? (
+            <span className="block aspect-[696/201] w-full max-w-[calc(36px*696/201)] overflow-hidden md:max-w-[calc(44px*696/201)]">
+              <Image src={logo.src} alt={`${logo.name} ロゴ`} width={logo.width} height={logo.height} className="h-full w-full object-cover object-center opacity-90" sizes="(max-width: 767px) 125px, 153px" />
+            </span>
+          ) : logo.src === "/images/clients/digital-strategy-room.png" ? (
+            <span className="relative block aspect-[530/120] w-full max-w-[176px] overflow-hidden">
+              <Image src={logo.src} alt={`${logo.name} ロゴ`} width={logo.width} height={logo.height} className="absolute left-1/2 top-1/2 h-auto w-[124.34%] max-w-none -translate-x-1/2 -translate-y-1/2 opacity-90" sizes="219px" />
+            </span>
           ) : (
-            <Image key={`${logo.name}-${index}`} src={logo.src} alt={`${logo.name} logo`} width={logo.width} height={logo.height} className="h-9 w-auto shrink-0 object-contain opacity-90 md:h-11" sizes="(max-width: 768px) 160px, 220px" />
-          ))}
-        </div>
-      </div>
+            <Image src={logo.src} alt={`${logo.name} ロゴ`} width={logo.width} height={logo.height} className="h-9 w-auto max-w-full object-contain opacity-90 md:h-11" sizes="(max-width: 640px) 40vw, (max-width: 1280px) 25vw, 250px" />
+          );
+          return (
+            <li key={logo.name} className="flex min-h-11 min-w-0 items-center justify-center">
+              {logo.href ? (
+                <a href={logo.href} target="_blank" rel="noopener noreferrer" aria-label={`${logo.name} 公式サイト`} className="flex min-h-11 w-full min-w-0 max-w-full items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-4">
+                  {image}
+                </a>
+              ) : image}
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 }
@@ -601,7 +616,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       {/* ═══ CLIENT LOGOS ═══ */}
       <section className="pb-10 pt-2 md:pb-16 md:pt-4 bg-white border-b border-gray-100">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <ClientLogoMarquee label={t.clientLogosLabel} />
+          <ClientLogoShowcase label={t.clientLogosLabel} />
         </div>
       </section>
 
