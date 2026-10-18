@@ -1,28 +1,14 @@
 "use client";
 
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import type { ReactNode } from "react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import PricingCarousel from "@/components/PricingCarousel";
 import CardCarousel from "@/components/CardCarousel";
 import ClientLogoMarquee from "@/components/ClientLogoMarquee";
 import { BOOKING_URL } from "@/lib/booking";
 
-function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setVisible(true); obs.unobserve(el); } }, { threshold: 0.15, rootMargin: "0px 0px -40px 0px" });
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
-  return (
-    <div ref={ref} className={className} style={{
-      opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(32px)",
-      transition: `opacity 0.7s cubic-bezier(0.16,1,0.3,1) ${delay}ms, transform 0.7s cubic-bezier(0.16,1,0.3,1) ${delay}ms`,
-    }}>{children}</div>
-  );
+function Reveal({ children, className = "" }: { children: ReactNode; className?: string; delay?: number }) {
+  return <div className={className}>{children}</div>;
 }
 
 function Label({ children }: { children: ReactNode }) {
@@ -401,26 +387,26 @@ export default function ClaudeBootcampPage() {
   return (
     <>
       {/* HERO */}
-      <section className="pt-24 pb-12 lg:pt-28 lg:pb-16 bg-white border-b border-gray-100">
+      <section className="pt-24 pb-8 lg:pt-28 lg:pb-10 bg-white border-b border-gray-100">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
-            <span className="inline-flex items-center gap-2 rounded-full border border-neutral-300 bg-neutral-50 px-4 py-1.5 text-xs font-semibold text-neutral-700 mb-6">
-              <span className="w-1.5 h-1.5 rounded-full bg-neutral-900 animate-pulse" />{t.heroBadge}
+            <span className="inline-flex items-center gap-2 text-xs font-semibold text-neutral-600 mb-4">
+              <span className="w-1.5 h-1.5 rounded-full bg-neutral-400" />{t.heroBadge}
             </span>
             <p className="text-sm font-semibold text-neutral-900 mb-3">{t.heroKicker}</p>
-            <h1 className="text-3xl lg:text-5xl font-bold text-gray-900 leading-[1.15] mb-6 max-w-[20ch] lg:max-w-[28ch]">
-              {t.heroTitlePre}<span className="underline decoration-2 underline-offset-4">{t.heroTitleHi}</span>{t.heroTitlePost}
+            <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-5 max-w-4xl">
+              {t.heroTitlePre}<span>{t.heroTitleHi}</span>{t.heroTitlePost}
             </h1>
-            <p className="text-base lg:text-lg text-gray-600 leading-relaxed max-w-3xl mb-8">{t.heroDesc}</p>
+            <p className="text-base text-gray-600 leading-relaxed max-w-3xl mb-8">{t.heroDesc}</p>
             <div className="flex flex-wrap items-center gap-4 mb-5">
-              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="rounded-md bg-neutral-900 text-white font-semibold px-8 py-3.5 hover:bg-neutral-800 transition-colors duration-300">
+              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="rounded-md bg-cta text-white font-semibold px-8 py-3.5 hover:bg-cta-hover transition-colors duration-300 min-h-11 inline-flex items-center focus-visible:outline-2 focus-visible:outline-offset-4">
                 {t.heroCtaPrimary}
               </a>
-              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="group inline-flex items-center gap-2 text-sm font-semibold text-neutral-900 hover:text-neutral-700 transition-colors">
+              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="group inline-flex items-center gap-2 text-sm font-semibold text-neutral-900 hover:text-neutral-700 transition-colors min-h-11 focus-visible:outline-2 focus-visible:outline-offset-4">
                 {t.heroCtaSecondary} <span className="group-hover:translate-x-1 transition-transform">→</span>
               </a>
             </div>
-            <p className="text-xs text-gray-500">{t.heroTrust}</p>
+            <p className="text-xs text-gray-600">{t.heroTrust}</p>
           </Reveal>
         </div>
       </section>
@@ -429,12 +415,12 @@ export default function ClaudeBootcampPage() {
       <ClientLogoMarquee label={t.marqueeLabel} note={t.marqueeNote} />
 
       {/* REASSURANCE BAND */}
-      <section className="py-12 lg:py-16 bg-gray-50 border-b border-gray-100">
+      <section className="py-12 lg:py-16 bg-white border-t border-gray-100 border-b">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4">
             {t.reassure.map((item, i) => (
               <Reveal key={item.t} delay={i * 70}>
-                <div className="rounded-lg border border-gray-200 bg-white p-5 lg:p-6 h-full">
+                <div className="border-t border-gray-200 py-5 lg:py-6 h-full">
                   <div className="flex items-start gap-2.5">
                     <span className="mt-0.5 text-neutral-900 font-bold flex-shrink-0">✓</span>
                     <div>
@@ -447,11 +433,11 @@ export default function ClaudeBootcampPage() {
             ))}
           </div>
           <Reveal delay={300}>
-            <div className="text-center mt-8">
-              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="rounded-md bg-neutral-900 text-white font-semibold px-8 py-3.5 hover:bg-neutral-800 transition-colors duration-300 inline-block">
+            <div className="mt-8">
+              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="rounded-md bg-cta text-white font-semibold px-8 py-3.5 hover:bg-cta-hover transition-colors duration-300 inline-block min-h-11 inline-flex items-center focus-visible:outline-2 focus-visible:outline-offset-4">
                 {t.reassureCta}
               </a>
-              <p className="text-xs text-gray-500 mt-3">{t.reassureCtaSub}</p>
+              <p className="text-xs text-gray-600 mt-3">{t.reassureCtaSub}</p>
             </div>
           </Reveal>
         </div>
@@ -461,8 +447,8 @@ export default function ClaudeBootcampPage() {
       <section className="py-10 lg:py-14 bg-white border-b border-gray-100">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
-            <p className="text-center text-xs font-semibold tracking-[0.2em] text-gray-400 uppercase mb-8">{t.stackLabel}</p>
-            <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-6 lg:gap-x-16">
+            <Label>{t.stackLabel}</Label>
+            <div className="flex flex-wrap items-center justify-start gap-x-10 gap-y-6 lg:gap-x-16">
               {TOOLS.map((tool) => (
                 <div key={tool.name} className="flex items-center gap-2.5">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -476,16 +462,16 @@ export default function ClaudeBootcampPage() {
       </section>
 
       {/* STATS */}
-      <section className="py-12 lg:py-16 bg-neutral-900">
+      <section className="py-12 lg:py-16 bg-white border-t border-gray-100">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
             {t.stats.map((s, i) => (
               <Reveal key={s.unit} delay={i * 100}>
-                <div className="border-l border-white/20 pl-6">
-                  <p className="text-5xl lg:text-6xl font-bold text-white mb-3 leading-none">
-                    {s.value}<span className="text-2xl lg:text-3xl text-white/60 ml-1">{s.unit}</span>
+                <div className="border-l border-neutral-200 pl-6">
+                  <p className="text-3xl lg:text-4xl font-bold text-neutral-900 mb-3 leading-none">
+                    {s.value}<span className="text-2xl lg:text-3xl text-gray-600 ml-1">{s.unit}</span>
                   </p>
-                  <p className="text-sm text-white/70 leading-relaxed">{s.desc}</p>
+                  <p className="text-sm text-gray-600 leading-relaxed">{s.desc}</p>
                 </div>
               </Reveal>
             ))}
@@ -499,12 +485,12 @@ export default function ClaudeBootcampPage() {
           <Reveal>
             <Label>{t.painLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.painTitle}</h2>
-            <p className="text-sm text-gray-500 mb-8 max-w-3xl leading-relaxed">{t.painDesc}</p>
+            <p className="text-sm text-gray-600 mb-8 max-w-3xl leading-relaxed">{t.painDesc}</p>
           </Reveal>
           <CardCarousel gridClass="md:grid-cols-2 lg:grid-cols-3">
             {t.pains.map((p, i) => (
               <Reveal key={p} delay={i * 60}>
-                <div className="flex items-start gap-3 rounded-lg border border-gray-200 bg-gray-50 p-6 h-full">
+                <div className="flex items-start gap-3 border-t border-gray-200 py-6 h-full">
                   <span className="mt-0.5 text-lg font-bold text-neutral-400 flex-shrink-0">✓</span>
                   <p className="text-sm text-gray-700 leading-relaxed">{p}</p>
                 </div>
@@ -515,19 +501,19 @@ export default function ClaudeBootcampPage() {
       </section>
 
       {/* PROMISE */}
-      <section className="py-14 lg:py-20 bg-gray-50">
+      <section className="py-14 lg:py-20 bg-white border-t border-gray-100">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.promiseLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.promiseTitle}</h2>
-            <p className="text-sm text-gray-500 mb-8 max-w-3xl leading-relaxed">{t.promiseDesc}</p>
+            <p className="text-sm text-gray-600 mb-8 max-w-3xl leading-relaxed">{t.promiseDesc}</p>
           </Reveal>
           <CardCarousel gridClass="md:grid-cols-3">
             {t.promises.map((p, i) => (
               <Reveal key={p.num} delay={i * 100}>
-                <div className="rounded-lg border border-gray-200 bg-white p-8 hover:shadow-lg transition-all duration-300 h-full">
+                <div className="border-t border-gray-200 py-7 h-full">
                   <div className="flex items-center justify-between mb-3 h-8">
-                    <span className="text-2xl font-bold text-neutral-200">{p.num}</span>
+                    <span className="text-2xl font-bold text-neutral-500">{p.num}</span>
                     <div className="flex items-center gap-2.5">
                       {p.icons.map((ic) => (
                         // eslint-disable-next-line @next/next/no-img-element
@@ -546,29 +532,29 @@ export default function ClaudeBootcampPage() {
 
       {/* GUARANTEE */}
       <section className="py-14 lg:py-20 bg-white">
-        <div className="max-w-5xl mx-auto px-6 lg:px-8">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
-            <div className="rounded-lg border-2 border-neutral-900 bg-neutral-900 text-white p-8 lg:p-12 text-center">
-              <span className="inline-block rounded-md bg-white text-neutral-900 px-4 py-1.5 text-xs font-bold tracking-wide mb-6">{t.guaranteeBadge}</span>
-              <h2 className="text-2xl lg:text-3xl font-bold leading-snug mb-5 max-w-3xl mx-auto">{t.guaranteeTitle}</h2>
-              <p className="text-sm lg:text-base text-white/80 leading-relaxed max-w-2xl mx-auto">{t.guaranteeDesc}</p>
+            <div className="border-y border-neutral-200 py-8 lg:py-10">
+              <span className="inline-block rounded-md bg-neutral-100 text-neutral-900 px-4 py-1.5 text-xs font-bold tracking-wide mb-6">{t.guaranteeBadge}</span>
+              <h2 className="text-2xl lg:text-3xl font-bold leading-snug mb-5 max-w-3xl">{t.guaranteeTitle}</h2>
+              <p className="text-sm lg:text-base text-gray-600 leading-relaxed max-w-3xl">{t.guaranteeDesc}</p>
             </div>
           </Reveal>
         </div>
       </section>
 
       {/* WHY */}
-      <section className="py-14 lg:py-20 bg-gray-50">
+      <section className="py-14 lg:py-20 bg-white border-t border-gray-100">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.whyLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-snug mb-4 max-w-4xl">{t.whyTitle}</h2>
-            <p className="text-sm text-gray-500 mb-8 max-w-3xl leading-relaxed">{t.whyDesc}</p>
+            <p className="text-sm text-gray-600 mb-8 max-w-3xl leading-relaxed">{t.whyDesc}</p>
           </Reveal>
           <CardCarousel gridClass="md:grid-cols-2">
             {t.whyPoints.map((p, i) => (
               <Reveal key={p.title} delay={i * 80}>
-                <div className="rounded-lg border border-gray-200 bg-white p-8 hover:shadow-lg transition-all duration-300 h-full">
+                <div className="border-t border-gray-200 py-7 h-full">
                   <div className="flex items-center gap-3 mb-4 h-8">
                     {p.icons.map((ic) => (
                       // eslint-disable-next-line @next/next/no-img-element
@@ -590,9 +576,9 @@ export default function ClaudeBootcampPage() {
           <Reveal>
             <Label>{t.dayLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.dayTitle}</h2>
-            <p className="text-sm text-gray-500 mb-8 max-w-3xl leading-relaxed">{t.dayDesc}</p>
+            <p className="text-sm text-gray-600 mb-8 max-w-3xl leading-relaxed">{t.dayDesc}</p>
           </Reveal>
-          <div className="rounded-lg border border-gray-200 bg-white overflow-hidden">
+          <div className="border-y border-gray-200 bg-white">
             {t.dayRows.map((row, i) => (
               <Reveal key={row.time} delay={i * 50}>
                 <div className={`flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-6 px-6 py-5 ${i > 0 ? "border-t border-gray-100" : ""}`}>
@@ -606,25 +592,25 @@ export default function ClaudeBootcampPage() {
             ))}
           </div>
           <Reveal delay={150}>
-            <p className="text-xs text-gray-500 mt-6">{t.dayNote}</p>
+            <p className="text-xs text-gray-600 mt-6">{t.dayNote}</p>
           </Reveal>
         </div>
       </section>
 
       {/* OUTCOMES / BUILDS */}
-      <section className="py-14 lg:py-20 bg-neutral-900">
+      <section className="py-14 lg:py-20 bg-white border-t border-gray-100">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
-            <p className="text-sm font-semibold text-white mb-4">{t.buildLabel}</p>
-            <h2 className="text-3xl font-bold text-white leading-tight mb-4">{t.buildTitle}</h2>
-            <p className="text-sm text-white/60 mb-8 max-w-3xl leading-relaxed">{t.buildDesc}</p>
+            <p className="text-sm font-semibold text-neutral-900 mb-4">{t.buildLabel}</p>
+            <h2 className="text-3xl font-bold text-neutral-900 leading-tight mb-4">{t.buildTitle}</h2>
+            <p className="text-sm text-gray-600 mb-8 max-w-3xl leading-relaxed">{t.buildDesc}</p>
           </Reveal>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
             {t.builds.map((b, i) => (
               <Reveal key={b} delay={i * 50}>
-                <div className="rounded-lg bg-white/5 border border-white/15 px-5 py-4 h-full flex items-center gap-3">
-                  <span className="text-white/40 font-bold flex-shrink-0">→</span>
-                  <p className="text-sm text-white/90 leading-snug">{b}</p>
+                <div className="border-t border-neutral-200 py-5 h-full flex items-center gap-3">
+                  <span className="text-gray-600 font-bold flex-shrink-0">→</span>
+                  <p className="text-sm text-gray-600 leading-snug">{b}</p>
                 </div>
               </Reveal>
             ))}
@@ -642,9 +628,9 @@ export default function ClaudeBootcampPage() {
           <CardCarousel gridClass="md:grid-cols-2">
             {t.forItems.map((item, i) => (
               <Reveal key={item.text} delay={i * 60}>
-                <div className={`flex items-start gap-3 rounded-lg border p-6 h-full ${item.ok ? "border-neutral-300 bg-white" : "border-gray-100 bg-gray-50"}`}>
+                <div className={`flex items-start gap-3 border-t py-6 h-full ${item.ok ? "border-neutral-300 bg-white" : "border-gray-200 bg-white"}`}>
                   <span className={`mt-0.5 text-lg font-bold flex-shrink-0 ${item.ok ? "text-neutral-900" : "text-gray-300"}`}>{item.ok ? "✓" : "—"}</span>
-                  <p className={`text-sm leading-relaxed ${item.ok ? "text-gray-800 font-medium" : "text-gray-400"}`}>{item.text}</p>
+                  <p className={`text-sm leading-relaxed ${item.ok ? "text-gray-800 font-medium" : "text-gray-600"}`}>{item.text}</p>
                 </div>
               </Reveal>
             ))}
@@ -653,18 +639,18 @@ export default function ClaudeBootcampPage() {
       </section>
 
       {/* CARAVAN */}
-      <section className="py-14 lg:py-20 bg-gray-50">
+      <section className="py-14 lg:py-20 bg-white border-t border-gray-100">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.caravanLabel}</Label>
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4 max-w-4xl">{t.caravanTitle}</h2>
-            <p className="text-sm text-gray-500 mb-8 max-w-3xl leading-relaxed">{t.caravanDesc}</p>
+            <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 leading-tight mb-4 max-w-4xl">{t.caravanTitle}</h2>
+            <p className="text-sm text-gray-600 mb-8 max-w-3xl leading-relaxed">{t.caravanDesc}</p>
           </Reveal>
           <CardCarousel gridClass="sm:grid-cols-2 lg:grid-cols-4">
             {t.caravanSteps.map((step, i) => (
               <Reveal key={step.num} delay={i * 80}>
-                <div className="relative rounded-lg border border-gray-200 bg-white p-6 h-full">
-                  <span className="text-2xl font-bold text-neutral-200">{step.num}</span>
+                <div className="relative border-t border-gray-200 py-6 h-full">
+                  <span className="text-2xl font-bold text-neutral-500">{step.num}</span>
                   <h3 className="text-sm font-bold text-gray-900 mt-2 mb-2">{step.title}</h3>
                   <p className="text-xs text-gray-600 leading-relaxed">{step.desc}</p>
                 </div>
@@ -672,7 +658,7 @@ export default function ClaudeBootcampPage() {
             ))}
           </CardCarousel>
           <Reveal delay={150}>
-            <p className="text-xs text-gray-500 mt-6 max-w-3xl">{t.caravanNote}</p>
+            <p className="text-xs text-gray-600 mt-6 max-w-3xl">{t.caravanNote}</p>
           </Reveal>
         </div>
       </section>
@@ -683,49 +669,49 @@ export default function ClaudeBootcampPage() {
           <Reveal>
             <Label>{t.pricingLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.pricingTitle}</h2>
-            <p className="text-sm text-gray-500 mb-8 max-w-3xl leading-relaxed">{t.pricingDesc}</p>
+            <p className="text-sm text-gray-600 mb-8 max-w-3xl leading-relaxed">{t.pricingDesc}</p>
           </Reveal>
           <PricingCarousel>
             {t.plans.map((plan, i) => (
               <Reveal key={plan.name} delay={i * 100} className="flex">
-                <div className={`rounded-lg p-5 lg:p-6 transition-all duration-300 flex flex-col w-full ${plan.featured ? "bg-neutral-900 text-white shadow-xl" : "bg-white border border-gray-200 hover:shadow-lg"}`}>
-                  {plan.featured && plan.badge && <span className="inline-block rounded-md bg-white/20 text-white px-3 py-1 text-sm font-semibold mb-3 self-start">{plan.badge}</span>}
-                  <h3 className={`text-base font-bold mb-1.5 ${plan.featured ? "text-white" : "text-gray-900"}`}>{plan.name}</h3>
+                <div className={`border bg-white p-5 lg:p-6 flex flex-col w-full ${plan.featured ? "border-neutral-900" : "border-gray-200"}`}>
+                  {plan.featured && plan.badge && <span className="inline-block rounded-md bg-neutral-100 text-neutral-900 px-3 py-1 text-sm font-semibold mb-3 self-start">{plan.badge}</span>}
+                  <h3 className="text-base font-bold mb-1.5 text-gray-900">{plan.name}</h3>
                   <div className="mb-2 flex items-baseline gap-1">
-                    <span className={`text-xl font-bold ${plan.featured ? "text-white" : "text-gray-900"}`}>{plan.price}</span>
-                    {plan.unit && <span className={`text-sm ${plan.featured ? "text-white/80" : "text-gray-500"}`}>{plan.unit}</span>}
+                    <span className="text-xl font-bold text-gray-900">{plan.price}</span>
+                    {plan.unit && <span className="text-sm text-gray-600">{plan.unit}</span>}
                   </div>
-                  <p className={`text-xs leading-relaxed mb-3 ${plan.featured ? "text-white/80" : "text-gray-600"}`}>{plan.desc}</p>
+                  <p className="text-xs leading-relaxed mb-3 text-gray-600">{plan.desc}</p>
                   <ul className="space-y-2 mb-4 flex-1">
                     {plan.features.map((f) => (
                       <li key={f} className="flex items-start gap-3">
-                        <span className={`mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 ${plan.featured ? "bg-white/40" : "bg-neutral-900"}`} />
-                        <span className={`text-xs ${plan.featured ? "text-white/90" : "text-gray-600"}`}>{f}</span>
+                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0 bg-neutral-500" />
+                        <span className="text-xs text-gray-600">{f}</span>
                       </li>
                     ))}
                   </ul>
-                  <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className={`block text-center text-sm font-semibold py-2 rounded-md transition-all duration-300 mt-auto ${plan.featured ? "bg-white text-neutral-900 hover:bg-neutral-100" : "border border-gray-200 text-gray-600 hover:border-gray-400 hover:text-gray-900"}`}>{t.planCta}</a>
+                  <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center justify-center rounded-md bg-cta px-6 py-3 text-sm font-semibold text-white hover:bg-cta-hover focus-visible:outline-2 focus-visible:outline-offset-4 mt-auto">{t.planCta}</a>
                 </div>
               </Reveal>
             ))}
           </PricingCarousel>
           <Reveal delay={300}>
-            <p className="text-xs text-gray-500 text-center mt-8">{t.pricingNote}</p>
+            <p className="text-xs text-gray-600 mt-8">{t.pricingNote}</p>
           </Reveal>
         </div>
       </section>
 
       {/* SUBSIDY */}
-      <section className="py-14 lg:py-20 bg-neutral-50">
-        <div className="max-w-5xl mx-auto px-6 lg:px-8">
+      <section className="py-14 lg:py-20 bg-white border-t border-gray-100">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
-            <div className="text-center">
+            <div className="text-left">
               <Label>{t.subsidyLabel}</Label>
-              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-4">
-                {t.subsidyTitlePre}<span className="underline decoration-2 underline-offset-4">{t.subsidyTitleHi}</span>{t.subsidyTitlePost}
+              <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 leading-tight mb-4">
+                {t.subsidyTitlePre}<span>{t.subsidyTitleHi}</span>{t.subsidyTitlePost}
               </h2>
-              <p className="text-base text-gray-600 max-w-2xl mx-auto leading-relaxed mb-8">{t.subsidyDesc}</p>
-              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="rounded-md bg-neutral-900 text-white font-semibold px-8 py-3.5 hover:bg-neutral-800 transition-colors duration-300 inline-block">
+              <p className="text-base text-gray-600 max-w-3xl leading-relaxed mb-8">{t.subsidyDesc}</p>
+              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="rounded-md bg-cta text-white font-semibold px-8 py-3.5 hover:bg-cta-hover transition-colors duration-300 inline-block min-h-11 inline-flex items-center focus-visible:outline-2 focus-visible:outline-offset-4">
                 {t.subsidyCta}
               </a>
             </div>
@@ -736,7 +722,7 @@ export default function ClaudeBootcampPage() {
       {/* INSTRUCTOR */}
       <section className="py-14 lg:py-20 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <div className="rounded-lg border border-neutral-200 bg-neutral-50 p-8 lg:p-12">
+          <div className="border-y border-neutral-200 py-8 lg:py-10">
             <Reveal>
               <p className="inline-flex items-center gap-2 text-sm font-semibold text-neutral-900 mb-4">
                 <span className="w-2 h-2 rounded-full bg-neutral-900" />{t.instructorLabel}
@@ -747,7 +733,7 @@ export default function ClaudeBootcampPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {t.instructorPoints.map((p, i) => (
                 <Reveal key={p} delay={i * 80}>
-                  <div className="flex items-start gap-3 rounded-lg bg-white border border-neutral-200 p-5 h-full">
+                  <div className="flex items-start gap-3 border-t border-neutral-200 py-5 h-full">
                     <span className="mt-0.5 text-neutral-900 font-bold flex-shrink-0">✓</span>
                     <p className="text-sm text-gray-700 leading-relaxed">{p}</p>
                   </div>
@@ -759,8 +745,8 @@ export default function ClaudeBootcampPage() {
       </section>
 
       {/* FAQ */}
-      <section className="py-14 lg:py-20 bg-gray-50">
-        <div className="max-w-3xl mx-auto px-6 lg:px-8">
+      <section className="py-14 lg:py-20 bg-white border-t border-gray-100">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.faqLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-8">{t.faqTitle}</h2>
@@ -768,12 +754,12 @@ export default function ClaudeBootcampPage() {
           <div className="space-y-3">
             {t.faqItems.map((item, i) => (
               <Reveal key={item.q} delay={i * 50}>
-                <details className="group rounded-lg border border-gray-200 bg-white open:shadow-sm transition-all duration-300">
-                  <summary className="flex items-center justify-between gap-4 cursor-pointer list-none px-6 py-5">
+                <details className="group border-b border-gray-200 bg-white">
+                  <summary className="flex items-center justify-between gap-4 cursor-pointer list-none py-5 focus-visible:outline-2 focus-visible:outline-offset-4">
                     <span className="text-sm lg:text-base font-bold text-gray-900">{item.q}</span>
                     <span className="text-neutral-400 text-xl font-light flex-shrink-0 transition-transform duration-300 group-open:rotate-45">+</span>
                   </summary>
-                  <p className="px-6 pb-5 text-sm text-gray-600 leading-relaxed">{item.a}</p>
+                  <p className="max-w-3xl pb-5 text-sm text-gray-600 leading-relaxed">{item.a}</p>
                 </details>
               </Reveal>
             ))}
@@ -782,14 +768,14 @@ export default function ClaudeBootcampPage() {
       </section>
 
       {/* 無料相談で行うこと */}
-      <section className="py-14 lg:py-20 bg-gray-50">
-        <div className="max-w-3xl mx-auto px-6 lg:px-8">
+      <section className="py-14 lg:py-20 bg-white border-t border-gray-100">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.consultLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.consultTitle}</h2>
-            <p className="text-sm text-gray-500 mb-8 leading-relaxed">{t.consultDesc}</p>
+            <p className="text-sm text-gray-600 mb-8 leading-relaxed">{t.consultDesc}</p>
           </Reveal>
-          <div className="rounded-lg border border-gray-200 bg-white p-6 lg:p-8">
+          <div className="border-y border-gray-200 py-4">
             {t.consultItems.map((item, i) => (
               <Reveal key={item} delay={i * 60}>
                 <div className={`flex items-start gap-3 py-3 ${i > 0 ? "border-t border-gray-100" : ""}`}>
@@ -800,37 +786,37 @@ export default function ClaudeBootcampPage() {
             ))}
           </div>
           <Reveal delay={200}>
-            <p className="text-xs text-gray-500 mt-5 leading-relaxed">{t.consultNote}</p>
+            <p className="text-xs text-gray-600 mt-5 leading-relaxed">{t.consultNote}</p>
           </Reveal>
         </div>
       </section>
 
       {/* FINAL CTA */}
-      <section className="py-16 lg:py-24 bg-neutral-900">
-        <div className="max-w-2xl mx-auto px-6 text-center">
+      <section className="py-14 lg:py-20 bg-white border-t border-gray-100">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
-            <p className="text-sm font-semibold text-white/60 mb-4">{t.ctaLabel}</p>
-            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4 leading-tight">{t.ctaTitle}</h2>
-            <p className="text-base text-white/70 leading-relaxed mb-10">{t.ctaDesc}</p>
-            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="rounded-md bg-white text-neutral-900 font-semibold px-10 py-4 hover:bg-neutral-100 transition-colors duration-300 inline-block">{t.ctaButton}</a>
-            <p className="text-xs text-white/50 mt-5">{t.ctaSub}</p>
+            <p className="text-sm font-semibold text-gray-600 mb-4">{t.ctaLabel}</p>
+            <h2 className="text-2xl lg:text-3xl font-bold text-neutral-900 mb-4 leading-tight">{t.ctaTitle}</h2>
+            <p className="max-w-3xl text-base text-gray-600 leading-relaxed mb-8">{t.ctaDesc}</p>
+            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="rounded-md bg-cta text-white font-semibold px-10 py-4 hover:bg-cta-hover transition-colors duration-300 inline-block min-h-11 inline-flex items-center focus-visible:outline-2 focus-visible:outline-offset-4">{t.ctaButton}</a>
+            <p className="text-xs text-gray-600 mt-5">{t.ctaSub}</p>
           </Reveal>
         </div>
       </section>
 
       {/* STICKY MOBILE CTA BAR */}
-      <div className="lg:hidden fixed bottom-0 inset-x-0 z-50 bg-white/95 backdrop-blur-md border-t border-gray-200">
+      <div className="lg:hidden fixed bottom-0 inset-x-0 z-50 bg-white/95 backdrop-blur-md border-t border-gray-200 pb-[env(safe-area-inset-bottom)]">
         <div className="flex items-center justify-between gap-3 px-4 py-3">
           <div className="leading-tight">
             <p className="text-[13px] font-bold text-gray-900">{t.stickyTitle}</p>
             <p className="text-[10px] text-gray-500">{t.stickySub}</p>
           </div>
-          <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="rounded-md bg-neutral-900 text-white text-sm font-semibold px-6 py-3 hover:bg-neutral-800 transition-colors whitespace-nowrap">
+          <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="rounded-md bg-cta text-white text-sm font-semibold px-6 py-3 hover:bg-cta-hover transition-colors whitespace-nowrap min-h-11 inline-flex items-center focus-visible:outline-2 focus-visible:outline-offset-4">
             {t.stickyBtn}
           </a>
         </div>
       </div>
-      <div className="lg:hidden h-20" />
+      <div className="lg:hidden h-[calc(5rem+env(safe-area-inset-bottom))]" />
     </>
   );
 }

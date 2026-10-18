@@ -71,7 +71,7 @@ export default function ClientLogoShowcase({ label }: { label: string }) {
     const tick = (time: number) => {
       if (visible && !document.hidden && !viewport.matches(":focus-within")) {
         if (previousTime !== undefined && distance) {
-          position = (position + Math.min(time - previousTime, 100) * 0.032) % distance;
+          position = (position + Math.min(time - previousTime, 100) * 0.048) % distance;
           viewport.scrollLeft = position;
         }
         previousTime = time;

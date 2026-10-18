@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-const description = "ClearAIのAIO（AI検索最適化）支援。既存SEOを土台に、AI回答で参照される情報の整理、サイト構造の見直し、表示・引用状況の確認を進めます。引用や順位を保証するものではありません。";
+const description = "ClearAIのAIO（AI検索最適化）支援。既存SEOを土台にした具体施策・成果物・測定方法と、自社サイトの実施記録・効果の確認状況を公開しています。引用や順位を保証しません。";
 export const metadata: Metadata = {
   title: "AIO・AI検索最適化支援",
   description,
