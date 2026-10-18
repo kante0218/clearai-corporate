@@ -43,35 +43,15 @@ function Strokes() {
 
 export default function IntroLoader() {
   const pathname = usePathname();
-  const [fading, setFading] = useState(false);
   const [removed, setRemoved] = useState(false);
   const isStandaloneLp = pathname?.startsWith("/lp/ai-development-consultation");
 
   useEffect(() => {
     if (isStandaloneLp) return;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const showMs = reduce ? 200 : 2100; // writing ends at ~1.6s + a quiet hold
-    const gone = reduce ? 350 : 2750; // remove after the 100ms / 600ms fade
-
-    const previousOverflow = document.body.style.overflow;
-    let ownsScrollLock = true;
-    const restoreScroll = () => {
-      if (!ownsScrollLock) return;
-      if (document.body.style.overflow === "hidden") document.body.style.overflow = previousOverflow;
-      ownsScrollLock = false;
-    };
-    document.body.style.overflow = "hidden"; // lock scroll while intro shows
-    const t1 = setTimeout(() => {
-      setFading(true);
-      restoreScroll();
-    }, showMs);
-    const t2 = setTimeout(() => setRemoved(true), gone);
-
-    return () => {
-      clearTimeout(t1);
-      clearTimeout(t2);
-      restoreScroll();
-    };
+    // CSS dismisses the SSR overlay even before hydration; JS only removes its DOM.
+    const timeout = setTimeout(() => setRemoved(true), reduce ? 350 : 2050);
+    return () => clearTimeout(timeout);
   }, [isStandaloneLp]);
 
   if (isStandaloneLp || removed) return null;
@@ -79,10 +59,7 @@ export default function IntroLoader() {
   return (
     <div
       aria-hidden="true"
-      className={`intro-loader fixed inset-0 z-[9999] flex items-center justify-center bg-white transition-opacity duration-[600ms] ease-out ${
-        fading ? "opacity-0" : "opacity-100"
-      }`}
-      style={{ pointerEvents: fading ? "none" : "auto" }}
+      className="intro-loader fixed inset-0 z-[9999] flex items-center justify-center bg-white"
     >
       <svg viewBox="0 0 1435 445" className="h-14 w-auto md:h-20">
         <defs>
@@ -107,6 +84,13 @@ export default function IntroLoader() {
         <Strokes />
       </svg>
       <style>{`
+        .intro-loader {
+          animation: introDismiss 400ms ease-out 1600ms forwards;
+        }
+        @keyframes introDismiss {
+          from { opacity: 1; pointer-events: none; }
+          to { opacity: 0; visibility: hidden; pointer-events: none; }
+        }
         .intro-stroke {
           stroke-dasharray: 100.7;
           stroke-dashoffset: 100.7;
@@ -118,7 +102,7 @@ export default function IntroLoader() {
           to { stroke-dashoffset: 0; }
         }
         @media (prefers-reduced-motion: reduce) {
-          .intro-loader { transition-duration: 100ms; }
+          .intro-loader { animation-delay: 200ms; animation-duration: 0.01ms; }
           .intro-stroke {
             animation: none;
             stroke-dasharray: none;
