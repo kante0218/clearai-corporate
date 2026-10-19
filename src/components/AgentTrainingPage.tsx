@@ -135,7 +135,10 @@ export default function AgentTrainingPage({ tool }: { tool: Tool }) {
             <p className={styles.heroSub}>{course.sub.split("\n").map((line) => <span key={line}>{line}</span>)}</p>
             <div className={styles.heroBadges}><span><Icon kind="document" />自社の仕事で<br /><strong>実践する</strong></span><span><Icon kind="shield" />安全な使い方も<br /><strong>身につける</strong></span><span><Icon kind="team" />チームで使える<br /><strong>型が残る</strong></span></div>
             <div className={styles.heroActions}><ApplyButton /><p>カリキュラム・費用・実施時期をまとめてご相談</p></div>
-            <div className={styles.heroArtwork}><div className={styles.heroBubble}>「できるかも」を、<br /><strong>仕事で使える力へ。</strong></div><Image src={`/images/training-lp/hero-workflow${imageSuffix}.webp`} alt="AIと協力して資料作成やデータ整理を進めるチームのイラスト" width={1000} height={667} priority sizes="(max-width: 767px) 95vw, 760px" /><span className={styles.heroFloatingNote}>学ぶ → 試す → 確かめる → チームで使う</span></div>
+            <figure className={styles.heroArtwork}>
+              <Image src={`/images/training-lp/hero-workflow${imageSuffix}.webp`} alt="AIと協力して資料作成やデータ整理を進めるチームのイラスト" width={1000} height={667} priority sizes="(max-width: 767px) 90vw, 600px" />
+              <figcaption className={styles.heroCaption}>学ぶ → 試す → 確かめる → チームで使う</figcaption>
+            </figure>
           </div>
         </section>
 
