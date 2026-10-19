@@ -44,7 +44,9 @@ function Strokes() {
 export default function IntroLoader() {
   const pathname = usePathname();
   const [removed, setRemoved] = useState(false);
-  const isStandaloneLp = pathname?.startsWith("/lp/ai-development-consultation");
+  const isStandaloneLp = pathname?.startsWith("/lp/ai-development-consultation")
+    || pathname === "/training/claude-code"
+    || pathname === "/training/codex";
 
   useEffect(() => {
     if (isStandaloneLp) return;

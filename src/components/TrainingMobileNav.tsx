@@ -1,0 +1,50 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import styles from "./AgentTrainingPage.module.css";
+
+const links = [
+  ["#features", "研修の特徴"],
+  ["#curriculum", "カリキュラム"],
+  ["#examples", "部門別の活用例"],
+  ["#pricing", "費用・実施形式"],
+  ["#faq", "よくある質問"],
+  ["#contact", "無料相談・見積もり"],
+] as const;
+
+export default function TrainingMobileNav() {
+  const [open, setOpen] = useState(false);
+  const menu = useRef<HTMLDivElement>(null);
+  const toggle = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+        toggle.current?.focus();
+      }
+    };
+    const handlePointerDown = (event: PointerEvent) => {
+      if (!menu.current?.contains(event.target as Node)) setOpen(false);
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    document.addEventListener("pointerdown", handlePointerDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener("pointerdown", handlePointerDown);
+    };
+  }, [open]);
+
+  return (
+    <div className={styles.mobileMenu} ref={menu}>
+      <button type="button" className={styles.menuToggle} ref={toggle} aria-expanded={open} aria-controls="training-mobile-menu" aria-label={open ? "研修メニューを閉じる" : "研修メニューを開く"} onClick={() => setOpen(!open)}>
+        <span aria-hidden="true"><i /><i /><i /></span>
+        <small>メニュー</small>
+      </button>
+      <nav id="training-mobile-menu" hidden={!open} className={styles.mobileMenuPanel} aria-label="モバイル研修メニュー">
+        {links.map(([href, label]) => <a key={href} href={href} onClick={() => setOpen(false)}>{label}<span aria-hidden="true">›</span></a>)}
+      </nav>
+    </div>
+  );
+}

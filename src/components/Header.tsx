@@ -39,7 +39,9 @@ export default function Header() {
   ];
   const isClaude = pathname?.startsWith("/claude");
   const isAiConsulting = pathname?.startsWith("/ai-consulting");
-  const isStandaloneLp = pathname?.startsWith("/lp/ai-development-consultation");
+  const isStandaloneLp = pathname?.startsWith("/lp/ai-development-consultation")
+    || pathname === "/training/claude-code"
+    || pathname === "/training/codex";
 
   useEffect(() => {
     const onScroll = () => {

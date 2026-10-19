@@ -9,9 +9,10 @@ export default function SiteMotion() {
   const pathname = usePathname();
   const { lang } = useLanguage();
   const progress = useRef<HTMLDivElement>(null);
+  const isTrainingLp = pathname === "/training/claude-code" || pathname === "/training/codex";
 
   useEffect(() => {
-    if (/^\/(contact|reserve|lp)(\/|$)/.test(pathname)) return;
+    if (isTrainingLp || /^\/(contact|reserve|lp)(\/|$)/.test(pathname)) return;
     const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
     let dispose = () => {};
     const setup = () => {
@@ -66,7 +67,9 @@ export default function SiteMotion() {
     setup();
     preference.addEventListener("change", setup);
     return () => { dispose(); preference.removeEventListener("change", setup); };
-  }, [pathname, lang]);
+  }, [pathname, lang, isTrainingLp]);
+
+  if (isTrainingLp) return null;
 
   return <div data-reading-progress ref={progress} aria-hidden="true" className="site-reading-progress" />;
 }

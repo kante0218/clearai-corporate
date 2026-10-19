@@ -11,7 +11,9 @@ export default function Footer() {
   const pathname = usePathname();
   const f = footerDict[lang];
 
-  if (pathname?.startsWith("/lp/ai-development-consultation")) return null;
+  if (pathname?.startsWith("/lp/ai-development-consultation")
+    || pathname === "/training/claude-code"
+    || pathname === "/training/codex") return null;
 
   const services = [
     { label: f.services.websiteProduction, href: "/website-production" },
