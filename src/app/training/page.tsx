@@ -1,6 +1,8 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
+import TrainingOverviewSchema from "./training-schema";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import PricingCarousel from "@/components/PricingCarousel";
@@ -532,11 +534,40 @@ export default function TrainingPage() {
 
   return (
     <>
+      <TrainingOverviewSchema />
       {/* PAGE HEADER — /robot-rental と同一の標準ヘッダー帯 */}
       <section className="pt-24 pb-4 lg:pt-28 lg:pb-5 bg-white border-b border-gray-100">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <p className="text-sm font-semibold text-neutral-900 mb-3">{t.heroKicker}</p>
           <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight">{t.heroTitle}</h1>
+        </div>
+      </section>
+
+      <section aria-labelledby="tool-training-heading" className="py-10 lg:py-12 bg-white border-b border-gray-100">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
+          <h2 id="tool-training-heading" className="text-2xl lg:text-3xl font-bold text-gray-900 mb-8">
+            {lang === "ja" ? "使いたいツールから、研修を選ぶ" : "Choose training for the tool your team uses."}
+          </h2>
+          <div className="grid gap-8 md:grid-cols-2 md:gap-12">
+            <div>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">{lang === "ja" ? "Claude Code研修" : "Claude Code training"}</h3>
+              <p className="text-base text-gray-600 leading-relaxed max-w-2xl mb-5">
+                {lang === "ja" ? "資料の整理、ファイル処理、繰り返し業務の手順化まで。Claude Codeと対話しながら、自社で使い続けられる業務フローを作る実践を学びます。" : "Learn to organize documents, process files and turn recurring tasks into reusable workflows with Claude Code."}
+              </p>
+              <Link href="/training/claude-code" className="text-sm font-semibold text-gray-900 underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4">
+                {lang === "ja" ? "Claude Code研修の内容を見る" : "Explore Claude Code training"}
+              </Link>
+            </div>
+            <div className="border-t border-gray-200 pt-8 md:border-t-0 md:border-l md:pt-0 md:pl-12">
+              <h3 className="text-xl font-bold text-gray-900 mb-3">{lang === "ja" ? "Codex研修" : "Codex training"}</h3>
+              <p className="text-base text-gray-600 leading-relaxed max-w-2xl mb-5">
+                {lang === "ja" ? "OpenAIのCodexで、作業の依頼・実装・テスト・変更の確認を体験。AIに任せる範囲と人が確認するポイントを学び、開発や業務改善に生かします。" : "Practice delegating tasks, implementation, testing and reviewing changes with OpenAI Codex. Learn what to hand off to AI and what your team needs to verify."}
+              </p>
+              <Link href="/training/codex" className="text-sm font-semibold text-gray-900 underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4">
+                {lang === "ja" ? "Codex研修の内容を見る" : "Explore Codex training"}
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
 

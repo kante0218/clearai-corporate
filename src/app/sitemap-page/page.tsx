@@ -47,6 +47,8 @@ const COPY: Record<"ja" | "en", Copy> = {
           { label: "ロボットレンタル", href: "/robot-rental" },
           { label: "AIO（AI検索最適化）", href: "/aio" },
           { label: "AI内製化研修", href: "/training" },
+          { label: "Claude Code研修", href: "/training/claude-code" },
+          { label: "Codex研修", href: "/training/codex" },
         ],
       },
       {
@@ -91,6 +93,8 @@ const COPY: Record<"ja" | "en", Copy> = {
           { label: "Robot Rental", href: "/robot-rental" },
           { label: "AIO (AI Search Optimization)", href: "/aio" },
           { label: "In-house AI Development Training", href: "/training" },
+          { label: "Claude Code Training", href: "/training/claude-code" },
+          { label: "Codex Training", href: "/training/codex" },
         ],
       },
       {

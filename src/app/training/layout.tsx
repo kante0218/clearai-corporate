@@ -43,46 +43,6 @@ export const metadata: Metadata = {
   },
 };
 
-const serviceSchema = {
-  "@context": "https://schema.org",
-  "@type": "Service",
-  serviceType: "AI内製化研修",
-  provider: {
-    "@type": "Organization",
-    name: "ClearAI株式会社",
-    url: "https://clearai.jp",
-  },
-  areaServed: { "@type": "Country", name: "日本" },
-  name: "AI内製化研修",
-  description,
-  url: "https://clearai.jp/training",
-  offers: {
-    "@type": "Offer",
-    availability: "https://schema.org/InStock",
-  },
-};
-
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: [
-    { "@type": "ListItem", position: 1, name: "ホーム", item: "https://clearai.jp" },
-    { "@type": "ListItem", position: 2, name: "AI内製化研修", item: "https://clearai.jp/training" },
-  ],
-};
-
 export default function TrainingLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <>
-      {children}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
-    </>
-  );
+  return children;
 }
