@@ -9,7 +9,7 @@
 .field textarea { resize: vertical; }
 .field input::placeholder, .field textarea::placeholder { color: #777384; opacity: 1; }
 .field input[aria-invalid="true"], .field textarea[aria-invalid="true"] { border-color: #b02b25; }
-.form :is(input, select, textarea, button, a):focus-visible, .booking:focus-visible { outline: 3px solid var(--course-accent, #6941d9); outline-offset: 3px; }
+.form :is(input, select, textarea, button, a):focus-visible, .booking:focus-visible { outline: 4px solid #000; outline-offset: 2px; box-shadow: 0 0 0 2px #ffd43d; }
 .row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
 .consent { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; line-height: 1.8; }
 .consent input { flex-shrink: 0; width: 20px; height: 20px; margin-top: 2px; accent-color: var(--course-accent, #6941d9); }

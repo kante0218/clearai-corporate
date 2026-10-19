@@ -703,3 +703,105 @@
   background: var(--brand-cta-gradient-hover);
   color: #fff;
 }
+
+/* Claude hero only: white canvas, orange product name and black reading copy. */
+.claudeTheme .hero {
+  --course-hero-ink: #000;
+  --course-on-hero: #000;
+  background: #fff;
+  color: #000;
+  padding-top: 32px !important;
+}
+.claudeTheme .hero::before,
+.claudeTheme .hero::after { display: none; }
+.claudeTheme .heroTag {
+  color: #000;
+  font-size: 14px;
+  line-height: 1.5;
+  padding: 8px 16px;
+  border-color: #d9d9d9;
+  margin-bottom: 16px !important;
+}
+.claudeTheme .heroStatement { color: #000; line-height: 1.5; }
+.claudeTheme .productTitle { color: #000; margin-top: 8px; }
+.claudeTheme .productTitle > span { color: #d04a02; }
+.claudeTheme .productTitle > b { color: #000; }
+.claudeTheme .heroSub {
+  color: #000;
+  font-size: 16px;
+  line-height: 1.5;
+  margin-top: 16px !important;
+}
+.claudeTheme .heroBadges { gap: 16px; margin: 24px auto; }
+.claudeTheme .heroBadges > span {
+  min-width: 184px;
+  padding: 8px 16px 8px 48px;
+  color: #000;
+  font-size: 16px;
+  line-height: 1.5;
+  background: #fff;
+  border-color: #d9d9d9;
+}
+.claudeTheme .heroBadges strong { font-size: 16px; }
+.claudeTheme .heroBadges svg { color: #000; top: 16px; left: 12px; }
+.claudeTheme .heroActions .primary {
+  color: #000;
+  min-height: 56px;
+  padding: 16px 24px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+.claudeTheme .heroActions > p {
+  color: #000;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-top: 16px;
+}
+.claudeTheme .heroBubble {
+  color: #000;
+  background: #fff;
+  border: 1px solid #d9d9d9;
+  font-size: 14px;
+  line-height: 1.5;
+  padding: 16px;
+  box-shadow: none;
+}
+.claudeTheme .heroFloatingNote {
+  color: #000;
+  background: #f5f5f5;
+  font-size: 14px;
+  line-height: 1.5;
+  padding: 8px 16px;
+  width: max-content;
+  max-width: 100%;
+  white-space: normal;
+}
+.page :is(a, button, input, select, textarea, summary, [tabindex="0"]):focus-visible {
+  outline: 4px solid #000;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px #ffd43d;
+}
+@media (max-width: 767px) {
+  .claudeTheme .hero { padding: 24px 16px 0 !important; }
+  .claudeTheme .heroTag { padding: 8px; }
+  .claudeTheme .heroStatement { font-size: 24px; }
+  .claudeTheme .heroBadges { gap: 8px; margin: 16px auto; }
+  .claudeTheme .heroBadges > span { min-width: 0; padding: 8px 4px; font-size: 14px; }
+  .claudeTheme .heroBadges strong { font-size: 16px; }
+  .claudeTheme .heroBadges svg { margin-bottom: 8px; }
+  .claudeTheme .heroArtwork { height: 248px; margin-top: 0; }
+  .claudeTheme .heroArtwork > img { height: 280px; }
+  .claudeTheme .heroBubble { top: 72px; padding: 8px; }
+  .claudeTheme .heroFloatingNote { font-size: 14px; padding: 8px; bottom: -32px; }
+}
+@media (max-width: 360px) {
+  .claudeTheme .heroStatement { font-size: 22px; }
+  .claudeTheme .heroBadges > span { font-size: 14px; }
+  .claudeTheme .heroActions .primary { padding-left: 16px; padding-right: 16px; font-size: 16px; gap: 8px; }
+}
+@media (forced-colors: active) {
+  .page :is(a, button, input, select, textarea, summary, [tabindex="0"]):focus-visible {
+    outline-color: Highlight;
+    box-shadow: none;
+  }
+}

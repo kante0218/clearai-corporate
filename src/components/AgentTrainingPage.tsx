@@ -131,7 +131,7 @@ export default function AgentTrainingPage({ tool }: { tool: Tool }) {
         <section className={styles.hero}>
           <div className={styles.heroInner}>
             <p className={styles.heroTag}>非エンジニアから開発チームまで。法人向け実践プログラム</p>
-            <h1><span className={styles.heroStatement}>{course.hero.split("\n").map((line) => <span key={line}>{line}</span>)}</span><span className={styles.productTitle}>{course.name}<b>研修</b></span></h1>
+            <h1><span className={styles.heroStatement}>{course.hero.split("\n").map((line) => <span key={line}>{line}</span>)}</span><span className={styles.productTitle}><span>{course.name}</span><b>研修</b></span></h1>
             <p className={styles.heroSub}>{course.sub.split("\n").map((line) => <span key={line}>{line}</span>)}</p>
             <div className={styles.heroBadges}><span><Icon kind="document" />自社の仕事で<br /><strong>実践する</strong></span><span><Icon kind="shield" />安全な使い方も<br /><strong>身につける</strong></span><span><Icon kind="team" />チームで使える<br /><strong>型が残る</strong></span></div>
             <div className={styles.heroActions}><ApplyButton /><p>カリキュラム・費用・実施時期をまとめてご相談</p></div>
