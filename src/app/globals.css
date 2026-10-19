@@ -33,13 +33,18 @@
    2026-08-10 ユーザー指示で全ストップを白方向へ約18%混ぜた淡いトーンに変更
    （白文字コントラストはAA未満になるがデザイン優先の判断）。hover は従来の濃い値で少し締まる。
    Tailwind のユーティリティは @layer 内に出るため、レイヤー外のこの指定が確実に勝つ。 */
+:root {
+  --brand-cta-gradient: linear-gradient(95deg, #f1623f 0%, #e35aaf 38%, #e053dd 62%, #ae5df5 100%);
+  --brand-cta-gradient-hover: linear-gradient(95deg, #ee4015 0%, #dd369d 38%, #d92dd5 62%, #9c39f3 100%);
+}
+
 .bg-cta {
   background-color: transparent;
-  background-image: linear-gradient(95deg, #f1623f 0%, #e35aaf 38%, #e053dd 62%, #ae5df5 100%);
+  background-image: var(--brand-cta-gradient);
 }
 .hover\:bg-cta-hover:hover {
   background-color: transparent;
-  background-image: linear-gradient(95deg, #ee4015 0%, #dd369d 38%, #d92dd5 62%, #9c39f3 100%);
+  background-image: var(--brand-cta-gradient-hover);
 }
 
 /* Yu Gothic Windows weight fix */

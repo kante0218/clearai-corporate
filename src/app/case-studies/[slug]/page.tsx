@@ -272,7 +272,7 @@ export default async function CaseStudyPage({
                 href={BOOKING_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-white px-7 py-3.5 text-sm font-semibold text-neutral-900 transition-opacity hover:opacity-80"
+                className="inline-flex items-center gap-2 bg-cta hover:bg-cta-hover px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-80"
               >
                 {study.cta.buttonLabel}
                 <span aria-hidden>→</span>

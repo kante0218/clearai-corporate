@@ -26,11 +26,12 @@
   --course-illustration: #c87b4d;
   --course-clothing: #bc794f;
   --course-illustration-shadow: #efd8c8;
-  --course-on-hero: #fff;
-  --course-button-shadow: #823412;
-  --course-button-hover: #903b16;
+  --course-hero-background: #e17956;
+  --course-hero-ink: #252348;
+  --course-hero-border: #25234855;
+  --course-hero-badge-fill: #ffffff26;
+  --course-on-hero: #252348;
   --course-bubble-shadow: #73330f20;
-  --training-form-button-hover: #903b16;
 }
 
 .page *, .page *::before, .page *::after { box-sizing: border-box; }
@@ -58,7 +59,7 @@
 .headerNav { display: flex; align-items: center; gap: 24px; font-size: 12px; font-weight: 700; }
 .headerNav a { color: var(--ink); }
 .headerNav a:hover { color: var(--course-accent); }
-.headerCta { padding: 12px 20px; background: var(--course-cta); color: white; border-radius: 5px; font-size: 12px; font-weight: 800; flex-shrink: 0; }
+.headerCta { padding: 12px 20px; background: var(--brand-cta-gradient); color: white; border-radius: 5px; font-size: 12px; font-weight: 800; flex-shrink: 0; }
 .headerCta span { padding-left: 15px; }
 .mainColumn { width: calc(100% - 320px); }
 .conversionRail {
@@ -77,16 +78,16 @@
 .railTag { display: block; color: var(--course-accent); font-size: 11px; font-weight: 800; text-align: center; }
 .railTitle { font-size: 23px; font-weight: 800; line-height: 1.5; text-align: center; margin: 8px 0 12px !important; letter-spacing: -.04em; }
 .conversionRail > p:not(.railTitle) { font-size: 12px; line-height: 1.8; text-align: center; color: var(--muted); margin-bottom: 22px; }
-.railBooking { display: block; color: var(--ink); font-size: 12px; text-align: center; font-weight: 700; padding: 16px 0 0; text-decoration: underline !important; text-underline-offset: 5px; }
-.primary { display: inline-flex; align-items: center; justify-content: center; gap: 25px; min-height: 62px; padding: 16px 26px; background: var(--course-cta); border: 1px solid transparent; border-radius: 7px; color: #fff; font-size: 15px; font-weight: 800; line-height: 1.5; box-shadow: 0 4px 0 var(--course-button-shadow, #be4430); transition: background .15s, transform .15s; }
+.railBooking { display: flex; align-items: center; justify-content: center; gap: 12px; min-height: 48px; margin-top: 16px; padding: 12px 14px; border-radius: 6px; background: var(--brand-cta-gradient); color: #fff; font-size: 12px; text-align: center; font-weight: 700; text-decoration: none !important; }
+.primary { display: inline-flex; align-items: center; justify-content: center; gap: 25px; min-height: 62px; padding: 16px 26px; background: var(--brand-cta-gradient); border: 1px solid transparent; border-radius: 7px; color: #fff; font-size: 15px; font-weight: 800; line-height: 1.5; box-shadow: 0 3px 8px #25234818; transition: background .15s, transform .15s; }
 .primary span { font-size: 24px; line-height: 1; }
-.primary:hover, .headerCta:hover { background: var(--course-button-hover, #b83b25); color: #fff; }
-.primary:active { transform: translateY(2px); box-shadow: 0 2px 0 var(--course-button-shadow, #be4430); }
-.page .hero { padding: 44px 32px 0 !important; background: var(--course-accent); color: #fff; position: relative; isolation: isolate; }
+.primary:hover, .headerCta:hover { background: var(--brand-cta-gradient-hover); color: #fff; }
+.primary:active { transform: translateY(2px); box-shadow: 0 1px 4px #25234818; }
+.page .hero { padding: 44px 32px 0 !important; background: var(--course-hero-background, var(--course-accent)); color: var(--course-hero-ink, #fff); position: relative; isolation: isolate; }
 .hero::before { content: ""; position: absolute; width: 420px; height: 420px; border: 1px solid #ffffff20; border-radius: 50%; left: -240px; top: 90px; z-index: -1; box-shadow: 0 0 0 70px #ffffff05, 0 0 0 140px #ffffff04; }
 .hero::after { content: ""; position: absolute; bottom: 0; height: 100px; background: #fff; left: 0; right: 0; z-index: -1; }
 .heroInner { max-width: 900px; margin: auto; text-align: center; }
-.heroTag { display: inline-block; color: white; font-size: 12px; font-weight: 700; padding: 4px 16px; border: 1px solid #ffffff70; border-radius: 30px; margin-bottom: 21px !important; }
+.heroTag { display: inline-block; color: var(--course-hero-ink, #fff); font-size: 12px; font-weight: 700; padding: 4px 16px; border: 1px solid var(--course-hero-border, #ffffff70); border-radius: 30px; margin-bottom: 21px !important; }
 .hero h1 { display: flex; flex-direction: column; align-items: center; }
 .heroStatement { display: block; font-size: clamp(25px, 2.8vw, 42px); font-weight: 800; line-height: 1.6; letter-spacing: .02em; }
 .heroStatement > span { display: block; }
@@ -95,7 +96,7 @@
 .heroSub { font-size: 15px; line-height: 1.9; margin-top: 13px !important; font-weight: 600; }
 .heroSub span { display: block; }
 .heroBadges { display: flex; align-items: stretch; justify-content: center; gap: 15px; margin: 24px auto 25px; }
-.heroBadges > span { display: block; position: relative; min-width: 152px; padding: 12px 15px 11px 43px; border: 1px solid #ffffff60; border-radius: 6px; font-size: 11px; line-height: 1.6; text-align: left; background: #ffffff10; }
+.heroBadges > span { display: block; position: relative; min-width: 152px; padding: 12px 15px 11px 43px; border: 1px solid var(--course-hero-border, #ffffff60); border-radius: 6px; font-size: 11px; line-height: 1.6; text-align: left; background: var(--course-hero-badge-fill, #ffffff10); }
 .heroBadges svg { position: absolute; width: 28px; height: 28px; top: 18px; left: 11px; color: var(--course-on-hero, #ded5ff); }
 .heroBadges strong { font-size: 15px; }
 .heroActions > p { margin-top: 13px; font-size: 10px; color: var(--course-on-hero, #e7dffe); }
@@ -168,11 +169,11 @@
 .casePanel small { display: block; font-size: 9px; color: #817b91; margin-top: 15px; }
 .textLink { color: var(--course-accent); font-size: 12px; font-weight: 800; display: inline-block; border-bottom: 1px solid var(--course-border, #c9b8ef); margin-top: 22px; padding-bottom: 5px; }
 .textLink span { margin-left: 20px; }
-.conversionBand { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center; background: var(--course-accent); padding: 42px 5.5%; color: #fff; }
+.conversionBand { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center; background: var(--course-hero-background, var(--course-accent)); padding: 42px 5.5%; color: var(--course-hero-ink, #fff); }
 .conversionBand h2 { font-size: clamp(21px, 2vw, 29px); line-height: 1.65; margin: 7px 0 10px; font-weight: 800; letter-spacing: -.03em; }
 .conversionBand p, .conversionBand > div > span { font-size: 11px; color: var(--course-on-hero, #e7dffa); }
 .conversionBand .primary { font-size: 12px; padding: 16px 20px; gap: 14px; min-height: 58px; }
-.bookingLink { display: block; text-align: center; color: #fff; font-size: 11px; margin-top: 17px; text-decoration: underline !important; text-underline-offset: 5px; }
+.bookingLink { display: flex; align-items: center; justify-content: center; gap: 12px; min-height: 48px; padding: 12px 18px; border-radius: 6px; background: var(--brand-cta-gradient); text-align: center; color: #fff; font-size: 11px; font-weight: 800; margin-top: 17px; text-decoration: none !important; }
 .storyGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 45px; align-items: center; }
 .storyImage { position: relative; background: var(--course-soft, #f6f2fe); border-radius: 16px; padding: 8px; }
 .storyImage > img { width: 100%; height: auto; mix-blend-mode: multiply; }
@@ -291,7 +292,7 @@
 .contactMessage > img { width: 100%; height: auto; margin-top: 20px; }
 .contactBooking { margin-top: 25px; padding-top: 20px; border-top: 1px solid var(--line); font-size: 12px; }
 .contactBooking strong { display: block; margin-bottom: 9px; }
-.contactBooking a { color: var(--course-accent); text-decoration: underline; text-underline-offset: 5px; }
+.contactBooking a { display: inline-flex; align-items: center; justify-content: center; gap: 16px; min-height: 48px; padding: 12px 18px; border-radius: 6px; background: var(--brand-cta-gradient); color: #fff; font-weight: 800; text-decoration: none; }
 .contactForm { background: var(--course-soft, #f8f6fc); padding: 30px; border: 1px solid var(--line); border-radius: 10px; }
 .related { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; padding: 30px 5.5% 65px; }
 .related > a { border: 1px solid var(--line); padding: 20px 23px; border-radius: 7px; color: var(--ink); }
@@ -429,7 +430,7 @@
   .supportGrid h3 { font-size: 15px; }
   .contactMessage h3 { font-size: 22px; }
   .mobileCta { position: fixed; z-index: 45; display: block; bottom: 0; left: 0; right: 0; padding: 9px 20px max(9px, env(safe-area-inset-bottom)); background: #ffffffef; border-top: 1px solid var(--line); backdrop-filter: blur(8px); }
-  .mobileCta > a { display: flex; align-items: center; justify-content: center; gap: 30px; min-height: 48px; max-width: 500px; margin: auto; background: var(--course-cta); color: #fff; border-radius: 6px; font-size: 14px; font-weight: 800; }
+  .mobileCta > a { display: flex; align-items: center; justify-content: center; gap: 30px; min-height: 48px; max-width: 500px; margin: auto; background: var(--brand-cta-gradient); color: #fff; border-radius: 6px; font-size: 14px; font-weight: 800; }
   .mobileCta span { font-size: 23px; }
   .footer { padding-bottom: 100px; }
 }
@@ -741,3 +742,11 @@
   padding: 0;
 }
 .page label:has(> input[type="checkbox"]) { min-height: 48px; align-items: flex-start; }
+
+.railBooking:hover,
+.bookingLink:hover,
+.contactBooking a:hover,
+.mobileCta > a:hover {
+  background: var(--brand-cta-gradient-hover);
+  color: #fff;
+}

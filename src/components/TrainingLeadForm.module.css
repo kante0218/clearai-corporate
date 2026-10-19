@@ -14,8 +14,8 @@
 .consent { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; line-height: 1.8; }
 .consent input { flex-shrink: 0; width: 20px; height: 20px; margin-top: 2px; accent-color: var(--course-accent, #6941d9); }
 .consent a { color: var(--course-accent, #6941d9); text-decoration: underline; text-underline-offset: 3px; }
-.submit, .booking { display: inline-flex; align-items: center; justify-content: center; min-height: 58px; padding: 16px 24px; border: 0; border-radius: 6px; background: var(--course-cta, #ce482f); color: #fff; font-size: 16px; font-weight: 700; line-height: 1.6; text-align: center; cursor: pointer; text-decoration: none; }
-.submit:hover, .booking:hover { background: var(--training-form-button-hover, #c84228); }
+.submit, .booking { display: inline-flex; align-items: center; justify-content: center; min-height: 58px; padding: 16px 24px; border: 0; border-radius: 6px; background: var(--brand-cta-gradient); color: #fff; font-size: 16px; font-weight: 700; line-height: 1.6; text-align: center; cursor: pointer; text-decoration: none; }
+.submit:hover, .booking:hover { background: var(--brand-cta-gradient-hover); }
 .submit:disabled { opacity: .65; cursor: wait; }
 .note { margin: -8px 0 0; color: #666176; font-size: 12px; line-height: 1.9; text-align: center; }
 .error { color: #b02b25; font-size: 13px; line-height: 1.7; font-weight: 500; }
