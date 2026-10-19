@@ -75,10 +75,6 @@ function ConversionBand({ courseName }: { courseName: string }) {
   return <div className={styles.conversionBand}><div><p>まずは、自社で何ができるかを知るところから。</p><h2>{courseName}研修の内容・費用を<br />無料で相談できます</h2><span>課題・人数・ご希望の時期から、実施プランをご提案。</span></div><div><ApplyButton /><a {...BOOKING_LINK_PROPS} className={styles.bookingLink}>日程を選んで相談する <span aria-hidden="true">↗</span></a></div></div>;
 }
 
-function DepartmentVisual({ kind, index }: { kind: string; index: number }) {
-  return <div className={`${styles.departmentVisual} ${styles[`visual${index % 3}`]}`} aria-hidden="true"><div className={styles.miniWindow}><div className={styles.miniWindowBar}><i /><i /><i /></div><div className={styles.miniWindowBody}><Icon kind={kind} /><div><i /><i /><i /></div></div><span className={styles.miniCheck}>✓</span></div><div className={styles.miniPerson}><i /><b /><span /></div><div className={styles.miniSpark}>＋</div></div>;
-}
-
 export default function AgentTrainingPage({ tool }: { tool: Tool }) {
   const course = courses[tool];
   const imageSuffix = tool === "claude-code" ? "-orange" : "";
@@ -96,12 +92,12 @@ export default function AgentTrainingPage({ tool }: { tool: Tool }) {
     { before: "研修を受けても、現場で続かない", after: "明日から試せる、具体的な一歩へ", text: "自社の課題を演習の題材に。持ち帰る成果物と、次に取り組む作業を明確にします。", icon: "chart" },
   ];
   const departments = [
-    { role: "営業", title: "提案と顧客対応に、もっと時間を", text: "商談メモや報告を整理し、提案資料・週次レポートのたたき台を作成します。", kind: "sales", deliverable: "商談サマリー・提案資料" },
-    { role: "人事・総務", title: "繰り返す事務作業を、ひと工夫", text: "社内案内の下書き、規程の整理、申請フローの試作など、身近な業務から取り組みます。", kind: "people", deliverable: "社内FAQ・申請フォーム" },
-    { role: "経理・管理", title: "データ整理から、確認しやすく", text: "練習用CSVの整形や集計を演習。元データとの照合、再実行の手順まで扱います。", kind: "chart", deliverable: "集計表・確認用レポート" },
-    { role: "マーケティング・企画", title: "調べる・まとめる・形にする", text: "情報の整理から企画書の下書き、小さな試作まで。出典を確かめながら進めます。", kind: "idea", deliverable: "リサーチメモ・企画の試作品" },
-    { role: "情報システム", title: "現場の困りごとを、小さな仕組みに", text: "ファイル処理や社内ツールを試作。権限、入力チェック、運用の引き継ぎを考えます。", kind: "shield", deliverable: "自動化の試作・運用手順" },
-    { role: "開発", title: "実装だけでなく、確かめる力も", text: course.devUse, kind: "code", deliverable: "変更案・テスト・レビュー記録" },
+    { role: "営業", title: "提案と顧客対応に、もっと時間を", text: "商談メモや報告を整理し、提案資料・週次レポートのたたき台を作成します。", image: "department-sales", deliverable: "商談サマリー・提案資料" },
+    { role: "人事・総務", title: "繰り返す事務作業を、ひと工夫", text: "社内案内の下書き、規程の整理、申請フローの試作など、身近な業務から取り組みます。", image: "department-hr", deliverable: "社内FAQ・申請フォーム" },
+    { role: "経理・管理", title: "データ整理から、確認しやすく", text: "練習用CSVの整形や集計を演習。元データとの照合、再実行の手順まで扱います。", image: "department-finance", deliverable: "集計表・確認用レポート" },
+    { role: "マーケティング・企画", title: "調べる・まとめる・形にする", text: "情報の整理から企画書の下書き、小さな試作まで。出典を確かめながら進めます。", image: "department-marketing", deliverable: "リサーチメモ・企画の試作品" },
+    { role: "情報システム", title: "現場の困りごとを、小さな仕組みに", text: "ファイル処理や社内ツールを試作。権限、入力チェック、運用の引き継ぎを考えます。", image: "department-it", deliverable: "自動化の試作・運用手順" },
+    { role: "開発", title: "実装だけでなく、確かめる力も", text: course.devUse, image: "department-development", deliverable: "変更案・テスト・レビュー記録" },
   ];
   const faqs = [
     ["プログラミング未経験でも受講できますか？", "はい。PCの基本操作ができる方を対象に、用語やファイル操作から内容を調整します。非エンジニアは業務整理と小さな試作を、開発者は既存コードやテストを中心に扱うなど、参加者の経験に合わせて設計します。"],
@@ -161,7 +157,7 @@ export default function AgentTrainingPage({ tool }: { tool: Tool }) {
 
         <section className={`${styles.section} ${styles.caseSection}`}>
           <SectionTitle lead="現場の課題から、活用を考える">AIを「導入する」から、<br /><em>仕事を「変える」へ</em></SectionTitle>
-          <div className={styles.casePanel}><div className={styles.casePhoto}><Image src="/images/generated-trust/consulting-kpi-review.webp" alt="資料を確認しながら業務改善について話し合うイメージ" width={720} height={480} sizes="(max-width: 767px) 90vw, 420px" /></div><div><span className={styles.smallLabel}>ClearAIのAI活用・業務改善支援</span><h3>課題の整理から、<br />現場で使う仕組みづくりまで</h3><p>何にAIを使うかを決め、業務に組み込み、使い続ける。ClearAIは、企業のAI活用をこうした流れで支援しています。研修も、現場の課題を起点に設計します。</p><Link href="/case-studies" className={styles.textLink}>AI活用・業務改善の支援事例を見る <span aria-hidden="true">›</span></Link><small>リンク先はClearAIの支援事例です。本研修の受講実績を示すものではありません。</small></div></div>
+          <div className={styles.casePanel}><div className={styles.caseArtwork}><Image src={`/images/training-lp/consulting-support${imageSuffix}.webp`} alt="資料を確認しながらAIによる業務改善を相談するチームのイラスト" width={720} height={480} sizes="(max-width: 767px) 90vw, 420px" /></div><div><span className={styles.smallLabel}>ClearAIのAI活用・業務改善支援</span><h3>課題の整理から、<br />現場で使う仕組みづくりまで</h3><p>何にAIを使うかを決め、業務に組み込み、使い続ける。ClearAIは、企業のAI活用をこうした流れで支援しています。研修も、現場の課題を起点に設計します。</p><Link href="/case-studies" className={styles.textLink}>AI活用・業務改善の支援事例を見る <span aria-hidden="true">›</span></Link><small>リンク先はClearAIの支援事例です。本研修の受講実績を示すものではありません。</small></div></div>
         </section>
 
         <ConversionBand courseName={course.name} />
@@ -178,7 +174,7 @@ export default function AgentTrainingPage({ tool }: { tool: Tool }) {
 
         <section id="examples" className={styles.section}>
           <SectionTitle lead="部門ごとの活用・演習例" text="エンジニアだけの道具ではありません。身近な業務から、チームに合う使い方を見つけます。">あなたの部署なら、<br /><em>こんな仕事から始められます</em></SectionTitle>
-          <div className={styles.departmentGrid}>{departments.map((department, index) => <article key={department.role} className={styles.departmentCard}><span className={styles.departmentRole}>{department.role}</span><DepartmentVisual kind={department.kind} index={index} /><div className={styles.departmentCopy}><h3>{department.title}</h3><p>{department.text}</p><div><span>成果物の例</span><strong>{department.deliverable}</strong></div></div></article>)}</div>
+          <div className={styles.departmentGrid}>{departments.map((department) => <article key={department.role} className={styles.departmentCard}><span className={styles.departmentRole}>{department.role}</span><div className={styles.departmentVisual}><Image src={`/images/training-lp/${department.image}${imageSuffix}.webp`} alt={`${department.role}でAIを活用するチームのイラスト`} width={720} height={480} sizes="(max-width: 767px) 90vw, (max-width: 1199px) 40vw, 28vw" /></div><div className={styles.departmentCopy}><h3>{department.title}</h3><p>{department.text}</p><div><span>成果物の例</span><strong>{department.deliverable}</strong></div></div></article>)}</div>
         </section>
 
         <section className={`${styles.section} ${styles.targetSection}`}>
