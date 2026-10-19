@@ -39,12 +39,13 @@ const courses = {
 
 export function agentTrainingMetadata(tool: Tool): Metadata {
   const { name, description } = courses[tool];
+  const heroImage = `/images/training-lp/hero-workflow${tool === "claude-code" ? "-orange" : ""}.webp`;
   const title = `${name}研修｜法人向け実践研修・無料相談 | ClearAI`;
   return {
     title, description,
     alternates: { canonical: `https://clearai.jp/training/${tool}` },
-    openGraph: { title, description, url: `https://clearai.jp/training/${tool}`, type: "website", locale: "ja_JP", siteName: "ClearAI株式会社", images: ["/images/training-lp/hero-workflow.webp"] },
-    twitter: { card: "summary_large_image", title, description, images: ["/images/training-lp/hero-workflow.webp"] },
+    openGraph: { title, description, url: `https://clearai.jp/training/${tool}`, type: "website", locale: "ja_JP", siteName: "ClearAI株式会社", images: [heroImage] },
+    twitter: { card: "summary_large_image", title, description, images: [heroImage] },
   };
 }
 
@@ -80,6 +81,7 @@ function DepartmentVisual({ kind, index }: { kind: string; index: number }) {
 
 export default function AgentTrainingPage({ tool }: { tool: Tool }) {
   const course = courses[tool];
+  const imageSuffix = tool === "claude-code" ? "-orange" : "";
   const lessons = [
     { title: "環境と目標をそろえて、安心してスタート", description: "受講者の経験と対象業務を伺い、必要なアカウント・PC・権限を確認。練習用データと、研修で目指す状態を準備します。", topics: ["対象業務・受講者の経験のヒアリング", "利用プラン・PC・導入権限の確認", "演習データと入力ルールの準備"], output: "受講準備チェックリスト" },
     { title: `${course.name}の基本と、安全な使い方`, description: "チャットとの違いから、ファイルの参照、作業の依頼、実行の許可まで。小さな演習で基本操作を身につけます。", topics: ["作業環境と基本操作", "入力・出力・作業範囲の指定", "実行権限と結果の確認"], output: "自分の業務に置き換える活用メモ" },
@@ -113,7 +115,7 @@ export default function AgentTrainingPage({ tool }: { tool: Tool }) {
   const schema = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faqs.map(([question, answer]) => ({ "@type": "Question", name: question, acceptedAnswer: { "@type": "Answer", text: answer } })) };
 
   return (
-    <div className={styles.page}>
+    <div className={`${styles.page} ${tool === "claude-code" ? styles.claudeTheme : ""}`}>
       <header className={styles.header}>
         <Link href="/" className={styles.logo} aria-label="ClearAI ホーム"><Image src="/images/logo-clear-wordmark.png" width={150} height={44} alt="ClearAI" /><span>法人向けAI実践研修</span></Link>
         <nav aria-label="研修ページ内ナビゲーション" className={styles.headerNav}><a href="#features">研修の特徴</a><a href="#curriculum">カリキュラム</a><a href="#pricing">費用</a><a href="#faq">よくある質問</a></nav>
@@ -137,7 +139,7 @@ export default function AgentTrainingPage({ tool }: { tool: Tool }) {
             <p className={styles.heroSub}>{course.sub.split("\n").map((line) => <span key={line}>{line}</span>)}</p>
             <div className={styles.heroBadges}><span><Icon kind="document" />自社の仕事で<br /><strong>実践する</strong></span><span><Icon kind="shield" />安全な使い方も<br /><strong>身につける</strong></span><span><Icon kind="team" />チームで使える<br /><strong>型が残る</strong></span></div>
             <div className={styles.heroActions}><ApplyButton /><p>カリキュラム・費用・実施時期をまとめてご相談</p></div>
-            <div className={styles.heroArtwork}><div className={styles.heroBubble}>「できるかも」を、<br /><strong>仕事で使える力へ。</strong></div><Image src="/images/training-lp/hero-workflow.webp" alt="AIと協力して資料作成やデータ整理を進めるチームのイラスト" width={1000} height={667} priority sizes="(max-width: 767px) 95vw, 760px" /><span className={styles.heroFloatingNote}>学ぶ → 試す → 確かめる → チームで使う</span></div>
+            <div className={styles.heroArtwork}><div className={styles.heroBubble}>「できるかも」を、<br /><strong>仕事で使える力へ。</strong></div><Image src={`/images/training-lp/hero-workflow${imageSuffix}.webp`} alt="AIと協力して資料作成やデータ整理を進めるチームのイラスト" width={1000} height={667} priority sizes="(max-width: 767px) 95vw, 760px" /><span className={styles.heroFloatingNote}>学ぶ → 試す → 確かめる → チームで使う</span></div>
           </div>
         </section>
 
@@ -151,7 +153,7 @@ export default function AgentTrainingPage({ tool }: { tool: Tool }) {
         <section id="features" className={`${styles.section} ${styles.lavender}`}>
           <SectionTitle lead={`${course.name}研修で選んでほしいポイント`}>ClearAIの研修が<br /><em>大切にしている、3つのこと</em></SectionTitle>
           <div className={styles.featureStack}>
-            <article className={styles.featurePanel}><div className={styles.featureCopy}><span className={styles.featureIndex}>特徴 1</span><h3>「自社の仕事」に<br />置き換えられる実践</h3><p>一般的な操作説明だけで終わらせず、受講者の役割と日々の作業から演習を設計。資料作成、データ整理、小さなツールづくりなど、使いどころを具体的にします。</p><ul className={styles.checkList}><li>実際の業務課題から題材を選ぶ</li><li>説明と演習を行き来しながら学ぶ</li><li>経験に合わせて難易度を調整する</li></ul></div><div className={styles.featureImage}><Image src="/images/training-lp/team-workshop.webp" alt="講師と参加者が業務課題について話し合う実践ワークショップ" width={800} height={533} sizes="(max-width: 767px) 90vw, 450px" /><span>自社の業務が、そのまま学びの入り口に。</span></div></article>
+            <article className={styles.featurePanel}><div className={styles.featureCopy}><span className={styles.featureIndex}>特徴 1</span><h3>「自社の仕事」に<br />置き換えられる実践</h3><p>一般的な操作説明だけで終わらせず、受講者の役割と日々の作業から演習を設計。資料作成、データ整理、小さなツールづくりなど、使いどころを具体的にします。</p><ul className={styles.checkList}><li>実際の業務課題から題材を選ぶ</li><li>説明と演習を行き来しながら学ぶ</li><li>経験に合わせて難易度を調整する</li></ul></div><div className={styles.featureImage}><Image src={`/images/training-lp/team-workshop${imageSuffix}.webp`} alt="講師と参加者が業務課題について話し合う実践ワークショップ" width={800} height={533} sizes="(max-width: 767px) 90vw, 450px" /><span>自社の業務が、そのまま学びの入り口に。</span></div></article>
             <article className={`${styles.featurePanel} ${styles.featureReverse}`}><div className={styles.featureCopy}><span className={styles.featureIndex}>特徴 2</span><h3>便利さと一緒に、<br />安全に使う判断も</h3><p>どの情報を入力してよいか、どの操作は承認が必要か。データ・作業環境・実行権限・結果確認の4つの観点で、安全に使う手順を演習に組み込みます。</p><p>削除・送信・公開など、取り消しにくい操作は、人が判断する前提で扱います。</p></div><div className={styles.securityDiagram}><div className={styles.securityDiagramHeading}><Icon kind="shield" /><strong>仕事で使うための4つの確認</strong></div>{[["入力する情報", "機密・個人情報／利用規程"], ["作業する環境", "契約プラン／管理者の設定"], ["実行する操作", "権限／承認／バックアップ"], ["出てきた結果", "出典／計算／差分・テスト"]].map(([title, text], index) => <div key={title}><span>{index + 1}</span><strong>{title}</strong><small>{text}</small></div>)}<p>人が確かめるポイントを、最初から決める。</p></div></article>
             <article className={styles.featurePanel}><div className={styles.featureCopy}><span className={styles.featureIndex}>特徴 3</span><h3>一人のスキルを、<br />チームの仕組みへ</h3><p>依頼文や確認リスト、{course.instruction}を使って、うまくいった手順を言葉にします。研修後も再利用できる型を残し、担当者が変わっても続けやすい状態を目指します。</p><ul className={styles.checkList}><li>共有できる作業ルールをつくる</li><li>確認と修正の手順を揃える</li><li>研修後に取り組む課題を決める</li></ul></div><div className={styles.workflowDiagram}><div className={styles.workflowTop}><Icon kind="people" /><span>個人の「うまくできた」を</span></div><div className={styles.workflowFile}><Icon kind="document" /><strong>{course.instruction}</strong><span>依頼のルール／確認すること／作業手順</span></div><div className={styles.workflowArrow}>↓</div><div className={styles.workflowTeam}><Icon kind="team" /><strong>チームで再現できる、仕事の型へ</strong></div></div></article>
           </div>
@@ -165,7 +167,7 @@ export default function AgentTrainingPage({ tool }: { tool: Tool }) {
         <ConversionBand courseName={course.name} />
 
         <section className={`${styles.section} ${styles.storySection}`}>
-          <div className={styles.storyGrid}><div className={styles.storyImage}><Image src="/images/training-lp/security-team.webp" alt="業務の進め方と安全なAI活用を一緒に検討するチーム" width={800} height={600} sizes="(max-width: 767px) 90vw, 480px" /><div className={styles.storyImageLabel}>技術と現場のあいだに、ClearAI。</div></div><div><p className={styles.sectionLead}>なぜ、ClearAIが研修をするのか</p><h2>いい道具を、<br />使いこなせる組織を<br />増やしたい</h2><p>AIでできることが増えても、現場には「どこから始めればいい？」「うちの仕事でも使える？」という迷いがあります。</p><p>だから、私たちはツールの説明をするだけでなく、業務を聞くところから始めます。できることと確認が必要なことを整理し、自分たちで前に進むための力を育てる。その最初の一歩を、研修で支えます。</p><Link href="/about" className={styles.textLink}>ClearAIについて <span aria-hidden="true">›</span></Link></div></div>
+          <div className={styles.storyGrid}><div className={styles.storyImage}><Image src={`/images/training-lp/security-team${imageSuffix}.webp`} alt="業務の進め方と安全なAI活用を一緒に検討するチーム" width={800} height={600} sizes="(max-width: 767px) 90vw, 480px" /><div className={styles.storyImageLabel}>技術と現場のあいだに、ClearAI。</div></div><div><p className={styles.sectionLead}>なぜ、ClearAIが研修をするのか</p><h2>いい道具を、<br />使いこなせる組織を<br />増やしたい</h2><p>AIでできることが増えても、現場には「どこから始めればいい？」「うちの仕事でも使える？」という迷いがあります。</p><p>だから、私たちはツールの説明をするだけでなく、業務を聞くところから始めます。できることと確認が必要なことを整理し、自分たちで前に進むための力を育てる。その最初の一歩を、研修で支えます。</p><Link href="/about" className={styles.textLink}>ClearAIについて <span aria-hidden="true">›</span></Link></div></div>
         </section>
 
         <section id="curriculum" className={`${styles.section} ${styles.lavender}`}>
@@ -209,7 +211,7 @@ export default function AgentTrainingPage({ tool }: { tool: Tool }) {
 
         <section id="contact" className={`${styles.section} ${styles.contactSection}`}>
           <SectionTitle lead={`${course.name}研修の無料相談・お見積もり`}>研修内容と費用を、<br /><em>まずは無料でご相談ください</em></SectionTitle>
-          <div className={styles.contactGrid}><div className={styles.contactMessage}><h3>「うちでも使える？」から、<br />気軽にご相談ください</h3><p>やりたいことが具体的でなくても構いません。現在の業務やチームの状況を伺い、取り組みやすい題材と学び方をご提案します。</p><ul className={styles.checkList}><li>自社に合う活用テーマの整理</li><li>人数・経験に合わせた研修内容</li><li>実施日程・形式・費用のご案内</li></ul><div className={styles.contactBooking}><strong>日程を先に決めたい方へ</strong><a {...BOOKING_LINK_PROPS}>日程を選んで相談する <span aria-hidden="true">↗</span></a></div><Image src="/images/training-lp/team-workshop.webp" alt="相談を通じて研修プランを一緒につくるイメージ" width={600} height={400} sizes="(max-width: 767px) 80vw, 360px" /></div><div className={styles.contactForm}><TrainingLeadForm courseName={course.name} sourcePath={`/training/${tool}`} /></div></div>
+          <div className={styles.contactGrid}><div className={styles.contactMessage}><h3>「うちでも使える？」から、<br />気軽にご相談ください</h3><p>やりたいことが具体的でなくても構いません。現在の業務やチームの状況を伺い、取り組みやすい題材と学び方をご提案します。</p><ul className={styles.checkList}><li>自社に合う活用テーマの整理</li><li>人数・経験に合わせた研修内容</li><li>実施日程・形式・費用のご案内</li></ul><div className={styles.contactBooking}><strong>日程を先に決めたい方へ</strong><a {...BOOKING_LINK_PROPS}>日程を選んで相談する <span aria-hidden="true">↗</span></a></div><Image src={`/images/training-lp/team-workshop${imageSuffix}.webp`} alt="相談を通じて研修プランを一緒につくるイメージ" width={600} height={400} sizes="(max-width: 767px) 80vw, 360px" /></div><div className={styles.contactForm}><TrainingLeadForm courseName={course.name} sourcePath={`/training/${tool}`} /></div></div>
         </section>
 
         <div className={styles.resourceLinks}><h2>導入を検討するための読みもの</h2><div><Link href="/column/seisei-ai-kenshu-joseikin"><Icon kind="document" /><span>研修計画・費用について考える<strong>生成AI研修に使える助成金と申請の流れ</strong></span><b aria-hidden="true">›</b></Link><Link href="/ai-consulting"><Icon kind="team" /><span>研修後の活用を相談したい方へ<strong>AI顧問・伴走支援について</strong></span><b aria-hidden="true">›</b></Link></div></div>
