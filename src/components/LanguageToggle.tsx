@@ -22,7 +22,7 @@ export default function LanguageToggle({ variant = "desktop", className = "" }: 
 
   return (
     <div
-      className={`relative inline-flex items-center rounded-md bg-gray-100 ring-1 ring-gray-200/70 p-0.5 font-semibold select-none ${className}`}
+      className={`relative inline-flex items-center rounded-md bg-gray-100 ring-1 ring-gray-200/70 p-0.5 font-semibold select-none ${variant === "mobile" ? "language-toggle-mobile" : ""} ${className}`}
       role="group"
       aria-label={t.switchTo}
       style={{ opacity: mounted ? 1 : 0.7 }}

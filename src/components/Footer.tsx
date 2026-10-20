@@ -148,7 +148,7 @@ export default function Footer() {
       </div>
 
       <div className="max-w-[1800px] mx-auto px-5 sm:px-6 lg:px-8 py-5 sm:py-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 sm:gap-4">
-        <p className="text-xs text-white/25">
+        <p className="site-copyright text-xs text-white/25">
           &copy; {new Date().getFullYear()} {f.copyright}
         </p>
         <div className="flex items-center gap-6">

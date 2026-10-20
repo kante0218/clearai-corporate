@@ -36,3 +36,10 @@
 .compact .required { margin-left: 6px; font-size: 10px; }
 .compact .submit { min-height: 50px; padding: 12px; font-size: 14px; }
 .compact .note { margin-top: -4px; font-size: 10px; }
+@media (max-width: 767px) {
+  .form { font-size: 14px; line-height: 1.5; }
+  .intro, .field, .consent, .compact .field, .compact .consent, .submit, .booking { font-size: 14px; line-height: 21px; }
+  .note, .compact .note, .required, .optional, .compact .required { font-size: 12px; line-height: 18px; }
+  .field input, .field select, .field textarea, .submit, .booking { border-radius: 0; }
+  .fields, .row, .compact .fields, .compact .row { gap: 24px; }
+}

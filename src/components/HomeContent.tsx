@@ -513,7 +513,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
   return (
     <>
       {/* ═══ HERO ═══ */}
-      <section className="relative overflow-hidden bg-white pt-20">
+      <section className="home-hero relative overflow-hidden bg-white pt-20">
         {/* モバイル(2026-08-11指示): 動画は16:9のまま見切れずに全部見せる(PCと同じ絵)。
             タイトルは動画の上に重ね、相談カードはその下に置く。PCは従来通り画面いっぱい */}
         <div className="hero-shell relative overflow-hidden border-b border-gray-200 md:h-[calc(100svh-80px)] md:min-h-[560px]">
@@ -573,7 +573,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       </section>
 
       {/* ═══ CLIENT LOGOS ═══ */}
-      <section className="pb-10 pt-2 md:pb-16 md:pt-4 bg-white border-b border-gray-100">
+      <section className="home-client-logos pb-10 pt-2 md:pb-16 md:pt-4 bg-white border-b border-gray-100">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <ClientLogoShowcase label={t.clientLogosLabel} />
         </div>

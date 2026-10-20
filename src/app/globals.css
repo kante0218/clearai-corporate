@@ -614,12 +614,12 @@ details[open] summary {
   .text-4xl  { font-size: 2rem      !important; line-height: 2.25rem  !important; }
 }
 
-/* Mobile type scale follows Toyota: headings 32/48, body and CTA 14/21, navigation 12/18. */
+/* Toyota mobile rhythm, scaled for corporate pages rather than product displays. */
 @media (max-width: 767px) {
   body {
     font-size: 14px;
     line-height: 1.5;
-    letter-spacing: 0.02em;
+    letter-spacing: 0;
   }
 
   main {
@@ -639,8 +639,8 @@ details[open] summary {
 
   main section > [class*="max-w-"],
   main > [class*="max-w-"] {
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
   }
 
   .text-xs { font-size: 12px !important; line-height: 18px !important; }
@@ -649,16 +649,17 @@ details[open] summary {
   .text-xl { font-size: 20px !important; line-height: 30px !important; }
   .text-2xl { font-size: 24px !important; line-height: 36px !important; }
   .text-3xl, .text-4xl, .text-5xl, .text-6xl, .text-7xl {
-    font-size: 32px !important;
-    line-height: 48px !important;
+    font-size: 24px !important;
+    line-height: 36px !important;
   }
 
   /* Cover article and campaign pages that use CSS modules or arbitrary utilities. */
-  main :is(h1, h2), main :is(h1, h2) :is(span, b, strong) {
-    font-size: 32px !important;
-    line-height: 48px !important;
+  main h1, main h1 :is(span, b, strong) {
+    font-size: 24px !important;
+    line-height: 36px !important;
   }
-  main h3 { font-size: 20px !important; line-height: 30px !important; }
+  main h2, main h2 :is(span, b, strong) { font-size: 20px !important; line-height: 30px !important; }
+  main h3 { font-size: 16px !important; line-height: 24px !important; }
   main h4 { font-size: 16px !important; line-height: 24px !important; }
   main :is(p, li, dd, dt, th, td, label, summary) {
     font-size: 14px !important;
@@ -674,6 +675,16 @@ details[open] summary {
     line-height: 21px !important;
   }
   footer :is(h2, h3, h4, p.font-semibold) { font-size: 16px !important; line-height: 24px !important; }
+
+  main :is(h1, h2, h3, h4, p, a, button, li), footer { letter-spacing: 0 !important; }
+  main :is(.px-5, .px-6, .px-7), footer > [class*="max-w-"] { padding-left: 24px !important; padding-right: 24px !important; }
+  main :is(.gap-4, .gap-5, .gap-6) { gap: 16px !important; }
+  main :is(.gap-8, .gap-10) { gap: 24px !important; }
+  main :is([class*="rounded-md"], [class*="rounded-lg"], [class*="rounded-xl"], [class*="rounded-2xl"]) { border-radius: 0 !important; }
+  main [class*="shadow"], header, [data-mobile-cta] { box-shadow: none !important; }
+  main :is(a, button) svg { width: 20px; height: 20px; }
+  main :is(a, button) { min-height: 44px; }
+  footer .site-copyright { font-size: 10px !important; line-height: 15px !important; }
 
   h1, h2, h3, h4 {
     overflow-wrap: anywhere;
@@ -695,7 +706,7 @@ details[open] summary {
   textarea {
     width: 100%;
     min-height: 48px;
-    border-radius: 0.625rem;
+    border-radius: 0;
     font-size: 16px !important;
   }
 
@@ -772,4 +783,40 @@ details[open] summary {
   .cookie-actions { display: grid; grid-template-columns: 1fr 1fr; }
   .cookie-actions button { padding: 10px 8px; }
   footer button { font-size: 12px !important; line-height: 18px !important; }
+}
+
+@media (max-width: 767px) {
+  header > [class*="max-w-"] { padding-left: 20px !important; padding-right: 12px !important; }
+  .site-header-row { height: 56px; }
+  .site-menu-toggle > div { width: 20px; height: 14px; }
+  .site-menu-toggle > div > span { height: 1px; background: #000; rotate: none; translate: none; }
+  .site-menu-toggle[aria-expanded="true"] span:first-child { transform: translateY(6.5px) rotate(45deg); }
+  .site-menu-toggle[aria-expanded="true"] span:last-child { transform: translateY(-6.5px) rotate(-45deg); }
+  .site-mobile-panel[data-open="true"] { height: calc(100dvh - 56px); }
+  .site-mobile-panel > div { border: 0; backdrop-filter: none; }
+  .site-mobile-nav { max-height: calc(100dvh - 56px); padding: 24px 24px calc(40px + env(safe-area-inset-bottom)); }
+  .site-mobile-nav > div { border: 0; margin-top: 0; }
+  header .site-mobile-nav .site-menu-row,
+  .site-menu-utilities a,
+  .site-menu-actions a { display: flex; align-items: center; justify-content: space-between; min-height: 56px; padding: 16px 24px 16px 0; font-size: 14px !important; line-height: 21px !important; font-weight: 700; letter-spacing: 0; color: #000; position: relative; text-align: left; }
+  header .site-mobile-nav .site-menu-row { font-size: 16px !important; line-height: 24px !important; }
+  .site-mobile-nav [class*="pl-4"] { padding-left: 24px; }
+  .site-mobile-nav [class*="pl-4"] a { display: flex; align-items: center; min-height: 56px; padding: 16px 0; font-size: 14px !important; line-height: 24px !important; font-weight: 700; }
+  .site-menu-row::after, .site-menu-utilities a::after, .site-menu-actions a::after { content: ""; width: 6px; height: 6px; border-top: 1px solid currentColor; border-right: 1px solid currentColor; transform: rotate(45deg); position: absolute; right: 3px; }
+  .site-menu-utilities { display: block; margin-top: 48px !important; }
+  .site-menu-language { justify-content: flex-start; margin-top: 48px !important; }
+  .site-menu-actions { margin-top: 48px !important; }
+  .site-menu-actions a { border: 0; border-radius: 0; background: none; color: #000; margin-top: 0; }
+  .language-toggle-mobile { padding: 0; background: none; box-shadow: none; border-radius: 0; }
+  .language-toggle-mobile > span { display: none; }
+  .language-toggle-mobile button { background: none; color: #000; border-radius: 0; letter-spacing: 0; min-width: 44px; min-height: 44px; font-size: 12px; }
+  .language-toggle-mobile button[aria-pressed="true"] { text-decoration: underline; text-underline-offset: 5px; }
+  .language-toggle-mobile button + button { border-left: 1px solid #ccc; }
+}
+
+@media (max-width: 767px) {
+  .home-hero { padding-bottom: 0 !important; }
+  .home-client-logos { padding-top: 24px !important; padding-bottom: 40px !important; }
+  .home-client-logos .logo-flow { margin-top: 0; padding-top: 0; padding-bottom: 0; border-top: 0; }
+  .home-client-logos .logo-flow > div:first-child { margin-bottom: 24px; }
 }

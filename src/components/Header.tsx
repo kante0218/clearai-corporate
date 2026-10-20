@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Logo from "@/components/Logo";
 import { BOOKING_URL } from "@/lib/booking";
@@ -17,6 +17,8 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
+  const menuToggle = useRef<HTMLButtonElement>(null);
+  const header = useRef<HTMLElement>(null);
   const pathname = usePathname();
   const { lang } = useLanguage();
   const h = headerDict[lang];
@@ -65,6 +67,24 @@ export default function Header() {
     };
   }, [isOpen]);
 
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsOpen(false);
+        menuToggle.current?.focus();
+      }
+      if (event.key !== "Tab") return;
+      const items = Array.from(header.current?.querySelectorAll<HTMLElement>("a[href], button:not([disabled])") ?? []).filter((item) => item.offsetParent !== null);
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
+      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [isOpen]);
+
 
   const navColor = "text-gray-600 hover:text-gray-900";
   const headerBg = scrolled
@@ -80,9 +100,9 @@ export default function Header() {
 
   return (
     <>
-      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${headerBg}`}>
+      <header ref={header} className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${headerBg}`}>
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <div className="relative flex h-16 items-center justify-between lg:h-20">
+          <div className="site-header-row relative flex h-16 items-center justify-between lg:h-20">
             <Link href="/" className="flex shrink-0 items-center gap-2.5 group" aria-label="ClearAI株式会社（クリアエーアイ）">
               <Logo size={36} className="h-7 lg:h-8 w-auto transition-opacity duration-300 group-hover:opacity-80" />
             </Link>
@@ -179,7 +199,7 @@ export default function Header() {
               </a>
             </div>
 
-            <button onClick={() => setIsOpen(!isOpen)} className="min-[1700px]:hidden p-2 z-10 min-h-[44px] min-w-[44px] flex items-center justify-center" aria-label={h.menuAria} aria-expanded={isOpen}>
+            <button ref={menuToggle} onClick={() => setIsOpen(!isOpen)} aria-controls="site-mobile-menu" className="site-menu-toggle min-[1700px]:hidden p-2 z-10 min-h-[44px] min-w-[44px] flex items-center justify-center" aria-label={h.menuAria} aria-expanded={isOpen}>
               <div className="w-6 h-5 flex flex-col justify-between">
                 <span className={`w-full h-0.5 bg-gray-900 transition-all duration-300 ${
                   isOpen ? "rotate-45 translate-y-[9px]" : ""
@@ -195,9 +215,9 @@ export default function Header() {
           </div>
         </div>
 
-        <div className={`min-[1700px]:hidden overflow-hidden bg-white transition-all duration-500 ${isOpen ? "h-[calc(100dvh-4rem)] opacity-100" : "h-0 opacity-0"}`}>
+        <div id="site-mobile-menu" inert={!isOpen} data-open={isOpen} className={`site-mobile-panel min-[1700px]:hidden overflow-hidden bg-white transition-all duration-500 ${isOpen ? "h-[calc(100dvh-4rem)] opacity-100" : "h-0 opacity-0"}`}>
           <div className="h-full bg-white/98 backdrop-blur-xl border-t border-gray-100">
-            <nav className="max-h-[calc(100dvh-4rem)] max-w-[1800px] mx-auto overflow-y-auto overscroll-contain px-5 py-4 space-y-1 pb-[calc(1rem+env(safe-area-inset-bottom))]">
+            <nav aria-label={lang === "ja" ? "サイトメニュー" : "Site menu"} className="site-mobile-nav max-h-[calc(100dvh-4rem)] max-w-[1800px] mx-auto overflow-y-auto overscroll-contain px-5 py-4 space-y-1 pb-[calc(1rem+env(safe-area-inset-bottom))]">
               {navItems.map((item, i) => {
                 const hasChildren = item.children && item.children.length > 0;
                 const expanded = mobileExpanded === item.label;
@@ -210,7 +230,7 @@ export default function Header() {
                           target="_blank"
                           rel="noopener noreferrer"
                           onClick={() => setIsOpen(false)}
-                          className="flex-1 block text-base text-gray-700 hover:text-gray-900 py-3.5 transition-colors font-medium"
+                          className="site-menu-row flex-1 block text-base text-gray-700 hover:text-gray-900 py-3.5 transition-colors font-medium"
                         >
                           {item.label}
                         </a>
@@ -218,7 +238,7 @@ export default function Header() {
                         <Link
                           href={item.href}
                           onClick={() => setIsOpen(false)}
-                          className="flex-1 block text-base text-gray-700 hover:text-gray-900 py-3.5 transition-colors font-medium"
+                          className="site-menu-row flex-1 block text-base text-gray-700 hover:text-gray-900 py-3.5 transition-colors font-medium"
                         >
                           {item.label}
                         </Link>
@@ -265,7 +285,7 @@ export default function Header() {
                   </div>
                 );
               })}
-              <div className="mt-6 flex flex-wrap items-center justify-center gap-5">
+              <div className="site-menu-utilities mt-6 flex flex-wrap items-center justify-center gap-5">
                 {utilityItems.map((u) => (
                   <Link
                     key={u.label}
@@ -279,10 +299,10 @@ export default function Header() {
               </div>
               {/* The desktop toggle is hidden below xl, so this is the only
                   place a phone can switch language. Leaves the menu open. */}
-              <div className="mt-5 flex justify-center">
+              <div className="site-menu-language mt-5 flex justify-center">
                 <LanguageToggle variant="mobile" />
               </div>
-              <div className="mt-4 space-y-3">
+              <div className="site-menu-actions mt-4 space-y-3">
                 <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" onClick={() => setIsOpen(false)}
                   className={`block text-center px-4 py-3.5 rounded-lg text-sm font-semibold transition-colors min-h-[44px] flex items-center justify-center ${contactFilledClass}`}>
                   {lang === "ja" ? "代表と面談" : "Meet founder"}
