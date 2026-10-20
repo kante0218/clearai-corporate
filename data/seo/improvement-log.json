@@ -193,7 +193,7 @@
     "targetPath": "/blog/ai-email-reply-three-decisions",
     "status": "observing",
     "deployedAt": "2026-09-19T03:48:58.537956+00:00",
-    "nextReviewDate": "2026-10-20",
+    "nextReviewDate": "2026-10-27",
     "actions": [
       {
         "date": "2026-09-19T03:48:58.537956+00:00",
@@ -364,6 +364,35 @@
         "clicks": 0,
         "reason": "公開後168時間・完全な公開後7日窓は充足。10/4〜10/10のGSC画面はNo dataで順位欠測、表示0・クリック0。改善前7日9/10〜9/16は7.5位51表示0クリック。今回も順位比較不能かつ確定状態未確認のため、効果なし・悪化・未インデックスとは判定しない。observingを維持し10/20に再レビュー、日次監視継続。",
         "nextReviewDate": "2026-10-20"
+      },
+      {
+        "date": "2026-10-20T00:01:17.576468+00:00",
+        "result": "deferred",
+        "status": "observing",
+        "range": {
+          "startDate": "2026-10-11",
+          "endDate": "2026-10-17",
+          "days": 7
+        },
+        "scope": {
+          "siteUrl": "https://clearai.jp/",
+          "device": "all",
+          "country": "all",
+          "type": "web",
+          "dataState": "ui-not-confirmed",
+          "timeZone": "America/Los_Angeles",
+          "aggregationType": "ui-not-confirmed",
+          "dimensions": "ui-query-table",
+          "queryFilter": "equals",
+          "pageFilter": "equals"
+        },
+        "source": "gsc",
+        "collectionMethod": "browser-ui",
+        "rank": null,
+        "impressions": 0,
+        "clicks": 0,
+        "reason": "公開後168時間・完全な公開後7日窓は充足。GSC画面はNo dataで順位欠測、確定状態未確認。改善前7日9/10〜9/16は7.5位51表示0クリック。今回も順位比較不能のため効果なし・悪化・未インデックス・1位達成とは判定しない。observingを維持し10/27へ延期。",
+        "nextReviewDate": "2026-10-27"
       }
     ]
   }
