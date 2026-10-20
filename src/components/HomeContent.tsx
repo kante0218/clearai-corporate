@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import ProductList from "@/components/ProductList";
+import styles from "./HomeContent.module.css";
 import Image from "next/image";
 import { type ReactNode } from "react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
@@ -538,7 +539,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
           <div className="relative z-10 mx-auto flex max-w-[1800px] flex-col px-6 pb-6 md:h-full md:min-h-0 md:py-6 lg:px-8">
             {/* 2026-08-10: 上部バッジ／英語小見出し／説明文／✓チップ／数値バッジは
                 「見出しだけ残す」方針で削除。COPY 側の定義は残してあるので復活は容易。
-                相談パネルはファーストビュー内に収める指示によりヒーロー内へ移動。 */}
+                相談導線はページ下部と固定ナビに集約。 */}
             {/* モバイルは負マージンで動画(高さ56.25vw)の上へタイトルを重ねる(h1の重複を作らない) */}
             <div className="-mt-[56.25vw] flex h-[56.25vw] w-full items-center md:mt-0 md:h-auto md:flex-1">
               <div className="w-full max-w-[760px]">
@@ -546,27 +547,6 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
                   {t.heroTitle}
                 </h1>
               </div>
-            </div>
-            <div className="mx-auto mb-2 mt-5 w-full max-w-[760px] rounded-md border border-[#d4dde5] bg-white px-5 py-6 text-left shadow-[0_16px_40px_-32px_rgba(18,49,75,0.34)] sm:px-7 md:mb-16 md:mt-0 md:block md:py-5 [@media(max-height:800px)_and_(min-width:768px)]:py-3">
-            <p className="mb-4 text-base font-black text-neutral-900 md:text-lg [@media(max-height:800px)_and_(min-width:768px)]:mb-2 [@media(max-height:800px)_and_(min-width:768px)]:text-base">
-              {lang === "ja" ? "代表との面談・会社資料" : "Consultation and company information"}
-            </p>
-            <div className="grid gap-3 md:grid-cols-2">
-            <Link href="/download" className="inline-flex min-h-[58px] items-center justify-center gap-3 rounded-md border border-[#315b73] bg-white px-6 py-3 text-sm font-bold text-neutral-900 transition hover:bg-[#eef2f5] md:min-h-[52px] md:text-base [@media(max-height:800px)_and_(min-width:768px)]:min-h-11 [@media(max-height:800px)_and_(min-width:768px)]:py-2">
-              <svg aria-hidden viewBox="0 0 24 24" className="h-5 w-5 fill-none stroke-current" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M6 2h9l3 3v17H6z" />
-                <path d="M14 2v4h4M9 11h6M9 15h6" />
-              </svg>
-              {t.heroSecondary}
-            </Link>
-            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[58px] items-center justify-center gap-3 motion-cta rounded-md bg-cta px-6 py-3 text-sm font-bold text-white transition hover:bg-cta-hover md:min-h-[52px] md:text-base [@media(max-height:800px)_and_(min-width:768px)]:min-h-11 [@media(max-height:800px)_and_(min-width:768px)]:py-2">
-              <svg aria-hidden viewBox="0 0 24 24" className="h-5 w-5 fill-none stroke-current" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="3" y="4" width="18" height="17" rx="2" />
-                <path d="M8 2v4M16 2v4M3 9h18M8 13h3M8 17h6" />
-              </svg>
-              {t.heroPrimary}
-            </a>
-            </div>
             </div>
           </div>
         </div>
@@ -579,9 +559,9 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
         </div>
       </section>
 
-      <section id="support" className="scroll-mt-28 bg-white py-10 md:py-16" aria-labelledby="home-services-title">
+      <section id="support" className={`${styles.services} scroll-mt-28 bg-white py-10 md:py-16`} aria-labelledby="home-services-title">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <h2 data-motion="heading" id="home-services-title" className="text-3xl font-bold text-neutral-900 mb-7">{lang === "ja" ? "事業内容" : "Our services"}</h2>
+          <h2 data-motion="heading" id="home-services-title" className={`${styles.sectionTitle} text-3xl font-bold text-neutral-900 mb-7`}>{lang === "ja" ? "事業内容" : "Our services"}</h2>
           <ul className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-10">
             {[
               { href: "/software-development", title: lang === "ja" ? "システム・ソフトウェア開発" : "System & Software Development", desc: lang === "ja" ? "繰り返しの事務作業を減らしたい。業務に合うシステムをつくり、運用まで支援します。" : "Build systems that fit your workflows, from design to operation." },
@@ -590,17 +570,17 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
               { href: "/training", title: lang === "ja" ? "AI内製化研修" : "In-house AI Training", desc: lang === "ja" ? "社員がAIを仕事に使えるようにしたい。実務に沿った研修で、社内で使う力を育てます。" : "Help your team apply AI through practical training." },
               { href: "/website-production", title: lang === "ja" ? "ホームページ制作" : "Website Production", desc: lang === "ja" ? "事業の強みを整理し、読む人に伝わる構成・デザイン・公開まで支援します。" : "We clarify your message and support site structure, design, development, and launch." },
               { href: "/sns-management", title: lang === "ja" ? "SNS運用代行" : "SNS Management", desc: lang === "ja" ? "発信の目的を整理し、企画・文章や画像の制作・投稿管理・分析改善を支援します。" : "Support for social media planning, content creation, publishing management, and review." },
-            ].map((service) => <li data-motion="card" key={service.href} className="motion-card border-t border-neutral-200 py-5"><Link href={service.href} className="font-semibold text-neutral-900 underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-4">{service.title}</Link>{service.desc && <p className="mt-3 text-sm text-neutral-600 leading-relaxed">{service.desc}</p>}</li>)}
+            ].map((service) => <li data-motion="card" key={service.href} className="motion-card border-t border-neutral-200 py-5"><Link href={service.href} className={`${styles.serviceLink} font-semibold text-neutral-900 underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-4`}>{service.title}</Link>{service.desc && <p className="mt-3 text-sm text-neutral-600 leading-relaxed">{service.desc}</p>}</li>)}
           </ul>
         </div>
       </section>
 
-      <section id="home-products" className="scroll-mt-28 bg-neutral-50 py-10 md:py-16" aria-labelledby="home-products-title">
+      <section id="home-products" className={`${styles.products} scroll-mt-28 bg-neutral-50 py-10 md:py-16`} aria-labelledby="home-products-title">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <div className="mb-7 flex flex-wrap items-end justify-between gap-4">
             <div>
               <p className="mb-2 text-sm font-semibold text-neutral-600">Products</p>
-              <h2 data-motion="heading" id="home-products-title" className="text-3xl font-bold text-neutral-900">サービス・プロダクト</h2>
+              <h2 data-motion="heading" id="home-products-title" className={`${styles.sectionTitle} text-3xl font-bold text-neutral-900`}>サービス・プロダクト</h2>
               <p className="mt-3 text-sm leading-relaxed text-neutral-600">仕事の記録、英語学習、日々の暮らし。公開中と準備中のサービスをご紹介します。</p>
             </div>
             <Link href="/products" className="text-sm font-semibold text-neutral-900 underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4">サービス一覧を見る →</Link>
@@ -616,7 +596,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
             <div className="flex items-end justify-between mb-6 md:mb-12 gap-6">
               <div>
                 <SectionLabel>{t.casesLabel}</SectionLabel>
-                <h2 data-motion="heading" className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.casesTitle}</h2>
+                <h2 data-motion="heading" className={`${styles.sectionTitle} text-3xl font-bold text-gray-900 leading-tight mb-4`}>{t.casesTitle}</h2>
                 <p className="text-base text-gray-500 leading-relaxed max-w-2xl">{t.casesDesc}</p>
               </div>
               <Link
@@ -672,7 +652,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <SectionLabel>{t.processLabel}</SectionLabel>
-            <h2 data-motion="heading" className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.processTitle}</h2>
+            <h2 data-motion="heading" className={`${styles.sectionTitle} text-3xl font-bold text-gray-900 leading-tight mb-4`}>{t.processTitle}</h2>
             <p className="text-base text-gray-500 mb-7 md:mb-14 w-full leading-relaxed">{t.processDesc}</p>
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -681,7 +661,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
                 <div className="group relative bg-white border border-gray-200 rounded-lg p-7 h-full transition-colors duration-300 hover:border-gray-300">
                   <div className="flex items-center gap-3 mb-2">
                     <span className="text-3xl font-bold text-neutral-200 transition-colors duration-300 group-hover:text-neutral-900 flex-shrink-0">{step.num}</span>
-                    <h3 className="text-base font-bold text-gray-900">{step.title}</h3>
+                    <h3 className={`${styles.cardTitle} text-base font-bold text-gray-900`}>{step.title}</h3>
                   </div>
                   <p className="text-sm text-gray-600 leading-relaxed">{step.desc}</p>
                 </div>
@@ -697,7 +677,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
           <Reveal>
             <div className="text-center mb-8 md:mb-12">
               <SectionLabel>{t.ctaLabel}</SectionLabel>
-              <h2 data-motion="heading" className="text-3xl font-bold text-gray-900 leading-tight mb-6">{t.ctaTitle}</h2>
+              <h2 data-motion="heading" className={`${styles.sectionTitle} text-3xl font-bold text-gray-900 leading-tight mb-6`}>{t.ctaTitle}</h2>
               <p className="mb-3 text-sm font-semibold text-neutral-600">{lang === "ja" ? "ClearAI 代表 髙橋敢輝" : "ClearAI founder Kanki Takahashi"}</p>
               <p className="mx-auto max-w-2xl text-base text-gray-600 leading-relaxed">{lang === "ja" ? "「この作業を減らしたい」「AIを使うべきか迷っている」「ホームページを見直したい」。いまの状況から、次に取り組むことを一緒に整理します。" : "Tell us what you want to change: repetitive work, AI adoption, or your website. We will discuss the next steps together."}</p>
               <p className="mt-4 text-sm leading-relaxed text-neutral-600">{lang === "ja" ? "相談内容がまとまっていなくても、いま困っていることからお聞かせください。" : "You can start with the problem you are facing, even if your requirements are not yet defined."}</p>
@@ -742,7 +722,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <SectionLabel>{t.faqLabel}</SectionLabel>
-            <h2 data-motion="heading" className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.faqTitle}</h2>
+            <h2 data-motion="heading" className={`${styles.sectionTitle} text-3xl font-bold text-gray-900 leading-tight mb-4`}>{t.faqTitle}</h2>
             <p className="text-base text-gray-500 mb-10 leading-relaxed">{t.faqDesc}</p>
           </Reveal>
           <div className="mb-8">
@@ -780,7 +760,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
                       <h3 className="text-sm font-bold text-gray-900 mt-0.5">{t.techGroups[group.key as keyof typeof t.techGroups]}</h3>
                     </div>
                     <div className="lg:col-span-10">
-                      <div className="grid grid-cols-3 lg:grid-cols-5 gap-2.5 sm:gap-3">
+                      <div className={`${styles.technologyGrid} grid grid-cols-3 lg:grid-cols-5 gap-2.5 sm:gap-3`}>
                         {group.items.map((tech) => (
                           <div key={tech.name} className="bg-white border border-gray-200 rounded-lg px-3.5 py-2 flex items-center gap-2.5 hover:border-gray-300 transition-colors">
                             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -820,7 +800,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
           <div className="flex items-end justify-between mb-6 md:mb-12">
             <div>
               <SectionLabel>{t.newsLabel}</SectionLabel>
-              <h2 data-motion="heading" className="text-3xl font-bold text-gray-900 leading-tight">{t.newsTitle}</h2>
+              <h2 data-motion="heading" className={`${styles.sectionTitle} text-3xl font-bold text-gray-900 leading-tight`}>{t.newsTitle}</h2>
             </div>
             <Link href="/blog" className="hidden sm:inline-flex items-center gap-2 text-sm font-semibold text-neutral-900 hover:text-neutral-700 transition-colors">
               {t.newsCta}

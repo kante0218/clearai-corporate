@@ -61,9 +61,28 @@ export default function Header() {
   }, [isClaude, isAiConsulting]);
 
   useEffect(() => {
-    document.body.style.overflow = isOpen ? "hidden" : "";
+    if (!isOpen) return;
+    const previousOverflow = document.body.style.overflow;
+    const background = Array.from(document.body.children).filter(
+      (element): element is HTMLElement => element instanceof HTMLElement
+        && element !== header.current && element.tagName !== "SCRIPT",
+    );
+    const previousInert = background.map((element) => element.inert);
+    document.body.style.overflow = "hidden";
+    background.forEach((element) => { element.inert = true; });
+    const frame = requestAnimationFrame(() => {
+      header.current?.querySelector<HTMLElement>("#site-mobile-menu a[href]")?.focus();
+    });
+    const onResize = () => {
+      if (window.innerWidth >= 1700) setIsOpen(false);
+    };
+    window.addEventListener("resize", onResize);
     return () => {
-      document.body.style.overflow = "";
+      cancelAnimationFrame(frame);
+      window.removeEventListener("resize", onResize);
+      document.body.style.overflow = previousOverflow;
+      background.forEach((element, index) => { element.inert = previousInert[index]; });
+      menuToggle.current?.focus();
     };
   }, [isOpen]);
 
@@ -100,7 +119,7 @@ export default function Header() {
 
   return (
     <>
-      <header ref={header} className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${headerBg}`}>
+      <header ref={header} role={isOpen ? "dialog" : undefined} aria-modal={isOpen ? true : undefined} aria-label={isOpen ? (lang === "ja" ? "サイトメニュー" : "Site menu") : undefined} style={isOpen ? { zIndex: 60 } : undefined} className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${headerBg}`}>
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <div className="site-header-row relative flex h-16 items-center justify-between lg:h-20">
             <Link href="/" className="flex shrink-0 items-center gap-2.5 group" aria-label="ClearAI株式会社（クリアエーアイ）">
