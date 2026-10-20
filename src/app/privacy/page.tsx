@@ -53,12 +53,16 @@ const COPY: Record<"ja" | "en", Copy> = {
         body: "当社は、個人情報の漏洩、滅失またはき損の防止のために、適切なセキュリティ対策を講じます。",
       },
       {
-        title: "7. お問い合わせ",
+        title: "7. Cookie・アクセス解析",
+        body: "当サイトでは、Cookie設定の選択を180日間保存するファーストパーティCookieを使用します。ロボットレンタルの本人確認に必要なCookieは、サービス提供のために使用します。アクセス解析は、許可した方に限り、Google Analyticsの設定が有効な場合に実行します。閲覧したページ、端末・ブラウザ情報などがGoogleへ送信され、サイト改善のために処理されます。広告目的のCookieやGoogleシグナルは使用しません。Google AnalyticsのCookieの有効期間は180日です。フッターの「Cookie設定」からいつでも拒否・許可を変更でき、拒否すると以降の計測を停止し、このサイトのAnalytics Cookieを削除します。言語設定はブラウザのローカルストレージに保存します。",
+      },
+      {
+        title: "8. お問い合わせ",
         body: "個人情報の取り扱いに関するお問い合わせは、以下までご連絡ください。",
         extra: "ClearAI株式会社\nメール: info@clearai.jp",
       },
     ],
-    date: "制定日: 2025年1月1日 / 最終改定日: 2026年8月9日",
+    date: "制定日: 2025年1月1日 / 最終改定日: 2026年10月20日",
   },
   en: {
     label: "Privacy Policy",
@@ -96,12 +100,16 @@ const COPY: Record<"ja" | "en", Copy> = {
         body: "The Company implements appropriate security measures to prevent leakage, loss, or damage of personal information.",
       },
       {
-        title: "7. Contact",
+        title: "7. Cookies and analytics",
+        body: "We use a first-party cookie to store your cookie choice for 180 days. Essential robot-rental identity cookies support the requested service. Google Analytics runs only after you allow analytics and only when a measurement ID is configured. Visited pages and device/browser information are sent to Google to help improve this site. Advertising cookies and Google signals are disabled. Analytics cookies expire after 180 days. You can change your choice through Cookie settings in the footer; rejection stops future measurement and deletes this site’s Analytics cookies. Language preferences are stored in browser local storage.",
+      },
+      {
+        title: "8. Contact",
         body: "Please direct inquiries regarding the handling of personal information to the address below.",
         extra: "ClearAI Inc.\nEmail: info@clearai.jp",
       },
     ],
-    date: "Effective date: January 1, 2025 / Last updated: August 9, 2026",
+    date: "Effective date: January 1, 2025 / Last updated: October 20, 2026",
   },
 };
 
@@ -140,6 +148,7 @@ export default function PrivacyPage() {
             </div>
           ))}
 
+          <p><button type="button" className="underline underline-offset-4" onClick={() => window.dispatchEvent(new Event("clearai-cookie-settings"))}>{lang === "ja" ? "Cookie設定を変更する" : "Change cookie settings"}</button></p>
           <p className="text-sm text-gray-400 mt-8">{t.date}</p>
         </div>
       </section>
