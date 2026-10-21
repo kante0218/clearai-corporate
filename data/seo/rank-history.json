@@ -1837,5 +1837,106 @@
     ],
     "discoveries": [],
     "note": "メール期限到来レビュー。10/11〜10/17はNo data、表示0クリック0、順位不明。公開後168時間・完全な公開後7日窓は充足するが、順位欠測・確定状態未確認。改善前9/10〜16の7.5位51表示0クリックと順位比較不能。効果なし・悪化・1位達成と判定せずobserving維持、10/27へ延期。"
+  },
+  {
+    "source": "gsc",
+    "collectionMethod": "browser-ui",
+    "capturedAt": "2026-10-21T01:17:15.893380+00:00",
+    "range": {
+      "startDate": "2026-09-21",
+      "endDate": "2026-10-18",
+      "days": 28
+    },
+    "scope": {
+      "siteUrl": "https://clearai.jp/",
+      "device": "all",
+      "country": "all",
+      "type": "web",
+      "dataState": "ui-not-confirmed",
+      "timeZone": "America/Los_Angeles",
+      "aggregationType": "ui-not-confirmed",
+      "dimensions": "ui-query-table",
+      "queryFilter": "equals",
+      "pageFilter": "equals"
+    },
+    "ranks": [
+      {
+        "keyword": "AI内製化研修",
+        "targetPath": "/training",
+        "rank": null,
+        "impressions": 0,
+        "clicks": 0
+      },
+      {
+        "keyword": "メール返信 ai",
+        "targetPath": "/blog/ai-email-reply-three-decisions",
+        "rank": null,
+        "impressions": 0,
+        "clicks": 0
+      }
+    ],
+    "discoveries": [
+      {
+        "keyword": "clearai",
+        "clicks": 10,
+        "impressions": 19,
+        "rank": 1.0
+      },
+      {
+        "keyword": "吉次優太",
+        "clicks": 3,
+        "impressions": 35,
+        "rank": 6.3
+      },
+      {
+        "keyword": "clear ai",
+        "clicks": 3,
+        "impressions": 14,
+        "rank": 3.4
+      },
+      {
+        "keyword": "unitree レンタル",
+        "clicks": 2,
+        "impressions": 28,
+        "rank": 4.2
+      },
+      {
+        "keyword": "unitree g1 レンタル",
+        "clicks": 1,
+        "impressions": 22,
+        "rank": 3.5
+      },
+      {
+        "keyword": "typesafe ai",
+        "clicks": 1,
+        "impressions": 11,
+        "rank": 8.7
+      },
+      {
+        "keyword": "ヒューマノイドロボット レンタル",
+        "clicks": 1,
+        "impressions": 2,
+        "rank": 13.5
+      },
+      {
+        "keyword": "jev 画像",
+        "clicks": 1,
+        "impressions": 2,
+        "rank": 18.0
+      },
+      {
+        "keyword": "判断特化ai",
+        "clicks": 1,
+        "impressions": 1,
+        "rank": 1.0
+      },
+      {
+        "keyword": "正本 ai",
+        "clicks": 0,
+        "impressions": 52,
+        "rank": 6.1
+      }
+    ],
+    "note": "所有者アカウントのChrome GSCで確認。初回空白表示は再読み込みで復旧。監視2語はクエリ・対象ページ完全一致、Web、地域/デバイス指定なし。9/21〜10/18の28日、両方No data。前回メール7.6位5表示から今回は順位欠測0表示、順位下落や未インデックスとは判断しない。画面値は丸め済み・確定状態未確認、API finalと比較しない。サイト全体104クリック、1662表示（UIアクセシビリティラベル）、平均8.9位。discoveriesは全体クエリ119件中先頭10件のみ、対象ページ未特定・網羅的ではない。typesafe aiは11表示と少数で明確な不足は未特定。レンタル/正本関連は既存比較で明確な不足なし。1.0表示も達成確定しない。レビュー期限未到来: AI内製化研修10/26、メール返信 ai10/27。両ページ観察継続、改善0件。"
   }
 ]
