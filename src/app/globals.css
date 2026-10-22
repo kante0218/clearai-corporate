@@ -436,7 +436,7 @@ details[open] summary {
   a, button, select, summary {
     min-height: 44px;
   }
-  input, textarea {
+  input:not([type="checkbox"]):not([type="radio"]), textarea {
     min-height: 44px;
     font-size: 16px;
   }
@@ -701,7 +701,7 @@ details[open] summary {
     touch-action: manipulation;
   }
 
-  input,
+  input:not([type="checkbox"]):not([type="radio"]),
   select,
   textarea {
     width: 100%;
