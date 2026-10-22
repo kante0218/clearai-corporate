@@ -2039,5 +2039,106 @@
       }
     ],
     "note": "所有者アカウントのChrome GSCで確認。9/22〜10/19の28日、監視2語はクエリ・対象ページ完全一致、Web、全地域・全デバイスでNo data。前回と同じnull/0/0、順位変動は不明。欠測を順位悪化・未インデックス扱いしない。UI丸め値、確定状態未確認、API finalと同列比較しない。サイト全体108クリック1863表示（画面アクセシビリティラベル）平均8.6位。discoveriesは全体147件中先頭10件のみ、ページ未特定・非網羅。jev 1.14等に表示はあるが検索意図に対する明確な不足は未特定で改善対象に選定せず。前回先頭10件にない語を新規発生や大幅上昇と扱わない。1.0表示を達成確定しない。両監視語observing維持、研修10/26・メール10/27期限未到来。改善0件、サイト変更なし。"
+  },
+  {
+    "source": "gsc",
+    "collectionMethod": "browser-ui",
+    "capturedAt": "2026-10-22T23:57:32.419976+00:00",
+    "range": {
+      "startDate": "2026-09-23",
+      "endDate": "2026-10-20",
+      "days": 28
+    },
+    "scope": {
+      "siteUrl": "https://clearai.jp/",
+      "device": "all",
+      "country": "all",
+      "type": "web",
+      "dataState": "ui-not-confirmed",
+      "timeZone": "America/Los_Angeles",
+      "aggregationType": "ui-not-confirmed",
+      "dimensions": "ui-query-table",
+      "queryFilter": "equals",
+      "pageFilter": "equals"
+    },
+    "ranks": [
+      {
+        "keyword": "AI内製化研修",
+        "targetPath": "/training",
+        "rank": null,
+        "impressions": 0,
+        "clicks": 0
+      },
+      {
+        "keyword": "メール返信 ai",
+        "targetPath": "/blog/ai-email-reply-three-decisions",
+        "rank": null,
+        "impressions": 0,
+        "clicks": 0
+      }
+    ],
+    "discoveries": [
+      {
+        "keyword": "clearai",
+        "clicks": 9,
+        "impressions": 18,
+        "rank": 1.0
+      },
+      {
+        "keyword": "吉次優太",
+        "clicks": 3,
+        "impressions": 38,
+        "rank": 6.2
+      },
+      {
+        "keyword": "unitree レンタル",
+        "clicks": 3,
+        "impressions": 29,
+        "rank": 4.2
+      },
+      {
+        "keyword": "unitree g1 レンタル",
+        "clicks": 3,
+        "impressions": 25,
+        "rank": 3.2
+      },
+      {
+        "keyword": "clear ai",
+        "clicks": 3,
+        "impressions": 13,
+        "rank": 3.7
+      },
+      {
+        "keyword": "jev 1.14",
+        "clicks": 2,
+        "impressions": 47,
+        "rank": 8.5
+      },
+      {
+        "keyword": "typesafe ai",
+        "clicks": 1,
+        "impressions": 19,
+        "rank": 8.1
+      },
+      {
+        "keyword": "ヒューマノイドロボット レンタル",
+        "clicks": 1,
+        "impressions": 2,
+        "rank": 13.5
+      },
+      {
+        "keyword": "jev 画像",
+        "clicks": 1,
+        "impressions": 2,
+        "rank": 18.0
+      },
+      {
+        "keyword": "判断特化ai",
+        "clicks": 1,
+        "impressions": 1,
+        "rank": 1.0
+      }
+    ],
+    "note": "所有者アカウントのChrome GSCで確認。アカウント順変更により/u/2は企業アカウントで閲覧不可だったが、選択画面から所有者/u/0へ切替えて閲覧成功。権限変更・再認証不要。9/23〜10/20の28日、両監視語はquery/page完全一致、Web、全地域全デバイスでNo data。前回と同じnull/0/0、順位変動不明。欠測を悪化や未インデックス扱いしない。UI丸め値・確定状態未確認、API finalと同列比較しない。全体113クリック2046表示（アクセシビリティラベル）平均8.4位。discoveriesは全体166件中先頭10件のみ、ページ未特定・非網羅。前回から観測した候補群に大きな順位変動なし。検索意図に対する明確な不足は未特定で改善対象選定なし。丸め1.0を達成確定しない。研修10/26・メール10/27期限未到来でobserving維持。改善0件、ページ変更なし。"
   }
 ]
