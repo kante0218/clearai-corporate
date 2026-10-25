@@ -1,0 +1,100 @@
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const Module = require('node:module');
+const ts = require('typescript');
+const filename = require('node:path').resolve('src/lib/article-engagement.ts');
+const compiled = new Module(filename, module);
+compiled.filename = filename;
+compiled.paths = Module._nodeModulePaths(require('node:path').dirname(filename));
+compiled._compile(ts.transpileModule(fs.readFileSync(filename, 'utf8'), { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2020 } }).outputText, filename);
+const lib = compiled.exports;
+process.env.ARTICLE_ENGAGEMENT_SECRET = 'test-secret-that-is-at-least-32-characters';
+process.env.MICROCMS_ENGAGEMENT_API_KEY = 'test';
+process.env.MICROCMS_SERVICE_DOMAIN = 'test';
+assert.equal(lib.engagementConfigured(), true);
+const visitor = lib.visitorIdentity();
+assert.equal(lib.verify(visitor.cookie).length, 36);
+assert.equal(lib.visitorIdentity(visitor.cookie).hash, visitor.hash);
+assert.notEqual(lib.visitorIdentity(visitor.cookie + 'x').hash, visitor.hash);
+assert.equal(lib.likeId('article-a', visitor.hash), lib.likeId('article-a', visitor.hash));
+assert.notEqual(lib.likeId('article-a', visitor.hash), lib.likeId('article-b', visitor.hash));
+assert.deepEqual(lib.validateComment({ name: ' 名前 ', body: ' 本文 ' }), { name: '名前', body: '本文' });
+for (const value of [null, {}, {name:' ',body:'a'}, {name:'a',body:' '.repeat(3)}, {name:'a'.repeat(41),body:'a'}, {name:'a',body:'a'.repeat(2001)}, {name:'a',body:'\u0000'}]) assert.throws(() => lib.validateComment(value));
+const calls = [];
+let liked = false;
+global.fetch = async (url, init) => {
+  calls.push({ url, init });
+  if (init.method === 'PUT') { if (liked) return new Response('{}', {status:400}); liked = true; return Response.json({id:'like'}); }
+  if (init.method === 'DELETE') { liked = false; return new Response('Accepted', {status:202}); }
+  if (init.method === 'POST') return Response.json({id:'pending'});
+  if (url.includes('blog-comments')) return Response.json({ contents: [{id:'pending',name:'Hidden',body:'Draft'},{id:'published',name:'Reader',body:'Comment',publishedAt:'2026-10-25T00:00:00Z'}] });
+  return Response.json({ totalCount: liked ? 1 : 0 });
+};
+(async () => {
+  await lib.setArticleLike('article', visitor.hash, true);
+  await lib.setArticleLike('article', visitor.hash, true);
+  let data = await lib.readEngagement('article', visitor.hash);
+  assert.equal(data.likes, 1); assert.equal(data.liked, true); assert.equal(data.comments.length, 1);
+  assert.equal(data.comments[0].id, 'published');
+  await lib.setArticleLike('article', visitor.hash, false);
+  await lib.setArticleLike('article', visitor.hash, false);
+  data = await lib.readEngagement('article', visitor.hash);
+  assert.equal(data.likes, 0); assert.equal(data.liked, false);
+  await lib.submitArticleComment('article', visitor.hash, {name:'Reader',body:'<script>alert(1)</script>'});
+  const post = calls.find(call => call.init.method === 'POST');
+  assert.ok(post.url.endsWith('blog-comments?status=draft'));
+  assert.equal(JSON.parse(post.init.body).body, '<script>alert(1)</script>');
+  assert.equal(calls.filter(call => call.init.method === 'DELETE').length, 1);
+  global.fetch = async () => new Response('{}', {status:403});
+  await assert.rejects(lib.readEngagement('article', visitor.hash), error => error.status === 502);
+  delete process.env.ARTICLE_ENGAGEMENT_SECRET;
+  assert.equal(lib.engagementConfigured(), true);
+  const derivedCookie = lib.visitorIdentity().cookie;
+  assert.ok(lib.verify(derivedCookie));
+  process.env.MICROCMS_ENGAGEMENT_API_KEY = 'other-test-key';
+  assert.equal(lib.verify(derivedCookie), null);
+  delete process.env.MICROCMS_ENGAGEMENT_API_KEY;
+  process.env.MICROCMS_API_KEY = 'test-fallback-key';
+  assert.equal(lib.engagementConfigured(), true);
+  assert.ok(lib.verify(lib.visitorIdentity().cookie));
+  delete process.env.MICROCMS_API_KEY;
+  assert.equal(lib.engagementConfigured(), false);
+  console.log('article-engagement: validation, signed identity, idempotent likes/unlike, moderation and failure checks passed');
+})().catch(error => { console.error(error); process.exitCode = 1; });
+
+const routeFilename = require('node:path').resolve('src/app/api/blog/[slug]/engagement/route.ts');
+const routeModule = new Module(routeFilename, module);
+routeModule.filename = routeFilename;
+routeModule.paths = Module._nodeModulePaths(require('node:path').dirname(routeFilename));
+routeModule.require = name => name === '@/lib/article-engagement' ? lib : name === '@/lib/microcms' ? { getBlogBySlug: async slug => { if (slug === 'missing') throw new Error('fetch API response status: 404\n message'); if (slug === 'outage') throw new Error('fetch API response status: 503'); return {id:slug}; } } : require(name);
+routeModule._compile(ts.transpileModule(fs.readFileSync(routeFilename, 'utf8'), { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2020 } }).outputText, routeFilename);
+const { NextRequest } = require('next/server');
+const routes = routeModule.exports;
+const request = (body, origin = 'https://clearai.jp', cookie = '') => new NextRequest('https://clearai.jp/api/blog/article/engagement', { method:'POST', headers:{origin,'content-type':'application/json',cookie}, body:JSON.stringify(body) });
+// Run after the storage test finishes changing environment variables and fetch mocks.
+setImmediate(async () => {
+  try {
+    delete process.env.ARTICLE_ENGAGEMENT_SECRET;
+    assert.equal((await routes.GET(new NextRequest('https://clearai.jp/api/blog/article/engagement'), {params:Promise.resolve({slug:'article'})})).status, 503);
+    assert.equal((await routes.GET(new NextRequest('https://clearai.jp/api/blog/missing/engagement'), {params:Promise.resolve({slug:'missing'})})).status, 404);
+    process.env.ARTICLE_ENGAGEMENT_SECRET = 'test-secret-that-is-at-least-32-characters';
+    process.env.MICROCMS_ENGAGEMENT_API_KEY = 'test';
+    assert.equal((await routes.POST(request({action:'like',liked:true},'https://other.example'), {params:Promise.resolve({slug:'article'})})).status, 403);
+    assert.equal((await routes.POST(request({action:'comment',name:'Reader',body:'a'.repeat(11000)}), {params:Promise.resolve({slug:'article'})})).status, 413);
+    assert.equal((await routes.POST(request({action:'comment',name:'',body:'text'}), {params:Promise.resolve({slug:'article'})})).status, 400);
+    const cooldown = `${lib.COMMENT_COOLDOWN_COOKIE}=${lib.sign(String(Date.now()))}`;
+    assert.equal((await routes.POST(request({action:'comment',name:'Reader',body:'text'},undefined,cooldown), {params:Promise.resolve({slug:'article'})})).status, 429);
+    global.fetch = async () => Response.json({id:'pending'});
+    const response = await routes.POST(request({action:'comment',name:'Reader',body:'text'}), {params:Promise.resolve({slug:'article'})});
+    assert.equal(response.status,201);
+    assert.ok(response.headers.get('set-cookie').includes('HttpOnly'));
+    assert.ok(response.headers.get('set-cookie').includes('SameSite=lax'));
+    assert.equal(response.headers.get('cache-control'),'private, no-store');
+    assert.equal((await routes.GET(new NextRequest('https://clearai.jp/api/blog/outage/engagement'), {params:Promise.resolve({slug:'outage'})})).status, 502);
+    const noCookieStatuses = [];
+    for (let i = 0; i < 20; i++) noCookieStatuses.push((await routes.POST(new NextRequest('https://clearai.jp/api/blog/article/engagement', {method:'POST',headers:{origin:'https://clearai.jp','content-type':'application/json','x-vercel-forwarded-for':'203.0.113.10','x-forwarded-for':`203.0.113.${i + 20}`},body:JSON.stringify({action:'comment',name:'Reader',body:'Comment'})}),{params:Promise.resolve({slug:'article'})})).status);
+    assert.equal(noCookieStatuses[0],201);
+    assert.deepEqual(noCookieStatuses.slice(1), Array(19).fill(429));
+    console.log('article-engagement route: unavailable, article existence, origin, size, invalid input, cooldown and submission checks passed');
+  } catch (error) { console.error(error); process.exitCode = 1; }
+});

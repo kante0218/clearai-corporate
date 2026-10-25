@@ -1,0 +1,19 @@
+.blog-article.prose { overflow-wrap: anywhere; color: #262626; font-size: 18px; line-height: 1.8; letter-spacing: .02em; }
+.blog-article.prose img { display: block; width: auto; max-width: 100%; max-height: 640px; height: auto; margin: 28px auto 12px; object-fit: contain; border-radius: 0; }
+
+.blog-article.prose h2 { font-size: 22px; line-height: 1.6; }
+.blog-article.prose h3 { font-size: 18px; line-height: 1.6; }
+.blog-article.prose h2, .blog-article.prose h3 { scroll-margin-top: 112px; }
+.blog-article.prose figure { margin: 24px 0; }
+.blog-article.prose figcaption { margin-top: 8px; color: #737373; font-size: 12px; line-height: 1.7; }
+.blog-article.prose table { display: block; max-width: 100%; overflow-x: auto; }
+@media (max-width: 767px) {
+  .blog-article.prose { font-size: 16px; line-height: 1.8; }
+  .blog-article.prose h2 { font-size: 20px; }
+  .blog-article.prose h3 { font-size: 16px; }
+}
+
+.blog-article.prose p, .blog-article.prose li { color: #262626; font-size: inherit !important; line-height: inherit !important; letter-spacing: 0; }
+.blog-article.prose p:has(> em:first-child), .blog-article.prose figcaption { color: #595959 !important; font-size: 13px !important; line-height: 1.65 !important; }
+.blog-article.prose p > em { font-style: normal; }
+.blog-article.prose + nav summary, nav[aria-label="この記事の目次"] summary { min-height: 44px; line-height: 44px; }

@@ -54,7 +54,7 @@ const COPY: Record<"ja" | "en", Copy> = {
       },
       {
         title: "7. Cookie・アクセス解析",
-        body: "当サイトでは、Cookie設定の選択を180日間保存するファーストパーティCookieを使用します。ロボットレンタルの本人確認に必要なCookieは、サービス提供のために使用します。アクセス解析は、許可した方に限り、Google Analyticsの設定が有効な場合に実行します。閲覧したページ、端末・ブラウザ情報などがGoogleへ送信され、サイト改善のために処理されます。広告目的のCookieやGoogleシグナルは使用しません。Google AnalyticsのCookieの有効期間は180日です。フッターの「Cookie設定」からいつでも拒否・許可を変更でき、拒否すると以降の計測を停止し、このサイトのAnalytics Cookieを削除します。言語設定はブラウザのローカルストレージに保存します。",
+        body: "当サイトでは、Cookie設定の選択を180日間保存するファーストパーティCookieを使用します。ロボットレンタルの本人確認に必要なCookieは、サービス提供のために使用します。アクセス解析は、許可した方に限り、Google Analyticsの設定が有効な場合に実行します。閲覧したページ、端末・ブラウザ情報などがGoogleへ送信され、サイト改善のために処理されます。Googleシグナルは使用しません。広告はGoogle AdSenseの設定・審査が完了した場合に限り、アクセス解析とは別の「広告Cookieを許可」で同意した方へ配信します。広告の選択は180日間保存し、記事ページの「広告の設定を変更」から変更できます。Googleは広告の配信・不正利用防止等にCookieを使用します。閲覧履歴に基づく広告はリクエストしません。Google AnalyticsのCookieの有効期間は180日です。フッターの「Cookie設定」からいつでも拒否・許可を変更でき、拒否すると以降の計測を停止し、このサイトのAnalytics Cookieを削除します。記事のいいねの重複防止には署名した匿名IDのCookie（最長1年）、コメントの連続投稿防止には短期Cookieを使用します。投稿者名と本文は内容確認後に公開し、匿名IDのハッシュとともにmicroCMSに保存します。連続操作を抑えるためIPアドレスをハッシュ化して一時的に処理し、生のIPはこの機能の保存先へ記録しません。記事の閲覧履歴はおすすめ表示のため最大50件をブラウザ内に保存し、サーバーへ送信しません。言語設定はブラウザのローカルストレージに保存します。",
       },
       {
         title: "8. お問い合わせ",
@@ -62,7 +62,7 @@ const COPY: Record<"ja" | "en", Copy> = {
         extra: "ClearAI株式会社\nメール: info@clearai.jp",
       },
     ],
-    date: "制定日: 2025年1月1日 / 最終改定日: 2026年10月20日",
+    date: "制定日: 2025年1月1日 / 最終改定日: 2026年10月25日",
   },
   en: {
     label: "Privacy Policy",
@@ -101,7 +101,7 @@ const COPY: Record<"ja" | "en", Copy> = {
       },
       {
         title: "7. Cookies and analytics",
-        body: "We use a first-party cookie to store your cookie choice for 180 days. Essential robot-rental identity cookies support the requested service. Google Analytics runs only after you allow analytics and only when a measurement ID is configured. Visited pages and device/browser information are sent to Google to help improve this site. Advertising cookies and Google signals are disabled. Analytics cookies expire after 180 days. You can change your choice through Cookie settings in the footer; rejection stops future measurement and deletes this site’s Analytics cookies. Language preferences are stored in browser local storage.",
+        body: "We use a first-party cookie to store your cookie choice for 180 days. Essential robot-rental identity cookies support the requested service. Google Analytics runs only after you allow analytics and only when a measurement ID is configured. Visited pages and device/browser information are sent to Google to help improve this site. Google signals are disabled. Once AdSense setup and site approval are complete, ads may load only after separate advertising-cookie consent. This choice lasts 180 days and can be changed from the article advertising settings. Google may use cookies for ad delivery and fraud prevention; we request non-personalized ads. Analytics cookies expire after 180 days. You can change your choice through Cookie settings in the footer; rejection stops future measurement and deletes this site’s Analytics cookies. Article likes use a signed anonymous-ID cookie for up to one year; comment cooldowns use a short-lived cookie. Display names and comment text are published after moderation and stored with an anonymous-ID hash in microCMS. We temporarily hash IP addresses for rate limiting without storing raw IPs in this feature. Up to 50 read article IDs are kept only in browser storage for recommendations. Language preferences are stored in browser local storage.",
       },
       {
         title: "8. Contact",
@@ -109,7 +109,7 @@ const COPY: Record<"ja" | "en", Copy> = {
         extra: "ClearAI Inc.\nEmail: info@clearai.jp",
       },
     ],
-    date: "Effective date: January 1, 2025 / Last updated: October 20, 2026",
+    date: "Effective date: January 1, 2025 / Last updated: October 25, 2026",
   },
 };
 

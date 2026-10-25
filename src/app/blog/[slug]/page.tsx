@@ -1,11 +1,17 @@
+import ArticleAds from "@/components/ArticleAds";
 import Link from "next/link";
 import ArticleToc from "@/components/ArticleToc";
 import { articleHtmlToc } from "@/lib/article-toc";
 import Image from "next/image";
 import Script from "next/script";
 import type { Metadata } from "next";
-import { getBlogBySlug, getAllBlogSlugs } from "@/lib/microcms";
+import { getBlogBySlug, getAllBlogSlugs, getBlogs } from "@/lib/microcms";
 import { notFound } from "next/navigation";
+import { parse } from "node-html-parser";
+import BlogRecommendations from "@/components/BlogRecommendations";
+import ArticleShare from "@/components/ArticleShare";
+import ArticleEngagement from "@/components/ArticleEngagement";
+import "./article.css";
 
 export const revalidate = 60;
 
@@ -74,6 +80,40 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   }
 
   const content = articleHtmlToc(post.content ?? "");
+  const imageRoot = parse(content.html);
+  const coverInBody = Boolean(post.eyecatch && imageRoot.querySelectorAll("img").some((image) => image.getAttribute("src")?.split("?")[0] === post.eyecatch!.url.split("?")[0]));
+  const imageEdits = imageRoot.querySelectorAll("img").map((image, index) => {
+    const original = /^<img\b(?:[^>"']|"[^"]*"|'[^']*')*>/i.exec(content.html.slice(image.range[0]))?.[0] ?? image.toString();
+    const src = image.getAttribute("src");
+    if (src) {
+      try {
+        const url = new URL(src);
+        if (url.hostname === "images.microcms-assets.io" && !url.pathname.toLowerCase().endsWith(".svg")) {
+          url.searchParams.delete("auto");
+          url.searchParams.set("fm", "webp");
+          url.searchParams.set("q", "80");
+          url.searchParams.set("w", "1600");
+          image.setAttribute("src", url.toString());
+          image.setAttribute("srcset", [480, 800, 1200, 1600].map((width) => {
+            url.searchParams.set("w", String(width));
+            return `${url.toString()} ${width}w`;
+          }).join(", "));
+          image.setAttribute("sizes", "(max-width: 767px) calc(100vw - 48px), (max-width: 1023px) calc(100vw - 64px), 800px");
+        }
+      } catch { /* Preserve CMS image URLs that cannot be transformed. */ }
+    }
+    image.setAttribute("loading", index === 0 ? "eager" : "lazy");
+    image.setAttribute("decoding", "async");
+    image.setAttribute("fetchpriority", index === 0 ? "high" : "auto");
+    return { start: image.range[0], end: image.range[0] + original.length, html: image.toString() };
+  });
+  for (const edit of imageEdits.reverse()) content.html = content.html.slice(0, edit.start) + edit.html + content.html.slice(edit.end);
+  const recommendations = await getBlogs().then(({ contents }) => contents.filter((item) => item.id !== slug).map((item) => ({
+    id: item.id,
+    title: item.title,
+    image: item.eyecatch?.url ?? "/images/generated-trust/home-system-monitoring.webp",
+    category: item.category?.name ?? "お知らせ",
+  }))).catch(() => []);
   const plainText = (post.content ?? "").replace(/<[^>]*>/g, "").replace(/\s+/g, " ").trim();
   const wordCount = plainText.length;
 
@@ -128,49 +168,35 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <div className="max-w-[1800px] mx-auto px-6 lg:px-8 pt-24 lg:pt-28">
-        <Link href="/blog" className="inline-block text-sm font-semibold text-neutral-900 hover:text-neutral-600 transition-colors duration-300 mb-10">
+      <div className="mx-auto max-w-[1200px] px-6 pb-20 pt-24 lg:px-8 lg:pb-28 lg:pt-28">
+        <Link href="/blog" className="mb-8 inline-flex min-h-11 items-center text-sm font-semibold text-neutral-700 hover:text-black">
           ← お知らせ一覧
         </Link>
-
-        {post.eyecatch && (
-          <div className="w-full aspect-[2/1] rounded-lg overflow-hidden mb-8">
-            <Image
-              src={post.eyecatch.url}
-              alt={post.title}
-              width={post.eyecatch.width ?? 1200}
-              height={post.eyecatch.height ?? 600}
-              className="w-full h-full object-cover"
-              priority
-            />
+        <div className="grid items-start gap-12 lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-10">
+          <div className="min-w-0">
+            <header className="mb-8">
+              <div className="mb-4 flex flex-wrap items-center gap-3 text-xs text-neutral-500">
+                {post.category && <span className="font-semibold text-neutral-900">{post.category.name}</span>}
+                <time dateTime={post.publishedAt}>{formatDate(post.publishedAt!)}</time>
+              </div>
+              <h1 className="mb-6 text-2xl font-bold leading-[1.6] text-neutral-900 md:text-[32px]">{post.title}</h1>
+              {post.eyecatch && !coverInBody && (
+                <div className="overflow-hidden">
+                  <Image src={post.eyecatch.url} alt={post.title} width={post.eyecatch.width ?? 1200} height={post.eyecatch.height ?? 600} sizes="(max-width: 767px) calc(100vw - 48px), (max-width: 1023px) calc(100vw - 64px), 800px" className="mx-auto h-auto max-h-[640px] w-auto max-w-full object-contain" priority />
+                </div>
+              )}
+            </header>
+            <ArticleToc headings={content.headings} collapsible />
+            <article className="blog-article prose max-w-none" dangerouslySetInnerHTML={{ __html: content.html }} />
+            <div className="mt-10">
+              <ArticleShare title={post.title} url={`https://clearai.jp/blog/${slug}`} />
+            </div>
+            <ArticleEngagement slug={post.id} />
+            <div className="mt-8">
+              <Link href="/blog" className="inline-flex min-h-11 items-center text-sm font-semibold text-neutral-700 hover:text-black">← お知らせ一覧に戻る</Link>
+            </div>
           </div>
-        )}
-
-        <div className="flex items-center gap-3 mb-5">
-          {post.category && (
-            <span className="inline-block rounded-lg px-3 py-1 text-xs font-semibold text-neutral-900 bg-neutral-100">
-              {post.category.name}
-            </span>
-          )}
-          <time className="text-sm text-gray-400">{formatDate(post.publishedAt!)}</time>
-        </div>
-
-        <h1 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight mb-8">{post.title}</h1>
-      </div>
-
-      <div className="max-w-[1800px] mx-auto px-6 lg:px-8 py-12">
-        <ArticleToc headings={content.headings} />
-        <article
-          className="[&_h2]:scroll-mt-28 [&_h3]:scroll-mt-28 prose prose-lg lg:prose-xl prose-gray max-w-none"
-          dangerouslySetInnerHTML={{ __html: content.html }}
-        />
-      </div>
-
-      <div className="max-w-[1800px] mx-auto px-6 lg:px-8 pb-20 lg:pb-28">
-        <div className="border-t border-gray-200 pt-8">
-          <Link href="/blog" className="text-sm font-semibold text-neutral-900 hover:text-neutral-600 transition-colors duration-300">
-            ← お知らせ一覧に戻る
-          </Link>
+          <div className="min-w-0"><BlogRecommendations posts={recommendations} currentId={slug} /><ArticleAds /></div>
         </div>
       </div>
     </main>

@@ -1,3 +1,4 @@
+import { validPublisherId } from "@/lib/adsense";
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import "./globals.css";
@@ -313,6 +314,7 @@ export default function RootLayout({
   return (
     <html lang="ja" suppressHydrationWarning>
       <head>
+        {validPublisherId(process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID) && <meta name="google-adsense-account" content={validPublisherId(process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID)!} />}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdGraph) }}

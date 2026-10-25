@@ -1,5 +1,7 @@
 import Link from "next/link";
+import styles from "./NewsReadability.module.css";
 import Image from "next/image";
+import { cmsImage } from "@/lib/cms-image";
 import { getBlogs, type Blog } from "@/lib/microcms";
 import { blogPosts } from "@/lib/blog-data";
 
@@ -46,17 +48,17 @@ export default async function NewsList() {
         <Link
           key={post.slug}
           href={`/blog/${post.slug}`}
-          className="group grid grid-cols-[92px_1fr] gap-3 overflow-hidden rounded-lg border border-gray-200 bg-white p-3 transition hover:border-gray-300 hover:shadow-sm sm:block sm:p-0"
+          className={`${styles.homeCard} group grid grid-cols-[92px_1fr] gap-3 overflow-hidden rounded-lg border border-gray-200 bg-white p-3 transition hover:border-gray-300 hover:shadow-sm sm:block sm:p-0`}
         >
-          <div className="relative aspect-square overflow-hidden rounded-md bg-gray-100 sm:aspect-[16/9] sm:rounded-none">
-            <Image src={post.image} alt="" fill sizes="(max-width: 639px) 92px, 33vw" className="object-cover transition-transform duration-300 group-hover:scale-[1.02]" />
+          <div className="relative aspect-[16/9] overflow-hidden rounded-md bg-gray-100 sm:aspect-[16/9] sm:rounded-none">
+            <Image src={cmsImage(post.image, 800)} unoptimized alt="" fill sizes="(max-width: 639px) 92px, 33vw" className="object-contain" />
           </div>
           <div className="min-w-0 sm:p-4">
           <div className="flex flex-wrap items-center gap-2">
-            <span className="text-xs text-gray-400 font-medium whitespace-nowrap pt-0.5">{post.date}</span>
+            <span className="text-xs text-neutral-600 font-medium whitespace-nowrap pt-0.5">{post.date}</span>
             <span className="text-xs font-semibold text-neutral-900 bg-neutral-100 px-2 py-0.5 rounded whitespace-nowrap">{post.category}</span>
           </div>
-          <h3 className="mt-2 line-clamp-3 text-sm font-medium leading-relaxed text-gray-900 transition-colors group-hover:text-neutral-700">
+          <h3 className="mt-2 text-sm font-medium leading-relaxed text-gray-900 transition-colors group-hover:text-neutral-700">
             {post.title}
           </h3>
           </div>

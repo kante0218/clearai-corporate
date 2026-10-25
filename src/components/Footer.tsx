@@ -56,7 +56,7 @@ export default function Footer() {
     },
     {
       label: "ClearAI on note",
-      href: "https://note.com/kante0123",
+      href: "https://note.com/clearai",
       icon: (
         <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4" aria-hidden="true">
           <path d="M5 3.5h10.2c.9 0 1.7.34 2.4 1l2.9 2.86c.66.66 1 1.5 1 2.4V20.5H5A1.5 1.5 0 0 1 3.5 19V5A1.5 1.5 0 0 1 5 3.5Zm1 2.4v12.2h12V10.1c0-.3-.12-.55-.33-.76l-2.9-2.86a1.07 1.07 0 0 0-.77-.32H6Zm2.4 3.1h7.2v1.7H8.4V9Zm0 3.4h7.2v1.7H8.4v-1.7Zm0 3.4h4.8v1.7H8.4v-1.7Z" />
