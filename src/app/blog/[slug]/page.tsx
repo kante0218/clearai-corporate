@@ -97,7 +97,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             url.searchParams.set("w", String(width));
             return `${url.toString()} ${width}w`;
           }).join(", "));
-          image.setAttribute("sizes", "(max-width: 767px) calc(100vw - 48px), (max-width: 1023px) calc(100vw - 64px), 800px");
+          image.setAttribute("sizes", "(max-width: 367px) calc(100vw - 48px), (max-width: 767px) 320px, 560px");
         }
       } catch { /* Preserve CMS image URLs that cannot be transformed. */ }
     }
@@ -191,7 +191,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               <div className="article-title-row"><h1 className="mb-6 text-2xl font-bold leading-[1.6] text-neutral-900 md:text-[32px]">{post.title}</h1><div id="article-like-slot" className="article-like-slot" /></div>
               {post.eyecatch && !coverInBody && (
                 <div className="overflow-hidden">
-                  <Image src={post.eyecatch.url} alt={post.title} width={post.eyecatch.width ?? 1200} height={post.eyecatch.height ?? 600} sizes="(max-width: 767px) calc(100vw - 48px), (max-width: 1023px) calc(100vw - 64px), 800px" className="mx-auto h-auto max-h-[640px] w-auto max-w-full object-contain" priority />
+                  <Image src={post.eyecatch.url} alt={post.title} width={post.eyecatch.width ?? 1200} height={post.eyecatch.height ?? 600} sizes="(max-width: 367px) calc(100vw - 48px), (max-width: 767px) 320px, 560px" className="article-cover-image" priority />
                 </div>
               )}
             </header>

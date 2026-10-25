@@ -1,5 +1,6 @@
 .blog-article.prose { overflow-wrap: anywhere; color: #222222; font-size: 18px; line-height: 1.8; letter-spacing: .02em; }
-.blog-article.prose img { display: block; width: auto; max-width: 100%; max-height: 640px; height: auto; margin: 28px auto 12px; object-fit: contain; border-radius: 0; }
+.blog-article.prose img, .article-cover-image { display: block; width: auto; max-width: min(100%, 560px); max-height: 400px; height: auto; margin-inline: auto; object-fit: contain; border-radius: 0; }
+.blog-article.prose img { margin-block: 24px 12px; }
 
 .blog-article.prose h2 { font-size: 22px; line-height: 1.6; }
 .blog-article.prose h3 { font-size: 18px; line-height: 1.6; }
@@ -8,6 +9,7 @@
 .blog-article.prose figcaption { margin-top: 8px; color: #737373; font-size: 12px; line-height: 1.7; }
 .blog-article.prose table { display: block; max-width: 100%; overflow-x: auto; }
 @media (max-width: 767px) {
+  .blog-article.prose img, .article-cover-image { max-width: min(100%, 320px); max-height: 260px; }
   .blog-article.prose { font-size: 16px; line-height: 1.8; }
   .blog-article.prose h2 { font-size: 20px; }
   .blog-article.prose h3 { font-size: 16px; }
