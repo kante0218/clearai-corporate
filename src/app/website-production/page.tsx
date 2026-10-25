@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 
 const description = "ClearAIのホームページ制作。事業の強みと伝えたい内容を整理し、構成・デザイン・実装・公開まで支援します。新規制作・リニューアルの範囲、費用、スケジュールはご相談のうえ決定します。";
 export const metadata: Metadata = {
@@ -19,6 +20,10 @@ const steps = [
   ["範囲・進め方の合意", "必要なページ、機能、原稿・写真の準備方法を確認し、費用とスケジュールを含む進め方を相談します。"],
   ["構成・デザイン・実装", "ページ構成と内容を確認しながら制作します。確認のタイミングや修正の範囲は、事前に決めた進め方に沿って調整します。"],
   ["確認・公開・引き継ぎ", "PC・スマートフォンでの表示と操作を確認し、合意した環境へ公開します。更新方法と公開後の対応範囲を共有します。"],
+];
+const works = [
+  { name: "JASO", href: "https://jaso.co.jp/", src: "/images/clients/jaso.png", width: 1007, height: 424 },
+  { name: "お宿 いけがみ", href: "https://ikegamiryokan.jp/", src: "/images/clients/oyado-ikegami.png", width: 460, height: 98 },
 ];
 const faqs = [
   ["何も決まっていなくても相談できますか？", "はい。まずは事業の内容と、ホームページで解決したい課題をお聞かせください。必要なページや機能を一緒に整理します。"],
@@ -45,13 +50,28 @@ export default function WebsiteProductionPage() {
         <nav aria-label="このページの目次" className="border-y border-neutral-200 py-5 mb-12">
           <p className="text-sm font-semibold mb-3">知りたい内容から読む</p>
           <ul className="flex flex-wrap gap-x-6 gap-y-3 text-sm text-neutral-600">
-            {[['offering', '提供内容'], ['process', '制作の流れ'], ['faq', 'よくあるご質問'], ['consultation', 'ご相談']].map(([id, label]) => <li key={id}><a href={`#${id}`} className="underline underline-offset-4 hover:text-neutral-900 focus-visible:outline-2 focus-visible:outline-offset-4">{label}</a></li>)}
+            {[['offering', '提供内容'], ['works', '制作実績'], ['process', '制作の流れ'], ['faq', 'よくあるご質問'], ['consultation', 'ご相談']].map(([id, label]) => <li key={id}><a href={`#${id}`} className="underline underline-offset-4 hover:text-neutral-900 focus-visible:outline-2 focus-visible:outline-offset-4">{label}</a></li>)}
           </ul>
         </nav>
         <section id="offering" className="scroll-mt-28 pb-16 lg:pb-24">
           <h2 data-motion="heading" className="text-2xl sm:text-3xl font-bold mb-5">伝える内容から、公開後の使い方まで。</h2>
           <p data-reading className="max-w-3xl text-neutral-600 leading-[1.9] mb-8">会社紹介・サービス紹介など、サイトの目的に合わせて必要な内容を選びます。具体的な対応範囲は、ご相談のうえ決定します。</p>
           <div className="grid gap-5 sm:grid-cols-2 lg:gap-7">{offerings.map(([title, body]) => <div data-motion="card" key={title} className="motion-card relative overflow-hidden rounded-lg border border-neutral-200 bg-white p-6 sm:p-8"><div aria-hidden="true" className="mb-6 h-1 w-12 rounded-full bg-gradient-to-r from-violet-500 to-sky-500" /><h3 className="font-bold text-xl mb-3">{title}</h3><p data-reading className="text-sm text-neutral-600 leading-[1.95]">{body}</p></div>)}</div>
+        </section>
+        <section id="works" aria-labelledby="works-title" className="scroll-mt-28 pb-16 lg:pb-24">
+          <h2 id="works-title" data-motion="heading" className="text-2xl sm:text-3xl font-bold mb-5">制作実績</h2>
+          <p data-reading className="text-sm text-neutral-600 leading-[1.9] mb-8">ホームページ制作を担当したサイトをご紹介します。</p>
+          <div className="grid gap-8 sm:grid-cols-2 lg:gap-12">
+            {works.map((work) => (
+              <article key={work.href} className="border-t border-neutral-200 pt-6">
+                <div className="mb-6 flex h-28 items-center justify-start">
+                  <Image src={work.src} alt="" width={work.width} height={work.height} sizes="240px" className="h-auto max-h-28 w-auto max-w-[min(240px,100%)] object-contain" />
+                </div>
+                <h3 className="text-base sm:text-lg font-bold text-neutral-900">{work.name}</h3>
+                <a href={work.href} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex min-h-11 items-center text-sm text-neutral-700 underline underline-offset-4 hover:text-neutral-900 focus-visible:outline-2 focus-visible:outline-offset-4" aria-label={`${work.name}のサイトを見る（新しいタブ）`}>サイトを見る<span className="ml-2 text-xs">（新しいタブ）</span></a>
+              </article>
+            ))}
+          </div>
         </section>
         <section id="process" className="scroll-mt-28 pb-16 lg:pb-24">
           <h2 data-motion="heading" className="text-2xl sm:text-3xl font-bold mb-8">制作の流れ</h2>
