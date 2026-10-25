@@ -1,0 +1,52 @@
+[
+  {
+    "key": "kimi",
+    "id": "kimi-k31-pro-20261025",
+    "title": "Kimi K3.1 Proが登場　開発チームが押さえたい長文処理と導入条件",
+    "hpUrl": "https://clearai.jp/blog/kimi-k31-pro-20261025",
+    "noteStatus": "blocked-browser-javascript-disabled",
+    "imageCount": 4,
+    "publishedAt": "2026-10-25T05:15:45.954Z",
+    "hpStatus": "published"
+  },
+  {
+    "key": "decisions",
+    "id": "openai-decisions-api-20261025",
+    "title": "OpenAI Decisions APIが正式提供　分類や選択を業務の中で高速化",
+    "hpUrl": "https://clearai.jp/blog/openai-decisions-api-20261025",
+    "noteStatus": "blocked-browser-javascript-disabled",
+    "imageCount": 4,
+    "publishedAt": "2026-10-25T05:15:48.278Z",
+    "hpStatus": "published"
+  },
+  {
+    "key": "1password",
+    "id": "1password-for-agents-20261025",
+    "title": "1PasswordがAI向けログイン連携を発表 パスワードを渡さず作業を任せる仕組み",
+    "hpUrl": "https://clearai.jp/blog/1password-for-agents-20261025",
+    "noteStatus": "blocked-browser-javascript-disabled",
+    "imageCount": 4,
+    "publishedAt": "2026-10-25T05:15:50.766Z",
+    "hpStatus": "published"
+  },
+  {
+    "key": "resend",
+    "id": "resend-inboxes-20261025",
+    "title": "ResendがInboxesを開始 人とAIで共有受信箱を運用",
+    "hpUrl": "https://clearai.jp/blog/resend-inboxes-20261025",
+    "noteStatus": "blocked-browser-javascript-disabled",
+    "imageCount": 4,
+    "publishedAt": "2026-10-25T05:15:53.240Z",
+    "hpStatus": "published"
+  },
+  {
+    "key": "uber",
+    "id": "uber-chatgpt-work-20261025",
+    "title": "UberがChatGPT Workを3万人超へ展開　全社導入を支える研修と業務連携",
+    "hpUrl": "https://clearai.jp/blog/uber-chatgpt-work-20261025",
+    "noteStatus": "blocked-browser-javascript-disabled",
+    "imageCount": 4,
+    "publishedAt": "2026-10-25T05:15:55.600Z",
+    "hpStatus": "published"
+  }
+]

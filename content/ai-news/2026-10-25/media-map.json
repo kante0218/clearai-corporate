@@ -1,0 +1,22 @@
+{
+  "kimi/01-context.png": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/5cac391c2de3472f8a9749fcbb2a831c/clearai-kimi-01-context.png",
+  "kimi/02-access.png": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/501300d4de2a4b569fe14550589ec1db/clearai-kimi-02-access.png",
+  "kimi/03-workflow.png": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/d6d4d20044fa4e02ad743fabf4f13411/clearai-kimi-03-workflow.png",
+  "kimi/04-evaluation.png": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/f3fcaadb8bd04104b54d85d70bc47146/clearai-kimi-04-evaluation.png",
+  "decisions/01-decision-flow.png": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/92db2d2c6c254cc1aceb5ef3657eeb1f/clearai-decisions-01-decision-flow.png",
+  "decisions/02-answer-types.png": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/ca8eeda458d940358a03307927bbb7fe/clearai-decisions-02-answer-types.png",
+  "decisions/03-hypothetical-routing.png": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/542f464e50374edc9ad3dfccec1fff14/clearai-decisions-03-hypothetical-routing.png",
+  "decisions/04-rollout-checklist.png": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/66cb0f8498f94453ab96461c93fdc4d4/clearai-decisions-04-rollout-checklist.png",
+  "1password/01-login-flow.png": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/4a96e34701cc4aefb6caa20ee3934575/clearai-1password-01-login-flow.png",
+  "1password/02-availability.png": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/eb5f501da79648c081247aa541a236b7/clearai-1password-02-availability.png",
+  "1password/03-business-workflow.png": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/65811772853845cf8daf0786ba8af0fb/clearai-1password-03-business-workflow.png",
+  "1password/04-security-boundary.png": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/2051df3c93d247688602546128bc0530/clearai-1password-04-security-boundary.png",
+  "resend/01-shared-inbox.png": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/440462a149b64a13873fd45564299323/clearai-resend-01-shared-inbox.png",
+  "resend/02-support-workflow.png": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/ef30b0c6ca474510b4c9ee02b7b54e37/clearai-resend-02-support-workflow.png",
+  "resend/03-human-control.png": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/37b09b61298e423d9c3d851f11334ca4/clearai-resend-03-human-control.png",
+  "resend/04-availability-and-pricing.png": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/3b4e5e1edd1f4f76a8f3289404d66c9e/clearai-resend-04-availability-and-pricing.png",
+  "uber/01-rollout.png": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/0303d5cdf72e40acaa4e516a6b7f16c6/clearai-uber-01-rollout.png",
+  "uber/02-workflow.png": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/f9e9775fbe91406da3c895d317f808b3/clearai-uber-02-workflow.png",
+  "uber/03-enablement.png": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/ffc7ca89e78a45818f7a905bdf2f894e/clearai-uber-03-enablement.png",
+  "uber/04-evaluation.png": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/20772f165c8f4a0d936a52c42ca4846f/clearai-uber-04-evaluation.png"
+}
