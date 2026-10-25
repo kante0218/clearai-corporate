@@ -1,11 +1,14 @@
 "use client";
 
 import { useEffect, useState, type FormEvent } from "react";
+import { createPortal } from "react-dom";
 
 type Comment = { id: string; name: string; body: string; publishedAt: string };
 type Engagement = { likes: number; liked: boolean; comments: Comment[] };
 
 export default function ArticleEngagement({ slug }: { slug: string }) {
+  const [likeTarget, setLikeTarget] = useState<HTMLElement | null>(null);
+  useEffect(() => { setLikeTarget(document.getElementById("article-like-slot")); }, []);
   const [data, setData] = useState<Engagement | null>(null);
   const [unavailable, setUnavailable] = useState("");
   const [message, setMessage] = useState("");
@@ -40,10 +43,10 @@ export default function ArticleEngagement({ slug }: { slug: string }) {
 
   return (
     <section className="mt-10 border-t border-neutral-200 pt-8" aria-label="記事へのリアクション">
-      <button type="button" disabled={!data || busy} aria-pressed={data?.liked ?? false} onClick={() => void send({ action: "like", liked: !data?.liked })} className="inline-flex min-h-11 items-center gap-2 rounded-full border border-neutral-300 px-5 text-sm font-semibold text-neutral-800 enabled:hover:border-neutral-900 focus-visible:outline-2 focus-visible:outline-offset-4 disabled:opacity-50">
+      {likeTarget && createPortal(<div><button type="button" disabled={!data || busy} aria-pressed={data?.liked ?? false} onClick={() => void send({ action: "like", liked: !data?.liked })} className="inline-flex min-h-11 items-center gap-2 rounded-full border border-neutral-300 px-5 text-sm font-semibold text-neutral-800 enabled:hover:border-neutral-900 focus-visible:outline-2 focus-visible:outline-offset-4 disabled:opacity-50">
         <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5" fill={data?.liked ? "currentColor" : "none"} stroke="currentColor" strokeWidth="1.5"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z" /></svg>
         いいね{data ? ` ${data.likes}` : ""}
-      </button>
+      </button><p role="status" className="mt-2 max-w-64 text-xs leading-5 text-neutral-600">{unavailable || message}</p></div>, likeTarget)}
       <h2 id="article-comments" className="mb-5 mt-8 text-xl font-bold text-neutral-900">コメント{data ? `（${data.comments.length}${data.comments.length === 50 ? "+" : ""}）` : ""}</h2>
       {unavailable ? <p className="text-sm leading-6 text-neutral-600" role="status">{unavailable}</p> : !data ? <p className="text-sm text-neutral-600" role="status">読み込み中…</p> : <>
         <p className="mb-5 text-sm leading-6 text-neutral-600">コメントは内容の確認後に公開します。個人情報や機密情報の投稿はお控えください。</p>

@@ -17,3 +17,21 @@
 .blog-article.prose p:has(> em:first-child), .blog-article.prose figcaption { color: #595959 !important; font-size: 13px !important; line-height: 1.65 !important; }
 .blog-article.prose p > em { font-style: normal; }
 .blog-article.prose + nav summary, nav[aria-label="この記事の目次"] summary { min-height: 44px; line-height: 44px; }
+
+.article-title-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: start; gap: 24px; }
+.article-like-slot { padding-top: 8px; text-align: right; min-width: 110px; }
+.article-like-slot > div > p:empty { display: none; }
+.article-header { margin-bottom: 24px; }
+nav[aria-label="この記事の目次"] { padding-block: 12px; margin-bottom: 32px; }
+.blog-article.prose .article-sources { margin-top: 40px; border-top: 1px solid #e5e5e5; padding-top: 20px; color: #595959; font-size: 13px; line-height: 1.75; }
+.blog-article.prose .article-sources h2 { margin: 0 0 12px; font-size: 15px; line-height: 1.6; }
+.blog-article.prose .article-sources p, .blog-article.prose .article-sources li { font-size: 13px !important; line-height: 1.75 !important; color: #595959; }
+.blog-article.prose .article-sources ul { margin: 0 0 16px; padding-left: 20px; }
+.blog-article.prose .article-sources li { margin: 5px 0; }
+.blog-article.prose .article-sources a { color: #4b5563; text-underline-offset: 3px; }
+@media (max-width: 767px) {
+  .article-title-row { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .article-like-slot { justify-self: end; padding: 0 0 8px; }
+}
+
+.blog-article.prose .article-editor-note { font-size: 13px !important; line-height: 1.75 !important; color: #595959; }

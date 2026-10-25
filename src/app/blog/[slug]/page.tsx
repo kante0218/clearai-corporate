@@ -107,6 +107,16 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     return { start: image.range[0], end: image.range[0] + original.length, html: image.toString() };
   });
   for (const edit of imageEdits.reverse()) content.html = content.html.slice(0, edit.start) + edit.html + content.html.slice(edit.end);
+  // Keep source links and editorial notes distinct without changing CMS content or anchors.
+  const referenceRoot = parse(content.html);
+  const referenceHeadings = referenceRoot.querySelectorAll("h2");
+  const sourceHeading = referenceHeadings.find(heading => /^(出典(?:・編集方針|と確認日)?|参考資料|参考・出典)$/.test(heading.text.trim()));
+  if (sourceHeading) {
+    const nextHeading = referenceHeadings.find(heading => heading.range[0] > sourceHeading.range[0]);
+    const end = nextHeading?.range[0] ?? content.html.length;
+    content.html = content.html.slice(0, sourceHeading.range[0]) + '<section class="article-sources" aria-label="出典">' + content.html.slice(sourceHeading.range[0], end) + '</section>' + content.html.slice(end);
+  }
+  content.html = content.html.replace(/<p>(※[^<]*)<\/p>/g, '<p class="article-editor-note">$1</p>');
   const recommendations = await getBlogs().then(({ contents }) => contents.filter((item) => item.id !== slug).map((item) => ({
     id: item.id,
     title: item.title,
@@ -173,12 +183,12 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         </a>
         <div className="grid items-start gap-12 lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-10">
           <div className="min-w-0">
-            <header className="mb-8">
+            <header className="article-header mb-8">
               <div className="mb-4 flex flex-wrap items-center gap-3 text-xs text-neutral-500">
                 {post.category && <span className="font-semibold text-neutral-900">{post.category.name}</span>}
                 <time dateTime={post.publishedAt}>{formatDate(post.publishedAt!)}</time>
               </div>
-              <h1 className="mb-6 text-2xl font-bold leading-[1.6] text-neutral-900 md:text-[32px]">{post.title}</h1>
+              <div className="article-title-row"><h1 className="mb-6 text-2xl font-bold leading-[1.6] text-neutral-900 md:text-[32px]">{post.title}</h1><div id="article-like-slot" className="article-like-slot" /></div>
               {post.eyecatch && !coverInBody && (
                 <div className="overflow-hidden">
                   <Image src={post.eyecatch.url} alt={post.title} width={post.eyecatch.width ?? 1200} height={post.eyecatch.height ?? 600} sizes="(max-width: 767px) calc(100vw - 48px), (max-width: 1023px) calc(100vw - 64px), 800px" className="mx-auto h-auto max-h-[640px] w-auto max-w-full object-contain" priority />
