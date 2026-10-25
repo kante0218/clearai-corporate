@@ -1,5 +1,4 @@
 import ArticleAds from "@/components/ArticleAds";
-import Link from "next/link";
 import ArticleToc from "@/components/ArticleToc";
 import { articleHtmlToc } from "@/lib/article-toc";
 import Image from "next/image";
@@ -169,9 +168,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <div className="mx-auto max-w-[1200px] px-6 pb-20 pt-24 lg:px-8 lg:pb-28 lg:pt-28">
-        <Link href="/blog" className="mb-8 inline-flex min-h-11 items-center text-sm font-semibold text-neutral-700 hover:text-black">
+        <a href="/blog" className="mb-8 inline-flex min-h-11 items-center text-sm font-semibold text-neutral-700 hover:text-black">
           ← お知らせ一覧
-        </Link>
+        </a>
         <div className="grid items-start gap-12 lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-10">
           <div className="min-w-0">
             <header className="mb-8">
@@ -193,7 +192,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             </div>
             <ArticleEngagement slug={post.id} />
             <div className="mt-8">
-              <Link href="/blog" className="inline-flex min-h-11 items-center text-sm font-semibold text-neutral-700 hover:text-black">← お知らせ一覧に戻る</Link>
+              <a href="/blog" className="inline-flex min-h-11 items-center text-sm font-semibold text-neutral-700 hover:text-black">← お知らせ一覧に戻る</a>
             </div>
           </div>
           <div className="min-w-0"><BlogRecommendations posts={recommendations} currentId={slug} /><ArticleAds /></div>
