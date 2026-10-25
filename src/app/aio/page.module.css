@@ -1,4 +1,6 @@
-.page { --course-accent: #6941d9; }
+.page { --course-accent: #6941d9; padding-top:64px; }
+@media (min-width:1024px) { .page { padding-top:80px; } }
+@media (max-width:767px) { .page { padding-top:56px; } }
 .page .hero { padding-bottom: 30px !important; }
 .page .productTitle { font-size: clamp(42px, 6vw, 76px); }
 .heroLinks { display:flex; align-items:center; justify-content:center; gap:24px; flex-wrap:wrap; margin:28px 0; }
