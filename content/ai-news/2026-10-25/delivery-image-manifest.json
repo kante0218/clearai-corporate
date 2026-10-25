@@ -1,0 +1,101 @@
+[
+  {
+    "key": "1password/02-muse-login-request.png",
+    "width": 1252,
+    "height": 832,
+    "bytes": 48808,
+    "originalBytes": 691437,
+    "sha256": "ae5685e40fa04ca4c7a0ce723d8522313656990bc562d6b7510b7fe9ee3e35d9",
+    "url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/32a038783034478fad57110a42766bb1/delivery-1password-02-muse-login-request.webp",
+    "original_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/723c2638fa1f43a28b049a495252b16e/official-1password-02-muse-login-request.png",
+    "processing": "WebP quality 88; proportional fit within 1600x1600; no crop; full original retained via enlargement link"
+  },
+  {
+    "key": "1password/03-muse-authorization.png",
+    "width": 1252,
+    "height": 832,
+    "bytes": 49000,
+    "originalBytes": 700307,
+    "sha256": "99db048ca95d20fd9f2ffec512d9ffe16262e8987ab9f824ff63db36a66920aa",
+    "url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/b7df45251d044f7f94d4c9e629bed483/delivery-1password-03-muse-authorization.webp",
+    "original_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/50e374a09edd43cfbac069adacdb8628/official-1password-03-muse-authorization.png",
+    "processing": "WebP quality 88; proportional fit within 1600x1600; no crop; full original retained via enlargement link"
+  },
+  {
+    "key": "1password/04-linked-accounts.png",
+    "width": 1252,
+    "height": 832,
+    "bytes": 46384,
+    "originalBytes": 674794,
+    "sha256": "f9fb264851f74ad6ddc81990fe27d3873332584147f040b2d18baf2b677804e9",
+    "url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/e54a0a706f994268818b027adb6d7d14/delivery-1password-04-linked-accounts.webp",
+    "original_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/3aa5f097c82745e683a32e04471cc9f4/official-1password-04-linked-accounts.png",
+    "processing": "WebP quality 88; proportional fit within 1600x1600; no crop; full original retained via enlargement link"
+  },
+  {
+    "key": "resend/02-support-inbox-list.png",
+    "width": 1600,
+    "height": 1138,
+    "bytes": 56026,
+    "originalBytes": 237066,
+    "sha256": "9ce8dc4438933185b74e6145677891396f02298ae23b0f54b27fc956d6f46002",
+    "url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/907f59ea8b0142609f396de7dfacba30/delivery-resend-02-support-inbox-list.webp",
+    "original_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/8133192f6a474ee6b164b3bee7220c0f/official-resend-02-support-inbox-list.png",
+    "processing": "WebP quality 88; proportional fit within 1600x1600; no crop; full original retained via enlargement link"
+  },
+  {
+    "key": "resend/03-inbox-kanban-view.png",
+    "width": 1518,
+    "height": 1080,
+    "bytes": 61478,
+    "originalBytes": 262460,
+    "sha256": "df32725e40087eafc849d8eda476c0f92524f565a7c8e92801cc2cfa6551fd40",
+    "url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/5f1123ee79674e2cbb27c628c9345a03/delivery-resend-03-inbox-kanban-view.webp",
+    "original_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/8b34f76c7ba84faba214b3b0f021b948/official-resend-03-inbox-kanban-view.png",
+    "processing": "WebP quality 88; proportional fit within 1600x1600; no crop; full original retained via enlargement link"
+  },
+  {
+    "key": "resend/04-claude-code-inbox-workflow.png",
+    "width": 1600,
+    "height": 900,
+    "bytes": 47646,
+    "originalBytes": 519571,
+    "sha256": "a875da3a56b0fe15f6fd9a88ce6570fa39bdc5b95b4c830e6e06e3629ce51cb9",
+    "url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/e8b2a0e14c564c76bba894c19b24ada4/delivery-resend-04-claude-code-inbox-workflow.webp",
+    "original_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/c782c530c50d4a758317b0b1d34ba093/official-resend-04-claude-code-inbox-workflow.png",
+    "processing": "WebP quality 88; proportional fit within 1600x1600; no crop; full original retained via enlargement link"
+  },
+  {
+    "key": "uber/chatgpt-work-web-mobile.png",
+    "width": 1600,
+    "height": 900,
+    "bytes": 117358,
+    "originalBytes": 3330549,
+    "sha256": "a1fa27f37d3e3ab7e676fce1c7f176ada9b08f2d8555b4dce94781c5e0445962",
+    "url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/0604f5a1a1bf47bb8f2310755e9ea115/delivery-uber-chatgpt-work-web-mobile.webp",
+    "original_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/01146a30283d463abb0dee042f1a299d/official-uber-chatgpt-work-web-mobile.png",
+    "processing": "WebP quality 88; proportional fit within 1600x1600; no crop; full original retained via enlargement link"
+  },
+  {
+    "key": "uber/chatgpt-work-plugins.png",
+    "width": 1600,
+    "height": 900,
+    "bytes": 173248,
+    "originalBytes": 4357285,
+    "sha256": "79733382b8dbc3475271a7de2eae160e8d60f1fb989d49a6eea50261a553071f",
+    "url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/bcb144ec212c4649a9d03599735e1e1f/delivery-uber-chatgpt-work-plugins.webp",
+    "original_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/780f813ae0824357974881a4d5551b77/official-uber-chatgpt-work-plugins.png",
+    "processing": "WebP quality 88; proportional fit within 1600x1600; no crop; full original retained via enlargement link"
+  },
+  {
+    "key": "uber/chatgpt-work-slides.png",
+    "width": 1600,
+    "height": 900,
+    "bytes": 204058,
+    "originalBytes": 4547711,
+    "sha256": "7f3fa80b34352508c3cf71b7efe7144d27f96a623302140f5d68b55159ad8922",
+    "url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/b53667634f0f4435bfffeaf2f115b23a/delivery-uber-chatgpt-work-slides.webp",
+    "original_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/b1627a761a2e4ca09ebb77d738bccdf4/official-uber-chatgpt-work-slides.png",
+    "processing": "WebP quality 88; proportional fit within 1600x1600; no crop; full original retained via enlargement link"
+  }
+]

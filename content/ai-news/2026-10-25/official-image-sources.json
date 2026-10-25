@@ -11,7 +11,8 @@
     "height": 1800,
     "mime": "image/jpeg",
     "uploadName": "01-kimi-code-desktop-home.jpg",
-    "cms_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/423dd9f6598e4e94a6824f5d17099b19/official-kimi-01-kimi-code-desktop-home.jpg"
+    "cms_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/423dd9f6598e4e94a6824f5d17099b19/official-kimi-01-kimi-code-desktop-home.jpg",
+    "display_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/423dd9f6598e4e94a6824f5d17099b19/official-kimi-01-kimi-code-desktop-home.jpg"
   },
   {
     "key": "kimi/02-kimi-3d-make.webp",
@@ -25,7 +26,8 @@
     "height": 1349,
     "mime": "image/webp",
     "uploadName": "02-kimi-3d-make.webp",
-    "cms_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/73f4c676474f4a6eb28b5328651182dc/official-kimi-02-kimi-3d-make.webp"
+    "cms_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/73f4c676474f4a6eb28b5328651182dc/official-kimi-02-kimi-3d-make.webp",
+    "display_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/73f4c676474f4a6eb28b5328651182dc/official-kimi-02-kimi-3d-make.webp"
   },
   {
     "key": "kimi/03-kimi-k31-official-hero.webp",
@@ -39,7 +41,8 @@
     "height": 2575,
     "mime": "image/webp",
     "uploadName": "03-kimi-k31-official-hero.webp",
-    "cms_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/1fd604521bee4b3a9845f8098be19a67/official-kimi-03-kimi-k31-official-hero.webp"
+    "cms_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/1fd604521bee4b3a9845f8098be19a67/official-kimi-03-kimi-k31-official-hero.webp",
+    "display_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/1fd604521bee4b3a9845f8098be19a67/official-kimi-03-kimi-k31-official-hero.webp"
   },
   {
     "key": "kimi/04-kimi-k31-celestial-palace-demo.webp",
@@ -53,7 +56,8 @@
     "height": 1080,
     "mime": "image/webp",
     "uploadName": "04-kimi-k31-celestial-palace-demo.webp",
-    "cms_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/b48cec93bf774dadbae6930d68b1877f/official-kimi-04-kimi-k31-celestial-palace-demo.webp"
+    "cms_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/b48cec93bf774dadbae6930d68b1877f/official-kimi-04-kimi-k31-celestial-palace-demo.webp",
+    "display_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/b48cec93bf774dadbae6930d68b1877f/official-kimi-04-kimi-k31-celestial-palace-demo.webp"
   },
   {
     "key": "decisions/01-decisions-official-poster.webp",
@@ -67,7 +71,8 @@
     "height": 675,
     "mime": "image/webp",
     "uploadName": "01-decisions-official-poster.webp",
-    "cms_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/a787ea6ab7844a1faa390b331e2ea892/official-decisions-01-decisions-official-poster.webp"
+    "cms_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/a787ea6ab7844a1faa390b331e2ea892/official-decisions-01-decisions-official-poster.webp",
+    "display_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/a787ea6ab7844a1faa390b331e2ea892/official-decisions-01-decisions-official-poster.webp"
   },
   {
     "key": "decisions/02-decisions-live-demo.png",
@@ -81,7 +86,8 @@
     "height": 747,
     "mime": "image/jpeg",
     "uploadName": "02-decisions-live-demo.jpg",
-    "cms_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/52d9ddd772b04106aea12a5160ce3598/official-decisions-02-decisions-live-demo.jpg"
+    "cms_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/52d9ddd772b04106aea12a5160ce3598/official-decisions-02-decisions-live-demo.jpg",
+    "display_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/52d9ddd772b04106aea12a5160ce3598/official-decisions-02-decisions-live-demo.jpg"
   },
   {
     "key": "decisions/03-decisions-image-check-example.png",
@@ -95,7 +101,8 @@
     "height": 757,
     "mime": "image/jpeg",
     "uploadName": "03-decisions-image-check-example.jpg",
-    "cms_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/a453b70625004f31984b20dc14e1c0bd/official-decisions-03-decisions-image-check-example.jpg"
+    "cms_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/a453b70625004f31984b20dc14e1c0bd/official-decisions-03-decisions-image-check-example.jpg",
+    "display_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/a453b70625004f31984b20dc14e1c0bd/official-decisions-03-decisions-image-check-example.jpg"
   },
   {
     "key": "decisions/04-decisions-package-score-example.png",
@@ -109,7 +116,8 @@
     "height": 757,
     "mime": "image/jpeg",
     "uploadName": "04-decisions-package-score-example.jpg",
-    "cms_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/7a3aedd9bd974b339a337ad16ca7cf3e/official-decisions-04-decisions-package-score-example.jpg"
+    "cms_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/7a3aedd9bd974b339a337ad16ca7cf3e/official-decisions-04-decisions-package-score-example.jpg",
+    "display_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/7a3aedd9bd974b339a337ad16ca7cf3e/official-decisions-04-decisions-package-score-example.jpg"
   },
   {
     "key": "1password/01-launch-hero.jpg",
@@ -123,7 +131,8 @@
     "height": 1080,
     "mime": "image/jpeg",
     "uploadName": "01-launch-hero.jpg",
-    "cms_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/2bafc08d35c64577875d0073de3f79af/official-1password-01-launch-hero.jpg"
+    "cms_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/2bafc08d35c64577875d0073de3f79af/official-1password-01-launch-hero.jpg",
+    "display_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/2bafc08d35c64577875d0073de3f79af/official-1password-01-launch-hero.jpg"
   },
   {
     "key": "1password/02-muse-login-request.png",
@@ -137,7 +146,8 @@
     "height": 832,
     "mime": "image/png",
     "uploadName": "02-muse-login-request.png",
-    "cms_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/723c2638fa1f43a28b049a495252b16e/official-1password-02-muse-login-request.png"
+    "cms_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/723c2638fa1f43a28b049a495252b16e/official-1password-02-muse-login-request.png",
+    "display_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/32a038783034478fad57110a42766bb1/delivery-1password-02-muse-login-request.webp"
   },
   {
     "key": "1password/03-muse-authorization.png",
@@ -151,7 +161,8 @@
     "height": 832,
     "mime": "image/png",
     "uploadName": "03-muse-authorization.png",
-    "cms_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/50e374a09edd43cfbac069adacdb8628/official-1password-03-muse-authorization.png"
+    "cms_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/50e374a09edd43cfbac069adacdb8628/official-1password-03-muse-authorization.png",
+    "display_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/b7df45251d044f7f94d4c9e629bed483/delivery-1password-03-muse-authorization.webp"
   },
   {
     "key": "1password/04-linked-accounts.png",
@@ -165,7 +176,8 @@
     "height": 832,
     "mime": "image/png",
     "uploadName": "04-linked-accounts.png",
-    "cms_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/3aa5f097c82745e683a32e04471cc9f4/official-1password-04-linked-accounts.png"
+    "cms_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/3aa5f097c82745e683a32e04471cc9f4/official-1password-04-linked-accounts.png",
+    "display_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/e54a0a706f994268818b027adb6d7d14/delivery-1password-04-linked-accounts.webp"
   },
   {
     "key": "resend/01-inboxes-launch-hero.jpg",
@@ -179,7 +191,8 @@
     "height": 1008,
     "mime": "image/jpeg",
     "uploadName": "01-inboxes-launch-hero.jpg",
-    "cms_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/00ecbb793c174515b7979e80c484a361/official-resend-01-inboxes-launch-hero.jpg"
+    "cms_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/00ecbb793c174515b7979e80c484a361/official-resend-01-inboxes-launch-hero.jpg",
+    "display_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/00ecbb793c174515b7979e80c484a361/official-resend-01-inboxes-launch-hero.jpg"
   },
   {
     "key": "resend/02-support-inbox-list.png",
@@ -193,7 +206,8 @@
     "height": 1152,
     "mime": "image/png",
     "uploadName": "02-support-inbox-list.png",
-    "cms_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/8133192f6a474ee6b164b3bee7220c0f/official-resend-02-support-inbox-list.png"
+    "cms_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/8133192f6a474ee6b164b3bee7220c0f/official-resend-02-support-inbox-list.png",
+    "display_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/907f59ea8b0142609f396de7dfacba30/delivery-resend-02-support-inbox-list.webp"
   },
   {
     "key": "resend/03-inbox-kanban-view.png",
@@ -207,7 +221,8 @@
     "height": 1080,
     "mime": "image/png",
     "uploadName": "03-inbox-kanban-view.png",
-    "cms_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/8b34f76c7ba84faba214b3b0f021b948/official-resend-03-inbox-kanban-view.png"
+    "cms_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/8b34f76c7ba84faba214b3b0f021b948/official-resend-03-inbox-kanban-view.png",
+    "display_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/5f1123ee79674e2cbb27c628c9345a03/delivery-resend-03-inbox-kanban-view.webp"
   },
   {
     "key": "resend/04-claude-code-inbox-workflow.png",
@@ -221,7 +236,8 @@
     "height": 1080,
     "mime": "image/png",
     "uploadName": "04-claude-code-inbox-workflow.png",
-    "cms_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/c782c530c50d4a758317b0b1d34ba093/official-resend-04-claude-code-inbox-workflow.png"
+    "cms_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/c782c530c50d4a758317b0b1d34ba093/official-resend-04-claude-code-inbox-workflow.png",
+    "display_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/e8b2a0e14c564c76bba894c19b24ada4/delivery-resend-04-claude-code-inbox-workflow.webp"
   },
   {
     "key": "uber/chatgpt-work-web-mobile.png",
@@ -235,7 +251,8 @@
     "height": 1620,
     "mime": "image/png",
     "uploadName": "chatgpt-work-web-mobile.png",
-    "cms_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/01146a30283d463abb0dee042f1a299d/official-uber-chatgpt-work-web-mobile.png"
+    "cms_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/01146a30283d463abb0dee042f1a299d/official-uber-chatgpt-work-web-mobile.png",
+    "display_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/0604f5a1a1bf47bb8f2310755e9ea115/delivery-uber-chatgpt-work-web-mobile.webp"
   },
   {
     "key": "uber/uber-cto-praveen-neppalli-naga.jpg",
@@ -249,7 +266,8 @@
     "height": 1000,
     "mime": "image/jpeg",
     "uploadName": "uber-cto-praveen-neppalli-naga.jpg",
-    "cms_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/3919aedbf347466497019b31fc909876/official-uber-uber-cto-praveen-neppalli-naga.jpg"
+    "cms_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/3919aedbf347466497019b31fc909876/official-uber-uber-cto-praveen-neppalli-naga.jpg",
+    "display_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/3919aedbf347466497019b31fc909876/official-uber-uber-cto-praveen-neppalli-naga.jpg"
   },
   {
     "key": "uber/chatgpt-work-plugins.png",
@@ -263,7 +281,8 @@
     "height": 1620,
     "mime": "image/png",
     "uploadName": "chatgpt-work-plugins.png",
-    "cms_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/780f813ae0824357974881a4d5551b77/official-uber-chatgpt-work-plugins.png"
+    "cms_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/780f813ae0824357974881a4d5551b77/official-uber-chatgpt-work-plugins.png",
+    "display_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/bcb144ec212c4649a9d03599735e1e1f/delivery-uber-chatgpt-work-plugins.webp"
   },
   {
     "key": "uber/chatgpt-work-slides.png",
@@ -277,6 +296,7 @@
     "height": 1620,
     "mime": "image/png",
     "uploadName": "chatgpt-work-slides.png",
-    "cms_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/b1627a761a2e4ca09ebb77d738bccdf4/official-uber-chatgpt-work-slides.png"
+    "cms_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/b1627a761a2e4ca09ebb77d738bccdf4/official-uber-chatgpt-work-slides.png",
+    "display_url": "https://images.microcms-assets.io/assets/d597abccb03c4105af3bc49b223a0f63/b53667634f0f4435bfffeaf2f115b23a/delivery-uber-chatgpt-work-slides.webp"
   }
 ]

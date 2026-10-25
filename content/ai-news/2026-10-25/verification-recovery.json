@@ -1,0 +1,32 @@
+{
+  "scope": "read-only recovery verification and delivery documentation only",
+  "uiCommit": "613b90638cd89cec17702c3b8559aba469d206f6",
+  "previousDeployment": "dpl_DiXPBjU4aacXRzxwSYSJzuYjLwwZ",
+  "observedCurrentDeployment": {
+    "id": "dpl_G86UWHXXdfLhXMhW4779FnyLu6cx",
+    "reportedGitSha": "e318ca631a5aa31e5b5cd4310a3bcf9918386c3d",
+    "createdUtc": "2026-10-25T06:00:40.430Z",
+    "state": "READY"
+  },
+  "finalUiVerification": "FAILED - deployed UI changed during verification; not overwritten",
+  "observedFailure": {
+    "url": "https://clearai.jp/blog/resend-inboxes-20261025",
+    "images": 5,
+    "bodyImages": 4,
+    "paragraph": {
+      "color": "rgb(75, 85, 99)",
+      "font": "14px",
+      "width": 342
+    },
+    "summaryControls": 0
+  },
+  "recoveryCmsWrites": 0,
+  "recoveryDeployments": 0,
+  "deliveryVariants": 9,
+  "cmsPublishedCountObservation": {
+    "previous": 19,
+    "current": 7,
+    "reason": "not established; no publication status changes or deletions performed by this recovery"
+  },
+  "note": "not retried"
+}
