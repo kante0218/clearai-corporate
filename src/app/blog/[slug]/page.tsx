@@ -1,4 +1,5 @@
-import Link from "next/link";
+import styles from "@/components/NewsReadability.module.css";
+import { parse } from "node-html-parser";
 import ArticleToc from "@/components/ArticleToc";
 import { articleHtmlToc } from "@/lib/article-toc";
 import Image from "next/image";
@@ -74,6 +75,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   }
 
   const content = articleHtmlToc(post.content ?? "");
+  const coverInBody = !!post.eyecatch && parse(post.content ?? "").querySelectorAll("img").some(image => image.getAttribute("src")?.split("?")[0] === post.eyecatch!.url.split("?")[0]);
   const plainText = (post.content ?? "").replace(/<[^>]*>/g, "").replace(/\s+/g, " ").trim();
   const wordCount = plainText.length;
 
@@ -128,49 +130,50 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <div className="max-w-[1800px] mx-auto px-6 lg:px-8 pt-24 lg:pt-28">
-        <Link href="/blog" className="inline-block text-sm font-semibold text-neutral-900 hover:text-neutral-600 transition-colors duration-300 mb-10">
+      <div className={`${styles.header} mx-auto px-6 lg:px-8 pt-24 lg:pt-28`}>
+        <a href="/blog" className="inline-block text-sm font-semibold text-neutral-900 hover:text-neutral-600 transition-colors duration-300 mb-10">
           ← お知らせ一覧
-        </Link>
+        </a>
 
-        {post.eyecatch && (
-          <div className="w-full aspect-[2/1] rounded-lg overflow-hidden mb-8">
-            <Image
-              src={post.eyecatch.url}
-              alt={post.title}
-              width={post.eyecatch.width ?? 1200}
-              height={post.eyecatch.height ?? 600}
-              className="w-full h-full object-cover"
-              priority
-            />
-          </div>
-        )}
-
+        <h1 className={styles.title}>{post.title}</h1>
         <div className="flex items-center gap-3 mb-5">
           {post.category && (
             <span className="inline-block rounded-lg px-3 py-1 text-xs font-semibold text-neutral-900 bg-neutral-100">
               {post.category.name}
             </span>
           )}
-          <time className="text-sm text-gray-400">{formatDate(post.publishedAt!)}</time>
+          <time dateTime={post.publishedAt} className="text-sm text-neutral-600">{formatDate(post.publishedAt!)}</time>
         </div>
 
-        <h1 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight mb-8">{post.title}</h1>
+        {post.eyecatch && !coverInBody && (
+          <div className={styles.cover}>
+            <Image
+              src={post.eyecatch.url}
+              alt={post.title}
+              width={post.eyecatch.width ?? 1200}
+              height={post.eyecatch.height ?? 600}
+              className="w-full h-auto"
+              sizes="(max-width: 960px) 100vw, 896px"
+              priority
+            />
+          </div>
+        )}
+
       </div>
 
-      <div className="max-w-[1800px] mx-auto px-6 lg:px-8 py-12">
-        <ArticleToc headings={content.headings} />
+      <div className={`${styles.reading} mx-auto px-6 lg:px-8 py-8`}>
+        <ArticleToc headings={content.headings} collapsible />
         <article
-          className="[&_h2]:scroll-mt-28 [&_h3]:scroll-mt-28 prose prose-lg lg:prose-xl prose-gray max-w-none"
+          className={`${styles.article} prose max-w-none`}
           dangerouslySetInnerHTML={{ __html: content.html }}
         />
       </div>
 
-      <div className="max-w-[1800px] mx-auto px-6 lg:px-8 pb-20 lg:pb-28">
+      <div className={`${styles.reading} mx-auto px-6 lg:px-8 pb-20 lg:pb-28`}>
         <div className="border-t border-gray-200 pt-8">
-          <Link href="/blog" className="text-sm font-semibold text-neutral-900 hover:text-neutral-600 transition-colors duration-300">
+          <a href="/blog" className="text-sm font-semibold text-neutral-900 hover:text-neutral-600 transition-colors duration-300">
             ← お知らせ一覧に戻る
-          </Link>
+          </a>
         </div>
       </div>
     </main>

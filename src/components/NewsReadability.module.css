@@ -1,0 +1,31 @@
+.header { max-width: 960px; }
+.reading { max-width: 780px; }
+.title { margin-bottom: 18px; color: #171717; font-size: clamp(24px, 3vw, 36px); font-weight: 700; line-height: 1.5; letter-spacing: 0; }
+.cover { margin-bottom: 12px; }
+.cover img { display: block; height: auto; }
+.article { color: #262626; overflow-wrap: anywhere; }
+.article p, .article li { color: #262626 !important; font-size: 18px !important; line-height: 1.8 !important; letter-spacing: 0; }
+.article p { margin: 0 0 1.5em; }
+.article h2 { margin: 2.5em 0 1em; color: #171717; font-size: 24px !important; line-height: 1.5 !important; scroll-margin-top: 112px; }
+.article h3 { margin: 2em 0 1em; color: #171717; font-size: 20px !important; line-height: 1.5 !important; scroll-margin-top: 112px; }
+.article a { color: #005a9c; text-decoration: underline; text-underline-offset: 3px; }
+.article img { display: block; width: auto; max-width: 100%; max-height: 640px; height: auto; margin: 28px auto 12px; object-fit: contain; }
+.article p:has(> em:only-child), .article figcaption { color: #595959 !important; font-size: 14px !important; line-height: 1.65 !important; }
+.article p > em:only-child { font-style: normal; }
+.article ul, .article ol { padding-left: 1.5em; margin-bottom: 1.5em; }
+.thumbnail { width: 160px; flex-shrink: 0; }
+.listTitle { color: #171717; font-size: 20px !important; font-weight: 600; line-height: 1.6 !important; }
+.listLink:hover .listTitle { text-decoration: underline; text-underline-offset: 4px; }
+.homeCard h3 { color: #171717; font-size: 16px !important; line-height: 1.65 !important; }
+@media (max-width: 639px) {
+  .thumbnail { width: 96px; }
+  .listTitle { font-size: 16px !important; }
+  .article p, .article li { font-size: 16px !important; line-height: 1.8 !important; }
+  .article h2 { font-size: 22px !important; }
+  .article h3 { font-size: 18px !important; }
+  .article p:has(> em:only-child), .article figcaption { font-size: 13px !important; }
+}
+
+.reading > nav { margin-bottom: 28px; padding: 16px 0; }
+.reading summary { display: list-item; min-height: 44px; line-height: 44px; }
+.reading details[open] ul { margin-top: 12px; }

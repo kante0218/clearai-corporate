@@ -1,10 +1,8 @@
 import type { TocHeading } from "@/lib/article-toc";
 
-export default function ArticleToc({ headings }: { headings: TocHeading[] }) {
+export default function ArticleToc({ headings, collapsible = false }: { headings: TocHeading[]; collapsible?: boolean }) {
   if (!headings.length) return null;
-  return (
-    <nav aria-label="この記事の目次" className="mb-12 border-y border-neutral-200 py-6">
-      <p className="mb-4 text-sm font-bold text-neutral-900">この記事の目次</p>
+  const items = (
       <ul className="space-y-1">
         {headings.map((heading) => (
           <li key={heading.id} className={heading.level === 3 ? "pl-5" : ""}>
@@ -12,6 +10,11 @@ export default function ArticleToc({ headings }: { headings: TocHeading[] }) {
           </li>
         ))}
       </ul>
+  );
+  return (
+    <nav aria-label="この記事の目次" className="mb-12 border-y border-neutral-200 py-6">
+      {collapsible ? <details><summary className="cursor-pointer text-sm font-bold text-neutral-900">この記事の目次</summary>{items}</details> : <><p className="mb-4 text-sm font-bold text-neutral-900">この記事の目次</p>{items}</>}
+
     </nav>
   );
 }
