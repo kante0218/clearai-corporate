@@ -1,7 +1,7 @@
 .thumbnail { width: 160px; flex-shrink: 0; }
-.listTitle { color: #171717; font-size: 20px !important; font-weight: 600; line-height: 1.6 !important; }
+.listTitle { color: #222222; font-size: 20px !important; font-weight: 700; line-height: 1.6 !important; }
 .listLink:hover .listTitle { text-decoration: underline; text-underline-offset: 4px; }
-.homeCard h3 { color: #171717; font-size: 16px !important; line-height: 1.65 !important; }
+.homeCard h3 { color: #222222; font-size: 16px !important; line-height: 1.65 !important; }
 @media (max-width: 639px) {
   .thumbnail { width: 96px; }
   .listTitle { font-size: 16px !important; }

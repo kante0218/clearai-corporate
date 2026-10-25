@@ -1,11 +1,14 @@
 @import "tailwindcss";
 
 @theme {
-  /* 游ゴシック体で全文統一（欧文・数字も游ゴシックの従属欧文をそのまま使う）。
-     macOS は "游ゴシック体"/YuGothic でしか当たらず、"Yu Gothic Medium" は解決されない。
-     Windows は "Yu Gothic Medium" が正で、regular は細すぎるため下の @font-face で 400 を Medium に差し替えている。 */
-  --font-sans: "游ゴシック体", YuGothic, "Yu Gothic Medium", "游ゴシック Medium", "Yu Gothic", "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
-  --font-display: "游ゴシック体", YuGothic, "Yu Gothic Medium", "游ゴシック Medium", "Yu Gothic", "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+  /* Reference: dark Japanese sans, regular body and bold headings; no remote font request. */
+  --font-sans: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+  --font-display: var(--font-sans);
+  --font-weight-light: 400;
+  --font-weight-medium: 400;
+  --font-weight-semibold: 700;
+  --font-weight-extrabold: 700;
+  --font-weight-black: 700;
 
   --color-navy-950: #111827;
   --color-navy-900: #1f2937;
@@ -84,6 +87,8 @@ html[data-theme="claude"] {
 }
 
 body {
+  color: #222222;
+  font-weight: 400;
   letter-spacing: 0.04em;
   line-height: 1.8;
   text-rendering: optimizeLegibility;
@@ -124,7 +129,7 @@ h1, h2, h3, h4, h5, h6 {
   top: 0;
   left: 0;
   height: 2px;
-  background: linear-gradient(90deg, #000000, #111827, #4b5563);
+  background: var(--brand-cta-gradient);
   z-index: 9997;
   transition: width 0.1s linear;
 }
@@ -278,7 +283,7 @@ h2 { line-height: 1.25; }
 
 /* ── microCMS Rich Editor (prose) ── */
 .prose {
-  color: #4b5563;
+  color: #222222;
   line-height: 1.9;
   font-size: 1rem;
   letter-spacing: 0.04em;
@@ -286,14 +291,14 @@ h2 { line-height: 1.25; }
 .prose h2 {
   font-size: 1.25rem;
   font-weight: 700;
-  color: #111827;
+  color: #222222;
   margin-top: 2.5rem;
   margin-bottom: 1rem;
 }
 .prose h3 {
   font-size: 1.125rem;
   font-weight: 700;
-  color: #111827;
+  color: #222222;
   margin-top: 2rem;
   margin-bottom: 0.75rem;
 }
@@ -753,7 +758,7 @@ details[open] summary {
 
 /* Opt-in reading and motion treatments; no content is hidden at rest. */
 [data-reading] { max-width: 68ch; line-height: 1.9; }
-.site-reading-progress { position: fixed; inset: 0 0 auto; z-index: 70; height: 3px; background: var(--color-cta, #b024a6); transform: scaleX(0); transform-origin: left; pointer-events: none; }
+.site-reading-progress { position: fixed; inset: 0 0 auto; z-index: 70; height: 3px; background: var(--brand-cta-gradient); transform: scaleX(0); transform-origin: left; pointer-events: none; }
 [data-motion="rule"] { transform-origin: left; }
 .motion-cta { position: relative; overflow: hidden; isolation: isolate; }
 .motion-cta::after { content: ""; position: absolute; inset: 0; background: linear-gradient(110deg, transparent 25%, #ffffff30 50%, transparent 75%); transform: translateX(-130%); pointer-events: none; }
@@ -819,4 +824,13 @@ details[open] summary {
   .home-client-logos { padding-top: 24px !important; padding-bottom: 40px !important; }
   .home-client-logos .logo-flow { margin-top: 0; padding-top: 0; padding-bottom: 0; border-top: 0; }
   .home-client-logos .logo-flow > div:first-child { margin-bottom: 24px; }
+}
+
+/* Match the reference's neutral ink while keeping white inverse text and colored links. */
+@layer utilities {
+  :is(.text-black, .text-neutral-500, .text-neutral-600, .text-neutral-700, .text-neutral-800, .text-neutral-900, .text-neutral-950,
+      .text-gray-500, .text-gray-600, .text-gray-700, .text-gray-800, .text-gray-900, .text-gray-950,
+      .text-navy-600, .text-navy-700, .text-navy-800, .text-navy-900, .text-navy-950) {
+    color: #222222;
+  }
 }
