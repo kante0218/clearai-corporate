@@ -2342,5 +2342,139 @@
       }
     ],
     "note": "所有者Chrome GSCで9/25〜10/22の28日を確認。監視2語query/page完全一致、Web、全地域全デバイスでNo data。前回同様null/0/0、順位変動不明。欠測を悪化・未インデックス扱いしない。UI丸め・確定状態未確認、API finalと同列比較しない。全体120クリック2506表示（画面アクセシビリティラベル）平均8.4位。discoveriesは全体201件中先頭10件のみ、非網羅。タイプセーフaiはページ表で/blog/09v7jo6dmの1クリック21表示4.5位を確認。検索意図はTypeSafe AI/Jevの概要と業務への適用方法を知りたい担当者と推測。10/25 WebSearchでhttps://typesafe.ai/とhttps://tanstack.com/ai/latest/docs/adapters/typesafeを開き、https://clearai.jp/blog/09v7jo6dmと比較。対象記事は仕組み・質問種別・料金・版・導入検証・限界を既に説明し、概要検索に対する明確な不足を特定できず変更なし。WebSearch結果をGoogle実順位とは扱わない。共通候補群の大きな順位変動は確認せず、丸め1.0を達成確定しない。研修10/26・メール10/27期限未到来でobserving維持。改善0件。"
+  },
+  {
+    "source": "gsc",
+    "collectionMethod": "browser-ui",
+    "capturedAt": "2026-10-26T11:51:55.721941+00:00",
+    "scope": {
+      "siteUrl": "https://clearai.jp/",
+      "device": "all",
+      "country": "all",
+      "type": "web",
+      "dataState": "ui-not-confirmed",
+      "timeZone": "America/Los_Angeles",
+      "aggregationType": "ui-not-confirmed",
+      "dimensions": "ui-query-table",
+      "queryFilter": "equals",
+      "pageFilter": "equals"
+    },
+    "range": {
+      "startDate": "2026-09-27",
+      "endDate": "2026-10-24",
+      "days": 28
+    },
+    "ranks": [
+      {
+        "keyword": "AI内製化研修",
+        "targetPath": "/training",
+        "rank": null,
+        "impressions": 0,
+        "clicks": 0
+      },
+      {
+        "keyword": "メール返信 ai",
+        "targetPath": "/blog/ai-email-reply-three-decisions",
+        "rank": null,
+        "impressions": 0,
+        "clicks": 0
+      }
+    ],
+    "discoveries": [
+      {
+        "keyword": "clearai",
+        "clicks": 10,
+        "impressions": 18,
+        "rank": 1.0
+      },
+      {
+        "keyword": "吉次優太",
+        "clicks": 5,
+        "impressions": 40,
+        "rank": 6.4
+      },
+      {
+        "keyword": "unitree g1 レンタル",
+        "clicks": 3,
+        "impressions": 27,
+        "rank": 3.2
+      },
+      {
+        "keyword": "clear ai",
+        "clicks": 3,
+        "impressions": 12,
+        "rank": 3.9
+      },
+      {
+        "keyword": "typesafe ai",
+        "clicks": 2,
+        "impressions": 101,
+        "rank": 6.0
+      },
+      {
+        "keyword": "jev 1.14",
+        "clicks": 2,
+        "impressions": 61,
+        "rank": 8.1
+      },
+      {
+        "keyword": "unitree レンタル",
+        "clicks": 2,
+        "impressions": 26,
+        "rank": 4.0
+      },
+      {
+        "keyword": "aiコンサル",
+        "clicks": 2,
+        "impressions": 25,
+        "rank": 20.3
+      },
+      {
+        "keyword": "タイプセーフai",
+        "clicks": 1,
+        "impressions": 24,
+        "rank": 4.6
+      },
+      {
+        "keyword": "type safe ai",
+        "clicks": 1,
+        "impressions": 19,
+        "rank": 5.9
+      }
+    ],
+    "note": "所有者pupila2007cante00@gmail.comのGSCブラウザ画面。監視2語はクエリ・ページ完全一致、Web、全地域全デバイスでNo data。rank null、表示0、クリック0。未インデックスや悪化とは扱わない。UI丸め値・確定状態未確認、API finalと同列比較しない。全体120クリック2882表示CTR4.2%平均8.6位。discoveriesはフィルタなし全体238件中先頭10件のみ、非網羅、各ページ未特定。共通クエリに大きな順位変動なし。TypeSafe系は10/25の検索意図・公式情報・対象記事比較で明確な不足を特定できなかったため、表示増加のみを理由に変更しない。研修の7日レビューは欠測で11/2へ延期。メール10/27観察維持。同一ページ再改善なし、改善0件。"
+  },
+  {
+    "source": "gsc",
+    "collectionMethod": "browser-ui",
+    "capturedAt": "2026-10-26T11:51:55.721941+00:00",
+    "scope": {
+      "siteUrl": "https://clearai.jp/",
+      "device": "all",
+      "country": "all",
+      "type": "web",
+      "dataState": "ui-not-confirmed",
+      "timeZone": "America/Los_Angeles",
+      "aggregationType": "ui-not-confirmed",
+      "dimensions": "ui-query-table",
+      "queryFilter": "equals",
+      "pageFilter": "equals"
+    },
+    "range": {
+      "startDate": "2026-10-18",
+      "endDate": "2026-10-24",
+      "days": 7
+    },
+    "ranks": [
+      {
+        "keyword": "AI内製化研修",
+        "targetPath": "/training",
+        "rank": null,
+        "impressions": 0,
+        "clicks": 0
+      }
+    ],
+    "discoveries": [],
+    "note": "AI内製化研修とhttps://clearai.jp/trainingの完全一致。7 days選択とチャート期間を確認。No data、順位欠測。公開後168時間と公開後7日窓は充足するが、baseline7欠測、UI確定状態未確認で効果判定保留。"
   }
 ]
