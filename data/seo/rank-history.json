@@ -2476,5 +2476,139 @@
     ],
     "discoveries": [],
     "note": "AI内製化研修とhttps://clearai.jp/trainingの完全一致。7 days選択とチャート期間を確認。No data、順位欠測。公開後168時間と公開後7日窓は充足するが、baseline7欠測、UI確定状態未確認で効果判定保留。"
+  },
+  {
+    "source": "gsc",
+    "collectionMethod": "browser-ui",
+    "capturedAt": "2026-10-27T06:23:52.775125+00:00",
+    "scope": {
+      "siteUrl": "https://clearai.jp/",
+      "device": "all",
+      "country": "all",
+      "type": "web",
+      "dataState": "ui-not-confirmed",
+      "timeZone": "America/Los_Angeles",
+      "aggregationType": "ui-not-confirmed",
+      "dimensions": "ui-query-table",
+      "queryFilter": "equals",
+      "pageFilter": "equals"
+    },
+    "range": {
+      "startDate": "2026-09-27",
+      "endDate": "2026-10-24",
+      "days": 28
+    },
+    "ranks": [
+      {
+        "keyword": "AI内製化研修",
+        "targetPath": "/training",
+        "rank": null,
+        "impressions": 0,
+        "clicks": 0
+      },
+      {
+        "keyword": "メール返信 ai",
+        "targetPath": "/blog/ai-email-reply-three-decisions",
+        "rank": null,
+        "impressions": 0,
+        "clicks": 0
+      }
+    ],
+    "discoveries": [
+      {
+        "keyword": "clearai",
+        "clicks": 10,
+        "impressions": 18,
+        "rank": 1.0
+      },
+      {
+        "keyword": "吉次優太",
+        "clicks": 5,
+        "impressions": 40,
+        "rank": 6.4
+      },
+      {
+        "keyword": "unitree g1 レンタル",
+        "clicks": 3,
+        "impressions": 27,
+        "rank": 3.2
+      },
+      {
+        "keyword": "clear ai",
+        "clicks": 3,
+        "impressions": 12,
+        "rank": 3.9
+      },
+      {
+        "keyword": "typesafe ai",
+        "clicks": 2,
+        "impressions": 101,
+        "rank": 6.0
+      },
+      {
+        "keyword": "jev 1.14",
+        "clicks": 2,
+        "impressions": 61,
+        "rank": 8.1
+      },
+      {
+        "keyword": "unitree レンタル",
+        "clicks": 2,
+        "impressions": 26,
+        "rank": 4.0
+      },
+      {
+        "keyword": "aiコンサル",
+        "clicks": 2,
+        "impressions": 25,
+        "rank": 20.3
+      },
+      {
+        "keyword": "タイプセーフai",
+        "clicks": 1,
+        "impressions": 24,
+        "rank": 4.6
+      },
+      {
+        "keyword": "type safe ai",
+        "clicks": 1,
+        "impressions": 19,
+        "rank": 5.9
+      }
+    ],
+    "note": "所有者pupila2007cante00@gmail.comのGSCブラウザで28 daysと9/27〜10/24を確認。監視2語クエリ・ページ完全一致、Web、全地域全デバイスともNo data、rank null・表示0・クリック0。前回と同一期間・同一画面値で新しい期間の増減ではない。全体120クリック2882表示CTR4.2%平均8.6位。discoveriesは全体238件中先頭10件のみ、フィルタなし・ページ未特定・非網羅。画面丸めと確定状態未確認を保持、API finalと同列比較せず丸め1.0を達成としない。候補クエリに変化なし、10/25の検索意図比較で明確な不足がないとの判断を維持し改善0件。研修11/2観察維持、メールは7日欠測で11/3へ延期。同一ページ再改善なし。"
+  },
+  {
+    "source": "gsc",
+    "collectionMethod": "browser-ui",
+    "capturedAt": "2026-10-27T06:23:52.775125+00:00",
+    "scope": {
+      "siteUrl": "https://clearai.jp/",
+      "device": "all",
+      "country": "all",
+      "type": "web",
+      "dataState": "ui-not-confirmed",
+      "timeZone": "America/Los_Angeles",
+      "aggregationType": "ui-not-confirmed",
+      "dimensions": "ui-query-table",
+      "queryFilter": "equals",
+      "pageFilter": "equals"
+    },
+    "range": {
+      "startDate": "2026-10-18",
+      "endDate": "2026-10-24",
+      "days": 7
+    },
+    "ranks": [
+      {
+        "keyword": "メール返信 ai",
+        "targetPath": "/blog/ai-email-reply-three-decisions",
+        "rank": null,
+        "impressions": 0,
+        "clicks": 0
+      }
+    ],
+    "discoveries": [],
+    "note": "メール返信 aiとhttps://clearai.jp/blog/ai-email-reply-three-decisionsの完全一致。7 daysと10/18〜10/24を確認。No dataで順位欠測、表示0クリック0。公開後168時間と完全な公開後7日窓は充足。改善前7日9/10〜9/16は7.5位51表示0クリックだが今回は順位比較不能、UI確定状態未確認のため効果判定保留。"
   }
 ]

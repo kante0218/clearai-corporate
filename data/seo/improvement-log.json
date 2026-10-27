@@ -222,7 +222,7 @@
     "targetPath": "/blog/ai-email-reply-three-decisions",
     "status": "observing",
     "deployedAt": "2026-09-19T03:48:58.537956+00:00",
-    "nextReviewDate": "2026-10-27",
+    "nextReviewDate": "2026-11-03",
     "actions": [
       {
         "date": "2026-09-19T03:48:58.537956+00:00",
@@ -422,6 +422,35 @@
         "clicks": 0,
         "reason": "公開後168時間・完全な公開後7日窓は充足。GSC画面はNo dataで順位欠測、確定状態未確認。改善前7日9/10〜9/16は7.5位51表示0クリック。今回も順位比較不能のため効果なし・悪化・未インデックス・1位達成とは判定しない。observingを維持し10/27へ延期。",
         "nextReviewDate": "2026-10-27"
+      },
+      {
+        "date": "2026-10-27T06:23:52.775125+00:00",
+        "result": "deferred",
+        "status": "observing",
+        "range": {
+          "startDate": "2026-10-18",
+          "endDate": "2026-10-24",
+          "days": 7
+        },
+        "scope": {
+          "siteUrl": "https://clearai.jp/",
+          "device": "all",
+          "country": "all",
+          "type": "web",
+          "dataState": "ui-not-confirmed",
+          "timeZone": "America/Los_Angeles",
+          "aggregationType": "ui-not-confirmed",
+          "dimensions": "ui-query-table",
+          "queryFilter": "equals",
+          "pageFilter": "equals"
+        },
+        "source": "gsc",
+        "collectionMethod": "browser-ui",
+        "rank": null,
+        "impressions": 0,
+        "clicks": 0,
+        "reason": "メール返信 aiとhttps://clearai.jp/blog/ai-email-reply-three-decisionsの完全一致。7 daysと10/18〜10/24を確認。No dataで順位欠測、表示0クリック0。公開後168時間と完全な公開後7日窓は充足。改善前7日9/10〜9/16は7.5位51表示0クリックだが今回は順位比較不能、UI確定状態未確認のため効果判定保留。 効果なし・悪化・未インデックス・1位達成とは扱わずobservingを維持。",
+        "nextReviewDate": "2026-11-03"
       }
     ]
   }
