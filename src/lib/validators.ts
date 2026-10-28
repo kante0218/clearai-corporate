@@ -46,6 +46,10 @@ export const DOCUMENT_KEYS = [
   "software-development",
   "robot-rental",
   "training",
+  "aio",
+  "website-production",
+  "sns-management",
+  "meo",
 ] as const;
 export type DocumentKey = (typeof DOCUMENT_KEYS)[number];
 
@@ -54,6 +58,10 @@ export const DOCUMENT_LABELS: Record<DocumentKey, string> = {
   "software-development": "システム・ソフトウェア開発 事業紹介資料",
   "robot-rental": "ロボットレンタル 事業紹介資料",
   training: "AI内製化研修 事業紹介資料",
+  aio: "AIO・AI検索最適化 事業紹介資料",
+  "website-production": "ホームページ制作 事業紹介資料",
+  "sns-management": "SNS運用代行 事業紹介資料",
+  meo: "Googleマップ・MEO支援 事業紹介資料",
 };
 
 export interface ContactFormData {

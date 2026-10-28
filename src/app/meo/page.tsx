@@ -64,6 +64,7 @@ export default function MeoPage() {
         <h2 className="mb-4 text-xl font-bold sm:text-3xl">いまの店舗情報から、一緒に見直しませんか。</h2>
         <p className="mb-6 max-w-3xl text-sm leading-[1.9] text-neutral-600">店舗の業種・地域と、更新や運用でお困りのことをお知らせください。プロフィールがまだない場合も、対応できる範囲からご案内します。</p>
         <Link href="/contact?service=meo" className="inline-flex min-h-12 items-center justify-center rounded-lg bg-cta px-7 py-3.5 text-sm font-semibold text-white hover:bg-cta-hover focus-visible:outline-2 focus-visible:outline-offset-4">MEO支援について相談する</Link>
+          <Link href="/download?document=meo" className="inline-flex min-h-12 items-center py-3 text-sm font-semibold underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4">事業紹介資料をダウンロード</Link>
       </section>
     </div>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "Service", name: "Googleマップ・MEO支援", description, url, provider: { "@type": "Organization", name: "ClearAI株式会社", url: "https://clearai.jp" } }) }} />

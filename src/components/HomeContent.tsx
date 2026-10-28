@@ -539,17 +539,25 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
           <div className="relative z-10 mx-auto flex max-w-[1800px] flex-col px-6 pb-6 md:h-full md:min-h-0 md:py-6 lg:px-8">
             {/* 2026-08-10: 上部バッジ／英語小見出し／説明文／✓チップ／数値バッジは
                 「見出しだけ残す」方針で削除。COPY 側の定義は残してあるので復活は容易。
-                相談導線はページ下部と固定ナビに集約。 */}
-            {/* モバイルは負マージンで動画(高さ56.25vw)の上へタイトルを重ねる(h1の重複を作らない) */}
+                PCでは見出し直下に資料と無料相談の導線を配置。 */}
+            {/* 小さい画面では映像と説明を縦に並べ、操作領域を確保する。 */}
             <div className="flex w-full items-center py-6 md:h-auto md:flex-1">
               <div className="w-full max-w-[760px]">
                 <h1 data-motion="heading" className="text-[1.9rem] font-black leading-[1.15] tracking-[-0.045em] text-neutral-900 sm:text-6xl lg:text-[4.2rem] xl:text-[4.45rem] [@media(max-height:800px)_and_(min-width:768px)]:text-[3.25rem] [@media(max-height:800px)_and_(min-width:768px)]:leading-[1.04]">
                   {t.heroTitle}
                 </h1>
                 <p className="mt-5 max-w-xl text-base leading-7 text-neutral-700">{lang === "ja" ? "中小企業の業務改善に。" : "For SMEs improving everyday work. "}{t.heroDesc}</p>
-                <div className="mt-6 flex flex-wrap gap-3">
+                <div className="mt-6 flex flex-wrap gap-3 lg:hidden">
                   <Link href="/contact" className="inline-flex min-h-11 items-center rounded-md bg-cta px-6 py-3 text-sm font-bold text-white">{lang === "ja" ? "文章で相談する" : "Ask in writing"}</Link>
                   <Link href="#support" className="inline-flex min-h-11 items-center rounded-md border border-neutral-400 bg-white px-6 py-3 text-sm font-bold text-neutral-900">{lang === "ja" ? "支援内容を見る" : "Explore our services"}</Link>
+                </div>
+                <div className="mt-8 hidden lg:flex items-center gap-4">
+                  <Link href="/download" className="inline-flex min-h-12 items-center justify-center rounded-md border border-neutral-300 bg-white px-6 text-sm font-semibold text-neutral-900 transition-colors hover:border-neutral-900 hover:bg-neutral-50">
+                    {lang === "ja" ? "資料ダウンロード" : "Download company deck"}
+                  </Link>
+                  <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center justify-center rounded-md bg-cta px-6 text-sm font-semibold text-white transition-colors hover:bg-cta-hover">
+                    {lang === "ja" ? "役員へ無料相談する" : "Free consultation with an executive"}
+                  </a>
                 </div>
               </div>
             </div>

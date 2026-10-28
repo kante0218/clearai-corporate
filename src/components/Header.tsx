@@ -15,7 +15,6 @@ type NavItem = { label: string; href: string; children?: NavChild[]; external?: 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
   const menuToggle = useRef<HTMLButtonElement>(null);
   const header = useRef<HTMLElement>(null);
@@ -75,7 +74,7 @@ export default function Header() {
       header.current?.querySelector<HTMLElement>("#site-mobile-menu a[href]")?.focus();
     });
     const onResize = () => {
-      if (window.innerWidth >= 1700) setIsOpen(false);
+      if (window.innerWidth >= 1024) setIsOpen(false);
     };
     window.addEventListener("resize", onResize);
     return () => {
@@ -112,9 +111,6 @@ export default function Header() {
     : "bg-white border-b border-gray-100";
 
   const contactFilledClass = "bg-cta hover:bg-cta-hover text-white";
-  // Filled CTA for the desktop header (solid + soft neutral shadow + hover lift)
-  const contactBtnClass =
-    "bg-cta hover:bg-cta-hover shadow-[0_6px_20px_-6px_rgba(176,36,166,0.45)] hover:shadow-[0_12px_28px_-6px_rgba(176,36,166,0.6)]";
 
   if (isStandaloneLp) return null;
 
@@ -127,106 +123,35 @@ export default function Header() {
               <Logo size={36} className="h-7 lg:h-8 w-auto transition-opacity duration-300 group-hover:opacity-80" />
             </Link>
 
-            <nav aria-label={lang === "ja" ? "主要ページ" : "Main pages"} className="hidden lg:flex min-[1700px]:hidden items-center gap-6 text-sm font-semibold text-neutral-800">
-              <Link href="/service">{lang === "ja" ? "事業内容" : "Services"}</Link>
-              <Link href="/case-studies">{h.navCases}</Link>
-              <Link href="/about">{h.navAbout}</Link>
-              <Link href="/contact" className="rounded-md bg-cta px-4 py-3 text-white">{lang === "ja" ? "相談する" : "Contact"}</Link>
-            </nav>
-
-            <nav className="hidden min-[1700px]:flex items-center gap-1">
-              {navItems.map((item) => {
-                const hasChildren = item.children && item.children.length > 0;
-                const isMenuOpen = openMenu === item.label;
-                return (
-                  <div key={item.label} className="flex items-center">
-                    <div
-                      className="relative"
-                      onMouseEnter={() => hasChildren && setOpenMenu(item.label)}
-                      onMouseLeave={() => hasChildren && setOpenMenu(null)}
-                    >
-                    {item.external ? (
-                      <a
-                        href={item.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`text-sm font-semibold tracking-wide px-2 py-2 whitespace-nowrap transition-colors duration-200 inline-flex items-center gap-1 ${navColor}`}
-                      >
-                        {item.label}
-                      </a>
-                    ) : (
-                      <Link
-                        href={item.href}
-                        className={`text-sm font-semibold tracking-wide px-2 py-2 whitespace-nowrap transition-colors duration-200 inline-flex items-center gap-1 ${navColor}`}
-                      >
-                        {item.label}
-                        {hasChildren && (
-                          <svg
-                            className={`w-4 h-4 transition-transform duration-300 ${isMenuOpen ? "rotate-180" : ""}`}
-                            viewBox="0 0 12 12"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="1.5"
-                          >
-                            <path d="M3 4.5L6 7.5L9 4.5" strokeLinecap="round" strokeLinejoin="round" />
-                          </svg>
-                        )}
-                      </Link>
-                    )}
-                    {hasChildren && (
-                      <div
-                        className={`absolute top-full left-1/2 -translate-x-1/2 pt-3 transition-all duration-300 ${
-                          isMenuOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-1"
-                        }`}
-                      >
-                        <div className="bg-white border border-gray-200 rounded-lg shadow-xl py-2 min-w-[260px]">
-                          {item.children!.map((child) => (
-                            <Link
-                              key={child.label}
-                              href={child.href}
-                              className="block px-5 py-3 hover:bg-gray-50 transition-colors"
-                            >
-                              <div className="text-sm font-semibold text-gray-900">{child.label}</div>
-                              {child.description && (
-                                <div className="text-xs text-gray-500 mt-0.5">{child.description}</div>
-                              )}
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                    </div>
-                  </div>
-                );
-              })}
-            </nav>
-
-            <div className="hidden min-[1700px]:flex items-center gap-3">
-              <div className="flex items-center gap-3">
-                {utilityItems.map((u) => (
-                  <Link
-                    key={u.label}
-                    href={u.href}
-                    className="text-sm font-semibold tracking-wide whitespace-nowrap text-gray-600 hover:text-gray-900 transition-colors duration-300"
-                  >
-                    {u.label}
+            <div className="hidden lg:flex items-center gap-4 xl:gap-7">
+              <nav aria-label={lang === "ja" ? "メインナビゲーション" : "Main navigation"} className="flex items-center gap-4 xl:gap-6">
+                {[
+                  { label: h.navAbout, href: "/about" },
+                  { label: h.navService, href: "/#support" },
+                  { label: h.navCases, href: "/case-studies" },
+                  { label: h.navNews, href: "/blog" },
+                  { label: h.contact, href: "/contact" },
+                ].map((item) => (
+                  <Link key={item.href} href={item.href}
+                    className={`inline-flex min-h-11 items-center whitespace-nowrap text-[13px] xl:text-sm font-semibold transition-colors ${navColor}`}>
+                    {item.label}
                   </Link>
                 ))}
-              </div>
+              </nav>
               <LanguageToggle variant="desktop" />
-              {/* Secondary CTA: prospects who aren't ready to talk still convert here. */}
-              <Link href="/download"
-                className="inline-flex items-center justify-center text-sm font-semibold text-neutral-900 whitespace-nowrap px-4 py-2.5 rounded-md border border-neutral-300 hover:border-neutral-900 hover:bg-neutral-50 transition-all duration-300">
-                {h.navDownload}
-              </Link>
-              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer"
-                className={`group inline-flex items-center justify-center gap-1.5 text-sm font-semibold text-white whitespace-nowrap px-4 2xl:px-5 py-2.5 rounded-md transition-all duration-300 hover:-translate-y-0.5 ${contactBtnClass}`}>
-                {lang === "ja" ? "代表と面談" : "Meet founder"}
-                <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-0.5">→</span>
-              </a>
+              <div className="flex items-center gap-2">
+                <Link href="/download"
+                  className="inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-md border border-neutral-300 px-3 xl:px-4 text-[13px] xl:text-sm font-semibold text-neutral-900 hover:border-neutral-900 hover:bg-neutral-50 transition-colors">
+                  {lang === "ja" ? "資料ダウンロード" : "Download"}
+                </Link>
+                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer"
+                  className="inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-md bg-cta px-3 xl:px-4 text-[13px] xl:text-sm font-semibold text-white hover:bg-cta-hover transition-colors">
+                  {lang === "ja" ? "役員へ無料相談する" : "Free consultation"}
+                </a>
+              </div>
             </div>
 
-            <button ref={menuToggle} onClick={() => setIsOpen(!isOpen)} aria-controls="site-mobile-menu" className="site-menu-toggle min-[1700px]:hidden p-2 z-10 min-h-[44px] min-w-[44px] flex items-center justify-center" aria-label={h.menuAria} aria-expanded={isOpen}>
+            <button ref={menuToggle} onClick={() => setIsOpen(!isOpen)} aria-controls="site-mobile-menu" className="site-menu-toggle lg:hidden p-2 z-10 min-h-[44px] min-w-[44px] flex items-center justify-center" aria-label={h.menuAria} aria-expanded={isOpen}>
               <div className="w-6 h-5 flex flex-col justify-between">
                 <span className={`w-full h-0.5 bg-gray-900 transition-all duration-300 ${
                   isOpen ? "rotate-45 translate-y-[9px]" : ""
@@ -242,7 +167,7 @@ export default function Header() {
           </div>
         </div>
 
-        <div id="site-mobile-menu" inert={!isOpen} data-open={isOpen} className={`site-mobile-panel min-[1700px]:hidden overflow-hidden bg-white transition-all duration-500 ${isOpen ? "h-[calc(100dvh-4rem)] opacity-100" : "h-0 opacity-0"}`}>
+        <div id="site-mobile-menu" inert={!isOpen} data-open={isOpen} className={`site-mobile-panel lg:hidden overflow-hidden bg-white transition-all duration-500 ${isOpen ? "h-[calc(100dvh-4rem)] opacity-100" : "h-0 opacity-0"}`}>
           <div className="h-full bg-white/98 backdrop-blur-xl border-t border-gray-100">
             <nav aria-label={lang === "ja" ? "サイトメニュー" : "Site menu"} className="site-mobile-nav max-h-[calc(100dvh-4rem)] max-w-[1800px] mx-auto overflow-y-auto overscroll-contain px-5 py-4 space-y-1 pb-[calc(1rem+env(safe-area-inset-bottom))]">
               {navItems.map((item, i) => {

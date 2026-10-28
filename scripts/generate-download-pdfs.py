@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Generate the four PDF guides delivered from clearai.jp/download."""
+"""Legacy prototype generator (not the current published slide-style PDFs).
+
+Do not run against public/downloads: it replaces approved materials with outdated content.
+Current published PDFs are maintained as reviewed assets.
+"""
 
 from pathlib import Path
 
@@ -289,6 +293,7 @@ def build_training():
 
 
 if __name__ == "__main__":
+    raise SystemExit("Legacy generator disabled: current published PDFs are reviewed assets; do not overwrite them.")
     build_company()
     build_software()
     build_robot()
