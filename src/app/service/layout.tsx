@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 
 const description =
-  "ClearAI株式会社（クリアエーアイ）の事業内容一覧。AIを組み込んだ業務システムの受託開発、ヒューマノイド・四足ロボットのレンタル、AI検索で企業情報が正しく理解・参照されるためのAIO支援、社内で作れる人材を育てるAI内製化研修、ホームページ制作、SNS運用代行の6事業をご紹介します。";
+  "ClearAI株式会社（クリアエーアイ）の事業内容一覧。AIを組み込んだ業務システムの受託開発、ヒューマノイド・四足ロボットのレンタル、AI検索で企業情報が正しく理解・参照されるためのAIO支援、社内で作れる人材を育てるAI内製化研修、ホームページ制作、SNS運用代行、Googleマップ・MEO支援の7事業をご紹介します。";
 
 export const metadata: Metadata = {
-  title: "事業内容｜AI受託開発・ロボットレンタル・AIO・研修・ホームページ制作・SNS運用代行",
+  title: "事業内容｜AI受託開発・ロボットレンタル・AIO・研修・ホームページ制作・SNS運用代行・MEO支援",
   description,
   keywords: [
     "ClearAI 事業内容",
@@ -54,6 +54,7 @@ const itemListSchema = {
     { name: "AI内製化研修", url: "https://clearai.jp/training" },
     { name: "ホームページ制作", url: "https://clearai.jp/website-production" },
     { name: "SNS運用代行", url: "https://clearai.jp/sns-management" },
+    { name: "Googleマップ・MEO支援", url: "https://clearai.jp/meo" },
   ].map((s, i) => ({
     "@type": "ListItem",
     position: i + 1,

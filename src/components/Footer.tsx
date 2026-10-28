@@ -18,6 +18,7 @@ export default function Footer() {
   const services = [
     { label: f.services.websiteProduction, href: "/website-production" },
     { label: f.services.sns, href: "/sns-management" },
+    { label: f.services.meo, href: "/meo" },
     { label: f.services.softwareDev, href: "/software-development" },
     { label: f.services.robotRental, href: "/robot-rental" },
     { label: f.services.aiConsulting, href: "/aio" },

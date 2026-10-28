@@ -570,6 +570,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
               { href: "/training", title: lang === "ja" ? "AI内製化研修" : "In-house AI Training", desc: lang === "ja" ? "社員がAIを仕事に使えるようにしたい。実務に沿った研修で、社内で使う力を育てます。" : "Help your team apply AI through practical training." },
               { href: "/website-production", title: lang === "ja" ? "ホームページ制作" : "Website Production", desc: lang === "ja" ? "事業の強みを整理し、読む人に伝わる構成・デザイン・公開まで支援します。" : "We clarify your message and support site structure, design, development, and launch." },
               { href: "/sns-management", title: lang === "ja" ? "SNS運用代行" : "SNS Management", desc: lang === "ja" ? "発信の目的を整理し、企画・文章や画像の制作・投稿管理・分析改善を支援します。" : "Support for social media planning, content creation, publishing management, and review." },
+              { href: "/meo", title: lang === "ja" ? "Googleマップ・MEO支援" : "Google Maps / MEO Support", desc: lang === "ja" ? "店舗情報の整備、写真・投稿、口コミ返信、レポートと改善提案を、必要な範囲から支援します。" : "Support for accurate business information, photos, posts, review replies, and improvement reports." },
             ].map((service) => <li data-motion="card" key={service.href} className="motion-card border-t border-neutral-200 py-5"><Link href={service.href} className={`${styles.serviceLink} font-semibold text-neutral-900 underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-4`}>{service.title}</Link>{service.desc && <p className="mt-3 text-sm text-neutral-600 leading-relaxed">{service.desc}</p>}</li>)}
           </ul>
         </div>

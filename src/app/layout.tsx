@@ -20,7 +20,7 @@ export const viewport: Viewport = {
 };
 
 const ogDescription =
-  "ClearAI株式会社（クリアエーアイ／読み方：クリアエーアイ）は、日本の中小企業向けにAIの受託開発・導入支援を行うAI企業です。AIを組み込んだ業務システムやAIエージェントの受託開発、AI検索で企業情報が正しく理解・参照されるためのAIO支援、社内で作れる人材を育てるAI内製化研修をはじめ、ロボットレンタル・ホームページ制作・SNS運用代行まで、事業の課題に合わせて支援します。2026年4月創業、茨城県拠点、全国対応。";
+  "ClearAI株式会社（クリアエーアイ／読み方：クリアエーアイ）は、日本の中小企業向けにAIの受託開発・導入支援を行うAI企業です。AIを組み込んだ業務システムやAIエージェントの受託開発、AI検索で企業情報が正しく理解・参照されるためのAIO支援、社内で作れる人材を育てるAI内製化研修をはじめ、ロボットレンタル・ホームページ制作・SNS運用代行・GoogleマップのMEO支援まで、事業の課題に合わせて支援します。2026年4月創業、茨城県拠点、全国対応。";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://clearai.jp"),
@@ -139,7 +139,7 @@ const organizationSchema = {
     "address": { "@type": "PostalAddress", "addressRegion": "茨城県", "addressCountry": "JP" },
   },
   "description":
-    "ClearAI株式会社（読み方：クリアエーアイ）は、日本の中小企業向けにAIの受託開発・導入支援を行うAI企業。AIを組み込んだ業務システムやAIエージェントの受託開発、AIO（AI検索最適化）、AI内製化研修をはじめ、ロボットレンタル・ホームページ制作・SNS運用代行を提供する。",
+    "ClearAI株式会社（読み方：クリアエーアイ）は、日本の中小企業向けにAIの受託開発・導入支援を行うAI企業。AIを組み込んだ業務システムやAIエージェントの受託開発、AIO（AI検索最適化）、AI内製化研修をはじめ、ロボットレンタル・ホームページ制作・SNS運用代行・GoogleマップのMEO支援を提供する。",
   "slogan": "AIで、すべてをクリアにする。",
   "founder": { "@type": "Person", "name": "髙橋 敢輝" },
   "address": {
@@ -187,6 +187,7 @@ const organizationSchema = {
   "makesOffer": [
     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "ホームページ制作", "url": "https://clearai.jp/website-production" } },
     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "SNS運用代行", "url": "https://clearai.jp/sns-management" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Googleマップ・MEO支援", "url": "https://clearai.jp/meo" } },
     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "システム・ソフトウェア開発（AI受託開発）", "url": "https://clearai.jp/software-development" } },
     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AIO（AI検索最適化）", "url": "https://clearai.jp/aio" } },
     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI内製化研修", "url": "https://clearai.jp/training" } },
@@ -219,6 +220,7 @@ const professionalServiceSchema = {
     "itemListElement": [
     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "ホームページ制作", "url": "https://clearai.jp/website-production" } },
     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "SNS運用代行", "url": "https://clearai.jp/sns-management" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Googleマップ・MEO支援", "url": "https://clearai.jp/meo" } },
       {
         "@type": "Offer",
         "itemOffered": {
