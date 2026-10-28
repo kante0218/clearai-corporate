@@ -94,7 +94,7 @@ export default async function DownloadPage({ searchParams }: { searchParams: Pro
             {/* 左: 実績 */}
             <aside>
               <h2 className="text-xs font-bold tracking-[0.14em] text-neutral-400">過去の取引実績</h2>
-              <ul className="mt-4 grid grid-cols-3 gap-px border border-neutral-200 bg-neutral-200">
+              <ul className="mt-4 grid grid-cols-3 gap-px">
                 {CLIENT_LOGOS.map((logo) => (
                   <li key={logo.name} className="flex h-16 items-center justify-center bg-white px-3">
                     <Image

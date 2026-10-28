@@ -697,6 +697,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
             <div className="text-center mb-8 md:mb-12">
               <SectionLabel>{t.ctaLabel}</SectionLabel>
               <h2 data-motion="heading" className={`${styles.sectionTitle} text-3xl font-bold text-gray-900 leading-tight mb-6`}>{t.ctaTitle}</h2>
+              <Image src="/images/kanki-takahashi.png" alt={lang === "ja" ? "ClearAI 代表 髙橋敢輝" : "ClearAI founder Kanki Takahashi"} width={600} height={600} sizes="(max-width: 767px) 112px, 144px" className="mx-auto mb-4 h-28 w-28 rounded-full object-contain md:h-36 md:w-36" />
               <p className="mb-3 text-sm font-semibold text-neutral-600">{lang === "ja" ? "ClearAI 代表 髙橋敢輝" : "ClearAI founder Kanki Takahashi"}</p>
               <p className="mx-auto max-w-2xl text-base text-gray-600 leading-relaxed">{lang === "ja" ? "「この作業を減らしたい」「AIを使うべきか迷っている」「ホームページを見直したい」。いまの状況から、次に取り組むことを一緒に整理します。" : "Tell us what you want to change: repetitive work, AI adoption, or your website. We will discuss the next steps together."}</p>
               <p className="mt-4 text-sm leading-relaxed text-neutral-600">{lang === "ja" ? "相談内容がまとまっていなくても、いま困っていることからお聞かせください。" : "You can start with the problem you are facing, even if your requirements are not yet defined."}</p>
