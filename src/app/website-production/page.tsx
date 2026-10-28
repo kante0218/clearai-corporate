@@ -1,14 +1,11 @@
-import type { Metadata } from "next";
+"use client";
+import LocalizedContent from "@/components/LocalizedContent";
+
 import Link from "next/link";
 import Image from "next/image";
 
 const description = "ClearAIのホームページ制作。事業の強みと伝えたい内容を整理し、構成・デザイン・実装・公開まで支援します。新規制作・リニューアルの範囲、費用、スケジュールはご相談のうえ決定します。";
-export const metadata: Metadata = {
-  title: "ホームページ制作・リニューアル",
-  description,
-  alternates: { canonical: "https://clearai.jp/website-production" },
-  openGraph: { title: "ホームページ制作 | ClearAI株式会社", description, url: "https://clearai.jp/website-production", type: "website", locale: "ja_JP" },
-};
+
 const offerings = [
   ["伝える内容を整理する", "誰に何を伝え、どんな行動につなげたいかを伺います。事業やサービスの説明を整理し、ページ構成と見出し・文章を検討します。"],
   ["読みやすい形にする", "既存のブランドを踏まえてデザイン・実装します。スマートフォンでの読みやすさ、表示速度、検索エンジンが内容を理解しやすい構造にも配慮します。"],
@@ -32,7 +29,7 @@ const faqs = [
   ["文章や写真の準備、公開後の更新も相談できますか？", "相談できます。支給いただく素材と制作側で支援する内容を確認し、更新方法や公開後の対応範囲とあわせて事前に決めます。"],
 ];
 export default function WebsiteProductionPage() {
-  return (
+  return <LocalizedContent>{(
     <div className="bg-white">
       <header className="border-b border-gray-100 bg-white pt-24 pb-10 lg:pt-28 lg:pb-14">
         <div className="mx-auto max-w-[1800px] px-6 lg:px-8">
@@ -108,5 +105,5 @@ export default function WebsiteProductionPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faqs.map(([question, answer]) => ({ "@type": "Question", name: question, acceptedAnswer: { "@type": "Answer", text: answer } })) }) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "Service", name: "ホームページ制作", description, url: "https://clearai.jp/website-production", provider: { "@type": "Organization", name: "ClearAI株式会社", url: "https://clearai.jp" } }) }} />
     </div>
-  );
+  )}</LocalizedContent>;
 }

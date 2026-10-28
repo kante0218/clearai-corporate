@@ -1,4 +1,6 @@
 "use client";
+import LocalizedContent from "@/components/LocalizedContent";
+
 
 import Link from "next/link";
 import ProductList from "@/components/ProductList";
@@ -22,7 +24,7 @@ const SHOW_HOME_CLIENT_LOGOS = false;
 
 /* Keep reading content visible without scroll-triggered motion. */
 function Reveal({ children, className = "" }: { children: ReactNode; className?: string; delay?: number }) {
-  return <div data-motion="reading" className={className}>{children}</div>;
+  return <LocalizedContent>{<div data-motion="reading" className={className}>{children}</div>}</LocalizedContent>;
 }
 
 type SvcColor = "indigo" | "amber" | "sky" | "blue" | "rose" | "cyan";
@@ -506,16 +508,16 @@ const TECH_GROUPS: { key: keyof typeof COPY["ja"]["techGroups"]; category: strin
 ];
 
 function SectionLabel({ children }: { children: ReactNode }) {
-  return (
+  return <LocalizedContent>{(
     <p className="text-xs font-semibold tracking-widest uppercase text-neutral-900 mb-4">{children}</p>
-  );
+  )}</LocalizedContent>;
 }
 
 export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
   const { lang } = useLanguage();
   const t = COPY[lang];
 
-  return (
+  return <LocalizedContent>{(
     <>
       {/* ═══ HERO ═══ */}
       <section className="home-hero relative overflow-hidden bg-white pt-20">
@@ -782,5 +784,5 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
         </div>
       </nav>
     </>
-  );
+  )}</LocalizedContent>;
 }

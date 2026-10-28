@@ -1,3 +1,4 @@
+import { LocalizedText } from "@/components/LocalizedContent";
 import Link from "next/link";
 import styles from "./NewsReadability.module.css";
 import Image from "next/image";
@@ -30,7 +31,7 @@ export default async function NewsList() {
   }
 
   if (posts.length === 0) {
-    return <p className="text-sm leading-7 text-neutral-600">現在、お知らせを取得できません。<Link href="/service" className="ml-2 font-semibold underline underline-offset-4">提供サービスを見る</Link></p>;
+    return <p className="text-sm leading-7 text-neutral-600"><LocalizedText text="現在、お知らせを取得できません。" /><Link href="/service" className="ml-2 font-semibold underline underline-offset-4"><LocalizedText text="提供サービスを見る" /></Link></p>;
   }
   const ordered = [...posts.filter(post => post.company), ...posts.filter(post => !post.company)].slice(0, 3);
 

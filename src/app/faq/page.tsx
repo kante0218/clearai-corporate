@@ -1,4 +1,6 @@
 "use client";
+import LocalizedContent from "@/components/LocalizedContent";
+
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { faqItems } from "./faq-data";
@@ -15,16 +17,16 @@ function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; 
     obs.observe(el);
     return () => obs.disconnect();
   }, []);
-  return (
+  return <LocalizedContent>{(
     <div ref={ref} className={className} style={{
       opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(24px)",
       transition: `opacity 0.7s cubic-bezier(0.16,1,0.3,1) ${delay}ms, transform 0.7s cubic-bezier(0.16,1,0.3,1) ${delay}ms`,
     }}>{children}</div>
-  );
+  )}</LocalizedContent>;
 }
 
 function Label({ children }: { children: ReactNode }) {
-  return <p className="text-sm font-semibold text-neutral-900 mb-4">{children}</p>;
+  return <LocalizedContent>{<p className="text-sm font-semibold text-neutral-900 mb-4">{children}</p>}</LocalizedContent>;
 }
 
 type Copy = {
@@ -76,7 +78,7 @@ export default function FaqPage() {
   const [heroLoaded, setHeroLoaded] = useState(false);
   useEffect(() => { setTimeout(() => setHeroLoaded(true), 100); }, []);
 
-  return (
+  return <LocalizedContent>{(
     <>
       {/* HERO */}
       <section className="relative pt-28 pb-8 flex items-center justify-center overflow-hidden bg-white">
@@ -141,5 +143,5 @@ export default function FaqPage() {
         </div>
       </section>
     </>
-  );
+  )}</LocalizedContent>;
 }

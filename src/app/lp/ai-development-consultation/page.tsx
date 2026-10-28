@@ -1,4 +1,6 @@
 "use client";
+import LocalizedContent from "@/components/LocalizedContent";
+
 
 import Image from "next/image";
 import Link from "next/link";
@@ -125,7 +127,7 @@ export default function AiDevelopmentConsultationPage() {
     }
   };
 
-  return (
+  return <LocalizedContent>{(
     <div className="min-h-screen overflow-x-hidden bg-white text-[#1e2f42]">
       <header className="h-[58px] bg-white sm:h-[68px]">
         <div className="mx-auto flex h-full max-w-[1340px] items-center gap-4 px-5 sm:px-8">
@@ -305,15 +307,15 @@ export default function AiDevelopmentConsultationPage() {
         <p className="mt-4 text-[10px] font-semibold text-[#697986]">© ClearAI Inc. All Rights Reserved.</p>
       </footer>
     </div>
-  );
+  )}</LocalizedContent>;
 }
 
 function InputStep({ id, label, value, onChange, placeholder, onNext }: { id: string; label: string; value: string; onChange: (value: string) => void; placeholder: string; onNext: () => void }) {
-  return (
+  return <LocalizedContent>{(
     <div>
       <label htmlFor={id} className="mb-5 block text-base font-bold text-[#24384c]">{label}</label>
       <input id={id} required value={value} onChange={(event) => onChange(event.target.value)} onKeyDown={(event) => { if (event.key === "Enter") { event.preventDefault(); onNext(); } }} className="w-full border border-[#d4dce2] bg-white px-4 py-3.5 outline-none focus:border-[#0e5b94]" placeholder={placeholder} />
       <button data-ui-button="filled" type="button" onClick={onNext} className="mt-5 w-full bg-[#0e5b94] py-4 font-bold text-white hover:bg-[#0a4b7c]"><span className="ui-button-label">次へ</span></button>
     </div>
-  );
+  )}</LocalizedContent>;
 }

@@ -1,3 +1,5 @@
+"use client";
+import LocalizedContent from "@/components/LocalizedContent";
 import type { ReactNode } from "react";
 
 export type Crumb = { label: string; href?: string };
@@ -20,7 +22,7 @@ export default function PageHeader({
   crumbs?: Crumb[];
   actions?: ReactNode;
 }) {
-  return (
+  return <LocalizedContent>{(
     <section className="pt-20 pb-5 sm:pt-24 lg:pt-28 lg:pb-5 bg-white border-b border-gray-100">
       <div className="max-w-[1800px] mx-auto px-5 sm:px-6 lg:px-8">
         <p data-motion="reading" className="text-sm font-semibold text-neutral-900 mb-2 sm:mb-3">{kicker}</p>
@@ -32,12 +34,12 @@ export default function PageHeader({
         {actions && <div data-motion="reading" className="flex flex-wrap gap-3">{actions}</div>}
       </div>
     </section>
-  );
+  )}</LocalizedContent>;
 }
 
 /** Stats band used directly under the header on /robot-rental. */
 export function StatBand({ stats }: { stats: { value: string; label: string }[] }) {
-  return (
+  return <LocalizedContent>{(
     <section className="py-8 sm:py-12 bg-white border-b border-gray-100">
       <div className="max-w-[1800px] mx-auto px-5 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-gray-200">
@@ -50,5 +52,5 @@ export function StatBand({ stats }: { stats: { value: string; label: string }[] 
         </div>
       </div>
     </section>
-  );
+  )}</LocalizedContent>;
 }

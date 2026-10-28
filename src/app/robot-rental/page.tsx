@@ -1,4 +1,6 @@
 "use client";
+import LocalizedContent from "@/components/LocalizedContent";
+
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import Image from "next/image";
@@ -18,16 +20,16 @@ function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; 
     obs.observe(el);
     return () => obs.disconnect();
   }, []);
-  return (
+  return <LocalizedContent>{(
     <div ref={ref} className={className} style={{
       opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(32px)",
       transition: `opacity 0.7s cubic-bezier(0.16,1,0.3,1) ${delay}ms, transform 0.7s cubic-bezier(0.16,1,0.3,1) ${delay}ms`,
     }}>{children}</div>
-  );
+  )}</LocalizedContent>;
 }
 
 function Label({ children }: { children: ReactNode }) {
-  return <p className="text-sm font-semibold text-neutral-900 mb-4">{children}</p>;
+  return <LocalizedContent>{<p className="text-sm font-semibold text-neutral-900 mb-4">{children}</p>}</LocalizedContent>;
 }
 
 /**
@@ -419,7 +421,7 @@ const COPY: Record<"ja" | "en", Copy> = {
 const RENTAL_APPLICATION_ENABLED = process.env.NEXT_PUBLIC_ROBOT_RENTAL_APPLICATION_ENABLED === "true";
 
 function PriceTable({ model, t }: { model: Model; t: Copy }) {
-  return (
+  return <LocalizedContent>{(
     <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
       <div>
         <p className="text-sm font-bold text-gray-900 mb-3">{t.dailyHeading}</p>
@@ -490,7 +492,7 @@ function PriceTable({ model, t }: { model: Model; t: Copy }) {
         <span className="text-xs text-gray-500">{t.perDay}</span>
       </div>
     </div>
-  );
+  )}</LocalizedContent>;
 }
 
 export default function RobotRentalPage() {
@@ -514,7 +516,7 @@ export default function RobotRentalPage() {
   const simEngineer = simEngineerPlan === "day" ? 100000 : simEngineerHours * 10000;
   const simSubtotal = (simRental ?? 0) + simEngineer;
 
-  return (
+  return <LocalizedContent>{(
     <>
       {/* PAGE HEADER */}
       <section className="border-b border-gray-100 bg-white pb-3 pt-20 sm:pb-4 sm:pt-24 lg:pt-28 lg:pb-5">
@@ -748,5 +750,5 @@ export default function RobotRentalPage() {
         </div>
       </section>
     </>
-  );
+  )}</LocalizedContent>;
 }

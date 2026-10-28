@@ -1,4 +1,6 @@
 "use client";
+import LocalizedContent from "@/components/LocalizedContent";
+
 
 import { useEffect, useState } from "react";
 import { adsConsentCookie, disableAds, enableAds, readAdsConsent, validPublisherId, type AdsConsent } from "@/lib/adsense";
@@ -47,12 +49,12 @@ export default function ArticleAds() {
   }
 
   if (!publisherId || !ready) return null;
-  return <section className="mt-8 border-t border-neutral-200 pt-5" aria-label="広告の設定">
+  return <LocalizedContent>{<section className="mt-8 border-t border-neutral-200 pt-5" aria-label="広告の設定">
     {consent !== null && !open ? <button data-ui-button="control" type="button" onClick={() => setOpen(true)} className="min-h-11 text-xs text-neutral-600 underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4"><span className="ui-button-label">広告の設定を変更</span></button> : <>
       <h2 className="mb-2 text-base font-semibold text-neutral-900">広告の設定</h2>
       <p className="text-sm leading-6 text-neutral-600">許可した場合のみ、Google AdSenseのCookieを使用する広告を表示します。閲覧履歴に基づく広告はリクエストしません。アクセス解析とは別の設定です。<a href="/privacy" className="underline underline-offset-4">プライバシーポリシー</a></p>
       <div className="mt-3 flex flex-wrap gap-2"><button data-ui-button="control" type="button" onClick={() => choose("rejected")} className="min-h-11 rounded border border-neutral-300 px-3 text-sm focus-visible:outline-2 focus-visible:outline-offset-4"><span className="ui-button-label">許可しない</span></button><button data-ui-button="filled" type="button" onClick={() => choose("accepted")} className="min-h-11 rounded bg-neutral-900 px-3 text-sm text-white focus-visible:outline-2 focus-visible:outline-offset-4"><span className="ui-button-label">広告Cookieを許可</span></button></div>
     </>}
     {error && <p role="alert" className="mt-3 text-sm leading-6 text-neutral-600">設定を保存できませんでした。広告は無効です。Cookieを保存できる状態で再度お試しください。</p>}
-  </section>;
+  </section>}</LocalizedContent>;
 }

@@ -1,4 +1,6 @@
 "use client";
+import LocalizedContent from "@/components/LocalizedContent";
+
 
 import Image from "next/image";
 import { cmsImage } from "@/lib/cms-image";
@@ -24,7 +26,7 @@ export default function BlogRecommendations({ posts, currentId }: { posts: Recom
   }, [posts, currentId]);
 
   if (!selected.length) return null;
-  return (
+  return <LocalizedContent>{(
     <aside aria-label="おすすめ記事" className="min-w-0 border-t border-neutral-900 pt-5 lg:border-t-0 lg:border-l lg:border-neutral-200 lg:pl-6">
       <h2 className="mb-5 text-base font-bold text-neutral-900">おすすめ記事</h2>
       <div className="divide-y divide-neutral-200">
@@ -41,5 +43,5 @@ export default function BlogRecommendations({ posts, currentId }: { posts: Recom
         ))}
       </div>
     </aside>
-  );
+  )}</LocalizedContent>;
 }

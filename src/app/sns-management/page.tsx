@@ -1,16 +1,12 @@
-import type { Metadata } from "next";
+"use client";
+import LocalizedContent from "@/components/LocalizedContent";
+
 import Link from "next/link";
 import { BOOKING_URL } from "@/lib/booking";
 
 const description = "ClearAIのSNS運用代行。発信の目的と対象を整理し、投稿企画・文章と画像の制作・投稿管理・分析改善を支援します。AIによる下書きと人による確認を組み合わせ、企業の承認を経て運用します。費用は個別にお見積りします。";
 const url = "https://clearai.jp/sns-management";
-export const metadata: Metadata = {
-  title: "SNS運用代行",
-  description,
-  alternates: { canonical: url },
-  openGraph: { title: "SNS運用代行 | ClearAI株式会社", description, url, type: "website", locale: "ja_JP", siteName: "ClearAI株式会社", images: ["/images/logo.png"] },
-  twitter: { card: "summary_large_image", title: "SNS運用代行 | ClearAI株式会社", description, images: ["/images/logo.png"] },
-};
+
 const offerings = [
   ["投稿の企画", "届けたい相手と発信の目的を整理し、テーマや投稿の予定を考えます。商品・サービスの説明、社内の取り組みなど、継続して伝えられる内容を一緒に見つけます。"],
   ["文章・画像の制作", "企業の言葉遣いやブランドに合わせて、投稿文と画像を制作します。ご提供いただく写真や資料と、制作側で用意する素材の範囲を事前に確認します。"],
@@ -41,7 +37,7 @@ const schemas = [
 ];
 
 export default function SnsManagementPage() {
-  return (
+  return <LocalizedContent>{(
     <div className="bg-white text-neutral-900">
       <header className="border-b border-gray-100 bg-white pt-24 pb-10 lg:pt-28 lg:pb-14">
         <div className="mx-auto max-w-[1800px] px-6 lg:px-8">
@@ -111,5 +107,5 @@ export default function SnsManagementPage() {
       </div>
       {schemas.map((schema) => <script key={schema["@type"]} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />)}
     </div>
-  );
+  )}</LocalizedContent>;
 }

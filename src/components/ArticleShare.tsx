@@ -1,4 +1,6 @@
 "use client";
+import LocalizedContent from "@/components/LocalizedContent";
+
 
 import { useEffect, useState } from "react";
 
@@ -17,7 +19,7 @@ export default function ArticleShare({ title, url }: { title: string; url: strin
     try { await navigator.share({ title, url }); setMessage("共有しました"); }
     catch (error) { if (!(error instanceof Error && error.name === "AbortError")) setMessage("共有できませんでした。URLコピーをご利用ください。"); }
   }
-  return (
+  return <LocalizedContent>{(
     <section aria-label="この記事を共有" className="border-y border-neutral-200 py-5">
       <p className="mb-3 text-sm font-bold">この記事を共有する</p>
       <div className="flex flex-wrap gap-2">
@@ -29,5 +31,5 @@ export default function ArticleShare({ title, url }: { title: string; url: strin
       </div>
       <p role="status" className="mt-2 min-h-5 text-xs text-neutral-600">{message}</p>
     </section>
-  );
+  )}</LocalizedContent>;
 }

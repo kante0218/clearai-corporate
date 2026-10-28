@@ -1,4 +1,6 @@
 "use client";
+import LocalizedContent from "@/components/LocalizedContent";
+
 
 import Link from "next/link";
 import { FormEvent, useMemo, useRef, useState } from "react";
@@ -68,7 +70,7 @@ export default function RentalApplicationForm({ initialSelection }: { initialSel
 
   const inputClass = "mt-2 w-full rounded-md border border-slate-300 bg-white px-3.5 py-3 text-sm text-slate-900 outline-none transition focus:border-[#315b73] focus:ring-2 focus:ring-[#315b73]/15";
 
-  return (
+  return <LocalizedContent>{(
     <main className="bg-[#f4f7f9] px-5 pb-20 pt-28 lg:px-8 lg:pt-32">
       <div className="mx-auto max-w-6xl">
         <Link href="/robot-rental#lineup" className="text-sm font-semibold text-neutral-900 hover:text-neutral-900">← 機種一覧へ戻る</Link>
@@ -193,5 +195,5 @@ export default function RentalApplicationForm({ initialSelection }: { initialSel
         </div>
       </div>
     </main>
-  );
+  )}</LocalizedContent>;
 }

@@ -1,4 +1,6 @@
 "use client";
+import LocalizedContent from "@/components/LocalizedContent";
+
 
 import { Suspense, useState, useEffect, useRef, FormEvent, type ReactNode } from "react";
 import { BOOKING_URL } from "@/lib/booking";
@@ -109,12 +111,12 @@ function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; 
     obs.observe(el);
     return () => obs.disconnect();
   }, []);
-  return (
+  return <LocalizedContent>{(
     <div ref={ref} className={className} style={{
       opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(24px)",
       transition: `opacity 0.6s cubic-bezier(0.16,1,0.3,1) ${delay}ms, transform 0.6s cubic-bezier(0.16,1,0.3,1) ${delay}ms`,
     }}>{children}</div>
-  );
+  )}</LocalizedContent>;
 }
 
 // ---------------------------------------------------------------------------
@@ -152,11 +154,11 @@ const EMPTY_FORM = {
 // Page entry point (Suspense wrapper required for useSearchParams)
 // ---------------------------------------------------------------------------
 export default function ContactPage() {
-  return (
+  return <LocalizedContent>{(
     <Suspense fallback={<div className="min-h-screen bg-white" />}>
       <ContactPageInner />
     </Suspense>
-  );
+  )}</LocalizedContent>;
 }
 
 // ---------------------------------------------------------------------------
@@ -275,7 +277,7 @@ function ContactPageInner() {
     return t.messagePlaceholderDefault;
   };
 
-  return (
+  return <LocalizedContent>{(
     <main className="min-h-screen bg-white">
       {/* Header */}
       <section className="max-w-2xl mx-auto px-6 pt-28 lg:pt-32 pb-8 lg:pb-10 text-center">
@@ -445,5 +447,5 @@ function ContactPageInner() {
         </section>
       )}
     </main>
-  );
+  )}</LocalizedContent>;
 }

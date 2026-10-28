@@ -200,7 +200,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             </header>
             <ArticleToc headings={content.headings} collapsible />
             {slug === "1w8e6__tba" && <aside className="mb-6 border-l-2 border-neutral-800 bg-neutral-50 p-4 text-sm leading-7"><p>現在の提供状況（2026年10月28日追記）：ロボットレンタルの機種・料金・申込方法は、<a href="/robot-rental" className="font-semibold underline underline-offset-4">ロボットレンタルの案内</a>をご覧ください。以下の本文は公開当時の内容です。</p></aside>}
-            <article className="blog-article prose max-w-none" dangerouslySetInnerHTML={{ __html: content.html }} />
+            <article data-original-language="ja" lang="ja" className="blog-article prose max-w-none" dangerouslySetInnerHTML={{ __html: content.html }} />
             <div className="mt-10">
               <ArticleShare title={post.title} url={`https://clearai.jp/blog/${slug}`} />
             </div>

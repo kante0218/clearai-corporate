@@ -1,3 +1,5 @@
+import LanguageScopeNotice from "@/components/LanguageScopeNotice";
+import LocalizedContent from "@/components/LocalizedContent";
 import { validPublisherId } from "@/lib/adsense";
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
@@ -327,7 +329,7 @@ export default function RootLayout({
         <LanguageProvider>
           <Header />
           <SiteMotion />
-          <main className="min-h-screen">{children}</main>
+          <main className="min-h-screen"><LanguageScopeNotice /><LocalizedContent>{children}</LocalizedContent></main>
           <Footer />
           <CookieConsentBanner />
         </LanguageProvider>

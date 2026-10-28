@@ -1,4 +1,6 @@
 "use client";
+import LocalizedContent from "@/components/LocalizedContent";
+
 
 import { useRef, useState } from "react";
 import styles from "./AgentTrainingPage.module.css";
@@ -10,7 +12,7 @@ export default function TrainingCurriculumTabs({ lessons, toolName }: { lessons:
   const tabs = useRef<(HTMLButtonElement | null)[]>([]);
   const lesson = lessons[active];
 
-  return (
+  return <LocalizedContent>{(
     <div className={styles.curriculumBox}>
       <div className={styles.tabs} role="tablist" aria-label="研修カリキュラム">
         {lessons.map((item, index) => (
@@ -50,5 +52,5 @@ export default function TrainingCurriculumTabs({ lessons, toolName }: { lessons:
         </div>
       </div>
     </div>
-  );
+  )}</LocalizedContent>;
 }

@@ -1,4 +1,6 @@
 "use client";
+import LocalizedContent from "@/components/LocalizedContent";
+
 
 import { useId, useRef, useState, type FormEvent } from "react";
 import { BOOKING_URL } from "@/lib/booking";
@@ -63,7 +65,7 @@ export default function TrainingLeadForm({ courseName, sourcePath, compact = fal
     return { "aria-invalid": !!errors[name], "aria-describedby": errors[name] ? `${id}-${name}-error` : undefined };
   }
 
-  if (status === "success") return (
+  if (status === "success") return <LocalizedContent>{(
     <div className={styles.success} role="status" aria-live="polite">
       <span className={styles.successMark} aria-hidden="true">✓</span>
       <h3>お問い合わせを受け付けました</h3>
@@ -71,9 +73,9 @@ export default function TrainingLeadForm({ courseName, sourcePath, compact = fal
       <p>ご都合のよい日時が決まっている場合は、このまま無料相談をご予約いただけます。</p>
       <a data-ui-button="filled" className={styles.booking} href={BOOKING_URL} target="_blank" rel="noopener noreferrer"><span className="ui-button-label">無料相談の日程を選ぶ<span className={styles.srOnly}>（新しいタブで開きます）</span></span></a>
     </div>
-  );
+  )}</LocalizedContent>;
 
-  return (
+  return <LocalizedContent>{(
     <form className={`${styles.form} ${compact ? styles.compact : ""}`} onSubmit={handleSubmit} aria-label={`${courseName}のお問い合わせ`} aria-busy={status === "submitting"}>
       {!compact && <p className={styles.intro}>ご相談は無料です。課題や人数が決まっていない段階でも、お気軽にご相談ください。</p>}
       <div className={styles.honeypot} aria-hidden="true"><label>Website<input name="website" tabIndex={-1} autoComplete="off" /></label></div>
@@ -108,5 +110,5 @@ export default function TrainingLeadForm({ courseName, sourcePath, compact = fal
         <p className={styles.note}>{compact ? "送信だけで料金は発生しません" : "送信だけで契約・料金は発生しません。担当者より2営業日以内にご連絡します。"}</p>
       </fieldset>
     </form>
-  );
+  )}</LocalizedContent>;
 }

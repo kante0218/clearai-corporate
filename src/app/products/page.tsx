@@ -1,17 +1,14 @@
-import type { Metadata } from "next";
+"use client";
+import LocalizedContent from "@/components/LocalizedContent";
+
 import PageHeader from "@/components/PageHeader";
 import ProductList from "@/components/ProductList";
 
 const description = "ClearAIのサービス一覧。Aqua、まぜまぜReadingの公式サイトと、準備中の猫シフト、Stella、PR Businessをご紹介します。";
-export const metadata: Metadata = {
-  title: "サービス・プロダクト一覧",
-  description,
-  alternates: { canonical: "https://clearai.jp/products" },
-  openGraph: { title: "サービス・プロダクト一覧 | ClearAI株式会社", description, url: "https://clearai.jp/products", type: "website", locale: "ja_JP" },
-};
+
 
 export default function ProductsPage() {
-  return (
+  return <LocalizedContent>{(
     <div className="bg-white">
       <PageHeader kicker="Products" title="ClearAIのサービス・プロダクト" description="仕事の記録、英語学習、日々の暮らし。ClearAIが取り組むサービスをご紹介します。" crumbs={[{ label: "ホーム", href: "/" }, { label: "サービス・プロダクト" }]} />
       <section className="mx-auto max-w-[1800px] px-5 sm:px-6 lg:px-8 py-10 sm:py-16" aria-labelledby="products-heading">
@@ -20,5 +17,5 @@ export default function ProductsPage() {
         <ProductList />
       </section>
     </div>
-  );
+  )}</LocalizedContent>;
 }

@@ -1,4 +1,6 @@
 "use client";
+import LocalizedContent from "@/components/LocalizedContent";
+
 
 import { isCompanyAnnouncement } from "@/lib/blog-classification";
 import { formatBlogDate } from "@/lib/blog-date";
@@ -14,7 +16,7 @@ import PageHeader from "@/components/PageHeader";
 
 export default function BlogList({ posts }: { posts: Blog[] }) {
   const groups = [{ title: "ClearAIからのお知らせ", posts: posts.filter(isCompanyAnnouncement) }, { title: "AI・技術・導入事例の記事", posts: posts.filter(post => !isCompanyAnnouncement(post)) }];
-  return (
+  return <LocalizedContent>{(
     <main className="min-h-screen bg-white">
       <PageHeader
         kicker="News"
@@ -60,5 +62,5 @@ export default function BlogList({ posts }: { posts: Blog[] }) {
         )}
       </section>
     </main>
-  );
+  )}</LocalizedContent>;
 }

@@ -118,7 +118,7 @@ export default async function CaseStudyPage({
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
-      <article className="bg-white">
+      <article data-original-language="ja" lang="ja" className="bg-white">
         {/* Title block */}
         <header className="border-b border-gray-100 pt-24 pb-8 lg:pt-28 lg:pb-10">
           <div className="max-w-[1800px] mx-auto px-6 lg:px-8">

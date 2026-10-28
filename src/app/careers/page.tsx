@@ -1,4 +1,6 @@
 "use client";
+import LocalizedContent from "@/components/LocalizedContent";
+
 
 import Link from "next/link";
 import { useEffect, useRef, useState, type ReactNode } from "react";
@@ -17,17 +19,17 @@ function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; 
     obs.observe(el);
     return () => obs.disconnect();
   }, []);
-  return (
+  return <LocalizedContent>{(
     <div ref={ref} className={className} style={{
       opacity: visible ? 1 : 0,
       transform: visible ? "none" : "translateY(24px)",
       transition: `opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
     }}>{children}</div>
-  );
+  )}</LocalizedContent>;
 }
 
 function Label({ children }: { children: ReactNode }) {
-  return <p className="text-xs font-semibold tracking-[0.2em] text-neutral-500 uppercase mb-3">{children}</p>;
+  return <LocalizedContent>{<p className="text-xs font-semibold tracking-[0.2em] text-neutral-500 uppercase mb-3">{children}</p>}</LocalizedContent>;
 }
 
 type Position = {
@@ -280,7 +282,7 @@ export default function CareersPage() {
   const { lang } = useLanguage();
   const t = COPY[lang];
 
-  return (
+  return <LocalizedContent>{(
     <main className="bg-white pt-20">
       {/* HERO */}
       <section className="border-b border-gray-100 py-14 lg:py-20">
@@ -411,5 +413,5 @@ export default function CareersPage() {
         </div>
       </section>
     </main>
-  );
+  )}</LocalizedContent>;
 }

@@ -1,4 +1,6 @@
 "use client";
+import LocalizedContent from "@/components/LocalizedContent";
+
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
@@ -68,7 +70,7 @@ export default function CookieConsentBanner() {
   }
 
   if (!open) return null;
-  return (
+  return <LocalizedContent>{(
     <section ref={panel} tabIndex={-1} className="cookie-banner" role="region" aria-labelledby="cookie-title" aria-describedby="cookie-description">
       <div>
         <h2 id="cookie-title">{en ? "Cookie settings" : "Cookieの設定"}</h2>
@@ -80,5 +82,5 @@ export default function CookieConsentBanner() {
         <button data-ui-button="control" type="button" onClick={() => choose("accepted")}><span className="ui-button-label">{en ? "Allow analytics" : "アクセス解析を許可"}</span></button>
       </div>
     </section>
-  );
+  )}</LocalizedContent>;
 }

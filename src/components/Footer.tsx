@@ -1,4 +1,6 @@
 "use client";
+import LocalizedContent from "@/components/LocalizedContent";
+
 
 import Link from "next/link";
 import Logo from "@/components/Logo";
@@ -75,7 +77,7 @@ export default function Footer() {
     },
   ];
 
-  return (
+  return <LocalizedContent>{(
     <footer className="bg-neutral-950">
       <div className="max-w-[1800px] mx-auto px-5 sm:px-6 lg:px-8 pt-10 pb-8 sm:pt-16 sm:pb-12">
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-9 lg:gap-8">
@@ -161,5 +163,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  );
+  )}</LocalizedContent>;
 }

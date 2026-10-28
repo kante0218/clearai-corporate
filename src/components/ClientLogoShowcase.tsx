@@ -1,4 +1,6 @@
 "use client";
+import LocalizedContent from "@/components/LocalizedContent";
+
 
 import Image from "next/image";
 import Link from "next/link";
@@ -14,15 +16,15 @@ const homeLogos = [
 
 function LogoImage({ logo }: { logo: (typeof homeLogos)[number] }) {
   if (logo.src === "/images/clients/kanden-engineering.png") {
-    return <span className="block aspect-[696/201] w-full max-w-[calc(36px*696/201)] overflow-hidden md:max-w-[calc(44px*696/201)]"><Image src={logo.src} alt={`${logo.name} ロゴ`} width={logo.width} height={logo.height} className="h-full w-full object-cover object-center opacity-90" sizes="(max-width: 767px) 125px, 153px" /></span>;
+    return <LocalizedContent>{<span className="block aspect-[696/201] w-full max-w-[calc(36px*696/201)] overflow-hidden md:max-w-[calc(44px*696/201)]"><Image src={logo.src} alt={`${logo.name} ロゴ`} width={logo.width} height={logo.height} className="h-full w-full object-cover object-center opacity-90" sizes="(max-width: 767px) 125px, 153px" /></span>}</LocalizedContent>;
   }
   if (logo.src === "/images/clients/digital-strategy-room.png") {
-    return <span className="relative block aspect-[530/120] w-full max-w-[176px] overflow-hidden"><Image src={logo.src} alt={`${logo.name} ロゴ`} width={logo.width} height={logo.height} className="absolute left-1/2 top-1/2 h-auto w-[124.34%] max-w-none -translate-x-1/2 -translate-y-1/2 opacity-90" sizes="219px" /></span>;
+    return <LocalizedContent>{<span className="relative block aspect-[530/120] w-full max-w-[176px] overflow-hidden"><Image src={logo.src} alt={`${logo.name} ロゴ`} width={logo.width} height={logo.height} className="absolute left-1/2 top-1/2 h-auto w-[124.34%] max-w-none -translate-x-1/2 -translate-y-1/2 opacity-90" sizes="219px" /></span>}</LocalizedContent>;
   }
   if (logo.src === "/images/clients/local-dive.png") {
-    return <Image src={logo.src} alt={`${logo.name} ロゴ`} width={logo.width} height={logo.height} className="h-auto w-full max-w-[176px] object-contain opacity-90" sizes="176px" />;
+    return <LocalizedContent>{<Image src={logo.src} alt={`${logo.name} ロゴ`} width={logo.width} height={logo.height} className="h-auto w-full max-w-[176px] object-contain opacity-90" sizes="176px" />}</LocalizedContent>;
   }
-  return <Image src={logo.src} alt={`${logo.name} ロゴ`} width={logo.width} height={logo.height} className="h-9 w-auto max-w-full object-contain opacity-90 md:h-11" sizes="(max-width: 640px) 176px, 220px" />;
+  return <LocalizedContent>{<Image src={logo.src} alt={`${logo.name} ロゴ`} width={logo.width} height={logo.height} className="h-9 w-auto max-w-full object-contain opacity-90 md:h-11" sizes="(max-width: 640px) 176px, 220px" />}</LocalizedContent>;
 }
 
 export default function ClientLogoShowcase({ label }: { label: string }) {
@@ -87,7 +89,7 @@ export default function ClientLogoShowcase({ label }: { label: string }) {
     };
   }, [flowing, paused, hovered, focused]);
 
-  return (
+  return <LocalizedContent>{(
     <div className="logo-flow mt-16 border-t border-gray-200 pt-14 pb-6 md:pb-8" data-flowing={flowing}>
       <div className="mb-9 flex flex-wrap items-center justify-between gap-3">
         <p className="text-[11px] font-semibold tracking-[0.22em] uppercase text-gray-400">{label}</p>
@@ -140,5 +142,5 @@ export default function ClientLogoShowcase({ label }: { label: string }) {
         }
       `}</style>
     </div>
-  );
+  )}</LocalizedContent>;
 }

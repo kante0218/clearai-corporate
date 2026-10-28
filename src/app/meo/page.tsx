@@ -1,16 +1,12 @@
-import type { Metadata } from "next";
+"use client";
+import LocalizedContent from "@/components/LocalizedContent";
+
 import Link from "next/link";
 import PageHeader from "@/components/PageHeader";
 
 const description = "ClearAIのGoogleマップ・MEO支援。Googleビジネスプロフィールの店舗情報整備、写真・投稿の運用、口コミ返信、レポートと改善提案を、必要な範囲からご相談いただけます。料金は要相談。順位や売上は保証していません。";
 const url = "https://clearai.jp/meo";
-export const metadata: Metadata = {
-  title: "Googleマップ・MEO支援",
-  description,
-  alternates: { canonical: url },
-  openGraph: { title: "Googleマップ・MEO支援 | ClearAI株式会社", description, url, type: "website", locale: "ja_JP", siteName: "ClearAI株式会社", images: ["/images/logo.png"] },
-  twitter: { card: "summary_large_image", title: "Googleマップ・MEO支援 | ClearAI株式会社", description, images: ["/images/logo.png"] },
-};
+
 const offerings = [
   ["店舗情報を正確に整える", "店名、住所・サービス提供地域、電話番号、営業時間・特別営業時間などを、実際の営業状況と照らし合わせて確認します。カテゴリやサービス情報も、事業の実態に合う内容へ整理します。"],
   ["写真と投稿で、いまの店舗を伝える", "店舗・商品・サービスの写真や、お知らせの投稿内容と更新予定を相談します。素材の利用許可と内容を確認し、承認を得てから運用する手順を整えます。利用できる機能は業種やプロフィールの状態によって異なります。"],
@@ -31,7 +27,7 @@ const faqs = [
 ];
 
 export default function MeoPage() {
-  return <div className="bg-white text-neutral-900">
+  return <LocalizedContent>{<div className="bg-white text-neutral-900">
     <PageHeader kicker="Google Business Profile" title="Googleマップ・MEO支援" description="探している人に、店舗の正しい情報を。Googleビジネスプロフィールの整備と日々の運用を、必要な範囲から支援します。" crumbs={[{ label: "ホーム", href: "/" }, { label: "事業内容", href: "/service" }, { label: "Googleマップ・MEO支援" }]} />
     <div className="mx-auto max-w-[1800px] px-6 py-10 lg:px-8 lg:py-16">
       <div className="mb-12 max-w-3xl">
@@ -68,5 +64,5 @@ export default function MeoPage() {
       </section>
     </div>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "Service", name: "Googleマップ・MEO支援", description, url, provider: { "@type": "Organization", name: "ClearAI株式会社", url: "https://clearai.jp" } }) }} />
-  </div>;
+  </div>}</LocalizedContent>;
 }

@@ -1,3 +1,5 @@
+"use client";
+import LocalizedContent from "@/components/LocalizedContent";
 import Link from "next/link";
 import PageHeader from "@/components/PageHeader";
 import { BOOKING_URL } from "@/lib/booking";
@@ -102,7 +104,7 @@ const OTHER_FLOWS = [
 ];
 
 export default function FlowPage() {
-  return (
+  return <LocalizedContent>{(
     <div className="bg-white">
       <PageHeader
         kicker="Flow"
@@ -252,5 +254,5 @@ export default function FlowPage() {
         </div>
       </section>
     </div>
-  );
+  )}</LocalizedContent>;
 }

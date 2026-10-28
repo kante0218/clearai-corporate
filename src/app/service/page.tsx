@@ -1,3 +1,5 @@
+"use client";
+import LocalizedContent from "@/components/LocalizedContent";
 import Link from "next/link";
 import PageHeader from "@/components/PageHeader";
 import { BOOKING_URL } from "@/lib/booking";
@@ -115,7 +117,7 @@ const SERVICES: Service[] = [
 ];
 
 export default function ServicePage() {
-  return (
+  return <LocalizedContent>{(
     <div className="bg-white">
       <PageHeader
         kicker="Service"
@@ -230,5 +232,5 @@ export default function ServicePage() {
         </div>
       </section>
     </div>
-  );
+  )}</LocalizedContent>;
 }

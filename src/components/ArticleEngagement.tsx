@@ -1,4 +1,5 @@
 "use client";
+import LocalizedContent from "@/components/LocalizedContent";
 
 import { useEffect, useState, type FormEvent } from "react";
 import { createPortal } from "react-dom";
@@ -41,9 +42,9 @@ export default function ArticleEngagement({ slug }: { slug: string }) {
   }
   function submit(event: FormEvent) { event.preventDefault(); void send({ action: "comment", name, body }); }
 
-  return (
+  return <LocalizedContent>{(
     <section className="mt-10 border-t border-neutral-200 pt-8" aria-label="記事へのリアクション">
-      {likeTarget && createPortal(<button data-ui-with-icon data-ui-button="control" type="button" disabled={!data || busy} aria-pressed={data?.liked ?? false} onClick={() => void send({ action: "like", liked: !data?.liked })} className="article-like-button inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-neutral-300 px-3 text-sm font-semibold text-neutral-800 enabled:hover:border-neutral-900 focus-visible:outline-2 focus-visible:outline-offset-4 disabled:opacity-50"><span className="ui-button-label">いいね{data ? ` ${data.likes}` : ""}</span><span className="ui-button-icon" data-ui-side="start" aria-hidden="true"><svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5" fill={data?.liked ? "currentColor" : "none"} stroke="currentColor" strokeWidth="1.5"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z" /></svg></span></button>, likeTarget)}
+      {likeTarget && createPortal(<LocalizedContent><button data-ui-with-icon data-ui-button="control" type="button" disabled={!data || busy} aria-pressed={data?.liked ?? false} onClick={() => void send({ action: "like", liked: !data?.liked })} className="article-like-button inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-neutral-300 px-3 text-sm font-semibold text-neutral-800 enabled:hover:border-neutral-900 focus-visible:outline-2 focus-visible:outline-offset-4 disabled:opacity-50"><span className="ui-button-label">いいね{data ? ` ${data.likes}` : ""}</span><span className="ui-button-icon" data-ui-side="start" aria-hidden="true"><svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5" fill={data?.liked ? "currentColor" : "none"} stroke="currentColor" strokeWidth="1.5"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z" /></svg></span></button></LocalizedContent>, likeTarget)}
       <h2 id="article-comments" className="mb-5 mt-8 text-xl font-bold text-neutral-900">コメント{data ? `（${data.comments.length}${data.comments.length === 50 ? "+" : ""}）` : ""}</h2>
       {unavailable ? <p className="text-sm leading-6 text-neutral-600" role="status">{unavailable}</p> : !data ? <p className="text-sm text-neutral-600" role="status">読み込み中…</p> : <>
         <p className="mb-5 text-sm leading-6 text-neutral-600">コメントは内容の確認後に公開します。個人情報や機密情報の投稿はお控えください。</p>
@@ -57,5 +58,5 @@ export default function ArticleEngagement({ slug }: { slug: string }) {
       </>}
       {message && <p className="mt-4 text-sm leading-6 text-neutral-700" role="status">{message}</p>}
     </section>
-  );
+  )}</LocalizedContent>;
 }

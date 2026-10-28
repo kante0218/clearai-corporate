@@ -1,4 +1,6 @@
 "use client";
+import LocalizedContent from "@/components/LocalizedContent";
+
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import Link from "next/link";
@@ -42,7 +44,7 @@ function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; 
     return () => observer.disconnect();
   }, []);
 
-  return (
+  return <LocalizedContent>{(
     <div
       ref={ref}
       className={className}
@@ -54,7 +56,7 @@ function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; 
     >
       {children}
     </div>
-  );
+  )}</LocalizedContent>;
 }
 
 type TimelineItem = { year: string; title: string; description: string; future: boolean };
@@ -346,7 +348,7 @@ export default function AboutPage() {
   const { lang } = useLanguage();
   const t = COPY[lang];
 
-  return (
+  return <LocalizedContent>{(
     <main className="min-h-screen bg-white">
 
       {/* ─── 11. COMPANY INFORMATION ───────────────── */}
@@ -537,5 +539,5 @@ export default function AboutPage() {
 
 
     </main>
-  );
+  )}</LocalizedContent>;
 }

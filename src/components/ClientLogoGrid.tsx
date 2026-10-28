@@ -1,3 +1,5 @@
+"use client";
+import LocalizedContent from "@/components/LocalizedContent";
 import Image from "next/image";
 
 /**
@@ -27,7 +29,7 @@ export default function ClientLogoGrid({
   heading?: string;
   note?: string;
 }) {
-  return (
+  return <LocalizedContent>{(
     <section className="py-14 lg:py-20 bg-white border-b border-gray-100">
       <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
         <h2 className="text-2xl font-bold text-gray-900 mb-8">{heading}</h2>
@@ -53,5 +55,5 @@ export default function ClientLogoGrid({
         <p className="text-xs text-gray-400 mt-6">{note}</p>
       </div>
     </section>
-  );
+  )}</LocalizedContent>;
 }

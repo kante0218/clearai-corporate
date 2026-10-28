@@ -1,3 +1,5 @@
+"use client";
+import LocalizedContent from "@/components/LocalizedContent";
 import Link from "next/link";
 import training from "@/components/AgentTrainingPage.module.css";
 import styles from "./page.module.css";
@@ -58,7 +60,7 @@ const questions = [
   ["どのくらいで効果が出ますか？", "サイトの状態、情報の公開状況、競合、確認するAIサービスによって異なります。一定期間での引用や問い合わせ増加は約束せず、先に確認する質問と基準を決め、公開後の変化を継続して確認します。"],
 ];
 export default function AioPage() {
-  return <div className={`${training.page} ${styles.page}`}>
+  return <LocalizedContent>{<div className={`${training.page} ${styles.page}`}>
     <section className={`${training.hero} ${styles.hero}`}>
       <div className={training.heroInner}>
         <p className={training.heroTag}>企業のためのAIO・AI検索最適化支援</p>
@@ -107,5 +109,5 @@ export default function AioPage() {
     </section>
     <section id="faq" className={`${training.section} ${training.lavender}`}><div className={training.sectionTitle}><h2>よくあるご質問</h2></div><div className={training.faq}>{questions.map(([q,a]) => <details key={q}><summary>{q}<span className={training.faqToggle} aria-hidden="true">+</span></summary><div className={training.faqAnswer}><p>{a}</p></div></details>)}</div></section>
     <section id="contact" className={`${training.conversionBand} ${styles.contact}`}><div><p>いまのサイトと、事業の課題から。</p><h2>AIOの支援内容・費用を<br />一緒に整理しませんか。</h2><span>サイトURLと、届けたい相手・気になることをお聞かせください。</span></div><div className={styles.contactActions}><a {...BOOKING_LINK_PROPS} className={training.primary}>日程を選んで相談する</a><Link href="/contact?service=aio">文章で問い合わせる</Link><Link href="/download?document=aio" className="inline-flex min-h-12 items-center py-3 text-sm font-semibold underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4">事業紹介資料をダウンロード</Link><small>日程予約は外部のTimeRexが新しいタブで開きます。</small></div></section>
-  </div>;
+  </div>}</LocalizedContent>;
 }

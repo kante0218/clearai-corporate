@@ -1,3 +1,5 @@
+"use client";
+import LocalizedContent from "@/components/LocalizedContent";
 import Link from "next/link";
 
 const products = [
@@ -9,7 +11,7 @@ const products = [
 ];
 
 export default function ProductList() {
-  return (
+  return <LocalizedContent>{(
     <div className="space-y-10">
       {[true, false].map((published) => <section key={String(published)} aria-label={published ? "公開済みのサービス" : "準備中のサービス"}>
         <h3 className="mb-4 text-lg font-bold text-neutral-900">{published ? "公開済みのサービス" : "準備中・構想中のサービス"}</h3>
@@ -37,5 +39,5 @@ export default function ProductList() {
         </ul>
       </section>)}
     </div>
-  );
+  )}</LocalizedContent>;
 }

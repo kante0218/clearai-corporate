@@ -1,4 +1,6 @@
 "use client";
+import LocalizedContent from "@/components/LocalizedContent";
+
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -52,7 +54,7 @@ export default function RentalApplicationCompletePage() {
     error: ["確認結果を取得できませんでした", "時間をおいて再度読み込むか、info@clearai.jpまでご連絡ください。"],
   }[status];
 
-  return (
+  return <LocalizedContent>{(
     <main className="min-h-[75vh] bg-[#f4f7f9] px-5 pb-20 pt-32 lg:px-8 lg:pt-40">
       <section className="mx-auto max-w-2xl rounded-lg border border-slate-200 bg-white p-8 text-center lg:p-12">
         <div className={`mx-auto flex size-12 items-center justify-center rounded-full ${status === "verified" ? "bg-emerald-50 text-emerald-700" : "bg-slate-100 text-neutral-900"}`} aria-hidden="true">
@@ -78,5 +80,5 @@ export default function RentalApplicationCompletePage() {
         </div>
       </section>
     </main>
-  );
+  )}</LocalizedContent>;
 }

@@ -1,4 +1,6 @@
 "use client";
+import LocalizedContent from "@/components/LocalizedContent";
+
 
 import { FormEvent, useState } from "react";
 import { DOCUMENT_KEYS, type DocumentKey } from "@/lib/validators";
@@ -78,7 +80,7 @@ export default function DownloadRequestForm({ decks, initialDocument }: Props) {
 
   // 入力できた時点でその場でダウンロードさせる。メールは控えとして別途届く。
   if (result) {
-    return (
+    return <LocalizedContent>{(
       <div className="border border-neutral-200 bg-neutral-50 p-6 lg:p-8" aria-live="polite">
         <p className="text-base font-bold text-neutral-900">
           ご入力ありがとうございます。資料をダウンロードできます。
@@ -115,10 +117,10 @@ export default function DownloadRequestForm({ decks, initialDocument }: Props) {
             : "このページを閉じる前にダウンロードをお願いします。"}
         </p>
       </div>
-    );
+    )}</LocalizedContent>;
   }
 
-  return (
+  return <LocalizedContent>{(
     <form onSubmit={submit} className="border border-neutral-200 p-6 lg:p-8" aria-label="事業紹介資料のダウンロードフォーム">
       <fieldset>
         <legend className="mb-4 flex items-center gap-2 text-sm font-bold text-neutral-900">
@@ -207,5 +209,5 @@ export default function DownloadRequestForm({ decks, initialDocument }: Props) {
         入力するとこの場ですぐダウンロードできます。控えとして同じリンクをメールでもお送りします。
       </p>
     </form>
-  );
+  )}</LocalizedContent>;
 }

@@ -8,10 +8,13 @@ import {
   type ReactNode,
 } from "react";
 
-export type Language = "ja" | "en";
+export type Language = "ja" | "en" | "zh-CN" | "ko";
+export type ContentLanguage = "ja" | "en";
+export const LANGUAGES = ["ja", "en", "zh-CN", "ko"] as const;
 
 type LanguageContextValue = {
-  lang: Language;
+  lang: ContentLanguage;
+  locale: Language;
   setLang: (l: Language) => void;
   toggleLang: () => void;
   mounted: boolean;
@@ -31,8 +34,8 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     setMounted(true);
     try {
       const stored = window.localStorage.getItem(STORAGE_KEY);
-      if (stored === "ja" || stored === "en") {
-        setLangState(stored);
+      if (LANGUAGES.some(value => value === stored)) {
+        setLangState(stored as Language);
       }
     } catch {
       /* ignore localStorage errors */
@@ -51,11 +54,11 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     }
   }, [lang, mounted]);
 
-  const setLang = (l: Language) => setLangState(l);
+  const setLang = (l: Language) => { if (LANGUAGES.includes(l)) setLangState(l); };
   const toggleLang = () => setLangState((prev) => (prev === "ja" ? "en" : "ja"));
 
   return (
-    <LanguageContext.Provider value={{ lang, setLang, toggleLang, mounted }}>
+    <LanguageContext.Provider value={{ lang: lang === "en" ? "en" : "ja", locale: lang, setLang, toggleLang, mounted }}>
       {children}
     </LanguageContext.Provider>
   );
@@ -67,6 +70,7 @@ export function useLanguage(): LanguageContextValue {
     // Default to JA when used outside the provider (e.g. SSR fallback).
     return {
       lang: "ja",
+      locale: "ja",
       setLang: () => {},
       toggleLang: () => {},
       mounted: false,

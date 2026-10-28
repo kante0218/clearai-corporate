@@ -1,4 +1,6 @@
 "use client";
+import LocalizedContent from "@/components/LocalizedContent";
+
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
@@ -136,7 +138,7 @@ export default function HtmlSitemapPage() {
       });
   }, []);
 
-  return (
+  return <LocalizedContent>{(
     <main className="min-h-screen bg-white">
       <Script
         id="schema-breadcrumb-sitemap"
@@ -211,5 +213,5 @@ export default function HtmlSitemapPage() {
         </div>
       </section>
     </main>
-  );
+  )}</LocalizedContent>;
 }

@@ -1,4 +1,5 @@
 "use client";
+import LocalizedContent from "@/components/LocalizedContent";
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
@@ -89,6 +90,7 @@ export default function Header() {
   useEffect(() => {
     if (!isOpen) return;
     const onKeyDown = (event: KeyboardEvent) => {
+      if (event.defaultPrevented) return;
       if (event.key === "Escape") {
         setIsOpen(false);
         menuToggle.current?.focus();
@@ -114,7 +116,7 @@ export default function Header() {
 
   if (isStandaloneLp) return null;
 
-  return (
+  return <LocalizedContent>{(
     <>
       <header ref={header} role={isOpen ? "dialog" : undefined} aria-modal={isOpen ? true : undefined} aria-label={isOpen ? (lang === "ja" ? "サイトメニュー" : "Site menu") : undefined} style={isOpen ? { zIndex: 60 } : undefined} className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${headerBg}`}>
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
@@ -260,5 +262,5 @@ export default function Header() {
         </div>
       </header>
     </>
-  );
+  )}</LocalizedContent>;
 }

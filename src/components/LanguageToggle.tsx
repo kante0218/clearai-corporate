@@ -1,56 +1,53 @@
 "use client";
 
-import { useLanguage } from "@/lib/i18n/LanguageContext";
-import { toggle as toggleDict } from "@/lib/i18n/translations";
+import { useEffect, useId, useRef, useState, type KeyboardEvent } from "react";
+import { useLanguage, type Language } from "@/lib/i18n/LanguageContext";
 
-type Props = {
-  variant?: "desktop" | "mobile";
-  className?: string;
-};
-
-// Fixed pill — both buttons are identical width and the coloured thumb
-// slides between them, so neither the toggle itself nor neighbouring
-// elements can shift when the active language changes.
-export default function LanguageToggle({ variant = "desktop", className = "" }: Props) {
-  const { lang, setLang, mounted } = useLanguage();
-  const t = toggleDict[lang];
-  const isJa = lang === "ja";
-
-  const isDesktop = variant === "desktop";
-  const buttonSize = isDesktop ? "w-9 h-11 text-[11px]" : "w-12 h-11 text-sm";
-  const thumbSize = isDesktop ? "w-9 h-11" : "w-12 h-11";
-
-  return (
-    <div
-      className={`language-toggle relative inline-flex items-center rounded-md bg-gray-100 ring-1 ring-gray-200/70 p-0.5 font-semibold select-none ${variant === "mobile" ? "language-toggle-mobile" : ""} ${className}`}
-      role="group"
-      aria-label={t.switchTo}
-      style={{ opacity: mounted ? 1 : 0.7 }}
-    >
-      <span
-        aria-hidden="true"
-        className={`absolute top-0.5 left-0.5 ${thumbSize} rounded-md shadow-sm transition-transform duration-300 ease-out`}
-        style={{
-          background: "var(--accent-solid)",
-          transform: isJa ? "translateX(0)" : `translateX(${isDesktop ? "100%" : "calc(100% + 12px)"})`,
-        }}
-      />
-      <button
-        type="button"
-        onClick={() => setLang("ja")}
-        aria-pressed={isJa}
-        className={`relative z-10 inline-flex items-center justify-center ${buttonSize} rounded-md tracking-wider transition-colors duration-300 ${
-          isJa ? "text-white" : "text-gray-500 hover:text-gray-800"
-        }`}
-      ><span className="ui-button-label">{t.ja}</span></button>
-      <button
-        type="button"
-        onClick={() => setLang("en")}
-        aria-pressed={!isJa}
-        className={`relative z-10 inline-flex items-center justify-center ${buttonSize} rounded-md tracking-wider transition-colors duration-300 ${
-          !isJa ? "text-white" : "text-gray-500 hover:text-gray-800"
-        }`}
-      ><span className="ui-button-label">{t.en}</span></button>
-    </div>
-  );
+const options: { value: Language; label: string }[] = [
+  { value: "ja", label: "日本語" },
+  { value: "en", label: "English" },
+  { value: "zh-CN", label: "中文（简体）" },
+  { value: "ko", label: "한국어" },
+];
+export default function LanguageToggle({ variant = "desktop", className = "" }: { variant?: "desktop" | "mobile"; className?: string }) {
+  const { locale, setLang } = useLanguage();
+  const [open, setOpen] = useState(false);
+  const [active, setActive] = useState(0);
+  const container = useRef<HTMLDivElement>(null);
+  const trigger = useRef<HTMLButtonElement>(null);
+  const items = useRef<(HTMLButtonElement | null)[]>([]);
+  const id = useId();
+  const selected = options.findIndex(option => option.value === locale);
+  useEffect(() => {
+    if (!open) return;
+    const bottom = trigger.current?.getBoundingClientRect().bottom ?? 0;
+    if (bottom + 210 > window.innerHeight) trigger.current?.scrollIntoView({ block: "center" });
+    items.current[active]?.focus();
+  }, [open, active]);
+  useEffect(() => {
+    if (!open) return;
+    const outside = (event: PointerEvent) => {
+      if (!container.current?.contains(event.target as Node)) setOpen(false);
+    };
+    document.addEventListener("pointerdown", outside);
+    return () => document.removeEventListener("pointerdown", outside);
+  }, [open]);
+  function close() { setOpen(false); trigger.current?.focus(); }
+  function keyboard(event: KeyboardEvent) {
+    if (event.key === "Escape" && open) { event.preventDefault(); event.stopPropagation(); close(); return; }
+    if (["ArrowDown", "ArrowUp", "Home", "End"].includes(event.key)) {
+      event.preventDefault();
+      setActive(event.key === "Home" ? 0 : event.key === "End" ? options.length - 1 : !open ? selected : (active + (event.key === "ArrowDown" ? 1 : -1) + options.length) % options.length);
+      setOpen(true);
+    }
+  }
+  return <div ref={container} className={`language-select ${variant === "mobile" ? "language-select-mobile" : ""} ${className}`} onKeyDown={keyboard} onBlur={event => { if (!event.currentTarget.contains(event.relatedTarget)) setOpen(false); }}>
+    <button ref={trigger} type="button" data-ui-button="control" aria-label={`Language: ${options[selected].label}`} aria-haspopup="listbox" aria-expanded={open} aria-controls={id} className="language-trigger" onClick={() => { setActive(selected); setOpen(!open); }}>
+      <span className="ui-button-label" lang={locale}>{options[selected].label}</span>
+      <svg aria-hidden="true" viewBox="0 0 16 16" width="14" height="14"><path d="m4 6 4 4 4-4" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg>
+    </button>
+    {open && <div id={id} role="listbox" aria-label="Language" className="language-menu">
+      {options.map((option, index) => <button key={option.value} ref={element => { items.current[index] = element; }} type="button" role="option" aria-selected={locale === option.value} tabIndex={active === index ? 0 : -1} lang={option.value} onClick={() => { setLang(option.value); close(); }}>{option.label}<span aria-hidden="true">{locale === option.value ? "✓" : ""}</span></button>)}
+    </div>}
+  </div>;
 }

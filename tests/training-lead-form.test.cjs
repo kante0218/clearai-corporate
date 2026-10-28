@@ -31,7 +31,13 @@ function harness(values, fetch, compact = false) {
       'react/jsx-runtime': { jsx: (type, props) => ({ type, props }), jsxs: (type, props) => ({ type, props }) },
     })[name],
   });
-  const form = exports.default({ courseName: 'Codex研修', sourcePath: '/training/codex', compact });
+  const tree = exports.default({ courseName: 'Codex研修', sourcePath: '/training/codex', compact });
+  function findForm(node) {
+    if (!node || typeof node !== 'object') return null;
+    if (node.type === 'form') return node;
+    return [node.props?.children].flat(Infinity).map(findForm).find(Boolean);
+  }
+  const form = findForm(tree);
   let focused = false;
   return { state, form, submit: () => form.props.onSubmit({ preventDefault() {}, currentTarget: { querySelector: () => ({ focus() { focused = true; } }) } }), focused: () => focused };
 }

@@ -1,4 +1,6 @@
 "use client";
+import LocalizedContent from "@/components/LocalizedContent";
+
 
 import { useEffect, useRef, useState } from "react";
 import styles from "./AgentTrainingPage.module.css";
@@ -36,7 +38,7 @@ export default function TrainingMobileNav() {
     };
   }, [open]);
 
-  return (
+  return <LocalizedContent>{(
     <div className={styles.mobileMenu} ref={menu}>
       <button data-ui-button="icon" type="button" className={styles.menuToggle} ref={toggle} aria-expanded={open} aria-controls="training-mobile-menu" aria-label={open ? "研修メニューを閉じる" : "研修メニューを開く"} onClick={() => setOpen(!open)}>
         <span aria-hidden="true"><i /><i /><i /></span>
@@ -46,5 +48,5 @@ export default function TrainingMobileNav() {
         {links.map(([href, label]) => <a data-ui-button="menu" data-ui-with-icon key={href} href={href} onClick={() => setOpen(false)}><span className="ui-button-label">{label}</span><span className="ui-button-icon" data-ui-side="end" aria-hidden="true"><span aria-hidden="true">›</span></span></a>)}
       </nav>
     </div>
-  );
+  )}</LocalizedContent>;
 }

@@ -1,3 +1,7 @@
+"use client";
+import LanguageToggle from "@/components/LanguageToggle";
+
+import LocalizedContent from "@/components/LocalizedContent";
 import Image from "next/image";
 import Link from "next/link";
 import TrainingLeadForm from "@/components/TrainingLeadForm";
@@ -18,15 +22,15 @@ const faqs = [
   ["研修後の支援も相談できますか？", "定着支援や開発もご相談いただけます。研修とは範囲・期間・費用を分けてご提案します。"],
 ];
 function Apply({ children = "無料相談・見積もり" }: { children?: React.ReactNode }) {
-  return <a data-ui-with-icon data-ui-button="filled" className={styles.apply} href="#contact"><span className="ui-button-label">{children}</span><span className="ui-button-icon" data-ui-side="end" aria-hidden="true"><span aria-hidden="true">↗</span></span></a>;
+  return <LocalizedContent>{<a data-ui-with-icon data-ui-button="filled" className={styles.apply} href="#contact"><span className="ui-button-label">{children}</span><span className="ui-button-icon" data-ui-side="end" aria-hidden="true"><span aria-hidden="true">↗</span></span></a>}</LocalizedContent>;
 }
 export default function CodexTrainingPage() {
   const schema = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faqs.map(([name, text]) => ({ "@type": "Question", name, acceptedAnswer: { "@type": "Answer", text } })) };
-  return <div className={styles.page}>
+  return <LocalizedContent>{<div className={styles.page}>
     <header className={styles.header}>
       <Link href="/" aria-label="ClearAI ホーム"><Image src="/images/logo-clear-wordmark.png" width={132} height={40} alt="ClearAI" /></Link>
       <nav className={styles.desktopNav} aria-label="研修ページ内ナビゲーション"><a data-ui-button="nav" href="#curriculum"><span className="ui-button-label">カリキュラム</span></a><a data-ui-button="nav" href="#examples"><span className="ui-button-label">できること</span></a><a data-ui-button="nav" href="#pricing"><span className="ui-button-label">料金・条件</span></a><a data-ui-button="nav" href="#faq"><span className="ui-button-label">FAQ</span></a></nav>
-      <TrainingMobileNav /><Apply />
+      <TrainingMobileNav /><LanguageToggle /><Apply />
     </header>
     <div data-course-content>
       <section className={styles.hero}>
@@ -72,5 +76,5 @@ export default function CodexTrainingPage() {
     <footer className={styles.footer}><Link href="/about">会社情報</Link><Link href="/privacy">プライバシーポリシー</Link><Link href="/contact">お問い合わせ</Link><p>ClearAI独自の研修です。OpenAIの公式・認定研修ではありません。</p><small>© ClearAI Inc.</small></footer>
     <div className={styles.mobileCta}><Apply /></div>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, "\\u003c") }} />
-  </div>;
+  </div>}</LocalizedContent>;
 }

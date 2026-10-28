@@ -1,10 +1,12 @@
 "use client";
+import LocalizedContent from "@/components/LocalizedContent";
+
 
 import Link from "next/link";
 import Image from "next/image";
 import PageHeader from "@/components/PageHeader";
 import { caseStudies, type CaseStudy } from "@/lib/cases";
-import { useLanguage, type Language } from "@/lib/i18n/LanguageContext";
+import { useLanguage, type ContentLanguage as Language } from "@/lib/i18n/LanguageContext";
 
 const collectionSchema = {
   "@context": "https://schema.org",
@@ -134,7 +136,7 @@ export default function CaseStudiesIndexPage() {
   const { lang } = useLanguage();
   const t = COPY[lang];
 
-  return (
+  return <LocalizedContent>{(
     <>
       <script
         type="application/ld+json"
@@ -220,5 +222,5 @@ export default function CaseStudiesIndexPage() {
         </section>
       </div>
     </>
-  );
+  )}</LocalizedContent>;
 }

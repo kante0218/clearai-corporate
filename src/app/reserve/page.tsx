@@ -1,4 +1,6 @@
 "use client";
+import LocalizedContent from "@/components/LocalizedContent";
+
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
@@ -240,7 +242,7 @@ export default function ReservePage() {
   // ---- Fallback to Google embed when not configured -----------------------
   const showFallback = !loading && avail && !avail.configured;
 
-  return (
+  return <LocalizedContent>{(
     <main className="min-h-screen bg-white">
       {/* Hero */}
       <section className="max-w-4xl mx-auto px-6 pt-28 lg:pt-32 pb-6 lg:pb-8 text-center">
@@ -416,5 +418,5 @@ export default function ReservePage() {
         )}
       </section>
     </main>
-  );
+  )}</LocalizedContent>;
 }

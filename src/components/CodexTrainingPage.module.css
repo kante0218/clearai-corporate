@@ -67,3 +67,10 @@
 .profile > img { display: block; width: 176px; height: 176px; object-fit: contain; border-radius: 24px; }
 .profile h2 { margin-bottom: 12px; }.profile h3 span { font-size: 13px; font-weight: 400; margin-left: 12px; }.profile a { display: inline-block; padding-block: 10px; text-decoration: underline; font-size: 13px; }
 @media(max-width: 767px) { .header > a:last-child { display: none; }.profile { grid-template-columns: 1fr; gap: 20px; }.profile > img { width: 144px; height: 144px; }.process { flex-direction: column; }.process li { justify-content: flex-start; padding: 12px 0; border-bottom: 1px solid #ded7ea; }.process li + li::before { content: "↓"; }.hero h1 { font-size: 36px !important; }.heroLead { font-size: 14px !important; } }
+
+@media(max-width:1100px) and (min-width:768px) { .header { flex-wrap:wrap; gap:12px; }.desktopNav { gap:12px; } }
+@media(max-width:767px) { .header :global(.language-trigger) { width:112px; font-size:12px; padding-inline:22px; }.header :global(.language-menu) { right:0; } }
+@media(max-width:767px) {
+ .page .header > a[data-ui-button]:last-child { display:none !important; }
+ .header :global(.language-trigger) { width:112px !important; }
+}
