@@ -41,18 +41,37 @@
     "retired_bootcamp": "also 404/noindex; old schema removed"
   },
   "library_delivery": {
-    "saved_mobile_image": "libfile_9864cca6d03881918b247d6e1498c078",
-    "latest_four_file_batch": "failed before preparation; Library prepare_uploads unavailable in local helper environment; no finalization or fallback attempted",
-    "latest_csv_local": [
-      "ClearAI_改善事項確認一覧_全152件.csv",
-      "ClearAI_改善事項確認表_43件6分類.csv"
+    "status": "all requested files saved",
+    "route": "prepared helper unavailable before mutation; parent explicitly directed supported direct fallback for owned files",
+    "csvs": [
+      {
+        "library_file_id": "libfile_9b2f0487a5688191aa40e7b7ad5ef843",
+        "version": 2,
+        "name": "ClearAI_改善事項確認一覧_全152件.csv"
+      },
+      {
+        "library_file_id": "libfile_a77033f111bc819182dabeddfa1d00d6",
+        "version": 1,
+        "name": "ClearAI_改善事項確認表_43件6分類.csv"
+      }
     ],
-    "staged_images": [
-      "ClearAI_Codex研修_PC_ローカル修正版_未公開.png",
-      "ClearAI_Products非表示_ローカル修正版_未公開.png"
+    "images": [
+      {
+        "caption": "ローカル修正版・未公開：Codex研修スマホ（上部・中央・下部固定CTA）",
+        "library_file_id": "libfile_9864cca6d03881918b247d6e1498c078",
+        "version": 0
+      },
+      {
+        "caption": "ローカル修正版・未公開：Codex研修PCの主要CTA",
+        "library_file_id": "libfile_070877e922c081919766f9998a865910",
+        "version": 0
+      },
+      {
+        "caption": "ローカル修正版・未公開：Products一覧非表示後のホーム",
+        "library_file_id": "libfile_faa9d4e093bc8191a860ded5c52e5905",
+        "version": 0
+      }
     ],
-    "previous_csv_library_id": "libfile_9b2f0487a5688191aa40e7b7ad5ef843",
-    "previous_csv_library_version": 1,
-    "previous_csv_is_latest": false
+    "local_library_metadata_applied": true
   }
 }
