@@ -17,8 +17,8 @@ export default function LanguageToggle({ variant = "desktop", className = "" }: 
   const isJa = lang === "ja";
 
   const isDesktop = variant === "desktop";
-  const buttonSize = isDesktop ? "w-9 h-7 text-[11px]" : "w-12 h-9 text-sm";
-  const thumbSize = isDesktop ? "w-9 h-7" : "w-12 h-9";
+  const buttonSize = isDesktop ? "w-9 h-11 text-[11px]" : "w-12 h-11 text-sm";
+  const thumbSize = isDesktop ? "w-9 h-11" : "w-12 h-11";
 
   return (
     <div
@@ -32,10 +32,10 @@ export default function LanguageToggle({ variant = "desktop", className = "" }: 
         className={`absolute top-0.5 left-0.5 ${thumbSize} rounded-md shadow-sm transition-transform duration-300 ease-out`}
         style={{
           background: "var(--accent-solid)",
-          transform: isJa ? "translateX(0)" : "translateX(100%)",
+          transform: isJa ? "translateX(0)" : `translateX(${isDesktop ? "100%" : "calc(100% + 12px)"})`,
         }}
       />
-      <button data-ui-button="control"
+      <button
         type="button"
         onClick={() => setLang("ja")}
         aria-pressed={isJa}
@@ -43,7 +43,7 @@ export default function LanguageToggle({ variant = "desktop", className = "" }: 
           isJa ? "text-white" : "text-gray-500 hover:text-gray-800"
         }`}
       ><span className="ui-button-label">{t.ja}</span></button>
-      <button data-ui-button="control"
+      <button
         type="button"
         onClick={() => setLang("en")}
         aria-pressed={!isJa}
