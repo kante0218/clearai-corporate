@@ -1,0 +1,13 @@
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const Module = require('node:module');
+const ts = require('typescript');
+const filename = require('node:path').resolve('src/lib/blog-date.ts');
+const compiled = new Module(filename, module);
+compiled._compile(ts.transpileModule(fs.readFileSync(filename, 'utf8'), { compilerOptions: { module: ts.ModuleKind.CommonJS } }).outputText, filename);
+const { formatBlogDate } = compiled.exports;
+assert.equal(formatBlogDate('2026-04-13T15:00:00.000Z'), '2026-04-14');
+assert.equal(formatBlogDate('2026-04-13T14:59:59.000Z'), '2026-04-13');
+assert.equal(formatBlogDate('2026-04-14'), '2026-04-14');
+assert.equal(formatBlogDate('invalid'), '');
+console.log('blog date: JST day boundary, date-only and invalid input passed');

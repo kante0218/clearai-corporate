@@ -1,0 +1,18 @@
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const Module = require('node:module');
+const ts = require('typescript');
+const filename = require('node:path').resolve('src/lib/article-resource.ts');
+const compiled = new Module(filename, module);
+compiled._compile(ts.transpileModule(fs.readFileSync(filename, 'utf8'), { compilerOptions: { module: ts.ModuleKind.CommonJS } }).outputText, filename);
+const { articleResourceHtml } = compiled.exports;
+assert.equal(articleResourceHtml('other'), '');
+const html=articleResourceHtml('uber-chatgpt-work-20261025');
+assert.ok(html.includes('/downloads/chatgpt-work-evaluation.html'));
+assert.ok(html.includes('Uberの実際の様式や測定実績ではありません'));
+const worksheet=fs.readFileSync('public/downloads/chatgpt-work-evaluation.html','utf8');
+assert.ok(!worksheet.includes('<form'));
+assert.ok(!worksheet.includes('<script'));
+assert.ok(worksheet.includes('contenteditable'));
+assert.ok(worksheet.includes('記入内容を送信・保存する機能はありません'));
+console.log('article resource: scoped article, explanatory worksheet, no transmission or tracking passed');

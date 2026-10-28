@@ -73,13 +73,21 @@ export default function WebsiteProductionPage() {
             ))}
           </div>
         </section>
+        <section className="pb-16 lg:pb-24" aria-labelledby="website-scope-title">
+          <h2 id="website-scope-title" className="mb-4 text-2xl font-bold sm:text-3xl">担当範囲を公開している制作事例</h2>
+          <p className="mb-5 max-w-3xl text-sm leading-7 text-neutral-600">不動産コンサルティング会社の匿名事例では、サービスの言語化、読み手に合わせた構成、Next.jsでの実装、社内で更新する仕組み、構造化データと表示速度への対応を紹介しています。上記のロゴ掲載企業との対応を示すものではありません。</p>
+          <ol className="grid gap-4 text-sm sm:grid-cols-3">{[['情報の整理','誰の、どの場面の相談を受けるかを先に明文化'],['構成と実装','進め方・期間・成果物を伝える構成とNext.jsでの実装'],['更新の引き継ぎ','更新頻度に応じたCMSと実装の分担']].map(([title,body]) => <li key={title} className="rounded-lg border border-neutral-300 p-5"><h3 className="font-bold">{title}</h3><p className="mt-2 leading-7 text-neutral-600">{body}</p></li>)}</ol>
+          <Link href="/case-studies/real-estate-consulting-site" className="mt-5 inline-block text-sm font-semibold underline underline-offset-4">課題・担当した工程・結果を事例で読む</Link>
+          <p className="mt-6 text-sm leading-7 text-neutral-600">見積を比較する際は、ページ数、原稿と写真の準備、必要な機能、確認・修正の範囲、公開後の更新・保守をそろえてください。個別の制作金額・納期は、その条件を伺ってご案内します。</p>
+          <a href="/samples/development-scope-sheet.txt" download className="mt-3 inline-block text-sm font-semibold underline underline-offset-4">見積条件を整理する空欄シートを保存</a>
+        </section>
         <section id="process" className="scroll-mt-28 pb-16 lg:pb-24">
           <h2 data-motion="heading" className="text-2xl sm:text-3xl font-bold mb-8">制作の流れ</h2>
           <ol className="divide-y divide-neutral-200 border-y border-neutral-200">{steps.map(([title, body], index) => <li data-motion="reading" key={title} className="flex gap-5 sm:gap-8 py-7"><span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-neutral-200 text-sm font-semibold text-neutral-600" aria-hidden="true">{index + 1}</span><div><h3 className="font-bold text-lg mb-2">{title}</h3><p data-reading className="max-w-3xl text-sm text-neutral-600 leading-[1.95]">{body}</p></div></li>)}</ol>
         </section>
         <section id="faq" className="scroll-mt-28 pb-16 lg:pb-24">
           <h2 data-motion="heading" className="text-2xl sm:text-3xl font-bold mb-8">よくあるご質問</h2>
-          <div className="divide-y divide-neutral-200 border-y border-neutral-200">{faqs.map(([question, answer]) => <details data-motion-disclosure key={question} className="py-5"><summary className="cursor-pointer font-semibold leading-relaxed rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4">{question}</summary><p data-reading className="max-w-3xl pt-4 text-sm text-neutral-600 leading-[1.95]">{answer}</p></details>)}</div>
+          <div className="divide-y divide-neutral-200 border-y border-neutral-200">{faqs.map(([question, answer]) => <details data-motion-disclosure key={question} className="group py-5"><summary className="flex cursor-pointer list-none items-center justify-between gap-4 rounded-sm font-semibold leading-relaxed hover:text-neutral-600 focus-visible:outline-2 focus-visible:outline-offset-4"><span>{question}</span><span aria-hidden="true" className="text-xl transition-transform group-open:rotate-45">+</span></summary><p data-reading className="max-w-3xl pt-4 text-sm text-neutral-600 leading-[1.95]">{answer}</p></details>)}</div>
         </section>
         <section id="consultation" className="relative scroll-mt-28 rounded-xl border border-neutral-200 bg-neutral-50 p-6 sm:p-10 lg:p-12">
           <h2 data-motion="heading" className="text-2xl sm:text-3xl font-bold mb-4">まずは、伝えたいことをお聞かせください。</h2>

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { FormEvent, useMemo, useRef, useState } from "react";
-import { ENGINEER_DAY_RATE, ENGINEER_HOURLY_RATE, RENTAL_MODELS, RENTAL_USE_CASES, type RentalModelId } from "@/lib/robot-rental-order";
+import { parseRentalSelection, ENGINEER_DAY_RATE, ENGINEER_HOURLY_RATE, RENTAL_MODELS, RENTAL_USE_CASES, type RentalModelId } from "@/lib/robot-rental-order";
 
 const yen = (value: number) => `¥${value.toLocaleString("ja-JP")}`;
 
@@ -10,12 +10,12 @@ function todayInJapan() {
   return new Intl.DateTimeFormat("sv-SE", { timeZone: "Asia/Tokyo" }).format(new Date());
 }
 
-export default function RentalApplicationForm({ initialModel }: { initialModel: RentalModelId }) {
-  const [model, setModel] = useState<RentalModelId>(initialModel);
-  const [grade, setGrade] = useState<string>(Object.keys(RENTAL_MODELS[initialModel].grades)[0]);
-  const [nights, setNights] = useState(1);
-  const [engineerPlan, setEngineerPlan] = useState<"hourly" | "day">("day");
-  const [engineerHours, setEngineerHours] = useState(1);
+export default function RentalApplicationForm({ initialSelection }: { initialSelection: ReturnType<typeof parseRentalSelection> }) {
+  const [model, setModel] = useState<RentalModelId>(initialSelection.model);
+  const [grade, setGrade] = useState<string>(initialSelection.grade);
+  const [nights, setNights] = useState(initialSelection.nights);
+  const [engineerPlan, setEngineerPlan] = useState<"hourly" | "day">(initialSelection.engineerPlan);
+  const [engineerHours, setEngineerHours] = useState(initialSelection.engineerHours);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
   const submissionRef = useRef<{ payloadKey: string; id: string } | null>(null);

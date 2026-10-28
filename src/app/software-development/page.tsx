@@ -1,11 +1,17 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import PricingCarousel from "@/components/PricingCarousel";
 import CardCarousel from "@/components/CardCarousel";
 import { BOOKING_URL } from "@/lib/booking";
+
+const TECH_CASES = [
+  { slug: "real-estate-consulting-site", title: "不動産コンサルティング会社のWeb制作", stack: ["Next.js", "TypeScript", "Tailwind CSS", "ヘッドレスCMS", "Vercel"] },
+  { slug: "ses-sns-automation", title: "SES企業のSNS業務自動化", stack: ["Claude（AIエージェント）", "TypeScript", "Next.js", "PostgreSQL", "各SNSの公式API"] },
+];
 
 function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -176,7 +182,7 @@ const COPY: Record<"ja" | "en", Copy> = {
     pricingTitle: "ご提供プラン",
     pricingDesc: "開発規模・要件によって費用が大きく変わるため、金額は一律で個別お見積りとしています。概算だけ知りたい段階でもお気軽にご相談ください。",
     plans: [
-      { name: "プロトタイプ開発", price: "要見積", unit: "", desc: "アイデアを短期間で動くものにし、投資判断できる状態にします。", features: ["要件ヒアリング・スコープ確定", "動くプロトタイプの構築", "技術選定・構成図の提示", "そのまま本番化できる設計"], featured: false },
+      { name: "プロトタイプ開発", price: "要見積", unit: "", desc: "アイデアを短期間で動くものにし、投資判断できる状態にします。", features: ["要件ヒアリング・スコープ確定", "動くプロトタイプの構築", "技術選定・構成図の提示", "本番移行で必要な作業を整理"], featured: false },
       { name: "業務システム受託開発", price: "要見積", unit: "", desc: "要件定義から設計・実装・テスト・本番リリースまで一括で担います。", features: ["業務フロー整理・要件定義", "設計・実装・テスト", "既存システム／SaaS連携", "本番リリース・データ移行", "運用手順書・引き継ぎ資料"], featured: true },
       { name: "継続開発・運用保守", price: "要見積", unit: "", desc: "リリース後の改善・監視・機能追加を継続的に担当します。", features: ["機能追加・改善の継続開発", "障害対応・監視", "インフラ運用・コスト最適化", "社内エンジニアへの引き継ぎ支援"], featured: false },
     ],
@@ -247,7 +253,7 @@ const COPY: Record<"ja" | "en", Copy> = {
     pricingTitle: "Engagement models",
     pricingDesc: "Because cost varies widely with scope and requirements, every engagement is quoted individually. Feel free to reach out even if you only need a rough range.",
     plans: [
-      { name: "Prototype build", price: "Custom quote", unit: "", desc: "Turn an idea into something that runs, so you can make an investment decision.", features: ["Requirements interview & scope definition", "A working prototype", "Technology selection & architecture diagram", "Built to become the production system"], featured: false },
+      { name: "Prototype build", price: "Custom quote", unit: "", desc: "Turn an idea into something that runs, so you can make an investment decision.", features: ["Requirements interview & scope definition", "A working prototype", "Technology selection & architecture diagram", "Identify work needed for production"], featured: false },
       { name: "Contract system development", price: "Custom quote", unit: "", desc: "End-to-end ownership from requirements through design, implementation, testing, and launch.", features: ["Workflow mapping & requirements definition", "Design, implementation & testing", "Integration with existing systems / SaaS", "Production launch & data migration", "Runbooks & handover documentation"], featured: true },
       { name: "Ongoing development & maintenance", price: "Custom quote", unit: "", desc: "Continuous improvement, monitoring, and feature work after launch.", features: ["Ongoing feature development", "Incident response & monitoring", "Infrastructure operations & cost optimization", "Handover support for your engineers"], featured: false },
     ],
@@ -343,10 +349,16 @@ export default function SoftwareDevelopmentPage() {
                     ))}
                   </ul>
                   <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="block text-center text-sm font-semibold py-2 rounded-lg transition-all duration-300 mt-auto bg-cta text-white hover:bg-cta-hover">{t.planCta}</a>
+                <a href={`/contact?service=software-development&plan=${["prototype", "system", "operations"][i]}`} className="mt-3 block py-2 text-center text-sm font-semibold underline underline-offset-4">{lang === "ja" ? "文章で見積相談する" : "Request a quote in writing"}</a>
                 </div>
               </Reveal>
             ))}
           </PricingCarousel>
+          <div className="mt-8 rounded-lg border border-gray-200 bg-gray-50 p-5 text-sm leading-7 text-gray-700">
+            <h3 className="font-bold text-gray-900">{lang === "ja" ? "試作と本番移行を分けて確認" : "Separate prototype validation from production readiness"}</h3>
+            <p>{lang === "ja" ? "試作では何を検証できれば次へ進むかを整理します。本番移行では認証・権限、連携、評価・テスト、監視や引き継ぎなどの必要性を別に確認し、対象範囲・費用・時期を見積で合意します。試作の完成だけで本番利用できると判断しないでください。" : "Define what the prototype must validate. Review authentication, permissions, integrations, testing, monitoring and handover separately, then agree on scope, cost and timing in the quotation. A working prototype alone does not establish production readiness."}</p>
+            <a href="/samples/development-scope-sheet.txt" download className="mt-3 inline-block font-semibold underline underline-offset-4">{lang === "ja" ? "見積前提・受入条件の空欄シートを保存" : "Save the blank scope and acceptance worksheet"}</a>
+          </div>
         </div>
       </section>
 
@@ -366,6 +378,7 @@ export default function SoftwareDevelopmentPage() {
         </div>
       </section>
 
+      <div className="mx-auto max-w-[1800px] px-6 py-5 text-sm leading-7 text-gray-600 lg:px-8">{lang === "ja" ? "「最短2週間」は全案件の納期保証ではありません。対象機能、資料・データの準備、接続先、確認工程を伺い、開始日と提出時期を個別に確認します。" : "The two-week minimum is not a delivery guarantee for every project. Scope, available materials, integrations and review steps must be discussed before confirming start and delivery dates."}</div>
       {/* DEVELOPMENT AREAS */}
       <section id="areas" className="py-14 lg:py-20 bg-gray-50">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
@@ -434,6 +447,17 @@ export default function SoftwareDevelopmentPage() {
             <Label>{t.processLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-8">{t.processTitle}</h2>
           </Reveal>
+          <details className="mb-6 rounded-lg border border-gray-200 bg-white p-5 text-sm leading-7 text-gray-700">
+            <summary className="cursor-pointer font-bold text-gray-900">{lang === "ja" ? "工程ごとに合意する成果物・判断点の例" : "Examples of outputs and decisions to agree at each stage"}</summary>
+            <p className="mt-3">{lang === "ja" ? "相談時の確認項目です。すべてが標準の納品物になるものではなく、実際の範囲と受入条件は個別契約で定めます。" : "Discussion points, not a contractual delivery list. Confirm actual outputs and acceptance criteria in the individual agreement."}</p>
+            <ol className="mt-3 list-decimal space-y-3 pl-5">
+              <li>{lang === "ja" ? "要件：対象業務・対象外・評価方法 → 何を作り、何を作らないか確認" : "Requirements: scope, exclusions and evaluation → agree what to build"}</li>
+              <li>{lang === "ja" ? "設計・見積：構成・工程・費用前提 → 範囲と費用を承認して次工程へ" : "Design and quote: architecture, stages and assumptions → approve scope and cost"}</li>
+              <li>{lang === "ja" ? "試作：動作と評価記録 → 合格・修正・中止の判断" : "Prototype: working flow and evaluation → proceed, revise or stop"}</li>
+              <li>{lang === "ja" ? "開発・テスト：テスト項目と結果 → 不具合と受入条件を照合" : "Build and test: test cases and results → check against acceptance criteria"}</li>
+              <li>{lang === "ja" ? "公開・引継ぎ：運用・権限・連絡先 → 運用を開始できるか確認" : "Release and handover: operations, access and contacts → confirm readiness to operate"}</li>
+            </ol>
+          </details>
           {t.process.map((step, i) => (
             <Reveal key={step.num} delay={i * 100}>
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 py-10 border-b border-gray-100 last:border-0">
@@ -457,6 +481,11 @@ export default function SoftwareDevelopmentPage() {
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.techTitle}</h2>
             <p className="text-base text-gray-500 w-full leading-relaxed mb-8">{t.techDesc}</p>
           </Reveal>
+          <aside className="mb-8 rounded-lg border border-gray-200 bg-gray-50 p-5">
+            <h3 className="text-lg font-bold text-gray-900">{lang === "ja" ? "公開事例で使用技術と実装内容を確認" : "See technologies alongside published implementations"}</h3>
+            <p className="mt-2 text-sm leading-7 text-gray-600">{lang === "ja" ? "公開済み事例の記載に基づきます。顧客の実画面や数値を新たに公開するものではありません。" : "Based on existing published case descriptions, without adding private screens or performance claims."}</p>
+            <ul className="mt-4 space-y-4">{TECH_CASES.map((study) => <li key={study.slug}><Link href={`/case-studies/${study.slug}`} className="text-sm font-bold underline underline-offset-4">{study.title}</Link><p className="mt-1 text-sm leading-6 text-gray-600">{study.stack.join(" / ")}</p></li>)}</ul>
+          </aside>
           <div className="space-y-0">
             {t.techGroups.map((group, gi) => (
               <Reveal key={group.category} delay={gi * 40}>
@@ -471,7 +500,7 @@ export default function SoftwareDevelopmentPage() {
                         {group.items.map((tech) => (
                           <div key={tech.name} className="bg-white border border-gray-200 rounded-lg px-3.5 py-2 flex items-center gap-2.5 hover:border-gray-300 transition-colors">
                             {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img src={`https://api.iconify.design/${tech.icon}.svg${tech.color ? `?color=%23${tech.color}` : ''}`} alt={tech.name} className="w-8 h-8 object-contain" loading="lazy" />
+                            <img src={`https://api.iconify.design/${tech.icon}.svg${tech.color ? `?color=%23${tech.color}` : ''}`} alt="" aria-hidden="true" onError={(event) => { event.currentTarget.style.display = "none"; }} className="w-8 h-8 object-contain" loading="lazy" />
                             <p className="text-xs font-medium text-gray-600 text-center leading-tight">{tech.name}</p>
                           </div>
                         ))}

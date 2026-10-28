@@ -254,7 +254,7 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
     ctaDesc: (<>AIのことがわからなくても大丈夫、<br />貴社の状況に合わせて一緒に考えます。</>),
     ctaPrimary: "代表と面談を予約する",
     ctaSecondary: "文章で問い合わせる",
-    ctaNote: "外部の予約ページ（TimeRex）が新しいタブで開きます。",
+    ctaNote: "外部の予約ページ（TimeRex）が新しいタブで開きます。TimeRexの会員登録は不要です。",
   },
   en: {
     heroChips: ["We own delivery through production operations", "Start with one workflow, prove value, then scale"],
@@ -541,11 +541,16 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
                 「見出しだけ残す」方針で削除。COPY 側の定義は残してあるので復活は容易。
                 相談導線はページ下部と固定ナビに集約。 */}
             {/* モバイルは負マージンで動画(高さ56.25vw)の上へタイトルを重ねる(h1の重複を作らない) */}
-            <div className="-mt-[56.25vw] flex h-[56.25vw] w-full items-center md:mt-0 md:h-auto md:flex-1">
+            <div className="flex w-full items-center py-6 md:h-auto md:flex-1">
               <div className="w-full max-w-[760px]">
                 <h1 data-motion="heading" className="text-[1.9rem] font-black leading-[1.15] tracking-[-0.045em] text-neutral-900 sm:text-6xl lg:text-[4.2rem] xl:text-[4.45rem] [@media(max-height:800px)_and_(min-width:768px)]:text-[3.25rem] [@media(max-height:800px)_and_(min-width:768px)]:leading-[1.04]">
                   {t.heroTitle}
                 </h1>
+                <p className="mt-5 max-w-xl text-base leading-7 text-neutral-700">{lang === "ja" ? "中小企業の業務改善に。" : "For SMEs improving everyday work. "}{t.heroDesc}</p>
+                <div className="mt-6 flex flex-wrap gap-3">
+                  <Link href="/contact" className="inline-flex min-h-11 items-center rounded-md bg-cta px-6 py-3 text-sm font-bold text-white">{lang === "ja" ? "文章で相談する" : "Ask in writing"}</Link>
+                  <Link href="#support" className="inline-flex min-h-11 items-center rounded-md border border-neutral-400 bg-white px-6 py-3 text-sm font-bold text-neutral-900">{lang === "ja" ? "支援内容を見る" : "Explore our services"}</Link>
+                </div>
               </div>
             </div>
           </div>
@@ -571,7 +576,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
               { href: "/website-production", title: lang === "ja" ? "ホームページ制作" : "Website Production", desc: lang === "ja" ? "事業の強みを整理し、読む人に伝わる構成・デザイン・公開まで支援します。" : "We clarify your message and support site structure, design, development, and launch." },
               { href: "/sns-management", title: lang === "ja" ? "SNS運用代行" : "SNS Management", desc: lang === "ja" ? "発信の目的を整理し、企画・文章や画像の制作・投稿管理・分析改善を支援します。" : "Support for social media planning, content creation, publishing management, and review." },
               { href: "/meo", title: lang === "ja" ? "Googleマップ・MEO支援" : "Google Maps / MEO Support", desc: lang === "ja" ? "店舗情報の整備、写真・投稿、口コミ返信、レポートと改善提案を、必要な範囲から支援します。" : "Support for accurate business information, photos, posts, review replies, and improvement reports." },
-            ].map((service) => <li data-motion="card" key={service.href} className="motion-card border-t border-neutral-200 py-5"><Link href={service.href} className={`${styles.serviceLink} font-semibold text-neutral-900 underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-4`}>{service.title}</Link>{service.desc && <p className="mt-3 text-sm text-neutral-600 leading-relaxed">{service.desc}</p>}</li>)}
+            ].map((service) => <li data-motion="card" key={service.href} className="motion-card border-t border-neutral-200 py-5"><Link href={service.href} className={`${styles.serviceLink} font-semibold text-neutral-900 underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-4`}>{service.title}<span className="ml-2 text-sm font-medium">{lang === "ja" ? "詳しく見る →" : "Details →"}</span></Link>{service.desc && <p className="mt-3 text-sm text-neutral-600 leading-relaxed">{service.desc}</p>}</li>)}
           </ul>
         </div>
       </section>
@@ -661,7 +666,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
               <Reveal key={step.num} delay={i * 80}>
                 <div className="group relative bg-white border border-gray-200 rounded-lg p-7 h-full transition-colors duration-300 hover:border-gray-300">
                   <div className="flex items-center gap-3 mb-2">
-                    <span className="text-3xl font-bold text-neutral-200 transition-colors duration-300 group-hover:text-neutral-900 flex-shrink-0">{step.num}</span>
+                    <span className="text-3xl font-bold text-neutral-600 transition-colors duration-300 group-hover:text-neutral-900 flex-shrink-0">{step.num}</span>
                     <h3 className={`${styles.cardTitle} text-base font-bold text-gray-900`}>{step.title}</h3>
                   </div>
                   <p className="text-sm text-gray-600 leading-relaxed">{step.desc}</p>
@@ -713,7 +718,8 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
                 {t.ctaSecondary}
               </Link>
             </div>
-            <p className="text-center text-xs text-gray-400 mt-5">{t.ctaNote}</p>
+            <p className="mx-auto mt-5 max-w-2xl text-center text-sm leading-7 text-gray-700">{lang === "ja" ? "初回相談は30分・無料です。対象業務と課題を伺い、論点・実現可否の初期見立て・進め方を整理します。個別調査や開発の範囲・費用は、お見積りでご確認ください。" : "The initial consultation is free and lasts 30 minutes. We discuss your workflow and challenges, then outline feasibility and next steps. Confirm the scope and fees for further investigation or development in your quote."}</p>
+            <p className="text-center text-sm text-gray-600 leading-7 mt-5">{t.ctaNote}</p>
           </Reveal>
         </div>
       </section>

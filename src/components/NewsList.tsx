@@ -3,15 +3,11 @@ import styles from "./NewsReadability.module.css";
 import Image from "next/image";
 import { cmsImage } from "@/lib/cms-image";
 import { getBlogs, type Blog } from "@/lib/microcms";
-import { blogPosts } from "@/lib/blog-data";
-
-function formatDate(dateStr: string) {
-  const d = new Date(dateStr);
-  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
-}
+import { formatBlogDate } from "@/lib/blog-date";
+import { isCompanyAnnouncement } from "@/lib/blog-classification";
 
 export default async function NewsList() {
-  let posts: { slug: string; title: string; date: string; category: string; image: string }[] = [];
+  let posts: { slug: string; title: string; date: string; category: string; image: string; company: boolean }[] = [];
 
   const fallbackImages = [
     "/images/generated-trust/home-quality-inspection.webp",
@@ -24,8 +20,9 @@ export default async function NewsList() {
     posts = data.contents.map((p: Blog, index) => ({
       slug: p.id,
       title: p.title,
-      date: formatDate(p.publishedAt!),
-      category: p.category?.name ?? "お知らせ",
+      date: formatBlogDate(p.publishedAt!),
+      company: isCompanyAnnouncement(p),
+      category: p.category?.name ?? "記事",
       image: p.eyecatch?.url ?? fallbackImages[index % fallbackImages.length],
     }));
   } catch {
@@ -33,18 +30,13 @@ export default async function NewsList() {
   }
 
   if (posts.length === 0) {
-    posts = blogPosts.slice(0, 3).map((p, index) => ({
-      slug: p.slug,
-      title: p.title,
-      date: p.date,
-      category: p.category,
-      image: fallbackImages[index],
-    }));
+    return <p className="text-sm leading-7 text-neutral-600">現在、お知らせを取得できません。<Link href="/service" className="ml-2 font-semibold underline underline-offset-4">提供サービスを見る</Link></p>;
   }
+  const ordered = [...posts.filter(post => post.company), ...posts.filter(post => !post.company)].slice(0, 3);
 
   return (
     <div className="grid gap-3 sm:grid-cols-3 sm:gap-5">
-      {posts.slice(0, 3).map((post) => (
+      {ordered.map((post) => (
         <Link
           key={post.slug}
           href={`/blog/${post.slug}`}
@@ -56,7 +48,7 @@ export default async function NewsList() {
           <div className="min-w-0 sm:p-4">
           <div className="flex flex-wrap items-center gap-2">
             <span className="text-xs text-neutral-600 font-medium whitespace-nowrap pt-0.5">{post.date}</span>
-            <span className="text-xs font-semibold text-neutral-900 bg-neutral-100 px-2 py-0.5 rounded whitespace-nowrap">{post.category}</span>
+            <span className="text-xs font-semibold text-neutral-900 bg-neutral-100 px-2 py-0.5 rounded">{post.company ? "ClearAIからのお知らせ" : `AI・技術記事 / ${post.category}`}</span>
           </div>
           <h3 className="mt-2 text-sm font-medium leading-relaxed text-gray-900 transition-colors group-hover:text-neutral-700">
             {post.title}

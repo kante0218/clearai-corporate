@@ -16,6 +16,17 @@ const CREST_BY_NAME: Record<string, string> = {
   "伊藤 愛基": "/images/crests/tsukuba-fit.svg",
 };
 
+const MEMBER_FOCUS: Record<string, { ja: string; en: string }> = {
+  "髙橋 敢輝": { ja: "事業開発・AI活用支援", en: "Business development and AI adoption" },
+  "石嶋 悠一": { ja: "市場分析・事業開発・営業", en: "Market analysis, business development and sales" },
+  "菊池 秀弥": { ja: "組織づくり・Claude Code / Codex教育", en: "People and culture, Claude Code / Codex education" },
+  "アニ": { ja: "共同研究・電気電子工学", en: "Collaborative research and electrical engineering" },
+  "鈴木 隆生": { ja: "開発・Python / C言語・共同研究", en: "Engineering, Python / C and collaborative research" },
+  "飯島 聡太": { ja: "ロボットのシミュレーション構築・実機制御", en: "Robot simulation and real-hardware control" },
+  "伊藤 愛基": { ja: "Web開発・設計・技術と事業への助言", en: "Web development, architecture and technology/business advice" },
+  "吉次 優太": { ja: "事業開発・営業でのAI活用", en: "Business development and AI-assisted sales" },
+};
+
 function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
@@ -76,7 +87,7 @@ const COPY: Record<"ja" | "en", Copy> = {
   ja: {
     visionLabel: "Vision 2030",
     visionTitle: "2030年、日本で\n最も信頼されるAIパートナーへ。",
-    visionDesc: "この数字は、一社一社の成功を積み重ねた先に辿り着く約束です。",
+    visionDesc: "以下は2030年に向けた目標です。現在の実績を示す数値ではありません。",
     vision: [
       {
         num: "120社",
@@ -185,8 +196,8 @@ const COPY: Record<"ja" | "en", Copy> = {
     joinLabel: "Join Us",
     joinTitle: "共に、未来をつくる\n仲間を探しています。",
     joinDesc: "ClearAIのミッションに共感してくださる方、パートナー企業様、採用希望の方、まずはお気軽にご連絡ください。",
-    joinCta: "お問い合わせ",
-    joinRecruit: "採用情報 →",
+    joinCta: "事業について相談する",
+    joinRecruit: "採用について確認する →",
     companyLabel: "Company",
     companyTitle: "企業情報",
     companyInfo: [
@@ -195,7 +206,7 @@ const COPY: Record<"ja" | "en", Copy> = {
       { label: "設立", value: "2026年4月" },
       { label: "代表取締役", value: "髙橋 敢輝" },
       { label: "所在地", value: "茨城県" },
-      { label: "事業内容", value: "AI顧問・研修・コンサル / Web制作・SNS運用" },
+      { label: "事業内容", value: "システム・ソフトウェア開発 / ロボットレンタル / AIO（AI検索最適化） / AI研修・コンサルティング / ホームページ制作 / SNS運用代行 / Googleマップ・MEO支援" },
       { label: "資本金", value: "非公開" },
       { label: "主要取引銀行", value: "非公開" },
       { label: "URL", value: "https://clearai.jp" },
@@ -204,7 +215,7 @@ const COPY: Record<"ja" | "en", Copy> = {
   en: {
     visionLabel: "Vision 2030",
     visionTitle: "By 2030, the most trusted AI partner\nacross Japan.",
-    visionDesc: "These figures are a promise built on compounding wins, one company at a time.",
+    visionDesc: "These are goals for 2030, rather than current results.",
     vision: [
       {
         num: "120",
@@ -313,7 +324,7 @@ const COPY: Record<"ja" | "en", Copy> = {
     joinLabel: "Join Us",
     joinTitle: "Building the future\nwith us.",
     joinDesc: "If our mission resonates — as a teammate, partner, or future hire — please reach out.",
-    joinCta: "Contact",
+    joinCta: "Discuss a project",
     joinRecruit: "Careers →",
     companyLabel: "Company",
     companyTitle: "Company Information",
@@ -323,7 +334,7 @@ const COPY: Record<"ja" | "en", Copy> = {
       { label: "Founded", value: "April 2026" },
       { label: "CEO", value: "kante takahashi" },
       { label: "Location", value: "Ibaraki, Japan" },
-      { label: "Business", value: "AI Advisory & Training & Consulting / Web & SNS" },
+      { label: "Business", value: "Software development / Robot rental / AIO / AI training and consulting / Web production / Social media management / Google Maps and MEO" },
       { label: "Capital", value: "Private" },
       { label: "Main bank", value: "Private" },
       { label: "URL", value: "https://clearai.jp" },
@@ -337,6 +348,35 @@ export default function AboutPage() {
 
   return (
     <main className="min-h-screen bg-white">
+
+      {/* ─── 11. COMPANY INFORMATION ───────────────── */}
+      <section className="pt-28 pb-10 lg:pt-32 lg:pb-14 bg-white">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
+          <Reveal>
+            <p className="text-xs font-semibold tracking-widest uppercase text-neutral-900 mb-6">{t.companyLabel}</p>
+            <h1 className="text-3xl font-bold text-gray-900 leading-tight mb-12">
+              {t.companyTitle}
+            </h1>
+          </Reveal>
+
+          <div className="max-w-2xl">
+            <p className="mb-5 text-sm leading-relaxed text-neutral-700">{lang === "ja" ? "お取引の審査等で法人番号・所在地の詳細が必要な場合は、連絡窓口へお問い合わせください。" : "For company registration or address details needed for transaction checks, please contact us."} <Link href="/contact" className="font-semibold underline underline-offset-4">{lang === "ja" ? "法人情報の照会" : "Request company details"}</Link></p>
+            {t.companyInfo.map((item, i) => (
+              <Reveal key={item.label} delay={i * 60}>
+                <div className="flex flex-col sm:flex-row sm:items-baseline py-5 border-b border-gray-100 last:border-0">
+                  <span className="sm:w-48 shrink-0 text-sm font-semibold text-gray-500 mb-1 sm:mb-0">
+                    {item.label}
+                  </span>
+                  <span className="text-base text-gray-900 font-medium">
+                    {item.value}
+                    {(item.label === "事業内容" || item.label === "Business") && <Link href="/service" className="mt-2 block text-sm underline underline-offset-4">{lang === "ja" ? "各事業の詳細を見る" : "View service details"}</Link>}
+                  </span>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* ─── 3. VISION 2030 ──────────────────────────────────────────────── */}
       <section className="py-40 lg:py-56 bg-neutral-950 relative overflow-hidden">
@@ -374,6 +414,7 @@ export default function AboutPage() {
             {t.vision.map((item, i) => (
               <Reveal key={item.label} delay={i * 80} className="h-full">
                 <div className="h-full border border-white/10 rounded-lg p-10 lg:p-12 bg-white/10 backdrop-blur-md flex flex-col">
+                  <p className="text-base font-bold text-white mb-3">{lang === "ja" ? "2030年目標" : "2030 goal"}</p>
                   <p className="text-4xl lg:text-5xl font-bold text-white mb-2">{item.num}</p>
                   <p className="text-sm font-semibold text-neutral-300 mb-3">{item.label}</p>
                   <p className="text-sm text-gray-300 leading-relaxed">{item.desc}</p>
@@ -385,7 +426,7 @@ export default function AboutPage() {
       </section>
 
       {/* ─── 7.5 MEMBERS ─────────────────────────────────────────────────── */}
-      <section className="py-14 lg:py-20 bg-white">
+      <section id="members" className="scroll-mt-28 py-14 lg:py-20 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <p className="text-xs font-semibold tracking-widest uppercase text-neutral-900 mb-6">{t.membersLabel}</p>
@@ -417,6 +458,7 @@ export default function AboutPage() {
                     )}
                   </div>
                   <p className="text-sm font-semibold text-neutral-900 mb-3">{m.role}</p>
+                  {MEMBER_FOCUS[m.name] && <p className="mb-4 rounded-md bg-neutral-50 p-3 text-sm leading-relaxed text-neutral-800"><span className="mb-1 block text-xs font-bold">{lang === "ja" ? "担当領域" : "Focus"}</span>{MEMBER_FOCUS[m.name][lang]}</p>}
                   <p className="text-sm text-gray-600 leading-relaxed">{m.bio}</p>
                 </article>
               </Reveal>
@@ -450,13 +492,13 @@ export default function AboutPage() {
                       <div className="absolute left-0 top-1.5 w-[11px] h-[11px] rounded-full bg-neutral-900" />
                     )}
 
-                    <span className={`block text-xs font-bold tracking-wide mb-1.5 ${item.future ? "text-neutral-300" : "text-neutral-900"}`}>
-                      {item.year}
+                    <span className={`block text-xs font-bold tracking-wide mb-1.5 ${item.future ? "text-neutral-700" : "text-neutral-900"}`}>
+                      {item.year} <span className="ml-2 inline-block border border-neutral-400 px-2 py-0.5">{lang === "ja" ? item.future ? "目標" : "実施済み" : item.future ? "Goal" : "Completed"}</span>
                     </span>
-                    <h3 className={`text-base font-bold mb-2 ${item.future ? "text-gray-400" : "text-gray-900"}`}>
+                    <h3 className={`text-base font-bold mb-2 ${item.future ? "text-gray-900" : "text-gray-900"}`}>
                       {item.title}
                     </h3>
-                    <p className={`text-sm leading-relaxed ${item.future ? "text-gray-400" : "text-gray-600"}`}>
+                    <p className={`text-sm leading-relaxed ${item.future ? "text-gray-700" : "text-gray-600"}`}>
                       {item.description}
                     </p>
                   </div>
@@ -496,32 +538,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ─── 11. COMPANY INFORMATION (moved below Join Us) ───────────────── */}
-      <section className="py-14 lg:py-20 bg-white">
-        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <Reveal>
-            <p className="text-xs font-semibold tracking-widest uppercase text-neutral-900 mb-6">{t.companyLabel}</p>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-12">
-              {t.companyTitle}
-            </h2>
-          </Reveal>
 
-          <div className="max-w-2xl">
-            {t.companyInfo.map((item, i) => (
-              <Reveal key={item.label} delay={i * 60}>
-                <div className="flex flex-col sm:flex-row sm:items-baseline py-5 border-b border-gray-100 last:border-0">
-                  <span className="sm:w-48 shrink-0 text-sm font-semibold text-gray-500 mb-1 sm:mb-0">
-                    {item.label}
-                  </span>
-                  <span className="text-base text-gray-900 font-medium">
-                    {item.value}
-                  </span>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
 
     </main>
   );

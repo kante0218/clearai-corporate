@@ -1,0 +1,13 @@
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const Module = require('node:module');
+const ts = require('typescript');
+const filename = require('node:path').resolve('src/lib/blog-classification.ts');
+const compiled = new Module(filename, module);
+compiled._compile(ts.transpileModule(fs.readFileSync(filename, 'utf8'), { compilerOptions: { module: ts.ModuleKind.CommonJS } }).outputText, filename);
+const { isCompanyAnnouncement } = compiled.exports;
+assert.equal(isCompanyAnnouncement({id:'new',category:{name:'お知らせ'}}),true);
+assert.equal(isCompanyAnnouncement({id:'1w8e6__tba'}),true);
+assert.equal(isCompanyAnnouncement({id:'article',category:{name:'テクノロジー'}}),false);
+assert.equal(isCompanyAnnouncement({id:'unknown'}),false);
+console.log('blog classification: explicit company category/known announcement; unknown stays unclassified passed');

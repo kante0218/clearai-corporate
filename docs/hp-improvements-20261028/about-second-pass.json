@@ -1,0 +1,116 @@
+[
+  {
+    "number": "003",
+    "status": "needs-input",
+    "outcome": "トップの汎用映像を実物素材へ交換するため、公開許諾済みの自社画面・制作工程・人物写真が必要。",
+    "evidence": "src/components/HomeContent.tsx: existing hero video remains root-owned"
+  },
+  {
+    "number": "008",
+    "status": "needs-input",
+    "outcome": "7事業の実物成果物画像は揃っていない。生成画像を実例に転用しない。",
+    "evidence": "public/images contains generated/training/robot assets; service-specific actual-photo permissions absent"
+  },
+  {
+    "number": "009",
+    "status": "prepared",
+    "outcome": "JASO・お宿いけがみの2社に既存公開ページで確認できるWeb制作の支援種別リンクを追加。他社の支援種別・時期は入力待ち。",
+    "evidence": "src/app/website-production/page.tsx works lists JASO and お宿いけがみ; src/components/ClientLogoShowcase.tsx adds matching /website-production#works links"
+  },
+  {
+    "number": "011",
+    "status": "needs-input",
+    "outcome": "Aqua・まぜまぜReadingの実画面取得と掲載許諾の根拠がないため画像を追加していない。既存公式サイトリンクは維持。",
+    "evidence": "src/components/ProductList.tsx published official hrefs"
+  },
+  {
+    "number": "013",
+    "status": "needs-input",
+    "outcome": "各段階の確定期間・成果物を一律に定義できない。既存/flowには開発工程の期間と成果物があるため、rootがトップから案内可能。",
+    "evidence": "src/app/flow/page.tsx DEV_STEPS has duration, ours; HomeContent root-owned"
+  },
+  {
+    "number": "015",
+    "status": "needs-input",
+    "outcome": "代表の既存経歴は/about#membersで参照可能にした。顔写真の本人許諾・素材は未提供。",
+    "evidence": "src/app/about/page.tsx existing CEO role/bio and new members anchor"
+  },
+  {
+    "number": "117",
+    "status": "needs-input",
+    "outcome": "現場写真の実物素材・権利未確認。抽象背景を実例と誤認する写真へ差し替えていない。",
+    "evidence": "src/app/about/page.tsx existing vision video; public assets no approved field photo provenance"
+  },
+  {
+    "number": "118",
+    "status": "needs-input",
+    "outcome": "本人許諾済み顔写真が未提供。紋章を人物写真の代わりの実績証明にしない。",
+    "evidence": "src/app/about/page.tsx CREST_BY_NAME"
+  },
+  {
+    "number": "119",
+    "status": "prepared",
+    "outcome": "既存role/bioのみから担当領域を独立表示。飯島氏=シミュレーション/実機制御、伊藤氏=Web/設計/事業助言など。未確認の担当顧客名や案件は追加していない。",
+    "evidence": "src/app/about/page.tsx MEMBER_FOCUS derived from COPY members role/bio"
+  },
+  {
+    "number": "122",
+    "status": "prepared",
+    "outcome": "法人番号・所在地詳細を新規公開せず、取引審査向け法人情報の照会リンクを既存/contactに設置。公開する番号・住所は本人入力待ち。",
+    "evidence": "src/app/about/page.tsx companyInfo existing company/location and new contact link"
+  },
+  {
+    "number": "125",
+    "status": "prepared",
+    "outcome": "第一巡で匿名事例と企業ロゴを対応付けていない旨を明記。第二巡でも顧客名の推定対応付けは行っていない。",
+    "evidence": "src/app/case-studies/page.tsx anonymityNote; ClientLogoShowcase contextual links"
+  },
+  {
+    "number": "128",
+    "status": "prepared",
+    "outcome": "未測定を維持し、測定対象・指標・ログ案を未実施/合意前の計画案として明示。測定時期/公開日は未定、数値なし。",
+    "evidence": "src/lib/cases/studies/milling-machine-ai-agent.ts results section plus proposed measurement table"
+  },
+  {
+    "number": "129",
+    "status": "prepared",
+    "outcome": "既存事例の下書き/承認/履歴/返信をHTML説明図化。実運用画面や顧客データのスクリーンショットではないと明記。",
+    "evidence": "src/lib/cases/studies/ses-sns-automation.ts keyPoints/body table; src/app/case-studies/[slug]/page.tsx conditional explanatory flow"
+  },
+  {
+    "number": "130",
+    "status": "needs-input",
+    "outcome": "SNS媒体ごとのAPI・自動化可能工程・確認日が既存事例にない。一般的なAPI知識をこの案件の実装実績として追加しない。",
+    "evidence": "src/lib/cases/studies/ses-sns-automation.ts stack says各SNSの公式API but no media names or verified date"
+  },
+  {
+    "number": "131",
+    "status": "needs-input",
+    "outcome": "旧新の実画面と掲載許諾が未提供。架空のBefore/Afterは作らない。",
+    "evidence": "src/lib/cases/studies/real-estate-consulting-site.ts existing illustrative image only; data owned by content agent"
+  },
+  {
+    "number": "133",
+    "status": "prepared",
+    "outcome": "既存の企画・構想段階を再掲し、公開時期と次回更新予定は未定と明記。確定していない日付を作らない。",
+    "evidence": "src/components/ProductList.tsx existing PR Business description plus explicit unknown timing"
+  },
+  {
+    "number": "134",
+    "status": "needs-input",
+    "outcome": "編集担当者本人の署名・監修範囲は未確認。既存のチーム公開経歴への参照先/about#membersは用意。ブログの署名対応はroot/記事担当へ委ねる。",
+    "evidence": "src/app/about/page.tsx members anchor; no attribution of news authorship to any member"
+  },
+  {
+    "number": "142",
+    "status": "needs-input",
+    "outcome": "採用ページへ既存メンバー経歴/担当領域リンクを追加。現場写真・本人の声は未提供のため指摘自体は継続。",
+    "evidence": "src/app/careers/page.tsx new /about#members link; no invented testimonials/photos"
+  },
+  {
+    "number": "143",
+    "status": "needs-input",
+    "outcome": "既存の応相談を数値化する根拠なし。報酬帯・稼働目安・出社頻度は経営判断が必要。",
+    "evidence": "src/app/careers/page.tsx COPY.common and positions employment remain unchanged"
+  }
+]

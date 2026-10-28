@@ -38,7 +38,10 @@ function formatDate(iso: string) {
   return `${y}.${m}.${d}`;
 }
 
-export default function ColumnIndexPage() {
+export default async function ColumnIndexPage({ searchParams }: { searchParams: Promise<{ category?: string }> }) {
+  const { category } = await searchParams;
+  const selected = COLUMN_CATEGORIES.includes(category ?? "") ? category : undefined;
+  const visibleArticles = selected ? articles.filter((article) => article.category === selected) : articles;
   return (
     <>
       <script
@@ -61,13 +64,16 @@ export default function ColumnIndexPage() {
         {/* Categories */}
         <section className="border-b border-gray-100 py-6 bg-white">
           <div className="max-w-[1800px] mx-auto px-6 lg:px-8 flex flex-wrap gap-2">
+            <Link href="/column" aria-current={!selected ? "page" : undefined} className={`border px-3 py-1.5 text-xs font-medium ${!selected ? "border-neutral-900 bg-neutral-900 text-white" : "border-neutral-200 text-neutral-600"}`}>すべて ({articles.length})</Link>
             {COLUMN_CATEGORIES.map((c) => (
-              <span
+              <Link
                 key={c}
-                className="border border-neutral-200 px-3 py-1.5 text-xs font-medium text-neutral-600"
+                href={`/column?category=${encodeURIComponent(c)}`}
+                aria-current={selected === c ? "page" : undefined}
+                className={`border px-3 py-1.5 text-xs font-medium ${selected === c ? "border-neutral-900 bg-neutral-900 text-white" : "border-neutral-200 text-neutral-600"}`}
               >
-                {c}
-              </span>
+                {c} ({articles.filter((article) => article.category === c).length})
+              </Link>
             ))}
           </div>
         </section>
@@ -76,7 +82,7 @@ export default function ColumnIndexPage() {
         <section className="py-14 lg:py-20 bg-white">
           <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
             <ul className="divide-y divide-neutral-200 border-t border-neutral-200">
-              {articles.map((a) => (
+              {visibleArticles.map((a) => (
                 <li key={a.slug}>
                   <Link
                     href={`/column/${a.slug}`}

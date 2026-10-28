@@ -51,7 +51,7 @@ export default function SnsManagementPage() {
           <p data-reading className="mt-6 max-w-3xl text-base leading-[1.9] text-neutral-600">投稿の企画から文章・画像の制作、投稿管理、分析改善まで。目的と運用体制に合わせて、企業のSNS発信を支援します。AIで下書きを整え、人による確認と企業の承認を経て進めます。</p>
           <div className="mt-8 flex flex-wrap items-center gap-5">
             <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="motion-cta inline-flex min-h-12 items-center justify-center rounded-lg bg-cta px-7 py-3.5 font-semibold text-white transition-colors hover:bg-cta-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-900">SNS運用の面談を予約する</a>
-            <Link href="/contact?service=sns" className="inline-flex min-h-12 items-center rounded-lg border border-neutral-200 px-6 py-3.5 text-sm font-semibold text-neutral-700 hover:border-neutral-500 focus-visible:outline-2 focus-visible:outline-offset-4">メールで相談する</Link>
+            <Link href="/contact?service=sns" className="inline-flex min-h-12 items-center rounded-lg border border-neutral-200 px-6 py-3.5 text-sm font-semibold text-neutral-700 hover:border-neutral-500 focus-visible:outline-2 focus-visible:outline-offset-4">フォームで相談する</Link>
           </div>
         </div>
       </header>
@@ -76,6 +76,14 @@ export default function SnsManagementPage() {
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-7">{offerings.map(([title, body]) => <div data-motion="card" key={title} className="motion-card relative overflow-hidden rounded-lg border border-neutral-200 bg-white p-6 sm:p-8"><div aria-hidden="true" className="mb-6 h-1 w-12 rounded-full bg-gradient-to-r from-violet-500 to-sky-500" /><h3 className="mb-3 text-xl font-bold">{title}</h3><p className="text-sm text-neutral-600 leading-[1.95]">{body}</p></div>)}</div>
           <p className="mt-7 max-w-3xl border-t border-neutral-200 pt-5 text-sm text-neutral-600 leading-[1.95]">広告費・広告運用、動画制作、DM・コメントへの対応は別途、対応範囲と費用を確認します。</p>
         </section>
+        <section id="samples" className="scroll-mt-28 pb-16 lg:pb-24" aria-labelledby="sns-samples-title">
+          <h2 id="sns-samples-title" className="mb-4 text-2xl font-bold sm:text-3xl">投稿と運用資料の説明用サンプル</h2>
+          <p className="mb-6 max-w-3xl text-sm leading-7 text-neutral-600">構成や確認項目を示す見本です。実際の顧客投稿・納品物・運用実績ではありません。媒体、投稿形式、制作物、報告頻度は個別に合意します。</p>
+          <div className="grid gap-5 sm:grid-cols-3">
+            {[['サービス紹介', '何を相談できるか', '対象となる方 → 相談できる課題 → 詳しい案内'], ['仕事の進め方', '公開までの確認', '企画 → 人による確認 → 企業承認 → 投稿'], ['よくある質問', '依頼前の疑問に答える', '質問 → 条件を付けた回答 → 詳細の確認先']].map(([tag,title,body]) => <article key={tag} className="overflow-hidden rounded-lg border border-neutral-300 bg-white"><div className="flex min-h-40 flex-col justify-center bg-neutral-100 p-6"><p className="text-xs font-semibold text-neutral-600">説明用サンプル・実投稿ではありません</p><h3 className="mt-3 text-xl font-bold leading-relaxed text-neutral-900">{title}</h3></div><div className="p-5"><p className="text-xs font-semibold text-neutral-600">{tag}</p><p className="mt-2 text-sm leading-7 text-neutral-700">{body}</p></div></article>)}
+          </div>
+          <details className="mt-6 rounded-lg border border-neutral-300 p-5 text-sm leading-7"><summary className="cursor-pointer font-bold">投稿計画・分析報告の空欄見本</summary><div className="mt-4 overflow-x-auto"><table className="w-full min-w-[640px] text-left"><caption className="mb-3 text-left">実際の納品内容を約束するものではなく、相談時に内容をそろえるための項目です。</caption><thead><tr>{['資料','記入する項目','契約前に決めること'].map(x => <th key={x} className="border border-neutral-300 bg-neutral-100 p-3">{x}</th>)}</tr></thead><tbody>{[['投稿計画','対象月／予定日／テーマ／原稿／画像・素材','本数・形式・素材の準備・修正範囲'],['確認記録','制作担当／確認担当／承認日／差し戻し理由','確認期限・承認権限・公開方法'],['分析報告','期間／指標の定義／未測定項目／次の改善案','報告頻度・取得できるデータ・評価基準']].map(row => <tr key={row[0]}>{row.map(x => <td key={x} className="border border-neutral-300 p-3">{x}</td>)}</tr>)}</tbody></table></div><a href="/samples/sns-planning-sheet.txt" download className="mt-4 inline-block font-semibold underline underline-offset-4">空欄の投稿計画・分析シートを保存</a></details>
+        </section>
         <section id="process" className="scroll-mt-28 pb-16 lg:pb-24">
           <h2 data-motion="heading" className="mb-8 text-2xl font-bold sm:text-3xl">ご相談から運用までの進め方</h2>
           <ol className="divide-y divide-neutral-200 border-y border-neutral-200">{steps.map(([title, body], index) => <li data-motion="reading" key={title} className="flex gap-5 py-7 sm:gap-8"><span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-neutral-200 text-sm font-semibold text-neutral-600" aria-hidden="true">{index + 1}</span><div><h3 className="mb-2 text-lg font-bold">{title}</h3><p className="max-w-3xl text-sm text-neutral-600 leading-[1.95]">{body}</p></div></li>)}</ol>
@@ -83,6 +91,8 @@ export default function SnsManagementPage() {
         <section id="approval" className="scroll-mt-28 pb-16 lg:pb-24">
           <h2 data-motion="heading" className="mb-5 text-2xl font-bold sm:text-3xl">AIは下書きを支援し、公開前は人が確認します。</h2>
           <p className="mb-4 max-w-3xl text-neutral-600 leading-[1.9]">AIを企画や文章・画像の下書きに活用します。制作側で事実関係、素材の利用条件、権利や表現を確認し、企業側に内容をご確認いただきます。承認を得てから投稿する手順を基本にします。</p>
+          <ol aria-label="投稿の承認と差し戻し" className="my-6 grid gap-3 text-sm sm:grid-cols-4">{[['制作','企画・原稿・画像の下書き'],['制作側の確認','事実・権利・表現を確認。不足があれば制作へ戻す'],['企業側の承認','承認できない点は差し戻し、修正後に再確認'],['投稿','承認済みの内容を合意した手順で公開']].map(([title,body],i) => <li key={title} className="rounded-lg border border-neutral-300 p-4"><p className="font-bold">{i+1}. {title}</p><p className="mt-2 leading-7 text-neutral-600">{body}</p></li>)}</ol>
+          <p className="mb-4 max-w-3xl text-sm leading-7 text-neutral-600">公開後に問題が見つかった場合に備え、停止連絡先、投稿を停止・修正できる担当者、連絡方法を契約前に確認します。媒体や権限により操作できる範囲が異なるため、即時停止や24時間対応を一律にお約束する説明ではありません。</p>
           <p className="max-w-3xl text-neutral-600 leading-[1.9]">非公開情報や個人情報の扱い、素材の使用許可、利用するツールは事前に確認します。AIの出力を正しいものと決めつけず、企業の発信として適切かを確かめます。</p>
         </section>
         <section id="faq" className="scroll-mt-28 pb-16 lg:pb-24">
@@ -94,7 +104,7 @@ export default function SnsManagementPage() {
           <p className="mb-7 max-w-3xl text-neutral-600 leading-[1.9]">利用中のアカウント、発信の目的、お困りごとをわかる範囲でお知らせください。対象媒体や運用範囲が決まっていなくても、ご相談いただけます。</p>
           <div className="flex flex-wrap items-center gap-5">
             <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="motion-cta inline-flex min-h-12 items-center justify-center rounded-lg bg-cta px-7 py-4 font-semibold text-white hover:bg-cta-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-900">SNS運用の面談を予約する</a>
-            <Link href="/contact?service=sns" className="inline-block py-3 text-sm font-semibold underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4">メールで相談する</Link>
+            <Link href="/contact?service=sns" className="inline-block py-3 text-sm font-semibold underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4">フォームで相談する</Link>
           </div>
         </section>
       </div>

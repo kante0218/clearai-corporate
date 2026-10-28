@@ -1,0 +1,131 @@
+{
+  "scope": "training second pass local only; prepared means independent implementation prepared, not proof that all original requirements or final responsive QA are complete",
+  "files_changed": [
+    "src/app/training/page.tsx",
+    "src/components/AgentTrainingPage.tsx",
+    "src/components/TrainingCurriculumTabs.tsx",
+    "src/components/TrainingOutputSample.tsx",
+    "src/app/claude-bootcamp/page.tsx",
+    "public/downloads/training-output-sample.txt"
+  ],
+  "verification": {
+    "typecheck": "tsc --noEmit passed",
+    "unit": "node --test tests/training-lead-form.test.cjs passed",
+    "diff_check": "git diff --check on owned files passed",
+    "build": "not run; parent coordinates build",
+    "responsive_browser": "pending parent QA"
+  },
+  "items": [
+    {
+      "id": "069",
+      "status": "prepared",
+      "implemented": "説明用の入力・出力欄、プロンプト、作業手順、確認項目を3区分で提示し、空欄の記入シートを保存可能にした。",
+      "evidence": [
+        "src/components/TrainingOutputSample.tsx:1",
+        "src/app/training/page.tsx:754",
+        "public/downloads/training-output-sample.txt:1"
+      ],
+      "remaining": "実際の納品物・導入実績としては表示していない。原本どおり実物を掲載する場合は公開可能な成果物と許諾が必要。"
+    },
+    {
+      "id": "070",
+      "status": "prepared",
+      "implemented": "初回パスの空欄測定報告書見本を維持。",
+      "evidence": [
+        "src/app/training/page.tsx:756"
+      ],
+      "remaining": null
+    },
+    {
+      "id": "071",
+      "status": "needs-input",
+      "implemented": "全プラン共通90日チャットと、料金欄の標準3ヶ月・プレミアム6ヶ月〜を比較表に整理。未定義の関係・範囲・追加費用は見積確認と表示。",
+      "evidence": [
+        "src/app/training/page.tsx:742"
+      ],
+      "remaining": "追加支援の作業内容・回数・費用への包含、90日チャットとの関係を本人が確定する必要がある。"
+    },
+    {
+      "id": "073",
+      "status": "needs-input",
+      "implemented": "各回のタブに時間・講義演習配分が個別設計であることと時間割確認先を常設。",
+      "evidence": [
+        "src/components/TrainingCurriculumTabs.tsx:38",
+        "src/components/AgentTrainingPage.tsx:177"
+      ],
+      "remaining": "標準目安時間と演習比率は未確定。勝手に補完していない。"
+    },
+    {
+      "id": "074",
+      "status": "prepared",
+      "implemented": "装飾線のプレビューに加え、入力・出力・プロンプト・確認項目の説明用サンプルと保存用シートを追加。実際の納品物・全研修の約束ではないと近接明示。",
+      "evidence": [
+        "src/components/AgentTrainingPage.tsx:185",
+        "src/components/TrainingOutputSample.tsx:1",
+        "public/downloads/training-output-sample.txt:1"
+      ],
+      "remaining": "実物の試作品画面を掲載する場合は素材・権利確認が必要。"
+    },
+    {
+      "id": "075",
+      "status": "needs-input",
+      "implemented": "全4回は個別設計の構成例、親料金プランと回数・内容が異なり適用範囲は見積確認であることを初回パスから維持。",
+      "evidence": [
+        "src/components/AgentTrainingPage.tsx:213"
+      ],
+      "remaining": "親料金表との正式な適用関係と比較見積例は本人確定が必要。"
+    },
+    {
+      "id": "104",
+      "status": "needs-input",
+      "implemented": "説明用イラストと実講師を区別する注記を維持。説明用演習を追加して教え方の判断材料を補足。",
+      "evidence": [
+        "src/components/AgentTrainingPage.tsx:157",
+        "src/components/TrainingOutputSample.tsx:1"
+      ],
+      "remaining": "実担当講師の経歴・実装作品・模擬講義の提供と公開許諾が必要。"
+    },
+    {
+      "id": "110",
+      "status": "needs-input",
+      "implemented": "開催日・残席数は新設していない。",
+      "evidence": [
+        "src/app/claude-bootcamp/page.tsx:159"
+      ],
+      "remaining": "確定済みの開催地域・日程・枠と更新担当を本人確認。"
+    },
+    {
+      "id": "111",
+      "status": "needs-input",
+      "implemented": "保証・返金条件の文言は変更していない。",
+      "evidence": [
+        "src/app/claude-bootcamp/page.tsx:110",
+        "src/app/claude-bootcamp/page.tsx:171"
+      ],
+      "remaining": "会社単位か参加者単位か、判定・返金対象・申請方法が不一致のため正式条件を本人確認。"
+    },
+    {
+      "id": "112",
+      "status": "prepared",
+      "implemented": "URL公開と実務利用準備を区別し、認証・権限・データ・テスト・運用・利用承認の一般的チェックを追加。保証判定・返金条件の追加変更ではないと明示。",
+      "evidence": [
+        "src/app/claude-bootcamp/page.tsx:546"
+      ],
+      "remaining": "個別案件の確認範囲と責任分担の確定は別途必要。保証条件の確定は111に残る。"
+    },
+    {
+      "id": "114",
+      "status": "needs-input",
+      "implemented": "講師情報は捏造・流用していない。",
+      "evidence": [
+        "src/app/claude-bootcamp/page.tsx:183"
+      ],
+      "remaining": "実登壇者のプロフィール・写真・作品と公開許諾を本人確認。"
+    }
+  ],
+  "preserved": [
+    "No new prices, dates, measured outcomes, identities, guarantee or refund terms.",
+    "No remote push, PR, deployment, form submission or external modification.",
+    "No robot edits or shared ledger edits."
+  ]
+}

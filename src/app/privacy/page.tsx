@@ -124,10 +124,24 @@ export default function PrivacyPage() {
         <h1 className="text-3xl font-bold text-gray-900 mb-12">{t.title}</h1>
 
         <div className="prose text-gray-600 leading-relaxed space-y-8">
-          {t.sections.map((section) => (
+          {t.sections.map((section, index) => (
             <div key={section.title}>
               <h2 className="text-lg font-bold text-gray-900 mb-3">{section.title}</h2>
               <p>{section.body}</p>
+              {index === 4 && <p className="mt-3 flex flex-wrap gap-4"><a href="https://stripe.com/privacy" className="underline underline-offset-4">Stripe Privacy Policy</a><a href="https://stripe.com/legal/ssa" className="underline underline-offset-4">Stripe Services Agreement</a></p>}
+              {index === 6 && <div className="mt-5 overflow-x-auto"><table className="w-full min-w-[560px] border-collapse text-sm"><caption className="mb-3 text-left">{lang === "ja" ? "Cookieとブラウザ保存の一覧" : "Summary of the policy above"}</caption><thead><tr>{(lang === "ja" ? ["目的", "保存先", "期間・件数", "変更方法"] : ["Purpose", "Storage", "Duration / limit", "Controls"]).map(label => <th key={label} scope="col" className="border border-gray-300 p-3 text-left">{label}</th>)}</tr></thead><tbody>{(lang === "ja" ? [
+                ["Cookie設定・広告の選択", "ブラウザのCookie", "180日", "フッターのCookie設定・記事の広告設定"],
+                ["Google Analytics", "Cookie・Googleへの送信", "Cookieは180日", "Cookie設定から拒否・許可を変更"],
+                ["いいねの重複防止", "匿名IDのCookie", "最長1年", "ブラウザのCookie削除"],
+                ["コメント連続投稿防止", "短期Cookie", "短期（本文に具体日数の記載なし）", "ブラウザのCookie削除"],
+                ["おすすめ・言語設定", "ブラウザのローカルストレージ", "閲覧履歴は最大50件・言語の期間は未規定", "ブラウザのサイトデータ削除"],
+              ] : [
+                ["Cookie / advertising choice", "Browser cookies", "180 days", "Footer cookie settings / article ad settings"],
+                ["Google Analytics", "Cookies and transmission to Google", "Cookies: 180 days", "Cookie settings"],
+                ["Duplicate likes", "Anonymous ID cookie", "Up to one year", "Browser cookie controls"],
+                ["Comment cooldown", "Short-lived cookie", "Short term; no exact duration specified above", "Browser cookie controls"],
+                ["Recommendations / language", "Browser local storage", "Up to 50 read IDs; no language expiry specified", "Browser site-data controls"],
+              ]).map(row => <tr key={row[0]}>{row.map(cell => <td key={cell} className="border border-gray-300 p-3">{cell}</td>)}</tr>)}</tbody></table></div>}
               {section.bullets && (
                 <ul className="list-disc pl-6 mt-2 space-y-1">
                   {section.bullets.map((bullet) => (

@@ -59,7 +59,7 @@ const COPY: Record<Language, Copy> = {
     crumbHome: "ホーム",
     crumbCases: "導入実績",
     anonymityNote:
-      "※ クライアント企業名は伏せ、業種と規模のみを記載しています。写真は支援内容を伝えるためのイメージです。",
+      "※ クライアント企業名は伏せ、業種と規模のみを記載しています。写真は支援内容を伝えるためのイメージです。トップページの企業ロゴと各匿名事例の顧客名は対応付けて掲載していません。",
     photoNote:
       "※ 掲載写真は支援内容・活用場面を伝えるためのイメージです。実際の導入先・現場を撮影したものではありません。",
     ctaHeading: "近い事例があれば、そのまま持ち込んでください。",
@@ -109,6 +109,21 @@ function listingCopy(c: CaseStudy, lang: Language) {
     imageAlt: c.image.alt,
   };
 }
+
+const comparisons: Record<string, { ja: string[]; en: string[] }> = {
+  "milling-machine-ai-agent": {
+    ja: ["発注書から加工開始までの作業が属人化", "仕様抽出・3Dモデル・NCコード生成を接続", "最終承認と非定型品の設計は人が担当"],
+    en: ["Order-to-machining work depended on individual staff", "Connected extraction, 3D models and NC code generation", "People retain final approval and non-standard design"],
+  },
+  "ses-sns-automation": {
+    ja: ["SNS投稿とDMの手作業が繁忙期に停止", "下書き・宛先選定・送信履歴管理を自動化", "担当者は承認と返信対応に集中"],
+    en: ["Manual posting and outreach stalled in busy periods", "Automated drafts, recipient selection and send history", "Staff focus on approval and replies"],
+  },
+  "real-estate-consulting-site": {
+    ja: ["何を依頼できる会社かサイトから伝わらない", "サービスの言語化・情報設計・実装を支援", "社内で更新できる状態で引き渡し"],
+    en: ["The site did not explain what clients could request", "Clarified services, information structure and implementation", "Handed over a site the client can update internally"],
+  },
+};
 
 function formatDate(iso: string) {
   const [y, m, d] = iso.split("-");
@@ -177,7 +192,9 @@ export default function CaseStudiesIndexPage() {
                         <h2 className="mb-2.5 text-lg md:text-xl font-bold leading-snug text-neutral-900 group-hover:underline underline-offset-4 decoration-neutral-400">
                           {l.h1}
                         </h2>
-                        <p className="line-clamp-3 text-sm leading-[1.9] text-neutral-600">{l.summary}</p>
+                        <dl className="space-y-2 text-sm leading-relaxed text-neutral-600">
+                          {(comparisons[c.slug]?.[lang] ?? [l.summary]).map((point, index) => <div key={point} className="flex gap-3"><dt className="shrink-0 font-semibold text-neutral-900">{(lang === "ja" ? ["課題", "実装", "変化"] : ["Need", "Work", "Change"])[index]}</dt><dd>{point}</dd></div>)}
+                        </dl>
                       </div>
                     </Link>
                   </li>

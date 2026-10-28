@@ -1,0 +1,58 @@
+{
+  "baseline": "6802e61f39fff45185c7c646a5b5787be5cf1f49",
+  "remote_main_read_verified": true,
+  "original_tree_untouched": true,
+  "source_docx_bytes": 5698713,
+  "source_images": 98,
+  "ledger_count": 152,
+  "counts": {
+    "完了": 70,
+    "要本人確認": 80,
+    "未着手": 2
+  },
+  "typecheck": "passed",
+  "unit_tests": {
+    "passed": 13,
+    "failed": 0
+  },
+  "production_build": "passed (local test application flag enabled; no environment file/credential changes)",
+  "responsive": {
+    "390": 16,
+    "1188": 16,
+    "375": 8,
+    "768": 8,
+    "1440": 8,
+    "horizontal_overflow_detected": 0,
+    "additional_privacy_375": 1
+  },
+  "browser_e2e": [
+    "FAQ CTA routes to contact; separate booking link",
+    "Rental R&D/3 nights/hourly 2h: before and after 270000 excluding tax /297000 including tax",
+    "Rental browser Back restores selection and same quote",
+    "Stella product context initial message",
+    "Contact required/minLength/persistent help",
+    "Contact draft survives menu open/Escape close; no submit",
+    "Go2 availability inquiry context and service preselection; no submit",
+    "Privacy reference links and cookie summary; original policy paragraphs unchanged"
+  ],
+  "not_executed": [
+    "production deploy",
+    "remote push",
+    "PR",
+    "live form submission",
+    "identity verification",
+    "checkout/payment",
+    "CMS draft publishing"
+  ],
+  "known_limits": [
+    "CMS-backed real articles unavailable in local build without credentials; fallback article data used",
+    "No real devices; browser viewport tests",
+    "Remaining factual/contract/permission decisions in ledger",
+    "Original checkout acquired concurrent Header/HomeContent edits after task start. Do not apply full patch over that tree without merging those files. safe patch excludes both files."
+  ],
+  "original_tree_untouched_by_this_task": true,
+  "concurrent_original_changes_detected": [
+    "src/components/Header.tsx",
+    "src/components/HomeContent.tsx"
+  ]
+}

@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import CardCarousel from "@/components/CardCarousel";
+import { parseRentalSelection } from "@/lib/robot-rental-order";
 import { BOOKING_URL } from "@/lib/booking";
 
 function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
@@ -263,7 +264,7 @@ const COPY: Record<"ja" | "en", Copy> = {
       { title: "延長も当日対応", desc: "レンタル中の延長は1日単位で承ります（R1・G1は1日 ¥40,000、Go2は1日 ¥5,000／いずれも税別）。" },
     ],
     useLabel: "Use Cases",
-    useTitle: "こんな場面で使われています",
+    useTitle: "利用を検討できる場面",
     useCases: [
       { name: "購入前の実機検証", desc: "自社の通路幅・床面・段差で本当に動くかを、購入前に実測で確かめられます。", image: "/images/generated-trust/robot-stairs.webp" },
       { name: "展示会・イベント", desc: "ブースでの実機デモや撮影に。人の目を引く導線設計まで含めてご相談いただけます。", image: "/images/generated-trust/robot-event-display.webp" },
@@ -378,7 +379,7 @@ const COPY: Record<"ja" | "en", Copy> = {
       { title: "Extend day by day", desc: "Extensions are handled a day at a time — ¥40,000/day for the R1 and G1, ¥5,000/day for the Go2 (excl. tax)." },
     ],
     useLabel: "Use Cases",
-    useTitle: "How customers use them",
+    useTitle: "Potential use cases",
     useCases: [
       { name: "Pre-purchase validation", desc: "Confirm the robot actually clears your corridors, floors, and steps before committing budget.", image: "/images/generated-trust/robot-stairs.webp" },
       { name: "Trade shows and events", desc: "Live demos and filming at your booth, including how to design the visitor flow around the robot.", image: "/images/generated-trust/robot-event-display.webp" },
@@ -500,6 +501,14 @@ export default function RobotRentalPage() {
   const [simNights, setSimNights] = useState(1);
   const [simEngineerPlan, setSimEngineerPlan] = useState<"hourly" | "day">("day");
   const [simEngineerHours, setSimEngineerHours] = useState(1);
+  useEffect(() => {
+    const selection = parseRentalSelection(Object.fromEntries(new URLSearchParams(window.location.search)));
+    setSimModelId(selection.model);
+    setSimGradeIndex(MODELS.find((model) => model.id === selection.model)!.grades.indexOf(selection.grade));
+    setSimNights(selection.nights);
+    setSimEngineerPlan(selection.engineerPlan);
+    setSimEngineerHours(selection.engineerHours);
+  }, []);
   const simModel = MODELS.find((model) => model.id === simModelId) ?? MODELS[0];
   const simRental = simModel.daily.find((row) => row.nights === simNights)?.prices[simGradeIndex] ?? 0;
   const simEngineer = simEngineerPlan === "day" ? 100000 : simEngineerHours * 10000;
@@ -543,6 +552,7 @@ export default function RobotRentalPage() {
                           {yen(m.from.excl)}
                           <span className="text-xs font-normal text-gray-500 ml-2">{t.taxIncl(yen(m.from.incl))}</span>
                         </p>
+                        <p className="mt-3 text-sm leading-6 text-gray-700">{lang === "ja" ? "別途、初日エンジニア帯同が必須：時間制10,000円/時または1日100,000円（税別）。送料別。帯同条件と配送費は事前にご確認ください。" : "Day-one engineer attendance is required: ¥10,000/hour or ¥100,000/day, excluding tax. Shipping is extra. Confirm support and shipping conditions in advance."}</p>
                       </div>
 
                       <dl className="space-y-1.5 mb-5">
@@ -623,7 +633,8 @@ export default function RobotRentalPage() {
                 <div className="flex justify-between"><dt className="text-gray-500">{lang === "ja" ? "初日エンジニア" : "Day-one engineer"}</dt><dd className="font-semibold">{yen(simEngineer)}</dd></div>
                 <div className="border-t border-gray-200 pt-4"><dt className="text-gray-500">{lang === "ja" ? "概算合計（税別）" : "Estimated total (excl. tax)"}</dt><dd className="mt-1 text-3xl font-bold text-gray-900">{yen(simSubtotal)}</dd><dd className="mt-1 text-xs text-gray-500">{lang === "ja" ? `税込 ${yen(Math.round(simSubtotal * 1.1))}・送料別` : `${yen(Math.round(simSubtotal * 1.1))} incl. tax, shipping excluded`}</dd></div>
               </dl>
-              {RENTAL_APPLICATION_ENABLED && <Link href={`/robot-rental/apply?model=${simModel.id}`} className="mt-6 block rounded-md bg-cta px-4 py-3 text-center text-sm font-bold text-white hover:bg-cta-hover">{lang === "ja" ? "この内容で申込・決済へ" : "Apply and continue to payment"}</Link>}
+              <Link href={`/contact?service=robot-rental&model=${simModel.id}`} className="mt-4 block text-center text-sm font-semibold underline underline-offset-4">{lang === "ja" ? "空き状況・利用条件を文章で相談" : "Ask about availability and conditions"}</Link>
+              {RENTAL_APPLICATION_ENABLED && <Link href={`/robot-rental/apply?${new URLSearchParams({ model: simModel.id, grade: simModel.grades[simGradeIndex], nights: String(simNights), engineerPlan: simEngineerPlan, engineerHours: String(simEngineerHours) }).toString()}`} onClick={() => { const query = new URLSearchParams({ model: simModel.id, grade: simModel.grades[simGradeIndex], nights: String(simNights), engineerPlan: simEngineerPlan, engineerHours: String(simEngineerHours) }); window.history.replaceState(window.history.state, "", `/robot-rental?${query}#simulation`); }} className="mt-6 block rounded-md bg-cta px-4 py-3 text-center text-sm font-bold text-white hover:bg-cta-hover">{lang === "ja" ? "この内容で申込・決済へ" : "Apply and continue to payment"}</Link>}
             </aside>
           </div>
         </div>
@@ -655,6 +666,7 @@ export default function RobotRentalPage() {
           <Reveal>
             <Label>{t.useLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-8">{t.useTitle}</h2>
+            <p className="mb-6 text-sm leading-7 text-gray-600">{lang === "ja" ? "以下は用途例です。画像は説明用の生成イメージで、実際の貸出実績や貸出機体の外観・構成を示すものではありません。" : "These are potential uses. Images are generated illustrations, rather than rental records or exact robot configurations."}</p>
           </Reveal>
           <CardCarousel gridClass="md:grid-cols-2 lg:grid-cols-3">
             {t.useCases.map((item, i) => (

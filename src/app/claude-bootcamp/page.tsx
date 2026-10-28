@@ -169,7 +169,7 @@ const COPY: Record<"ja" | "en", Copy> = {
     pricingDesc: "1日買い切り型。助成金を使えば、実質負担はさらに小さくなります。表示は税抜・1社あたりの目安です。",
     plans: [
       { name: "1DAY内製ブートキャンプ", price: "20万円〜", unit: "/ 回", desc: "御社オンサイトで1日集中。最初の本番アプリを公開したい方へ。", features: ["最大10名（オンサイト）", "Claude・Codex・GitHub・Vercel・Firebase 一式", "全員が本番Webアプリを1つ公開", "研修後30日チャットサポート", "成果保証つき"], featured: false },
-      { name: "内製化定着パッケージ", price: "80万円〜", unit: "/ 3ヶ月", desc: "1日研修＋月次伴走で、継続的に作れるチームになるまで。最も成果が出る形です。", features: ["1DAY内製ブートキャンプ", "月次フォロー研修 ×3", "社内開発ルール・ガイドライン策定支援", "Slackでの随時質問対応", "助成金申請サポート付き"], featured: true, badge: "人気・成果が出る" },
+      { name: "内製化定着パッケージ", price: "80万円〜", unit: "/ 3ヶ月", desc: "1日研修＋月次伴走で、継続的に作れるチームになるまで。研修後も継続して取り組みたいチーム向けです。", features: ["1DAY内製ブートキャンプ", "月次フォロー研修 ×3", "社内開発ルール・ガイドライン策定支援", "Slackでの随時質問対応", "助成金申請サポート付き"], featured: true, badge: "継続支援付き" },
       { name: "全社内製化キャラバン", price: "ご相談", unit: "", desc: "複数拠点・全社展開や、自治体・商工会との地域開催に。", features: ["複数拠点での連続開催", "部署別カリキュラム設計", "講師チーム編成", "効果測定・レポート", "助成金フルサポート"], featured: false },
     ],
     planCta: "この内容で相談する",
@@ -328,7 +328,7 @@ const COPY: Record<"ja" | "en", Copy> = {
     pricingDesc: "A one-day buy-out. With subsidies, your net cost is even smaller. Prices exclude tax; per-company guideline.",
     plans: [
       { name: "1-Day In-house Bootcamp", price: "From JPY 200K", unit: "/ session", desc: "One intensive day on-site. For shipping your first production app.", features: ["Up to 10 people (on-site)", "Claude, Codex, GitHub, Vercel, Firebase set", "Everyone ships one production web app", "30-day post-training chat support", "Outcome guaranteed"], featured: false },
-      { name: "Embed Package", price: "From JPY 800K", unit: "/ 3 mo", desc: "Bootcamp + monthly coaching until you're a team that keeps building. Where results show.", features: ["1-Day In-house Bootcamp", "Monthly follow-up ×3", "Dev rules & guideline support", "On-demand Slack Q&A", "Subsidy application support"], featured: true, badge: "Popular · best results" },
+      { name: "Embed Package", price: "From JPY 800K", unit: "/ 3 mo", desc: "Bootcamp + monthly coaching until you're a team that keeps building. For teams seeking continued support after training.", features: ["1-Day In-house Bootcamp", "Monthly follow-up ×3", "Dev rules & guideline support", "On-demand Slack Q&A", "Subsidy application support"], featured: true, badge: "With ongoing support" },
       { name: "Company Caravan", price: "Let's talk", unit: "", desc: "Multi-site / company-wide, or regional sessions with municipalities.", features: ["Back-to-back multi-site sessions", "Department-specific curriculum", "Instructor team assembly", "Impact measurement & reports", "Full subsidy support"], featured: false },
     ],
     planCta: "Ask about this",
@@ -540,6 +540,16 @@ export default function ClaudeBootcampPage() {
               <p className="text-sm lg:text-base text-gray-600 leading-relaxed max-w-3xl">{t.guaranteeDesc}</p>
             </div>
           </Reveal>
+        </div>
+      </section>
+
+      <section aria-labelledby="business-use-checks" className="bg-gray-50 py-10">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
+          <h2 id="business-use-checks" className="text-2xl font-bold text-gray-900">{lang === "ja" ? "公開の体験と、業務で使う前の確認" : "Publishing a prototype and preparing for business use"}</h2>
+          <p className="mt-3 max-w-3xl text-sm leading-7 text-gray-700">{lang === "ja" ? "URLで表示できることだけで、業務利用の準備が整うわけではありません。以下は実務へ移す前の一般的な確認項目です。成果保証の判定・返金条件を追加したり変更したりするものではありません。実際の確認範囲と担当は、用途に合わせて相談します。" : "A working URL alone does not establish readiness for business use. These are general review points before adoption, not additions or changes to the outcome guarantee or refund terms. Agree the actual scope and responsibilities for your use case."}</p>
+          <ul className="mt-5 grid max-w-5xl gap-3 text-sm leading-7 text-gray-800 md:grid-cols-2">
+            {(lang === "ja" ? ["認証：利用者の確認と、未ログイン時のアクセスを確認する", "権限：閲覧・編集・管理の範囲を役割ごとに確認する", "データ：機密・個人情報の入力可否、保存先、削除方法を確認する", "テスト：通常操作、入力エラー、想定外の入力、失敗時の表示を確認する", "運用：担当者、問い合わせ先、停止・復旧の手順を整理する", "利用承認：確認結果を残し、業務利用の責任者が利用開始を判断する"] : ["Authentication: check user identity and access when signed out.", "Permissions: review viewing, editing and administration for each role.", "Data: review allowed inputs, storage and deletion of confidential or personal information.", "Testing: check normal flows, invalid inputs, unexpected inputs and failure states.", "Operations: identify owners, contact routes and stop/recovery procedures.", "Approval: record findings and have the responsible owner decide when to start business use."]).map((item) => <li key={item} className="rounded-md border border-gray-300 bg-white p-4">{item}</li>)}
+          </ul>
         </div>
       </section>
 

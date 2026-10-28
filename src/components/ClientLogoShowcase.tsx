@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { CLIENT_LOGOS } from "@/components/ClientLogoGrid";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
@@ -107,13 +108,18 @@ export default function ClientLogoShowcase({ label }: { label: string }) {
           {[false, true].map((copy) => (
             <ul key={String(copy)} ref={copy ? undefined : groupRef} aria-hidden={copy ? true : undefined} className={`logo-flow-group grid grid-cols-2 items-center gap-x-6 gap-y-8 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6${copy ? " logo-flow-copy" : ""}`}>
               {homeLogos.map((logo) => (
-                <li key={logo.name} className="flex min-h-11 min-w-0 items-center justify-center">
+                <li key={logo.name} className="flex min-h-11 min-w-0 flex-col items-center justify-center gap-2">
                   {logo.href ? <a href={logo.href} target="_blank" rel="noopener noreferrer" tabIndex={copy ? -1 : undefined} onPointerDown={copy ? (event) => event.preventDefault() : undefined} aria-label={`${logo.name} 公式サイト`} className="flex min-h-11 w-full min-w-0 max-w-full items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-4"><LogoImage logo={logo} /></a> : <LogoImage logo={logo} />}
+                  {(logo.name === "JASO" || logo.name === "お宿 いけがみ") && <Link href="/website-production#works" tabIndex={copy ? -1 : undefined} className="text-xs font-semibold text-neutral-700 underline underline-offset-4">{lang === "ja" ? "Web制作の実績" : "Web production work"}</Link>}
                 </li>
               ))}
             </ul>
           ))}
         </div>
+      </div>
+      <div className="mt-5 flex flex-wrap items-center justify-between gap-3 text-sm text-neutral-600">
+        <p>{lang === "ja" ? "ロゴは各社公式サイトへ進みます。支援内容の記録は導入実績をご覧ください。" : "Logos link to company websites. Read our case studies for engagement details."}</p>
+        <Link href="/case-studies" className="font-semibold text-neutral-900 underline underline-offset-4">{lang === "ja" ? "支援事例を見る" : "View case studies"}</Link>
       </div>
       <style>{`
         .logo-flow-copy { display: none; }

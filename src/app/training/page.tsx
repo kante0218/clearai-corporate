@@ -1,5 +1,7 @@
 "use client";
 
+import TrainingOutputSample from "@/components/TrainingOutputSample";
+
 import Image from "next/image";
 import Link from "next/link";
 import TrainingOverviewSchema from "./training-schema";
@@ -158,7 +160,7 @@ const COPY: Record<"ja" | "en", Copy> = {
       {
         num: "03",
         title: "助成金活用で、実質負担を最大75%圧縮",
-        desc: "人材開発支援助成金（事業展開等リスキリング支援コース）などの対象です。2026年8月3日の改正で職務直結性の確認が厳しくなりましたが、当社は職務と担当作業を先に特定して設計するため、そこを説明できる形で計画届を組み立てられます。制度の選定と、申請に必要な当社側の添付資料の準備まで対応します。",
+        desc: "職務と担当作業を先に特定し、研修内容を設計します。制度の選定と、訓練実施機関として必要な添付資料の準備を支援します。制度の詳細は下の要件説明をご覧ください。",
         note: "※「最大75%」は中小企業の経費助成率。条件・審査があり、支給を保証するものではありません",
       },
       {
@@ -261,14 +263,14 @@ const COPY: Record<"ja" | "en", Copy> = {
     flowNote: "※ 回数・時間はスタンダードプランの標準例です。助成金要件（10時間以上のOFF-JT等）を満たす形で設計します。",
     pricingLabel: "Pricing",
     pricingTitle: "料金プラン",
-    pricingDesc: "通常価格200万円のスタンダードを、助成金活用で実質50万円前後に。受講人数・目的に応じてプランをご用意しています。",
+    pricingDesc: "契約額と、助成要件を満たした場合の負担試算を分けて示しています。受講人数・目的に応じてプランをお選びください。",
     plans: [
       {
         name: "ライト",
         scale: "3〜5名・体験",
-        normalLabel: "通常価格（税別）",
+        normalLabel: "契約額（税別）",
         normalPrice: "¥800,000〜",
-        netLabel: "助成金適用後（実質）",
+        netLabel: "助成金適用後の試算（税別）",
         netPrice: "¥200,000〜",
         features: ["対象人数 3〜5名", "全5回・計10時間", "オンライン", "成果物づくり 1テーマ", "助成金申請サポート"],
         featured: false,
@@ -276,20 +278,20 @@ const COPY: Record<"ja" | "en", Copy> = {
       {
         name: "スタンダード",
         scale: "5〜10名・部門導入",
-        normalLabel: "通常価格（税別）",
+        normalLabel: "契約額（税別）",
         normalPrice: "¥2,000,000",
-        netLabel: "助成金適用後（実質）",
+        netLabel: "助成金適用後の試算（税別）",
         netPrice: "¥500,000 前後",
         features: ["対象人数 5〜10名", "全10回・計20時間〜", "オンライン / 対面", "成果物づくり 実務テーマ", "助成金申請サポート", "アフターフォロー 3ヶ月"],
         featured: true,
-        badge: "いちばん人気",
+        badge: "5〜10名向け",
       },
       {
         name: "プレミアム",
         scale: "10〜20名・全社",
-        normalLabel: "通常価格（税別）",
+        normalLabel: "契約額（税別）",
         normalPrice: "¥3,000,000〜",
-        netLabel: "助成金適用後（実質）",
+        netLabel: "助成金適用後の試算（税別）",
         netPrice: "¥750,000〜",
         features: ["対象人数 10〜20名", "部門別に設計", "対面中心", "成果物づくり 複数部門テーマ", "助成金申請サポート", "アフターフォロー 6ヶ月〜"],
         featured: false,
@@ -459,14 +461,14 @@ const COPY: Record<"ja" | "en", Copy> = {
     flowNote: "Session count and hours are the standard-plan example. We design around subsidy requirements such as 10+ hours of off-the-job training.",
     pricingLabel: "Pricing",
     pricingTitle: "Pricing plans",
-    pricingDesc: "The JPY 2M standard plan comes to roughly JPY 500K net with subsidies applied. Plans scale with headcount and scope.",
+    pricingDesc: "Contract prices and conditional net-cost estimates are shown separately. Plans depend on headcount and scope.",
     plans: [
       {
         name: "Light",
         scale: "3–5 people · trial",
-        normalLabel: "List price (excl. tax)",
+        normalLabel: "Contract price (excl. tax)",
         normalPrice: "JPY 800K~",
-        netLabel: "Net after subsidy",
+        netLabel: "Estimated after subsidy (excl. tax)",
         netPrice: "JPY 200K~",
         features: ["3–5 participants", "5 sessions / 10 hours", "Online", "One deliverable theme", "Subsidy application support"],
         featured: false,
@@ -474,20 +476,20 @@ const COPY: Record<"ja" | "en", Copy> = {
       {
         name: "Standard",
         scale: "5–10 people · team rollout",
-        normalLabel: "List price (excl. tax)",
+        normalLabel: "Contract price (excl. tax)",
         normalPrice: "JPY 2,000,000",
-        netLabel: "Net after subsidy",
+        netLabel: "Estimated after subsidy (excl. tax)",
         netPrice: "approx. JPY 500K",
         features: ["5–10 participants", "10 sessions / 20 hours+", "Online or on-site", "Real operational deliverable", "Subsidy application support", "3 months of follow-up"],
         featured: true,
-        badge: "Most popular",
+        badge: "For 5–10 participants",
       },
       {
         name: "Premium",
         scale: "10–20 people · company-wide",
-        normalLabel: "List price (excl. tax)",
+        normalLabel: "Contract price (excl. tax)",
         normalPrice: "JPY 3,000,000~",
-        netLabel: "Net after subsidy",
+        netLabel: "Estimated after subsidy (excl. tax)",
         netPrice: "JPY 750K~",
         features: ["10–20 participants", "Designed per department", "Primarily on-site", "Deliverables across departments", "Subsidy application support", "6+ months of follow-up"],
         featured: false,
@@ -571,6 +573,15 @@ export default function TrainingPage() {
         </div>
       </section>
 
+      <section aria-labelledby="training-goals" className="border-b border-gray-200 bg-gray-50 py-8">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
+          <h2 id="training-goals" className="text-2xl font-bold text-gray-900">{lang === "ja" ? "業務と目指す成果から選ぶ" : "Start with your workflow and goals"}</h2>
+          <p className="mt-3 max-w-3xl text-base leading-7 text-gray-700">{lang === "ja" ? "非エンジニアから開発チームまで、受講者の職務と経験に合わせて設計します。資料整理・ファイル処理を見直したい方はClaude Code、実装・テスト・変更確認を体験したい方はCodexの紹介をご覧ください。ツールが未定でも相談できます。" : "We design around participants' roles and experience, from non-engineers to development teams. Explore Claude Code for document and file workflows, or Codex for implementation, testing and change review. You can consult us before choosing a tool."}</p>
+          <p className="mt-3 text-sm leading-7 text-gray-700">{lang === "ja" ? "標準プランの例は全10回・計20時間〜、週1回×2時間を目安に約2〜3ヶ月。自社の業務を題材に社内ツールを制作し、ソースコード・設定・手順書を持ち帰ります。実際の範囲は業務内容とプランで異なります。" : "The standard example is 10 sessions / 20 hours or more, typically two hours weekly over about two to three months. Participants build an internal tool based on their work and retain its source, settings and instructions. Scope depends on the workflow and plan."}</p>
+          <Link href="/contact?service=education" className="mt-4 inline-flex min-h-11 items-center text-sm font-semibold underline underline-offset-4">{lang === "ja" ? "業務・経験から研修選びを相談する" : "Ask which training fits your team"}</Link>
+        </div>
+      </section>
+
       {/* PRICING */}
       <section id="pricing" className="pt-6 pb-10 lg:pt-8 lg:pb-12 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
@@ -591,10 +602,11 @@ export default function TrainingPage() {
                   <h3 className={`text-base font-bold mb-0.5 ${plan.featured ? "text-white" : "text-gray-900"}`}>{plan.name}</h3>
                   <p className={`text-xs mb-3 ${plan.featured ? "text-white/70" : "text-gray-500"}`}>{plan.scale}</p>
                   <div className="mb-3">
-                    <p className={`text-[11px] ${plan.featured ? "text-white/60" : "text-gray-400"}`}>{plan.normalLabel}</p>
-                    <p className={`text-sm line-through ${plan.featured ? "text-white/50" : "text-gray-400"}`}>{plan.normalPrice}</p>
-                    <p className={`text-[11px] mt-1.5 ${plan.featured ? "text-white/70" : "text-gray-500"}`}>{plan.netLabel}</p>
+                    <p className={`text-xs ${plan.featured ? "text-white/80" : "text-gray-600"}`}>{plan.normalLabel}</p>
+                    <p className={`text-xl font-bold ${plan.featured ? "text-white" : "text-gray-900"}`}>{plan.normalPrice}</p>
+                    <p className={`text-xs mt-3 ${plan.featured ? "text-white/70" : "text-gray-500"}`}>{plan.netLabel}</p>
                     <p className={`text-xl font-bold ${plan.featured ? "text-white" : "text-gray-900"}`}>{plan.netPrice}</p>
+                    <p className={`mt-3 text-xs leading-6 ${plan.featured ? "text-white/80" : "text-gray-600"}`}>{lang === "ja" ? "助成は企業規模・人数・訓練時間等の要件と審査により決定し、支給を保証しません。契約額と助成後の負担は異なります。" : "Eligibility and payment depend on company size, participants, training hours and review. Payment is not guaranteed; the contract price differs from the estimated net cost."}</p>
                   </div>
                   <ul className="space-y-2 mb-4 flex-1">
                     {plan.features.map((f) => (
@@ -675,18 +687,20 @@ export default function TrainingPage() {
                     {image && (
                       <Image
                         src={image.src}
-                        alt={image.alt[lang]}
+                        alt={lang === "ja" ? `${image.alt.ja}（AI生成イメージ）` : `${image.alt.en} (AI-generated illustration)`}
                         width={1536}
                         height={1024}
                         sizes="(min-width: 768px) 33vw, 88vw"
                         className="aspect-[3/2] w-full object-cover"
                       />
                     )}
+                    <p className="px-6 pt-3 text-xs leading-6 text-gray-600">{lang === "ja" ? "AI生成の説明用イメージ。実際の講師・受講企業・開催風景ではありません。" : "AI-generated illustration, not an actual instructor, client or training event."}</p>
                     <div className="flex flex-1 flex-col p-6 lg:p-8">
                       <span className="text-sm font-bold text-neutral-900">{item.num}</span>
                       <h3 className="mt-2 mb-2 text-lg font-bold text-gray-900">{item.title}</h3>
                       <p className="text-sm text-gray-600 leading-relaxed">{item.desc}</p>
-                      {item.note && <p className="mt-auto pt-5 text-xs leading-6 text-gray-500">{item.note}</p>}
+                      {item.num === "03" && <a href="#reskilling" className="mt-3 text-sm font-semibold underline underline-offset-4">{lang === "ja" ? "制度の要件を読む" : "Read eligibility details"}</a>}
+                      {item.note && <p className="pt-5 text-xs leading-6 text-gray-500">{item.note}</p>}
                     </div>
                   </div>
                 </Reveal>
@@ -725,6 +739,28 @@ export default function TrainingPage() {
       </section>
 
       {/* RESKILLING REFORM — 2026-08-03 の制度改正への対応（職務直結性） */}
+      <section aria-labelledby="support-periods" className="bg-gray-50 py-10">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
+          <h2 id="support-periods" className="text-2xl font-bold text-gray-900">{lang === "ja" ? "相談枠とプラン別フォローの比較" : "Chat access and plan-specific follow-up"}</h2>
+          <p className="mt-3 text-sm leading-7 text-gray-700">{lang === "ja" ? "掲載している支援期間を同じ表に整理しました。90日間の質問・相談枠と、料金プランのアフターフォローは別の記載です。延長部分の作業内容・回数・費用に含む範囲は、お申し込み前に見積書でご確認ください。" : "This table brings the published support periods together. The 90-day chat access and plan-specific follow-up are separate descriptions. Confirm the work, number of sessions and included scope for extended support in your quote before applying."}</p>
+          <div className="mt-4 overflow-x-auto"><table className="w-full min-w-[640px] border-collapse text-left text-sm"><thead className="bg-white"><tr>{(lang === "ja" ? ["項目", "ライト", "スタンダード", "プレミアム"] : ["Item", "Light", "Standard", "Premium"]).map((heading) => <th key={heading} scope="col" className="border border-gray-300 p-3">{heading}</th>)}</tr></thead><tbody>
+            <tr><th scope="row" className="border border-gray-300 p-3">{lang === "ja" ? "修了後の専用チャット" : "Post-program chat"}</th>{[0,1,2].map((column) => <td key={column} className="border border-gray-300 p-3">{lang === "ja" ? "90日間／平日受付・翌営業日を目安に回答" : "90 days / weekdays, response aimed for next business day"}</td>)}</tr>
+            <tr><th scope="row" className="border border-gray-300 p-3">{lang === "ja" ? "料金欄のアフターフォロー" : "Follow-up shown in pricing"}</th>{(lang === "ja" ? ["期間の別記なし", "3ヶ月", "6ヶ月〜"] : ["No separate duration stated", "3 months", "6+ months"]).map((value) => <td key={value} className="border border-gray-300 p-3">{value}</td>)}</tr>
+            <tr><th scope="row" className="border border-gray-300 p-3">{lang === "ja" ? "見積時に確認すること" : "Confirm in the quote"}</th>{[0,1,2].map((column) => <td key={column} className="border border-gray-300 p-3">{lang === "ja" ? "対応内容・回数・相談枠との関係・追加費用" : "Scope, sessions, relationship to chat access and extra fees"}</td>)}</tr>
+          </tbody></table></div>
+        </div>
+      </section>
+
+      <TrainingOutputSample english={lang === "en"} />
+
+      <section aria-labelledby="measurement-sample" className="bg-white pb-12">
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
+          <h2 id="measurement-sample" className="text-xl font-bold text-gray-900">{lang === "ja" ? "効果測定報告書の記入欄見本" : "Measurement report blank format"}</h2>
+          <p className="mt-3 text-sm leading-7 text-gray-600">{lang === "ja" ? "様式の説明用見本です。実際の成果や測定値ではありません。同じ作業・条件で研修前後を計測し、測定者と方法を記録します。" : "Illustrative blank format, not actual results. Measure the same task under comparable conditions before and after training, recording the method and measurer."}</p>
+          <div className="mt-4 overflow-x-auto"><table className="w-full min-w-[600px] border-collapse text-left text-sm"><thead className="bg-gray-100"><tr>{(lang === "ja" ? ["対象作業", "測定方法・測定者", "研修前の所要時間", "研修後の所要時間", "差分・年間換算の前提"] : ["Task", "Method / measurer", "Time before", "Time after", "Difference / annualisation assumptions"]).map((label) => <th key={label} scope="col" className="border border-gray-300 p-3">{label}</th>)}</tr></thead><tbody><tr>{[0,1,2,3,4].map((column) => <td key={column} className="h-16 border border-gray-300 p-3">{lang === "ja" ? "未記入" : "Blank"}</td>)}</tr></tbody></table></div>
+        </div>
+      </section>
+
       <section id="reskilling" className="py-14 lg:py-20 bg-gray-50">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>

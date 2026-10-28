@@ -16,7 +16,7 @@ const EMPTY: Fields = { company: "", name: "", phone: "", email: "" };
 const FIELDS: {
   key: keyof Fields; label: string; type: string; placeholder: string; autoComplete: string; max: number;
 }[] = [
-  { key: "company", label: "会社名", type: "text", placeholder: "株式会社◯◯", autoComplete: "organization", max: 100 },
+  { key: "company", label: "会社名（個人事業主の方は屋号または個人事業主と入力）", type: "text", placeholder: "株式会社◯◯", autoComplete: "organization", max: 100 },
   { key: "name", label: "お名前", type: "text", placeholder: "山田 太郎", autoComplete: "name", max: 60 },
   { key: "phone", label: "電話番号", type: "tel", placeholder: "03-1234-5678", autoComplete: "tel", max: 20 },
   { key: "email", label: "メールアドレス", type: "email", placeholder: "name@example.com", autoComplete: "email", max: 254 },

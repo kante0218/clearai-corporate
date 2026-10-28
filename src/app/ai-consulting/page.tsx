@@ -6,7 +6,6 @@ import { useLanguage } from "@/lib/i18n/LanguageContext";
 import PricingCarousel from "@/components/PricingCarousel";
 import CardCarousel from "@/components/CardCarousel";
 import { BOOKING_URL } from "@/lib/booking";
-import { STRIPE_PAYMENT_LINKS } from "@/lib/stripe-payment-links";
 
 function Reveal({ children, className = "", delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -104,8 +103,8 @@ const COPY: Record<"ja" | "en", Copy> = {
     pricingLabel: "Pricing",
     pricingTitle: "料金プラン",
     plans: [
-      { key: "spot", name: "スポットコンサル", price: "50万円", unit: "（税込）/ 回", desc: "現状分析とAI活用の方向性をご提案。", features: ["現状ヒアリング（2時間）", "AI活用レポート作成", "導入ロードマップ素案", "2週間のメールサポート"], featured: false, cta: "Stripeで購入" },
-      { key: "standard", name: "スタンダード", price: "150万円", unit: "（税込）/ 1か月", desc: "1か月の導入支援プランです。対象範囲と到達点は事前に合意し、本番化の時期は案件条件に応じて決めます。", features: ["週次ヒアリング・進捗会議", "AI戦略策定・設計", "PoC開発・検証", "本番実装・テスト", "社内トレーニング"], featured: true, cta: "Stripeで購入" },
+      { key: "spot", name: "スポットコンサル", price: "50万円", unit: "（税込）/ 回", desc: "現状分析とAI活用の方向性をご提案。", features: ["現状ヒアリング（2時間）", "AI活用レポート作成", "導入ロードマップ素案", "2週間のメールサポート"], featured: false, cta: "支援範囲・見積を相談する" },
+      { key: "standard", name: "スタンダード", price: "150万円", unit: "（税込）/ 1か月", desc: "1か月の導入支援プランです。対象範囲と到達点は事前に合意し、本番化の時期は案件条件に応じて決めます。", features: ["週次ヒアリング・進捗会議", "AI戦略策定・設計", "PoC開発・検証", "本番実装・テスト", "社内トレーニング"], featured: true, cta: "支援範囲・見積を相談する" },
       { key: "enterprise", name: "エンタープライズ", price: "要相談", unit: "", desc: "大規模導入・複数部署展開に対応。", features: ["専任コンサルタント配置", "複数部署への横展開", "カスタムAI開発", "24/7サポート", "KPI計測・改善サイクル"], featured: false, cta: "相談する" },
     ],
     techLabel: "Tech Stack",
@@ -217,8 +216,8 @@ const COPY: Record<"ja" | "en", Copy> = {
     pricingLabel: "Pricing",
     pricingTitle: "Pricing plans",
     plans: [
-      { key: "spot", name: "Spot Consult", price: "JPY 500K", unit: "(tax incl.) / session", desc: "Current-state analysis and AI direction proposal.", features: ["Discovery session (2 hrs)", "AI utilization report", "Roadmap draft", "2-week email support"], featured: false, cta: "Purchase with Stripe" },
-      { key: "standard", name: "Standard", price: "JPY 1.5M", unit: "(tax incl.) / 1 month", desc: "A one-month adoption support plan. We agree on scope and milestones in advance; production timing depends on the project requirements.", features: ["Weekly check-ins & progress reviews", "AI strategy & design", "PoC development & validation", "Production implementation & testing", "Internal training"], featured: true, cta: "Purchase with Stripe" },
+      { key: "spot", name: "Spot Consult", price: "JPY 500K", unit: "(tax incl.) / session", desc: "Current-state analysis and AI direction proposal.", features: ["Discovery session (2 hrs)", "AI utilization report", "Roadmap draft", "2-week email support"], featured: false, cta: "Discuss scope and quotation" },
+      { key: "standard", name: "Standard", price: "JPY 1.5M", unit: "(tax incl.) / 1 month", desc: "A one-month adoption support plan. We agree on scope and milestones in advance; production timing depends on the project requirements.", features: ["Weekly check-ins & progress reviews", "AI strategy & design", "PoC development & validation", "Production implementation & testing", "Internal training"], featured: true, cta: "Discuss scope and quotation" },
       { key: "enterprise", name: "Enterprise", price: "Contact us", unit: "", desc: "Large-scale rollout and multi-department expansion.", features: ["Dedicated consultant", "Cross-department rollout", "Custom AI development", "24/7 support", "KPI tracking & improvement cycle"], featured: false, cta: "Contact us" },
     ],
     techLabel: "Tech Stack",
@@ -343,7 +342,7 @@ export default function AiConsultingPage() {
                   {plan.key === "enterprise" ? (
                     <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="block text-center text-sm font-semibold py-2 rounded-lg transition-all duration-300 mt-auto bg-cta text-white hover:bg-cta-hover">{plan.cta}</a>
                   ) : (
-                    <a href={STRIPE_PAYMENT_LINKS[plan.key]} target="_blank" rel="noopener noreferrer" className="block text-center text-sm font-semibold py-2 rounded-lg transition-all duration-300 mt-auto bg-cta text-white hover:bg-cta-hover">{plan.cta}</a>
+                    <a href={`/contact?service=consulting&plan=${plan.key}`} className="block text-center text-sm font-semibold py-2 rounded-lg transition-all duration-300 mt-auto bg-cta text-white hover:bg-cta-hover">{plan.cta}</a>
                   )}
                 </div>
               </Reveal>

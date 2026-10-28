@@ -1,3 +1,5 @@
+import { articleResourceHtml } from "@/lib/article-resource";
+import { formatBlogDate } from "@/lib/blog-date";
 import ArticleAds from "@/components/ArticleAds";
 import ArticleToc from "@/components/ArticleToc";
 import { articleHtmlToc } from "@/lib/article-toc";
@@ -63,10 +65,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   }
 }
 
-function formatDate(dateStr: string) {
-  const d = new Date(dateStr);
-  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
-}
+
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -114,8 +113,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   if (sourceHeading) {
     const nextHeading = referenceHeadings.find(heading => heading.range[0] > sourceHeading.range[0]);
     const end = nextHeading?.range[0] ?? content.html.length;
-    content.html = content.html.slice(0, sourceHeading.range[0]) + '<section class="article-sources" aria-label="出典">' + content.html.slice(sourceHeading.range[0], end) + '</section>' + content.html.slice(end);
+    content.html = content.html.slice(0, sourceHeading.range[0]) + articleResourceHtml(slug) + '<section class="article-sources" aria-label="出典">' + content.html.slice(sourceHeading.range[0], end) + '</section>' + content.html.slice(end);
   }
+  if (!sourceHeading) content.html += articleResourceHtml(slug);
   content.html = content.html.replace(/<p>(※[^<]*)<\/p>/g, '<p class="article-editor-note">$1</p>');
   const recommendations = await getBlogs().then(({ contents }) => contents.filter((item) => item.id !== slug).map((item) => ({
     id: item.id,
@@ -186,7 +186,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             <header className="article-header mb-8">
               <div className="mb-4 flex flex-wrap items-center gap-3 text-xs text-neutral-500">
                 {post.category && <span className="font-semibold text-neutral-900">{post.category.name}</span>}
-                <time dateTime={post.publishedAt}>{formatDate(post.publishedAt!)}</time>
+                <time dateTime={post.publishedAt}>{formatBlogDate(post.publishedAt!)}</time>
               </div>
               <div className="article-title-row"><h1 className="mb-6 text-2xl font-bold leading-[1.6] text-neutral-900 md:text-[32px]">{post.title}</h1><div id="article-like-slot" className="article-like-slot" /></div>
               {post.eyecatch && !coverInBody && (
@@ -196,16 +196,26 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               )}
             </header>
             <ArticleToc headings={content.headings} collapsible />
+            {slug === "1w8e6__tba" && <aside className="mb-6 border-l-2 border-neutral-800 bg-neutral-50 p-4 text-sm leading-7"><p>現在の提供状況（2026年10月28日追記）：ロボットレンタルの機種・料金・申込方法は、<a href="/robot-rental" className="font-semibold underline underline-offset-4">ロボットレンタルの案内</a>をご覧ください。以下の本文は公開当時の内容です。</p></aside>}
             <article className="blog-article prose max-w-none" dangerouslySetInnerHTML={{ __html: content.html }} />
             <div className="mt-10">
               <ArticleShare title={post.title} url={`https://clearai.jp/blog/${slug}`} />
             </div>
+            <aside aria-label="個別のご相談" className="mt-10 rounded-lg border border-neutral-200 bg-neutral-50 p-5">
+              <h2 className="font-bold text-neutral-900">自社での活用について相談する</h2>
+              <p className="mt-2 text-sm leading-7 text-neutral-600">コメントは公開されます。個別案件や社内情報を含むご相談は、お問い合わせフォームをご利用ください。</p>
+              <div className="mt-3 flex flex-wrap gap-5 text-sm font-semibold underline underline-offset-4">
+                <a href="/contact">フォームで個別相談する</a>
+                <a href="/training">AI研修を見る</a>
+                <a href="/software-development">システム開発を見る</a>
+              </div>
+            </aside>
             <ArticleEngagement slug={post.id} />
             <div className="mt-8">
               <a href="/blog" className="inline-flex min-h-11 items-center text-sm font-semibold text-neutral-700 hover:text-black">← お知らせ一覧に戻る</a>
             </div>
           </div>
-          <div className="min-w-0"><BlogRecommendations posts={recommendations} currentId={slug} /><ArticleAds /></div>
+          <div className="min-w-0"><BlogRecommendations posts={recommendations} currentId={slug} />{slug !== "1w8e6__tba" && <ArticleAds />}</div>
         </div>
       </div>
     </main>

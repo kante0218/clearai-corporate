@@ -80,6 +80,12 @@ export default function AioPage() {
     </section>
     <section id="measures" className={training.section}>
       <div className={training.sectionTitle}><h2>何を行い、何を確認するかを、<br />最初にそろえます。</h2><p className={training.sectionDescription}>記事の本数や社名の表示回数だけで判断せず、改善の目的、成果物、確認する指標を事前に決めます。必要な支援を選び、現在のサイトに合わせて進めます。</p></div>
+      <div className={styles.details} aria-label="説明用の改善工程">
+        <h3>診断から再確認までの例</h3><p>説明用の工程図です。実測の改善結果やAI回答の再現画像ではありません。</p>
+        <ol><li><strong>診断前：</strong>対象の質問に対する説明・根拠・条件がページ内で見つかるか確認</li><li><strong>改善案：</strong>不足している説明、一次情報、FAQ、内部リンクを整理</li><li><strong>改修後：</strong>公開差分・取得状況・同条件でのAI回答を記録し、変化と未確認事項を分ける</li></ol>
+      </div>
+      <a href="/samples/aio-observation-sheet.txt" download className="inline-block py-3 text-sm font-semibold underline underline-offset-4">診断・基準観測・再確認の空欄シートを保存</a>
+      <details className={styles.details}><summary>診断・回答記録の空欄見本を見る</summary><div><p>記録する粒度を示す空欄見本です。実績数値ではありません。実際の対象と測定方法は事前に合意します。</p><div className={styles.tableScroll}><table><caption>診断と回答記録の項目例</caption><thead><tr><th scope="col">対象質問・ページ</th><th scope="col">確認日時・利用サービス</th><th scope="col">根拠・回答・参照URL</th><th scope="col">不足情報・修正案</th><th scope="col">再確認・未測定事項</th></tr></thead><tbody><tr><td>記入欄</td><td>記入欄</td><td>記入欄</td><td>記入欄</td><td>記入欄</td></tr></tbody></table></div></div></details>
       <div className={styles.deliverables}>{measures.map(([name,purpose,output,method]) => <article key={name}><h3>{name}</h3><p>{purpose}</p><dl><dt>お渡しするもの</dt><dd>{output}</dd><dt>確認すること</dt><dd>{method}</dd></dl></article>)}</div>
       <details className={styles.details}><summary>ClearAIの自社実施記録と効果の確認状況</summary><div><p>自社サイトの説明や導線も改善しています。以下は実装の記録であり、引用や売上向上の成功事例ではありません。</p><ul>{practiceLog.map(item => <li key={item.topic}><Link href={item.href}>{item.topic}</Link><p>{item.detail}</p></li>)}</ul><h3>現在の効果指標</h3>{effects.map(([name,value,body]) => <p key={name}><strong>{name}：{value}</strong><br />{body}</p>)}<p>保存されていない過去のAI回答は再現できません。基準データを記録し、対象質問・サービス・期間をそろえて比較します。流入や申込の増減だけで、AIO施策の効果と断定しません。</p></div></details>
     </section>
@@ -91,6 +97,12 @@ export default function AioPage() {
     <section id="pricing" className={training.section}>
       <div className={training.sectionTitle}><p className={training.sectionLead}>費用と対応範囲</p><h2>必要な調査と改修から、<br />個別にお見積りします。</h2><p className={training.sectionDescription}>対象サイトの規模、調査する質問やサービス、原稿・制作・開発の範囲によって変わります。成果物、測定方法、進め方、契約期間、税の扱いを見積り時に明示します。</p></div>
       <div className={styles.price}><strong>初期費用・継続費用：要見積り</strong><p>既存サイトの調査から、文章改善、制作・実装までご相談いただけます。すべてを一律に行うプランではありません。</p><a href="#contact" className={training.primary}>自社に必要な支援を相談する</a></div>
+      <div className={styles.details}>
+        <h3>見積の相談で切り分ける3つの範囲</h3>
+        <p>依頼範囲を整理するための区分です。固定プラン・最低発注量・料金を新たに定めるものではありません。診断だけを希望する場合も、その旨をお知らせください。</p>
+        <ol><li><strong>診断のみ：</strong>対象ページと質問を決め、不足情報と優先する改善候補を整理する範囲</li><li><strong>改修まで：</strong>診断に加え、文章・FAQ・内部リンク・技術面のどこを修正するか合意する範囲</li><li><strong>継続測定：</strong>対象質問・利用サービス・確認条件と頻度を決め、回答と参照URLの変化を記録する範囲</li></ol>
+        <p>いずれも対象数、成果物、制作・実装の分担、費用、測定頻度は見積で確認します。未測定の項目に効果数値を補って比較しません。</p>
+      </div>
       <details className={styles.details}><summary>各社の公開料金・支援範囲を確認する</summary><div><p>2026年10月18日確認。自社を含む比較情報です。掲載順はランキングではありません。契約前に各社の最新条件をご確認ください。</p><div role="region" tabIndex={0} aria-label="各社の公開料金と支援範囲。横にスクロールできます" className={styles.tableScroll}><table><caption>各社の公開条件（店舗向けと一般企業向けでは対象が異なります）</caption><thead><tr>{["企業・サービス", "対象", "初期費用", "月額", "税", "契約期間", "範囲・条件", "出典"].map(x => <th key={x} scope="col">{x}</th>)}</tr></thead><tbody>{comparison.map(item => <tr key={item.name}><th scope="row">{item.name}</th>{[item.audience,item.initial,item.monthly,item.tax,item.term,item.scope].map((x,i) => <td key={i}>{x}</td>)}<td><a href={item.url}>{item.label}</a></td></tr>)}</tbody></table></div><p>初期費用・契約期間・制作費も含めて比較してください。LillyHoldingsの初期費用は包含・別請求の扱いが確定できないため、総額は算出していません。非公開は無料を意味しません。</p></div></details>
     </section>
     <section id="faq" className={`${training.section} ${training.lavender}`}><div className={training.sectionTitle}><h2>よくあるご質問</h2></div><div className={training.faq}>{questions.map(([q,a]) => <details key={q}><summary>{q}<span className={training.faqToggle} aria-hidden="true">+</span></summary><div className={training.faqAnswer}><p>{a}</p></div></details>)}</div></section>

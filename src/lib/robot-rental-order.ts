@@ -24,6 +24,23 @@ export const RENTAL_MODELS = {
 
 export type RentalModelId = keyof typeof RENTAL_MODELS;
 
+export function parseRentalSelection(params: Record<string, string | undefined>) {
+  const model: RentalModelId = Object.prototype.hasOwnProperty.call(RENTAL_MODELS, params.model ?? "")
+    ? params.model as RentalModelId : "r1";
+  const grades = Object.keys(RENTAL_MODELS[model].grades);
+  const bounded = (value: string | undefined, max: number) => {
+    const number = Number(value);
+    return Number.isInteger(number) && number >= 1 && number <= max ? number : 1;
+  };
+  return {
+    model,
+    grade: grades.includes(params.grade ?? "") ? params.grade! : grades[0],
+    nights: bounded(params.nights, 7),
+    engineerPlan: params.engineerPlan === "hourly" ? "hourly" as const : "day" as const,
+    engineerHours: bounded(params.engineerHours, 9),
+  };
+}
+
 export type RentalApplication = {
   submissionId: string;
   model: RentalModelId;

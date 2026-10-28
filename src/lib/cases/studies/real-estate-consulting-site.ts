@@ -144,7 +144,7 @@ export const study: CaseStudy = {
     },
     {
       t: "p",
-      text: "Webサイトの制作は、[システム・ソフトウェア開発](/software-development)の一環としてお受けしています。公開後の集客や改善の進め方については[コラム](/column)もあわせてご覧ください。",
+      text: "Webサイトの制作は、[ホームページ制作](/website-production)で詳しくご案内しています。公開後の集客や改善の進め方については[コラム](/column)もあわせてご覧ください。",
     },
   ],
   faq: [

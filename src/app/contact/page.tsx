@@ -1,6 +1,7 @@
 "use client";
 
 import { Suspense, useState, useEffect, useRef, FormEvent, type ReactNode } from "react";
+import { BOOKING_URL } from "@/lib/booking";
 import { useSearchParams } from "next/navigation";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { validateContactForm, SERVICE_KEYS, SERVICE_LABELS, type ServiceKey, DOCUMENT_KEYS, DOCUMENT_LABELS, type DocumentKey } from "@/lib/validators";
@@ -24,7 +25,7 @@ const COPY = {
     labelEmail: "メールアドレス",
     labelCompany: "会社名",
     labelMessage: "お問い合わせ内容",
-    labelRequired: "*",
+    labelRequired: "必須",
     labelOptional: "（任意）",
     // Placeholders
     placeholderName: "山田 太郎",
@@ -66,7 +67,7 @@ const COPY = {
     labelEmail: "Email address",
     labelCompany: "Company name",
     labelMessage: "Your message",
-    labelRequired: "*",
+    labelRequired: "Required",
     labelOptional: "(optional)",
     // Placeholders
     placeholderName: "Jane Smith",
@@ -183,6 +184,19 @@ function ContactPageInner() {
     }
   }, [searchParams]);
 
+  const product = searchParams.get("product") ?? "";
+  const knownProduct = ["Aqua", "まぜまぜReading", "猫シフト", "Stella", "PR Business"].includes(product) ? product : "";
+  const plan = searchParams.get("plan") ?? "";
+  const planLabels: Record<string, string> = { spot: "スポット相談", standard: "スタンダード", prototype: "プロトタイプ開発", system: "業務システム開発", operations: "継続開発・運用" };
+  const knownPlan = Object.prototype.hasOwnProperty.call(planLabels, plan) ? planLabels[plan] : "";
+  const requestedModel = searchParams.get("model") ?? "";
+  const modelLabel = ({ r1: "Unitree R1", g1: "Unitree G1", go2: "Unitree Go2" } as Record<string, string>);
+  const knownModel = Object.prototype.hasOwnProperty.call(modelLabel, requestedModel) ? modelLabel[requestedModel] : "";
+  const contextLabel = knownProduct || knownPlan || (knownModel ? `${knownModel}の空き状況・利用条件（希望日：未定）` : "");
+  useEffect(() => {
+    if (contextLabel) setForm((prev) => prev.message ? prev : { ...prev, message: `${contextLabel}について相談します。\n` });
+  }, [contextLabel]);
+
   const requestedDoc: DocumentKey | "" = form.document;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -273,6 +287,8 @@ function ContactPageInner() {
             <a href="mailto:info@clearai.jp" className="text-neutral-900 underline underline-offset-2">info@clearai.jp</a>{" "}
             {t.headerDescEmail}
           </p>
+          <p className="mt-3 text-sm leading-7 text-gray-600">{lang === "ja" ? "初回相談は30分・無料です。対象業務・課題と進め方を整理します。個別調査や開発は、対応範囲と費用を見積りでご確認ください。" : "The initial 30-minute consultation is free. We clarify your workflow, challenges and next steps. Check the scope and price of investigation or development in your quote."}</p>
+          <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex min-h-11 items-center text-sm font-semibold underline underline-offset-4">{lang === "ja" ? "日時を選んで面談予約（別タブ）" : "Choose a meeting time (new tab)"}</a>
         </Reveal>
       </section>
 
@@ -329,7 +345,7 @@ function ContactPageInner() {
                     {t.labelName} <span className="text-neutral-900">{t.labelRequired}</span>
                   </label>
                   <input id="name" type="text" name="name" value={form.name} onChange={handleChange}
-                    placeholder={t.placeholderName} autoComplete="name"
+                    placeholder={t.placeholderName} autoComplete="name" required aria-required="true"
                     aria-invalid={!!errors.name} className={inputClass("name")} />
                   {errors.name && <p className="mt-1.5 text-xs text-neutral-900 font-medium">{errors.name}</p>}
                 </div>
@@ -338,7 +354,7 @@ function ContactPageInner() {
                     {t.labelEmail} <span className="text-neutral-900">{t.labelRequired}</span>
                   </label>
                   <input id="email" type="email" name="email" value={form.email} onChange={handleChange}
-                    placeholder={t.placeholderEmail} autoComplete="email"
+                    placeholder={t.placeholderEmail} autoComplete="email" required aria-required="true"
                     aria-invalid={!!errors.email} className={inputClass("email")} />
                   {errors.email && <p className="mt-1.5 text-xs text-neutral-900 font-medium">{errors.email}</p>}
                 </div>
@@ -372,9 +388,10 @@ function ContactPageInner() {
                   {t.labelMessage} <span className="text-neutral-900">{t.labelRequired}</span>
                 </label>
                 <textarea id="message" name="message" rows={6} value={form.message} onChange={handleChange}
-                  placeholder={getMessagePlaceholder()}
+                  placeholder={getMessagePlaceholder()} required aria-required="true" minLength={10} aria-describedby="message-help"
                   aria-invalid={!!errors.message}
                   className={`${inputClass("message")} resize-none min-h-[160px]`} />
+                <p id="message-help" className="mt-2 text-sm leading-6 text-gray-600">{lang === "ja" ? "10文字以上。対象業務／困りごと／希望時期／参考URLなど、分かる範囲でお書きください。機密情報や個人情報は入力せず、共有方法をご相談ください。" : "At least 10 characters. Include your workflow, challenge, timing or a reference URL if available. Please ask about secure sharing before including confidential or personal data."}</p>
                 {errors.message && <p className="mt-1.5 text-xs text-neutral-900 font-medium">{errors.message}</p>}
               </div>
 
@@ -385,6 +402,7 @@ function ContactPageInner() {
                 )}
               </div>
 
+              <p className="text-sm leading-7 text-gray-600">{lang === "ja" ? "送信後は画面の受付完了表示をご確認ください。受付確認メールの自動送信はありません。2営業日を過ぎても返信がない場合は、迷惑メールをご確認のうえ info@clearai.jp へご連絡ください。" : "Check the on-screen confirmation after sending. No automatic receipt email is sent. If no reply arrives within two business days, check your spam folder and contact info@clearai.jp."}</p>
               {/* Submit (full width) */}
               <div className="pt-2 space-y-4">
                 <button type="submit" disabled={status === "submitting"}
@@ -426,7 +444,7 @@ function ContactPageInner() {
               ].map((item) => (
                 <div key={item.label} className="bg-white p-4 text-center">
                   <p className="text-[10px] font-semibold tracking-widest text-gray-400 uppercase mb-1">{item.label}</p>
-                  <p className="text-xs font-semibold text-gray-900 break-all">{item.value}</p>
+                  {item.value === "info@clearai.jp" ? <a href="mailto:info@clearai.jp" className="text-xs font-semibold text-gray-900 underline underline-offset-4">{item.value}</a> : <p className="text-xs font-semibold text-gray-900 break-all">{item.value}</p>}
                 </div>
               ))}
             </div>

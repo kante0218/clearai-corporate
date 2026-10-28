@@ -10,15 +10,18 @@ const products = [
 
 export default function ProductList() {
   return (
-    <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-      {products.map((product, index) => (
+    <div className="space-y-10">
+      {[true, false].map((published) => <section key={String(published)} aria-label={published ? "公開済みのサービス" : "準備中のサービス"}>
+        <h3 className="mb-4 text-lg font-bold text-neutral-900">{published ? "公開済みのサービス" : "準備中・構想中のサービス"}</h3>
+        <ul className={published ? "grid gap-5 sm:grid-cols-2" : "grid gap-4 sm:grid-cols-2 lg:grid-cols-3"}>
+      {products.filter((product) => Boolean(product.href) === published).map((product, index) => (
         <li data-motion="card" data-motion-delay={index % 3 * 70} key={product.name} className="motion-card flex flex-col rounded-lg border border-neutral-200 bg-white p-6 sm:p-7">
           <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
             <p className="text-xs font-medium text-neutral-600">{product.category}</p>
             {!product.href && <span className="rounded-full bg-neutral-100 px-3 py-1 text-xs font-semibold text-neutral-700">準備中</span>}
           </div>
           <h3 className="text-xl font-bold text-neutral-900">{product.name}</h3>
-          <p data-reading className="mt-3 mb-6 text-sm leading-relaxed text-neutral-600">{product.description}</p>
+          <p data-reading className="mt-3 mb-6 text-sm leading-relaxed text-neutral-600">{product.description}{product.name === "PR Business" && <span className="mt-2 block">現在は企画・構想段階です。公開時期・次回の更新予定は未定です。</span>}</p>
           <div className="mt-auto">
             {product.href ? (
               <a href={product.href} className="inline-block font-semibold text-sm text-neutral-900 underline underline-offset-4 hover:text-neutral-600 focus-visible:outline-2 focus-visible:outline-offset-4">
@@ -26,11 +29,13 @@ export default function ProductList() {
                 <span className="mt-2 block break-all text-xs font-normal text-neutral-500">外部サイト：{product.destination}</span>
               </a>
             ) : (
-              <Link href="/contact" className="inline-block text-sm font-semibold text-neutral-900 underline underline-offset-4 hover:text-neutral-600 focus-visible:outline-2 focus-visible:outline-offset-4">{product.name}について問い合わせる</Link>
+              <Link href={`/contact?product=${encodeURIComponent(product.name)}`} className="inline-block text-sm font-semibold text-neutral-900 underline underline-offset-4 hover:text-neutral-600 focus-visible:outline-2 focus-visible:outline-offset-4">{product.name}について問い合わせる</Link>
             )}
           </div>
         </li>
       ))}
-    </ul>
+        </ul>
+      </section>)}
+    </div>
   );
 }

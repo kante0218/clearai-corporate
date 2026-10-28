@@ -10,7 +10,7 @@ export const faqItems: FaqItem[] = [
       en: "What should I prepare for the first consultation?",
     },
     a: {
-      ja: "特別な準備は不要で、30分の無料診断で現状業務・課題をヒアリングし、効果の高い領域を1つその場でお伝えします。",
+      ja: "特別な準備は不要で、初回相談（30分・無料）で現状業務・課題をヒアリングし、効果の高い領域を1つその場でお伝えします。",
       en: "No preparation needed — in the 30-minute free diagnostic we listen to your operations and challenges, then pinpoint one high-impact area on the spot.",
     },
   },
@@ -20,8 +20,8 @@ export const faqItems: FaqItem[] = [
       en: "What does AI consulting cost?",
     },
     a: {
-      ja: "スポット相談・AI顧問（月2.5万円〜）・PoC導入（1〜2ヶ月）・全社展開（3ヶ月〜）でレンジが異なり、初回ヒアリングでご予算に合った最適な入口と料金目安をお伝えします。",
-      en: "Pricing varies by engagement — spot consultation, AI advisor retainer (from JPY 25,000/month), PoC rollout (1–2 months), or company-wide projects (3 months+) — and we'll match the right entry point to your budget at the first hearing.",
+      ja: "現在のAIコンサルティング料金は、スポット相談が50万円（税込）/回、スタンダードが150万円（税込）/1か月、エンタープライズは要相談です。スタンダードの対象範囲と到達点は事前に合意し、本番化の時期は案件条件に応じて決めます。実装期間の目安とは分けてご確認ください。",
+      en: "Current AI consulting plans are JPY 500,000 including tax per spot session, JPY 1,500,000 including tax for one month of Standard support, and a custom Enterprise quote. Standard scope and milestones are agreed in advance; production timing depends on the project and is separate from the support period.",
     },
   },
   {

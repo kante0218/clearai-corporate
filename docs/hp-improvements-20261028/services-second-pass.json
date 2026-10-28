@@ -1,0 +1,199 @@
+{
+  "scope": "local only; no deployment/push/PR/external write",
+  "verification": {
+    "typescript": "tsc --noEmit passed before final static TECH_CASES extraction; parent final check requested",
+    "unit": "node --test tests/*.test.cjs: 15 passed",
+    "browser": "not run in this agent; parent requested to verify final pages"
+  },
+  "items": [
+    {
+      "id": "044",
+      "status_recommendation": "担当外",
+      "prepared": "開発の見積・受入条件の空欄様式を public/samples/development-scope-sheet.txt に準備。",
+      "remaining": "flowの具体的な納品書類見本は親担当。",
+      "files": "public/samples/development-scope-sheet.txt"
+    },
+    {
+      "id": "077",
+      "status_recommendation": "要本人確認",
+      "prepared": "価格を含まない見積前提・受入条件シートを保存可能にした。",
+      "remaining": "公開可能な案件条件に基づく金額入り見積例は本人確認が必要。",
+      "files": "src/app/software-development/page.tsx; public/samples/development-scope-sheet.txt"
+    },
+    {
+      "id": "078",
+      "status_recommendation": "実装済・表示検証待ち",
+      "prepared": "試作完成だけで本番利用と判断しない説明に変更。本番移行の認証・権限・連携・評価・監視・引継ぎを別確認し範囲/費用/時期を合意する説明。",
+      "remaining": "具体的な案件の範囲・追加費用は個別契約。新たな価格条件は設定していない。",
+      "files": "src/app/software-development/page.tsx"
+    },
+    {
+      "id": "080",
+      "status_recommendation": "要本人確認",
+      "prepared": "最短2週間が全案件保証でない旨と、機能/資料/接続先/確認工程を伺い開始/提出時期を個別確認する補足を数値欄の直後に追加。",
+      "remaining": "2週間対象の確定した規模や具体的な開始条件は根拠確認が必要。",
+      "files": "src/app/software-development/page.tsx"
+    },
+    {
+      "id": "081",
+      "status_recommendation": "要本人確認",
+      "prepared": "公開事例への導線を開発ページに追加。実画面であるかのような生成素材は追加していない。",
+      "remaining": "許諾済み実画面/動画/構成図の準備が必要。",
+      "files": "src/app/software-development/page.tsx"
+    },
+    {
+      "id": "082",
+      "status_recommendation": "実装済・表示検証待ち",
+      "prepared": "工程別の成果物/判断点を説明用の5工程一覧で提示。標準の契約納品物とは区別し、実際の受入条件は個別契約と明記。",
+      "remaining": "案件ごとの納品範囲は契約で確認。",
+      "files": "src/app/software-development/page.tsx"
+    },
+    {
+      "id": "084",
+      "status_recommendation": "実装済・表示検証待ち",
+      "prepared": "公開済み不動産Web制作/SES SNS自動化の既存技術リストと実装内容の事例リンクを技術一覧の直前に追加。",
+      "remaining": "掲載事例の既存記述以外の対応実績は追加していない。",
+      "files": "src/app/software-development/page.tsx"
+    },
+    {
+      "id": "085",
+      "status_recommendation": "既対応・補強済",
+      "prepared": "既存の説明用工程と空欄診断表を維持し、基準観測と再確認の保存用空欄シートを追加。",
+      "remaining": "実測成果と見本を混同しない表示を維持。",
+      "files": "src/app/aio/page.tsx; public/samples/aio-observation-sheet.txt"
+    },
+    {
+      "id": "086",
+      "status_recommendation": "既対応・補強済",
+      "prepared": "既存の説明用工程と空欄診断表を維持し、基準観測と再確認の保存用空欄シートを追加。",
+      "remaining": "実測成果と見本を混同しない表示を維持。",
+      "files": "src/app/aio/page.tsx; public/samples/aio-observation-sheet.txt"
+    },
+    {
+      "id": "087",
+      "status_recommendation": "要本人確認",
+      "prepared": "自社実施記録は維持。基準/改善後の観測と差分記録に使う空欄シートを準備。",
+      "remaining": "過去の同条件画面や確定実施日の公開用整理が必要。未保存の過去画面を再現していない。",
+      "files": "public/samples/aio-observation-sheet.txt"
+    },
+    {
+      "id": "088",
+      "status_recommendation": "要本人確認",
+      "prepared": "質問/サービス/日時/条件/引用/回答の正確性/未測定項目/次回担当の空欄様式を準備。未測定表示を維持。",
+      "remaining": "質問群と測定担当・時期を合意し実測が必要。数値を作成していない。",
+      "files": "public/samples/aio-observation-sheet.txt"
+    },
+    {
+      "id": "089",
+      "status_recommendation": "要本人確認",
+      "prepared": "診断のみ・改修まで・継続測定の相談区分を追加。範囲/成果物/費用/測定頻度は見積で確認すると明記。",
+      "remaining": "固定最小範囲、標準工数、確定頻度、比較可能な正式プランは本人確認。",
+      "files": "src/app/aio/page.tsx"
+    },
+    {
+      "id": "090",
+      "status_recommendation": "要本人確認",
+      "prepared": "診断のみ・改修まで・継続測定の相談区分を追加。範囲/成果物/費用/測定頻度は見積で確認すると明記。",
+      "remaining": "固定最小範囲、標準工数、確定頻度、比較可能な正式プランは本人確認。",
+      "files": "src/app/aio/page.tsx"
+    },
+    {
+      "id": "091",
+      "status_recommendation": "要本人確認",
+      "prepared": "Web制作ページに既存匿名事例の具体的工程と詳細導線を追加。",
+      "remaining": "許諾済みPC/スマホ実画面と各ロゴ企業の担当範囲の根拠が必要。",
+      "files": "src/app/website-production/page.tsx"
+    },
+    {
+      "id": "092",
+      "status_recommendation": "要本人確認",
+      "prepared": "Web制作ページに既存匿名事例の具体的工程と詳細導線を追加。",
+      "remaining": "許諾済みPC/スマホ実画面と各ロゴ企業の担当範囲の根拠が必要。",
+      "files": "src/app/website-production/page.tsx"
+    },
+    {
+      "id": "093",
+      "status_recommendation": "要本人確認",
+      "prepared": "既存匿名事例の言語化/構成/Next.js/CMS/構造化データ等を整理。ロゴ企業と対応しない旨を明記。",
+      "remaining": "JASO/お宿いけがみ各案件の担当範囲・時期は未確認のため追加していない。",
+      "files": "src/app/website-production/page.tsx"
+    },
+    {
+      "id": "094",
+      "status_recommendation": "要本人確認",
+      "prepared": "見積比較に必要なページ/機能/原稿写真/修正/保守条件と保存用空欄シートへの導線を追加。",
+      "remaining": "条件付きの正式料金例と納期は本人確認。",
+      "files": "src/app/website-production/page.tsx"
+    },
+    {
+      "id": "096",
+      "status_recommendation": "実装済・表示検証待ち",
+      "prepared": "サービス紹介・進め方・FAQの3つの説明用投稿見本を作成。実顧客投稿/納品物/運用実績ではない旨を明記。",
+      "remaining": "許諾済み実投稿の掲載は別途本人確認。",
+      "files": "src/app/sns-management/page.tsx"
+    },
+    {
+      "id": "098",
+      "status_recommendation": "実装済・表示検証待ち",
+      "prepared": "投稿計画/確認記録/分析報告の項目表と空欄シートを追加。期間・指標定義・未測定・改善案を明示し、実際の納品形式/報告頻度は個別合意と区別。",
+      "remaining": "実案件の契約納品様式や頻度は個別確認。",
+      "files": "src/app/sns-management/page.tsx; public/samples/sns-planning-sheet.txt"
+    },
+    {
+      "id": "099",
+      "status_recommendation": "実装済・表示検証待ち",
+      "prepared": "投稿計画/確認記録/分析報告の項目表と空欄シートを追加。期間・指標定義・未測定・改善案を明示し、実際の納品形式/報告頻度は個別合意と区別。",
+      "remaining": "実案件の契約納品様式や頻度は個別確認。",
+      "files": "src/app/sns-management/page.tsx; public/samples/sns-planning-sheet.txt"
+    },
+    {
+      "id": "100",
+      "status_recommendation": "要本人確認",
+      "prepared": "空欄シートで媒体・形式・本数・素材・修正・公式API/権限・確認日を相談時にそろえられるよう準備。",
+      "remaining": "現在対応できる媒体/形式の正式一覧と価格入り見積例は本人確認。",
+      "files": "public/samples/sns-planning-sheet.txt"
+    },
+    {
+      "id": "101",
+      "status_recommendation": "要本人確認",
+      "prepared": "空欄シートで媒体・形式・本数・素材・修正・公式API/権限・確認日を相談時にそろえられるよう準備。",
+      "remaining": "現在対応できる媒体/形式の正式一覧と価格入り見積例は本人確認。",
+      "files": "public/samples/sns-planning-sheet.txt"
+    },
+    {
+      "id": "102",
+      "status_recommendation": "実装済・表示検証待ち",
+      "prepared": "制作→人による確認→企業承認→投稿、差し戻しと再確認を4段階で図解。停止連絡先/権限/方法を契約前確認と明記し即時停止/24hを約束しない。",
+      "remaining": "契約ごとの停止担当と連絡手順は個別合意。",
+      "files": "src/app/sns-management/page.tsx"
+    },
+    {
+      "id": "129",
+      "status_recommendation": "担当外",
+      "prepared": "このパスはサービス4ページのみ編集。SNSの説明見本・媒体条件の空欄様式は準備。",
+      "remaining": "事例詳細の実画面や旧新画面、SNS/API対応表は未変更。",
+      "files": "public/samples/sns-planning-sheet.txt"
+    },
+    {
+      "id": "130",
+      "status_recommendation": "担当外",
+      "prepared": "このパスはサービス4ページのみ編集。SNSの説明見本・媒体条件の空欄様式は準備。",
+      "remaining": "事例詳細の実画面や旧新画面、SNS/API対応表は未変更。",
+      "files": "public/samples/sns-planning-sheet.txt"
+    },
+    {
+      "id": "131",
+      "status_recommendation": "担当外",
+      "prepared": "このパスはサービス4ページのみ編集。SNSの説明見本・媒体条件の空欄様式は準備。",
+      "remaining": "事例詳細の実画面や旧新画面、SNS/API対応表は未変更。",
+      "files": "public/samples/sns-planning-sheet.txt"
+    },
+    {
+      "id": "152",
+      "status_recommendation": "担当外",
+      "prepared": "親が機種別公式資料を担当するため変更なし。",
+      "remaining": "親の確認結果に従う。",
+      "files": ""
+    }
+  ]
+}

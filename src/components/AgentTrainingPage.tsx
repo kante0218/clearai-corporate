@@ -1,3 +1,4 @@
+import TrainingOutputSample from "@/components/TrainingOutputSample";
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
@@ -132,6 +133,7 @@ export default function AgentTrainingPage({ tool }: { tool: Tool }) {
           <div className={styles.heroInner}>
             <p className={styles.heroTag}>非エンジニアから開発チームまで。法人向け実践プログラム</p>
             <h1><span className={styles.heroStatement}>{course.hero.split("\n").map((line) => <span key={line}>{line}</span>)}</span><span className={styles.productTitle}><span>{course.name}</span><b>研修</b></span></h1>
+            <p className={styles.heroTag}>対象：非エンジニア〜開発チーム／事前準備＋全4回の構成例／業務の試作品・確認リストを制作。各回の時間は個別設計です。</p>
             <p className={styles.heroSub}>{course.sub.split("\n").map((line) => <span key={line}>{line}</span>)}</p>
             <div className={styles.heroBadges}><span><Icon kind="document" />自社の仕事で<br /><strong>実践する</strong></span><span><Icon kind="shield" />安全な使い方も<br /><strong>身につける</strong></span><span><Icon kind="team" />チームで使える<br /><strong>型が残る</strong></span></div>
             <div className={styles.heroActions}><ApplyButton /><p>カリキュラム・費用・実施時期をまとめてご相談</p></div>
@@ -152,7 +154,7 @@ export default function AgentTrainingPage({ tool }: { tool: Tool }) {
         <section id="features" className={`${styles.section} ${styles.lavender}`}>
           <SectionTitle lead={`${course.name}研修で選んでほしいポイント`}>ClearAIの研修が<br /><em>大切にしている、3つのこと</em></SectionTitle>
           <div className={styles.featureStack}>
-            <article className={styles.featurePanel}><div className={styles.featureCopy}><span className={styles.featureIndex}>特徴 1</span><h3>「自社の仕事」に<br />置き換えられる実践</h3><p>一般的な操作説明だけで終わらせず、受講者の役割と日々の作業から演習を設計。資料作成、データ整理、小さなツールづくりなど、使いどころを具体的にします。</p><ul className={styles.checkList}><li>実際の業務課題から題材を選ぶ</li><li>説明と演習を行き来しながら学ぶ</li><li>経験に合わせて難易度を調整する</li></ul></div><div className={styles.featureImage}><Image src={`/images/training-lp/team-workshop${imageSuffix}.webp`} alt="講師と参加者が業務課題について話し合う実践ワークショップ" width={800} height={533} sizes="(max-width: 767px) 90vw, 450px" /><span>自社の業務が、そのまま学びの入り口に。</span></div></article>
+            <article className={styles.featurePanel}><div className={styles.featureCopy}><span className={styles.featureIndex}>特徴 1</span><h3>「自社の仕事」に<br />置き換えられる実践</h3><p>一般的な操作説明だけで終わらせず、受講者の役割と日々の作業から演習を設計。資料作成、データ整理、小さなツールづくりなど、使いどころを具体的にします。</p><ul className={styles.checkList}><li>実際の業務課題から題材を選ぶ</li><li>説明と演習を行き来しながら学ぶ</li><li>経験に合わせて難易度を調整する</li></ul></div><div className={styles.featureImage}><Image src={`/images/training-lp/team-workshop${imageSuffix}.webp`} alt="講師と参加者が業務課題について話し合う実践ワークショップ" width={800} height={533} sizes="(max-width: 767px) 90vw, 450px" /><span>説明用イラストです。実際の講師・受講企業・開催風景ではありません。</span></div></article>
             <article className={`${styles.featurePanel} ${styles.featureReverse}`}><div className={styles.featureCopy}><span className={styles.featureIndex}>特徴 2</span><h3>便利さと一緒に、<br />安全に使う判断も</h3><p>どの情報を入力してよいか、どの操作は承認が必要か。データ・作業環境・実行権限・結果確認の4つの観点で、安全に使う手順を演習に組み込みます。</p><p>削除・送信・公開など、取り消しにくい操作は、人が判断する前提で扱います。</p></div><div className={styles.securityDiagram}><div className={styles.securityDiagramHeading}><Icon kind="shield" /><strong>仕事で使うための4つの確認</strong></div>{[["入力する情報", "機密・個人情報／利用規程"], ["作業する環境", "契約プラン／管理者の設定"], ["実行する操作", "権限／承認／バックアップ"], ["出てきた結果", "出典／計算／差分・テスト"]].map(([title, text], index) => <div key={title}><span>{index + 1}</span><strong>{title}</strong><small>{text}</small></div>)}<p>人が確かめるポイントを、最初から決める。</p></div></article>
             <article className={styles.featurePanel}><div className={styles.featureCopy}><span className={styles.featureIndex}>特徴 3</span><h3>一人のスキルを、<br />チームの仕組みへ</h3><p>依頼文や確認リスト、{course.instruction}を使って、うまくいった手順を言葉にします。研修後も再利用できる型を残し、担当者が変わっても続けやすい状態を目指します。</p><ul className={styles.checkList}><li>共有できる作業ルールをつくる</li><li>確認と修正の手順を揃える</li><li>研修後に取り組む課題を決める</li></ul></div><div className={styles.workflowDiagram}><div className={styles.workflowTop}><Icon kind="people" /><span>個人の「うまくできた」を</span></div><div className={styles.workflowFile}><Icon kind="document" /><strong>{course.instruction}</strong><span>依頼のルール／確認すること／作業手順</span></div><div className={styles.workflowArrow}>↓</div><div className={styles.workflowTeam}><Icon kind="team" /><strong>チームで再現できる、仕事の型へ</strong></div></div></article>
           </div>
@@ -172,13 +174,15 @@ export default function AgentTrainingPage({ tool }: { tool: Tool }) {
         <section id="curriculum" className={`${styles.section} ${styles.lavender}`}>
           <SectionTitle lead="カリキュラム例" text="事前準備＋全4回で構成した場合の一例です。回数・時間・内容は、受講者の経験と目的に合わせて調整します。">知る、試す、確かめる。<br /><em>実務に近づくステップ設計</em></SectionTitle>
           <TrainingCurriculumTabs lessons={lessons} toolName={course.name} />
-          <p className={styles.centerNote}>各回の内容・成果物は、ヒアリング後にご提案します。</p>
+          <p className={styles.centerNote}>各回の時間・講義と演習の配分・成果物は、受講者の経験と目的を伺ってご提案します。業務調整や稟議に必要な時間割は、見積もり時にご確認ください。</p>
         </section>
 
         <section id="examples" className={styles.section}>
           <SectionTitle lead="部門ごとの活用・演習例" text="エンジニアだけの道具ではありません。身近な業務から、チームに合う使い方を見つけます。">あなたの部署なら、<br /><em>こんな仕事から始められます</em></SectionTitle>
           <div className={styles.departmentGrid}>{departments.map((department) => <article key={department.role} className={styles.departmentCard}><span className={styles.departmentRole}>{department.role}</span><div className={styles.departmentVisual}><Image src={`/images/training-lp/${department.image}${imageSuffix}.webp`} alt={`${department.role}でAIを活用するチームのイラスト`} width={720} height={480} sizes="(max-width: 767px) 90vw, (max-width: 1199px) 40vw, 28vw" /></div><div className={styles.departmentCopy}><h3>{department.title}</h3><p>{department.text}</p><div><span>成果物の例</span><strong>{department.deliverable}</strong></div></div></article>)}</div>
         </section>
+
+        <TrainingOutputSample />
 
         <section className={`${styles.section} ${styles.targetSection}`}>
           <SectionTitle lead="こんな企業・チームにおすすめです">導入前の検討から、<br /><em>すでに使っているチームの底上げまで</em></SectionTitle>
@@ -192,10 +196,21 @@ export default function AgentTrainingPage({ tool }: { tool: Tool }) {
           <div className={styles.supportGrid}>{[["document", "実践研修", "自社に合う、学びの設計", "受講者の経験や業務に合わせ、説明・演習・成果物を設計します。"], ["shield", "利用ルールの整理", "安心して使うための土台", "入力データ、権限、承認、結果の確認など、社内で揃える観点を整理します。"], ["team", "定着・実装の相談", "現場に根づく、その先へ", "研修後の運用改善やツール開発も、課題に応じて別途ご相談いただけます。"]].map(([icon, label, title, text]) => <article key={label}><Icon kind={icon} /><span>{label}</span><h3>{title}</h3><p>{text}</p></article>)}</div>
         </section>
 
+        <section className={styles.section} aria-labelledby="compare-training">
+          <SectionTitle lead="研修の選び方" text="どちらも実務課題を題材に、AIに任せる範囲と人が確かめる点を学びます。現在の業務と利用環境に合うかをご相談ください。"><span id="compare-training">Claude CodeとCodexを比較する</span></SectionTitle>
+          <div style={{ overflowX: "auto" }}><table style={{ width: "100%", minWidth: 560, borderCollapse: "collapse", textAlign: "left" }}><thead><tr>{["比較する観点", "Claude Code研修", "Codex研修"].map((heading) => <th key={heading} scope="col" style={{ border: "1px solid #d1d5db", padding: 16 }}>{heading}</th>)}</tr></thead><tbody>{[
+            ["演習の中心", courses["claude-code"].lessonTwo, courses.codex.lessonTwo],
+            ["成果物の例", courses["claude-code"].lessonTwoOutput, courses.codex.lessonTwoOutput],
+            ["チームのルール", courses["claude-code"].lessonThree, courses.codex.lessonThree],
+            ["受講前の確認", "対応アカウント・PC・ネットワーク・社内の導入許可", "対応アカウント・PC・ネットワーク・社内の導入許可"],
+          ].map(([label, claude, codex]) => <tr key={label}><th scope="row" style={{ border: "1px solid #d1d5db", padding: 16 }}>{label}</th><td style={{ border: "1px solid #d1d5db", padding: 16 }}>{claude}</td><td style={{ border: "1px solid #d1d5db", padding: 16 }}>{codex}</td></tr>)}</tbody></table></div>
+          <p className={styles.centerNote}><Link href={`/training/${course.otherPath}`}>{course.other}研修の詳細を見る →</Link></p>
+        </section>
+
         <section id="pricing" className={`${styles.section} ${styles.lavender}`}>
           <SectionTitle lead="研修費用・実施形式">目的に合う内容を、<br /><em>無理のない計画で</em></SectionTitle>
           <div className={styles.pricingPanel}><div className={styles.priceHead}><span>{course.name} 法人向け実践研修</span><h3>ご要望に合わせた<br /><strong>個別お見積もり</strong></h3><p>人数・内容・形式を伺い、<br />研修プランと費用をセットでご提案します。</p><ApplyButton /></div><dl className={styles.priceDetails}><div><dt>実施形式</dt><dd>オンライン・対面でご相談</dd></div><div><dt>日程・人数</dt><dd>受講者の経験とご希望に合わせて調整</dd></div><div><dt>プログラム</dt><dd>事前準備＋全4回をベースに個別設計</dd></div><div><dt>費用に関する確認</dt><dd>ライセンス・API利用料は別途。対面時の交通費等は見積もり時に明示します。</dd></div></dl></div>
-          <div className={styles.pricingNotes}><Link href="/training#pricing">AI内製化研修の料金案内も見る <span aria-hidden="true">›</span></Link><p><strong>助成金の活用を検討されている方へ</strong><br />制度の対象要件や申請可否は企業・研修内容により異なります。適用を前提とした料金表示は行わず、ご相談時に確認事項を整理します。</p></div>
+          <div className={styles.pricingNotes}><p>このページの全4回は個別設計の構成例です。AI内製化研修ページの各料金プランとは回数・内容が異なるため、料金の適用範囲はお見積もり時にご確認ください。</p><Link href="/training#pricing">AI内製化研修の料金案内も見る <span aria-hidden="true">›</span></Link><p><strong>助成金の活用を検討されている方へ</strong><br />制度の対象要件や申請可否は企業・研修内容により異なります。適用を前提とした料金表示は行わず、ご相談時に確認事項を整理します。</p></div>
         </section>
 
         <section id="faq" className={styles.section}>

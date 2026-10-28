@@ -117,7 +117,7 @@ export default async function ColumnArticlePage({
       <article className="bg-white">
         {/* Title block */}
         <header className="border-b border-gray-100 pt-24 pb-8 lg:pt-28 lg:pb-10">
-          <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto px-6 lg:px-8">
             <nav aria-label="パンくず" className="mb-8 text-xs text-neutral-500">
               <Link href="/" className="hover:text-neutral-900 transition-colors">ホーム</Link>
               <span className="mx-2 text-neutral-300">/</span>
@@ -148,7 +148,7 @@ export default async function ColumnArticlePage({
         </header>
 
         <div className="py-14 lg:py-20">
-          <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto px-6 lg:px-8">
             {/* Answer-first summary — the block AI assistants and snippets pull from. */}
             <section className="mb-12 border border-neutral-900 p-6 md:p-8">
               <h2 className="mb-4 text-sm font-bold text-neutral-900">結論から</h2>

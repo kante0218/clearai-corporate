@@ -16,13 +16,13 @@ export default function Footer() {
     || pathname === "/training/codex") return null;
 
   const services = [
-    { label: f.services.websiteProduction, href: "/website-production" },
-    { label: f.services.sns, href: "/sns-management" },
-    { label: f.services.meo, href: "/meo" },
     { label: f.services.softwareDev, href: "/software-development" },
     { label: f.services.robotRental, href: "/robot-rental" },
     { label: f.services.aiConsulting, href: "/aio" },
     { label: f.services.training, href: "/training" },
+    { label: f.services.websiteProduction, href: "/website-production" },
+    { label: f.services.sns, href: "/sns-management" },
+    { label: f.services.meo, href: "/meo" },
   ];
 
   const company = [
@@ -83,8 +83,8 @@ export default function Footer() {
             <div className="flex items-center gap-2.5 mb-4" aria-label={f.logoAlt}>
               <Logo size={28} className="h-7 w-auto" />
             </div>
-            <p className="text-sm text-white/40 leading-relaxed mb-2">{f.tagline}</p>
-            <p className="text-xs text-white/25 leading-relaxed">
+            <p className="text-sm text-white/75 leading-relaxed mb-2">{f.tagline}</p>
+            <p className="text-xs text-white/70 leading-relaxed">
               {f.companyLine1}<br />{f.companyLine2}<br />{f.companyLine3}
             </p>
             <div className="mt-6 flex items-center gap-3">
@@ -95,7 +95,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={s.label}
-                  className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-white/50 transition-colors hover:border-white/40 hover:text-white"
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-white/75 transition-colors hover:border-white/40 hover:text-white"
                 >
                   {s.icon}
                 </a>
@@ -104,39 +104,41 @@ export default function Footer() {
           </div>
 
           <div className="col-span-1">
-            <p className="text-xs font-semibold tracking-widest text-white/40 mb-4 uppercase">{f.servicesHeading}</p>
+            <p className="text-xs font-semibold tracking-widest text-white/75 mb-4 uppercase">{f.servicesHeading}</p>
             <ul className="space-y-2.5">
               {services.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="text-sm text-white/40 hover:text-white/80 transition-colors">{link.label}</Link>
+                  <Link href={link.href} className="text-sm text-white/75 hover:text-white/80 transition-colors">{link.label}</Link>
                 </li>
               ))}
             </ul>
           </div>
 
           <div className="col-span-1">
-            <p className="text-xs font-semibold tracking-widest text-white/40 mb-4 uppercase">{f.companyHeading}</p>
+            <p className="text-xs font-semibold tracking-widest text-white/75 mb-4 uppercase">{lang === "ja" ? "企業情報・ご相談" : "Company & enquiries"}</p>
             <ul className="space-y-2.5">
-              {company.map((link) => (
+              {company.map((link, index) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="text-sm text-white/40 hover:text-white/80 transition-colors">{link.label}</Link>
+                  {index === 3 && <p className="pt-4 pb-2 text-xs font-bold text-white">{lang === "ja" ? "検討中の方" : "Plan your project"}</p>}
+                  {index === 8 && <p className="pt-4 pb-2 text-xs font-bold text-white">{lang === "ja" ? "コンテンツ" : "Content"}</p>}
+                  <Link href={link.href} className="text-sm text-white/75 hover:text-white/80 transition-colors">{link.label}</Link>
                 </li>
               ))}
             </ul>
           </div>
 
           <div className="col-span-2 lg:col-span-1">
-            <p className="text-xs font-semibold tracking-widest text-white/40 mb-4 uppercase">{f.otherHeading}</p>
+            <p className="text-xs font-semibold tracking-widest text-white/75 mb-4 uppercase">{f.otherHeading}</p>
             <ul className="space-y-2.5">
               {other.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="text-sm text-white/40 hover:text-white/80 transition-colors">{link.label}</Link>
+                  <Link href={link.href} className="text-sm text-white/75 hover:text-white/80 transition-colors">{link.label}</Link>
                 </li>
               ))}
             </ul>
             <div className="mt-6 pt-4 border-t border-white/10">
-              <p className="text-xs text-white/30 mb-1">{f.contactLabel}</p>
-              <a href="mailto:info@clearai.jp" className="text-sm text-white/50 hover:text-white/80 transition-colors">
+              <p className="text-xs text-white/70 mb-1">{f.contactLabel}</p>
+              <a href="mailto:info@clearai.jp" className="text-sm text-white/75 hover:text-white/80 transition-colors">
                 info@clearai.jp
               </a>
             </div>
@@ -149,13 +151,13 @@ export default function Footer() {
       </div>
 
       <div className="max-w-[1800px] mx-auto px-5 sm:px-6 lg:px-8 py-5 sm:py-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 sm:gap-4">
-        <p className="site-copyright text-xs text-white/25">
+        <p className="site-copyright text-xs text-white/70">
           &copy; {new Date().getFullYear()} {f.copyright}
         </p>
         <div className="flex items-center gap-6">
           <button id="footer-cookie-settings" type="button" onClick={() => window.dispatchEvent(new Event("clearai-cookie-settings"))} className="text-xs text-white/70 hover:text-white transition-colors">{lang === "ja" ? "Cookie設定" : "Cookie settings"}</button>
-          <Link href="/privacy" className="text-xs text-white/25 hover:text-white/50 transition-colors">{f.privacyShort}</Link>
-          <Link href="/terms" className="text-xs text-white/25 hover:text-white/50 transition-colors">{f.termsShort}</Link>
+          <Link href="/privacy" className="text-xs text-white/70 hover:text-white/75 transition-colors">{f.privacyShort}</Link>
+          <Link href="/terms" className="text-xs text-white/70 hover:text-white/75 transition-colors">{f.termsShort}</Link>
         </div>
       </div>
     </footer>

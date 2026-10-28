@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import RentalApplicationForm from "./RentalApplicationForm";
-import { RENTAL_MODELS, type RentalModelId } from "@/lib/robot-rental-order";
+import { parseRentalSelection } from "@/lib/robot-rental-order";
 
 export const metadata: Metadata = {
   title: "ロボットレンタル申込・本人確認",
@@ -12,15 +12,12 @@ export const metadata: Metadata = {
 export default async function RentalApplicationPage({
   searchParams,
 }: {
-  searchParams: Promise<{ model?: string }>;
+  searchParams: Promise<Record<string, string | undefined>>;
 }) {
   if (process.env.NEXT_PUBLIC_ROBOT_RENTAL_APPLICATION_ENABLED !== "true") notFound();
 
   const params = await searchParams;
-  const requested = params.model ?? "r1";
-  const initialModel: RentalModelId = Object.prototype.hasOwnProperty.call(RENTAL_MODELS, requested)
-    ? (requested as RentalModelId)
-    : "r1";
+  const initialSelection = parseRentalSelection(params);
 
-  return <RentalApplicationForm initialModel={initialModel} />;
+  return <RentalApplicationForm initialSelection={initialSelection} />;
 }

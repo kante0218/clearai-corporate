@@ -35,6 +35,7 @@ export default function TrainingCurriculumTabs({ lessons, toolName }: { lessons:
           <p className={styles.lessonLabel}>{active === 0 ? "安心して始めるために" : `${toolName} 実践プログラム`}</p>
           <h3>{lesson.title}</h3>
           <p>{lesson.description}</p>
+          <p className={styles.previewNote}>{active === 0 ? "準備時間は利用環境により異なります。" : "各回の時間・講義と演習の配分は個別設計です。見積もり時に時間割をご確認ください。"}</p>
           <ul className={styles.checkList}>{lesson.topics.map((topic) => <li key={topic}>{topic}</li>)}</ul>
         </div>
         <div className={styles.lessonPreview}>

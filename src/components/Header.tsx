@@ -24,13 +24,13 @@ export default function Header() {
   const h = headerDict[lang];
 
   const navItems: NavItem[] = [
-    { label: h.navWebsiteProduction, href: "/website-production" },
-    { label: h.navSns, href: "/sns-management" },
-    { label: h.navMeo, href: "/meo" },
     { label: h.navSoftwareDev, href: "/software-development" },
     { label: h.navRobotRental, href: "/robot-rental" },
     { label: h.navFde, href: "/aio" },
     { label: h.navTraining, href: "/training" },
+    { label: h.navWebsiteProduction, href: "/website-production" },
+    { label: h.navSns, href: "/sns-management" },
+    { label: h.navMeo, href: "/meo" },
   ];
 
   // Column stays reachable from the footer — the header slot goes to 導入実績,
@@ -126,6 +126,13 @@ export default function Header() {
             <Link href="/" className="flex shrink-0 items-center gap-2.5 group" aria-label="ClearAI株式会社（クリアエーアイ）">
               <Logo size={36} className="h-7 lg:h-8 w-auto transition-opacity duration-300 group-hover:opacity-80" />
             </Link>
+
+            <nav aria-label={lang === "ja" ? "主要ページ" : "Main pages"} className="hidden lg:flex min-[1700px]:hidden items-center gap-6 text-sm font-semibold text-neutral-800">
+              <Link href="/service">{lang === "ja" ? "事業内容" : "Services"}</Link>
+              <Link href="/case-studies">{h.navCases}</Link>
+              <Link href="/about">{h.navAbout}</Link>
+              <Link href="/contact" className="rounded-md bg-cta px-4 py-3 text-white">{lang === "ja" ? "相談する" : "Contact"}</Link>
+            </nav>
 
             <nav className="hidden min-[1700px]:flex items-center gap-1">
               {navItems.map((item) => {
@@ -323,6 +330,7 @@ export default function Header() {
                 <LanguageToggle variant="mobile" />
               </div>
               <div className="site-menu-actions mt-4 space-y-3">
+                <Link href="/contact" onClick={() => setIsOpen(false)} className="flex min-h-11 items-center justify-center rounded-lg border border-neutral-300 px-4 py-3.5 text-sm font-semibold text-neutral-900">{lang === "ja" ? "文章で相談する" : "Ask in writing"}</Link>
                 <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" onClick={() => setIsOpen(false)}
                   className={`block text-center px-4 py-3.5 rounded-lg text-sm font-semibold transition-colors min-h-[44px] flex items-center justify-center ${contactFilledClass}`}>
                   {lang === "ja" ? "代表と面談" : "Meet founder"}

@@ -32,7 +32,7 @@ const DEV_STEPS: Step[] = [
     desc: "実際のデータと業務フローを見せていただき、対象業務を絞り込みます。工数を左右する接続要件もここで洗い出します。",
     ours: ["業務フローの整理", "対象業務の絞り込み案", "合格ラインの案"],
     yours: [
-      "実データのサンプル（機密部分はマスク可）",
+      "実データ共有前にNDAと安全な共有方法をご相談ください。初回は機密部分を除いた業務概要だけでも構いません。",
       "接続したいシステムの一覧（API・仕様書・テスト環境の有無）",
       "現場担当者へのヒアリング時間",
     ],
@@ -141,9 +141,12 @@ export default function FlowPage() {
             </p>
           </div>
 
+          <p className="mb-5 text-sm leading-7 text-neutral-700">工程02・03の費用、契約・発注が必要な時点、途中で終了する場合の取り扱いは、着手前にご確認ください。初回30分の無料相談とは範囲が異なります。</p>
+          <p className="mb-6 text-sm"><a href="/downloads/development-deliverables-sample.txt" className="font-semibold underline underline-offset-4">要件・構成・見積の説明用見本を開く</a></p>
+          <nav aria-label="開発工程" className="mb-8 flex flex-wrap gap-3">{DEV_STEPS.map((step) => <a key={step.no} href={`#step-${step.no}`} className="rounded-md border border-neutral-300 px-3 py-2 text-sm text-neutral-800">{step.no} {step.title}</a>)}</nav>
           <ol className="divide-y divide-neutral-200 border-t border-neutral-200">
             {DEV_STEPS.map((s) => (
-              <li key={s.no} className="py-10 md:py-12">
+              <li key={s.no} id={`step-${s.no}`} className="scroll-mt-28 py-10 md:py-12">
                 <div className="grid gap-6 md:grid-cols-[auto_1fr] md:gap-10">
                   <div className="md:w-40">
                     <div className="flex items-baseline gap-3 md:flex-col md:items-start md:gap-2">
@@ -199,6 +202,7 @@ export default function FlowPage() {
       <section className="border-t border-gray-100 py-14 lg:py-20 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <h2 className="mb-10 text-2xl md:text-3xl font-bold text-neutral-900">その他の事業の流れ</h2>
+          <div className="mb-8 flex flex-wrap gap-4 text-sm font-semibold underline underline-offset-4"><Link href="/website-production">Web制作の進め方</Link><Link href="/sns-management">SNS運用の進め方</Link><Link href="/aio">AIO支援の進め方</Link></div>
           <div className="grid gap-8 md:grid-cols-2">
             {OTHER_FLOWS.map((f) => (
               <div key={f.href} className="border border-neutral-200 p-7 md:p-8">

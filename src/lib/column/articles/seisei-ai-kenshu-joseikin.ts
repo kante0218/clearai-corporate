@@ -62,6 +62,10 @@ export const article: Article = {
     },
     {
       t: "p",
+      text: "公式資料：[厚生労働省の事業展開等リスキリング支援コース](https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/koyou/kyufukin/d01-1_00006.html)。年度別の支給要領を確認し、個別の適用可否は所轄の都道府県労働局へお問い合わせください。",
+    },
+    {
+      t: "p",
       text: "経費助成は研修費用そのものに対して、賃金助成は受講時間中の賃金に対して支給されるものです。両方が適用されると、実質的な自己負担は見た目の研修費よりかなり小さくなります。",
     },
     {

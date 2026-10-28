@@ -154,21 +154,7 @@ export default async function CaseStudyPage({
 
         <div className="py-14 lg:py-20">
           <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-            <figure className="mb-12">
-              <div className="relative aspect-[16/9] overflow-hidden bg-neutral-100 md:aspect-[21/9]">
-                <Image
-                  src={study.image.src}
-                  alt={study.image.alt}
-                  fill
-                  priority
-                  sizes="(max-width: 767px) calc(100vw - 3rem), (max-width: 1799px) calc(100vw - 4rem), 1736px"
-                  className="object-cover"
-                />
-              </div>
-              <figcaption className="mt-3 text-xs leading-relaxed text-neutral-500">
-                ※ 掲載写真は支援内容・活用場面を伝えるためのイメージです。実際の導入先・現場を撮影したものではありません。
-              </figcaption>
-            </figure>
+
 
             {/* Answer-first summary */}
             <section className="mb-12 border border-neutral-900 p-6 md:p-8">
@@ -184,6 +170,22 @@ export default async function CaseStudyPage({
                 ))}
               </ul>
             </section>
+
+            <figure className="mb-12">
+              <div className="relative aspect-[16/9] max-w-4xl overflow-hidden bg-neutral-100 md:aspect-[21/9]">
+                <Image
+                  src={study.image.src}
+                  alt={study.image.alt}
+                  fill
+                  priority
+                  sizes="(max-width: 767px) calc(100vw - 3rem), (max-width: 1799px) calc(100vw - 4rem), 1736px"
+                  className="object-cover"
+                />
+              </div>
+              <figcaption className="mt-3 text-xs leading-relaxed text-neutral-500">
+                ※ 掲載写真は支援内容・活用場面を伝えるためのイメージです。実際の導入先・現場を撮影したものではありません。
+              </figcaption>
+            </figure>
 
             {/* Fact sheet */}
             <section className="mb-12 bg-neutral-50 p-6 md:p-8">
@@ -237,6 +239,23 @@ export default async function CaseStudyPage({
               </nav>
             )}
 
+            {study.slug === "milling-machine-ai-agent" && <section className="mb-10 rounded-lg border border-neutral-300 p-5" aria-label="人とAIの工程図">
+              <h2 className="mb-4 text-lg font-bold text-neutral-900">発注書から機械への転送まで</h2>
+              <ol className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                {[{role:"システム",step:"発注書の受信・仕分け"},{role:"AI",step:"仕様を項目に分けて抽出"},{role:"システム",step:"過去実績・形状との照合"},{role:"AI",step:"3Dモデル・加工パス・NC生成"},{role:"人",step:"切削条件とNCコードの承認"},{role:"システム",step:"承認済みデータを転送"}].map((item,index) => <li key={item.step} className={`rounded-md border p-4 ${item.role === "人" ? "border-amber-400 bg-amber-50" : item.role === "AI" ? "border-indigo-300 bg-indigo-50" : "border-neutral-300 bg-neutral-50"}`}><p className="mb-2 text-xs font-bold">{index+1} → {item.role}</p><p className="text-sm leading-relaxed text-neutral-800">{item.step}</p></li>)}
+              </ol>
+              <p className="mt-4 text-sm leading-relaxed text-neutral-700">新規品は照合段階で設計者へ回します。抽出結果が未確定・公差外の場合も自動処理を停止し、人が確認します。</p>
+            </section>}
+            {study.slug === "ses-sns-automation" && <section className="mb-10 rounded-lg border border-neutral-300 p-5" aria-label="SNS運用画面の説明図">
+              <h2 className="mb-3 text-lg font-bold text-neutral-900">下書きから返信までの確認箇所</h2>
+              <p className="mb-5 text-sm leading-relaxed text-neutral-600">既存の事例説明を整理した説明図です。実際の運用画面や顧客データのスクリーンショットではありません。</p>
+              <ol className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                <li className="rounded-md border border-indigo-300 bg-indigo-50 p-4"><p className="mb-2 text-xs font-bold">1 下書き・宛先候補</p><p className="text-sm leading-relaxed">投稿カレンダー・下書き、条件に沿う宛先、個別化したDM文面を準備。</p></li>
+                <li className="rounded-md border border-amber-400 bg-amber-50 p-4"><p className="mb-2 text-xs font-bold">2 人が修正・承認</p><p className="text-sm leading-relaxed">担当者が文面を確認。未承認のまま投稿・送信へ進めません。</p></li>
+                <li className="rounded-md border border-neutral-300 bg-neutral-50 p-4"><p className="mb-2 text-xs font-bold">3 投稿・送信履歴</p><p className="text-sm leading-relaxed">承認した投稿・送信の結果を記録。送信済み・対応中の相手を宛先から除外。</p></li>
+                <li className="rounded-md border border-amber-400 bg-amber-50 p-4"><p className="mb-2 text-xs font-bold">4 人が返信対応</p><p className="text-sm leading-relaxed">返信を通知し、その後の会話や日程調整は担当者が対応。</p></li>
+              </ol>
+            </section>}
             <Prose blocks={study.body} />
 
             {/* FAQ */}

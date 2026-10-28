@@ -79,7 +79,7 @@ export default function FaqPage() {
   return (
     <>
       {/* HERO */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white">
+      <section className="relative pt-28 pb-8 flex items-center justify-center overflow-hidden bg-white">
         <div className="absolute bottom-1/3 right-1/4 w-[1px] h-[1px] shadow-[0_0_300px_150px_rgba(0,0,0,0.04)]" />
         <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
           <span className="inline-block rounded-md bg-neutral-100 text-neutral-900 px-3 py-1 text-sm font-semibold mb-6 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "300ms" }}>{t.heroChip}</span>
@@ -99,21 +99,24 @@ export default function FaqPage() {
       </section>
 
       {/* LIST */}
-      <section id="list" className="py-14 lg:py-20 bg-gray-50">
+      <section id="list" className="scroll-mt-24 py-8 bg-gray-50">
         <div className="max-w-3xl mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.listLabel}</Label>
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-8">{t.listTitle}</h2>
           </Reveal>
+          <nav aria-label={lang === "ja" ? "質問のテーマ" : "Question topics"} className="mb-6 flex flex-wrap gap-3">
+            {[{ id: 0, ja: "初回相談", en: "Getting started" }, { id: 1, ja: "費用・助成金", en: "Costs and grants" }, { id: 4, ja: "期間・契約", en: "Timing and contracts" }, { id: 10, ja: "会社・体制", en: "Our company" }].map((topic) => <a key={topic.id} href={`#question-${topic.id}`} className="rounded-md border border-neutral-300 bg-white px-3 py-2 text-sm text-neutral-800">{topic[lang]}</a>)}
+          </nav>
           <div className="space-y-3">
             {faqItems.map((f, i) => (
               <Reveal key={i} delay={i * 30}>
-                <details className="group bg-white border border-gray-200 rounded-xl overflow-hidden">
+                <details id={`question-${i}`} className="scroll-mt-24 group bg-white border border-gray-200 rounded-xl overflow-hidden">
                   <summary className="cursor-pointer list-none p-3.5 md:p-5 flex items-start justify-between gap-4 hover:bg-gray-50 transition-colors">
                     <span className="text-sm lg:text-base font-semibold text-gray-900">{f.q[lang]}</span>
                     <span className="flex-shrink-0 text-neutral-900 text-xl transition-transform group-open:rotate-45">+</span>
                   </summary>
-                  <div className="px-3.5 pb-3.5 md:px-5 md:pb-5 text-sm text-gray-600 leading-relaxed">{f.a[lang]}</div>
+                  <div className="px-3.5 pb-3.5 md:px-5 md:pb-5 text-sm text-gray-600 leading-relaxed">{f.a[lang]}{i === 10 && <a href="/about" className="ml-2 underline underline-offset-4">{lang === "ja" ? "メンバー紹介・会社情報" : "Team and company details"}</a>}{i === 1 && <a href="/ai-consulting" className="ml-2 underline underline-offset-4">{lang === "ja" ? "現在のプランと対応範囲を確認" : "Current plans and scope"}</a>}</div>
                 </details>
               </Reveal>
             ))}
@@ -132,7 +135,8 @@ export default function FaqPage() {
                 <span key={i}>{line}{i < arr.length - 1 && <br />}</span>
               ))}
             </p>
-            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="rounded-lg bg-cta text-white font-semibold px-10 py-4 hover:bg-cta-hover transition-colors duration-300 inline-block">{t.ctaButton}</a>
+            <a href="/contact" className="rounded-lg bg-cta text-white font-semibold px-10 py-4 hover:bg-cta-hover transition-colors duration-300 inline-block">{t.ctaButton}</a>
+            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="mt-4 block text-sm underline underline-offset-4">{lang === "ja" ? "日時を選んで面談予約（別タブ）" : "Choose a meeting time (new tab)"}</a>
           </Reveal>
         </div>
       </section>

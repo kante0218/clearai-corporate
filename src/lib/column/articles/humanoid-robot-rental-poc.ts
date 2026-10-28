@@ -95,6 +95,7 @@ export const article: Article = {
     },
 
     { t: "h2", text: "環境条件の制約を先に確認する" },
+    { t: "p", text: "メーカーの文書入口：[Unitree R1](https://support.unitree.com/home/en/R1_developer)／[Unitree G1](https://support.unitree.com/home/en/G1_developer)／[Unitree Go2](https://support.unitree.com/home/en/developer)。文書入口の確認日：2026年10月28日。リンク先は更新型のメーカー文書です。貸出機体のグレード・ファームウェアに対応する取扱説明書の版は、利用前に[ロボットレンタル窓口](/contact?service=robot-rental)へご確認ください。" },
     {
       t: "p",
       text: "機体選定で最も見落とされるのがここです。市販の四足歩行ロボットの多くは、メーカーが動作環境の条件を明示しています。代表的な制約は次のとおりです。",

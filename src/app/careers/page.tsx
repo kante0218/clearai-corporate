@@ -293,6 +293,10 @@ export default function CareersPage() {
         </div>
       </section>
 
+      <section className="mx-auto max-w-[1800px] px-6 pb-8 lg:px-8">
+        <p className="text-sm leading-relaxed text-neutral-700">{lang === "ja" ? "一緒に働くメンバーの担当領域と公開中の経歴をご覧いただけます。" : "Explore the team's published backgrounds and areas of work."} <Link href="/about#members" className="font-semibold underline underline-offset-4">{lang === "ja" ? "メンバーと担当領域を見る" : "Meet the team"}</Link></p>
+      </section>
+
       {/* POSITIONS */}
       <section className="py-14 lg:py-20">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
