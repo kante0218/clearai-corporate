@@ -184,11 +184,14 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         <div className="grid items-start gap-12 lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-10">
           <div className="min-w-0">
             <header className="article-header mb-8">
-              <div className="mb-4 flex flex-wrap items-center gap-3 text-xs text-neutral-500">
+              <div className="article-metadata mb-4 flex flex-wrap items-center gap-2 text-xs text-neutral-500">
                 {post.category && <span className="font-semibold text-neutral-900">{post.category.name}</span>}
-                <time dateTime={post.publishedAt}>{formatBlogDate(post.publishedAt!)}</time>
+                <div className="flex items-center gap-2 whitespace-nowrap">
+                  <time dateTime={post.publishedAt}>{formatBlogDate(post.publishedAt!)}</time>
+                  <div id="article-like-slot" className="article-like-slot" />
+                </div>
               </div>
-              <div className="article-title-row"><h1 className="mb-6 text-2xl font-bold leading-[1.6] text-neutral-900 md:text-[32px]">{post.title}</h1><div id="article-like-slot" className="article-like-slot" /></div>
+              <h1 className="mb-6 text-2xl font-bold leading-[1.6] text-neutral-900 md:text-[32px]">{post.title}</h1>
               {post.eyecatch && !coverInBody && (
                 <div className="overflow-hidden">
                   <Image src={post.eyecatch.url} alt={post.title} width={post.eyecatch.width ?? 1200} height={post.eyecatch.height ?? 600} sizes="(max-width: 767px) calc(100vw - 32px), 560px" className="article-cover-image" priority />
