@@ -48,7 +48,7 @@ export default async function NewsList() {
           <div className="min-w-0 sm:p-4">
           <div className="flex flex-wrap items-center gap-2">
             <span className="text-xs text-neutral-600 font-medium whitespace-nowrap pt-0.5">{post.date}</span>
-            <span className="text-xs font-semibold text-neutral-900 bg-neutral-100 px-2 py-0.5 rounded">{post.company ? "ClearAIからのお知らせ" : `AI・技術記事 / ${post.category}`}</span>
+            <span className="text-xs font-semibold text-neutral-900 bg-neutral-100 px-2 py-0.5 rounded">{post.company ? "ClearAIからのお知らせ" : `記事 / ${post.category}`}</span>
           </div>
           <h3 className="mt-2 text-sm font-medium leading-relaxed text-gray-900 transition-colors group-hover:text-neutral-700">
             {post.title}

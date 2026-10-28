@@ -1,0 +1,101 @@
+{
+  "status": "本人確認用の空欄台帳。貸出仕様を定義するものではない。",
+  "numbers": [
+    "051",
+    "052",
+    "054",
+    "152"
+  ],
+  "models": [
+    {
+      "model": "Unitree R1",
+      "grade": "Basic",
+      "loan_configuration": null,
+      "dimensions_mm": null,
+      "weight_kg": null,
+      "degrees_of_freedom": null,
+      "runtime_conditions": null,
+      "sensors": null,
+      "included_accessories": null,
+      "software_development_support": null,
+      "firmware": null,
+      "manual_title_version_url": null,
+      "verified_by_and_date": null
+    },
+    {
+      "model": "Unitree R1",
+      "grade": "R&D",
+      "loan_configuration": null,
+      "dimensions_mm": null,
+      "weight_kg": null,
+      "degrees_of_freedom": null,
+      "runtime_conditions": null,
+      "sensors": null,
+      "included_accessories": null,
+      "software_development_support": null,
+      "firmware": null,
+      "manual_title_version_url": null,
+      "verified_by_and_date": null
+    },
+    {
+      "model": "Unitree G1",
+      "grade": "Basic",
+      "loan_configuration": null,
+      "dimensions_mm": null,
+      "weight_kg": null,
+      "degrees_of_freedom": null,
+      "runtime_conditions": null,
+      "sensors": null,
+      "included_accessories": null,
+      "software_development_support": null,
+      "firmware": null,
+      "manual_title_version_url": null,
+      "verified_by_and_date": null
+    },
+    {
+      "model": "Unitree G1",
+      "grade": "R&D",
+      "loan_configuration": null,
+      "dimensions_mm": null,
+      "weight_kg": null,
+      "degrees_of_freedom": null,
+      "runtime_conditions": null,
+      "sensors": null,
+      "included_accessories": null,
+      "software_development_support": null,
+      "firmware": null,
+      "manual_title_version_url": null,
+      "verified_by_and_date": null
+    },
+    {
+      "model": "Unitree Go2",
+      "grade": "Air",
+      "loan_configuration": null,
+      "dimensions_mm": null,
+      "weight_kg": null,
+      "degrees_of_freedom": null,
+      "runtime_conditions": null,
+      "sensors": null,
+      "included_accessories": null,
+      "software_development_support": null,
+      "firmware": null,
+      "manual_title_version_url": null,
+      "verified_by_and_date": null
+    },
+    {
+      "model": "Unitree Go2",
+      "grade": "R&D",
+      "loan_configuration": null,
+      "dimensions_mm": null,
+      "weight_kg": null,
+      "degrees_of_freedom": null,
+      "runtime_conditions": null,
+      "sensors": null,
+      "included_accessories": null,
+      "software_development_support": null,
+      "firmware": null,
+      "manual_title_version_url": null,
+      "verified_by_and_date": null
+    }
+  ]
+}

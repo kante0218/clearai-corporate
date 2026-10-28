@@ -76,6 +76,7 @@ export default function RentalApplicationForm({ initialSelection }: { initialSel
         <div className="mt-7 grid gap-8 lg:grid-cols-[minmax(0,1fr)_340px] lg:items-start">
           <section className="rounded-lg border border-slate-200 bg-white p-6 lg:p-10">
             <p className="text-sm font-semibold text-neutral-900">Robot rental application</p>
+            <p className="mt-4 text-sm leading-7 text-neutral-700">運転免許証をお持ちでない場合や法人としての本人確認方法を確認したい場合は、本人確認へ進む前に<Link href="/contact?service=robot-rental" className="font-semibold underline underline-offset-4">申込窓口へご相談ください</Link>。</p>
             <h1 className="mt-2 text-3xl font-bold tracking-tight text-neutral-900">レンタル申込・免許証確認</h1>
             <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-600">入力後、Stripeの安全な画面で運転免許証を提出します。ClearAIのサーバーには免許証画像を保存しません。</p>
 

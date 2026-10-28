@@ -49,9 +49,9 @@ export default function BlogList({ posts }: { posts: Blog[] }) {
                         <span className="text-xs font-semibold text-neutral-900 bg-neutral-100 px-2 py-0.5 rounded">{post.category.name}</span>
                       )}
                     </div>
-                    <h2 className={styles.listTitle}>
+                    <h3 className={styles.listTitle}>
                       {post.title}
-                    </h2>
+                    </h3>
                   </div>
                 </Link>
               </div>

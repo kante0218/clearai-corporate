@@ -68,7 +68,7 @@ const COPY: Record<"ja" | "en", Copy> = {
     heroTitle: "AIコンサルティング・DX",
     heroDesc: "戦略策定から開発・実装・運用まで、大手コンサルティングファーム出身者が監修し一気通貫でご支援します。",
     stats: [
-      { value: "100+", label: "支援可能な業種" },
+      { value: "業務課題", label: "対象業務から相談" },
       { value: "4領域", label: "ワンストップ提供" },
       { value: "PoC→本番", label: "伴走支援" },
       { value: "2営業日", label: "初回返信" },
@@ -181,7 +181,7 @@ const COPY: Record<"ja" | "en", Copy> = {
     heroTitle: "AI Consulting & Digital Transformation",
     heroDesc: "End-to-end support from strategy through development, implementation, and operations, supervised by alumni of leading consulting firms.",
     stats: [
-      { value: "100+", label: "Industries served" },
+      { value: "Workflow", label: "Discuss your business needs" },
       { value: "4 domains", label: "One-stop delivery" },
       { value: "PoC→Prod", label: "Hands-on support" },
       { value: "2 biz days", label: "First response" },

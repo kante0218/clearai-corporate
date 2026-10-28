@@ -1,29 +1,29 @@
 {
-  "baseline": "6802e61f39fff45185c7c646a5b5787be5cf1f49",
+  "baseline": "034743081957ca9c1d56939187f23d94f06b8c67",
   "remote_main_read_verified": true,
   "original_tree_untouched": true,
   "source_docx_bytes": 5698713,
   "source_images": 98,
   "ledger_count": 152,
   "counts": {
-    "完了": 70,
-    "要本人確認": 80,
-    "未着手": 2
+    "完了": 98,
+    "要本人確認": 52,
+    "既対応": 2
   },
   "typecheck": "passed",
   "unit_tests": {
-    "passed": 13,
+    "passed": 15,
     "failed": 0
   },
-  "production_build": "passed (local test application flag enabled; no environment file/credential changes)",
+  "production_build": "passed, final local build with rental flag enabled for testing only",
   "responsive": {
-    "390": 16,
-    "1188": 16,
     "375": 8,
+    "390": 16,
     "768": 8,
+    "1024": "desktop nav fits",
+    "1188": 16,
     "1440": 8,
-    "horizontal_overflow_detected": 0,
-    "additional_privacy_375": 1
+    "horizontal_overflow_detected": 0
   },
   "browser_e2e": [
     "FAQ CTA routes to contact; separate booking link",
@@ -33,7 +33,12 @@
     "Contact required/minLength/persistent help",
     "Contact draft survives menu open/Escape close; no submit",
     "Go2 availability inquiry context and service preselection; no submit",
-    "Privacy reference links and cookie summary; original policy paragraphs unchanged"
+    "Privacy reference links and cookie summary; original policy paragraphs unchanged",
+    "Integrated desktop navigation and original executive/download CTAs preserved; 1024px rightmost link992px",
+    "Eight-guide download list and MEO query preselection preserved",
+    "Registration-free cover/content previews expand; actual page counts/dates shown",
+    "Standalone evaluation worksheet accepts text with zero forms/scripts and no transmission",
+    "Preview heading after fragment navigation top111.89px with scroll margin112px"
   ],
   "not_executed": [
     "production deploy",
@@ -45,14 +50,32 @@
     "CMS draft publishing"
   ],
   "known_limits": [
-    "CMS-backed real articles unavailable in local build without credentials; fallback article data used",
+    "CMS credentials absent locally: published Uber article read publicly, resource helper/unit and worksheet verified; no CMS write or draft access bypass",
     "No real devices; browser viewport tests",
-    "Remaining factual/contract/permission decisions in ledger",
-    "Original checkout acquired concurrent Header/HomeContent edits after task start. Do not apply full patch over that tree without merging those files. safe patch excludes both files."
+    "Real forms, identity, payment and production release not executed",
+    "52 factual/contract/permission inputs remain in seven groups; explanatory alternatives do not count as genuine proof"
   ],
   "original_tree_untouched_by_this_task": true,
   "concurrent_original_changes_detected": [
     "src/components/Header.tsx",
     "src/components/HomeContent.tsx"
-  ]
+  ],
+  "initial_report_baseline": "6802e61f39fff45185c7c646a5b5787be5cf1f49",
+  "unstarted": 0,
+  "independent_preparation_remaining": 0,
+  "input_groups": 7,
+  "guide_previews": {
+    "pdfs": 8,
+    "images": 16,
+    "pdfs_modified_by_this_task": false,
+    "metadata": "actual page counts and CreationDate via pdfinfo",
+    "visual_review": "16 rendered cover/content previews inspected"
+  },
+  "concurrent_source_updates": "local merge af6b237 incorporates 4ad8e92 and0347430; three conflicts resolved; original checkout remains clean",
+  "verified_at_utc": "2026-10-28T05:09:26.021004+00:00",
+  "superseded_patches": [
+    "clearai-hp-local.patch",
+    "clearai-hp-safe.patch"
+  ],
+  "current_patch": "clearai-hp-review-0347430.patch"
 }

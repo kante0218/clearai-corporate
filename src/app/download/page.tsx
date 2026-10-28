@@ -1,3 +1,4 @@
+import guideMetadata from "@/lib/download-guide-metadata.json";
 import Link from "next/link";
 import PageHeader from "@/components/PageHeader";
 import Image from "next/image";
@@ -133,6 +134,7 @@ export default async function DownloadPage({ searchParams }: { searchParams: Pro
         crumbs={[{ label: "ホーム", href: "/" }, { label: "資料請求" }]}
       />
 
+      <div className="mx-auto max-w-[1800px] px-6 pt-5 lg:px-8"><a href="#guide-preview-title" className="inline-flex min-h-11 items-center text-sm font-semibold underline underline-offset-4">入力前に資料の表紙・目次・本文冒頭をプレビューする</a></div>
       {/* 資料選択 ＋ 実績（実績は全幅の帯をやめ、左に小さく添える） */}
       <section className="py-14 lg:py-20 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
@@ -169,6 +171,15 @@ export default async function DownloadPage({ searchParams }: { searchParams: Pro
         </div>
       </section>
 
+      <section className="border-t border-neutral-200 py-10" aria-labelledby="guide-preview-title">
+        <div className="mx-auto max-w-[1800px] px-6 lg:px-8"><h2 id="guide-preview-title" className="scroll-mt-28 text-2xl font-bold text-neutral-900">資料の中身を登録せず確認する</h2><p className="mt-3 text-sm leading-7 text-neutral-600">各資料の表紙と本文冒頭をプレビューできます。ページ数とPDF作成日も比較して、必要な資料をお選びください。</p>
+          <div className="mt-6 grid gap-5 md:grid-cols-2">{DECKS.map(deck => {
+            const fileKey = ({ company: "company-guide", training: "ai-training-guide" } as Record<string, string>)[deck.key] ?? `${deck.key}-guide`;
+            const info = guideMetadata[fileKey as keyof typeof guideMetadata];
+            return <details key={deck.key} className="rounded-lg border border-neutral-300 p-5"><summary className="cursor-pointer text-base font-bold text-neutral-900">{deck.title}<span className="mt-2 block text-sm font-normal text-neutral-600">全{info.pages}ページ / PDF作成日 {info.pdfCreated} / 表紙・本文を開く</span></summary><p className="my-4 text-sm leading-7 text-neutral-700">{deck.contents.join(" / ")}</p><div className="grid grid-cols-2 gap-3">{info.previews.map((image,index) => <a key={image} href={image} target="_blank" rel="noopener noreferrer" className="block border border-neutral-200"><Image src={image} alt={`${deck.title} ${index+1}ページ目`} width={700} height={1000} className="h-auto w-full" /><span className="block px-2 py-2 text-xs underline">{index+1}ページ目を拡大（別タブ）</span></a>)}</div><Link href={`/download?document=${deck.key}`} className="mt-4 inline-flex min-h-11 items-center text-sm font-semibold underline underline-offset-4">この資料を選択する</Link></details>;
+          })}</div>
+        </div>
+      </section>
       {/* Notes */}
       <section className="border-t border-gray-100 py-14 lg:py-20 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
@@ -216,7 +227,7 @@ export default async function DownloadPage({ searchParams }: { searchParams: Pro
               href="/contact"
               className="text-sm font-semibold text-white/70 underline-offset-4 hover:text-white hover:underline transition-colors"
             >
-              メールで相談する
+              フォームで相談する
             </Link>
           </div>
         </div>

@@ -583,7 +583,7 @@ export default function TrainingPage() {
       </section>
 
       {/* PRICING */}
-      <section id="pricing" className="pt-6 pb-10 lg:pt-8 lg:pb-12 bg-white">
+      <section id="pricing" className="scroll-mt-28 pt-6 pb-10 lg:pt-8 lg:pb-12 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <Reveal>
             <Label>{t.pricingLabel}</Label>

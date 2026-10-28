@@ -1,0 +1,33 @@
+{
+  "source_checkout": "/Users/user/Documents/Codex/2026-10-28/task/clearai-corporate",
+  "source_checkout_read_only": true,
+  "latest_observed_commit": "034743081957ca9c1d56939187f23d94f06b8c67",
+  "source_status": "clean when checked in second pass",
+  "file_mtimes_jst": {
+    "src/components/Header.tsx": "2026-10-28 13:42:21 +0900",
+    "src/components/HomeContent.tsx": "2026-10-28 13:42:21 +0900"
+  },
+  "new_source_commits": [
+    "4ad8e92 feat: complete service download guides and refresh published materials",
+    "0347430 feat: add desktop navigation and hero conversion links"
+  ],
+  "local_branch": "hp-improvements-local",
+  "local_snapshot_commit": "84b803e",
+  "local_merge_commit": "af6b237",
+  "merge_conflicts_resolved": [
+    "src/components/Header.tsx",
+    "src/components/HomeContent.tsx",
+    "src/app/sns-management/page.tsx"
+  ],
+  "resolution": {
+    "Header": "Preserved source desktop nav and download/executive consultation actions. Retained consistent seven-service mobile order and writing-inquiry action.",
+    "HomeContent": "Preserved source desktop download/consultation buttons; report text and small-screen writing/detail actions retained.",
+    "SNS": "Retained form-accurate wording plus new guide download link."
+  },
+  "additional_overlapping_auto_merged_files": [
+    "src/app/aio/page.tsx",
+    "src/app/website-production/page.tsx",
+    "src/components/DownloadRequestForm.tsx"
+  ],
+  "no_remote_push_pr_or_deploy": true
+}

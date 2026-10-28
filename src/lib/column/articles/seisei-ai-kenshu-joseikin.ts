@@ -62,7 +62,7 @@ export const article: Article = {
     },
     {
       t: "p",
-      text: "公式資料：[厚生労働省の事業展開等リスキリング支援コース](https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/koyou/kyufukin/d01-1_00006.html)。年度別の支給要領を確認し、個別の適用可否は所轄の都道府県労働局へお問い合わせください。",
+      text: "公式資料（確認日：2026年10月28日）：[令和8年8月3日版の支給要領](https://www.mhlw.go.jp/content/11800000/001731981.pdf)／[厚生労働省のコース一覧・最新資料](https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/koyou/kyufukin/d01-1.html)。年度別の支給要領を確認し、個別の適用可否は所轄の都道府県労働局へお問い合わせください。",
     },
     {
       t: "p",
@@ -188,7 +188,7 @@ export const article: Article = {
     },
     {
       label: "厚生労働省｜事業展開等リスキリング支援コース",
-      url: "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/koyou/kyufukin/d01-1_00006.html",
+      url: "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/koyou_roudou/koyou/kyufukin/d01-1.html",
     },
   ],
 };
