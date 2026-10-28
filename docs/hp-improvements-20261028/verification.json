@@ -7,13 +7,13 @@
   "ledger_count": 152,
   "counts": {
     "完了": 87,
-    "要本人確認": 43,
-    "既対応": 2,
+    "要本人確認": 44,
+    "既対応": 1,
     "本人指示で掲載対象外": 20
   },
   "typecheck": "passed",
   "unit_tests": {
-    "passed": 15,
+    "passed": 16,
     "failed": 0
   },
   "production_build": "passed after final owner scope and action styles; rental feature flag unchanged",
@@ -54,7 +54,7 @@
     "CMS credentials absent locally: published Uber article read publicly, resource helper/unit and worksheet verified; no CMS write or draft access bypass",
     "No real devices; browser viewport tests",
     "Real forms, identity, payment and production release not executed",
-    "43 factual/contract/permission inputs remain in six groups; explanatory alternatives do not count as genuine proof"
+    "44 factual/contract/permission inputs remain in seven groups; explanatory alternatives do not count as genuine proof"
   ],
   "original_tree_untouched_by_this_task": true,
   "concurrent_original_changes_detected": [
@@ -64,13 +64,15 @@
   "initial_report_baseline": "6802e61f39fff45185c7c646a5b5787be5cf1f49",
   "unstarted": 0,
   "independent_preparation_remaining": 0,
-  "input_groups": 6,
+  "input_groups": 7,
   "guide_previews": {
-    "pdfs": 8,
-    "images": 16,
+    "pdfs": 5,
+    "images": 10,
     "pdfs_modified_by_this_task": false,
     "metadata": "actual page counts and CreationDate via pdfinfo",
-    "visual_review": "16 rendered cover/content previews inspected"
+    "visual_review": "16 rendered cover/content previews inspected",
+    "archived_pdfs": 3,
+    "archived_preview_images": 6
   },
   "concurrent_source_updates": "local merge af6b237 incorporates 4ad8e92 and0347430; three conflicts resolved; original checkout remains clean",
   "verified_at_utc": "2026-10-28T05:33:49+00:00",
@@ -130,5 +132,24 @@
     "keyboard_focus": "header CTA and submit: focus-visible true, 3px outline",
     "no_form_submission": true,
     "source_checkout": "still clean at 0347430; Header/Home mtimes unchanged"
+  },
+  "download_distribution_audit": {
+    "at": "2026-10-28T05:55:01+00:00",
+    "retired_distribution": [
+      "company-guide.pdf",
+      "software-development-guide.pdf",
+      "ai-training-guide.pdf",
+      "clearai-guides.zip"
+    ],
+    "current_files": 5,
+    "replacement_zip": "clearai-guides-current.zip",
+    "receipt_source": "pure buildDownloadDelivery shared by API response and receipt",
+    "no_email_or_form_submission": true,
+    "new_test": "download-delivery.test.cjs checks receipt content, rejected old keys, ZIP membership/bytes and archived original bytes",
+    "typecheck": "passed",
+    "production_build": "passed",
+    "unit_tests": "16/16",
+    "responsive": "390px and 1440px: 5 document choices + select-all, no overflow, no old links",
+    "http_get": "old 3 PDFs and old ZIP 404; current ZIP and MEO PDF 200"
   }
 }

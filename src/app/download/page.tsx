@@ -20,37 +20,6 @@ type Deck = {
 
 const DECKS: Deck[] = [
   {
-    key: "company",
-    no: "01",
-    title: "会社紹介資料",
-    lead:
-      "ClearAIの事業全体像、支援の進め方、体制、これまでにお受けした案件をまとめた1部です。どの事業からご相談すべきか決まっていない段階の方へ。",
-    contents: [
-      "事業の全体像（開発・レンタル・研修・コンサルティング）",
-      "支援の進め方と、意思決定のタイミング",
-      "これまでにお受けした案件",
-      "会社概要・連絡先",
-    ],
-    audience: "何から相談すべきか決めかねている方",
-  },
-  {
-    key: "software-development",
-    no: "02",
-    title: "システム・ソフトウェア開発 事業紹介資料",
-    lead:
-      "AIを組み込んだ業務システムの受託開発について。見積がどう組み上がるか、着手前に何を決めるか、なぜ「作ったが使われない」が起きるのかまで踏み込んだ内容です。",
-    contents: [
-      "AI開発が失敗する構造と、その対処",
-      "着手前に決める3つのこと（対象業務・合格ライン・測り方）",
-      "進め方と、最短2週間のプロトタイプ",
-      "対応領域6つと技術スタック",
-      "費用の考え方／見積書で確認すべき5項目",
-      "契約・成果物の権利・データの扱い",
-    ],
-    audience: "開発の外注先を検討中／他社見積を比較中の方",
-    href: "/software-development",
-  },
-  {
     key: "robot-rental",
     no: "03",
     title: "ロボットレンタル 事業紹介資料",
@@ -149,7 +118,10 @@ export default async function DownloadPage({ searchParams }: { searchParams: Pro
             </aside>
 
             {/* 右: 資料の選択とフォーム */}
-            <DownloadRequestForm key={initialDocument ?? "all"} decks={DECKS} initialDocument={initialDocument} />
+            <div>
+              <p className="mb-6 text-sm leading-7 text-neutral-600">会社紹介・開発・旧研修の資料は掲載内容を見直しているため配布を停止しています。Codex研修の現在の内容・費用は<a href="/training/codex" className="underline underline-offset-4">Codex研修ページ</a>でご確認ください。</p>
+              <DownloadRequestForm key={initialDocument ?? "all"} decks={DECKS} initialDocument={initialDocument} />
+            </div>
           </div>
         </div>
       </section>
@@ -157,7 +129,7 @@ export default async function DownloadPage({ searchParams }: { searchParams: Pro
       <section className="border-t border-neutral-200 py-10" aria-labelledby="guide-preview-title">
         <div className="mx-auto max-w-[1800px] px-6 lg:px-8"><h2 id="guide-preview-title" className="scroll-mt-28 text-2xl font-bold text-neutral-900">資料の中身を登録せず確認する</h2><p className="mt-3 text-sm leading-7 text-neutral-600">各資料の表紙と本文冒頭をプレビューできます。ページ数とPDF作成日も比較して、必要な資料をお選びください。</p>
           <div className="mt-6 grid gap-5 md:grid-cols-2">{DECKS.map(deck => {
-            const fileKey = ({ company: "company-guide", training: "ai-training-guide" } as Record<string, string>)[deck.key] ?? `${deck.key}-guide`;
+            const fileKey = `${deck.key}-guide`;
             const info = guideMetadata[fileKey as keyof typeof guideMetadata];
             return <details key={deck.key} className="rounded-lg border border-neutral-300 p-5"><summary className="cursor-pointer text-base font-bold text-neutral-900">{deck.title}<span className="mt-2 block text-sm font-normal text-neutral-600">全{info.pages}ページ / PDF作成日 {info.pdfCreated} / 表紙・本文を開く</span></summary><p className="my-4 text-sm leading-7 text-neutral-700">{deck.contents.join(" / ")}</p><div className="grid grid-cols-2 gap-3">{info.previews.map((image,index) => <a key={image} href={image} target="_blank" rel="noopener noreferrer" className="block border border-neutral-200"><Image src={image} alt={`${deck.title} ${index+1}ページ目`} width={700} height={1000} className="h-auto w-full" /><span className="block px-2 py-2 text-xs underline">{index+1}ページ目を拡大（別タブ）</span></a>)}</div><Link href={`/download?document=${deck.key}`} className="mt-4 inline-flex min-h-11 items-center text-sm font-semibold underline underline-offset-4">この資料を選択する</Link></details>;
           })}</div>

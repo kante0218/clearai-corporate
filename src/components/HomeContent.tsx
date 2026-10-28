@@ -839,7 +839,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       <nav data-mobile-cta aria-label={lang === "ja" ? "お問い合わせ" : "Contact actions"} className="fixed inset-x-0 bottom-0 z-50 border-t border-gray-200 bg-white/95 px-3 pt-2 pb-[calc(0.5rem+env(safe-area-inset-bottom))] shadow-[0_-8px_24px_rgba(15,23,42,0.10)] backdrop-blur md:hidden">
         <div className="mx-auto grid max-w-md grid-cols-2 gap-2">
           <Link data-ui-button="control" href="/download" className="inline-flex min-h-11 items-center justify-center rounded-md border border-[#315b73] px-3 text-xs font-bold text-neutral-900">
-            {lang === "ja" ? "会社資料" : "Company guide"}
+            {lang === "ja" ? "事業資料" : "Service guides"}
           </Link>
           <a data-ui-button="filled" href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center justify-center motion-cta rounded-md bg-cta px-3 text-xs font-bold text-white">
             {lang === "ja" ? "代表と面談を予約する" : "Meet our founder"}

@@ -123,12 +123,25 @@
       ],
       "safe_provisional": "外部予約説明の下書きのみ準備。外部設定・重大な規約条件は変更しない。",
       "status": "要入力（独立準備は実施済み）"
+    },
+    {
+      "id": "G8",
+      "title": "配布停止資料の再制作・Codex資料の方針",
+      "numbers": [
+        "034"
+      ],
+      "needed": [
+        "会社紹介・開発資料を現行サービス内容で再制作し、再確認して配布するか",
+        "Codex専用資料を既存Codexページの確認済み内容で作成・確認して配布するか"
+      ],
+      "safe_provisional": "旧3資料・旧ZIPは復元可能に保管。配布は旧研修への案内を含まない5資料のみ。Codexは現行ページをご案内し、旧価格や保証を転用しない。",
+      "status": "要本人確認"
     }
   ],
   "all_pending_covered": true,
-  "individual_pending_count": 43,
+  "individual_pending_count": 44,
   "rule": "説明用代替が準備済みでも、実物/許諾/実測/契約条件を必要とする部分は完了と数えない",
-  "scope_updated_at": "2026-10-28T05:30:50+00:00",
+  "scope_updated_at": "2026-10-28T05:55:01+00:00",
   "owner_excluded_numbers": [
     "011",
     "012",

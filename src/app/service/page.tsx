@@ -34,7 +34,6 @@ const SERVICES: Service[] = [
       "インフラ構築・運用保守",
     ],
     forWhom: "外注先を検討中の方、他社見積を比較している方、要件が固まっていない段階の方",
-    docKey: "software-development",
   },
   {
     no: "02",

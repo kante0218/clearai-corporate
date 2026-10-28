@@ -1,21 +1,12 @@
 import { createHash } from "crypto";
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
-import { DOCUMENT_KEYS, DOCUMENT_LABELS, isValidEmail, type DocumentKey } from "@/lib/validators";
+import { DOCUMENT_KEYS, isValidEmail, type DocumentKey } from "@/lib/validators";
+
+import { buildDownloadDelivery } from "@/lib/download-delivery";
 
 export const runtime = "nodejs";
 
-const DOCUMENT_FILES: Record<DocumentKey, string> = {
-  company: "company-guide.pdf",
-  "software-development": "software-development-guide.pdf",
-  "robot-rental": "robot-rental-guide.pdf",
-  aio: "aio-guide.pdf",
-  "website-production": "website-production-guide.pdf",
-  "sns-management": "sns-management-guide.pdf",
-  meo: "meo-guide.pdf",
-};
-
-const ZIP_FILE = "clearai-guides.zip";
 const FROM_EMAIL = process.env.CONTACT_FROM_EMAIL ?? "ClearAI <onboarding@resend.dev>";
 // 資料請求はリードなので、社内にも必ず通知する（問い合わせフォームと同じ宛先）
 const TO_EMAIL = process.env.CONTACT_TO_EMAIL ?? "info@clearai.jp";
@@ -88,16 +79,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "有効なメールアドレスを入力してください。" }, { status: 400 });
   }
 
-  const all = documents.length === DOCUMENT_KEYS.length;
-  const files = documents.map((key) => ({
-    key,
-    title: DOCUMENT_LABELS[key],
-    url: `https://clearai.jp/downloads/${DOCUMENT_FILES[key]}`,
-  }));
-  // 全部選ばれたときだけ、まとめて1つのZIPを渡す（個別にクリックさせない）
-  const zipUrl = all ? `https://clearai.jp/downloads/${ZIP_FILE}` : null;
-  const downloadUrl = zipUrl ?? files[0].url;
-  const title = all ? `事業紹介資料 ${DOCUMENT_KEYS.length}点セット` : files.map((f) => f.title).join("／");
+  const { files, zipUrl, downloadUrl, title, text, html } = buildDownloadDelivery(documents)!;
   const safeTitle = title.replace(/[<>&"']/g, "");
   const hash = createHash("sha256")
     .update(`${documents.slice().sort().join(",")}:${email}`)
@@ -119,22 +101,8 @@ export async function POST(request: Request) {
         from: FROM_EMAIL,
         to: [email],
         subject: `【ClearAI】${title}をお送りします`,
-        text:
-          `${title}をご請求いただきありがとうございます。\n\n以下のURLから資料をご覧ください。\n` +
-          (zipUrl ? `${DOCUMENT_KEYS.length}資料まとめて：${zipUrl}\n` : "") +
-          files.map((f) => `${f.title}：${f.url}`).join("\n") +
-          `\n\nご不明点がございましたら info@clearai.jp までご連絡ください。`,
-        html:
-          `<div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;max-width:600px;margin:0 auto;padding:32px;color:#171717">` +
-          `<p style="font-size:14px;line-height:1.8">資料をご請求いただきありがとうございます。</p>` +
-          (zipUrl
-            ? `<p style="margin:24px 0"><a href="${zipUrl}" style="display:inline-block;background:#171717;color:#fff;text-decoration:none;padding:14px 22px;border-radius:8px;font-size:14px;font-weight:600">${DOCUMENT_KEYS.length}資料をまとめてダウンロード</a></p>`
-            : "") +
-          `<ul style="font-size:14px;line-height:2;padding-left:18px">` +
-          files
-            .map((f) => `<li><a href="${f.url}" style="color:#171717">${f.title.replace(/[<>&"']/g, "")}</a></li>`)
-            .join("") +
-          `</ul><p style="margin-top:28px;font-size:12px;color:#737373">ClearAI株式会社</p></div>`,
+        text,
+        html,
       },
       { idempotencyKey: `download-${hash}` },
     );

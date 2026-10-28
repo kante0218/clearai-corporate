@@ -1,17 +1,14 @@
 import type { Metadata } from "next";
 
 const description =
-  "ClearAI株式会社（クリアエーアイ）の事業紹介資料をご請求いただけます。会社紹介、システム・ソフトウェア開発（AI受託開発）、ロボットレンタル、AIO、ホームページ制作、SNS運用代行、MEO支援の7種類。フォーム送信後、ご入力のメールアドレス宛にお送りします。";
+  "ClearAI株式会社（クリアエーアイ）の事業紹介資料をご請求いただけます。ロボットレンタル、AIO、ホームページ制作、SNS運用代行、MEO支援の5種類。フォーム送信後、ご入力のメールアドレス宛にお送りします。";
 
 export const metadata: Metadata = {
   title: "資料請求｜事業紹介資料のダウンロード",
   description,
   keywords: [
     "ClearAI 資料請求",
-    "AI開発 会社 資料",
-    "AI受託開発 資料",
     "ロボットレンタル 資料",
-    "AI研修 資料",
     "ClearAI",
     "クリアエーアイ",
   ],

@@ -1,13 +1,4 @@
 {
-  "ai-training-guide": {
-    "pages": 16,
-    "pdfCreated": "2026-08-10",
-    "creationMetadata": "Mon Aug 10 22:34:06 2026 JST",
-    "previews": [
-      "/downloads/previews/ai-training-guide-01.jpg",
-      "/downloads/previews/ai-training-guide-02.jpg"
-    ]
-  },
   "aio-guide": {
     "pages": 5,
     "pdfCreated": "2026-10-28",
@@ -15,15 +6,6 @@
     "previews": [
       "/downloads/previews/aio-guide-1.jpg",
       "/downloads/previews/aio-guide-2.jpg"
-    ]
-  },
-  "company-guide": {
-    "pages": 17,
-    "pdfCreated": "2026-08-10",
-    "creationMetadata": "Mon Aug 10 22:33:55 2026 JST",
-    "previews": [
-      "/downloads/previews/company-guide-01.jpg",
-      "/downloads/previews/company-guide-02.jpg"
     ]
   },
   "meo-guide": {
@@ -51,15 +33,6 @@
     "previews": [
       "/downloads/previews/sns-management-guide-1.jpg",
       "/downloads/previews/sns-management-guide-2.jpg"
-    ]
-  },
-  "software-development-guide": {
-    "pages": 17,
-    "pdfCreated": "2026-08-10",
-    "creationMetadata": "Mon Aug 10 22:33:59 2026 JST",
-    "previews": [
-      "/downloads/previews/software-development-guide-01.jpg",
-      "/downloads/previews/software-development-guide-02.jpg"
     ]
   },
   "website-production-guide": {

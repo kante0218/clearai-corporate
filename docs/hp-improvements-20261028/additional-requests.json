@@ -21,17 +21,25 @@
       "source_image_library_id": "libfile_484044cce9ec8191a1b5f7f82a45e4b5",
       "result": "106 explicitly marked buttons/CTA links in 40 files use shared CSS action tokens; native calendar/selection layouts preserve separate 14px radius. Colors and behavior retained.",
       "screenshot_library_id": "libfile_9864cca6d03881918b247d6e1498c078"
+    },
+    {
+      "request": "資料請求の自動返信・PDF・ZIPとCodexのみ方針を照合",
+      "reported_receipt": "2026-10-28 14:35 JST; sender/operator unknown, not attributed to this task; production not changed by local implementation",
+      "local_mismatch": "Old 8-file ZIP retained retired training PDF; company and software PDFs also advertised retired course",
+      "local_action": "Archive original 3 PDFs/ZIP/previews outside public; 5 unchanged PDFs in versioned current ZIP; shared pure receipt generation; reject retired document keys",
+      "needs_owner_input": "034 / G8: review recreation of company/development PDFs and whether to prepare Codex-specific document from confirmed course content",
+      "no_send": true
     }
   ],
   "ledger_counts": {
     "完了": 87,
-    "要本人確認": 43,
-    "既対応": 2,
+    "要本人確認": 44,
+    "既対応": 1,
     "本人指示で掲載対象外": 20
   },
   "verification": {
     "type": "passed",
-    "unit": "15/15 passed",
+    "unit": "16/16 passed",
     "production_build": "passed after final changes",
     "responsive": "24 page/width combinations: /, /contact, /robot-rental, /download, /meo, /training/codex at 320/390/430/1440; zero page overflow, zero zero-radius controls, zero horizontally clipped filled CTA labels",
     "keyboard": "header CTA and submit focus-visible=true with 3px outline; no submit",
@@ -46,13 +54,13 @@
     "csvs": [
       {
         "library_file_id": "libfile_9b2f0487a5688191aa40e7b7ad5ef843",
-        "version": 2,
+        "version": 3,
         "name": "ClearAI_改善事項確認一覧_全152件.csv"
       },
       {
         "library_file_id": "libfile_a77033f111bc819182dabeddfa1d00d6",
-        "version": 1,
-        "name": "ClearAI_改善事項確認表_43件6分類.csv"
+        "version": 2,
+        "name": "ClearAI_改善事項確認表_44件7分類.csv"
       }
     ],
     "images": [

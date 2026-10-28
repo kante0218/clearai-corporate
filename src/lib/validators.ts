@@ -40,8 +40,6 @@ export const SERVICE_LABELS: Record<ServiceKey, string> = {
 
 /** Downloadable business decks sent directly from /download. */
 export const DOCUMENT_KEYS = [
-  "company",
-  "software-development",
   "robot-rental",
   "aio",
   "website-production",
@@ -51,8 +49,6 @@ export const DOCUMENT_KEYS = [
 export type DocumentKey = (typeof DOCUMENT_KEYS)[number];
 
 export const DOCUMENT_LABELS: Record<DocumentKey, string> = {
-  company: "会社紹介資料",
-  "software-development": "システム・ソフトウェア開発 事業紹介資料",
   "robot-rental": "ロボットレンタル 事業紹介資料",
   aio: "AIO・AI検索最適化 事業紹介資料",
   "website-production": "ホームページ制作 事業紹介資料",
