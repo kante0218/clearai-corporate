@@ -2610,5 +2610,42 @@
     ],
     "discoveries": [],
     "note": "メール返信 aiとhttps://clearai.jp/blog/ai-email-reply-three-decisionsの完全一致。7 daysと10/18〜10/24を確認。No dataで順位欠測、表示0クリック0。公開後168時間と完全な公開後7日窓は充足。改善前7日9/10〜9/16は7.5位51表示0クリックだが今回は順位比較不能、UI確定状態未確認のため効果判定保留。"
+  },
+  {
+    "source": "websearch",
+    "capturedAt": "2026-10-28T02:28:32.178468+00:00",
+    "query": "site:clearai.jp/training AI内製化研修",
+    "note": "API ADCは既知のinvalid_grant。先に既存Chrome GSCを試行したがタブ作成・再接続ともタイムアウトし、当日のGSC画面は未確認。WebSearchの補助確認のみでGoogle実順位は未測定、表示回数・クリックも不明。検索結果の掲載・不掲載は順位や未インデックスの判定に使わない。研修の対象URLは返却結果に見当たらず、メール記事URLは確認。順位変動・改善効果・1位達成は判定不能。レビュー期限未到来（研修11/2、メール11/3）のためobserving維持、ページ変更なし。",
+    "urls": [
+      "https://clearai.jp/service",
+      "https://clearai.jp/"
+    ],
+    "ranks": [
+      {
+        "keyword": "AI内製化研修",
+        "targetPath": "/training",
+        "rank": null,
+        "impressions": null,
+        "clicks": null
+      }
+    ]
+  },
+  {
+    "source": "websearch",
+    "capturedAt": "2026-10-28T02:28:32.178468+00:00",
+    "query": "site:clearai.jp/blog/ai-email-reply-three-decisions メール返信 ai",
+    "note": "API ADCは既知のinvalid_grant。先に既存Chrome GSCを試行したがタブ作成・再接続ともタイムアウトし、当日のGSC画面は未確認。WebSearchの補助確認のみでGoogle実順位は未測定、表示回数・クリックも不明。検索結果の掲載・不掲載は順位や未インデックスの判定に使わない。研修の対象URLは返却結果に見当たらず、メール記事URLは確認。順位変動・改善効果・1位達成は判定不能。レビュー期限未到来（研修11/2、メール11/3）のためobserving維持、ページ変更なし。",
+    "urls": [
+      "https://clearai.jp/blog/ai-email-reply-three-decisions"
+    ],
+    "ranks": [
+      {
+        "keyword": "メール返信 ai",
+        "targetPath": "/blog/ai-email-reply-three-decisions",
+        "rank": null,
+        "impressions": null,
+        "clicks": null
+      }
+    ]
   }
 ]
