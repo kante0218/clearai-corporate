@@ -157,18 +157,14 @@ export default function FontLabPage() {
                     ? "border-neutral-900 bg-neutral-900 text-white"
                     : "border-gray-200 text-gray-600 hover:border-gray-400 hover:text-gray-900"
                 }`}
-              >
-                {f.name}
-              </button>
+              ><span className="ui-button-label">{f.name}</span></button>
             ))}
             <button data-ui-button="filled"
               onClick={() => setStacked((v) => !v)}
               className={`ml-auto rounded-lg border px-3 py-1.5 text-sm font-semibold transition-colors ${
                 stacked ? "border-neutral-900 bg-neutral-900 text-white" : "border-gray-200 text-gray-600 hover:border-gray-400 hover:text-gray-900"
               }`}
-            >
-              {stacked ? "1書体ずつ表示" : "6書体を縦に並べる"}
-            </button>
+            ><span className="ui-button-label">{stacked ? "1書体ずつ表示" : "6書体を縦に並べる"}</span></button>
           </div>
         </div>
       </div>

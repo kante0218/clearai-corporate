@@ -69,7 +69,7 @@ export default function TrainingLeadForm({ courseName, sourcePath, compact = fal
       <h3>お問い合わせを受け付けました</h3>
       <p>{courseName}について、担当者より2営業日以内にご連絡します。</p>
       <p>ご都合のよい日時が決まっている場合は、このまま無料相談をご予約いただけます。</p>
-      <a data-ui-button="filled" className={styles.booking} href={BOOKING_URL} target="_blank" rel="noopener noreferrer">無料相談の日程を選ぶ<span className={styles.srOnly}>（新しいタブで開きます）</span></a>
+      <a data-ui-button="filled" className={styles.booking} href={BOOKING_URL} target="_blank" rel="noopener noreferrer"><span className="ui-button-label">無料相談の日程を選ぶ<span className={styles.srOnly}>（新しいタブで開きます）</span></span></a>
     </div>
   );
 
@@ -104,7 +104,7 @@ export default function TrainingLeadForm({ courseName, sourcePath, compact = fal
           <span><a href="/privacy" target="_blank" rel="noopener noreferrer">プライバシーポリシー<span className={styles.srOnly}>（新しいタブで開きます）</span></a>に同意する<span className={styles.required}>必須</span></span>
         </label>{fieldError("privacy")}
         {errors._form && <p className={styles.formError} role="alert">{errors._form}</p>}
-        <button data-ui-button="filled" className={styles.submit} type="submit" disabled={status === "submitting"}>{status === "submitting" ? "送信しています…" : (compact ? "無料相談を申し込む" : "この内容で相談・申し込みを送信")}</button>
+        <button data-ui-button="filled" className={styles.submit} type="submit" disabled={status === "submitting"}><span className="ui-button-label">{status === "submitting" ? "送信しています…" : (compact ? "無料相談を申し込む" : "この内容で相談・申し込みを送信")}</span></button>
         <p className={styles.note}>{compact ? "送信だけで料金は発生しません" : "送信だけで契約・料金は発生しません。担当者より2営業日以内にご連絡します。"}</p>
       </fieldset>
     </form>

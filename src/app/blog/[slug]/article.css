@@ -37,3 +37,21 @@ nav[aria-label="この記事の目次"] { padding-block: 12px; margin-bottom: 32
 }
 
 .blog-article.prose .article-editor-note { font-size: 13px !important; line-height: 1.75 !important; color: #595959; }
+
+/* Mobile reading width follows the viewport, with symmetric 16px gutters. */
+@media(max-width:767px) {
+ body main .blog-page { width: 100%; max-width: 100%; margin-inline: auto; padding-inline: 16px !important; }
+ .blog-page > div, .blog-page .blog-article { min-width: 0; width: 100%; }
+ .blog-article.prose { text-align: left; }
+ .blog-article.prose :is(p,li) { text-wrap: wrap; }
+ .blog-article.prose img,.article-cover-image { width: 100%; max-width: 100%; max-height: none; height: auto; object-fit: contain; margin-inline: auto; }
+ .article-like-slot { justify-self: start; min-width: 0; padding: 0 0 8px; }
+}
+nav[aria-label="この記事の目次"] summary { position: relative; display: flex; align-items: center; padding: 0 28px 0 0; min-height: 44px; cursor: pointer; }
+nav[aria-label="この記事の目次"] summary::after { content: "＋"; position: absolute; right: 4px; }
+nav[aria-label="この記事の目次"] details[open] summary::after { content: "−"; }
+
+body main .article-like-button { --ui-icon-space: 22px; min-height: 44px; font-size: 12px !important; line-height: 18px !important; }
+.article-like-button .ui-button-icon { left: 6px; width: 16px; }
+body main .article-like-button svg { width: 16px; height: 16px; }
+.article-like-slot { min-width: 0; }

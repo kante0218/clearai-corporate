@@ -138,7 +138,7 @@ export default function FlowPage() {
 
           <p className="mb-5 text-sm leading-7 text-neutral-700">工程02・03の費用、契約・発注が必要な時点、途中で終了する場合の取り扱いは、着手前にご確認ください。初回30分の無料相談とは範囲が異なります。</p>
           <p className="mb-6 text-sm"><a href="/downloads/development-deliverables-sample.txt" className="font-semibold underline underline-offset-4">要件・構成・見積の説明用見本を開く</a></p>
-          <nav aria-label="開発工程" className="mb-8 flex flex-wrap gap-3">{DEV_STEPS.map((step) => <a data-ui-button="control" key={step.no} href={`#step-${step.no}`} className="rounded-md border border-neutral-300 px-3 py-2 text-sm text-neutral-800">{step.no} {step.title}</a>)}</nav>
+          <nav aria-label="開発工程" className="mb-8 flex flex-wrap gap-3">{DEV_STEPS.map((step) => <a data-ui-button="control" key={step.no} href={`#step-${step.no}`} className="rounded-md border border-neutral-300 px-3 py-2 text-sm text-neutral-800"><span className="ui-button-label">{step.no}{step.title}</span></a>)}</nav>
           <ol className="divide-y divide-neutral-200 border-t border-neutral-200">
             {DEV_STEPS.map((s) => (
               <li key={s.no} id={`step-${s.no}`} className="scroll-mt-28 py-10 md:py-12">
@@ -235,15 +235,13 @@ export default function FlowPage() {
             要件が固まっていない段階のご相談が最も多いです。この場で終了しても費用は一切かかりません。
           </p>
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <a data-ui-button="filled"
+            <a data-ui-with-icon data-ui-button="filled"
               href={BOOKING_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-cta hover:bg-cta-hover px-8 py-4 text-sm font-semibold text-white transition-opacity hover:opacity-80"
-            >
-              無料相談を予約する
-              <span aria-hidden>→</span>
-            </a>
+            ><span className="ui-button-label">無料相談を予約する
+              </span><span className="ui-button-icon" data-ui-side="end" aria-hidden="true"><span aria-hidden>→</span></span></a>
             <Link
               href="/download"
               className="text-sm font-semibold text-white/70 underline-offset-4 hover:text-white hover:underline transition-colors"

@@ -212,13 +212,10 @@ export default function CaseStudiesIndexPage() {
               {t.ctaHeading}
             </h2>
             <p className="mb-10 text-[15px] leading-[1.9] text-white/60">{t.ctaText}</p>
-            <Link data-ui-button="filled"
+            <Link data-ui-with-icon data-ui-button="filled"
               href="/contact"
               className="inline-flex items-center gap-2 bg-white px-8 py-4 text-sm font-semibold text-neutral-900 transition-opacity hover:opacity-80"
-            >
-              {t.ctaButton}
-              <span aria-hidden>→</span>
-            </Link>
+            ><span className="ui-button-label">{t.ctaButton}</span><span className="ui-button-icon" data-ui-side="end" aria-hidden="true"><span aria-hidden>→</span></span></Link>
           </div>
         </section>
       </div>

@@ -71,10 +71,10 @@ export default function RentalApplicationCompletePage() {
         )}
 
         <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-          {resumeUrl && <a data-ui-button="filled" href={resumeUrl} className="rounded-md bg-[#12314b] px-6 py-3 text-sm font-bold text-white">本人確認を再開する</a>}
-          {checkoutUrl && <a data-ui-button="filled" href={checkoutUrl} className="rounded-md bg-cta px-6 py-3 text-sm font-bold text-white">Stripeで決済へ進む</a>}
-          {status === "timeout" && <button data-ui-button="filled" type="button" onClick={() => window.location.reload()} className="rounded-md bg-[#12314b] px-6 py-3 text-sm font-bold text-white">結果をもう一度確認</button>}
-          <Link data-ui-button="control" href="/robot-rental" className="rounded-md border border-slate-300 px-6 py-3 text-sm font-bold text-slate-700">ロボットレンタルへ戻る</Link>
+          {resumeUrl && <a data-ui-button="filled" href={resumeUrl} className="rounded-md bg-[#12314b] px-6 py-3 text-sm font-bold text-white"><span className="ui-button-label">本人確認を再開する</span></a>}
+          {checkoutUrl && <a data-ui-button="filled" href={checkoutUrl} className="rounded-md bg-cta px-6 py-3 text-sm font-bold text-white"><span className="ui-button-label">Stripeで決済へ進む</span></a>}
+          {status === "timeout" && <button data-ui-button="filled" type="button" onClick={() => window.location.reload()} className="rounded-md bg-[#12314b] px-6 py-3 text-sm font-bold text-white"><span className="ui-button-label">結果をもう一度確認</span></button>}
+          <Link data-ui-button="control" href="/robot-rental" className="rounded-md border border-slate-300 px-6 py-3 text-sm font-bold text-slate-700"><span className="ui-button-label">ロボットレンタルへ戻る</span></Link>
         </div>
       </section>
     </main>

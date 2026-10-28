@@ -287,7 +287,6 @@ function ContactPageInner() {
             <a href="mailto:info@clearai.jp" className="text-neutral-900 underline underline-offset-2">info@clearai.jp</a>{" "}
             {t.headerDescEmail}
           </p>
-          <p className="mt-3 text-sm leading-7 text-gray-600">{lang === "ja" ? "初回相談は30分・無料です。対象業務・課題と進め方を整理します。個別調査や開発は、対応範囲と費用を見積りでご確認ください。" : "The initial 30-minute consultation is free. We clarify your workflow, challenges and next steps. Check the scope and price of investigation or development in your quote."}</p>
           <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="mt-4 inline-flex min-h-11 items-center text-sm font-semibold underline underline-offset-4">{lang === "ja" ? "日時を選んで面談予約（別タブ）" : "Choose a meeting time (new tab)"}</a>
         </Reveal>
       </section>
@@ -325,9 +324,7 @@ function ContactPageInner() {
                 {t.successBody}
               </p>
               <button data-ui-button="control" type="button" onClick={handleReset}
-                className="rounded-lg border border-gray-300 text-gray-700 font-semibold px-6 py-3 hover:border-gray-400 hover:bg-gray-50 transition-all duration-200">
-                {t.successReset}
-              </button>
+                className="rounded-lg border border-gray-300 text-gray-700 font-semibold px-6 py-3 hover:border-gray-400 hover:bg-gray-50 transition-all duration-200"><span className="ui-button-label">{t.successReset}</span></button>
             </div>
           </Reveal>
         ) : (
@@ -405,21 +402,17 @@ function ContactPageInner() {
               <p className="text-sm leading-7 text-gray-600">{lang === "ja" ? "送信後は画面の受付完了表示をご確認ください。受付確認メールの自動送信はありません。2営業日を過ぎても返信がない場合は、迷惑メールをご確認のうえ info@clearai.jp へご連絡ください。" : "Check the on-screen confirmation after sending. No automatic receipt email is sent. If no reply arrives within two business days, check your spam folder and contact info@clearai.jp."}</p>
               {/* Submit (full width) */}
               <div className="pt-2 space-y-4">
-                <button data-ui-button="filled" type="submit" disabled={status === "submitting"}
+                <button data-ui-with-icon data-ui-button="filled" type="submit" disabled={status === "submitting"}
                   className={`w-full inline-flex items-center justify-center gap-2 rounded-lg bg-neutral-900 text-white font-semibold px-10 py-4 hover:bg-neutral-800 active:bg-neutral-900 transition-all duration-200 shadow-sm hover:shadow-md ${
                     status === "submitting" ? "opacity-60 cursor-not-allowed" : ""
-                  }`}>
-                  {status === "submitting" && (
+                  }`}><span className="ui-button-label">{status === "submitting" ? t.submitSending : t.submitButton}</span><span className="ui-button-icon" data-ui-side="start" aria-hidden="true">{status === "submitting" && (
                     <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24" aria-hidden="true">
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
                     </svg>
-                  )}
-                  {status === "submitting" ? t.submitSending : t.submitButton}
-                  {status !== "submitting" && (
+                  )}</span><span className="ui-button-icon" data-ui-side="end" aria-hidden="true">{status !== "submitting" && (
                     <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
-                  )}
-                </button>
+                  )}</span></button>
                 <p className="text-xs text-gray-500 leading-relaxed text-center">
                   {t.privacyPrefix}{" "}
                   <a href="/privacy" className="underline hover:text-gray-700">{t.privacyLink}</a>

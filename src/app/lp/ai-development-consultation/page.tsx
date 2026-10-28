@@ -181,15 +181,12 @@ export default function AiDevelopmentConsultationPage() {
       </section>
 
       <section className="bg-white px-5 pt-8 pb-10 sm:pt-12 sm:pb-20">
-        <button data-ui-button="filled"
+        <button data-ui-with-icon data-ui-button="filled"
           type="button"
           onClick={scrollToForm}
           className="group mx-auto flex h-[64px] w-full max-w-[400px] items-center justify-center gap-3 rounded-md bg-[#0e5b94] px-5 text-base font-bold text-white shadow-[0_8px_20px_rgba(14,91,148,0.28)] transition-colors hover:bg-[#0a4b7c] sm:h-[72px] sm:text-lg"
-        >
-          <span className="rounded border border-white px-1.5 py-0.5 text-xs">無料</span>
-          AI導入相談に申込む
-          <span className="text-2xl transition-transform group-hover:translate-x-1" aria-hidden="true">≫</span>
-        </button>
+        ><span className="ui-button-label"><span className="rounded border border-white px-1.5 py-0.5 text-xs">無料</span>AI導入相談に申込む
+          </span><span className="ui-button-icon" data-ui-side="end" aria-hidden="true"><span className="text-2xl transition-transform group-hover:translate-x-1" aria-hidden="true">≫</span></span></button>
 
         <div className="mx-auto mt-14 max-w-[960px] text-center sm:mt-24">
           <h2 className="text-[28px] font-bold tracking-[0.04em] text-[#1f2933] sm:text-[34px]">ご支援領域例</h2>
@@ -263,9 +260,7 @@ export default function AiDevelopmentConsultationPage() {
                             onClick={() => selectChoice(currentChoice.key, option)}
                             disabled={isAdvancing}
                             className="w-full border border-[#d4dce2] bg-white px-4 py-3 text-sm font-semibold text-[#33485a] transition-colors hover:border-[#0e5b94] hover:bg-[#f7fbfe]"
-                          >
-                            {option}
-                          </button>
+                          ><span className="ui-button-label">{option}</span></button>
                         ))}
                       </div>
                     </>
@@ -278,7 +273,7 @@ export default function AiDevelopmentConsultationPage() {
                       <input id="lp-name" required value={name} onChange={(e) => setName(e.target.value)} onKeyDown={(event) => { if (event.key === "Enter") { event.preventDefault(); nextInputStep(); } }} className="mb-4 w-full border border-[#d4dce2] bg-white px-4 py-3.5 outline-none focus:border-[#0e5b94]" placeholder="山田 太郎" />
                       <label htmlFor="lp-email" className="mb-2 block text-sm font-bold text-[#526575]">メールアドレス</label>
                       <input id="lp-email" required type="email" value={email} onChange={(e) => setEmail(e.target.value)} onKeyDown={(event) => { if (event.key === "Enter") { event.preventDefault(); nextInputStep(); } }} className="w-full border border-[#d4dce2] bg-white px-4 py-3.5 outline-none focus:border-[#0e5b94]" placeholder="name@example.com" />
-                      <button data-ui-button="filled" type="button" onClick={nextInputStep} className="mt-5 w-full bg-[#0e5b94] py-4 font-bold text-white hover:bg-[#0a4b7c]">次へ</button>
+                      <button data-ui-button="filled" type="button" onClick={nextInputStep} className="mt-5 w-full bg-[#0e5b94] py-4 font-bold text-white hover:bg-[#0a4b7c]"><span className="ui-button-label">次へ</span></button>
                     </div>
                   ) : (
                     <div>
@@ -288,16 +283,14 @@ export default function AiDevelopmentConsultationPage() {
                       <label htmlFor="lp-details" className="mb-2 block text-sm font-bold text-[#526575]">相談内容（任意）</label>
                       <textarea id="lp-details" value={details} onChange={(e) => setDetails(e.target.value)} className="min-h-28 w-full resize-y border border-[#d4dce2] bg-white px-4 py-3.5 outline-none focus:border-[#0e5b94]" placeholder="現状や実現したいことをご記入ください" />
                       <input value={website} onChange={(e) => setWebsite(e.target.value)} className="hidden" tabIndex={-1} autoComplete="off" aria-hidden="true" />
-                      <button data-ui-button="filled" type="submit" disabled={status === "submitting"} className="mt-5 w-full bg-[#0e5b94] py-4 font-bold text-white transition-colors hover:bg-[#0a4b7c] disabled:opacity-60">
-                        {status === "submitting" ? "送信中…" : "無料相談を送信する"}
-                      </button>
+                      <button data-ui-button="filled" type="submit" disabled={status === "submitting"} className="mt-5 w-full bg-[#0e5b94] py-4 font-bold text-white transition-colors hover:bg-[#0a4b7c] disabled:opacity-60"><span className="ui-button-label">{status === "submitting" ? "送信中…" : "無料相談を送信する"}</span></button>
                     </div>
                   )}
                 </div>
 
                 {error && <p role="alert" className="mt-4 text-sm font-semibold text-[#b42318]">{error}</p>}
                 {step > 0 && (
-                  <button data-ui-button="control" type="button" onClick={() => { setError(""); setStep((current) => Math.max(0, current - 1)); }} className="mt-6 text-sm font-semibold text-[#657785] underline underline-offset-4">前の質問へ戻る</button>
+                  <button data-ui-button="control" type="button" onClick={() => { setError(""); setStep((current) => Math.max(0, current - 1)); }} className="mt-6 text-sm font-semibold text-[#657785] underline underline-offset-4"><span className="ui-button-label">前の質問へ戻る</span></button>
                 )}
               </>
             )}
@@ -320,7 +313,7 @@ function InputStep({ id, label, value, onChange, placeholder, onNext }: { id: st
     <div>
       <label htmlFor={id} className="mb-5 block text-base font-bold text-[#24384c]">{label}</label>
       <input id={id} required value={value} onChange={(event) => onChange(event.target.value)} onKeyDown={(event) => { if (event.key === "Enter") { event.preventDefault(); onNext(); } }} className="w-full border border-[#d4dce2] bg-white px-4 py-3.5 outline-none focus:border-[#0e5b94]" placeholder={placeholder} />
-      <button data-ui-button="filled" type="button" onClick={onNext} className="mt-5 w-full bg-[#0e5b94] py-4 font-bold text-white hover:bg-[#0a4b7c]">次へ</button>
+      <button data-ui-button="filled" type="button" onClick={onNext} className="mt-5 w-full bg-[#0e5b94] py-4 font-bold text-white hover:bg-[#0a4b7c]"><span className="ui-button-label">次へ</span></button>
     </div>
   );
 }

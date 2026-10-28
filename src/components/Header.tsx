@@ -132,22 +132,16 @@ export default function Header() {
                   { label: h.navNews, href: "/blog" },
                   { label: h.contact, href: "/contact" },
                 ].map((item) => (
-                  <Link key={item.href} href={item.href}
-                    className={`inline-flex min-h-11 items-center whitespace-nowrap text-[13px] xl:text-sm font-semibold transition-colors ${navColor}`}>
-                    {item.label}
-                  </Link>
+                  <Link data-ui-button="nav" key={item.href} href={item.href}
+                    className={`inline-flex min-h-11 items-center whitespace-nowrap text-[13px] xl:text-sm font-semibold transition-colors ${navColor}`}><span className="ui-button-label">{item.label}</span></Link>
                 ))}
               </nav>
               <LanguageToggle variant="desktop" />
               <div className="flex items-center gap-2">
                 <Link data-ui-button="control" href="/download"
-                  className="inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-md border border-neutral-300 px-3 xl:px-4 text-[13px] xl:text-sm font-semibold text-neutral-900 hover:border-neutral-900 hover:bg-neutral-50 transition-colors">
-                  {lang === "ja" ? "資料ダウンロード" : "Download"}
-                </Link>
+                  className="inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-md border border-neutral-300 px-3 xl:px-4 text-[13px] xl:text-sm font-semibold text-neutral-900 hover:border-neutral-900 hover:bg-neutral-50 transition-colors"><span className="ui-button-label">{lang === "ja" ? "資料ダウンロード" : "Download"}</span></Link>
                 <a data-ui-button="filled" href={BOOKING_URL} target="_blank" rel="noopener noreferrer"
-                  className="inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-md bg-cta px-3 xl:px-4 text-[13px] xl:text-sm font-semibold text-white hover:bg-cta-hover transition-colors">
-                  {lang === "ja" ? "役員へ無料相談する" : "Free consultation"}
-                </a>
+                  className="inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-md bg-cta px-3 xl:px-4 text-[13px] xl:text-sm font-semibold text-white hover:bg-cta-hover transition-colors"><span className="ui-button-label">{lang === "ja" ? "役員へ無料相談する" : "Free consultation"}</span></a>
               </div>
             </div>
 
@@ -177,22 +171,22 @@ export default function Header() {
                   <div key={item.label} className="border-b border-gray-100" style={{ transitionDelay: `${i * 30}ms` }}>
                     <div className="flex items-center justify-between">
                       {item.external ? (
-                        <a
+                        <a data-ui-button="menu"
                           href={item.href}
                           target="_blank"
                           rel="noopener noreferrer"
                           onClick={() => setIsOpen(false)}
                           className="site-menu-row flex-1 block text-base text-gray-700 hover:text-gray-900 py-3.5 transition-colors font-medium"
                         >
-                          {item.label}
+                          <span className="ui-button-label">{item.label}</span>
                         </a>
                       ) : (
-                        <Link
+                        <Link data-ui-button="menu"
                           href={item.href}
                           onClick={() => setIsOpen(false)}
                           className="site-menu-row flex-1 block text-base text-gray-700 hover:text-gray-900 py-3.5 transition-colors font-medium"
                         >
-                          {item.label}
+                          <span className="ui-button-label">{item.label}</span>
                         </Link>
                       )}
                       {hasChildren && (
@@ -219,16 +213,16 @@ export default function Header() {
                       <div className={`overflow-hidden transition-all duration-300 ${expanded ? "max-h-96 pb-3" : "max-h-0"}`}>
                         <div className="pl-4 space-y-1">
                           {item.children!.map((child) => (
-                            <Link
+                            <Link data-ui-button="menu"
                               key={child.label}
                               href={child.href}
                               onClick={() => setIsOpen(false)}
                               className="block py-2.5 text-sm text-gray-600 hover:text-gray-900"
                             >
-                              {child.label}
+                              <span className="ui-button-label">{child.label}
                               {child.description && (
                                 <span className="block text-xs text-gray-400 mt-0.5">{child.description}</span>
-                              )}
+                              )}</span>
                             </Link>
                           ))}
                         </div>
@@ -239,13 +233,13 @@ export default function Header() {
               })}
               <div className="site-menu-utilities mt-6 flex flex-wrap items-center justify-center gap-5">
                 {utilityItems.map((u) => (
-                  <Link
+                  <Link data-ui-button="menu"
                     key={u.label}
                     href={u.href}
                     onClick={() => setIsOpen(false)}
                     className="text-xs font-medium text-gray-500 hover:text-gray-900 transition-colors duration-300"
                   >
-                    {u.label}
+                    <span className="ui-button-label">{u.label}</span>
                   </Link>
                 ))}
               </div>
@@ -255,15 +249,11 @@ export default function Header() {
                 <LanguageToggle variant="mobile" />
               </div>
               <div className="site-menu-actions mt-4 space-y-3">
-                <Link data-ui-button="control" href="/contact" onClick={() => setIsOpen(false)} className="flex min-h-11 items-center justify-center rounded-lg border border-neutral-300 px-4 py-3.5 text-sm font-semibold text-neutral-900">{lang === "ja" ? "文章で相談する" : "Ask in writing"}</Link>
-                <a data-ui-button="filled" href={BOOKING_URL} target="_blank" rel="noopener noreferrer" onClick={() => setIsOpen(false)}
-                  className={`block text-center px-4 py-3.5 rounded-lg text-sm font-semibold transition-colors min-h-[44px] flex items-center justify-center ${contactFilledClass}`}>
-                  {lang === "ja" ? "代表と面談" : "Meet founder"}
-                </a>
-                <Link data-ui-button="control" href="/download" onClick={() => setIsOpen(false)}
-                  className="block text-center px-4 py-3.5 rounded-lg text-sm font-semibold border border-neutral-300 text-neutral-900 hover:border-neutral-900 hover:bg-neutral-50 transition-colors min-h-[44px] flex items-center justify-center">
-                  {h.navDownload}
-                </Link>
+                <Link data-ui-button="menu" href="/contact" onClick={() => setIsOpen(false)} className="flex min-h-11 items-center justify-center rounded-lg border border-neutral-300 px-4 py-3.5 text-sm font-semibold text-neutral-900"><span className="ui-button-label">{lang === "ja" ? "文章で相談する" : "Ask in writing"}</span></Link>
+                <a data-ui-button="menu" href={BOOKING_URL} target="_blank" rel="noopener noreferrer" onClick={() => setIsOpen(false)}
+                  className={`block text-center px-4 py-3.5 rounded-lg text-sm font-semibold transition-colors min-h-[44px] flex items-center justify-center ${contactFilledClass}`}><span className="ui-button-label">{lang === "ja" ? "代表と面談" : "Meet founder"}</span></a>
+                <Link data-ui-button="menu" href="/download" onClick={() => setIsOpen(false)}
+                  className="block text-center px-4 py-3.5 rounded-lg text-sm font-semibold border border-neutral-300 text-neutral-900 hover:border-neutral-900 hover:bg-neutral-50 transition-colors min-h-[44px] flex items-center justify-center"><span className="ui-button-label">{h.navDownload}</span></Link>
               </div>
             </nav>
           </div>

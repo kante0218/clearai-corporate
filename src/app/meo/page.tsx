@@ -36,7 +36,7 @@ export default function MeoPage() {
     <div className="mx-auto max-w-[1800px] px-6 py-10 lg:px-8 lg:py-16">
       <div className="mb-12 max-w-3xl">
         <p className="text-sm leading-[1.9] text-neutral-600 sm:text-base">営業時間が古いまま、写真を更新できていない、口コミへの返信に迷っている。そんな日々の課題を整理し、お客様が来店や問い合わせを検討しやすい情報へ整えます。</p>
-        <Link data-ui-button="filled" href="/contact?service=meo" className="mt-6 inline-flex min-h-12 items-center justify-center rounded-lg bg-cta px-7 py-3.5 text-sm font-semibold text-white hover:bg-cta-hover focus-visible:outline-2 focus-visible:outline-offset-4">MEO支援について相談する</Link>
+        <Link data-ui-button="filled" href="/contact?service=meo" className="mt-6 inline-flex min-h-12 items-center justify-center rounded-lg bg-cta px-7 py-3.5 text-sm font-semibold text-white hover:bg-cta-hover focus-visible:outline-2 focus-visible:outline-offset-4"><span className="ui-button-label">MEO支援について相談する</span></Link>
         <p className="mt-3 text-xs leading-relaxed text-neutral-500">料金は要相談。支援範囲と費用は事前に確認します。</p>
       </div>
       <section className="mb-12 lg:mb-20" aria-labelledby="offering">
@@ -63,7 +63,7 @@ export default function MeoPage() {
       <section className="border-t border-neutral-200 pt-8">
         <h2 className="mb-4 text-xl font-bold sm:text-3xl">いまの店舗情報から、一緒に見直しませんか。</h2>
         <p className="mb-6 max-w-3xl text-sm leading-[1.9] text-neutral-600">店舗の業種・地域と、更新や運用でお困りのことをお知らせください。プロフィールがまだない場合も、対応できる範囲からご案内します。</p>
-        <Link data-ui-button="filled" href="/contact?service=meo" className="inline-flex min-h-12 items-center justify-center rounded-lg bg-cta px-7 py-3.5 text-sm font-semibold text-white hover:bg-cta-hover focus-visible:outline-2 focus-visible:outline-offset-4">MEO支援について相談する</Link>
+        <Link data-ui-button="filled" href="/contact?service=meo" className="inline-flex min-h-12 items-center justify-center rounded-lg bg-cta px-7 py-3.5 text-sm font-semibold text-white hover:bg-cta-hover focus-visible:outline-2 focus-visible:outline-offset-4"><span className="ui-button-label">MEO支援について相談する</span></Link>
           <Link href="/download?document=meo" className="inline-flex min-h-12 items-center py-3 text-sm font-semibold underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4">事業紹介資料をダウンロード</Link>
       </section>
     </div>

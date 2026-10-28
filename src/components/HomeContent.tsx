@@ -67,7 +67,7 @@ type HomeCopy = {
   casesCardAction: string;
   cases: { category: string; industry: string; title: string; desc: string; href: string; image: { src: string; alt: string } }[];
   ctaLabel: string; ctaTitle: string; ctaDesc: ReactNode;
-  ctaPrimary: string; ctaSecondary: string; ctaNote: string;
+  ctaPrimary: string; ctaSecondary: string;
 };
 
 const COPY: Record<"ja" | "en", HomeCopy> = {
@@ -260,7 +260,6 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
     ctaDesc: (<>AIのことがわからなくても大丈夫、<br />貴社の状況に合わせて一緒に考えます。</>),
     ctaPrimary: "代表と面談を予約する",
     ctaSecondary: "文章で問い合わせる",
-    ctaNote: "外部の予約ページ（TimeRex）が新しいタブで開きます。TimeRexの会員登録は不要です。",
   },
   en: {
     heroChips: ["We own delivery through production operations", "Start with one workflow, prove value, then scale"],
@@ -451,7 +450,6 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
     ctaDesc: (<>No AI expertise needed —<br />we&apos;ll think it through with you, tailored to your situation.</>),
     ctaPrimary: "Book a meeting with our founder",
     ctaSecondary: "Contact us by email",
-    ctaNote: "The external booking page (TimeRex) opens in a new tab.",
   },
 };
 
@@ -521,11 +519,10 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
     <>
       {/* ═══ HERO ═══ */}
       <section className="home-hero relative overflow-hidden bg-white pt-20">
-        {/* モバイル(2026-08-11指示): 動画は16:9のまま見切れずに全部見せる(PCと同じ絵)。
-            タイトルは動画の上に重ね、相談カードはその下に置く。PCは従来通り画面いっぱい */}
+        {/* Mobile blends the original film into one readable hero. */}
         <div className="hero-shell relative overflow-hidden border-b border-gray-200 md:h-[calc(100svh-80px)] md:min-h-[560px]">
           <div
-            className="relative aspect-video w-full md:absolute md:inset-y-0 md:right-0 md:aspect-auto md:w-[60%]"
+            className="home-hero-media relative aspect-video w-full md:absolute md:inset-y-0 md:right-0 md:aspect-auto md:w-[60%]"
           >
             <video
               src="/videos/hero-robot.mp4"
@@ -538,15 +535,14 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
               aria-hidden
               className="absolute inset-0 h-full w-full object-cover object-center"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-white via-white/50 to-transparent md:bg-transparent md:from-white md:via-transparent" />
+            <div className="home-hero-fade absolute inset-0 bg-gradient-to-r from-white via-white/50 to-transparent md:bg-transparent md:from-white md:via-transparent" />
           </div>
           <div className="pointer-events-none absolute inset-y-0 left-0 hidden w-full bg-gradient-to-r from-white via-white/95 to-transparent md:block md:w-[58%]" />
 
-          <div className="relative z-10 mx-auto flex max-w-[1800px] flex-col px-6 pb-6 md:h-full md:min-h-0 md:py-6 lg:px-8">
+          <div className="home-hero-copy relative z-10 mx-auto flex max-w-[1800px] flex-col px-6 pb-6 md:h-full md:min-h-0 md:py-6 lg:px-8">
             {/* 2026-08-10: 上部バッジ／英語小見出し／説明文／✓チップ／数値バッジは
                 「見出しだけ残す」方針で削除。COPY 側の定義は残してあるので復活は容易。
                 PCでは見出し直下に資料と無料相談の導線を配置。 */}
-            {/* 小さい画面では映像と説明を縦に並べ、操作領域を確保する。 */}
             <div className="flex w-full items-center py-6 md:h-auto md:flex-1">
               <div className="w-full max-w-[760px]">
                 <h1 data-motion="heading" className="text-[1.9rem] font-black leading-[1.15] tracking-[-0.045em] text-neutral-900 sm:text-6xl lg:text-[4.2rem] xl:text-[4.45rem] [@media(max-height:800px)_and_(min-width:768px)]:text-[3.25rem] [@media(max-height:800px)_and_(min-width:768px)]:leading-[1.04]">
@@ -554,16 +550,12 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
                 </h1>
                 <p className="mt-5 max-w-xl text-base leading-7 text-neutral-700">{lang === "ja" ? "中小企業の業務改善に。" : "For SMEs improving everyday work. "}{t.heroDesc}</p>
                 <div className="mt-6 flex flex-wrap gap-3 lg:hidden">
-                  <Link data-ui-button="filled" href="/contact" className="inline-flex min-h-11 items-center rounded-md bg-cta px-6 py-3 text-sm font-bold text-white">{lang === "ja" ? "文章で相談する" : "Ask in writing"}</Link>
-                  <Link data-ui-button="filled" href="#support" className="inline-flex min-h-11 items-center rounded-md border border-neutral-400 bg-white px-6 py-3 text-sm font-bold text-neutral-900">{lang === "ja" ? "支援内容を見る" : "Explore our services"}</Link>
+                  <Link data-ui-button="filled" href="/contact" className="inline-flex min-h-11 items-center rounded-md bg-cta px-6 py-3 text-sm font-bold text-white"><span className="ui-button-label">{lang === "ja" ? "文章で相談する" : "Ask in writing"}</span></Link>
+                  <Link data-ui-button="filled" href="#support" className="inline-flex min-h-11 items-center rounded-md border border-neutral-400 bg-white px-6 py-3 text-sm font-bold text-neutral-900"><span className="ui-button-label">{lang === "ja" ? "支援内容を見る" : "Explore our services"}</span></Link>
                 </div>
                 <div className="mt-8 hidden lg:flex items-center gap-4">
-                  <Link data-ui-button="filled" href="/download" className="inline-flex min-h-12 items-center justify-center rounded-md border border-neutral-300 bg-white px-6 text-sm font-semibold text-neutral-900 transition-colors hover:border-neutral-900 hover:bg-neutral-50">
-                    {lang === "ja" ? "資料ダウンロード" : "Download company deck"}
-                  </Link>
-                  <a data-ui-button="filled" href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center justify-center rounded-md bg-cta px-6 text-sm font-semibold text-white transition-colors hover:bg-cta-hover">
-                    {lang === "ja" ? "役員へ無料相談する" : "Free consultation with an executive"}
-                  </a>
+                  <Link data-ui-button="filled" href="/download" className="inline-flex min-h-12 items-center justify-center rounded-md border border-neutral-300 bg-white px-6 text-sm font-semibold text-neutral-900 transition-colors hover:border-neutral-900 hover:bg-neutral-50"><span className="ui-button-label">{lang === "ja" ? "資料ダウンロード" : "Download company deck"}</span></Link>
+                  <a data-ui-button="filled" href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center justify-center rounded-md bg-cta px-6 text-sm font-semibold text-white transition-colors hover:bg-cta-hover"><span className="ui-button-label">{lang === "ja" ? "役員へ無料相談する" : "Free consultation with an executive"}</span></a>
                 </div>
               </div>
             </div>
@@ -718,24 +710,18 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
           </ol>
           <Reveal delay={100}>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a data-ui-button="filled"
+              <a data-ui-with-icon data-ui-button="filled"
                 href={BOOKING_URL}
+                aria-label={`${t.ctaPrimary}（${lang === "ja" ? "新しいタブ" : "new tab"}）`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex w-full sm:w-auto justify-center items-center gap-2 motion-cta rounded-md bg-cta text-white text-sm font-semibold px-8 min-h-[52px] py-3.5 hover:bg-cta-hover transition-colors duration-300"
-              >
-                {t.ctaPrimary}
-                <span aria-hidden>→</span>
-              </a>
+              ><span className="ui-button-label">{t.ctaPrimary}</span><span className="ui-button-icon" data-ui-side="end" aria-hidden="true"><span aria-hidden>→</span></span></a>
               <Link data-ui-button="control"
                 href="/contact"
                 className="inline-flex w-full sm:w-auto justify-center items-center rounded-md border border-gray-200 text-gray-600 text-sm font-semibold px-8 min-h-[52px] py-3.5 hover:border-gray-400 hover:text-gray-900 transition-colors duration-300"
-              >
-                {t.ctaSecondary}
-              </Link>
+              ><span className="ui-button-label">{t.ctaSecondary}</span></Link>
             </div>
-            <p className="mx-auto mt-5 max-w-2xl text-center text-sm leading-7 text-gray-700">{lang === "ja" ? "初回相談は30分・無料です。対象業務と課題を伺い、論点・実現可否の初期見立て・進め方を整理します。個別調査や開発の範囲・費用は、お見積りでご確認ください。" : "The initial consultation is free and lasts 30 minutes. We discuss your workflow and challenges, then outline feasibility and next steps. Confirm the scope and fees for further investigation or development in your quote."}</p>
-            <p className="text-center text-sm text-gray-600 leading-7 mt-5">{t.ctaNote}</p>
           </Reveal>
         </div>
       </section>
@@ -767,56 +753,6 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
         </div>
       </section>
 
-      {/* ═══ TECH STACK ═══ */}
-      <section className="py-14 lg:py-20 bg-white">
-        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <details data-motion-disclosure className="group">
-            <summary className="cursor-pointer text-lg font-bold text-neutral-900">{lang === "ja" ? "技術担当の方へ：使用技術を見る" : "For technical teams: explore our technology"}</summary>
-            <p className="mt-5 mb-8 max-w-3xl text-sm leading-relaxed text-neutral-600">{t.techDesc}</p>
-          <div className="space-y-0">
-            {TECH_GROUPS.map((group, gi) => (
-              <Reveal key={group.key} delay={gi * 40}>
-                <div className="border-t border-gray-200 py-5">
-                  <div className="grid lg:grid-cols-12 gap-6 items-center">
-                    <div className="lg:col-span-2">
-                      <p className="text-[10px] font-semibold tracking-widest text-neutral-900 uppercase">{group.category}</p>
-                      <h3 className="text-sm font-bold text-gray-900 mt-0.5">{t.techGroups[group.key as keyof typeof t.techGroups]}</h3>
-                    </div>
-                    <div className="lg:col-span-10">
-                      <div className={`${styles.technologyGrid} grid grid-cols-3 lg:grid-cols-5 gap-2.5 sm:gap-3`}>
-                        {group.items.map((tech) => (
-                          <div key={tech.name} className="bg-white border border-gray-200 rounded-lg px-3.5 py-2 flex items-center gap-2.5 hover:border-gray-300 transition-colors">
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img src={`https://api.iconify.design/${tech.icon}.svg${"color" in tech && tech.color ? `?color=%23${tech.color}` : ''}`} alt="" aria-hidden className="w-8 h-8 object-contain" loading="lazy" />
-                            <p className="text-xs font-medium text-gray-600 text-center leading-tight">{tech.name}</p>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-          <Reveal>
-            <div className="mt-10 border-t border-gray-200 pt-8">
-              <div className="bg-white border border-gray-200 rounded-lg p-6 lg:p-8 flex flex-col lg:flex-row lg:items-center gap-4 lg:gap-6">
-                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-neutral-100 flex items-center justify-center">
-                  <svg className="w-6 h-6 text-neutral-900" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
-                </div>
-                <div className="flex-1">
-                  <p className="text-sm font-bold text-gray-900 mb-1">{t.techMoreTitle}</p>
-                  <p className="text-sm text-gray-600 leading-relaxed">{t.techMoreDesc}</p>
-                </div>
-              </div>
-            </div>
-          </Reveal>
-          </details>
-        </div>
-      </section>
-
       {/* ═══ NEWS / BLOG ═══ */}
       <section id="home-news" className="scroll-mt-28 pt-4 pb-8 md:pt-10 md:pb-20 lg:pt-12 lg:pb-28 bg-gray-50">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
@@ -841,12 +777,8 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       <div className="h-20 md:hidden" aria-hidden="true" />
       <nav data-mobile-cta aria-label={lang === "ja" ? "お問い合わせ" : "Contact actions"} className="fixed inset-x-0 bottom-0 z-50 border-t border-gray-200 bg-white/95 px-3 pt-2 pb-[calc(0.5rem+env(safe-area-inset-bottom))] shadow-[0_-8px_24px_rgba(15,23,42,0.10)] backdrop-blur md:hidden">
         <div className="mx-auto grid max-w-md grid-cols-2 gap-2">
-          <Link data-ui-button="control" href="/download" className="inline-flex min-h-11 items-center justify-center rounded-md border border-[#315b73] px-3 text-xs font-bold text-neutral-900">
-            {lang === "ja" ? "事業資料" : "Service guides"}
-          </Link>
-          <a data-ui-button="filled" href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center justify-center motion-cta rounded-md bg-cta px-3 text-xs font-bold text-white">
-            {lang === "ja" ? "代表と面談を予約する" : "Meet our founder"}
-          </a>
+          <Link data-ui-button="control" href="/download" className="inline-flex min-h-11 items-center justify-center rounded-md border border-[#315b73] px-3 text-xs font-bold text-neutral-900"><span className="ui-button-label">{lang === "ja" ? "事業資料" : "Service guides"}</span></Link>
+          <a data-ui-button="filled" href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center justify-center motion-cta rounded-md bg-cta px-3 text-xs font-bold text-white"><span className="ui-button-label">{lang === "ja" ? "代表と面談を予約する" : "Meet our founder"}</span></a>
         </div>
       </nav>
     </>

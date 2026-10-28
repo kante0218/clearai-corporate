@@ -18,14 +18,14 @@ const faqs = [
   ["研修後の支援も相談できますか？", "定着支援や開発もご相談いただけます。研修とは範囲・期間・費用を分けてご提案します。"],
 ];
 function Apply({ children = "無料相談・見積もり" }: { children?: React.ReactNode }) {
-  return <a data-ui-button="filled" className={styles.apply} href="#contact">{children}<span aria-hidden="true">↗</span></a>;
+  return <a data-ui-with-icon data-ui-button="filled" className={styles.apply} href="#contact"><span className="ui-button-label">{children}</span><span className="ui-button-icon" data-ui-side="end" aria-hidden="true"><span aria-hidden="true">↗</span></span></a>;
 }
 export default function CodexTrainingPage() {
   const schema = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faqs.map(([name, text]) => ({ "@type": "Question", name, acceptedAnswer: { "@type": "Answer", text } })) };
   return <div className={styles.page}>
     <header className={styles.header}>
       <Link href="/" aria-label="ClearAI ホーム"><Image src="/images/logo-clear-wordmark.png" width={132} height={40} alt="ClearAI" /></Link>
-      <nav className={styles.desktopNav} aria-label="研修ページ内ナビゲーション"><a href="#curriculum">カリキュラム</a><a href="#examples">できること</a><a href="#pricing">料金・条件</a><a href="#faq">FAQ</a></nav>
+      <nav className={styles.desktopNav} aria-label="研修ページ内ナビゲーション"><a data-ui-button="nav" href="#curriculum"><span className="ui-button-label">カリキュラム</span></a><a data-ui-button="nav" href="#examples"><span className="ui-button-label">できること</span></a><a data-ui-button="nav" href="#pricing"><span className="ui-button-label">料金・条件</span></a><a data-ui-button="nav" href="#faq"><span className="ui-button-label">FAQ</span></a></nav>
       <TrainingMobileNav /><Apply />
     </header>
     <div data-course-content>
@@ -65,7 +65,7 @@ export default function CodexTrainingPage() {
       </section>
       <section id="faq" className={styles.section}><h2>よくある質問</h2><div className={styles.faq}>{faqs.map(([question, answer]) => <details key={question}><summary>{question}</summary><p>{answer}</p></details>)}</div></section>
       <section id="contact" className={`${styles.section} ${styles.contact}`}>
-        <div><p className={styles.eyebrow}>まずは、今の仕事の話から。</p><h2>自社に合う研修を、<br />一緒に考えます。</h2><p>目的・人数・時期が未定でもご相談いただけます。</p><a data-ui-button="control" className={styles.booking} {...BOOKING_LINK_PROPS}>日程を選んで相談する ↗</a></div>
+        <div><p className={styles.eyebrow}>まずは、今の仕事の話から。</p><h2>自社に合う研修を、<br />一緒に考えます。</h2><p>目的・人数・時期が未定でもご相談いただけます。</p><a data-ui-with-icon data-ui-button="control" className={styles.booking} {...BOOKING_LINK_PROPS}><span className="ui-button-label">日程を選んで相談する </span><span className="ui-button-icon" data-ui-side="end" aria-hidden="true"><span aria-hidden="true">↗</span></span></a></div>
         <TrainingLeadForm courseName="Codex" sourcePath="/training/codex" />
       </section>
     </div>

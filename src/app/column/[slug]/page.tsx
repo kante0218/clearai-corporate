@@ -118,13 +118,7 @@ export default async function ColumnArticlePage({
         {/* Title block */}
         <header className="border-b border-gray-100 pt-24 pb-8 lg:pt-28 lg:pb-10">
           <div className="max-w-4xl mx-auto px-6 lg:px-8">
-            <nav aria-label="パンくず" className="mb-8 text-xs text-neutral-500">
-              <Link href="/" className="hover:text-neutral-900 transition-colors">ホーム</Link>
-              <span className="mx-2 text-neutral-300">/</span>
-              <Link href="/column" className="hover:text-neutral-900 transition-colors">コラム</Link>
-              <span className="mx-2 text-neutral-300">/</span>
-              <span className="text-neutral-900">{article.category}</span>
-            </nav>
+
 
             <div className="mb-5 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-neutral-500">
               <span className="border border-neutral-200 px-2.5 py-1 font-medium text-neutral-900">
@@ -218,15 +212,12 @@ export default async function ColumnArticlePage({
                 {article.cta.heading}
               </h2>
               <p className="mb-8 text-sm leading-[1.9] text-white/60">{article.cta.text}</p>
-              <a data-ui-button="filled"
+              <a data-ui-with-icon data-ui-button="filled"
                 href={BOOKING_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-cta hover:bg-cta-hover px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-80"
-              >
-                {article.cta.buttonLabel}
-                <span aria-hidden>→</span>
-              </a>
+              ><span className="ui-button-label">{article.cta.buttonLabel}</span><span className="ui-button-icon" data-ui-side="end" aria-hidden="true"><span aria-hidden>→</span></span></a>
             </section>
 
             {/* Related */}

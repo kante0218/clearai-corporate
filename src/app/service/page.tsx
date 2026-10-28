@@ -168,13 +168,11 @@ export default function ServicePage() {
                     </p>
 
                     <div className="flex flex-wrap items-center gap-5">
-                      <Link data-ui-button="filled"
+                      <Link data-ui-with-icon data-ui-button="filled"
                         href={s.href}
                         className="inline-flex items-center gap-2 bg-neutral-900 px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-neutral-800"
-                      >
-                        詳しく見る
-                        <span aria-hidden>→</span>
-                      </Link>
+                      ><span className="ui-button-label">詳しく見る
+                        </span><span className="ui-button-icon" data-ui-side="end" aria-hidden="true"><span aria-hidden>→</span></span></Link>
                       {s.docKey && (
                         <Link
                           href={`/contact?doc=${s.docKey}`}
@@ -222,15 +220,13 @@ export default function ServicePage() {
           <p className="mb-10 text-[15px] leading-[1.9] text-white/60">
             課題を伺ったうえで、開発・レンタル・研修のどれで解くのが早いかをお伝えします。初回のご相談は無料です。
           </p>
-          <a data-ui-button="filled"
+          <a data-ui-with-icon data-ui-button="filled"
             href={BOOKING_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-cta hover:bg-cta-hover px-8 py-4 text-sm font-semibold text-white transition-opacity hover:opacity-80"
-          >
-            無料相談を予約する
-            <span aria-hidden>→</span>
-          </a>
+          ><span className="ui-button-label">無料相談を予約する
+            </span><span className="ui-button-icon" data-ui-side="end" aria-hidden="true"><span aria-hidden>→</span></span></a>
         </div>
       </section>
     </div>

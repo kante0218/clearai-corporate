@@ -42,9 +42,8 @@ export default function HeroMechaPreviewPage() {
             <Link data-ui-button="filled"
               href="/contact"
               className="rounded-lg bg-neutral-900 text-white font-semibold px-8 py-3.5 hover:bg-neutral-800 transition-colors duration-300"
-            >
-              お問い合わせ
-            </Link>
+            ><span className="ui-button-label">お問い合わせ
+            </span></Link>
             <Link
               href="/"
               className="text-sm text-white/70 font-semibold hover:text-white transition-colors duration-300"

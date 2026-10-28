@@ -170,9 +170,7 @@ export default function RentalApplicationForm({ initialSelection }: { initialSel
 
               {error && <p role="alert" className="rounded-md border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">{error}</p>}
 
-              <button data-ui-button="filled" type="submit" disabled={submitting} className="w-full rounded-md bg-cta px-6 py-4 text-base font-bold text-white transition hover:bg-cta-hover disabled:cursor-wait disabled:opacity-60">
-                {submitting ? "Stripeへ接続しています…" : "免許証の本人確認へ進む"}
-              </button>
+              <button data-ui-button="filled" type="submit" disabled={submitting} className="w-full rounded-md bg-cta px-6 py-4 text-base font-bold text-white transition hover:bg-cta-hover disabled:cursor-wait disabled:opacity-60"><span className="ui-button-label">{submitting ? "Stripeへ接続しています…" : "免許証の本人確認へ進む"}</span></button>
             </form>
           </section>
 

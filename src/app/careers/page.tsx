@@ -318,9 +318,7 @@ export default function CareersPage() {
                       <Link data-ui-button="filled"
                         href={`/contact?service=careers&role=${p.id}`}
                         className="mt-6 inline-flex items-center justify-center rounded-md bg-cta px-6 py-3 text-sm font-bold text-white transition hover:bg-cta-hover"
-                      >
-                        {t.apply}
-                      </Link>
+                      ><span className="ui-button-label">{t.apply}</span></Link>
                     </div>
                     <div className="lg:col-span-4">
                       <p className="text-sm font-bold text-gray-900">{t.dutiesLabel}</p>
@@ -403,15 +401,11 @@ export default function CareersPage() {
               <Link data-ui-button="filled"
                 href="/contact?service=careers"
                 className="inline-flex min-h-[52px] items-center justify-center rounded-md bg-cta px-8 py-3.5 text-sm font-bold text-white transition hover:bg-cta-hover"
-              >
-                {t.ctaButton}
-              </Link>
+              ><span className="ui-button-label">{t.ctaButton}</span></Link>
               <a data-ui-button="control"
                 href="mailto:info@clearai.jp?subject=%E6%8E%A1%E7%94%A8%E5%BF%9C%E5%8B%9F"
                 className="inline-flex min-h-[52px] items-center justify-center rounded-md border border-neutral-300 px-8 py-3.5 text-sm font-semibold text-neutral-900 transition hover:border-neutral-900 hover:bg-neutral-50"
-              >
-                {t.ctaMail}
-              </a>
+              ><span className="ui-button-label">{t.ctaMail}</span></a>
             </div>
           </Reveal>
         </div>

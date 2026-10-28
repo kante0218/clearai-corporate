@@ -570,15 +570,11 @@ export default function RobotRentalPage() {
                       <div className="mt-auto border-t border-gray-100 pt-5">
                         {RENTAL_APPLICATION_ENABLED ? (
                           <>
-                            <Link data-ui-button="filled" href={`/robot-rental/apply?model=${m.id}`} className="block rounded-md bg-cta px-4 py-3 text-center text-sm font-bold text-white transition-colors hover:bg-cta-hover">
-                              {t.applyCta}
-                            </Link>
+                            <Link data-ui-button="filled" href={`/robot-rental/apply?model=${m.id}`} className="block rounded-md bg-cta px-4 py-3 text-center text-sm font-bold text-white transition-colors hover:bg-cta-hover"><span className="ui-button-label">{t.applyCta}</span></Link>
                             <p className="mt-2 text-center text-[11px] leading-5 text-gray-500">{t.applyNote}</p>
                           </>
                         ) : (
-                          <a data-ui-button="control" href="#simulation" className="block rounded-md border border-gray-200 px-4 py-3 text-center text-sm font-semibold text-gray-600 transition-colors hover:border-gray-400 hover:text-gray-900">
-                            {lang === "ja" ? "料金を計算する" : "Calculate price"}
-                          </a>
+                          <a data-ui-button="control" href="#simulation" className="block rounded-md border border-gray-200 px-4 py-3 text-center text-sm font-semibold text-gray-600 transition-colors hover:border-gray-400 hover:text-gray-900"><span className="ui-button-label">{lang === "ja" ? "料金を計算する" : "Calculate price"}</span></a>
                         )}
                       </div>
                     </div>
@@ -634,7 +630,7 @@ export default function RobotRentalPage() {
                 <div className="border-t border-gray-200 pt-4"><dt className="text-gray-500">{lang === "ja" ? "概算合計（税別）" : "Estimated total (excl. tax)"}</dt><dd className="mt-1 text-3xl font-bold text-gray-900">{yen(simSubtotal)}</dd><dd className="mt-1 text-xs text-gray-500">{lang === "ja" ? `税込 ${yen(Math.round(simSubtotal * 1.1))}・送料別` : `${yen(Math.round(simSubtotal * 1.1))} incl. tax, shipping excluded`}</dd></div>
               </dl>
               <Link href={`/contact?service=robot-rental&model=${simModel.id}`} className="mt-4 block text-center text-sm font-semibold underline underline-offset-4">{lang === "ja" ? "空き状況・利用条件を文章で相談" : "Ask about availability and conditions"}</Link>
-              {RENTAL_APPLICATION_ENABLED && <Link data-ui-button="filled" href={`/robot-rental/apply?${new URLSearchParams({ model: simModel.id, grade: simModel.grades[simGradeIndex], nights: String(simNights), engineerPlan: simEngineerPlan, engineerHours: String(simEngineerHours) }).toString()}`} onClick={() => { const query = new URLSearchParams({ model: simModel.id, grade: simModel.grades[simGradeIndex], nights: String(simNights), engineerPlan: simEngineerPlan, engineerHours: String(simEngineerHours) }); window.history.replaceState(window.history.state, "", `/robot-rental?${query}#simulation`); }} className="mt-6 block rounded-md bg-cta px-4 py-3 text-center text-sm font-bold text-white hover:bg-cta-hover">{lang === "ja" ? "この内容で申込・決済へ" : "Apply and continue to payment"}</Link>}
+              {RENTAL_APPLICATION_ENABLED && <Link data-ui-button="filled" href={`/robot-rental/apply?${new URLSearchParams({ model: simModel.id, grade: simModel.grades[simGradeIndex], nights: String(simNights), engineerPlan: simEngineerPlan, engineerHours: String(simEngineerHours) }).toString()}`} onClick={() => { const query = new URLSearchParams({ model: simModel.id, grade: simModel.grades[simGradeIndex], nights: String(simNights), engineerPlan: simEngineerPlan, engineerHours: String(simEngineerHours) }); window.history.replaceState(window.history.state, "", `/robot-rental?${query}#simulation`); }} className="mt-6 block rounded-md bg-cta px-4 py-3 text-center text-sm font-bold text-white hover:bg-cta-hover"><span className="ui-button-label">{lang === "ja" ? "この内容で申込・決済へ" : "Apply and continue to payment"}</span></Link>}
             </aside>
           </div>
         </div>
@@ -747,9 +743,7 @@ export default function RobotRentalPage() {
             <Label>{t.ctaKicker}</Label>
             <h2 className="text-3xl font-bold text-gray-900 mb-4">{t.ctaTitle}</h2>
             <p className="text-base text-gray-600 leading-relaxed mb-10">{t.ctaDesc}</p>
-            <a data-ui-button="filled" href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="rounded-lg bg-cta text-white font-semibold px-10 py-4 hover:bg-cta-hover transition-colors duration-300 inline-block">
-              {t.ctaButton}
-            </a>
+            <a data-ui-button="filled" href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="rounded-lg bg-cta text-white font-semibold px-10 py-4 hover:bg-cta-hover transition-colors duration-300 inline-block"><span className="ui-button-label">{t.ctaButton}</span></a>
           </Reveal>
         </div>
       </section>

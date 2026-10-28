@@ -65,7 +65,7 @@ function Icon({ kind = "document", className = "" }: { kind?: string; className?
 }
 
 function ApplyButton({ compact = false }: { compact?: boolean }) {
-  return <a data-ui-button="filled" href="#contact" className={styles.primary}>{compact ? "無料相談・見積もり" : "無料相談・見積もりを申し込む"}<span aria-hidden="true">›</span></a>;
+  return <a data-ui-with-icon data-ui-button="filled" href="#contact" className={styles.primary}><span className="ui-button-label">{compact ? "無料相談・見積もり" : "無料相談・見積もりを申し込む"}</span><span className="ui-button-icon" data-ui-side="end" aria-hidden="true"><span aria-hidden="true">›</span></span></a>;
 }
 
 function SectionTitle({ lead, children, text }: { lead?: string; children: React.ReactNode; text?: string }) {
@@ -73,7 +73,7 @@ function SectionTitle({ lead, children, text }: { lead?: string; children: React
 }
 
 function ConversionBand({ courseName }: { courseName: string }) {
-  return <div className={styles.conversionBand}><div><p>まずは、自社で何ができるかを知るところから。</p><h2>{courseName}研修の内容・費用を<br />無料で相談できます</h2><span>課題・人数・ご希望の時期から、実施プランをご提案。</span></div><div><ApplyButton /><a data-ui-button="filled" {...BOOKING_LINK_PROPS} className={styles.bookingLink}>日程を選んで相談する <span aria-hidden="true">↗</span></a></div></div>;
+  return <div className={styles.conversionBand}><div><p>まずは、自社で何ができるかを知るところから。</p><h2>{courseName}研修の内容・費用を<br />無料で相談できます</h2><span>課題・人数・ご希望の時期から、実施プランをご提案。</span></div><div><ApplyButton /><a data-ui-with-icon data-ui-button="filled" {...BOOKING_LINK_PROPS} className={styles.bookingLink}><span className="ui-button-label">日程を選んで相談する </span><span className="ui-button-icon" data-ui-side="end" aria-hidden="true"><span aria-hidden="true">↗</span></span></a></div></div>;
 }
 
 export default function AgentTrainingPage({ tool }: { tool: Tool }) {
@@ -115,9 +115,9 @@ export default function AgentTrainingPage({ tool }: { tool: Tool }) {
     <div className={`${styles.page} ${tool === "claude-code" ? styles.claudeTheme : ""}`}>
       <header className={styles.header}>
         <Link href="/" className={styles.logo} aria-label="ClearAI ホーム"><Image src="/images/logo-clear-wordmark.png" width={150} height={44} alt="ClearAI" /><span>法人向けAI実践研修</span></Link>
-        <nav aria-label="研修ページ内ナビゲーション" className={styles.headerNav}><a href="#features">研修の特徴</a><a href="#curriculum">カリキュラム</a><a href="#pricing">費用</a><a href="#faq">よくある質問</a></nav>
+        <nav aria-label="研修ページ内ナビゲーション" className={styles.headerNav}><a data-ui-button="nav" href="#features"><span className="ui-button-label">研修の特徴</span></a><a data-ui-button="nav" href="#curriculum"><span className="ui-button-label">カリキュラム</span></a><a data-ui-button="nav" href="#pricing"><span className="ui-button-label">費用</span></a><a data-ui-button="nav" href="#faq"><span className="ui-button-label">よくある質問</span></a></nav>
         <TrainingMobileNav />
-        <a data-ui-button="filled" href="#contact" className={styles.headerCta}>無料相談・お見積もり <span aria-hidden="true">›</span></a>
+        <a data-ui-with-icon data-ui-button="filled" href="#contact" className={styles.headerCta}><span className="ui-button-label">無料相談・お見積もり </span><span className="ui-button-icon" data-ui-side="end" aria-hidden="true"><span aria-hidden="true">›</span></span></a>
       </header>
 
       <aside className={styles.conversionRail} aria-label="研修の相談窓口">
@@ -125,7 +125,7 @@ export default function AgentTrainingPage({ tool }: { tool: Tool }) {
         <p className={styles.railTitle}>無料相談・お見積もり</p>
         <p>自社に合う研修内容・費用を<br />まとめてご相談いただけます。</p>
         <TrainingLeadForm compact courseName={course.name} sourcePath={`/training/${tool}`} />
-        <a data-ui-button="filled" {...BOOKING_LINK_PROPS} className={styles.railBooking}>日程を選んで相談する <span aria-hidden="true">↗</span></a>
+        <a data-ui-with-icon data-ui-button="filled" {...BOOKING_LINK_PROPS} className={styles.railBooking}><span className="ui-button-label">日程を選んで相談する </span><span className="ui-button-icon" data-ui-side="end" aria-hidden="true"><span aria-hidden="true">↗</span></span></a>
       </aside>
 
       <div className={styles.mainColumn}>
@@ -216,14 +216,14 @@ export default function AgentTrainingPage({ tool }: { tool: Tool }) {
 
         <section id="contact" className={`${styles.section} ${styles.contactSection}`}>
           <SectionTitle lead={`${course.name}研修の無料相談・お見積もり`}>研修内容と費用を、<br /><em>まずは無料でご相談ください</em></SectionTitle>
-          <div className={styles.contactGrid}><div className={styles.contactMessage}><h3>「うちでも使える？」から、<br />気軽にご相談ください</h3><p>やりたいことが具体的でなくても構いません。現在の業務やチームの状況を伺い、取り組みやすい題材と学び方をご提案します。</p><ul className={styles.checkList}><li>自社に合う活用テーマの整理</li><li>人数・経験に合わせた研修内容</li><li>実施日程・形式・費用のご案内</li></ul><div className={styles.contactBooking}><strong>日程を先に決めたい方へ</strong><a data-ui-button="filled" {...BOOKING_LINK_PROPS}>日程を選んで相談する <span aria-hidden="true">↗</span></a></div><Image src={`/images/training-lp/team-workshop${imageSuffix}.webp`} alt="相談を通じて研修プランを一緒につくるイメージ" width={600} height={400} sizes="(max-width: 767px) 80vw, 360px" /></div><div className={styles.contactForm}><TrainingLeadForm courseName={course.name} sourcePath={`/training/${tool}`} /></div></div>
+          <div className={styles.contactGrid}><div className={styles.contactMessage}><h3>「うちでも使える？」から、<br />気軽にご相談ください</h3><p>やりたいことが具体的でなくても構いません。現在の業務やチームの状況を伺い、取り組みやすい題材と学び方をご提案します。</p><ul className={styles.checkList}><li>自社に合う活用テーマの整理</li><li>人数・経験に合わせた研修内容</li><li>実施日程・形式・費用のご案内</li></ul><div className={styles.contactBooking}><strong>日程を先に決めたい方へ</strong><a data-ui-with-icon data-ui-button="filled" {...BOOKING_LINK_PROPS}><span className="ui-button-label">日程を選んで相談する </span><span className="ui-button-icon" data-ui-side="end" aria-hidden="true"><span aria-hidden="true">↗</span></span></a></div><Image src={`/images/training-lp/team-workshop${imageSuffix}.webp`} alt="相談を通じて研修プランを一緒につくるイメージ" width={600} height={400} sizes="(max-width: 767px) 80vw, 360px" /></div><div className={styles.contactForm}><TrainingLeadForm courseName={course.name} sourcePath={`/training/${tool}`} /></div></div>
         </section>
 
         <div className={styles.resourceLinks}><h2>導入を検討するための読みもの</h2><div><Link href="/column/seisei-ai-kenshu-joseikin"><Icon kind="document" /><span>研修計画・費用について考える<strong>生成AI研修に使える助成金と申請の流れ</strong></span><b aria-hidden="true">›</b></Link><Link href="/ai-consulting"><Icon kind="team" /><span>研修後の活用を相談したい方へ<strong>AI顧問・伴走支援について</strong></span><b aria-hidden="true">›</b></Link></div></div>
 
         <footer className={styles.footer}><div><Link href="/" aria-label="ClearAI ホーム"><Image src="/images/logo-clear-wordmark.png" width={140} height={40} alt="ClearAI" /></Link><nav aria-label="フッターナビゲーション"><Link href="/about">会社情報</Link><Link href="/privacy">プライバシーポリシー</Link><Link href="/contact">お問い合わせ</Link></nav></div><p>本研修はClearAI株式会社が提供する独自の研修です。AnthropicまたはOpenAIの公式・認定研修ではありません。製品名は各社に帰属します。</p><small>© ClearAI Inc.</small></footer>
       </div>
-      <div className={styles.mobileCta}><a data-ui-button="filled" href="#contact">無料相談・見積もりを申し込む <span aria-hidden="true">›</span></a></div>
+      <div className={styles.mobileCta}><a data-ui-with-icon data-ui-button="filled" href="#contact"><span className="ui-button-label">無料相談・見積もりを申し込む </span><span className="ui-button-icon" data-ui-side="end" aria-hidden="true"><span aria-hidden="true">›</span></span></a></div>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, "\\u003c") }} />
     </div>
   );

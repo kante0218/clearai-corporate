@@ -43,7 +43,7 @@ export default function TrainingMobileNav() {
         <small>メニュー</small>
       </button>
       <nav id="training-mobile-menu" hidden={!open} className={styles.mobileMenuPanel} aria-label="モバイル研修メニュー">
-        {links.map(([href, label]) => <a key={href} href={href} onClick={() => setOpen(false)}>{label}<span aria-hidden="true">›</span></a>)}
+        {links.map(([href, label]) => <a data-ui-button="menu" data-ui-with-icon key={href} href={href} onClick={() => setOpen(false)}><span className="ui-button-label">{label}</span><span className="ui-button-icon" data-ui-side="end" aria-hidden="true"><span aria-hidden="true">›</span></span></a>)}
       </nav>
     </div>
   );

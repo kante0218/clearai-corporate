@@ -155,7 +155,7 @@ export default function Footer() {
           &copy; {new Date().getFullYear()} {f.copyright}
         </p>
         <div className="flex items-center gap-6">
-          <button data-ui-button="control" id="footer-cookie-settings" type="button" onClick={() => window.dispatchEvent(new Event("clearai-cookie-settings"))} className="text-xs text-white/70 hover:text-white transition-colors">{lang === "ja" ? "Cookie設定" : "Cookie settings"}</button>
+          <button data-ui-button="control" id="footer-cookie-settings" type="button" onClick={() => window.dispatchEvent(new Event("clearai-cookie-settings"))} className="text-xs text-white/70 hover:text-white transition-colors"><span className="ui-button-label">{lang === "ja" ? "Cookie設定" : "Cookie settings"}</span></button>
           <Link href="/privacy" className="text-xs text-white/70 hover:text-white/75 transition-colors">{f.privacyShort}</Link>
           <Link href="/terms" className="text-xs text-white/70 hover:text-white/75 transition-colors">{f.termsShort}</Link>
         </div>

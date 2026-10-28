@@ -36,13 +36,13 @@ export default function WebsiteProductionPage() {
     <div className="bg-white">
       <header className="border-b border-gray-100 bg-white pt-24 pb-10 lg:pt-28 lg:pb-14">
         <div className="mx-auto max-w-[1800px] px-6 lg:px-8">
-          <nav aria-label="パンくずリスト" className="mb-7 text-sm text-neutral-500"><Link href="/" className="underline underline-offset-4">ホーム</Link><span aria-hidden="true" className="mx-3">/</span><Link href="/service" className="underline underline-offset-4">事業内容</Link><span aria-hidden="true" className="mx-3">/</span><span>ホームページ制作</span></nav>
+
           <p className="mb-3 text-sm font-semibold text-neutral-600">ホームページ制作・リニューアル</p>
           <h1 data-motion="heading" className="max-w-4xl text-3xl font-bold leading-tight text-neutral-900 sm:text-4xl lg:text-5xl">事業の価値が、読む人に伝わるホームページへ。</h1>
           <p data-reading className="mt-6 max-w-3xl text-base leading-[1.9] text-neutral-600">何を、どの順番で伝えるか。事業の強みを整理するところから、構成・デザイン・実装・公開まで。新規制作も、既存サイトの見直しも、目的に合わせて一緒に進めます。</p>
           <div className="mt-8 flex flex-wrap gap-4">
-            <Link data-ui-button="filled" href="/contact?service=website" className="motion-cta inline-flex min-h-12 items-center justify-center rounded-lg bg-cta px-7 py-3.5 font-semibold text-white transition-colors hover:bg-cta-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-900">ホームページ制作を相談する</Link>
-            <a data-ui-button="control" href="#offering" className="inline-flex min-h-12 items-center rounded-lg border border-neutral-200 px-6 py-3.5 font-semibold text-neutral-700 hover:border-neutral-500 focus-visible:outline-2 focus-visible:outline-offset-4">提供内容を読む</a>
+            <Link data-ui-button="filled" href="/contact?service=website" className="motion-cta inline-flex min-h-12 items-center justify-center rounded-lg bg-cta px-7 py-3.5 font-semibold text-white transition-colors hover:bg-cta-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-900"><span className="ui-button-label">ホームページ制作を相談する</span></Link>
+            <a data-ui-button="control" href="#offering" className="inline-flex min-h-12 items-center rounded-lg border border-neutral-200 px-6 py-3.5 font-semibold text-neutral-700 hover:border-neutral-500 focus-visible:outline-2 focus-visible:outline-offset-4"><span className="ui-button-label">提供内容を読む</span></a>
           </div>
         </div>
       </header>
@@ -64,8 +64,8 @@ export default function WebsiteProductionPage() {
           <div className="grid gap-8 sm:grid-cols-2 lg:gap-12">
             {works.map((work) => (
               <article key={work.href} className="border-t border-neutral-200 pt-6">
-                <div className="mb-6 flex h-28 items-center justify-start">
-                  <Image src={work.src} alt="" width={work.width} height={work.height} sizes="240px" className="h-auto max-h-28 w-auto max-w-[min(240px,100%)] object-contain" />
+                <div className="mb-5 flex h-24 items-center justify-start">
+                  <Image src={work.src} alt="" width={work.width} height={work.height} sizes="220px" className="h-[52px] w-[220px] max-w-full object-contain object-left" />
                 </div>
                 <h3 className="text-base sm:text-lg font-bold text-neutral-900">{work.name}</h3>
                 <a href={work.href} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex min-h-11 items-center text-sm text-neutral-700 underline underline-offset-4 hover:text-neutral-900 focus-visible:outline-2 focus-visible:outline-offset-4" aria-label={`${work.name}のサイトを見る（新しいタブ）`}>サイトを見る<span className="ml-2 text-xs">（新しいタブ）</span></a>
@@ -89,11 +89,13 @@ export default function WebsiteProductionPage() {
           <h2 data-motion="heading" className="text-2xl sm:text-3xl font-bold mb-8">よくあるご質問</h2>
           <div className="divide-y divide-neutral-200 border-y border-neutral-200">{faqs.map(([question, answer]) => <details data-motion-disclosure key={question} className="group py-5"><summary className="flex cursor-pointer list-none items-center justify-between gap-4 rounded-sm font-semibold leading-relaxed hover:text-neutral-600 focus-visible:outline-2 focus-visible:outline-offset-4"><span>{question}</span><span aria-hidden="true" className="text-xl transition-transform group-open:rotate-45">+</span></summary><p data-reading className="max-w-3xl pt-4 text-sm text-neutral-600 leading-[1.95]">{answer}</p></details>)}</div>
         </section>
-        <section id="consultation" className="relative scroll-mt-28 rounded-xl border border-neutral-200 bg-neutral-50 p-6 sm:p-10 lg:p-12">
-          <h2 data-motion="heading" className="text-2xl sm:text-3xl font-bold mb-4">まずは、伝えたいことをお聞かせください。</h2>
-          <p data-reading className="max-w-3xl text-neutral-600 leading-[1.9] mb-7">現在のサイトURL、制作の目的、困っていることなど、わかる範囲でお知らせください。ご要望を伺って、必要な内容と進め方をご案内します。</p>
-          <Link data-ui-button="filled" href="/contact?service=website" className="motion-cta inline-flex min-h-12 items-center justify-center bg-cta hover:bg-cta-hover text-white px-7 py-4 font-semibold rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-900">ホームページ制作を相談する</Link>
-          <Link href="/download?document=website-production" className="inline-flex min-h-12 items-center px-5 py-3 text-sm font-semibold underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4">事業紹介資料をダウンロード</Link>
+        <section id="consultation" className="website-consultation relative scroll-mt-28 rounded-xl border border-neutral-200 bg-neutral-50 p-6 sm:p-10 lg:p-12">
+          <h2 data-motion="heading" className="text-2xl sm:text-3xl font-bold mb-4 leading-relaxed">まずは、伝えたいことをお聞かせください。</h2>
+          <p data-reading className="text-neutral-600 leading-[1.9] mb-7">現在のサイトURL、制作の目的、困っていることなど、わかる範囲でお知らせください。ご要望を伺って、必要な内容と進め方をご案内します。</p>
+          <div className="flex flex-col items-stretch gap-3 sm:items-start">
+          <Link data-ui-button="filled" href="/contact?service=website" className="motion-cta inline-flex min-h-12 items-center justify-center bg-cta hover:bg-cta-hover text-white px-7 py-4 font-semibold rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-900"><span className="ui-button-label">ホームページ制作を相談する</span></Link>
+          <Link href="/download?document=website-production" className="inline-flex min-h-12 items-center justify-center px-0 py-3 text-center text-sm font-semibold underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4">事業紹介資料をダウンロード</Link>
+          </div>
         </section>
         <aside aria-labelledby="related-title" className="mt-16 border-t border-neutral-200 pt-8">
           <h2 id="related-title" className="mb-5 text-xl font-bold text-neutral-900">あわせて読みたい</h2>

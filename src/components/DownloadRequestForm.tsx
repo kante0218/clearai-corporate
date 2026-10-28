@@ -85,16 +85,14 @@ export default function DownloadRequestForm({ decks, initialDocument }: Props) {
         </p>
 
         {result.zipUrl && (
-          <a data-ui-button="filled"
+          <a data-ui-with-icon data-ui-button="filled"
             href={result.zipUrl}
             download
             className="mt-5 inline-flex min-h-[54px] w-full items-center justify-center gap-2 rounded-md bg-cta px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-cta-hover sm:w-auto sm:px-10"
-          >
-            <svg aria-hidden viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
+          ><span className="ui-button-label">{result.files.length}資料をまとめてダウンロード（ZIP）
+          </span><span className="ui-button-icon" data-ui-side="start" aria-hidden="true"><svg aria-hidden viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M12 3v12m0 0 4-4m-4 4-4-4M4 19h16" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-            {result.files.length}資料をまとめてダウンロード（ZIP）
-          </a>
+            </svg></span></a>
         )}
 
         <ul className="mt-5 divide-y divide-neutral-200 border-t border-neutral-200">
@@ -105,9 +103,8 @@ export default function DownloadRequestForm({ decks, initialDocument }: Props) {
                 href={f.url}
                 download
                 className="inline-flex items-center gap-1.5 rounded-md border border-neutral-300 px-4 py-2 text-xs font-bold text-neutral-900 transition-colors hover:border-neutral-900"
-              >
-                PDFを開く
-              </a>
+              ><span className="ui-button-label">PDFを開く
+              </span></a>
             </li>
           ))}
         </ul>
@@ -198,9 +195,7 @@ export default function DownloadRequestForm({ decks, initialDocument }: Props) {
         type="submit"
         disabled={loading}
         className="mt-6 inline-flex min-h-[54px] w-full items-center justify-center whitespace-nowrap rounded-lg bg-cta px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-cta-hover disabled:cursor-wait disabled:opacity-60"
-      >
-        {loading ? "準備中…" : selected.length > 1 ? `${selected.length}点の資料をダウンロード` : "資料をダウンロード"}
-      </button>
+      ><span className="ui-button-label">{loading ? "準備中…" : selected.length > 1 ? `${selected.length}点の資料をダウンロード` : "資料をダウンロード"}</span></button>
 
       <div className="absolute -left-[10000px] top-auto h-px w-px overflow-hidden" aria-hidden="true">
         <label htmlFor="website-dl">Webサイト</label>

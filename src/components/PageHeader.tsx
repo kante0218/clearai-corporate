@@ -1,4 +1,3 @@
-import Link from "next/link";
 import type { ReactNode } from "react";
 
 export type Crumb = { label: string; href?: string };
@@ -13,7 +12,6 @@ export default function PageHeader({
   kicker,
   title,
   description,
-  crumbs,
   actions,
 }: {
   kicker: string;
@@ -25,23 +23,6 @@ export default function PageHeader({
   return (
     <section className="pt-20 pb-5 sm:pt-24 lg:pt-28 lg:pb-5 bg-white border-b border-gray-100">
       <div className="max-w-[1800px] mx-auto px-5 sm:px-6 lg:px-8">
-        {crumbs && crumbs.length > 0 && (
-          <nav aria-label="パンくず" className="mb-4 overflow-x-auto whitespace-nowrap text-xs text-neutral-500 sm:mb-6">
-            {crumbs.map((c, i) => (
-              <span key={`${c.label}-${i}`}>
-                {i > 0 && <span className="mx-2 text-neutral-300">/</span>}
-                {c.href ? (
-                  <Link href={c.href} className="hover:text-neutral-900 transition-colors">
-                    {c.label}
-                  </Link>
-                ) : (
-                  <span className="text-neutral-900">{c.label}</span>
-                )}
-              </span>
-            ))}
-          </nav>
-        )}
-
         <p data-motion="reading" className="text-sm font-semibold text-neutral-900 mb-2 sm:mb-3">{kicker}</p>
         <h1 data-motion="heading" className="text-3xl lg:text-4xl font-bold text-gray-900 leading-tight mb-3 sm:mb-4">{title}</h1>
         {description && (

@@ -295,10 +295,7 @@ export default function ReservePage() {
             <div className="mb-2 text-xs font-semibold uppercase tracking-widest text-gray-400">{t.successWhen}</div>
             <div className="mb-6 text-base font-bold text-gray-900">{selectedDate && formatWhen(selectedDate, selectedTime)}</div>
             {success.meetLink && (
-              <a data-ui-button="filled" href={success.meetLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-lg bg-neutral-900 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-neutral-800">
-                {t.meetLabel}
-                <span aria-hidden>→</span>
-              </a>
+              <a data-ui-with-icon data-ui-button="filled" href={success.meetLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-lg bg-neutral-900 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-neutral-800"><span className="ui-button-label">{t.meetLabel}</span><span className="ui-button-icon" data-ui-side="end" aria-hidden="true"><span aria-hidden>→</span></span></a>
             )}
           </div>
         )}
@@ -403,11 +400,8 @@ export default function ReservePage() {
 
                       {serverError && <p className="rounded-lg border border-neutral-300 bg-neutral-100 px-3 py-2.5 text-sm text-neutral-900">{serverError}</p>}
 
-                      <button data-ui-button="filled" type="submit" disabled={status === "submitting"}
-                        className={`flex w-full items-center justify-center gap-2 rounded-lg bg-neutral-900 px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-neutral-800 ${status === "submitting" ? "cursor-not-allowed opacity-60" : ""}`}>
-                        {status === "submitting" && <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" /><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" /></svg>}
-                        {status === "submitting" ? t.submitting : t.submit}
-                      </button>
+                      <button data-ui-with-icon data-ui-button="filled" type="submit" disabled={status === "submitting"}
+                        className={`flex w-full items-center justify-center gap-2 rounded-lg bg-neutral-900 px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-neutral-800 ${status === "submitting" ? "cursor-not-allowed opacity-60" : ""}`}><span className="ui-button-label">{status === "submitting" ? t.submitting : t.submit}</span><span className="ui-button-icon" data-ui-side="start" aria-hidden="true">{status === "submitting" && <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" /><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" /></svg>}</span></button>
                       <p className="text-center text-[11px] leading-relaxed text-gray-400">
                         {t.privacyPrefix}{" "}
                         <Link href="/privacy" className="underline hover:text-gray-600">{t.privacyLink}</Link>

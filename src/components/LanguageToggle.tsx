@@ -22,7 +22,7 @@ export default function LanguageToggle({ variant = "desktop", className = "" }: 
 
   return (
     <div
-      className={`relative inline-flex items-center rounded-md bg-gray-100 ring-1 ring-gray-200/70 p-0.5 font-semibold select-none ${variant === "mobile" ? "language-toggle-mobile" : ""} ${className}`}
+      className={`language-toggle relative inline-flex items-center rounded-md bg-gray-100 ring-1 ring-gray-200/70 p-0.5 font-semibold select-none ${variant === "mobile" ? "language-toggle-mobile" : ""} ${className}`}
       role="group"
       aria-label={t.switchTo}
       style={{ opacity: mounted ? 1 : 0.7 }}
@@ -42,9 +42,7 @@ export default function LanguageToggle({ variant = "desktop", className = "" }: 
         className={`relative z-10 inline-flex items-center justify-center ${buttonSize} rounded-md tracking-wider transition-colors duration-300 ${
           isJa ? "text-white" : "text-gray-500 hover:text-gray-800"
         }`}
-      >
-        {t.ja}
-      </button>
+      ><span className="ui-button-label">{t.ja}</span></button>
       <button data-ui-button="control"
         type="button"
         onClick={() => setLang("en")}
@@ -52,9 +50,7 @@ export default function LanguageToggle({ variant = "desktop", className = "" }: 
         className={`relative z-10 inline-flex items-center justify-center ${buttonSize} rounded-md tracking-wider transition-colors duration-300 ${
           !isJa ? "text-white" : "text-gray-500 hover:text-gray-800"
         }`}
-      >
-        {t.en}
-      </button>
+      ><span className="ui-button-label">{t.en}</span></button>
     </div>
   );
 }

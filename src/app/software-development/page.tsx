@@ -348,37 +348,16 @@ export default function SoftwareDevelopmentPage() {
                       </li>
                     ))}
                   </ul>
-                  <a data-ui-button="filled" href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="block text-center text-sm font-semibold py-2 rounded-lg transition-all duration-300 mt-auto bg-cta text-white hover:bg-cta-hover">{t.planCta}</a>
+                  <a data-ui-button="filled" href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="block text-center text-sm font-semibold py-2 rounded-lg transition-all duration-300 mt-auto bg-cta text-white hover:bg-cta-hover"><span className="ui-button-label">{t.planCta}</span></a>
                 <a href={`/contact?service=software-development&plan=${["prototype", "system", "operations"][i]}`} className="mt-3 block py-2 text-center text-sm font-semibold underline underline-offset-4">{lang === "ja" ? "文章で見積相談する" : "Request a quote in writing"}</a>
                 </div>
               </Reveal>
             ))}
           </PricingCarousel>
-          <div className="mt-8 rounded-lg border border-gray-200 bg-gray-50 p-5 text-sm leading-7 text-gray-700">
-            <h3 className="font-bold text-gray-900">{lang === "ja" ? "試作と本番移行を分けて確認" : "Separate prototype validation from production readiness"}</h3>
-            <p>{lang === "ja" ? "試作では何を検証できれば次へ進むかを整理します。本番移行では認証・権限、連携、評価・テスト、監視や引き継ぎなどの必要性を別に確認し、対象範囲・費用・時期を見積で合意します。試作の完成だけで本番利用できると判断しないでください。" : "Define what the prototype must validate. Review authentication, permissions, integrations, testing, monitoring and handover separately, then agree on scope, cost and timing in the quotation. A working prototype alone does not establish production readiness."}</p>
-            <a href="/samples/development-scope-sheet.txt" download className="mt-3 inline-block font-semibold underline underline-offset-4">{lang === "ja" ? "見積前提・受入条件の空欄シートを保存" : "Save the blank scope and acceptance worksheet"}</a>
-          </div>
+
         </div>
       </section>
 
-      {/* TRUST */}
-      <section className="py-12 bg-white border-y border-gray-100">
-        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <Reveal>
-            <div className="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-gray-200">
-              {t.stats.map((stat) => (
-                <div key={stat.label} className="flex flex-col items-center justify-center py-6 px-4 text-center">
-                  <span className="text-2xl font-bold text-gray-900">{stat.value}</span>
-                  <span className="text-xs text-gray-500 mt-1">{stat.label}</span>
-                </div>
-              ))}
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      <div className="mx-auto max-w-[1800px] px-6 py-5 text-sm leading-7 text-gray-600 lg:px-8">{lang === "ja" ? "「最短2週間」は全案件の納期保証ではありません。対象機能、資料・データの準備、接続先、確認工程を伺い、開始日と提出時期を個別に確認します。" : "The two-week minimum is not a delivery guarantee for every project. Scope, available materials, integrations and review steps must be discussed before confirming start and delivery dates."}</div>
       {/* DEVELOPMENT AREAS */}
       <section id="areas" className="py-14 lg:py-20 bg-gray-50">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
@@ -473,47 +452,6 @@ export default function SoftwareDevelopmentPage() {
         </div>
       </section>
 
-      {/* TECH STACK */}
-      <section className="py-14 lg:py-20 bg-white">
-        <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <Reveal>
-            <Label>{t.techLabel}</Label>
-            <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-4">{t.techTitle}</h2>
-            <p className="text-base text-gray-500 w-full leading-relaxed mb-8">{t.techDesc}</p>
-          </Reveal>
-          <aside className="mb-8 rounded-lg border border-gray-200 bg-gray-50 p-5">
-            <h3 className="text-lg font-bold text-gray-900">{lang === "ja" ? "公開事例で使用技術と実装内容を確認" : "See technologies alongside published implementations"}</h3>
-            <p className="mt-2 text-sm leading-7 text-gray-600">{lang === "ja" ? "公開済み事例の記載に基づきます。顧客の実画面や数値を新たに公開するものではありません。" : "Based on existing published case descriptions, without adding private screens or performance claims."}</p>
-            <ul className="mt-4 space-y-4">{TECH_CASES.map((study) => <li key={study.slug}><Link href={`/case-studies/${study.slug}`} className="text-sm font-bold underline underline-offset-4">{study.title}</Link><p className="mt-1 text-sm leading-6 text-gray-600">{study.stack.join(" / ")}</p></li>)}</ul>
-          </aside>
-          <div className="space-y-0">
-            {t.techGroups.map((group, gi) => (
-              <Reveal key={group.category} delay={gi * 40}>
-                <div className="border-t border-gray-200 py-5">
-                  <div className="grid lg:grid-cols-12 gap-6 items-center">
-                    <div className="lg:col-span-2">
-                      <p className="text-[10px] font-semibold tracking-widest text-neutral-900 uppercase">{group.category}</p>
-                      <h3 className="text-sm font-bold text-gray-900 mt-0.5">{group.label}</h3>
-                    </div>
-                    <div className="lg:col-span-10">
-                      <div className="grid grid-cols-3 lg:grid-cols-5 gap-2.5 sm:gap-3">
-                        {group.items.map((tech) => (
-                          <div key={tech.name} className="bg-white border border-gray-200 rounded-lg px-3.5 py-2 flex items-center gap-2.5 hover:border-gray-300 transition-colors">
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img src={`https://api.iconify.design/${tech.icon}.svg${tech.color ? `?color=%23${tech.color}` : ''}`} alt="" aria-hidden="true" onError={(event) => { event.currentTarget.style.display = "none"; }} className="w-8 h-8 object-contain" loading="lazy" />
-                            <p className="text-xs font-medium text-gray-600 text-center leading-tight">{tech.name}</p>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* FAQ */}
       <section className="py-14 lg:py-20 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
@@ -544,7 +482,7 @@ export default function SoftwareDevelopmentPage() {
             <Label>{t.ctaKicker}</Label>
             <h2 className="text-3xl font-bold text-gray-900 mb-4">{t.ctaTitle}</h2>
             <p className="text-base text-gray-600 leading-relaxed mb-10">{t.ctaDesc}</p>
-            <a data-ui-button="filled" href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="rounded-lg bg-cta text-white font-semibold px-10 py-4 hover:bg-cta-hover transition-colors duration-300 inline-block">{t.ctaButton}</a>
+            <a data-ui-button="filled" href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="rounded-lg bg-cta text-white font-semibold px-10 py-4 hover:bg-cta-hover transition-colors duration-300 inline-block"><span className="ui-button-label">{t.ctaButton}</span></a>
           </Reveal>
         </div>
       </section>

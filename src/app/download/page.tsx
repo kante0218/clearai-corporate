@@ -169,15 +169,13 @@ export default async function DownloadPage({ searchParams }: { searchParams: Pro
             課題が具体的に決まっている場合は、30分お話しいただくほうが早く進みます。初回のご相談は無料です。
           </p>
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <a data-ui-button="filled"
+            <a data-ui-with-icon data-ui-button="filled"
               href={BOOKING_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-cta hover:bg-cta-hover px-8 py-4 text-sm font-semibold text-white transition-opacity hover:opacity-80"
-            >
-              無料相談を予約する
-              <span aria-hidden>→</span>
-            </a>
+            ><span className="ui-button-label">無料相談を予約する
+              </span><span className="ui-button-icon" data-ui-side="end" aria-hidden="true"><span aria-hidden>→</span></span></a>
             <Link
               href="/contact"
               className="text-sm font-semibold text-white/70 underline-offset-4 hover:text-white hover:underline transition-colors"

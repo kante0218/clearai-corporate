@@ -76,8 +76,8 @@ export default function CookieConsentBanner() {
         {error && <p role="alert">{en ? "Your browser could not save this choice. Analytics remains off. Please allow first-party cookies and try again." : "ブラウザに設定を保存できませんでした。アクセス解析は無効です。ファーストパーティCookieを許可して再度お試しください。"}</p>}
       </div>
       <div className="cookie-actions">
-        <button data-ui-button="control" type="button" onClick={() => choose("rejected")}>{en ? "Essential only" : "必要なCookieのみ"}</button>
-        <button data-ui-button="control" type="button" onClick={() => choose("accepted")}>{en ? "Allow analytics" : "アクセス解析を許可"}</button>
+        <button data-ui-button="control" type="button" onClick={() => choose("rejected")}><span className="ui-button-label">{en ? "Essential only" : "必要なCookieのみ"}</span></button>
+        <button data-ui-button="control" type="button" onClick={() => choose("accepted")}><span className="ui-button-label">{en ? "Allow analytics" : "アクセス解析を許可"}</span></button>
       </div>
     </section>
   );

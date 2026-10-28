@@ -45,13 +45,13 @@ export default function SnsManagementPage() {
     <div className="bg-white text-neutral-900">
       <header className="border-b border-gray-100 bg-white pt-24 pb-10 lg:pt-28 lg:pb-14">
         <div className="mx-auto max-w-[1800px] px-6 lg:px-8">
-          <nav aria-label="パンくずリスト" className="mb-7 text-sm text-neutral-500"><Link href="/" className="underline underline-offset-4">ホーム</Link><span aria-hidden="true" className="mx-3">/</span><Link href="/service" className="underline underline-offset-4">事業内容</Link><span aria-hidden="true" className="mx-3">/</span><span>SNS運用代行</span></nav>
+
           <p className="mb-3 text-sm font-semibold text-neutral-600">SNS運用代行</p>
           <h1 data-motion="heading" className="max-w-4xl text-3xl font-bold leading-tight text-neutral-900 sm:text-4xl lg:text-5xl">企業の伝えたいことを、継続できる発信へ。</h1>
           <p data-reading className="mt-6 max-w-3xl text-base leading-[1.9] text-neutral-600">投稿の企画から文章・画像の制作、投稿管理、分析改善まで。目的と運用体制に合わせて、企業のSNS発信を支援します。AIで下書きを整え、人による確認と企業の承認を経て進めます。</p>
           <div className="mt-8 flex flex-wrap items-center gap-5">
-            <a data-ui-button="filled" href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="motion-cta inline-flex min-h-12 items-center justify-center rounded-lg bg-cta px-7 py-3.5 font-semibold text-white transition-colors hover:bg-cta-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-900">SNS運用の面談を予約する</a>
-            <Link data-ui-button="control" href="/contact?service=sns" className="inline-flex min-h-12 items-center rounded-lg border border-neutral-200 px-6 py-3.5 text-sm font-semibold text-neutral-700 hover:border-neutral-500 focus-visible:outline-2 focus-visible:outline-offset-4">フォームで相談する</Link>
+            <a data-ui-button="filled" href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="motion-cta inline-flex min-h-12 items-center justify-center rounded-lg bg-cta px-7 py-3.5 font-semibold text-white transition-colors hover:bg-cta-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-900"><span className="ui-button-label">SNS運用の面談を予約する</span></a>
+            <Link data-ui-button="control" href="/contact?service=sns" className="inline-flex min-h-12 items-center rounded-lg border border-neutral-200 px-6 py-3.5 text-sm font-semibold text-neutral-700 hover:border-neutral-500 focus-visible:outline-2 focus-visible:outline-offset-4"><span className="ui-button-label">フォームで相談する</span></Link>
           </div>
         </div>
       </header>
@@ -103,7 +103,7 @@ export default function SnsManagementPage() {
           <h2 data-motion="heading" className="mb-4 text-2xl font-bold sm:text-3xl">いまの発信と、目指したいことをお聞かせください。</h2>
           <p className="mb-7 max-w-3xl text-neutral-600 leading-[1.9]">利用中のアカウント、発信の目的、お困りごとをわかる範囲でお知らせください。対象媒体や運用範囲が決まっていなくても、ご相談いただけます。</p>
           <div className="flex flex-wrap items-center gap-5">
-            <a data-ui-button="filled" href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="motion-cta inline-flex min-h-12 items-center justify-center rounded-lg bg-cta px-7 py-4 font-semibold text-white hover:bg-cta-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-900">SNS運用の面談を予約する</a>
+            <a data-ui-button="filled" href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="motion-cta inline-flex min-h-12 items-center justify-center rounded-lg bg-cta px-7 py-4 font-semibold text-white hover:bg-cta-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-900"><span className="ui-button-label">SNS運用の面談を予約する</span></a>
             <Link href="/contact?service=sns" className="inline-block py-3 text-sm font-semibold underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4">フォームで相談する</Link>
             <Link href="/download?document=sns-management" className="inline-flex min-h-12 items-center py-3 text-sm font-semibold underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4">事業紹介資料をダウンロード</Link>
           </div>
