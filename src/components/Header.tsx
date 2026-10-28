@@ -132,8 +132,8 @@ export default function Header() {
                   { label: h.navNews, href: "/blog" },
                   { label: h.contact, href: "/contact" },
                 ].map((item) => (
-                  <Link data-ui-button="nav" key={item.href} href={item.href}
-                    className={`inline-flex min-h-11 items-center whitespace-nowrap text-[13px] xl:text-sm font-semibold transition-colors ${navColor}`}><span className="ui-button-label">{item.label}</span></Link>
+                  <Link key={item.href} href={item.href}
+                    className={`inline-flex min-h-11 items-center justify-center whitespace-nowrap px-1.5 text-center text-[13px] xl:text-sm font-semibold transition-colors ${navColor}`}><span className="ui-button-label">{item.label}</span></Link>
                 ))}
               </nav>
               <LanguageToggle variant="desktop" />
