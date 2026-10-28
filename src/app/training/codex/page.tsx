@@ -1,7 +1,9 @@
-import AgentTrainingPage, { agentTrainingMetadata } from "@/components/AgentTrainingPage";
+import { agentTrainingMetadata } from "@/components/AgentTrainingPage";
+
+import CodexTrainingPage from "@/components/CodexTrainingPage";
 
 export const metadata = agentTrainingMetadata("codex");
 
-export default function CodexTrainingPage() {
-  return <AgentTrainingPage tool="codex" />;
+export default function Page() {
+  return <CodexTrainingPage />;
 }

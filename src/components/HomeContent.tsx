@@ -17,6 +17,8 @@ import { BOOKING_URL } from "@/lib/booking";
 // Temporarily hide the homepage Products section at the owner's request (2026-10-28).
 // Keep the component and /products route so this can be restored independently.
 const SHOW_HOME_PRODUCTS = false;
+// Owner requested hiding this homepage logo band, while keeping detailed case studies.
+const SHOW_HOME_CLIENT_LOGOS = false;
 
 /* Keep reading content visible without scroll-triggered motion. */
 function Reveal({ children, className = "" }: { children: ReactNode; className?: string; delay?: number }) {
@@ -570,11 +572,11 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       </section>
 
       {/* ═══ CLIENT LOGOS ═══ */}
-      <section className="home-client-logos pb-10 pt-2 md:pb-16 md:pt-4 bg-white border-b border-gray-100">
+      {SHOW_HOME_CLIENT_LOGOS && <section className="home-client-logos pb-10 pt-2 md:pb-16 md:pt-4 bg-white border-b border-gray-100">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <ClientLogoShowcase label={t.clientLogosLabel} />
         </div>
-      </section>
+      </section>}
 
       <section id="support" className={`${styles.services} scroll-mt-28 bg-white py-10 md:py-16`} aria-labelledby="home-services-title">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
@@ -697,7 +699,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
             <div className="text-center mb-8 md:mb-12">
               <SectionLabel>{t.ctaLabel}</SectionLabel>
               <h2 data-motion="heading" className={`${styles.sectionTitle} text-3xl font-bold text-gray-900 leading-tight mb-6`}>{t.ctaTitle}</h2>
-              <Image src="/images/kanki-takahashi.png" alt={lang === "ja" ? "ClearAI 代表 髙橋敢輝" : "ClearAI founder Kanki Takahashi"} width={600} height={600} sizes="(max-width: 767px) 112px, 144px" className="mx-auto mb-4 h-28 w-28 rounded-full object-contain md:h-36 md:w-36" />
+              <Image src="/images/kanki-takahashi-20261028.jpeg" alt={lang === "ja" ? "ClearAI 代表 髙橋敢輝" : "ClearAI founder Kanki Takahashi"} width={1206} height={1152} sizes="(max-width: 767px) 144px, 176px" className="mx-auto mb-4 h-36 w-36 rounded-[24px] bg-white object-contain md:h-44 md:w-44" />
               <p className="mb-3 text-sm font-semibold text-neutral-600">{lang === "ja" ? "ClearAI 代表 髙橋敢輝" : "ClearAI founder Kanki Takahashi"}</p>
               <p className="mx-auto max-w-2xl text-base text-gray-600 leading-relaxed">{lang === "ja" ? "「この作業を減らしたい」「AIを使うべきか迷っている」「ホームページを見直したい」。いまの状況から、次に取り組むことを一緒に整理します。" : "Tell us what you want to change: repetitive work, AI adoption, or your website. We will discuss the next steps together."}</p>
               <p className="mt-4 text-sm leading-relaxed text-neutral-600">{lang === "ja" ? "相談内容がまとまっていなくても、いま困っていることからお聞かせください。" : "You can start with the problem you are facing, even if your requirements are not yet defined."}</p>

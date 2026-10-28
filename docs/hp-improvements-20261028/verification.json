@@ -7,9 +7,9 @@
   "ledger_count": 152,
   "counts": {
     "完了": 87,
-    "要本人確認": 44,
+    "要本人確認": 42,
     "既対応": 1,
-    "本人指示で掲載対象外": 20
+    "本人指示で掲載対象外": 22
   },
   "typecheck": "passed",
   "unit_tests": {
@@ -54,7 +54,7 @@
     "CMS credentials absent locally: published Uber article read publicly, resource helper/unit and worksheet verified; no CMS write or draft access bypass",
     "No real devices; browser viewport tests",
     "Real forms, identity, payment and production release not executed",
-    "44 factual/contract/permission inputs remain in seven groups; explanatory alternatives do not count as genuine proof"
+    "42 factual/contract/permission inputs remain in seven groups; explanatory alternatives do not count as genuine proof"
   ],
   "original_tree_untouched_by_this_task": true,
   "concurrent_original_changes_detected": [
@@ -151,5 +151,62 @@
     "unit_tests": "16/16",
     "responsive": "390px and 1440px: 5 document choices + select-all, no overflow, no old links",
     "http_get": "old 3 PDFs and old ZIP 404; current ZIP and MEO PDF 200"
+  },
+  "production_release_authorized": true,
+  "latest_remote_main": "6f43192aa4698e2f74ba3256fc34adeac9c7ee43",
+  "remote_change_integrated": "8c5aee3",
+  "codex_simple_structure": {
+    "reference": "https://claudecode.daijobu.io/",
+    "visited_in_browser": true,
+    "sections": [
+      "hero",
+      "3 use cases",
+      "4-session curriculum",
+      "process and conditions",
+      "confirmed consultation profile",
+      "4 FAQ",
+      "single consultation form"
+    ],
+    "mobile_fixed_cta": "bottom only; no header CTA on mobile",
+    "no_borrowed_prices_results_or_permissions": true
+  },
+  "final_codex_checks": {
+    "type": "passed",
+    "unit": "16/16 passed",
+    "body_chars_mobile": 1393,
+    "sections": 7,
+    "forms": 1,
+    "faq": 4,
+    "widths": [
+      320,
+      390,
+      430,
+      1440
+    ],
+    "overflow": 0,
+    "invalid_anchors": 0,
+    "clipped_ctas": 0,
+    "header_mobile_cta_visible": false,
+    "mobile_menu_escape": "closes and restores toggle focus",
+    "consultation_anchor": "verified, no submission",
+    "actual_instructor_scope": "still pending; confirmed CEO profile only, labeled consultation contact"
+  },
+  "portrait": {
+    "source_library_id": "libfile_ac840601cf648191ac012f973517647e",
+    "public_path": "/images/kanki-takahashi-20261028.jpeg",
+    "bytes_unchanged": true,
+    "fit": "contain",
+    "mobile_px": 144,
+    "desktop_px": 176
+  },
+  "release_preflight": {
+    "authorized_at": "2026-10-28, parent-supplied explicit user approval",
+    "remote_main": "6f43192aa4698e2f74ba3256fc34adeac9c7ee43",
+    "integrated_without_conflicts": true,
+    "project": "clearai-corporate",
+    "project_id": "prj_vbtW35mnSOQDqeYf4XUSwAeamyxQ",
+    "team_id": "team_nJ0EPANEIOcos1JbglcAgdmD",
+    "pipeline": "existing GitHub main -> Vercel production",
+    "no_forms_identity_or_payments": "executed none"
   }
 }

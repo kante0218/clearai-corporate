@@ -4,10 +4,10 @@ import { useEffect, useRef, useState } from "react";
 import styles from "./AgentTrainingPage.module.css";
 
 const links = [
-  ["#features", "研修の特徴"],
+  ["#examples", "できること"],
   ["#curriculum", "カリキュラム"],
-  ["#examples", "部門別の活用例"],
-  ["#pricing", "費用・実施形式"],
+  ["#pricing", "進め方・受講条件"],
+  ["#teacher", "ご相談担当"],
   ["#faq", "よくある質問"],
   ["#contact", "無料相談・見積もり"],
 ] as const;

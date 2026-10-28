@@ -6,8 +6,6 @@
       "numbers": [
         "003",
         "008",
-        "009",
-        "015",
         "049",
         "081",
         "091",
@@ -139,10 +137,12 @@
     }
   ],
   "all_pending_covered": true,
-  "individual_pending_count": 44,
+  "individual_pending_count": 42,
   "rule": "説明用代替が準備済みでも、実物/許諾/実測/契約条件を必要とする部分は完了と数えない",
-  "scope_updated_at": "2026-10-28T05:55:01+00:00",
+  "scope_updated_at": "2026-10-28T06:06:50+00:00",
   "owner_excluded_numbers": [
+    "009",
+    "010",
     "011",
     "012",
     "063",

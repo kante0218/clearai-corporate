@@ -33,3 +33,6 @@ src/components/ChatWidget.tsx
 public/images/humanoid/workskin-industry-editions.png
 public/images/humanoid/workskin-parts-color.png
 public/images/humanoid/workskin-parts-wireframe.png
+
+# Retained originals removed from public distribution
+!archive/downloads/pre-codex-only-20261028/*.pdf
