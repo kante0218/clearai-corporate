@@ -5,7 +5,7 @@ import { DOCUMENT_KEYS, type DocumentKey } from "@/lib/validators";
 
 type Deck = { key: DocumentKey; no: string; title: string; lead: string };
 
-type Props = { decks: Deck[] };
+type Props = { decks: Deck[]; initialDocument?: DocumentKey };
 
 type Fields = { company: string; name: string; phone: string; email: string };
 
@@ -24,8 +24,8 @@ const FIELDS: {
 
 type Result = { files: { key: string; title: string; url: string }[]; zipUrl: string | null; mailed: boolean };
 
-export default function DownloadRequestForm({ decks }: Props) {
-  const [selected, setSelected] = useState<DocumentKey[]>([]);
+export default function DownloadRequestForm({ decks, initialDocument }: Props) {
+  const [selected, setSelected] = useState<DocumentKey[]>(initialDocument ? [initialDocument] : []);
   const [fields, setFields] = useState<Fields>(EMPTY);
   const [website, setWebsite] = useState("");
   const [loading, setLoading] = useState(false);
@@ -93,7 +93,7 @@ export default function DownloadRequestForm({ decks }: Props) {
             <svg aria-hidden viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M12 3v12m0 0 4-4m-4 4-4-4M4 19h16" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-            4資料をまとめてダウンロード（ZIP）
+            {result.files.length}資料をまとめてダウンロード（ZIP）
           </a>
         )}
 
@@ -131,16 +131,16 @@ export default function DownloadRequestForm({ decks }: Props) {
           </span>
         </legend>
 
-        {/* 一括の項目を先頭に。4回チェックさせない。 */}
+        {/* 一括の項目を先頭に。個別にチェックさせない。 */}
         <label className="flex cursor-pointer items-start gap-3 border border-neutral-900 bg-neutral-50 p-4">
           <input
             type="checkbox"
             checked={allSelected}
             onChange={toggleAll}
-            className="mt-0.5 h-4 w-4 shrink-0 accent-neutral-900"
+            className="mt-0.5 !h-4 !min-h-4 !w-4 shrink-0 accent-neutral-900"
           />
-          <span>
-            <span className="block text-sm font-bold text-neutral-900">すべての資料（4点）をまとめて受け取る</span>
+          <span className="min-w-0">
+            <span className="block text-sm font-bold text-neutral-900">すべての資料（{DOCUMENT_KEYS.length}点）をまとめて受け取る</span>
             <span className="mt-1 block text-xs leading-relaxed text-neutral-500">
               ZIPで一括ダウンロードできます。社内で回覧する場合はこちらが便利です。
             </span>
@@ -155,9 +155,9 @@ export default function DownloadRequestForm({ decks }: Props) {
                   type="checkbox"
                   checked={selected.includes(d.key)}
                   onChange={() => toggle(d.key)}
-                  className="mt-0.5 h-4 w-4 shrink-0 accent-neutral-900"
+                  className="mt-0.5 !h-4 !min-h-4 !w-4 shrink-0 accent-neutral-900"
                 />
-                <span>
+                <span className="min-w-0">
                   <span className="block text-sm font-bold text-neutral-900">
                     <span className="mr-2 text-xs font-semibold text-neutral-400">{d.no}</span>
                     {d.title}

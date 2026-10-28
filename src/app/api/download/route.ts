@@ -10,6 +10,10 @@ const DOCUMENT_FILES: Record<DocumentKey, string> = {
   "software-development": "software-development-guide.pdf",
   "robot-rental": "robot-rental-guide.pdf",
   training: "ai-training-guide.pdf",
+  aio: "aio-guide.pdf",
+  "website-production": "website-production-guide.pdf",
+  "sns-management": "sns-management-guide.pdf",
+  meo: "meo-guide.pdf",
 };
 
 const ZIP_FILE = "clearai-guides.zip";
@@ -91,10 +95,10 @@ export async function POST(request: Request) {
     title: DOCUMENT_LABELS[key],
     url: `https://clearai.jp/downloads/${DOCUMENT_FILES[key]}`,
   }));
-  // 全部選ばれたときだけ、まとめて1つのZIPを渡す（4回クリックさせない）
+  // 全部選ばれたときだけ、まとめて1つのZIPを渡す（個別にクリックさせない）
   const zipUrl = all ? `https://clearai.jp/downloads/${ZIP_FILE}` : null;
   const downloadUrl = zipUrl ?? files[0].url;
-  const title = all ? "事業紹介資料 4点セット" : files.map((f) => f.title).join("／");
+  const title = all ? `事業紹介資料 ${DOCUMENT_KEYS.length}点セット` : files.map((f) => f.title).join("／");
   const safeTitle = title.replace(/[<>&"']/g, "");
   const hash = createHash("sha256")
     .update(`${documents.slice().sort().join(",")}:${email}`)
@@ -118,14 +122,14 @@ export async function POST(request: Request) {
         subject: `【ClearAI】${title}をお送りします`,
         text:
           `${title}をご請求いただきありがとうございます。\n\n以下のURLから資料をご覧ください。\n` +
-          (zipUrl ? `4資料まとめて：${zipUrl}\n` : "") +
+          (zipUrl ? `${DOCUMENT_KEYS.length}資料まとめて：${zipUrl}\n` : "") +
           files.map((f) => `${f.title}：${f.url}`).join("\n") +
           `\n\nご不明点がございましたら info@clearai.jp までご連絡ください。`,
         html:
           `<div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;max-width:600px;margin:0 auto;padding:32px;color:#171717">` +
           `<p style="font-size:14px;line-height:1.8">資料をご請求いただきありがとうございます。</p>` +
           (zipUrl
-            ? `<p style="margin:24px 0"><a href="${zipUrl}" style="display:inline-block;background:#171717;color:#fff;text-decoration:none;padding:14px 22px;border-radius:8px;font-size:14px;font-weight:600">4資料をまとめてダウンロード</a></p>`
+            ? `<p style="margin:24px 0"><a href="${zipUrl}" style="display:inline-block;background:#171717;color:#fff;text-decoration:none;padding:14px 22px;border-radius:8px;font-size:14px;font-weight:600">${DOCUMENT_KEYS.length}資料をまとめてダウンロード</a></p>`
             : "") +
           `<ul style="font-size:14px;line-height:2;padding-left:18px">` +
           files

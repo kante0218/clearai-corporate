@@ -3,7 +3,7 @@ import PageHeader from "@/components/PageHeader";
 import Image from "next/image";
 import { CLIENT_LOGOS } from "@/components/ClientLogoGrid";
 import DownloadRequestForm from "@/components/DownloadRequestForm";
-import type { DocumentKey } from "@/lib/validators";
+import { DOCUMENT_KEYS, type DocumentKey } from "@/lib/validators";
 import { BOOKING_URL } from "@/lib/booking";
 
 type Deck = {
@@ -83,15 +83,53 @@ const DECKS: Deck[] = [
     audience: "社内にAIで開発できる人材を増やしたい方、助成金の活用を検討中の方",
     href: "/training",
   },
+  {
+    key: "aio",
+    no: "05",
+    title: "AIO・AI検索最適化 事業紹介資料",
+    lead: "AI検索で自社の情報が理解・参照される状態を整える支援について。対象質問の整理、文章・サイト構造の改善、公開後の確認方法をまとめています。",
+    contents: ["対象質問と一次情報の整理", "文章・構造の改善と支援の進め方", "言及・引用・流入を分けた確認方法", "見積り前の確認事項と保証しない事項"],
+    audience: "AI検索での情報の伝わり方を改善したい方",
+    href: "/aio",
+  },
+  {
+    key: "website-production",
+    no: "06",
+    title: "ホームページ制作 事業紹介資料",
+    lead: "会社やサービスの強みを伝え、問い合わせにつなげるホームページ制作について。企画から制作・公開までの流れと、費用を決める条件をまとめています。",
+    contents: ["目的と掲載情報の整理", "企画・デザイン・実装・公開の流れ", "対応範囲と納品・運用の確認事項", "費用の考え方と相談前のチェックリスト"],
+    audience: "新規制作やサイトのリニューアルを検討中の方",
+    href: "/website-production",
+  },
+  {
+    key: "sns-management",
+    no: "07",
+    title: "SNS運用代行 事業紹介資料",
+    lead: "企業のSNS発信を継続するための運用支援について。方針づくり、投稿制作、承認の手順、振り返りと改善の進め方をまとめています。",
+    contents: ["目的・媒体・対象者の整理", "投稿企画と文章・画像の制作", "公開前の確認と運用体制", "レポート・費用・対応範囲の確認事項"],
+    audience: "SNSの発信方針や日々の運用に課題がある方",
+    href: "/sns-management",
+  },
+  {
+    key: "meo",
+    no: "08",
+    title: "Googleマップ・MEO支援 事業紹介資料",
+    lead: "Googleビジネスプロフィールの情報整備と日々の運用について。店舗情報、写真・投稿、口コミ返信、振り返りの進め方をまとめています。",
+    contents: ["店舗情報の整備と運用内容", "写真・投稿・口コミ返信の確認手順", "レポートと改善の進め方", "費用・対応範囲と運用上の注意点"],
+    audience: "店舗の情報更新やGoogleマップでの案内を改善したい方",
+    href: "/meo",
+  },
 ];
 
-export default function DownloadPage() {
+export default async function DownloadPage({ searchParams }: { searchParams: Promise<{ document?: string }> }) {
+  const { document } = await searchParams;
+  const initialDocument = DOCUMENT_KEYS.find((key) => key === document);
   return (
     <div className="bg-white">
       <PageHeader
         kicker="Download"
         title="事業紹介資料"
-        description="社内での検討・稟議にそのままお使いいただける資料をご用意しています。ご希望の資料を選び、必要事項を入力するとその場でPDFをダウンロードできます。4資料まとめて受け取ることもできます。"
+        description="社内での検討・稟議にそのままお使いいただける資料をご用意しています。ご希望の資料を選び、必要事項を入力するとその場でPDFをダウンロードできます。すべての資料をまとめて受け取ることもできます。"
         crumbs={[{ label: "ホーム", href: "/" }, { label: "資料請求" }]}
       />
 
@@ -126,7 +164,7 @@ export default function DownloadPage() {
             </aside>
 
             {/* 右: 資料の選択とフォーム */}
-            <DownloadRequestForm decks={DECKS} />
+            <DownloadRequestForm key={initialDocument ?? "all"} decks={DECKS} initialDocument={initialDocument} />
           </div>
         </div>
       </section>

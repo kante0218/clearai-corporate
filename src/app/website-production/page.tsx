@@ -85,6 +85,7 @@ export default function WebsiteProductionPage() {
           <h2 data-motion="heading" className="text-2xl sm:text-3xl font-bold mb-4">まずは、伝えたいことをお聞かせください。</h2>
           <p data-reading className="max-w-3xl text-neutral-600 leading-[1.9] mb-7">現在のサイトURL、制作の目的、困っていることなど、わかる範囲でお知らせください。ご要望を伺って、必要な内容と進め方をご案内します。</p>
           <Link href="/contact?service=website" className="motion-cta inline-flex min-h-12 items-center justify-center bg-cta hover:bg-cta-hover text-white px-7 py-4 font-semibold rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-900">ホームページ制作を相談する</Link>
+          <Link href="/download?document=website-production" className="inline-flex min-h-12 items-center px-5 py-3 text-sm font-semibold underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4">事業紹介資料をダウンロード</Link>
         </section>
         <aside aria-labelledby="related-title" className="mt-16 border-t border-neutral-200 pt-8">
           <h2 id="related-title" className="mb-5 text-xl font-bold text-neutral-900">あわせて読みたい</h2>

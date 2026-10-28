@@ -95,6 +95,7 @@ export default function SnsManagementPage() {
           <div className="flex flex-wrap items-center gap-5">
             <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="motion-cta inline-flex min-h-12 items-center justify-center rounded-lg bg-cta px-7 py-4 font-semibold text-white hover:bg-cta-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-900">SNS運用の面談を予約する</a>
             <Link href="/contact?service=sns" className="inline-block py-3 text-sm font-semibold underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4">メールで相談する</Link>
+            <Link href="/download?document=sns-management" className="inline-flex min-h-12 items-center py-3 text-sm font-semibold underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4">事業紹介資料をダウンロード</Link>
           </div>
         </section>
       </div>
