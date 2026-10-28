@@ -315,7 +315,7 @@ export default function CareersPage() {
                       <p className="mt-4 text-sm leading-relaxed text-gray-600">{p.mission}</p>
                       <p className="mt-5 text-xs font-semibold text-neutral-500">{t.employmentLabel}</p>
                       <p className="mt-1 text-sm text-gray-700">{p.employment}</p>
-                      <Link
+                      <Link data-ui-button="filled"
                         href={`/contact?service=careers&role=${p.id}`}
                         className="mt-6 inline-flex items-center justify-center rounded-md bg-cta px-6 py-3 text-sm font-bold text-white transition hover:bg-cta-hover"
                       >
@@ -400,13 +400,13 @@ export default function CareersPage() {
             <h2 className="text-3xl font-bold leading-tight text-gray-900">{t.ctaTitle}</h2>
             <p className="mt-4 text-base leading-relaxed text-gray-600">{t.ctaDesc}</p>
             <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <Link
+              <Link data-ui-button="filled"
                 href="/contact?service=careers"
                 className="inline-flex min-h-[52px] items-center justify-center rounded-md bg-cta px-8 py-3.5 text-sm font-bold text-white transition hover:bg-cta-hover"
               >
                 {t.ctaButton}
               </Link>
-              <a
+              <a data-ui-button="control"
                 href="mailto:info@clearai.jp?subject=%E6%8E%A1%E7%94%A8%E5%BF%9C%E5%8B%9F"
                 className="inline-flex min-h-[52px] items-center justify-center rounded-md border border-neutral-300 px-8 py-3.5 text-sm font-semibold text-neutral-900 transition hover:border-neutral-900 hover:bg-neutral-50"
               >

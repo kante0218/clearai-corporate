@@ -170,7 +170,7 @@
     "severity": "重要度 中  |  画像と視覚説明  |  位置 Aqua・まぜまぜReadingのカード",
     "observation": "観測  プロダクトカードは名称と説明だけで、公開済みサービスの操作画面や利用結果が見えません。",
     "proposal": "改善  Aquaなど公開済みサービスに実画面と短い利用例を添え、クリック前に体験を想像できるようにします。",
-    "status": "要本人確認",
+    "status": "本人指示で掲載対象外",
     "evidence": "Aqua・まぜまぜReadingの実画面取得と掲載許諾の根拠がないため画像を追加していない。既存公式サイトリンクは維持。",
     "recheck": "初回6802e61と並行更新0347430を読み取り照合。ローカル統合済み。公開未実施。",
     "prior_status": "要本人確認",
@@ -183,7 +183,10 @@
       }
     ],
     "independent_work": "安全な代替/下書きと不足入力を整理済み",
-    "needs_input_group": "G1"
+    "needs_input_group": null,
+    "status_before_owner_scope_change": "要本人確認",
+    "scope_changed_at": "2026-10-28T05:21:15+00:00",
+    "scope_change_reason": "ホームのProducts一覧を復元可能なフラグで非表示。個別サイト・/productsページは保持。"
   },
   {
     "id": "012",
@@ -192,12 +195,15 @@
     "severity": "重要度 中  |  訴求と情報設計  |  位置 上段3枚・下段2枚のプロダクトカード",
     "observation": "観測  公開済み2件と準備中3件が同じ大きさのカードで並び、今使えるサービスの比重が薄く見えます。",
     "proposal": "改善  公開済みと開発中を別グループにし、公開済みを優先表示、準備中は小さな予告枠にまとめます。",
-    "status": "完了",
+    "status": "本人指示で掲載対象外",
     "evidence": "既存情報に基づく差分を実装。型・最終build・unit15件が成功。関連ページをPC/スマホ幅で確認。",
     "recheck": "初回6802e61と並行更新0347430を読み取り照合。ローカル統合済み。公開未実施。",
     "prior_status": "完了",
     "independent_work": "準備済み",
-    "needs_input_group": null
+    "needs_input_group": null,
+    "status_before_owner_scope_change": "完了",
+    "scope_changed_at": "2026-10-28T05:21:15+00:00",
+    "scope_change_reason": "ホームのProducts一覧を復元可能なフラグで非表示。個別サイト・/productsページは保持。"
   },
   {
     "id": "013",
@@ -931,12 +937,15 @@
     "severity": "重要度 中  |  顧客導線  |  位置 「使いたいツールから、研修を選ぶ」",
     "observation": "観測  冒頭でツール名を選ばせるため、AI導入前の担当者は自社に合う研修を判断しにくい。",
     "proposal": "改善  職種・習熟度・目指す成果から選ぶ導線を併設し、ツールは選定支援につなげる。",
-    "status": "完了",
+    "status": "本人指示で掲載対象外",
     "evidence": "既存情報に基づく差分を実装。型・最終build・unit15件が成功。関連ページをPC/スマホ幅で確認。",
     "recheck": "初回6802e61と並行更新0347430を読み取り照合。ローカル統合済み。公開未実施。",
     "prior_status": "完了",
     "independent_work": "準備済み",
-    "needs_input_group": null
+    "needs_input_group": null,
+    "status_before_owner_scope_change": "完了",
+    "scope_changed_at": "2026-10-28T05:21:15+00:00",
+    "scope_change_reason": "AI内製化研修・Claude Code研修を掲載終了。旧ページは404・noindexとし、既存Codex研修のみを掲載。"
   },
   {
     "id": "064",
@@ -945,12 +954,15 @@
     "severity": "重要度 中  |  訴求と情報設計  |  位置 ツール別カードの直下に料金プラン",
     "observation": "観測  対象者・得られる成果の詳細より先に料金プランが来て、価格の妥当性を判断しづらい。",
     "proposal": "改善  対象業務、修了時の具体成果、標準期間を要約してから料金比較へつなぐ。",
-    "status": "完了",
+    "status": "本人指示で掲載対象外",
     "evidence": "既存情報に基づく差分を実装。型・最終build・unit15件が成功。関連ページをPC/スマホ幅で確認。",
     "recheck": "初回6802e61と並行更新0347430を読み取り照合。ローカル統合済み。公開未実施。",
     "prior_status": "完了",
     "independent_work": "準備済み",
-    "needs_input_group": null
+    "needs_input_group": null,
+    "status_before_owner_scope_change": "完了",
+    "scope_changed_at": "2026-10-28T05:21:15+00:00",
+    "scope_change_reason": "AI内製化研修・Claude Code研修を掲載終了。旧ページは404・noindexとし、既存Codex研修のみを掲載。"
   },
   {
     "id": "065",
@@ -959,12 +971,15 @@
     "severity": "重要度 高  |  検討資料  |  位置 3プランの通常価格・助成後価格",
     "observation": "観測  通常価格を薄い取り消し線にし、審査条件のある助成後価格を大きく見せている。",
     "proposal": "改善  契約時支払額と助成後の試算を同格で表示し、適用条件を各価格の直下へ置く。",
-    "status": "完了",
+    "status": "本人指示で掲載対象外",
     "evidence": "768px実画面とDOMで契約額200万円/助成後試算50万円が同じ18px、取り消し線なし。各カードに条件と非保証を表示。価格自体は変更なし。",
     "recheck": "初回6802e61と並行更新0347430を読み取り照合。ローカル統合済み。公開未実施。",
     "prior_status": "完了",
     "independent_work": "準備済み",
-    "needs_input_group": null
+    "needs_input_group": null,
+    "status_before_owner_scope_change": "完了",
+    "scope_changed_at": "2026-10-28T05:21:15+00:00",
+    "scope_change_reason": "AI内製化研修・Claude Code研修を掲載終了。旧ページは404・noindexとし、既存Codex研修のみを掲載。"
   },
   {
     "id": "066",
@@ -973,12 +988,15 @@
     "severity": "重要度 中  |  実績と信頼  |  位置 中央スタンダードのバッジ",
     "observation": "観測  標準プランに「いちばん人気」とあるが、集計対象や時期はこの欄では確認できない。",
     "proposal": "改善  裏付けがある場合は根拠と集計時期を添え、ない場合は推奨対象を示す表現に変える。",
-    "status": "完了",
+    "status": "本人指示で掲載対象外",
     "evidence": "既存情報に基づく差分を実装。型・最終build・unit15件が成功。関連ページをPC/スマホ幅で確認。",
     "recheck": "初回6802e61と並行更新0347430を読み取り照合。ローカル統合済み。公開未実施。",
     "prior_status": "完了",
     "independent_work": "準備済み",
-    "needs_input_group": null
+    "needs_input_group": null,
+    "status_before_owner_scope_change": "完了",
+    "scope_changed_at": "2026-10-28T05:21:15+00:00",
+    "scope_change_reason": "AI内製化研修・Claude Code研修を掲載終了。旧ページは404・noindexとし、既存Codex研修のみを掲載。"
   },
   {
     "id": "067",
@@ -987,12 +1005,15 @@
     "severity": "重要度 中  |  画像と視覚説明  |  位置 特徴セクションの写真3枚",
     "observation": "観測  研修風景の画像は並ぶが、実際の講師・開催回・受講企業との関係が示されていない。",
     "proposal": "改善  実写とイメージを区別し、許諾済みの実施風景には開催概要と講師情報を添える。",
-    "status": "完了",
+    "status": "本人指示で掲載対象外",
     "evidence": "既存情報に基づく差分を実装。型・最終build・unit15件が成功。関連ページをPC/スマホ幅で確認。",
     "recheck": "初回6802e61と並行更新0347430を読み取り照合。ローカル統合済み。公開未実施。",
     "prior_status": "完了",
     "independent_work": "準備済み",
-    "needs_input_group": null
+    "needs_input_group": null,
+    "status_before_owner_scope_change": "完了",
+    "scope_changed_at": "2026-10-28T05:21:15+00:00",
+    "scope_change_reason": "AI内製化研修・Claude Code研修を掲載終了。旧ページは404・noindexとし、既存Codex研修のみを掲載。"
   },
   {
     "id": "068",
@@ -1001,12 +1022,15 @@
     "severity": "重要度 中  |  UIと可読性  |  位置 特徴01〜03の本文とカード下部",
     "observation": "観測  助成金説明だけ文章が長く、同じ高さのカード内に大きな空白と情報密度の差がある。",
     "proposal": "改善  カードは要点3つにそろえ、制度の長文説明は専用セクションへ分離する。",
-    "status": "完了",
+    "status": "本人指示で掲載対象外",
     "evidence": "既存情報に基づく差分を実装。型・最終build・unit15件が成功。関連ページをPC/スマホ幅で確認。",
     "recheck": "初回6802e61と並行更新0347430を読み取り照合。ローカル統合済み。公開未実施。",
     "prior_status": "完了",
     "independent_work": "準備済み",
-    "needs_input_group": null
+    "needs_input_group": null,
+    "status_before_owner_scope_change": "完了",
+    "scope_changed_at": "2026-10-28T05:21:15+00:00",
+    "scope_change_reason": "AI内製化研修・Claude Code研修を掲載終了。旧ページは404・noindexとし、既存Codex研修のみを掲載。"
   },
   {
     "id": "069",
@@ -1015,7 +1039,7 @@
     "severity": "重要度 中  |  検討資料  |  位置 納品物01・02の説明カード",
     "observation": "観測  社内ツール・プロンプト集の説明は具体的だが、実際の画面や教材サンプルは見えない。",
     "proposal": "改善  機密を除いた成果物画面とマニュアル数ページを掲載し、納品品質を確認できるようにする。",
-    "status": "要本人確認",
+    "status": "本人指示で掲載対象外",
     "evidence": "説明用の入力・出力欄、プロンプト、作業手順、確認項目を3区分で提示し、空欄の記入シートを保存可能にした。",
     "recheck": "初回6802e61と並行更新0347430を読み取り照合。ローカル統合済み。公開未実施。",
     "prior_status": "要本人確認",
@@ -1033,7 +1057,10 @@
       }
     ],
     "independent_work": "安全な代替/下書きと不足入力を整理済み",
-    "needs_input_group": "G1"
+    "needs_input_group": null,
+    "status_before_owner_scope_change": "要本人確認",
+    "scope_changed_at": "2026-10-28T05:21:15+00:00",
+    "scope_change_reason": "AI内製化研修・Claude Code研修を掲載終了。旧ページは404・noindexとし、既存Codex研修のみを掲載。"
   },
   {
     "id": "070",
@@ -1042,7 +1069,7 @@
     "severity": "重要度 中  |  検討資料  |  位置 納品物03の報告書カード",
     "observation": "観測  業務時間の前後比較報告書を納品するとあるが、測定表や完成イメージは示されていない。",
     "proposal": "改善  架空の成果値ではなく空欄の報告書見本を示し、測定方法と判断軸を伝える。",
-    "status": "完了",
+    "status": "本人指示で掲載対象外",
     "evidence": "初回パスの空欄測定報告書見本を維持。",
     "recheck": "初回6802e61と並行更新0347430を読み取り照合。ローカル統合済み。公開未実施。",
     "prior_status": "完了",
@@ -1058,7 +1085,10 @@
       }
     ],
     "independent_work": "準備済み",
-    "needs_input_group": null
+    "needs_input_group": null,
+    "status_before_owner_scope_change": "完了",
+    "scope_changed_at": "2026-10-28T05:21:15+00:00",
+    "scope_change_reason": "AI内製化研修・Claude Code研修を掲載終了。旧ページは404・noindexとし、既存Codex研修のみを掲載。"
   },
   {
     "id": "071",
@@ -1067,7 +1097,7 @@
     "severity": "重要度 中  |  検討資料  |  位置 納品物06の90日相談枠",
     "observation": "観測  共通納品物は90日相談と説明する一方、料金表ではプレミアム6ヶ月以上となる。",
     "proposal": "改善  共通90日と追加支援の違い、各プランの対応内容・回数・期間を一表にまとめる。",
-    "status": "要本人確認",
+    "status": "本人指示で掲載対象外",
     "evidence": "全プラン共通90日チャットと、料金欄の標準3ヶ月・プレミアム6ヶ月〜を比較表に整理。未定義の関係・範囲・追加費用は見積確認と表示。",
     "recheck": "初回6802e61と並行更新0347430を読み取り照合。ローカル統合済み。公開未実施。",
     "prior_status": "要本人確認",
@@ -1083,7 +1113,10 @@
       }
     ],
     "independent_work": "安全な代替/下書きと不足入力を整理済み",
-    "needs_input_group": "G2"
+    "needs_input_group": null,
+    "status_before_owner_scope_change": "要本人確認",
+    "scope_changed_at": "2026-10-28T05:21:15+00:00",
+    "scope_change_reason": "AI内製化研修・Claude Code研修を掲載終了。旧ページは404・noindexとし、既存Codex研修のみを掲載。"
   },
   {
     "id": "072",
@@ -1092,12 +1125,15 @@
     "severity": "重要度 中  |  訴求と情報設計  |  位置 中央のメイン見出しからCTA",
     "observation": "観測  大きなツール名と抽象的な便益が中心で、何時間で何を作る研修か初見では分からない。",
     "proposal": "改善  対象者・標準回数・持ち帰る成果物をファーストビューの1行にまとめる。",
-    "status": "完了",
+    "status": "本人指示で掲載対象外",
     "evidence": "既存情報に基づく差分を実装。型・最終build・unit15件が成功。関連ページをPC/スマホ幅で確認。",
     "recheck": "初回6802e61と並行更新0347430を読み取り照合。ローカル統合済み。公開未実施。",
     "prior_status": "完了",
     "independent_work": "準備済み",
-    "needs_input_group": null
+    "needs_input_group": null,
+    "status_before_owner_scope_change": "完了",
+    "scope_changed_at": "2026-10-28T05:21:15+00:00",
+    "scope_change_reason": "AI内製化研修・Claude Code研修を掲載終了。旧ページは404・noindexとし、既存Codex研修のみを掲載。"
   },
   {
     "id": "073",
@@ -1106,7 +1142,7 @@
     "severity": "重要度 中  |  検討資料  |  位置 カリキュラム説明と5つのタブ",
     "observation": "観測  全4回の構成はあるが、各回の時間や講義と演習の配分はこの欄で確認できない。",
     "proposal": "改善  各回の目安時間と演習比率を加え、受講者の業務調整や稟議に使える形にする。",
-    "status": "要本人確認",
+    "status": "本人指示で掲載対象外",
     "evidence": "各回のタブに時間・講義演習配分が個別設計であることと時間割確認先を常設。",
     "recheck": "初回6802e61と並行更新0347430を読み取り照合。ローカル統合済み。公開未実施。",
     "prior_status": "要本人確認",
@@ -1123,7 +1159,10 @@
       }
     ],
     "independent_work": "安全な代替/下書きと不足入力を整理済み",
-    "needs_input_group": "G2"
+    "needs_input_group": null,
+    "status_before_owner_scope_change": "要本人確認",
+    "scope_changed_at": "2026-10-28T05:21:15+00:00",
+    "scope_change_reason": "AI内製化研修・Claude Code研修を掲載終了。旧ページは404・noindexとし、既存Codex研修のみを掲載。"
   },
   {
     "id": "074",
@@ -1132,7 +1171,7 @@
     "severity": "重要度 中  |  検討資料  |  位置 第4回の右側成果物イメージ",
     "observation": "観測  成果物イメージは題名と装飾線が中心で、完成する試作品の水準を判断しづらい。",
     "proposal": "改善  匿名化した試作品画面と確認項目を載せ、研修中に作る範囲を具体化する。",
-    "status": "要本人確認",
+    "status": "本人指示で掲載対象外",
     "evidence": "装飾線のプレビューに加え、入力・出力・プロンプト・確認項目の説明用サンプルと保存用シートを追加。実際の納品物・全研修の約束ではないと近接明示。",
     "recheck": "初回6802e61と並行更新0347430を読み取り照合。ローカル統合済み。公開未実施。",
     "prior_status": "要本人確認",
@@ -1150,7 +1189,10 @@
       }
     ],
     "independent_work": "安全な代替/下書きと不足入力を整理済み",
-    "needs_input_group": "G1"
+    "needs_input_group": null,
+    "status_before_owner_scope_change": "要本人確認",
+    "scope_changed_at": "2026-10-28T05:21:15+00:00",
+    "scope_change_reason": "AI内製化研修・Claude Code研修を掲載終了。旧ページは404・noindexとし、既存Codex研修のみを掲載。"
   },
   {
     "id": "075",
@@ -1159,7 +1201,7 @@
     "severity": "重要度 中  |  検討資料  |  位置 費用ブロックの個別見積もり・全4回表示",
     "observation": "観測  個別見積もりのみで、親ページの3プランとこの4回研修の対応関係が分かりにくい。",
     "proposal": "改善  標準料金の対象範囲か別メニューかを明示し、比較可能な見積例を提示する。",
-    "status": "要本人確認",
+    "status": "本人指示で掲載対象外",
     "evidence": "全4回は個別設計の構成例、親料金プランと回数・内容が異なり適用範囲は見積確認であることを初回パスから維持。",
     "recheck": "初回6802e61と並行更新0347430を読み取り照合。ローカル統合済み。公開未実施。",
     "prior_status": "要本人確認",
@@ -1175,7 +1217,10 @@
       }
     ],
     "independent_work": "安全な代替/下書きと不足入力を整理済み",
-    "needs_input_group": "G2"
+    "needs_input_group": null,
+    "status_before_owner_scope_change": "要本人確認",
+    "scope_changed_at": "2026-10-28T05:21:15+00:00",
+    "scope_change_reason": "AI内製化研修・Claude Code研修を掲載終了。旧ページは404・noindexとし、既存Codex研修のみを掲載。"
   },
   {
     "id": "076",
@@ -1761,11 +1806,12 @@
     "observation": "観測  Claude Code研修と構成や便益がほぼ共通で、どちらを選ぶべきか判断材料が少ない。",
     "proposal": "改善  対象業務・社内環境・演習成果物の差を比較表にし、適した受講先を案内する。",
     "status": "完了",
-    "evidence": "既存情報に基づく差分を実装。型・最終build・unit15件が成功。関連ページをPC/スマホ幅で確認。",
+    "evidence": "本人指示に従い2研修の比較とClaude Code研修への関連リンクを外し、既存Codex研修だけを掲載。料金・カリキュラムは新設せず。",
     "recheck": "初回6802e61と並行更新0347430を読み取り照合。ローカル統合済み。公開未実施。",
     "prior_status": "完了",
     "independent_work": "準備済み",
-    "needs_input_group": null
+    "needs_input_group": null,
+    "scope_changed_at": "2026-10-28T05:21:15+00:00"
   },
   {
     "id": "104",
@@ -1870,7 +1916,7 @@
     "severity": "重要度 中  |  顧客導線  |  位置 上部の各地の枠は数社限定と地域リクエスト",
     "observation": "観測  各地数社限定と告知するが、地域別の日程や残り枠の確認方法が表示されていない。",
     "proposal": "改善  開催予定地域・日程・更新日時を示し、未定地域は希望日を送れる導線に分ける。",
-    "status": "要本人確認",
+    "status": "本人指示で掲載対象外",
     "evidence": "開催日・残席数は新設していない。",
     "recheck": "初回6802e61と並行更新0347430を読み取り照合。ローカル統合済み。公開未実施。",
     "prior_status": "要本人確認",
@@ -1886,7 +1932,10 @@
       }
     ],
     "independent_work": "安全な代替/下書きと不足入力を整理済み",
-    "needs_input_group": "G2"
+    "needs_input_group": null,
+    "status_before_owner_scope_change": "要本人確認",
+    "scope_changed_at": "2026-10-28T05:30:50+00:00",
+    "scope_change_reason": "Codex研修のみを掲載する本人指示により、旧Claude Codeブートキャンプを404・noindexとして掲載終了。旧料金・保証はCodexへ転用しない。"
   },
   {
     "id": "111",
@@ -1895,7 +1944,7 @@
     "severity": "重要度 高  |  検討資料  |  位置 成果保証見出し",
     "observation": "観測  保証は会社で1つ本番公開と読めるが、料金表には全員が1つ公開とあり対象が曖昧。",
     "proposal": "改善  会社単位か受講者単位かを統一し、未達判定・返金対象・申請方法を明文化する。",
-    "status": "要本人確認",
+    "status": "本人指示で掲載対象外",
     "evidence": "保証・返金条件の文言は変更していない。",
     "recheck": "初回6802e61と並行更新0347430を読み取り照合。ローカル統合済み。公開未実施。",
     "prior_status": "要本人確認",
@@ -1912,7 +1961,10 @@
       }
     ],
     "independent_work": "安全な代替/下書きと不足入力を整理済み",
-    "needs_input_group": "G5"
+    "needs_input_group": null,
+    "status_before_owner_scope_change": "要本人確認",
+    "scope_changed_at": "2026-10-28T05:30:50+00:00",
+    "scope_change_reason": "Codex研修のみを掲載する本人指示により、旧Claude Codeブートキャンプを404・noindexとして掲載終了。旧料金・保証はCodexへ転用しない。"
   },
   {
     "id": "112",
@@ -1921,7 +1973,7 @@
     "severity": "重要度 高  |  検討資料  |  位置 保証直下の到達基準の説明",
     "observation": "観測  本番URLの公開を到達基準にする一方、業務利用に必要な品質確認の基準が見えにくい。",
     "proposal": "改善  公開と実運用を区別し、認証・権限・データ・テストの最低確認項目を提示する。",
-    "status": "完了",
+    "status": "本人指示で掲載対象外",
     "evidence": "URL公開と実務利用準備を区別し、認証・権限・データ・テスト・運用・利用承認の一般的チェックを追加。保証判定・返金条件の追加変更ではないと明示。",
     "recheck": "初回6802e61と並行更新0347430を読み取り照合。ローカル統合済み。公開未実施。",
     "prior_status": "要本人確認",
@@ -1937,7 +1989,10 @@
       }
     ],
     "independent_work": "準備済み",
-    "needs_input_group": null
+    "needs_input_group": null,
+    "status_before_owner_scope_change": "完了",
+    "scope_changed_at": "2026-10-28T05:30:50+00:00",
+    "scope_change_reason": "Codex研修のみを掲載する本人指示により、旧Claude Codeブートキャンプを404・noindexとして掲載終了。旧料金・保証はCodexへ転用しない。"
   },
   {
     "id": "113",
@@ -1946,12 +2001,15 @@
     "severity": "重要度 高  |  実績と信頼  |  位置 中央定着パッケージのバッジと説明",
     "observation": "観測  定着パッケージに「人気・成果が出る」「最も成果が出る」とあるが根拠は示されない。",
     "proposal": "改善  測定条件付きの根拠がある場合のみ比較を示し、なければ推奨対象と支援内容で説明する。",
-    "status": "完了",
+    "status": "本人指示で掲載対象外",
     "evidence": "既存情報に基づく差分を実装。型・最終build・unit15件が成功。関連ページをPC/スマホ幅で確認。",
     "recheck": "初回6802e61と並行更新0347430を読み取り照合。ローカル統合済み。公開未実施。",
     "prior_status": "完了",
     "independent_work": "準備済み",
-    "needs_input_group": null
+    "needs_input_group": null,
+    "status_before_owner_scope_change": "完了",
+    "scope_changed_at": "2026-10-28T05:30:50+00:00",
+    "scope_change_reason": "Codex研修のみを掲載する本人指示により、旧Claude Codeブートキャンプを404・noindexとして掲載終了。旧料金・保証はCodexへ転用しない。"
   },
   {
     "id": "114",
@@ -1960,7 +2018,7 @@
     "severity": "重要度 中  |  実績と信頼  |  位置 Instructorセクション全体",
     "observation": "観測  講師の強みを説明するが、氏名・写真・担当分野・実装作品はこの欄では確認できない。",
     "proposal": "改善  実際に登壇する講師のプロフィールと公開可能な作品を載せ、担当決定の流れを示す。",
-    "status": "要本人確認",
+    "status": "本人指示で掲載対象外",
     "evidence": "講師情報は捏造・流用していない。",
     "recheck": "初回6802e61と並行更新0347430を読み取り照合。ローカル統合済み。公開未実施。",
     "prior_status": "要本人確認",
@@ -1976,7 +2034,10 @@
       }
     ],
     "independent_work": "安全な代替/下書きと不足入力を整理済み",
-    "needs_input_group": "G1"
+    "needs_input_group": null,
+    "status_before_owner_scope_change": "要本人確認",
+    "scope_changed_at": "2026-10-28T05:30:50+00:00",
+    "scope_change_reason": "Codex研修のみを掲載する本人指示により、旧Claude Codeブートキャンプを404・noindexとして掲載終了。旧料金・保証はCodexへ転用しない。"
   },
   {
     "id": "115",

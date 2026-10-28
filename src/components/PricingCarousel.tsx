@@ -89,7 +89,7 @@ export default function PricingCarousel({ children }: { children: ReactNode }) {
       {items.length > 1 && (
         <div className="flex items-center md:hidden justify-center gap-1.5 mt-1">
           {items.map((_, i) => (
-            <button
+            <button data-ui-button="icon"
               key={i}
               type="button"
               aria-label={`${i + 1}枚目のプランを表示`}

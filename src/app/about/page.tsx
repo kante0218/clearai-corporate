@@ -524,13 +524,13 @@ export default function AboutPage() {
           </Reveal>
           <Reveal delay={80}>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Link
+              <Link data-ui-button="filled"
                 href="/contact"
                 className="inline-flex items-center justify-center gap-2 bg-neutral-900 hover:bg-neutral-800 text-white font-bold text-base rounded-lg px-8 py-4 transition-colors duration-200"
               >
                 {t.joinCta}
               </Link>
-              <Link href="/careers" className="inline-flex items-center justify-center gap-2 border border-white/20 text-white/60 font-semibold text-base rounded-lg px-8 py-4 hover:border-white/40 hover:text-white transition-colors duration-200">
+              <Link data-ui-button="control" href="/careers" className="inline-flex items-center justify-center gap-2 border border-white/20 text-white/60 font-semibold text-base rounded-lg px-8 py-4 hover:border-white/40 hover:text-white transition-colors duration-200">
                 {t.joinRecruit}
               </Link>
             </div>

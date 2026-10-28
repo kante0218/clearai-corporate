@@ -58,7 +58,7 @@ export default function CardCarousel({ children, className = "", gridClass = "md
       {items.length > 1 && (
         <div className="hidden">
           {items.map((_, i) => (
-            <button
+            <button data-ui-button="icon"
               key={i}
               type="button"
               aria-label={`${i + 1}枚目を表示`}

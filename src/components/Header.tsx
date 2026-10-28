@@ -26,7 +26,7 @@ export default function Header() {
     { label: h.navSoftwareDev, href: "/software-development" },
     { label: h.navRobotRental, href: "/robot-rental" },
     { label: h.navFde, href: "/aio" },
-    { label: h.navTraining, href: "/training" },
+    { label: h.navTraining, href: "/training/codex" },
     { label: h.navWebsiteProduction, href: "/website-production" },
     { label: h.navSns, href: "/sns-management" },
     { label: h.navMeo, href: "/meo" },
@@ -140,18 +140,18 @@ export default function Header() {
               </nav>
               <LanguageToggle variant="desktop" />
               <div className="flex items-center gap-2">
-                <Link href="/download"
+                <Link data-ui-button="control" href="/download"
                   className="inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-md border border-neutral-300 px-3 xl:px-4 text-[13px] xl:text-sm font-semibold text-neutral-900 hover:border-neutral-900 hover:bg-neutral-50 transition-colors">
                   {lang === "ja" ? "資料ダウンロード" : "Download"}
                 </Link>
-                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer"
+                <a data-ui-button="filled" href={BOOKING_URL} target="_blank" rel="noopener noreferrer"
                   className="inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-md bg-cta px-3 xl:px-4 text-[13px] xl:text-sm font-semibold text-white hover:bg-cta-hover transition-colors">
                   {lang === "ja" ? "役員へ無料相談する" : "Free consultation"}
                 </a>
               </div>
             </div>
 
-            <button ref={menuToggle} onClick={() => setIsOpen(!isOpen)} aria-controls="site-mobile-menu" className="site-menu-toggle lg:hidden p-2 z-10 min-h-[44px] min-w-[44px] flex items-center justify-center" aria-label={h.menuAria} aria-expanded={isOpen}>
+            <button data-ui-button="icon" ref={menuToggle} onClick={() => setIsOpen(!isOpen)} aria-controls="site-mobile-menu" className="site-menu-toggle lg:hidden p-2 z-10 min-h-[44px] min-w-[44px] flex items-center justify-center" aria-label={h.menuAria} aria-expanded={isOpen}>
               <div className="w-6 h-5 flex flex-col justify-between">
                 <span className={`w-full h-0.5 bg-gray-900 transition-all duration-300 ${
                   isOpen ? "rotate-45 translate-y-[9px]" : ""
@@ -196,7 +196,7 @@ export default function Header() {
                         </Link>
                       )}
                       {hasChildren && (
-                        <button
+                        <button data-ui-button="icon"
                           type="button"
                           onClick={() => setMobileExpanded(expanded ? null : item.label)}
                           aria-label={`${item.label}${h.subMenuAria}`}
@@ -255,12 +255,12 @@ export default function Header() {
                 <LanguageToggle variant="mobile" />
               </div>
               <div className="site-menu-actions mt-4 space-y-3">
-                <Link href="/contact" onClick={() => setIsOpen(false)} className="flex min-h-11 items-center justify-center rounded-lg border border-neutral-300 px-4 py-3.5 text-sm font-semibold text-neutral-900">{lang === "ja" ? "文章で相談する" : "Ask in writing"}</Link>
-                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" onClick={() => setIsOpen(false)}
+                <Link data-ui-button="control" href="/contact" onClick={() => setIsOpen(false)} className="flex min-h-11 items-center justify-center rounded-lg border border-neutral-300 px-4 py-3.5 text-sm font-semibold text-neutral-900">{lang === "ja" ? "文章で相談する" : "Ask in writing"}</Link>
+                <a data-ui-button="filled" href={BOOKING_URL} target="_blank" rel="noopener noreferrer" onClick={() => setIsOpen(false)}
                   className={`block text-center px-4 py-3.5 rounded-lg text-sm font-semibold transition-colors min-h-[44px] flex items-center justify-center ${contactFilledClass}`}>
                   {lang === "ja" ? "代表と面談" : "Meet founder"}
                 </a>
-                <Link href="/download" onClick={() => setIsOpen(false)}
+                <Link data-ui-button="control" href="/download" onClick={() => setIsOpen(false)}
                   className="block text-center px-4 py-3.5 rounded-lg text-sm font-semibold border border-neutral-300 text-neutral-900 hover:border-neutral-900 hover:bg-neutral-50 transition-colors min-h-[44px] flex items-center justify-center">
                   {h.navDownload}
                 </Link>

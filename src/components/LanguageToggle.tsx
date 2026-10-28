@@ -35,7 +35,7 @@ export default function LanguageToggle({ variant = "desktop", className = "" }: 
           transform: isJa ? "translateX(0)" : "translateX(100%)",
         }}
       />
-      <button
+      <button data-ui-button="control"
         type="button"
         onClick={() => setLang("ja")}
         aria-pressed={isJa}
@@ -45,7 +45,7 @@ export default function LanguageToggle({ variant = "desktop", className = "" }: 
       >
         {t.ja}
       </button>
-      <button
+      <button data-ui-button="control"
         type="button"
         onClick={() => setLang("en")}
         aria-pressed={!isJa}

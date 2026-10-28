@@ -834,3 +834,49 @@ details[open] summary {
     color: #222222;
   }
 }
+
+/* Shared action shapes: explicitly marked controls only, never article links or calendar layout. */
+:root {
+  --action-radius: 999px;
+  --action-choice-radius: 14px;
+  --action-shadow: 0 5px 16px rgb(126 61 128 / 15%);
+}
+:root body :is(a, button)[data-ui-button] {
+  border-radius: var(--action-radius) !important;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  transition: background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease, opacity 160ms ease;
+}
+:root body :is(a, button)[data-ui-button="filled"] {
+  min-height: 48px;
+  box-shadow: var(--action-shadow) !important;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+:root body :is(a, button)[data-ui-button="icon"] {
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: 50% !important;
+}
+:root body :is(a, button)[data-ui-button="choice"] {
+  border-radius: var(--action-choice-radius) !important;
+  box-shadow: none !important;
+}
+:root body :is(a, button)[data-ui-button]:focus-visible {
+  outline: 3px solid #222;
+  outline-offset: 4px;
+  box-shadow: 0 0 0 2px #fff !important;
+}
+:root body button[data-ui-button]:disabled,
+:root body [data-ui-button][aria-disabled="true"] {
+  opacity: .55;
+  box-shadow: none !important;
+}
+@media (hover: hover) {
+  :root body :is(a, button)[data-ui-button="filled"]:not(:disabled):hover {
+    box-shadow: 0 7px 20px rgb(126 61 128 / 22%) !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  :root body :is(a, button)[data-ui-button] { transition: none; }
+}

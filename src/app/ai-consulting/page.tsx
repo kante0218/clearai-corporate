@@ -340,9 +340,9 @@ export default function AiConsultingPage() {
                     ))}
                   </ul>
                   {plan.key === "enterprise" ? (
-                    <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="block text-center text-sm font-semibold py-2 rounded-lg transition-all duration-300 mt-auto bg-cta text-white hover:bg-cta-hover">{plan.cta}</a>
+                    <a data-ui-button="filled" href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="block text-center text-sm font-semibold py-2 rounded-lg transition-all duration-300 mt-auto bg-cta text-white hover:bg-cta-hover">{plan.cta}</a>
                   ) : (
-                    <a href={`/contact?service=consulting&plan=${plan.key}`} className="block text-center text-sm font-semibold py-2 rounded-lg transition-all duration-300 mt-auto bg-cta text-white hover:bg-cta-hover">{plan.cta}</a>
+                    <a data-ui-button="filled" href={`/contact?service=consulting&plan=${plan.key}`} className="block text-center text-sm font-semibold py-2 rounded-lg transition-all duration-300 mt-auto bg-cta text-white hover:bg-cta-hover">{plan.cta}</a>
                   )}
                 </div>
               </Reveal>
@@ -518,7 +518,7 @@ export default function AiConsultingPage() {
                 <span key={i}>{line}{i < arr.length - 1 && <br />}</span>
               ))}
             </p>
-            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="rounded-lg bg-cta text-white font-semibold px-10 py-4 hover:bg-cta-hover transition-colors duration-300 inline-block">{t.ctaButton}</a>
+            <a data-ui-button="filled" href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="rounded-lg bg-cta text-white font-semibold px-10 py-4 hover:bg-cta-hover transition-colors duration-300 inline-block">{t.ctaButton}</a>
           </Reveal>
         </div>
       </section>

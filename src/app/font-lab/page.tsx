@@ -148,7 +148,7 @@ export default function FontLabPage() {
           <div className="flex flex-wrap items-center gap-2">
             <span className="text-xs font-semibold text-gray-500 mr-1">Font Lab</span>
             {CANDIDATES.map((f) => (
-              <button
+              <button data-ui-button="filled"
                 key={f.id}
                 onClick={() => { setActiveId(f.id); setStacked(false); }}
                 style={{ fontFamily: f.stack }}
@@ -161,7 +161,7 @@ export default function FontLabPage() {
                 {f.name}
               </button>
             ))}
-            <button
+            <button data-ui-button="filled"
               onClick={() => setStacked((v) => !v)}
               className={`ml-auto rounded-lg border px-3 py-1.5 text-sm font-semibold transition-colors ${
                 stacked ? "border-neutral-900 bg-neutral-900 text-white" : "border-gray-200 text-gray-600 hover:border-gray-400 hover:text-gray-900"

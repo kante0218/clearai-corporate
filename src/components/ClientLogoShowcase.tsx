@@ -91,7 +91,7 @@ export default function ClientLogoShowcase({ label }: { label: string }) {
     <div className="logo-flow mt-16 border-t border-gray-200 pt-14 pb-6 md:pb-8" data-flowing={flowing}>
       <div className="mb-9 flex flex-wrap items-center justify-between gap-3">
         <p className="text-[11px] font-semibold tracking-[0.22em] uppercase text-gray-400">{label}</p>
-        {flowing && <button type="button" aria-pressed={paused} onClick={() => setPaused(!paused)} className="logo-flow-controls min-h-11 px-3 text-sm text-neutral-600 underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4">{lang === "ja" ? paused ? "ロゴの流れを再生" : "ロゴの流れを一時停止" : paused ? "Resume logo movement" : "Pause logo movement"}</button>}
+        {flowing && <button data-ui-button="control" type="button" aria-pressed={paused} onClick={() => setPaused(!paused)} className="logo-flow-controls min-h-11 px-3 text-sm text-neutral-600 underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4">{lang === "ja" ? paused ? "ロゴの流れを再生" : "ロゴの流れを一時停止" : paused ? "Resume logo movement" : "Pause logo movement"}</button>}
       </div>
       <div ref={viewportRef} className="logo-flow-viewport py-2" onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} onFocusCapture={(event) => {
         setFocused(true);

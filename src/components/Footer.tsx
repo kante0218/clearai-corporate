@@ -19,7 +19,7 @@ export default function Footer() {
     { label: f.services.softwareDev, href: "/software-development" },
     { label: f.services.robotRental, href: "/robot-rental" },
     { label: f.services.aiConsulting, href: "/aio" },
-    { label: f.services.training, href: "/training" },
+    { label: f.services.training, href: "/training/codex" },
     { label: f.services.websiteProduction, href: "/website-production" },
     { label: f.services.sns, href: "/sns-management" },
     { label: f.services.meo, href: "/meo" },
@@ -89,7 +89,7 @@ export default function Footer() {
             </p>
             <div className="mt-6 flex items-center gap-3">
               {socials.map((s) => (
-                <a
+                <a data-ui-button="icon"
                   key={s.href}
                   href={s.href}
                   target="_blank"
@@ -155,7 +155,7 @@ export default function Footer() {
           &copy; {new Date().getFullYear()} {f.copyright}
         </p>
         <div className="flex items-center gap-6">
-          <button id="footer-cookie-settings" type="button" onClick={() => window.dispatchEvent(new Event("clearai-cookie-settings"))} className="text-xs text-white/70 hover:text-white transition-colors">{lang === "ja" ? "Cookie設定" : "Cookie settings"}</button>
+          <button data-ui-button="control" id="footer-cookie-settings" type="button" onClick={() => window.dispatchEvent(new Event("clearai-cookie-settings"))} className="text-xs text-white/70 hover:text-white transition-colors">{lang === "ja" ? "Cookie設定" : "Cookie settings"}</button>
           <Link href="/privacy" className="text-xs text-white/70 hover:text-white/75 transition-colors">{f.privacyShort}</Link>
           <Link href="/terms" className="text-xs text-white/70 hover:text-white/75 transition-colors">{f.termsShort}</Link>
         </div>

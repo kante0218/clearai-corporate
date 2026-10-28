@@ -1,0 +1,58 @@
+{
+  "updated_at": "2026-10-28T05:30:50+00:00",
+  "scope": "local only; not deployed/pushed/PR",
+  "requests": [
+    {
+      "request": "ホームProducts一覧を一時非表示",
+      "source_image_library_id": "libfile_b1ad290731488191bd3ea3f85b573a9d",
+      "result": "HomeContent SHOW_HOME_PRODUCTS=false. /products and external product sites kept; support/MEO kept."
+    },
+    {
+      "request": "研修は既存Codexのみ",
+      "retired_routes": [
+        "/training",
+        "/training/claude-code",
+        "/claude-bootcamp"
+      ],
+      "result": "404/noindex, sitemap/navigation/sales/deck request links removed; Git retains old sources; existing assets retained."
+    },
+    {
+      "request": "全ボタンを滑らかな形へ",
+      "source_image_library_id": "libfile_484044cce9ec8191a1b5f7f82a45e4b5",
+      "result": "106 explicitly marked buttons/CTA links in 40 files use shared CSS action tokens; native calendar/selection layouts preserve separate 14px radius. Colors and behavior retained.",
+      "screenshot_library_id": "libfile_9864cca6d03881918b247d6e1498c078"
+    }
+  ],
+  "ledger_counts": {
+    "完了": 87,
+    "要本人確認": 43,
+    "既対応": 2,
+    "本人指示で掲載対象外": 20
+  },
+  "verification": {
+    "type": "passed",
+    "unit": "15/15 passed",
+    "production_build": "passed after final changes",
+    "responsive": "24 page/width combinations: /, /contact, /robot-rental, /download, /meo, /training/codex at 320/390/430/1440; zero page overflow, zero zero-radius controls, zero horizontally clipped filled CTA labels",
+    "keyboard": "header CTA and submit focus-visible=true with 3px outline; no submit",
+    "overlap": "390px Codex submit focused top396/bottom449; fixed CTA starts827; no overlap",
+    "products": "home-products absent, support immediately followed by cases; no stale #home-products anchors",
+    "forms": "real form/booking/identity/payment submission not performed",
+    "retired_bootcamp": "also 404/noindex; old schema removed"
+  },
+  "library_delivery": {
+    "saved_mobile_image": "libfile_9864cca6d03881918b247d6e1498c078",
+    "latest_four_file_batch": "failed before preparation; Library prepare_uploads unavailable in local helper environment; no finalization or fallback attempted",
+    "latest_csv_local": [
+      "ClearAI_改善事項確認一覧_全152件.csv",
+      "ClearAI_改善事項確認表_43件6分類.csv"
+    ],
+    "staged_images": [
+      "ClearAI_Codex研修_PC_ローカル修正版_未公開.png",
+      "ClearAI_Products非表示_ローカル修正版_未公開.png"
+    ],
+    "previous_csv_library_id": "libfile_9b2f0487a5688191aa40e7b7ad5ef843",
+    "previous_csv_library_version": 1,
+    "previous_csv_is_latest": false
+  }
+}

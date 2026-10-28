@@ -821,3 +821,24 @@
   .mobileMenuPanel a { min-height: 56px; padding: 16px 0; border: 0; font-size: 16px !important; line-height: 24px !important; }
   .mobileMenuPanel a > span { color: #000; font-size: 16px; }
 }
+
+/* Keep all campaign CTAs fluid, with space for two-line labels on narrow phones. */
+.primary, .railBooking, .bookingLink, .contactBooking a, .mobileCta > a {
+  max-width: 100%;
+  white-space: normal;
+  text-align: center;
+}
+.primary { padding-inline: 28px; }
+.headerCta { display: inline-flex; align-items: center; justify-content: center; gap: 8px; line-height: 1.5; }
+.headerCta span { padding-left: 0; }
+@media (max-width: 767px) {
+  .headerCta { min-height: 44px !important; padding: 10px 14px; font-size: 12px; }
+  .mobileCta { padding-inline: 16px; padding-top: 12px; padding-bottom: max(12px, env(safe-area-inset-bottom)); }
+  .mobileCta > a { min-height: 52px; gap: 12px; padding: 12px 20px; line-height: 1.5; }
+  .primary { min-height: 56px; gap: 12px; padding: 14px 22px; }
+}
+@media (max-width: 360px) {
+  .header { padding-inline: 12px; gap: 4px; }
+  .logo img { width: 80px; }
+  .headerCta { max-width: 156px; padding-inline: 12px; font-size: 11px; }
+}

@@ -14,7 +14,7 @@ export default function TrainingCurriculumTabs({ lessons, toolName }: { lessons:
     <div className={styles.curriculumBox}>
       <div className={styles.tabs} role="tablist" aria-label="研修カリキュラム">
         {lessons.map((item, index) => (
-          <button key={item.title} ref={(element) => { tabs.current[index] = element; }} type="button" role="tab" id={`lesson-tab-${index}`} aria-selected={active === index} aria-controls="lesson-panel" tabIndex={active === index ? 0 : -1} onClick={() => setActive(index)} onKeyDown={(event) => {
+          <button data-ui-button="choice" key={item.title} ref={(element) => { tabs.current[index] = element; }} type="button" role="tab" id={`lesson-tab-${index}`} aria-selected={active === index} aria-controls="lesson-panel" tabIndex={active === index ? 0 : -1} onClick={() => setActive(index)} onKeyDown={(event) => {
             let next = index;
             if (event.key === "ArrowRight") next = (index + 1) % lessons.length;
             else if (event.key === "ArrowLeft") next = (index - 1 + lessons.length) % lessons.length;

@@ -14,6 +14,10 @@ import { BOOKING_URL } from "@/lib/booking";
    removed from the homepage on request. Their COPY entries below are intentionally kept so the
    sections can be restored without rewriting the copy; they are not rendered anywhere today. */
 
+// Temporarily hide the homepage Products section at the owner's request (2026-10-28).
+// Keep the component and /products route so this can be restored independently.
+const SHOW_HOME_PRODUCTS = false;
+
 /* Keep reading content visible without scroll-triggered motion. */
 function Reveal({ children, className = "" }: { children: ReactNode; className?: string; delay?: number }) {
   return <div data-motion="reading" className={className}>{children}</div>;
@@ -108,7 +112,7 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
     ],
     servicesLabel: "Our Services",
     servicesTitle: "AIで、日本の未来をつくる。",
-    servicesDesc: "システム・ソフトウェア開発を軸に、ロボットレンタル・AIO（AI検索最適化）・AI内製化研修・ホームページ制作まで、事業の課題に合わせて支援します。",
+    servicesDesc: "システム・ソフトウェア開発を軸に、ロボットレンタル・AIO（AI検索最適化）・Codex研修・ホームページ制作まで、事業の課題に合わせて支援します。",
     primaryHeading: "主力サービス",
     secondaryHeading: "その他の支援",
     claudeBadge: "Claude対応",
@@ -137,7 +141,7 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
         code: "04", title: "AI研修", color: "amber", badge: "補助金 最大75%OFF",
         desc: "導入研修から部門別ワークショップ・実務適用まで、社員が主役になる学習プログラムでチームのAIリテラシーを底上げします。",
         tags: ["社員研修", "部門別ワークショップ", "プロンプト設計", "業務適用"],
-        href: "/training", cta: "研修プログラムを見る",
+        href: "/training/codex", cta: "研修プログラムを見る",
         claudeNote: "Claudeを実務で使いこなす実践研修も。現場のユースケースに即したプロンプト・運用ルールまで指南します。",
       },
       {
@@ -328,7 +332,7 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
         code: "04", title: "AI Training", color: "amber", badge: "Up to 75% subsidy",
         desc: "Raise your team's AI literacy with learning programs where employees take the lead — from onboarding workshops to department-specific sessions and hands-on application.",
         tags: ["Employee training", "Department workshops", "Prompt design", "Workflow application"],
-        href: "/training", cta: "View training programs",
+        href: "/training/codex", cta: "View training programs",
         claudeNote: "Hands-on Claude training too — prompts and operating rules tailored to your real use cases.",
       },
       {
@@ -548,14 +552,14 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
                 </h1>
                 <p className="mt-5 max-w-xl text-base leading-7 text-neutral-700">{lang === "ja" ? "中小企業の業務改善に。" : "For SMEs improving everyday work. "}{t.heroDesc}</p>
                 <div className="mt-6 flex flex-wrap gap-3 lg:hidden">
-                  <Link href="/contact" className="inline-flex min-h-11 items-center rounded-md bg-cta px-6 py-3 text-sm font-bold text-white">{lang === "ja" ? "文章で相談する" : "Ask in writing"}</Link>
-                  <Link href="#support" className="inline-flex min-h-11 items-center rounded-md border border-neutral-400 bg-white px-6 py-3 text-sm font-bold text-neutral-900">{lang === "ja" ? "支援内容を見る" : "Explore our services"}</Link>
+                  <Link data-ui-button="filled" href="/contact" className="inline-flex min-h-11 items-center rounded-md bg-cta px-6 py-3 text-sm font-bold text-white">{lang === "ja" ? "文章で相談する" : "Ask in writing"}</Link>
+                  <Link data-ui-button="filled" href="#support" className="inline-flex min-h-11 items-center rounded-md border border-neutral-400 bg-white px-6 py-3 text-sm font-bold text-neutral-900">{lang === "ja" ? "支援内容を見る" : "Explore our services"}</Link>
                 </div>
                 <div className="mt-8 hidden lg:flex items-center gap-4">
-                  <Link href="/download" className="inline-flex min-h-12 items-center justify-center rounded-md border border-neutral-300 bg-white px-6 text-sm font-semibold text-neutral-900 transition-colors hover:border-neutral-900 hover:bg-neutral-50">
+                  <Link data-ui-button="filled" href="/download" className="inline-flex min-h-12 items-center justify-center rounded-md border border-neutral-300 bg-white px-6 text-sm font-semibold text-neutral-900 transition-colors hover:border-neutral-900 hover:bg-neutral-50">
                     {lang === "ja" ? "資料ダウンロード" : "Download company deck"}
                   </Link>
-                  <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center justify-center rounded-md bg-cta px-6 text-sm font-semibold text-white transition-colors hover:bg-cta-hover">
+                  <a data-ui-button="filled" href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center justify-center rounded-md bg-cta px-6 text-sm font-semibold text-white transition-colors hover:bg-cta-hover">
                     {lang === "ja" ? "役員へ無料相談する" : "Free consultation with an executive"}
                   </a>
                 </div>
@@ -580,7 +584,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
               { href: "/software-development", title: lang === "ja" ? "システム・ソフトウェア開発" : "System & Software Development", desc: lang === "ja" ? "繰り返しの事務作業を減らしたい。業務に合うシステムをつくり、運用まで支援します。" : "Build systems that fit your workflows, from design to operation." },
               { href: "/robot-rental", title: lang === "ja" ? "ロボットレンタル" : "Robot Rental", desc: lang === "ja" ? "実機を試してから検討したい。展示会や実証実験で使うロボットをレンタルできます。" : "Try robots for exhibitions and practical experiments." },
               { href: "/aio", title: lang === "ja" ? "AIO（AI検索最適化）" : "AIO (AI Search Optimization)", desc: lang === "ja" ? "AI検索で会社情報を正確に理解してもらうために。情報の整理と改善、引用状況の確認を支援します。" : "Help AI search understand your company through clearer information, improvements, and citation monitoring." },
-              { href: "/training", title: lang === "ja" ? "AI内製化研修" : "In-house AI Training", desc: lang === "ja" ? "社員がAIを仕事に使えるようにしたい。実務に沿った研修で、社内で使う力を育てます。" : "Help your team apply AI through practical training." },
+              { href: "/training/codex", title: lang === "ja" ? "Codex研修" : "Codex Training", desc: lang === "ja" ? "社員がAIを仕事に使えるようにしたい。実務に沿った研修で、社内で使う力を育てます。" : "Help your team apply AI through practical training." },
               { href: "/website-production", title: lang === "ja" ? "ホームページ制作" : "Website Production", desc: lang === "ja" ? "事業の強みを整理し、読む人に伝わる構成・デザイン・公開まで支援します。" : "We clarify your message and support site structure, design, development, and launch." },
               { href: "/sns-management", title: lang === "ja" ? "SNS運用代行" : "SNS Management", desc: lang === "ja" ? "発信の目的を整理し、企画・文章や画像の制作・投稿管理・分析改善を支援します。" : "Support for social media planning, content creation, publishing management, and review." },
               { href: "/meo", title: lang === "ja" ? "Googleマップ・MEO支援" : "Google Maps / MEO Support", desc: lang === "ja" ? "店舗情報の整備、写真・投稿、口コミ返信、レポートと改善提案を、必要な範囲から支援します。" : "Support for accurate business information, photos, posts, review replies, and improvement reports." },
@@ -589,7 +593,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
         </div>
       </section>
 
-      <section id="home-products" className={`${styles.products} scroll-mt-28 bg-neutral-50 py-10 md:py-16`} aria-labelledby="home-products-title">
+      {SHOW_HOME_PRODUCTS && <section id="home-products" className={`${styles.products} scroll-mt-28 bg-neutral-50 py-10 md:py-16`} aria-labelledby="home-products-title">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <div className="mb-7 flex flex-wrap items-end justify-between gap-4">
             <div>
@@ -601,7 +605,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
           </div>
           <ProductList />
         </div>
-      </section>
+      </section>}
 
       {/* ═══ CASE STUDIES ═══ */}
       <section id="cases" className="scroll-mt-28 py-8 md:py-20 lg:py-28 bg-gray-50">
@@ -711,7 +715,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
           </ol>
           <Reveal delay={100}>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a
+              <a data-ui-button="filled"
                 href={BOOKING_URL}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -720,7 +724,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
                 {t.ctaPrimary}
                 <span aria-hidden>→</span>
               </a>
-              <Link
+              <Link data-ui-button="control"
                 href="/contact"
                 className="inline-flex w-full sm:w-auto justify-center items-center rounded-md border border-gray-200 text-gray-600 text-sm font-semibold px-8 min-h-[52px] py-3.5 hover:border-gray-400 hover:text-gray-900 transition-colors duration-300"
               >
@@ -834,10 +838,10 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       <div className="h-20 md:hidden" aria-hidden="true" />
       <nav data-mobile-cta aria-label={lang === "ja" ? "お問い合わせ" : "Contact actions"} className="fixed inset-x-0 bottom-0 z-50 border-t border-gray-200 bg-white/95 px-3 pt-2 pb-[calc(0.5rem+env(safe-area-inset-bottom))] shadow-[0_-8px_24px_rgba(15,23,42,0.10)] backdrop-blur md:hidden">
         <div className="mx-auto grid max-w-md grid-cols-2 gap-2">
-          <Link href="/download" className="inline-flex min-h-11 items-center justify-center rounded-md border border-[#315b73] px-3 text-xs font-bold text-neutral-900">
+          <Link data-ui-button="control" href="/download" className="inline-flex min-h-11 items-center justify-center rounded-md border border-[#315b73] px-3 text-xs font-bold text-neutral-900">
             {lang === "ja" ? "会社資料" : "Company guide"}
           </Link>
-          <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center justify-center motion-cta rounded-md bg-cta px-3 text-xs font-bold text-white">
+          <a data-ui-button="filled" href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center justify-center motion-cta rounded-md bg-cta px-3 text-xs font-bold text-white">
             {lang === "ja" ? "代表と面談を予約する" : "Meet our founder"}
           </a>
         </div>

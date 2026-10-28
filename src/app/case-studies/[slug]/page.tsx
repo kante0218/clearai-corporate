@@ -287,7 +287,7 @@ export default async function CaseStudyPage({
                 {study.cta.heading}
               </h2>
               <p className="mb-8 text-sm leading-[1.9] text-white/60">{study.cta.text}</p>
-              <a
+              <a data-ui-button="filled"
                 href={BOOKING_URL}
                 target="_blank"
                 rel="noopener noreferrer"

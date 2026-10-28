@@ -20,12 +20,12 @@ export const viewport: Viewport = {
 };
 
 const ogDescription =
-  "ClearAI株式会社（クリアエーアイ／読み方：クリアエーアイ）は、日本の中小企業向けにAIの受託開発・導入支援を行うAI企業です。AIを組み込んだ業務システムやAIエージェントの受託開発、AI検索で企業情報が正しく理解・参照されるためのAIO支援、社内で作れる人材を育てるAI内製化研修をはじめ、ロボットレンタル・ホームページ制作・SNS運用代行・GoogleマップのMEO支援まで、事業の課題に合わせて支援します。2026年4月創業、茨城県拠点、全国対応。";
+  "ClearAI株式会社（クリアエーアイ／読み方：クリアエーアイ）は、日本の中小企業向けにAIの受託開発・導入支援を行うAI企業です。AIを組み込んだ業務システムやAIエージェントの受託開発、AI検索で企業情報が正しく理解・参照されるためのAIO支援、社内で作れる人材を育てるCodex研修をはじめ、ロボットレンタル・ホームページ制作・SNS運用代行・GoogleマップのMEO支援まで、事業の課題に合わせて支援します。2026年4月創業、茨城県拠点、全国対応。";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://clearai.jp"),
   title: {
-    default: "ClearAI株式会社｜AI受託開発・AIO・AI内製化研修",
+    default: "ClearAI株式会社｜AI受託開発・AIO・Codex研修",
     template: "%s | ClearAI株式会社",
   },
   description: ogDescription,
@@ -139,7 +139,7 @@ const organizationSchema = {
     "address": { "@type": "PostalAddress", "addressRegion": "茨城県", "addressCountry": "JP" },
   },
   "description":
-    "ClearAI株式会社（読み方：クリアエーアイ）は、日本の中小企業向けにAIの受託開発・導入支援を行うAI企業。AIを組み込んだ業務システムやAIエージェントの受託開発、AIO（AI検索最適化）、AI内製化研修をはじめ、ロボットレンタル・ホームページ制作・SNS運用代行・GoogleマップのMEO支援を提供する。",
+    "ClearAI株式会社（読み方：クリアエーアイ）は、日本の中小企業向けにAIの受託開発・導入支援を行うAI企業。AIを組み込んだ業務システムやAIエージェントの受託開発、AIO（AI検索最適化）、Codex研修をはじめ、ロボットレンタル・ホームページ制作・SNS運用代行・GoogleマップのMEO支援を提供する。",
   "slogan": "AIで、すべてをクリアにする。",
   "founder": { "@type": "Person", "name": "髙橋 敢輝" },
   "address": {
@@ -173,7 +173,7 @@ const organizationSchema = {
     "AIO（AI検索最適化）",
     "AI導入支援",
     "AI顧問",
-    "AI内製化研修",
+    "Codex研修",
     "ホームページ制作",
     "生成AI",
     "LLM活用",
@@ -190,7 +190,7 @@ const organizationSchema = {
     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Googleマップ・MEO支援", "url": "https://clearai.jp/meo" } },
     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "システム・ソフトウェア開発（AI受託開発）", "url": "https://clearai.jp/software-development" } },
     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AIO（AI検索最適化）", "url": "https://clearai.jp/aio" } },
-    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AI内製化研修", "url": "https://clearai.jp/training" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Codex研修", "url": "https://clearai.jp/training/codex" } },
   ],
 };
 
@@ -204,7 +204,7 @@ const professionalServiceSchema = {
   "logo": "https://clearai.jp/images/logo.png",
   "image": "https://clearai.jp/images/logo.png",
   "description":
-    "AIを組み込んだ業務システム・AIエージェントの受託開発、AI検索で企業情報が正しく理解・参照されるためのAIO支援、社内で作れる人材を育てるAI内製化研修を提供する日本のAI専門企業。",
+    "AIを組み込んだ業務システム・AIエージェントの受託開発、AI検索で企業情報が正しく理解・参照されるためのAIO支援、社内で作れる人材を育てるCodex研修を提供する日本のAI専門企業。",
   "address": {
     "@type": "PostalAddress",
     "addressRegion": "茨城県",
@@ -243,9 +243,9 @@ const professionalServiceSchema = {
         "@type": "Offer",
         "itemOffered": {
           "@type": "Service",
-          "name": "AI内製化研修",
-          "description": "AIを使って社内システムを自社で作れる人材を育てる実践型研修。Claude / ChatGPT / Gemini / Microsoft Copilot から選べるカリキュラム。",
-          "url": "https://clearai.jp/training",
+          "name": "Codex研修",
+          "description": "要件整理から実装、テスト、レビュー、チームへの引き継ぎまで、自社の仕事を題材に学ぶ法人向け実践研修。",
+          "url": "https://clearai.jp/training/codex",
         },
       },
     ],
@@ -260,7 +260,7 @@ const siteNavigationSchema = {
     { "@type": "SiteNavigationElement", "position": 1, "name": "システム・ソフトウェア開発", "url": "https://clearai.jp/software-development" },
     { "@type": "SiteNavigationElement", "position": 2, "name": "ロボットレンタル", "url": "https://clearai.jp/robot-rental" },
     { "@type": "SiteNavigationElement", "position": 3, "name": "AIO（AI検索最適化）", "url": "https://clearai.jp/aio" },
-    { "@type": "SiteNavigationElement", "position": 4, "name": "AI内製化研修", "url": "https://clearai.jp/training" },
+    { "@type": "SiteNavigationElement", "position": 4, "name": "Codex研修", "url": "https://clearai.jp/training/codex" },
     { "@type": "SiteNavigationElement", "position": 5, "name": "ホームページ制作", "url": "https://clearai.jp/website-production" },
     { "@type": "SiteNavigationElement", "position": 6, "name": "導入実績", "url": "https://clearai.jp/case-studies" },
     { "@type": "SiteNavigationElement", "position": 7, "name": "コラム", "url": "https://clearai.jp/column" },

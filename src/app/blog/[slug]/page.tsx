@@ -206,7 +206,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               <p className="mt-2 text-sm leading-7 text-neutral-600">コメントは公開されます。個別案件や社内情報を含むご相談は、お問い合わせフォームをご利用ください。</p>
               <div className="mt-3 flex flex-wrap gap-5 text-sm font-semibold underline underline-offset-4">
                 <a href="/contact">フォームで個別相談する</a>
-                <a href="/training">AI研修を見る</a>
+                <a href="/training/codex">AI研修を見る</a>
                 <a href="/software-development">システム開発を見る</a>
               </div>
             </aside>

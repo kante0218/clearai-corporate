@@ -9,7 +9,6 @@ const DOCUMENT_FILES: Record<DocumentKey, string> = {
   company: "company-guide.pdf",
   "software-development": "software-development-guide.pdf",
   "robot-rental": "robot-rental-guide.pdf",
-  training: "ai-training-guide.pdf",
   aio: "aio-guide.pdf",
   "website-production": "website-production-guide.pdf",
   "sns-management": "sns-management-guide.pdf",

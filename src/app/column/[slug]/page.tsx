@@ -218,7 +218,7 @@ export default async function ColumnArticlePage({
                 {article.cta.heading}
               </h2>
               <p className="mb-8 text-sm leading-[1.9] text-white/60">{article.cta.text}</p>
-              <a
+              <a data-ui-button="filled"
                 href={BOOKING_URL}
                 target="_blank"
                 rel="noopener noreferrer"

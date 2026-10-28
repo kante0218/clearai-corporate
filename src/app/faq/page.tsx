@@ -92,7 +92,7 @@ export default function FaqPage() {
             ))}
           </p>
           <div className="flex items-center justify-center gap-4 transition-all duration-700" style={{ opacity: heroLoaded ? 1 : 0, transitionDelay: "900ms" }}>
-            <a href="#list" className="rounded-lg bg-neutral-900 text-white font-semibold px-8 py-3.5 hover:bg-neutral-800 transition-colors duration-300">{t.heroBtnPrimary}</a>
+            <a data-ui-button="filled" href="#list" className="rounded-lg bg-neutral-900 text-white font-semibold px-8 py-3.5 hover:bg-neutral-800 transition-colors duration-300">{t.heroBtnPrimary}</a>
             <a href="/contact" className="text-sm text-gray-500 font-semibold hover:text-gray-900 transition-colors duration-300">{t.heroBtnSecondary}</a>
           </div>
         </div>
@@ -106,7 +106,7 @@ export default function FaqPage() {
             <h2 className="text-3xl font-bold text-gray-900 leading-tight mb-8">{t.listTitle}</h2>
           </Reveal>
           <nav aria-label={lang === "ja" ? "質問のテーマ" : "Question topics"} className="mb-6 flex flex-wrap gap-3">
-            {[{ id: 0, ja: "初回相談", en: "Getting started" }, { id: 1, ja: "費用・助成金", en: "Costs and grants" }, { id: 4, ja: "期間・契約", en: "Timing and contracts" }, { id: 10, ja: "会社・体制", en: "Our company" }].map((topic) => <a key={topic.id} href={`#question-${topic.id}`} className="rounded-md border border-neutral-300 bg-white px-3 py-2 text-sm text-neutral-800">{topic[lang]}</a>)}
+            {[{ id: 0, ja: "初回相談", en: "Getting started" }, { id: 1, ja: "費用・助成金", en: "Costs and grants" }, { id: 4, ja: "期間・契約", en: "Timing and contracts" }, { id: 10, ja: "会社・体制", en: "Our company" }].map((topic) => <a data-ui-button="filled" key={topic.id} href={`#question-${topic.id}`} className="rounded-md border border-neutral-300 bg-white px-3 py-2 text-sm text-neutral-800">{topic[lang]}</a>)}
           </nav>
           <div className="space-y-3">
             {faqItems.map((f, i) => (
@@ -135,7 +135,7 @@ export default function FaqPage() {
                 <span key={i}>{line}{i < arr.length - 1 && <br />}</span>
               ))}
             </p>
-            <a href="/contact" className="rounded-lg bg-cta text-white font-semibold px-10 py-4 hover:bg-cta-hover transition-colors duration-300 inline-block">{t.ctaButton}</a>
+            <a data-ui-button="filled" href="/contact" className="rounded-lg bg-cta text-white font-semibold px-10 py-4 hover:bg-cta-hover transition-colors duration-300 inline-block">{t.ctaButton}</a>
             <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="mt-4 block text-sm underline underline-offset-4">{lang === "ja" ? "日時を選んで面談予約（別タブ）" : "Choose a meeting time (new tab)"}</a>
           </Reveal>
         </div>

@@ -3,7 +3,7 @@ import { ImageResponse } from "next/og";
 export const runtime = "edge";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-export const alt = "ClearAI株式会社（クリアエーアイ）| AI受託開発・AIO・AI内製化研修";
+export const alt = "ClearAI株式会社（クリアエーアイ）| AI受託開発・AIO・Codex研修";
 
 export default async function OpengraphImage() {
   return new ImageResponse(
@@ -73,7 +73,7 @@ export default async function OpengraphImage() {
               maxWidth: 900,
             }}
           >
-            AI受託開発・AIO・AI内製化研修
+            AI受託開発・AIO・Codex研修
           </div>
         </div>
 
@@ -89,7 +89,7 @@ export default async function OpengraphImage() {
           <div style={{ display: "flex", gap: 28 }}>
             <span>AIO</span>
             <span>AI開発</span>
-            <span>AI研修</span>
+            <span>Codex研修</span>
             <span>Web制作</span>
             <span>補助金</span>
           </div>

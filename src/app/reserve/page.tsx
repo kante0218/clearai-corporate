@@ -295,7 +295,7 @@ export default function ReservePage() {
             <div className="mb-2 text-xs font-semibold uppercase tracking-widest text-gray-400">{t.successWhen}</div>
             <div className="mb-6 text-base font-bold text-gray-900">{selectedDate && formatWhen(selectedDate, selectedTime)}</div>
             {success.meetLink && (
-              <a href={success.meetLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-lg bg-neutral-900 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-neutral-800">
+              <a data-ui-button="filled" href={success.meetLink} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-lg bg-neutral-900 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-neutral-800">
                 {t.meetLabel}
                 <span aria-hidden>→</span>
               </a>
@@ -311,13 +311,13 @@ export default function ReservePage() {
               <div className="mb-4 flex items-center justify-between">
                 <span className="text-sm font-bold text-gray-900">{t.pickDate}</span>
                 <div className="flex items-center gap-1">
-                  <button type="button" aria-label="prev" disabled={!monthBounds || viewMonth <= monthBounds.min}
+                  <button data-ui-button="choice" type="button" aria-label="prev" disabled={!monthBounds || viewMonth <= monthBounds.min}
                     onClick={() => setViewMonth((v) => shiftMonth(v, -1))}
                     className="flex h-8 w-8 items-center justify-center rounded-lg text-gray-500 transition-colors hover:bg-gray-100 disabled:opacity-30 disabled:hover:bg-transparent">‹</button>
                   <span className="min-w-[88px] text-center text-sm font-semibold text-gray-900">
                     {viewMonth && t.monthLabel(Number(viewMonth.split("-")[0]), Number(viewMonth.split("-")[1]))}
                   </span>
-                  <button type="button" aria-label="next" disabled={!monthBounds || viewMonth >= monthBounds.max}
+                  <button data-ui-button="choice" type="button" aria-label="next" disabled={!monthBounds || viewMonth >= monthBounds.max}
                     onClick={() => setViewMonth((v) => shiftMonth(v, 1))}
                     className="flex h-8 w-8 items-center justify-center rounded-lg text-gray-500 transition-colors hover:bg-gray-100 disabled:opacity-30 disabled:hover:bg-transparent">›</button>
                 </div>
@@ -334,7 +334,7 @@ export default function ReservePage() {
                       const available = dayMap.has(cell);
                       const isSelected = cell === selectedDate;
                       return (
-                        <button key={ci} type="button" disabled={!available} onClick={() => handleSelectDate(cell)}
+                        <button data-ui-button="choice" key={ci} type="button" disabled={!available} onClick={() => handleSelectDate(cell)}
                           className={`flex aspect-square items-center justify-center rounded-full text-sm transition-colors ${
                             isSelected ? "bg-neutral-900 font-bold text-white"
                               : available ? "font-semibold text-gray-900 hover:bg-neutral-100"
@@ -362,7 +362,7 @@ export default function ReservePage() {
                   ) : (
                     <div className="mb-6 grid grid-cols-3 gap-2 sm:grid-cols-4">
                       {slots.map((s) => (
-                        <button key={s} type="button" onClick={() => setSelectedTime(s)}
+                        <button data-ui-button="choice" key={s} type="button" onClick={() => setSelectedTime(s)}
                           className={`rounded-lg border px-2 py-2.5 text-sm font-semibold transition-colors ${
                             selectedTime === s ? "border-neutral-900 bg-neutral-900 text-white"
                               : "border-gray-200 text-gray-700 hover:border-gray-400"
@@ -403,7 +403,7 @@ export default function ReservePage() {
 
                       {serverError && <p className="rounded-lg border border-neutral-300 bg-neutral-100 px-3 py-2.5 text-sm text-neutral-900">{serverError}</p>}
 
-                      <button type="submit" disabled={status === "submitting"}
+                      <button data-ui-button="filled" type="submit" disabled={status === "submitting"}
                         className={`flex w-full items-center justify-center gap-2 rounded-lg bg-neutral-900 px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-neutral-800 ${status === "submitting" ? "cursor-not-allowed opacity-60" : ""}`}>
                         {status === "submitting" && <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" /><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" /></svg>}
                         {status === "submitting" ? t.submitting : t.submit}

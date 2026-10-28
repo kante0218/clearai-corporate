@@ -23,7 +23,7 @@ const SUPPORT_AREAS = [
 const CHOICE_STEPS = [
   { key: "challenge", label: "現在、最も解決したい課題を教えてください", options: ["業務を自動化したい", "AIを事業に組み込みたい", "新しいシステムを開発したい", "AI人材を育成したい", "まだ整理できていない"] },
   { key: "status", label: "AI・システム導入の検討状況を教えてください", options: ["情報収集中", "社内で検討中", "要件を整理中", "委託先を比較中", "すぐに相談したい"] },
-  { key: "service", label: "関心のある支援内容を教えてください", options: ["AI受託開発", "システム・ソフトウェア開発", "AIO（AI検索最適化）", "AI内製化研修", "相談して決めたい"] },
+  { key: "service", label: "関心のある支援内容を教えてください", options: ["AI受託開発", "システム・ソフトウェア開発", "AIO（AI検索最適化）", "Codex研修", "相談して決めたい"] },
   { key: "size", label: "従業員規模を教えてください", options: ["~50名", "51-200名", "201-500名", "501-1000名", "1001名~"] },
   { key: "timing", label: "開始時期のイメージを教えてください", options: ["できるだけ早く", "1〜3ヶ月以内", "3〜6ヶ月以内", "半年以降", "未定"] },
 ] as const;
@@ -181,7 +181,7 @@ export default function AiDevelopmentConsultationPage() {
       </section>
 
       <section className="bg-white px-5 pt-8 pb-10 sm:pt-12 sm:pb-20">
-        <button
+        <button data-ui-button="filled"
           type="button"
           onClick={scrollToForm}
           className="group mx-auto flex h-[64px] w-full max-w-[400px] items-center justify-center gap-3 rounded-md bg-[#0e5b94] px-5 text-base font-bold text-white shadow-[0_8px_20px_rgba(14,91,148,0.28)] transition-colors hover:bg-[#0a4b7c] sm:h-[72px] sm:text-lg"
@@ -257,7 +257,7 @@ export default function AiDevelopmentConsultationPage() {
                       <h3 className="mb-5 text-base font-bold leading-7 text-[#24384c]">{currentChoice.label}</h3>
                       <div className="space-y-3">
                         {currentChoice.options.map((option) => (
-                          <button
+                          <button data-ui-button="filled"
                             key={option}
                             type="button"
                             onClick={() => selectChoice(currentChoice.key, option)}
@@ -278,7 +278,7 @@ export default function AiDevelopmentConsultationPage() {
                       <input id="lp-name" required value={name} onChange={(e) => setName(e.target.value)} onKeyDown={(event) => { if (event.key === "Enter") { event.preventDefault(); nextInputStep(); } }} className="mb-4 w-full border border-[#d4dce2] bg-white px-4 py-3.5 outline-none focus:border-[#0e5b94]" placeholder="山田 太郎" />
                       <label htmlFor="lp-email" className="mb-2 block text-sm font-bold text-[#526575]">メールアドレス</label>
                       <input id="lp-email" required type="email" value={email} onChange={(e) => setEmail(e.target.value)} onKeyDown={(event) => { if (event.key === "Enter") { event.preventDefault(); nextInputStep(); } }} className="w-full border border-[#d4dce2] bg-white px-4 py-3.5 outline-none focus:border-[#0e5b94]" placeholder="name@example.com" />
-                      <button type="button" onClick={nextInputStep} className="mt-5 w-full bg-[#0e5b94] py-4 font-bold text-white hover:bg-[#0a4b7c]">次へ</button>
+                      <button data-ui-button="filled" type="button" onClick={nextInputStep} className="mt-5 w-full bg-[#0e5b94] py-4 font-bold text-white hover:bg-[#0a4b7c]">次へ</button>
                     </div>
                   ) : (
                     <div>
@@ -288,7 +288,7 @@ export default function AiDevelopmentConsultationPage() {
                       <label htmlFor="lp-details" className="mb-2 block text-sm font-bold text-[#526575]">相談内容（任意）</label>
                       <textarea id="lp-details" value={details} onChange={(e) => setDetails(e.target.value)} className="min-h-28 w-full resize-y border border-[#d4dce2] bg-white px-4 py-3.5 outline-none focus:border-[#0e5b94]" placeholder="現状や実現したいことをご記入ください" />
                       <input value={website} onChange={(e) => setWebsite(e.target.value)} className="hidden" tabIndex={-1} autoComplete="off" aria-hidden="true" />
-                      <button type="submit" disabled={status === "submitting"} className="mt-5 w-full bg-[#0e5b94] py-4 font-bold text-white transition-colors hover:bg-[#0a4b7c] disabled:opacity-60">
+                      <button data-ui-button="filled" type="submit" disabled={status === "submitting"} className="mt-5 w-full bg-[#0e5b94] py-4 font-bold text-white transition-colors hover:bg-[#0a4b7c] disabled:opacity-60">
                         {status === "submitting" ? "送信中…" : "無料相談を送信する"}
                       </button>
                     </div>
@@ -297,7 +297,7 @@ export default function AiDevelopmentConsultationPage() {
 
                 {error && <p role="alert" className="mt-4 text-sm font-semibold text-[#b42318]">{error}</p>}
                 {step > 0 && (
-                  <button type="button" onClick={() => { setError(""); setStep((current) => Math.max(0, current - 1)); }} className="mt-6 text-sm font-semibold text-[#657785] underline underline-offset-4">前の質問へ戻る</button>
+                  <button data-ui-button="control" type="button" onClick={() => { setError(""); setStep((current) => Math.max(0, current - 1)); }} className="mt-6 text-sm font-semibold text-[#657785] underline underline-offset-4">前の質問へ戻る</button>
                 )}
               </>
             )}
@@ -320,7 +320,7 @@ function InputStep({ id, label, value, onChange, placeholder, onNext }: { id: st
     <div>
       <label htmlFor={id} className="mb-5 block text-base font-bold text-[#24384c]">{label}</label>
       <input id={id} required value={value} onChange={(event) => onChange(event.target.value)} onKeyDown={(event) => { if (event.key === "Enter") { event.preventDefault(); onNext(); } }} className="w-full border border-[#d4dce2] bg-white px-4 py-3.5 outline-none focus:border-[#0e5b94]" placeholder={placeholder} />
-      <button type="button" onClick={onNext} className="mt-5 w-full bg-[#0e5b94] py-4 font-bold text-white hover:bg-[#0a4b7c]">次へ</button>
+      <button data-ui-button="filled" type="button" onClick={onNext} className="mt-5 w-full bg-[#0e5b94] py-4 font-bold text-white hover:bg-[#0a4b7c]">次へ</button>
     </div>
   );
 }

@@ -162,7 +162,7 @@ export default function PrivacyPage() {
             </div>
           ))}
 
-          <p><button type="button" className="underline underline-offset-4" onClick={() => window.dispatchEvent(new Event("clearai-cookie-settings"))}>{lang === "ja" ? "Cookie設定を変更する" : "Change cookie settings"}</button></p>
+          <p><button data-ui-button="control" type="button" className="underline underline-offset-4" onClick={() => window.dispatchEvent(new Event("clearai-cookie-settings"))}>{lang === "ja" ? "Cookie設定を変更する" : "Change cookie settings"}</button></p>
           <p className="text-sm text-gray-400 mt-8">{t.date}</p>
         </div>
       </section>

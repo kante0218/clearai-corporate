@@ -6,16 +6,17 @@
   "source_images": 98,
   "ledger_count": 152,
   "counts": {
-    "完了": 98,
-    "要本人確認": 52,
-    "既対応": 2
+    "完了": 87,
+    "要本人確認": 43,
+    "既対応": 2,
+    "本人指示で掲載対象外": 20
   },
   "typecheck": "passed",
   "unit_tests": {
     "passed": 15,
     "failed": 0
   },
-  "production_build": "passed, final local build with rental flag enabled for testing only",
+  "production_build": "passed after final owner scope and action styles; rental feature flag unchanged",
   "responsive": {
     "375": 8,
     "390": 16,
@@ -53,7 +54,7 @@
     "CMS credentials absent locally: published Uber article read publicly, resource helper/unit and worksheet verified; no CMS write or draft access bypass",
     "No real devices; browser viewport tests",
     "Real forms, identity, payment and production release not executed",
-    "52 factual/contract/permission inputs remain in seven groups; explanatory alternatives do not count as genuine proof"
+    "43 factual/contract/permission inputs remain in six groups; explanatory alternatives do not count as genuine proof"
   ],
   "original_tree_untouched_by_this_task": true,
   "concurrent_original_changes_detected": [
@@ -63,7 +64,7 @@
   "initial_report_baseline": "6802e61f39fff45185c7c646a5b5787be5cf1f49",
   "unstarted": 0,
   "independent_preparation_remaining": 0,
-  "input_groups": 7,
+  "input_groups": 6,
   "guide_previews": {
     "pdfs": 8,
     "images": 16,
@@ -72,10 +73,62 @@
     "visual_review": "16 rendered cover/content previews inspected"
   },
   "concurrent_source_updates": "local merge af6b237 incorporates 4ad8e92 and0347430; three conflicts resolved; original checkout remains clean",
-  "verified_at_utc": "2026-10-28T05:09:26.021004+00:00",
+  "verified_at_utc": "2026-10-28T05:33:49+00:00",
   "superseded_patches": [
     "clearai-hp-local.patch",
     "clearai-hp-safe.patch"
   ],
-  "current_patch": "clearai-hp-review-0347430.patch"
+  "current_patch": "clearai-hp-review-0347430.patch",
+  "previous_scope_counts": {
+    "完了": 98,
+    "要本人確認": 52,
+    "既対応": 2
+  },
+  "latest_owner_scope_verification": {
+    "typecheck": "passed",
+    "unit_tests": {
+      "passed": 15,
+      "failed": 0
+    },
+    "production_build": "passed",
+    "responsive": {
+      "widths": [
+        320,
+        390,
+        430,
+        1440
+      ],
+      "paths": [
+        "/",
+        "/training/codex",
+        "/contact",
+        "/robot-rental",
+        "/download",
+        "/meo"
+      ],
+      "checks": 24,
+      "overflow": 0,
+      "unrounded_marked_controls": 0,
+      "horizontally_clipped_filled_labels": 0
+    },
+    "retired_routes_404_noindex": [
+      "/training",
+      "/training/claude-code",
+      "/claude-bootcamp"
+    ],
+    "live_local_routes_200": [
+      "/",
+      "/training/codex",
+      "/service",
+      "/contact",
+      "/download",
+      "/meo",
+      "/products",
+      "/sitemap.xml"
+    ],
+    "removed_from_sitemap_and_internal_sales_links": true,
+    "keyboard_focus": "header CTA and submit: focus-visible true, 3px outline",
+    "no_form_submission": true,
+    "source_checkout": "still clean at 0347430; Header/Home mtimes unchanged"
+  }
 }

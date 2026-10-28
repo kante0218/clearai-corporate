@@ -41,8 +41,8 @@ export default function WebsiteProductionPage() {
           <h1 data-motion="heading" className="max-w-4xl text-3xl font-bold leading-tight text-neutral-900 sm:text-4xl lg:text-5xl">事業の価値が、読む人に伝わるホームページへ。</h1>
           <p data-reading className="mt-6 max-w-3xl text-base leading-[1.9] text-neutral-600">何を、どの順番で伝えるか。事業の強みを整理するところから、構成・デザイン・実装・公開まで。新規制作も、既存サイトの見直しも、目的に合わせて一緒に進めます。</p>
           <div className="mt-8 flex flex-wrap gap-4">
-            <Link href="/contact?service=website" className="motion-cta inline-flex min-h-12 items-center justify-center rounded-lg bg-cta px-7 py-3.5 font-semibold text-white transition-colors hover:bg-cta-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-900">ホームページ制作を相談する</Link>
-            <a href="#offering" className="inline-flex min-h-12 items-center rounded-lg border border-neutral-200 px-6 py-3.5 font-semibold text-neutral-700 hover:border-neutral-500 focus-visible:outline-2 focus-visible:outline-offset-4">提供内容を読む</a>
+            <Link data-ui-button="filled" href="/contact?service=website" className="motion-cta inline-flex min-h-12 items-center justify-center rounded-lg bg-cta px-7 py-3.5 font-semibold text-white transition-colors hover:bg-cta-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-900">ホームページ制作を相談する</Link>
+            <a data-ui-button="control" href="#offering" className="inline-flex min-h-12 items-center rounded-lg border border-neutral-200 px-6 py-3.5 font-semibold text-neutral-700 hover:border-neutral-500 focus-visible:outline-2 focus-visible:outline-offset-4">提供内容を読む</a>
           </div>
         </div>
       </header>
@@ -92,7 +92,7 @@ export default function WebsiteProductionPage() {
         <section id="consultation" className="relative scroll-mt-28 rounded-xl border border-neutral-200 bg-neutral-50 p-6 sm:p-10 lg:p-12">
           <h2 data-motion="heading" className="text-2xl sm:text-3xl font-bold mb-4">まずは、伝えたいことをお聞かせください。</h2>
           <p data-reading className="max-w-3xl text-neutral-600 leading-[1.9] mb-7">現在のサイトURL、制作の目的、困っていることなど、わかる範囲でお知らせください。ご要望を伺って、必要な内容と進め方をご案内します。</p>
-          <Link href="/contact?service=website" className="motion-cta inline-flex min-h-12 items-center justify-center bg-cta hover:bg-cta-hover text-white px-7 py-4 font-semibold rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-900">ホームページ制作を相談する</Link>
+          <Link data-ui-button="filled" href="/contact?service=website" className="motion-cta inline-flex min-h-12 items-center justify-center bg-cta hover:bg-cta-hover text-white px-7 py-4 font-semibold rounded-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-900">ホームページ制作を相談する</Link>
           <Link href="/download?document=website-production" className="inline-flex min-h-12 items-center px-5 py-3 text-sm font-semibold underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4">事業紹介資料をダウンロード</Link>
         </section>
         <aside aria-labelledby="related-title" className="mt-16 border-t border-neutral-200 pt-8">

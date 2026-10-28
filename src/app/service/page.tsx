@@ -73,25 +73,12 @@ const SERVICES: Service[] = [
   },
   {
     no: "04",
-    title: "AI内製化研修",
-    href: "/training",
-    lead:
-      "AIを使って社内システムを自社で作れる人材を育てる実践型プログラム。研修が終わるときには、動く社内システムが1つ完成しています。",
-    points: [
-      { label: "対象", value: "非エンジニアも可" },
-      { label: "標準", value: "全10回・計20時間〜" },
-      { label: "助成金", value: "対象となる場合あり" },
-    ],
-    bullets: [
-      "基礎：生成AIの全体像・限界・プロンプト設計",
-      "実装：ノーコード＋AIでの社内ツール構築",
-      "定着：社内展開・レビュー運用・改善サイクル",
-      "Claude / ChatGPT / Gemini / Copilot から選択",
-      "助成金の制度選定〜申請サポート",
-      "研修後のアフターフォロー",
-    ],
-    forWhom: "外注依存から脱したい方、社内に作れる人を増やしたい方",
-    docKey: "training",
+    title: "Codex研修",
+    href: "/training/codex",
+    lead: "要件整理から実装、テスト、レビュー、チームへの引き継ぎまで、自社の仕事を題材に学ぶ法人向け実践研修です。",
+    points: [{ label: "費用", value: "個別お見積もり" }],
+    bullets: ["自社の実務課題で試作・確認", "回数・内容・実施形式は個別に相談"],
+    forWhom: "Codexをチームの実務に活用したい方",
   },
   {
     no: "05",
@@ -182,7 +169,7 @@ export default function ServicePage() {
                     </p>
 
                     <div className="flex flex-wrap items-center gap-5">
-                      <Link
+                      <Link data-ui-button="filled"
                         href={s.href}
                         className="inline-flex items-center gap-2 bg-neutral-900 px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-neutral-800"
                       >
@@ -236,7 +223,7 @@ export default function ServicePage() {
           <p className="mb-10 text-[15px] leading-[1.9] text-white/60">
             課題を伺ったうえで、開発・レンタル・研修のどれで解くのが早いかをお伝えします。初回のご相談は無料です。
           </p>
-          <a
+          <a data-ui-button="filled"
             href={BOOKING_URL}
             target="_blank"
             rel="noopener noreferrer"

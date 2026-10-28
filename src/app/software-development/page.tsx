@@ -348,7 +348,7 @@ export default function SoftwareDevelopmentPage() {
                       </li>
                     ))}
                   </ul>
-                  <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="block text-center text-sm font-semibold py-2 rounded-lg transition-all duration-300 mt-auto bg-cta text-white hover:bg-cta-hover">{t.planCta}</a>
+                  <a data-ui-button="filled" href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="block text-center text-sm font-semibold py-2 rounded-lg transition-all duration-300 mt-auto bg-cta text-white hover:bg-cta-hover">{t.planCta}</a>
                 <a href={`/contact?service=software-development&plan=${["prototype", "system", "operations"][i]}`} className="mt-3 block py-2 text-center text-sm font-semibold underline underline-offset-4">{lang === "ja" ? "文章で見積相談する" : "Request a quote in writing"}</a>
                 </div>
               </Reveal>
@@ -544,7 +544,7 @@ export default function SoftwareDevelopmentPage() {
             <Label>{t.ctaKicker}</Label>
             <h2 className="text-3xl font-bold text-gray-900 mb-4">{t.ctaTitle}</h2>
             <p className="text-base text-gray-600 leading-relaxed mb-10">{t.ctaDesc}</p>
-            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="rounded-lg bg-cta text-white font-semibold px-10 py-4 hover:bg-cta-hover transition-colors duration-300 inline-block">{t.ctaButton}</a>
+            <a data-ui-button="filled" href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="rounded-lg bg-cta text-white font-semibold px-10 py-4 hover:bg-cta-hover transition-colors duration-300 inline-block">{t.ctaButton}</a>
           </Reveal>
         </div>
       </section>

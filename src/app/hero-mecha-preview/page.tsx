@@ -39,7 +39,7 @@ export default function HeroMechaPreviewPage() {
             AI顧問・研修・コンサルからWeb制作まで、戦略から実装まで支援します。
           </p>
           <div className="flex items-center justify-center gap-4">
-            <Link
+            <Link data-ui-button="filled"
               href="/contact"
               className="rounded-lg bg-neutral-900 text-white font-semibold px-8 py-3.5 hover:bg-neutral-800 transition-colors duration-300"
             >

@@ -85,7 +85,7 @@ export default function DownloadRequestForm({ decks, initialDocument }: Props) {
         </p>
 
         {result.zipUrl && (
-          <a
+          <a data-ui-button="filled"
             href={result.zipUrl}
             download
             className="mt-5 inline-flex min-h-[54px] w-full items-center justify-center gap-2 rounded-md bg-cta px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-cta-hover sm:w-auto sm:px-10"
@@ -101,7 +101,7 @@ export default function DownloadRequestForm({ decks, initialDocument }: Props) {
           {result.files.map((f) => (
             <li key={f.key} className="flex flex-wrap items-center justify-between gap-3 py-3">
               <span className="text-sm text-neutral-900">{f.title}</span>
-              <a
+              <a data-ui-button="control"
                 href={f.url}
                 download
                 className="inline-flex items-center gap-1.5 rounded-md border border-neutral-300 px-4 py-2 text-xs font-bold text-neutral-900 transition-colors hover:border-neutral-900"
@@ -194,7 +194,7 @@ export default function DownloadRequestForm({ decks, initialDocument }: Props) {
         ))}
       </div>
 
-      <button
+      <button data-ui-button="filled"
         type="submit"
         disabled={loading}
         className="mt-6 inline-flex min-h-[54px] w-full items-center justify-center whitespace-nowrap rounded-lg bg-cta px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-cta-hover disabled:cursor-wait disabled:opacity-60"

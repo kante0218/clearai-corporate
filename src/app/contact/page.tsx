@@ -129,7 +129,7 @@ const CONTACT_SERVICES: { key: ServiceKey; ja: string; en: string }[] = [
   { key: "robot-rental", ja: "ロボットレンタル", en: "Robot Rental" },
   { key: "aio", ja: "AIO（AI検索最適化）", en: "AIO (AI Search Optimization)" },
   { key: "consulting", ja: "AI導入コンサルティング", en: "AI Adoption Consulting" },
-  { key: "education", ja: "AI内製化研修", en: "In-house AI Training" },
+  { key: "education", ja: "Codex研修", en: "Codex Training" },
   { key: "website", ja: "ホームページ制作", en: "Website Production" },
   { key: "sns", ja: "SNS運用代行", en: "SNS Management" },
   { key: "meo", ja: "Googleマップ・MEO支援", en: "Google Maps / MEO Support" },
@@ -324,7 +324,7 @@ function ContactPageInner() {
               <p className="text-sm text-gray-600 leading-relaxed max-w-md mx-auto mb-8">
                 {t.successBody}
               </p>
-              <button type="button" onClick={handleReset}
+              <button data-ui-button="control" type="button" onClick={handleReset}
                 className="rounded-lg border border-gray-300 text-gray-700 font-semibold px-6 py-3 hover:border-gray-400 hover:bg-gray-50 transition-all duration-200">
                 {t.successReset}
               </button>
@@ -405,7 +405,7 @@ function ContactPageInner() {
               <p className="text-sm leading-7 text-gray-600">{lang === "ja" ? "送信後は画面の受付完了表示をご確認ください。受付確認メールの自動送信はありません。2営業日を過ぎても返信がない場合は、迷惑メールをご確認のうえ info@clearai.jp へご連絡ください。" : "Check the on-screen confirmation after sending. No automatic receipt email is sent. If no reply arrives within two business days, check your spam folder and contact info@clearai.jp."}</p>
               {/* Submit (full width) */}
               <div className="pt-2 space-y-4">
-                <button type="submit" disabled={status === "submitting"}
+                <button data-ui-button="filled" type="submit" disabled={status === "submitting"}
                   className={`w-full inline-flex items-center justify-center gap-2 rounded-lg bg-neutral-900 text-white font-semibold px-10 py-4 hover:bg-neutral-800 active:bg-neutral-900 transition-all duration-200 shadow-sm hover:shadow-md ${
                     status === "submitting" ? "opacity-60 cursor-not-allowed" : ""
                   }`}>

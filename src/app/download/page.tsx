@@ -68,23 +68,6 @@ const DECKS: Deck[] = [
     href: "/robot-rental",
   },
   {
-    key: "training",
-    no: "04",
-    title: "AI内製化研修 事業紹介資料",
-    lead:
-      "社内システムを自社で作れる状態をつくる研修について。カリキュラム、料金プラン、そして人材開発支援助成金の要件と申請フローをまとめています。",
-    contents: [
-      "外注依存の構造と、内製化で戻せる範囲",
-      "カリキュラム（基礎・実装・定着）",
-      "研修で作る成果物の例",
-      "料金プラン3種",
-      "人材開発支援助成金の仕組みと申請フロー",
-      "受講の流れとアフターフォロー",
-    ],
-    audience: "社内にAIで開発できる人材を増やしたい方、助成金の活用を検討中の方",
-    href: "/training",
-  },
-  {
     key: "aio",
     no: "05",
     title: "AIO・AI検索最適化 事業紹介資料",
@@ -214,7 +197,7 @@ export default async function DownloadPage({ searchParams }: { searchParams: Pro
             課題が具体的に決まっている場合は、30分お話しいただくほうが早く進みます。初回のご相談は無料です。
           </p>
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <a
+            <a data-ui-button="filled"
               href={BOOKING_URL}
               target="_blank"
               rel="noopener noreferrer"

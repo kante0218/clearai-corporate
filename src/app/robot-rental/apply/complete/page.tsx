@@ -71,10 +71,10 @@ export default function RentalApplicationCompletePage() {
         )}
 
         <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-          {resumeUrl && <a href={resumeUrl} className="rounded-md bg-[#12314b] px-6 py-3 text-sm font-bold text-white">本人確認を再開する</a>}
-          {checkoutUrl && <a href={checkoutUrl} className="rounded-md bg-cta px-6 py-3 text-sm font-bold text-white">Stripeで決済へ進む</a>}
-          {status === "timeout" && <button type="button" onClick={() => window.location.reload()} className="rounded-md bg-[#12314b] px-6 py-3 text-sm font-bold text-white">結果をもう一度確認</button>}
-          <Link href="/robot-rental" className="rounded-md border border-slate-300 px-6 py-3 text-sm font-bold text-slate-700">ロボットレンタルへ戻る</Link>
+          {resumeUrl && <a data-ui-button="filled" href={resumeUrl} className="rounded-md bg-[#12314b] px-6 py-3 text-sm font-bold text-white">本人確認を再開する</a>}
+          {checkoutUrl && <a data-ui-button="filled" href={checkoutUrl} className="rounded-md bg-cta px-6 py-3 text-sm font-bold text-white">Stripeで決済へ進む</a>}
+          {status === "timeout" && <button data-ui-button="filled" type="button" onClick={() => window.location.reload()} className="rounded-md bg-[#12314b] px-6 py-3 text-sm font-bold text-white">結果をもう一度確認</button>}
+          <Link data-ui-button="control" href="/robot-rental" className="rounded-md border border-slate-300 px-6 py-3 text-sm font-bold text-slate-700">ロボットレンタルへ戻る</Link>
         </div>
       </section>
     </main>
