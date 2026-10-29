@@ -251,7 +251,7 @@ export default function Header() {
                 <LanguageToggle variant="mobile" />
               </div>
               <div className="site-menu-actions mt-4 space-y-3">
-                <Link data-ui-button="menu" href="/contact" onClick={() => setIsOpen(false)} className="flex min-h-11 items-center justify-center rounded-lg border border-neutral-300 px-4 py-3.5 text-sm font-semibold text-neutral-900"><span className="ui-button-label">{lang === "ja" ? "文章で相談する" : "Ask in writing"}</span></Link>
+                <Link data-ui-button="menu" href="/contact" onClick={() => setIsOpen(false)} className="flex min-h-11 items-center justify-center rounded-lg border border-neutral-300 px-4 py-3.5 text-sm font-semibold text-neutral-900"><span className="ui-button-label">{lang === "ja" ? "役員へ無料相談する" : "Free consultation with an executive"}</span></Link>
                 <a data-ui-button="menu" href={BOOKING_URL} target="_blank" rel="noopener noreferrer" onClick={() => setIsOpen(false)}
                   className={`block text-center px-4 py-3.5 rounded-lg text-sm font-semibold transition-colors min-h-[44px] flex items-center justify-center ${contactFilledClass}`}><span className="ui-button-label">{lang === "ja" ? "代表と面談" : "Meet founder"}</span></a>
                 <Link data-ui-button="menu" href="/download" onClick={() => setIsOpen(false)}

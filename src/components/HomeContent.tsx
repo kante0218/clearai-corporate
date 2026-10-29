@@ -1,5 +1,6 @@
 "use client";
 import LocalizedContent from "@/components/LocalizedContent";
+import IbarakiAxSection from "@/components/IbarakiAxSection";
 
 
 import Link from "next/link";
@@ -76,10 +77,10 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
   ja: {
     heroChips: ["提案だけで終わらず、開発・本番運用まで一気通貫", "1部署・1業務から小さく始め、成果を見て本番へ"],
     heroTitle: (
-      <>AI・システム開発<br /><span className="inline">戦略から実装まで。</span></>
+      <>茨城から、<br /><span className="inline">企業のAI活用を実行へ。</span></>
     ),
     heroDesc: (
-      <>経営課題の整理、AI戦略、システム開発、本番運用。<br className="hidden md:inline" />現場で使われる仕組みを、ひとつのチームでつくります。</>
+      <>茨城を中心に、企業のAXを支援するスタートアップ。<br className="hidden md:inline" />業務改善・受託開発・Codex研修で、AIを実務につなげます。</>
     ),
     heroPrimary: "代表と面談を予約する",
     heroSecondary: "会社資料を受け取る",
@@ -266,10 +267,10 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
   en: {
     heroChips: ["We own delivery through production operations", "Start with one workflow, prove value, then scale"],
     heroTitle: (
-      <>AI & software development<br /><span className="inline">from strategy to delivery.</span></>
+      <>From Ibaraki,<br /><span className="inline">put AI to work.</span></>
     ),
     heroDesc: (
-      <>Business priorities, AI strategy, system delivery, and live operations.<br className="hidden md:inline" />One accountable team builds what people actually use.</>
+      <>A startup supporting business transformation with AI, focused on Ibaraki.<br className="hidden md:inline" />Workflow improvement, custom development, and Codex training.</>
     ),
     heroPrimary: "Book a meeting with our founder",
     heroSecondary: "Get the company deck",
@@ -550,9 +551,10 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
                 <h1 data-motion="heading" className="text-[1.9rem] font-black leading-[1.15] tracking-[-0.045em] text-neutral-900 sm:text-6xl lg:text-[4.2rem] xl:text-[4.45rem] [@media(max-height:800px)_and_(min-width:768px)]:text-[3.25rem] [@media(max-height:800px)_and_(min-width:768px)]:leading-[1.04]">
                   {t.heroTitle}
                 </h1>
-                <p className="mt-5 max-w-xl text-base leading-7 text-neutral-700">{lang === "ja" ? "中小企業の業務改善に。" : "For SMEs improving everyday work. "}{t.heroDesc}</p>
+                <p className="mt-5 max-w-xl text-base leading-7 text-neutral-700">{t.heroDesc}</p>
+                <Link href="#ibaraki-ax" className="mt-4 inline-block text-sm font-semibold text-neutral-800 underline underline-offset-4">{lang === "ja" ? "茨城の企業向けAX支援を見る" : "Explore AX support for businesses in Ibaraki"}</Link>
                 <div className="mt-6 flex flex-wrap gap-3 lg:hidden">
-                  <Link data-ui-button="filled" href="/contact" className="inline-flex min-h-11 items-center rounded-md bg-cta px-6 py-3 text-sm font-bold text-white"><span className="ui-button-label">{lang === "ja" ? "文章で相談する" : "Ask in writing"}</span></Link>
+                  <Link data-ui-button="filled" href="/contact" className="inline-flex min-h-11 items-center rounded-md bg-cta px-6 py-3 text-sm font-bold text-white"><span className="ui-button-label">{lang === "ja" ? "役員へ無料相談する" : "Free consultation with an executive"}</span></Link>
                   <Link data-ui-button="filled" href="#support" className="inline-flex min-h-11 items-center rounded-md border border-neutral-400 bg-white px-6 py-3 text-sm font-bold text-neutral-900"><span className="ui-button-label">{lang === "ja" ? "支援内容を見る" : "Explore our services"}</span></Link>
                 </div>
                 <div className="mt-8 hidden lg:flex items-center gap-4">
@@ -564,6 +566,8 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
           </div>
         </div>
       </section>
+
+      <IbarakiAxSection />
 
       {/* ═══ CLIENT LOGOS ═══ */}
       {SHOW_HOME_CLIENT_LOGOS && <section className="home-client-logos pb-10 pt-2 md:pb-16 md:pt-4 bg-white border-b border-gray-100">

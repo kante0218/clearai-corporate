@@ -1,4 +1,9 @@
 {
+  "茨城から、": { "en": "From Ibaraki,", "zh-CN": "从茨城出发，", "ko": "이바라키에서," },
+  "企業のAI活用を実行へ。": { "en": "put AI to work.", "zh-CN": "让AI真正用于企业业务。", "ko": "기업의 AI 활용을 실행으로." },
+  "茨城を中心に、企業のAXを支援するスタートアップ。": { "en": "A startup supporting business transformation with AI, focused on Ibaraki.", "zh-CN": "我们是一家以茨城为中心，支持企业AI转型的初创公司。", "ko": "이바라키를 중심으로 기업의 AI 전환을 지원하는 스타트업입니다." },
+  "業務改善・受託開発・Codex研修で、AIを実務につなげます。": { "en": "Workflow improvement, custom development, and Codex training.", "zh-CN": "通过业务改善、定制开发和Codex培训，将AI应用于实际工作。", "ko": "업무 개선·맞춤 개발·Codex 교육으로 AI를 실무에 연결합니다." },
+  "茨城の企業向けAX支援を見る": { "en": "Explore AX support for businesses in Ibaraki", "zh-CN": "了解面向茨城企业的AI转型支持", "ko": "이바라키 기업을 위한 AI 전환 지원 보기" },
   "ClearAI株式会社｜AI受託開発・AIO・Codex研修": {
     "en": "ClearAI株式会社 (ClearAI)",
     "zh-CN": "ClearAI株式会社（ClearAI）",
