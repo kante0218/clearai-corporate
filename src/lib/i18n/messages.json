@@ -8208,5 +8208,15 @@
     "en": "Check the result again",
     "zh-CN": "再次确认结果",
     "ko": "결과 다시 확인"
-  }
+  },
+  "今日を選ぶ": {"en": "Select today", "zh-CN": "选择今天", "ko": "오늘 선택"},
+  "開始日を選ぶと、利用終了日まで表示されます。": {"en": "Select a start date to see your rental period.", "zh-CN": "选择开始日期后，将显示完整使用期间。", "ko": "시작일을 선택하면 이용 종료일까지 표시됩니다."},
+  "前の月": {"en": "Previous month", "zh-CN": "上个月", "ko": "이전 달"},
+  "次の月": {"en": "Next month", "zh-CN": "下个月", "ko": "다음 달"},
+  "矢印キーで日付移動、Enterで選択できます。在庫状況を示すものではありません。": {"en": "Use arrow keys to move and Enter to select. This calendar does not indicate availability.", "zh-CN": "使用方向键移动，按 Enter 选择。此日历不代表库存情况。", "ko": "방향키로 이동하고 Enter로 선택하세요. 재고 현황을 나타내는 달력이 아닙니다."},
+  "選択した利用日程": {"en": "Selected rental dates", "zh-CN": "已选使用日期", "ko": "선택한 이용 일정"},
+  "カレンダーから開始日を選んでください。": {"en": "Select your start date on the calendar.", "zh-CN": "请在日历上选择开始日期。", "ko": "달력에서 시작일을 선택하세요."},
+  "利用開始日をカレンダーから選択してください。": {"en": "Select a start date on the calendar.", "zh-CN": "请在日历上选择使用开始日期。", "ko": "달력에서 이용 시작일을 선택하세요."},
+  "利用終了日": {"en": "Rental end date", "zh-CN": "使用结束日期", "ko": "이용 종료일"},
+  "利用日程": {"en": "Rental dates", "zh-CN": "使用日期", "ko": "이용 일정"}
 }
