@@ -65,7 +65,6 @@ export default function WebsiteProductionPage() {
                   <Image src={work.src} alt="" width={work.width} height={work.height} sizes="220px" className="h-[52px] w-[220px] max-w-full object-contain object-left" />
                 </div>
                 <h3 className="text-base sm:text-lg font-bold text-neutral-900">{work.name}</h3>
-                <a href={work.href} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex min-h-11 items-center text-sm text-neutral-700 underline underline-offset-4 hover:text-neutral-900 focus-visible:outline-2 focus-visible:outline-offset-4" aria-label={`${work.name}のサイトを見る（新しいタブ）`}>サイトを見る<span className="ml-2 text-xs">（新しいタブ）</span></a>
               </article>
             ))}
           </div>
