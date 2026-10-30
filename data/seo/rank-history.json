@@ -2748,5 +2748,106 @@
       }
     ],
     "note": "既存Chromeでアカウントメニューから所有者pupila2007cante00@gmail.comへ切替え、当日のGSC閲覧成功。API ADC復旧とは扱わない。28日9/29〜10/26、監視2語クエリ・ページ完全一致、Web、全地域全デバイスでNo data。順位null、表示0クリック0。取得失敗ではなく画面の行なし、未インデックス・悪化と判定しない。画面丸め値、確定状態未確認、API finalと同列比較せず1.0を達成としない。全体126クリック3437表示CTR3.7%平均8.8位。discoveriesはフィルタなし全体271件中先頭10件で非網羅・ページ未特定。直前GSCの120クリック2882表示8.6位と比べた移動28日値であり改善効果とは扱わない。共通候補の大きな順位変動なし。TypeSafe系は10/25検索意図比較で明確な不足なしとの判断を維持、表示増だけで変更しない。レビュー期限未到来（研修11/2、メール11/3）でobserving維持。改善0件。"
+  },
+  {
+    "source": "gsc",
+    "collectionMethod": "browser-ui",
+    "capturedAt": "2026-10-30T01:20:48.250245+00:00",
+    "scope": {
+      "siteUrl": "https://clearai.jp/",
+      "device": "all",
+      "country": "all",
+      "type": "web",
+      "dataState": "ui-not-confirmed",
+      "timeZone": "America/Los_Angeles",
+      "aggregationType": "ui-not-confirmed",
+      "dimensions": "ui-query-table",
+      "queryFilter": "equals",
+      "pageFilter": "equals"
+    },
+    "range": {
+      "startDate": "2026-09-30",
+      "endDate": "2026-10-27",
+      "days": 28
+    },
+    "ranks": [
+      {
+        "keyword": "AI内製化研修",
+        "targetPath": "/training",
+        "rank": null,
+        "impressions": 0,
+        "clicks": 0
+      },
+      {
+        "keyword": "メール返信 ai",
+        "targetPath": "/blog/ai-email-reply-three-decisions",
+        "rank": null,
+        "impressions": 0,
+        "clicks": 0
+      }
+    ],
+    "discoveries": [
+      {
+        "keyword": "clearai",
+        "clicks": 10,
+        "impressions": 18,
+        "rank": 1.0
+      },
+      {
+        "keyword": "吉次優太",
+        "clicks": 5,
+        "impressions": 30,
+        "rank": 6.4
+      },
+      {
+        "keyword": "typesafe ai",
+        "clicks": 3,
+        "impressions": 197,
+        "rank": 6.0
+      },
+      {
+        "keyword": "unitree g1 レンタル",
+        "clicks": 3,
+        "impressions": 27,
+        "rank": 3.4
+      },
+      {
+        "keyword": "clear ai",
+        "clicks": 3,
+        "impressions": 12,
+        "rank": 3.8
+      },
+      {
+        "keyword": "jev 1.14",
+        "clicks": 2,
+        "impressions": 66,
+        "rank": 8.1
+      },
+      {
+        "keyword": "aiコンサル",
+        "clicks": 2,
+        "impressions": 39,
+        "rank": 19.5
+      },
+      {
+        "keyword": "unitree レンタル",
+        "clicks": 2,
+        "impressions": 28,
+        "rank": 4.1
+      },
+      {
+        "keyword": "type safe ai",
+        "clicks": 1,
+        "impressions": 40,
+        "rank": 5.8
+      },
+      {
+        "keyword": "タイプセーフai",
+        "clicks": 1,
+        "impressions": 31,
+        "rank": 4.6
+      }
+    ],
+    "note": "所有者pupila2007cante00@gmail.comのGSCブラウザ画面。28日9/30〜10/27、監視2語クエリ・ページ完全一致、Web、全地域全デバイスでNo data。rank null、表示0クリック0。未インデックス・悪化とは判定しない。画面丸め・確定状態未確認、API finalと同列比較せず1.0を達成としない。全体136クリック3716表示CTR3.7%平均8.9位。discoveriesはフィルタなし全体285件中先頭10件のみ、非網羅・ページ未特定。前回126クリック3437表示8.8位からの移動28日集計の変化であり、改善効果の判定には使わない。共通候補の大きな順位変動なし。TypeSafe系は10/25検索意図比較で明確な不足なしとの判断を維持、表示増だけで変更しない。レビュー期限未到来（研修11/2、メール11/3）でobserving維持、同一ページ再改善なし。改善0件。"
   }
 ]
