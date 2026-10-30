@@ -351,7 +351,6 @@ export default function SoftwareDevelopmentPage() {
                     ))}
                   </ul>
                   <a data-ui-button="filled" href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="block text-center text-sm font-semibold py-2 rounded-lg transition-all duration-300 mt-auto bg-cta text-white hover:bg-cta-hover"><span className="ui-button-label">{t.planCta}</span></a>
-                <a href={`/contact?service=software-development&plan=${["prototype", "system", "operations"][i]}`} className="mt-3 block py-2 text-center text-sm font-semibold underline underline-offset-4">{lang === "ja" ? "文章で見積相談する" : "Request a quote in writing"}</a>
                 </div>
               </Reveal>
             ))}
