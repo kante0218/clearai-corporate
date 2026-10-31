@@ -808,7 +808,7 @@
     line-height: 18px !important;
   }
   .primary span { font-size: 16px; }
-  .header { height: 56px; padding: 0 20px; }
+  .header { height: 56px; padding: 0 20px; overflow: visible; }
   .headerCta { font-size: 12px; }
   .menuToggle { min-height: 44px; }
   .menuToggle small { display: none; }

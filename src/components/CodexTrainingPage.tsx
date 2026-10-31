@@ -36,7 +36,7 @@ export default function CodexTrainingPage() {
       <section className={styles.hero}>
         <div className={styles.heroInner}>
           <p className={styles.eyebrow}>Codex法人研修</p>
-          <h1>Codexを、<br />日々の仕事に。</h1>
+          <h1><span className={styles.heroTitleLine}><span className={styles.codexIcon} aria-hidden="true"><Image src="/images/codex-user-icon.png" alt="" width={768} height={768} sizes="(max-width: 767px) 69px, 103px" /></span>Codexを、</span>日々の仕事に。</h1>
           <p className={styles.heroLead}>非エンジニアから開発チームまで。</p>
         </div>
         <Image className={styles.heroImage} src="/images/training-lp/hero-workflow.webp" alt="AIと協力して業務を進めるチームの説明用イラスト" width={1000} height={667} priority sizes="(max-width: 767px) 90vw, 540px" />

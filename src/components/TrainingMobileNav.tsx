@@ -21,20 +21,45 @@ export default function TrainingMobileNav() {
 
   useEffect(() => {
     if (!open) return;
+    const header = menu.current?.closest("header");
+    const background = Array.from(header?.parentElement?.children ?? []).filter(
+      (element): element is HTMLElement => element instanceof HTMLElement && element !== header,
+    );
+    const previousInert = background.map((element) => element.inert);
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    background.forEach((element) => { element.inert = true; });
+    const frame = requestAnimationFrame(() => {
+      menu.current?.querySelector<HTMLElement>("nav a[href]")?.focus();
+    });
+    const handleResize = () => {
+      if (window.innerWidth >= 768) setOpen(false);
+    };
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         setOpen(false);
-        toggle.current?.focus();
       }
+      if (event.key !== "Tab") return;
+      const items = Array.from(header?.querySelectorAll<HTMLElement>("a[href], button:not([disabled])") ?? []).filter((item) => item.offsetParent !== null);
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
+      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
     };
     const handlePointerDown = (event: PointerEvent) => {
       if (!menu.current?.contains(event.target as Node)) setOpen(false);
     };
     document.addEventListener("keydown", handleKeyDown);
     document.addEventListener("pointerdown", handlePointerDown);
+    window.addEventListener("resize", handleResize);
     return () => {
+      cancelAnimationFrame(frame);
       document.removeEventListener("keydown", handleKeyDown);
       document.removeEventListener("pointerdown", handlePointerDown);
+      window.removeEventListener("resize", handleResize);
+      document.body.style.overflow = previousOverflow;
+      background.forEach((element, index) => { element.inert = previousInert[index]; });
+      toggle.current?.focus({ preventScroll: true });
     };
   }, [open]);
 
@@ -45,7 +70,7 @@ export default function TrainingMobileNav() {
         <small>メニュー</small>
       </button>
       <nav id="training-mobile-menu" hidden={!open} className={styles.mobileMenuPanel} aria-label="モバイル研修メニュー">
-        {links.map(([href, label]) => <a data-ui-button="menu" data-ui-with-icon key={href} href={href} onClick={() => setOpen(false)}><span className="ui-button-label">{label}</span><span className="ui-button-icon" data-ui-side="end" aria-hidden="true"><span aria-hidden="true">›</span></span></a>)}
+        {links.map(([href, label]) => <a key={href} href={href} onClick={() => setOpen(false)}><span>{label}</span><span aria-hidden="true">›</span></a>)}
       </nav>
     </div>
   )}</LocalizedContent>;

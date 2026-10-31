@@ -39,28 +39,34 @@ function Label({ children }: { children: ReactNode }) {
 
 const DEVELOPMENT_AREA_IMAGES = [
   {
-    src: "/images/generated-pages/development-requirements-20260809.webp",
-    alt: { ja: "顧客の業務フローを整理するシステム開発の要件定義", en: "A requirements workshop mapping the client's business workflow" },
+    src: "/images/development-real/01-document-editor.webp",
+    label: { ja: "画面例：帯替えツール（サンプル）", en: "Screen example: document rebranding tool (sample)" },
+    alt: { ja: "サンプルの販売図面を編集する帯替えツールの実画面", en: "Actual document rebranding tool editing a sample property sheet" },
   },
   {
-    src: "/images/generated-pages/development-code-review-20260809.webp",
-    alt: { ja: "開発中のシステムを複数人でレビューするエンジニア", en: "Engineers reviewing a system together during development" },
+    src: "/images/development-real/02-automation.webp",
+    label: { ja: "画面例：Unitree Studio・ブロック編集", en: "Screen example: Unitree Studio block editor" },
+    alt: { ja: "Unitree Studioのブロック編集画面（未接続の公開デモ）", en: "Unitree Studio block editor in a disconnected public demo" },
   },
   {
-    src: "/images/generated-pages/development-release-20260809.webp",
-    alt: { ja: "システムのリリースと運用状況を確認する開発チーム", en: "A development team checking release and production operations" },
+    src: "/images/development-real/03-webapp.webp",
+    label: { ja: "画面例：Unitree Studio・Web操作", en: "Screen example: Unitree Studio web controls" },
+    alt: { ja: "Unitree StudioのWeb操作画面（未接続の公開デモ）", en: "Unitree Studio web controls in a disconnected public demo" },
   },
   {
-    src: "/images/generated-trust/dev-mobile-testing.webp",
-    alt: { ja: "モバイルとパソコンで画面設計を確認する開発作業", en: "Reviewing an application design across mobile and desktop" },
+    src: "/images/development-real/04-mobile.webp",
+    label: { ja: "画面例：ClearAI iPhoneアプリ（サンプル）", en: "Screen example: ClearAI iPhone app (sample)" },
+    alt: { ja: "ClearAIのiPhoneアプリ画面（サンプルデータ）", en: "ClearAI iPhone application with sample data" },
   },
   {
-    src: "/images/generated-trust/dev-architecture.webp",
-    alt: { ja: "既存システムとの連携構成をホワイトボードで設計する様子", en: "Designing an integration architecture with existing systems" },
+    src: "/images/development-real/05-api.webp",
+    label: { ja: "画面例：Unitree Studio・SDK連携", en: "Screen example: Unitree Studio SDK integration" },
+    alt: { ja: "UnitreeのSDKライブラリ画面", en: "Unitree SDK library screen" },
   },
   {
-    src: "/images/generated-trust/home-system-monitoring.webp",
-    alt: { ja: "本番システムの稼働状況を監視する運用担当者", en: "An operator monitoring a production system" },
+    src: "/images/development-real/06-operations.webp",
+    label: { ja: "画面例：Unitree Studio・サービス管理", en: "Screen example: Unitree Studio service management" },
+    alt: { ja: "Unitree Studioの機能・サービス管理画面（未接続）", en: "Unitree Studio feature and service management screen (disconnected)" },
   },
 ] as const;
 
@@ -373,14 +379,19 @@ export default function SoftwareDevelopmentPage() {
                 <Reveal key={`${item.num}-${i}`} delay={(i % 3) * 100} className="h-full">
                   <div className="h-full overflow-hidden rounded-lg border border-gray-200 bg-white transition-all duration-300 hover:shadow-lg">
                     {image && (
-                      <Image
-                        src={image.src}
-                        alt={image.alt[lang]}
-                        width={1536}
-                        height={1024}
-                        sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 88vw"
-                        className="aspect-[3/2] w-full object-cover"
-                      />
+                      <figure className="border-b border-gray-200 bg-neutral-50">
+                        <Image
+                          src={image.src}
+                          alt={image.alt[lang]}
+                          width={1536}
+                          height={1024}
+                          sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 88vw"
+                          className="aspect-[3/2] w-full object-contain"
+                        />
+                        <figcaption className="px-4 py-2 text-xs leading-relaxed text-gray-600">
+                          {image.label[lang]}
+                        </figcaption>
+                      </figure>
                     )}
                     <div className="p-6 lg:p-8">
                       <div className="flex items-center gap-3 mb-2">
