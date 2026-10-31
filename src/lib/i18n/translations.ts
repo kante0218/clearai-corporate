@@ -9,6 +9,7 @@
 export const header = {
   ja: {
     navAi: "AI",
+    navWebMarketing: "ウェブマーケティング事業",
     navWebsiteProduction: "ホームページ制作",
     navSoftwareDev: "システム・ソフトウェア開発",
     navSoftwareDevDesc: "AI組込の業務システムを要件定義から運用まで受託開発",
@@ -53,6 +54,7 @@ export const header = {
   },
   en: {
     navAi: "AI",
+    navWebMarketing: "Web Marketing",
     navWebsiteProduction: "Website Production",
     navSoftwareDev: "Software Development",
     navSoftwareDevDesc: "AI-embedded systems built from requirements to operations",
@@ -107,6 +109,7 @@ export const footer = {
     companyLine3: "茨城県 / 2026年4月設立",
     servicesHeading: "事業",
     services: {
+      webMarketing: "ウェブマーケティング事業",
       websiteProduction: "ホームページ制作",
       softwareDev: "システム・ソフトウェア開発",
       robotRental: "ロボットレンタル",
@@ -155,6 +158,7 @@ export const footer = {
     companyLine3: "Ibaraki, Japan / Founded April 2026",
     servicesHeading: "Services",
     services: {
+      webMarketing: "Web Marketing",
       websiteProduction: "Website Production",
       softwareDev: "System & Software Development",
       robotRental: "Robot Rental",

@@ -44,7 +44,8 @@ const COPY: Record<"ja" | "en", Copy> = {
         title: "事業",
         links: [
           { label: "システム・ソフトウェア開発", href: "/software-development" },
-          { label: "ホームページ制作", href: "/website-production" },
+          { label: "ウェブマーケティング事業", href: "/web-marketing" },
+          { label: "HP制作・改善", href: "/website-production" },
           { label: "SNS運用代行", href: "/sns-management" },
           { label: "Googleマップ・MEO支援", href: "/meo" },
           { label: "ロボットレンタル", href: "/robot-rental" },
@@ -89,7 +90,8 @@ const COPY: Record<"ja" | "en", Copy> = {
         title: "Business",
         links: [
           { label: "System & Software Development", href: "/software-development" },
-          { label: "Website Production", href: "/website-production" },
+          { label: "Web Marketing", href: "/web-marketing" },
+          { label: "Website Production & Improvement", href: "/website-production" },
           { label: "SNS Management", href: "/sns-management" },
           { label: "Google Maps / MEO Support", href: "/meo" },
           { label: "Robot Rental", href: "/robot-rental" },

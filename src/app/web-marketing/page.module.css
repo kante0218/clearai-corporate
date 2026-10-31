@@ -1,0 +1,7 @@
+/* Keep nested content sections clear of the site-wide hero spacing rules. */
+.supportGroup { padding-block: 0 !important; }
+.supportRow { padding-block: 40px !important; }
+.closing { padding-block: 40px !important; }
+@media (max-width: 767px) {
+  .supportRow { padding-block: 24px !important; }
+}

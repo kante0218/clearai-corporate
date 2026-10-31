@@ -8,6 +8,7 @@ export type InquiryType = (typeof INQUIRY_TYPES)[number];
 
 /** Service keys used via ?service= query param to pre-select inquiry context */
 export const SERVICE_KEYS = [
+  "web-marketing",
   "software-development",
   "robot-rental",
   "consulting",
@@ -24,6 +25,7 @@ export const SERVICE_KEYS = [
 export type ServiceKey = (typeof SERVICE_KEYS)[number];
 
 export const SERVICE_LABELS: Record<ServiceKey, string> = {
+  "web-marketing": "ウェブマーケティング事業",
   "software-development": "システム・ソフトウェア開発",
   "robot-rental": "ロボットレンタル",
   consulting: "AI導入コンサルティング",

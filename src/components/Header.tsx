@@ -26,11 +26,8 @@ export default function Header() {
   const navItems: NavItem[] = [
     { label: h.navSoftwareDev, href: "/software-development" },
     { label: h.navRobotRental, href: "/robot-rental" },
-    { label: h.navFde, href: "/aio" },
     { label: h.navTraining, href: "/training/codex" },
-    { label: h.navWebsiteProduction, href: "/website-production" },
-    { label: h.navSns, href: "/sns-management" },
-    { label: h.navMeo, href: "/meo" },
+    { label: h.navWebMarketing, href: "/web-marketing" },
   ];
 
   // Column stays reachable from the footer — the header slot goes to 導入実績,

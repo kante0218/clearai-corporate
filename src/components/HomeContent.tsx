@@ -1,6 +1,5 @@
 "use client";
 import LocalizedContent from "@/components/LocalizedContent";
-import IbarakiAxSection from "@/components/IbarakiAxSection";
 
 
 import Link from "next/link";
@@ -552,7 +551,6 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
                   {t.heroTitle}
                 </h1>
                 <p className="mt-5 max-w-xl text-base leading-7 text-neutral-700">{t.heroDesc}</p>
-                <Link href="#ibaraki-ax" className="mt-4 inline-block text-sm font-semibold text-neutral-800 underline underline-offset-4">{lang === "ja" ? "茨城の企業向けAX支援を見る" : "Explore AX support for businesses in Ibaraki"}</Link>
                 <div className="mt-6 flex flex-wrap gap-3 lg:hidden">
                   <Link data-ui-button="filled" href="/contact" className="inline-flex min-h-11 items-center rounded-md bg-cta px-6 py-3 text-sm font-bold text-white"><span className="ui-button-label">{lang === "ja" ? "役員へ無料相談する" : "Free consultation with an executive"}</span></Link>
                   <Link data-ui-button="filled" href="#support" className="inline-flex min-h-11 items-center rounded-md border border-neutral-400 bg-white px-6 py-3 text-sm font-bold text-neutral-900"><span className="ui-button-label">{lang === "ja" ? "支援内容を見る" : "Explore our services"}</span></Link>
@@ -567,7 +565,6 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
         </div>
       </section>
 
-      <IbarakiAxSection />
 
       {/* ═══ CLIENT LOGOS ═══ */}
       {SHOW_HOME_CLIENT_LOGOS && <section className="home-client-logos pb-10 pt-2 md:pb-16 md:pt-4 bg-white border-b border-gray-100">
@@ -583,11 +580,8 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
             {[
               { href: "/software-development", title: lang === "ja" ? "システム・ソフトウェア開発" : "System & Software Development", desc: lang === "ja" ? "繰り返しの事務作業を減らしたい。業務に合うシステムをつくり、運用まで支援します。" : "Build systems that fit your workflows, from design to operation." },
               { href: "/robot-rental", title: lang === "ja" ? "ロボットレンタル" : "Robot Rental", desc: lang === "ja" ? "実機を試してから検討したい。展示会や実証実験で使うロボットをレンタルできます。" : "Try robots for exhibitions and practical experiments." },
-              { href: "/aio", title: lang === "ja" ? "AIO（AI検索最適化）" : "AIO (AI Search Optimization)", desc: lang === "ja" ? "AI検索で会社情報を正確に理解してもらうために。情報の整理と改善、引用状況の確認を支援します。" : "Help AI search understand your company through clearer information, improvements, and citation monitoring." },
               { href: "/training/codex", title: lang === "ja" ? "Codex研修" : "Codex Training", desc: lang === "ja" ? "社員がAIを仕事に使えるようにしたい。実務に沿った研修で、社内で使う力を育てます。" : "Help your team apply AI through practical training." },
-              { href: "/website-production", title: lang === "ja" ? "ホームページ制作" : "Website Production", desc: lang === "ja" ? "事業の強みを整理し、読む人に伝わる構成・デザイン・公開まで支援します。" : "We clarify your message and support site structure, design, development, and launch." },
-              { href: "/sns-management", title: lang === "ja" ? "SNS運用代行" : "SNS Management", desc: lang === "ja" ? "発信の目的を整理し、企画・文章や画像の制作・投稿管理・分析改善を支援します。" : "Support for social media planning, content creation, publishing management, and review." },
-              { href: "/meo", title: lang === "ja" ? "Googleマップ・MEO支援" : "Google Maps / MEO Support", desc: lang === "ja" ? "店舗情報の整備、写真・投稿、口コミ返信、レポートと改善提案を、必要な範囲から支援します。" : "Support for accurate business information, photos, posts, review replies, and improvement reports." },
+              { href: "/web-marketing", title: lang === "ja" ? "ウェブマーケティング事業" : "Web Marketing", desc: lang === "ja" ? "MEO・AIO・SEO、フォーム営業自動化、SNS運用、ホームページ制作・改善を、目的に合わせて支援します。" : "Support for MEO, AIO and SEO, contact-form sales automation, social media, and website creation and improvement." },
             ].map((service) => <li data-motion="card" key={service.href} className="motion-card border-t border-neutral-200 py-5"><Link href={service.href} className={`${styles.serviceLink} font-semibold text-neutral-900 underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-4`}>{service.title}<span className="ml-2 text-sm font-medium">{lang === "ja" ? "詳しく見る →" : "Details →"}</span></Link>{service.desc && <p className="mt-3 text-sm text-neutral-600 leading-relaxed">{service.desc}</p>}</li>)}
           </ul>
         </div>
