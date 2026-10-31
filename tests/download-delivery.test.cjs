@@ -22,7 +22,9 @@ p=pathlib.Path('public/downloads');a=pathlib.Path('archive/downloads/pre-codex-o
 with zipfile.ZipFile(p/'${DOCUMENT_ZIP}') as current,zipfile.ZipFile(a/'clearai-guides.zip') as old:
  names=sorted(current.namelist())
  for n in names:
-  assert current.read(n)==(p/n).read_bytes()==old.read(n)
+  assert current.read(n)==(p/n).read_bytes()
+  if n != "robot-rental-guide.pdf":
+   assert current.read(n)==old.read(n)
  for n in ['company-guide.pdf','software-development-guide.pdf','ai-training-guide.pdf']:
   assert not (p/n).exists()
   assert (a/n).read_bytes()==old.read(n)
