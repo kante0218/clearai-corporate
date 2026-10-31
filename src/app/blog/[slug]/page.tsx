@@ -77,7 +77,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     notFound();
   }
 
-  const content = articleHtmlToc(post.content ?? "");
+  const articleRoot = parse(post.content ?? "");
+  articleRoot.querySelectorAll("figcaption").forEach((caption) => caption.remove());
+  const content = articleHtmlToc(articleRoot.toString());
   const imageRoot = parse(content.html);
   const coverInBody = Boolean(post.eyecatch && imageRoot.querySelectorAll("img").some((image) => image.getAttribute("src")?.split("?")[0] === post.eyecatch!.url.split("?")[0]));
   const imageEdits = imageRoot.querySelectorAll("img").map((image, index) => {

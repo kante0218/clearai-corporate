@@ -11,9 +11,6 @@
 .eyebrow { margin: 0 0 16px; font-size: 13px; font-weight: 600; }
 .hero h1 { margin: 0 0 14px; font-size: clamp(36px, 4.5vw, 62px); font-weight: 750; line-height: 1.2; letter-spacing: -.04em; }
 .heroLead { margin: 0 0 24px; font-size: 24px; font-weight: 650; line-height: 1.6; }
-.heroFacts { display: flex; flex-wrap: wrap; gap: 8px 20px; padding: 0; margin: 0 0 20px; list-style: none; font-size: 13px; font-weight: 600; }
-.heroFacts li::before { content: "✓"; margin-right: 6px; }
-.heroDescription { margin: 0 0 28px; color: #fff; }
 .heroImage { width: 100%; height: auto; }
 .imageNote { position: absolute; right: 32px; bottom: 18px; font-size: 11px; color: #ede7ff; }
 .section { max-width: 1140px; margin: 0 auto; padding: 64px 32px; scroll-margin-top: 92px; }
@@ -52,9 +49,10 @@
 @media(max-width: 1000px) { .desktopNav { gap: 14px; font-size: 12px; }.header { gap: 16px; padding-inline: 24px; }.hero { gap: 20px; }.heroLead { font-size: 20px; } }
 @media(max-width: 767px) {
  .page { font-size: 14px; padding-bottom: 90px; }.header { gap: 8px; min-height: 64px; padding: 8px 16px; }.header > a:first-child { margin-right: auto; }.header > a:first-child img { width: 104px; height: auto; }.desktopNav { display: none; }.header > a:last-child { padding: 10px 14px; min-height: 44px; font-size: 11px; gap: 7px; }
- .hero { grid-template-columns: 1fr; gap: 24px; padding: 40px 24px 32px; }.hero h1 { font-size: 34px !important; line-height: 1.35 !important; }.heroLead { font-size: 20px !important; line-height: 1.5; }.heroFacts { gap: 10px 16px; font-size: 12px; }.heroDescription { font-size: 14px; }.heroImage { max-width: 360px; margin: auto; }.imageNote { position: static; grid-column: 1; margin: -20px 0 0; text-align: center; }
+ .page .hero:first-of-type { padding-top: 24px !important; }
+ .hero { grid-template-columns: 1fr; gap: 24px; padding: 24px 24px 32px; }.hero h1 { font-size: 34px !important; line-height: 1.35 !important; }.heroLead { font-size: 20px !important; line-height: 1.5; }.heroImage { max-width: 360px; margin: auto; }.imageNote { position: static; grid-column: 1; margin: -20px 0 0; text-align: center; }
  .section, .tinted { padding: 44px 24px; scroll-margin-top: 80px; }.section h2 { margin-bottom: 24px; font-size: 22px; }.featureList > div { grid-template-columns: 1fr; gap: 6px; padding: 20px 0; }.featureList dt { font-size: 16px; }.lessons li { grid-template-columns: 54px 1fr; gap: 14px; padding: 20px 0; }.lessons h3 { font-size: 16px; }.usecases { grid-template-columns: 1fr; gap: 22px; }.usecases > div { padding-top: 16px; }.conditions > div { grid-template-columns: 1fr; gap: 7px; padding: 18px 0; }.contact { grid-template-columns: 1fr; gap: 32px; }
- .mobileCta { display: block; position: fixed; inset: auto 0 0; z-index: 55; padding: 12px 16px max(12px,env(safe-area-inset-bottom)); background: #fffffff5; border-top: 1px solid #e6e1ee; backdrop-filter: blur(10px); }.mobileCta .apply { display: flex; width: 100%; min-height: 52px; }.hero .apply { width: 100%; }
+ .mobileCta { display: block; position: fixed; inset: auto 0 0; z-index: 55; padding: 12px 16px max(12px,env(safe-area-inset-bottom)); background: #fffffff5; border-top: 1px solid #e6e1ee; backdrop-filter: blur(10px); }.mobileCta .apply { display: flex; width: 100%; min-height: 52px; }
 }
 @media(max-width: 360px) { .header { padding-inline: 12px; gap: 4px; }.header > a:first-child img { width: 88px; }.header > a:last-child { padding-inline: 10px; font-size: 10px; }.hero h1 { font-size: 30px !important; } }
 

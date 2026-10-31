@@ -38,9 +38,6 @@ export default function CodexTrainingPage() {
           <p className={styles.eyebrow}>Codex法人研修</p>
           <h1>Codexを、<br />日々の仕事に。</h1>
           <p className={styles.heroLead}>非エンジニアから開発チームまで。</p>
-          <ul className={styles.heroFacts}><li>実務で手を動かす</li><li>安全に使う</li><li>チームに残す</li></ul>
-          <p className={styles.heroDescription}>要件整理から試作・テスト・引き継ぎまで。<br />自社の課題を題材に学ぶ実践研修です。</p>
-          <Apply />
         </div>
         <Image className={styles.heroImage} src="/images/training-lp/hero-workflow.webp" alt="AIと協力して業務を進めるチームの説明用イラスト" width={1000} height={667} priority sizes="(max-width: 767px) 90vw, 540px" />
         <p className={styles.imageNote}>説明用イラストです。</p>
