@@ -3,7 +3,6 @@
   width: 64px;
   height: 64px;
   margin: 0 auto 24px;
-  color: #15803d;
   animation: successEnter 200ms cubic-bezier(0.2, 0, 0, 1) both;
 }
 
