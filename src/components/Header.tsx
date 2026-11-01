@@ -138,9 +138,9 @@ export default function Header() {
               <LanguageToggle variant="desktop" />
               <div className="flex items-center gap-2">
                 <Link data-ui-button="control" href="/download"
-                  className="inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-md border border-neutral-300 px-3 xl:px-4 text-[13px] xl:text-sm font-semibold text-neutral-900 hover:border-neutral-900 hover:bg-neutral-50 transition-colors"><span className="ui-button-label">{lang === "ja" ? "資料ダウンロード" : "Download"}</span></Link>
-                <a data-ui-button="filled" href={BOOKING_URL} target="_blank" rel="noopener noreferrer"
-                  className="inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-md bg-cta px-3 xl:px-4 text-[13px] xl:text-sm font-semibold text-white hover:bg-cta-hover transition-colors"><span className="ui-button-label">{lang === "ja" ? "役員へ無料相談する" : "Free consultation"}</span></a>
+                  className="inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-md border border-neutral-300 px-3 xl:px-4 text-[13px] xl:text-sm font-semibold text-neutral-900 hover:border-neutral-900 hover:bg-neutral-50 transition-colors"><span className="ui-button-label">{lang === "ja" ? "資料をダウンロード" : "Download materials"}</span></Link>
+                <Link data-ui-button="filled" href="/contact"
+                  className="inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-md bg-cta px-3 xl:px-4 text-[13px] xl:text-sm font-semibold text-white hover:bg-cta-hover transition-colors"><span className="ui-button-label">{lang === "ja" ? "問い合わせる" : "Contact us"}</span></Link>
               </div>
             </div>
 
@@ -248,7 +248,7 @@ export default function Header() {
                 <LanguageToggle variant="mobile" />
               </div>
               <div className="site-menu-actions mt-4 space-y-3">
-                <Link data-ui-button="menu" href="/contact" onClick={() => setIsOpen(false)} className="flex min-h-11 items-center justify-center rounded-lg border border-neutral-300 px-4 py-3.5 text-sm font-semibold text-neutral-900"><span className="ui-button-label">{lang === "ja" ? "役員へ無料相談する" : "Free consultation with an executive"}</span></Link>
+                <Link data-ui-button="menu" href="/contact" onClick={() => setIsOpen(false)} className="flex min-h-11 items-center justify-center rounded-lg border border-neutral-300 px-4 py-3.5 text-sm font-semibold text-neutral-900"><span className="ui-button-label">{lang === "ja" ? "問い合わせる" : "Contact us"}</span></Link>
                 <a data-ui-button="menu" href={BOOKING_URL} target="_blank" rel="noopener noreferrer" onClick={() => setIsOpen(false)}
                   className={`block text-center px-4 py-3.5 rounded-lg text-sm font-semibold transition-colors min-h-[44px] flex items-center justify-center ${contactFilledClass}`}><span className="ui-button-label">{lang === "ja" ? "代表と面談" : "Meet founder"}</span></a>
                 <Link data-ui-button="menu" href="/download" onClick={() => setIsOpen(false)}

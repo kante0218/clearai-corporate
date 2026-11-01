@@ -64,11 +64,11 @@ type HomeCopy = {
   faqLabel: string; faqTitle: string; faqDesc: string; faqCta: string;
   faq: { q: string; a: string }[];
   newsLabel: string; newsTitle: string; newsCta: string; clientLogosLabel: string;
-  casesLabel: string; casesTitle: string; casesDesc: string; casesCta: string; casesNote: string;
+  casesLabel: string; casesTitle: string; casesCta: string; casesNote: string;
   casesCardAction: string;
   cases: { category: string; industry: string; title: string; desc: string; href: string; image: { src: string; alt: string } }[];
   ctaLabel: string; ctaTitle: string; ctaDesc: ReactNode;
-  ctaPrimary: string; ctaSecondary: string;
+  ctaPrimary: string;
 };
 
 const COPY: Record<"ja" | "en", HomeCopy> = {
@@ -217,7 +217,6 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
     clientLogosLabel: "実績企業",
     casesLabel: "Case Studies",
     casesTitle: "導入実績",
-    casesDesc: "実際にお受けした案件を、課題・つくったもの・結果の順で記録しています。あえて自動化しなかった範囲も書いています。",
     casesCta: "すべての実績を見る →",
     casesNote: "※ クライアント企業名は伏せ、業種と規模のみを記載しています。写真は支援内容を伝えるためのイメージで、実際の導入先・現場を撮影したものではありません。",
     casesCardAction: "詳しく見る",
@@ -260,7 +259,6 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
     ctaTitle: "まずは、代表と話してみませんか。",
     ctaDesc: (<>AIのことがわからなくても大丈夫、<br />貴社の状況に合わせて一緒に考えます。</>),
     ctaPrimary: "代表と面談を予約する",
-    ctaSecondary: "文章で問い合わせる",
   },
   en: {
     heroChips: ["We own delivery through production operations", "Start with one workflow, prove value, then scale"],
@@ -407,7 +405,6 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
     clientLogosLabel: "Client Work",
     casesLabel: "Case Studies",
     casesTitle: "Case Studies",
-    casesDesc: "A record of projects we actually delivered — the problem, what we built, and the outcome, including the parts we deliberately left to people.",
     casesCta: "View all case studies →",
     casesNote: "Note: client names are withheld; only industry and scale are shown. Photos are illustrative and are not photographs of the actual client sites.",
     casesCardAction: "Read the case",
@@ -450,7 +447,6 @@ const COPY: Record<"ja" | "en", HomeCopy> = {
     ctaTitle: "Talk to our founder.",
     ctaDesc: (<>No AI expertise needed —<br />we&apos;ll think it through with you, tailored to your situation.</>),
     ctaPrimary: "Book a meeting with our founder",
-    ctaSecondary: "Contact us by email",
   },
 };
 
@@ -551,12 +547,12 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
                 </h1>
                 <p className="mt-5 max-w-xl text-base leading-7 text-neutral-700">{t.heroDesc}</p>
                 <div className="mt-6 flex flex-wrap gap-3 lg:hidden">
-                  <Link data-ui-button="filled" href="/contact" className="inline-flex min-h-11 items-center rounded-md bg-cta px-6 py-3 text-sm font-bold text-white"><span className="ui-button-label">{lang === "ja" ? "役員へ無料相談する" : "Free consultation with an executive"}</span></Link>
+                  <Link data-ui-button="filled" href="/contact" className="inline-flex min-h-11 items-center rounded-md bg-cta px-6 py-3 text-sm font-bold text-white"><span className="ui-button-label">{lang === "ja" ? "問い合わせる" : "Contact us"}</span></Link>
                   <Link data-ui-button="filled" href="#support" className="inline-flex min-h-11 items-center rounded-md border border-neutral-400 bg-white px-6 py-3 text-sm font-bold text-neutral-900"><span className="ui-button-label">{lang === "ja" ? "支援内容を見る" : "Explore our services"}</span></Link>
                 </div>
                 <div className="mt-8 hidden lg:flex items-center gap-4">
-                  <Link data-ui-button="filled" href="/download" className="inline-flex min-h-12 items-center justify-center rounded-md border border-neutral-300 bg-white px-6 text-sm font-semibold text-neutral-900 transition-colors hover:border-neutral-900 hover:bg-neutral-50"><span className="ui-button-label">{lang === "ja" ? "資料ダウンロード" : "Download company deck"}</span></Link>
-                  <a data-ui-button="filled" href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center justify-center rounded-md bg-cta px-6 text-sm font-semibold text-white transition-colors hover:bg-cta-hover"><span className="ui-button-label">{lang === "ja" ? "役員へ無料相談する" : "Free consultation with an executive"}</span></a>
+                  <Link data-ui-button="filled" href="/download" className="inline-flex min-h-12 items-center justify-center rounded-md border border-neutral-300 bg-white px-6 text-sm font-semibold text-neutral-900 transition-colors hover:border-neutral-900 hover:bg-neutral-50"><span className="ui-button-label">{lang === "ja" ? "資料をダウンロード" : "Download materials"}</span></Link>
+                  <Link data-ui-button="filled" href="/contact" className="inline-flex min-h-12 items-center justify-center rounded-md bg-cta px-6 text-sm font-semibold text-white transition-colors hover:bg-cta-hover"><span className="ui-button-label">{lang === "ja" ? "問い合わせる" : "Contact us"}</span></Link>
                 </div>
               </div>
             </div>
@@ -608,7 +604,6 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
               <div>
                 <SectionLabel>{t.casesLabel}</SectionLabel>
                 <h2 data-motion="heading" className={`${styles.sectionTitle} text-3xl font-bold text-gray-900 leading-tight mb-4`}>{t.casesTitle}</h2>
-                <p className="text-base text-gray-500 leading-relaxed max-w-2xl">{t.casesDesc}</p>
               </div>
               <Link
                 href="/case-studies"
@@ -692,8 +687,6 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
               <h2 data-motion="heading" className={`${styles.sectionTitle} text-3xl font-bold text-gray-900 leading-tight mb-6`}>{t.ctaTitle}</h2>
               <Image src="/images/kanki-takahashi-20261028.jpeg" alt={lang === "ja" ? "ClearAI 代表 髙橋敢輝" : "ClearAI founder Kanki Takahashi"} width={1206} height={1152} sizes="(max-width: 767px) 144px, 176px" className="mx-auto mb-4 h-36 w-36 rounded-[24px] bg-white object-contain md:h-44 md:w-44" />
               <p className="mb-3 text-sm font-semibold text-neutral-600">{lang === "ja" ? "ClearAI 代表 髙橋敢輝" : "ClearAI founder Kanki Takahashi"}</p>
-              <p className="mx-auto max-w-2xl text-base text-gray-600 leading-relaxed">{lang === "ja" ? "「この作業を減らしたい」「AIを使うべきか迷っている」「ホームページを見直したい」。いまの状況から、次に取り組むことを一緒に整理します。" : "Tell us what you want to change: repetitive work, AI adoption, or your website. We will discuss the next steps together."}</p>
-              <p className="mt-4 text-sm leading-relaxed text-neutral-600">{lang === "ja" ? "相談内容がまとまっていなくても、いま困っていることからお聞かせください。" : "You can start with the problem you are facing, even if your requirements are not yet defined."}</p>
             </div>
           </Reveal>
           <ol className="mx-auto mb-8 grid max-w-3xl gap-5 sm:grid-cols-3">
@@ -716,10 +709,6 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
                 rel="noopener noreferrer"
                 className="inline-flex w-full sm:w-auto justify-center items-center gap-2 motion-cta rounded-md bg-cta text-white text-sm font-semibold px-8 min-h-[52px] py-3.5 hover:bg-cta-hover transition-colors duration-300"
               ><span className="ui-button-label">{t.ctaPrimary}</span><span className="ui-button-icon" data-ui-side="end" aria-hidden="true"><span aria-hidden>→</span></span></a>
-              <Link data-ui-button="control"
-                href="/contact"
-                className="inline-flex w-full sm:w-auto justify-center items-center rounded-md border border-gray-200 text-gray-600 text-sm font-semibold px-8 min-h-[52px] py-3.5 hover:border-gray-400 hover:text-gray-900 transition-colors duration-300"
-              ><span className="ui-button-label">{t.ctaSecondary}</span></Link>
             </div>
           </Reveal>
         </div>
@@ -776,7 +765,7 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
       <div className="h-20 md:hidden" aria-hidden="true" />
       <nav data-mobile-cta aria-label={lang === "ja" ? "お問い合わせ" : "Contact actions"} className="fixed inset-x-0 bottom-0 z-50 border-t border-gray-200 bg-white/95 px-3 pt-2 pb-[calc(0.5rem+env(safe-area-inset-bottom))] shadow-[0_-8px_24px_rgba(15,23,42,0.10)] backdrop-blur md:hidden">
         <div className="mx-auto grid max-w-md grid-cols-2 gap-2">
-          <Link data-ui-button="control" href="/download" className="inline-flex min-h-11 items-center justify-center rounded-md border border-[#315b73] px-3 text-xs font-bold text-neutral-900"><span className="ui-button-label">{lang === "ja" ? "事業資料" : "Service guides"}</span></Link>
+          <Link data-ui-button="control" href="/download" className="inline-flex min-h-11 items-center justify-center rounded-md border border-[#315b73] px-3 text-xs font-bold text-neutral-900"><span className="ui-button-label">{lang === "ja" ? "資料をダウンロード" : "Download materials"}</span></Link>
           <a data-ui-button="filled" href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center justify-center motion-cta rounded-md bg-cta px-3 text-xs font-bold text-white"><span className="ui-button-label">{lang === "ja" ? "代表と面談を予約する" : "Meet our founder"}</span></a>
         </div>
       </nav>

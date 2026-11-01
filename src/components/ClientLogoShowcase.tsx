@@ -3,10 +3,8 @@ import LocalizedContent from "@/components/LocalizedContent";
 
 
 import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { CLIENT_LOGOS } from "@/components/ClientLogoGrid";
-import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 const homeLogos = CLIENT_LOGOS;
 
@@ -18,7 +16,6 @@ function LogoImage({ logo }: { logo: (typeof homeLogos)[number] }) {
 }
 
 export default function ClientLogoShowcase({ label }: { label: string }) {
-  const { lang } = useLanguage();
   const [flowing, setFlowing] = useState(false);
   const [hovered, setHovered] = useState(false);
   const [focused, setFocused] = useState(false);
@@ -105,10 +102,6 @@ export default function ClientLogoShowcase({ label }: { label: string }) {
             </ul>
           ))}
         </div>
-      </div>
-      <div className="mt-5 flex flex-wrap items-center justify-between gap-3 text-sm text-neutral-600">
-        <p>{lang === "ja" ? "ロゴは各社公式サイトへ進みます。支援内容の記録は導入実績をご覧ください。" : "Logos link to company websites. Read our case studies for engagement details."}</p>
-        <Link href="/case-studies" className="font-semibold text-neutral-900 underline underline-offset-4">{lang === "ja" ? "支援事例を見る" : "View case studies"}</Link>
       </div>
       <style>{`
         .logo-flow-copy { display: none; }
