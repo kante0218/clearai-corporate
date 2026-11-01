@@ -30,7 +30,6 @@ function LogoImage({ logo }: { logo: (typeof homeLogos)[number] }) {
 export default function ClientLogoShowcase({ label }: { label: string }) {
   const { lang } = useLanguage();
   const [flowing, setFlowing] = useState(false);
-  const [paused, setPaused] = useState(false);
   const [hovered, setHovered] = useState(false);
   const [focused, setFocused] = useState(false);
   const viewportRef = useRef<HTMLDivElement>(null);
@@ -81,19 +80,18 @@ export default function ClientLogoShowcase({ label }: { label: string }) {
       } else previousTime = undefined;
       frame = requestAnimationFrame(tick);
     };
-    if (!paused && !hovered && !focused) frame = requestAnimationFrame(tick);
+    if (!hovered && !focused) frame = requestAnimationFrame(tick);
     return () => {
       cancelAnimationFrame(frame);
       observer.disconnect();
       visibility.disconnect();
     };
-  }, [flowing, paused, hovered, focused]);
+  }, [flowing, hovered, focused]);
 
   return <LocalizedContent>{(
     <div className="logo-flow mt-16 border-t border-gray-200 pt-14 pb-6 md:pb-8" data-flowing={flowing}>
       <div className="mb-9 flex flex-wrap items-center justify-between gap-3">
         <p className="text-[11px] font-semibold tracking-[0.22em] uppercase text-gray-400">{label}</p>
-        {flowing && <button data-ui-button="control" type="button" aria-pressed={paused} onClick={() => setPaused(!paused)} className="logo-flow-controls min-h-11 px-3 text-sm text-neutral-600 underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4"><span className="ui-button-label">{lang === "ja" ? paused ? "ロゴの流れを再生" : "ロゴの流れを一時停止" : paused ? "Resume logo movement" : "Pause logo movement"}</span></button>}
       </div>
       <div ref={viewportRef} className="logo-flow-viewport py-2" onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)} onFocusCapture={(event) => {
         setFocused(true);
@@ -138,7 +136,7 @@ export default function ClientLogoShowcase({ label }: { label: string }) {
           .logo-flow[data-flowing="true"] .logo-flow-track { display: block; width: auto; }
           .logo-flow[data-flowing="true"] .logo-flow-group { display: grid; width: auto; gap: 2rem 1.5rem; padding-right: 0; }
           .logo-flow[data-flowing="true"] .logo-flow-group > li { width: auto; }
-          .logo-flow[data-flowing="true"] .logo-flow-copy, .logo-flow-controls { display: none; }
+          .logo-flow[data-flowing="true"] .logo-flow-copy { display: none; }
         }
       `}</style>
     </div>
