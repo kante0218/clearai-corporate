@@ -20,7 +20,12 @@ export default function MeoApplicationForm() {
   const errorRef = useRef<HTMLParagraphElement>(null);
   const [status, setStatus] = useState("idle");
   const [errors, setErrors] = useState<Record<string, string>>({});
-  useEffect(() => { if (status === "success") successRef.current?.focus(); }, [status]);
+  useEffect(() => {
+    if (status === "success") {
+      successRef.current?.focus({ preventScroll: true });
+      successRef.current?.scrollIntoView({ block: "center", behavior: "instant" });
+    }
+  }, [status]);
   useEffect(() => { if (errors._form) errorRef.current?.focus(); }, [errors]);
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
