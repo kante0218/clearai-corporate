@@ -110,7 +110,6 @@ export default function ClientLogoShowcase({ label }: { label: string }) {
               {homeLogos.map((logo) => (
                 <li key={logo.name} className="flex min-h-11 min-w-0 flex-col items-center justify-center gap-2">
                   {logo.href ? <a href={logo.href} target="_blank" rel="noopener noreferrer" tabIndex={copy ? -1 : undefined} onPointerDown={copy ? (event) => event.preventDefault() : undefined} aria-label={`${logo.name} 公式サイト`} className="flex min-h-11 w-full min-w-0 max-w-full items-center justify-center focus-visible:outline-2 focus-visible:outline-offset-4"><LogoImage logo={logo} /></a> : <LogoImage logo={logo} />}
-                  {(logo.name === "JASO" || logo.name === "お宿 いけがみ") && <Link href="/website-production#works" tabIndex={copy ? -1 : undefined} className="text-xs font-semibold text-neutral-700">{lang === "ja" ? "Web制作の実績" : "Web production work"}</Link>}
                 </li>
               ))}
             </ul>
