@@ -9,27 +9,26 @@ require.extensions['.ts'] = (module, filename) => module._compile(ts.transpileMo
 const { buildDownloadDelivery, DOCUMENT_FILES, DOCUMENT_ZIP } = require(path.resolve('src/lib/download-delivery.ts'));
 const { DOCUMENT_KEYS } = require(path.resolve('src/lib/validators.ts'));
 if (prior) require.extensions['.ts'] = prior; else delete require.extensions['.ts'];
-assert.equal(buildDownloadDelivery(['training','company','software-development','claude-code']), null);
-const all = buildDownloadDelivery([...DOCUMENT_KEYS,'training',DOCUMENT_KEYS[0]]);
-assert.equal(all.files.length, 5);
-assert.equal(all.title,'事業紹介資料 5点セット');
+assert.deepEqual(DOCUMENT_KEYS, ['meo', 'software-development', 'robot-rental', 'training']);
+assert.equal(buildDownloadDelivery(['aio', 'website-production', 'sns-management', 'company', 'claude-code']), null);
+const all = buildDownloadDelivery([...DOCUMENT_KEYS,'aio',DOCUMENT_KEYS[0]]);
+assert.equal(all.files.length, 4);
+assert.equal(all.title,'事業紹介資料 4点セット');
 assert.match(all.zipUrl,/clearai-guides-current\.zip$/);
-for(const content of [all.text,all.html,all.title,JSON.stringify(all.files)]) assert.doesNotMatch(content,/AI内製化研修|Claude Code研修|ai-training-guide|company-guide|software-development-guide|8資料|8点/);
+for (const content of [all.text, all.html, all.title, JSON.stringify(all.files)]) assert.doesNotMatch(content, /AIO・|ホームページ制作|SNS運用代行/);
 const single=buildDownloadDelivery(['meo']);assert.equal(single.zipUrl,null);assert.equal(single.files.length,1);
 const files=Object.values(DOCUMENT_FILES).sort();
 const zip=JSON.parse(execFileSync('python3',['-c',`import zipfile,json,pathlib,hashlib
-p=pathlib.Path('public/downloads');a=pathlib.Path('archive/downloads/pre-codex-only-20261028')
-with zipfile.ZipFile(p/'${DOCUMENT_ZIP}') as current,zipfile.ZipFile(a/'clearai-guides.zip') as old:
+p=pathlib.Path('public/downloads')
+with zipfile.ZipFile(p/'${DOCUMENT_ZIP}') as current:
  names=sorted(current.namelist())
  for n in names:
   assert current.read(n)==(p/n).read_bytes()
-  if n != "robot-rental-guide.pdf":
-   assert current.read(n)==old.read(n)
- for n in ['company-guide.pdf','software-development-guide.pdf','ai-training-guide.pdf']:
-  assert not (p/n).exists()
-  assert (a/n).read_bytes()==old.read(n)
- assert not (p/'clearai-guides.zip').exists()
  print(json.dumps(names))`],{encoding:'utf8'}));
 assert.deepEqual(zip,files);
 const route=fs.readFileSync('src/app/api/download/route.ts','utf8');assert.match(route,/buildDownloadDelivery\(documents\)/);assert.match(route,/text,\s*html,/);
-console.log('download delivery: 5 current PDFs, ZIP byte equality, retired files archived, receipt content and rejected retired keys passed; no sends');
+const page=fs.readFileSync('src/components/DownloadPageContent.tsx','utf8');
+assert.doesNotMatch(page, /guide-preview-title|guideMetadata|配布を停止/);
+const form=fs.readFileSync('src/components/DownloadRequestForm.tsx','utf8');
+assert.doesNotMatch(form, /d\.lead/);
+console.log('download delivery: four requested PDFs, ZIP byte equality, receipt content, rejected removed keys and simplified UI passed; no sends');

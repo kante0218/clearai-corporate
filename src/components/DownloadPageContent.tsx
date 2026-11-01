@@ -1,80 +1,18 @@
 "use client";
 import LocalizedContent from "@/components/LocalizedContent";
-import guideMetadata from "@/lib/download-guide-metadata.json";
 import Link from "next/link";
 import PageHeader from "@/components/PageHeader";
 import Image from "next/image";
 import { CLIENT_LOGOS } from "@/components/ClientLogoGrid";
 import DownloadRequestForm from "@/components/DownloadRequestForm";
-import { DOCUMENT_KEYS, type DocumentKey } from "@/lib/validators";
+import { DOCUMENT_LABELS, type DocumentKey } from "@/lib/validators";
 import { BOOKING_URL } from "@/lib/booking";
 
-type Deck = {
-  key: DocumentKey;
-  no: string;
-  title: string;
-  lead: string;
-  contents: string[];
-  audience: string;
-  /** Service page this deck belongs to, if any. */
-  href?: string;
-};
-
-const DECKS: Deck[] = [
-  {
-    key: "robot-rental",
-    no: "03",
-    title: "ロボットレンタル 事業紹介資料",
-    lead:
-      "Unitree R1・G1・Go2 のレンタルについて。ラインナップと料金、主な使用用途、過去の取引実績、レンタル方法、運営会社の概要をまとめています。",
-    contents: [
-      "ラインナップと機種ごとの特徴",
-      "Basic・R&Dの料金表（1泊2日〜4泊5日）",
-      "展示会・研究開発・巡回点検などの使用用途",
-      "過去の取引実績",
-      "申し込み・配送・レクチャー・返却の流れ",
-      "運営会社の概要",
-    ],
-    audience: "購入前の実機検証、展示会、巡回点検のPoCをご検討中の方",
-    href: "/robot-rental",
-  },
-  {
-    key: "aio",
-    no: "05",
-    title: "AIO・AI検索最適化 事業紹介資料",
-    lead: "AI検索で自社の情報が理解・参照される状態を整える支援について。対象質問の整理、文章・サイト構造の改善、公開後の確認方法をまとめています。",
-    contents: ["対象質問と一次情報の整理", "文章・構造の改善と支援の進め方", "言及・引用・流入を分けた確認方法", "見積り前の確認事項と保証しない事項"],
-    audience: "AI検索での情報の伝わり方を改善したい方",
-    href: "/aio",
-  },
-  {
-    key: "website-production",
-    no: "06",
-    title: "ホームページ制作 事業紹介資料",
-    lead: "会社やサービスの強みを伝え、問い合わせにつなげるホームページ制作について。企画から制作・公開までの流れと、費用を決める条件をまとめています。",
-    contents: ["目的と掲載情報の整理", "企画・デザイン・実装・公開の流れ", "対応範囲と納品・運用の確認事項", "費用の考え方と相談前のチェックリスト"],
-    audience: "新規制作やサイトのリニューアルを検討中の方",
-    href: "/website-production",
-  },
-  {
-    key: "sns-management",
-    no: "07",
-    title: "SNS運用代行 事業紹介資料",
-    lead: "企業のSNS発信を継続するための運用支援について。方針づくり、投稿制作、承認の手順、振り返りと改善の進め方をまとめています。",
-    contents: ["目的・媒体・対象者の整理", "投稿企画と文章・画像の制作", "公開前の確認と運用体制", "レポート・費用・対応範囲の確認事項"],
-    audience: "SNSの発信方針や日々の運用に課題がある方",
-    href: "/sns-management",
-  },
-  {
-    key: "meo",
-    no: "08",
-    title: "Googleマップ・MEO支援 事業紹介資料",
-    lead: "Googleビジネスプロフィールの情報整備と日々の運用について。店舗情報、写真・投稿、口コミ返信、振り返りの進め方をまとめています。",
-    contents: ["店舗情報の整備と運用内容", "写真・投稿・口コミ返信の確認手順", "レポートと改善の進め方", "費用・対応範囲と運用上の注意点"],
-    audience: "店舗の情報更新やGoogleマップでの案内を改善したい方",
-    href: "/meo",
-  },
-];
+const DECKS = (["meo", "software-development", "robot-rental", "training"] as const).map((key, index) => ({
+  key,
+  no: String(index + 1).padStart(2, "0"),
+  title: DOCUMENT_LABELS[key],
+}));
 
 export default function DownloadPageContent({ initialDocument }: { initialDocument?: DocumentKey }) {
   return <LocalizedContent>{(
@@ -86,7 +24,6 @@ export default function DownloadPageContent({ initialDocument }: { initialDocume
         crumbs={[{ label: "ホーム", href: "/" }, { label: "資料請求" }]}
       />
 
-      <div className="mx-auto max-w-[1800px] px-6 pt-5 lg:px-8"><a href="#guide-preview-title" className="inline-flex min-h-11 items-center text-sm font-semibold underline underline-offset-4">入力前に資料の表紙・目次・本文冒頭をプレビューする</a></div>
       {/* 資料選択 ＋ 実績（実績は全幅の帯をやめ、左に小さく添える） */}
       <section className="py-14 lg:py-20 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
@@ -119,22 +56,12 @@ export default function DownloadPageContent({ initialDocument }: { initialDocume
 
             {/* 右: 資料の選択とフォーム */}
             <div>
-              <p className="mb-6 text-sm leading-7 text-neutral-600">会社紹介・開発・旧研修の資料は掲載内容を見直しているため配布を停止しています。Codex研修の現在の内容・費用は<a href="/training/codex" className="underline underline-offset-4">Codex研修ページ</a>でご確認ください。</p>
               <DownloadRequestForm key={initialDocument ?? "all"} decks={DECKS} initialDocument={initialDocument} />
             </div>
           </div>
         </div>
       </section>
 
-      <section className="border-t border-neutral-200 py-10" aria-labelledby="guide-preview-title">
-        <div className="mx-auto max-w-[1800px] px-6 lg:px-8"><h2 id="guide-preview-title" className="scroll-mt-28 text-2xl font-bold text-neutral-900">資料の中身を登録せず確認する</h2><p className="mt-3 text-sm leading-7 text-neutral-600">各資料の表紙と本文冒頭をプレビューできます。ページ数とPDF作成日も比較して、必要な資料をお選びください。</p>
-          <div className="mt-6 grid gap-5 md:grid-cols-2">{DECKS.map(deck => {
-            const fileKey = `${deck.key}-guide`;
-            const info = guideMetadata[fileKey as keyof typeof guideMetadata];
-            return <details key={deck.key} className="rounded-lg border border-neutral-300 p-5"><summary className="cursor-pointer text-base font-bold text-neutral-900">{deck.title}<span className="mt-2 block text-sm font-normal text-neutral-600">全{info.pages}ページ / PDF作成日 {info.pdfCreated} / 表紙・本文を開く</span></summary><p className="my-4 text-sm leading-7 text-neutral-700">{deck.contents.join(" / ")}</p><div className="grid grid-cols-2 gap-3">{info.previews.map((image,index) => <a key={image} href={image} target="_blank" rel="noopener noreferrer" className="block border border-neutral-200"><Image src={image} alt={`${deck.title} ${index+1}ページ目`} width={700} height={1000} className="h-auto w-full" /><span className="block px-2 py-2 text-xs underline">{index+1}ページ目を拡大（別タブ）</span></a>)}</div><Link href={`/download?document=${deck.key}`} className="mt-4 inline-flex min-h-11 items-center text-sm font-semibold underline underline-offset-4">この資料を選択する</Link></details>;
-          })}</div>
-        </div>
-      </section>
       {/* Notes */}
       <section className="border-t border-gray-100 py-14 lg:py-20 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">

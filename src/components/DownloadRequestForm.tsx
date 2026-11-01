@@ -5,7 +5,7 @@ import LocalizedContent from "@/components/LocalizedContent";
 import { FormEvent, useState } from "react";
 import { DOCUMENT_KEYS, type DocumentKey } from "@/lib/validators";
 
-type Deck = { key: DocumentKey; no: string; title: string; lead: string };
+type Deck = { key: DocumentKey; no: string; title: string };
 
 type Props = { decks: Deck[]; initialDocument?: DocumentKey };
 
@@ -161,7 +161,6 @@ export default function DownloadRequestForm({ decks, initialDocument }: Props) {
                     <span className="mr-2 text-xs font-semibold text-neutral-400">{d.no}</span>
                     {d.title}
                   </span>
-                  <span className="mt-1 block text-xs leading-relaxed text-neutral-500">{d.lead}</span>
                 </span>
               </label>
             </li>

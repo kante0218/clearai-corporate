@@ -8,11 +8,7 @@ import { useEffect, useRef, useState } from "react";
 import { CLIENT_LOGOS } from "@/components/ClientLogoGrid";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
-const homeLogos = [
-  ...CLIENT_LOGOS,
-  { name: "かんでんエンジニアリング", href: "https://www.kanden-eng.co.jp/", src: "/images/clients/kanden-engineering.png", width: 696, height: 391 },
-  { name: "デジタル情報戦略室", href: "https://disr-inc.com/", src: "/images/clients/digital-strategy-room.png", width: 659, height: 465 },
-];
+const homeLogos = CLIENT_LOGOS;
 
 function LogoImage({ logo }: { logo: (typeof homeLogos)[number] }) {
   if (logo.src === "/images/clients/kanden-engineering.png") {

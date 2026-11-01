@@ -42,20 +42,18 @@ export const SERVICE_LABELS: Record<ServiceKey, string> = {
 
 /** Downloadable business decks sent directly from /download. */
 export const DOCUMENT_KEYS = [
-  "robot-rental",
-  "aio",
-  "website-production",
-  "sns-management",
   "meo",
+  "software-development",
+  "robot-rental",
+  "training",
 ] as const;
 export type DocumentKey = (typeof DOCUMENT_KEYS)[number];
 
 export const DOCUMENT_LABELS: Record<DocumentKey, string> = {
+  meo: "MEO 事業紹介資料",
+  "software-development": "受託開発 事業紹介資料",
   "robot-rental": "ロボットレンタル 事業紹介資料",
-  aio: "AIO・AI検索最適化 事業紹介資料",
-  "website-production": "ホームページ制作 事業紹介資料",
-  "sns-management": "SNS運用代行 事業紹介資料",
-  meo: "Googleマップ・MEO支援 事業紹介資料",
+  training: "AI研修 事業紹介資料",
 };
 
 export interface ContactFormData {

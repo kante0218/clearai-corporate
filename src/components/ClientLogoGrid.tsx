@@ -20,6 +20,8 @@ export const CLIENT_LOGOS = [
   { name: "ICONIQ", href: "https://www.iconiq.com/", src: "/images/clients/iconiq.png", width: 1436, height: 304 },
   { name: "明成", href: "https://meiseicorp.co.jp/", src: "/images/clients/meisei.png", width: 968, height: 452 },
   { name: "お宿 いけがみ", href: "https://ikegamiryokan.jp/", src: "/images/clients/oyado-ikegami.png", width: 460, height: 98 },
+  { name: "かんでんエンジニアリング", href: "https://www.kanden-eng.co.jp/", src: "/images/clients/kanden-engineering.png", width: 696, height: 391 },
+  { name: "デジタル情報戦略室", href: "https://disr-inc.com/", src: "/images/clients/digital-strategy-room.png", width: 659, height: 465 },
 ];
 
 export default function ClientLogoGrid({
