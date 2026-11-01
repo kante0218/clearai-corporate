@@ -2,7 +2,9 @@
 import LocalizedContent from "@/components/LocalizedContent";
 
 import Link from "next/link";
-import PageHeader from "@/components/PageHeader";
+import Image from "next/image";
+import { BOOKING_LINK_PROPS } from "@/lib/booking";
+import styles from "./MeoContent.module.css";
 
 const description = "ClearAIのGoogleマップ・MEO支援。Googleビジネスプロフィールの店舗情報整備、写真・投稿の運用、口コミ返信、レポートと改善提案を、必要な範囲からご相談いただけます。月額30,000円（税別）、最低契約期間6か月。順位や売上は保証していません。";
 
@@ -26,42 +28,57 @@ const faqs = [
 ];
 
 export default function MeoContent({ url }: { url: string }) {
-  return <LocalizedContent>{<div className="bg-white text-neutral-900">
-    <PageHeader kicker="Google Business Profile" title="Googleマップ・MEO支援" description="探している人に、店舗の正しい情報を。Googleビジネスプロフィールの整備と日々の運用を、必要な範囲から支援します。" crumbs={[{ label: "ホーム", href: "/" }, { label: "事業内容", href: "/service" }, { label: "Googleマップ・MEO支援" }]} />
-    <div className="mx-auto max-w-[1800px] px-6 py-10 lg:px-8 lg:py-16">
-      <div className="mb-12 max-w-3xl">
-        <p className="text-sm leading-[1.9] text-neutral-600 sm:text-base">営業時間が古いまま、写真を更新できていない、口コミへの返信に迷っている。そんな日々の課題を整理し、お客様が来店や問い合わせを検討しやすい情報へ整えます。</p>
-        <Link data-ui-button="filled" href="/meo/apply" className="mt-6 inline-flex min-h-12 items-center justify-center rounded-lg bg-cta px-7 py-3.5 text-sm font-semibold text-white hover:bg-cta-hover focus-visible:outline-2 focus-visible:outline-offset-4"><span className="ui-button-label">MEO支援を申し込む</span></Link>
-        <p className="mt-3 text-xs leading-relaxed text-neutral-500">月額30,000円（税別）／33,000円（税込）、最低契約期間6か月。契約条件はお申し込み後に確認します。</p>
-      </div>
-      <section className="mb-12 lg:mb-20" aria-labelledby="offering">
-        <h2 id="offering" className="mb-6 text-xl font-bold sm:text-3xl">店舗の情報整備から、継続的な改善まで。</h2>
-        <dl className="divide-y divide-neutral-200 border-y border-neutral-200">{offerings.map(([title, body]) => <div key={title} className="grid gap-3 py-6 md:grid-cols-[minmax(200px,1fr)_2fr] md:gap-10 md:py-8"><dt className="text-base font-bold sm:text-lg">{title}</dt><dd className="max-w-3xl text-sm leading-[1.9] text-neutral-600">{body}</dd></div>)}</dl>
-      </section>
-      <section className="mb-12 lg:mb-20" aria-labelledby="process">
-        <h2 id="process" className="mb-6 text-xl font-bold sm:text-3xl">ご相談から運用まで</h2>
-        <ol className="max-w-4xl space-y-6">{steps.map(([title, body], i) => <li key={title} className="flex gap-4"><span aria-hidden="true" className="pt-0.5 text-sm font-semibold text-neutral-500">0{i + 1}</span><div><h3 className="mb-2 text-base font-bold">{title}</h3><p className="text-sm leading-[1.9] text-neutral-600">{body}</p></div></li>)}</ol>
-      </section>
-      <section className="mb-12 lg:mb-20" aria-labelledby="policy">
-        <h2 id="policy" className="mb-5 text-xl font-bold sm:text-3xl">規約に沿った、無理のない運用を。</h2>
-        <p className="max-w-3xl text-sm leading-[1.9] text-neutral-600">実際の営業情報とお客様の体験を大切にします。口コミの購入や評価の操作は行わず、Googleのガイドラインに沿って支援します。プロフィールの対象可否や利用できる機能を確認し、公開内容と対応範囲は店舗側と相談して決めます。</p>
-        <p className="mt-4 max-w-3xl text-sm leading-[1.9] text-neutral-600">検索結果の順位や売上をお約束するサービスではありません。ClearAIはGoogleとは独立した事業者です。</p>
-        <ul className="mt-5 space-y-2 text-sm text-neutral-600">
-          <li><a className="inline-block py-2 underline underline-offset-4" href="https://support.google.com/business/answer/7091?hl=ja" target="_blank" rel="noopener noreferrer">Google公式：ローカル検索結果のランキングを改善する方法（外部サイト）</a></li>
-          <li><a className="inline-block py-2 underline underline-offset-4" href="https://support.google.com/contributionpolicy/answer/7400114?hl=ja" target="_blank" rel="noopener noreferrer">Google公式：マップ投稿コンテンツのポリシー（外部サイト）</a></li>
-        </ul>
-      </section>
-      <section className="mb-12 lg:mb-20" aria-labelledby="faq">
-        <h2 id="faq" className="mb-6 text-xl font-bold sm:text-3xl">よくあるご質問</h2>
-        <div className="divide-y divide-neutral-200 border-y border-neutral-200">{faqs.map(([question, answer]) => <details key={question} className="py-5"><summary className="cursor-pointer text-sm font-semibold leading-relaxed focus-visible:outline-2 focus-visible:outline-offset-4">{question}</summary><p className="max-w-3xl pt-4 text-sm leading-[1.9] text-neutral-600">{answer}</p></details>)}</div>
-      </section>
-      <section className="border-t border-neutral-200 pt-8">
-        <h2 className="mb-4 text-xl font-bold sm:text-3xl">いまの店舗情報から、一緒に見直しませんか。</h2>
-        <p className="mb-6 max-w-3xl text-sm leading-[1.9] text-neutral-600">店舗の業種・地域と、更新や運用でお困りのことをお知らせください。プロフィールがまだない場合も、対応できる範囲からご案内します。</p>
-        <Link data-ui-button="filled" href="/meo/apply" className="inline-flex min-h-12 items-center justify-center rounded-lg bg-cta px-7 py-3.5 text-sm font-semibold text-white hover:bg-cta-hover focus-visible:outline-2 focus-visible:outline-offset-4"><span className="ui-button-label">MEO支援を申し込む</span></Link>
-          <Link href="/download?document=meo" className="inline-flex min-h-12 items-center py-3 text-sm font-semibold underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4">事業紹介資料をダウンロード</Link>
-      </section>
+  return <LocalizedContent><div className={styles.page}>
+    <div className={styles.serviceNav}>
+      <a href="#meo-top" aria-label="meo ページの先頭へ" className={styles.brand}><Image src="/images/meo/meo-logo.png" alt="meo" width={2008} height={783} priority /></a>
+      <nav aria-label="MEO支援のページ内メニュー"><a href="#service">支援内容</a><a href="#price">料金</a><a href="#faq">よくあるご質問</a></nav>
+      <a {...BOOKING_LINK_PROPS} className={styles.navCta}>相談を予約する</a>
     </div>
+    <section id="meo-top" className={styles.hero} aria-labelledby="meo-title">
+      <div className={styles.heroInner}>
+        <div className={styles.heroCopy}>
+          <p className={styles.intro}>Googleマップ・MEO運用支援</p>
+          <h1 id="meo-title">あなたのお店と、<br />探している人を<br />つなぐ。</h1>
+          <p className={styles.lead}>お店の魅力が、きちんと伝わるように。<br />店舗情報の整備から、写真・投稿、口コミへの返信まで。<br className={styles.desktopBreak} />日々のGoogleマップ運用を、ClearAIが支援します。</p>
+          <div className={styles.actions}><a {...BOOKING_LINK_PROPS} className={styles.primary}><span className="ui-button-label">MEOについて相談する</span></a><Link href="/download?document=meo" className={styles.secondary}>資料をダウンロード</Link></div>
+          <p className={styles.heroPrice}>月額 <strong>30,000</strong> 円（税別）から<span>税込33,000円／最低契約期間6か月</span></p>
+        </div>
+        <figure className={styles.visual}>
+          <svg viewBox="0 0 600 500" role="img" aria-labelledby="meo-map-title" className={styles.map}>
+            <title id="meo-map-title">地域の中でお店を見つけるイメージ</title>
+            <rect width="600" height="500" rx="40" fill="#eaf3dc" />
+            <path d="M425 -30C360 80 530 120 460 240S375 390 450 540" stroke="#c4e5ea" strokeWidth="58" fill="none" />
+            <g fill="#d9e9c3"><rect x="38" y="42" width="128" height="100" rx="18" /><rect x="190" y="25" width="130" height="92" rx="18" /><rect x="38" y="200" width="115" height="98" rx="18" /><rect x="190" y="175" width="130" height="90" rx="18" /><rect x="40" y="365" width="150" height="95" rx="18" /><rect x="270" y="340" width="100" height="125" rx="18" /><rect x="485" y="315" width="84" height="130" rx="18" /></g>
+            <g stroke="#fff" strokeWidth="23" fill="none"><path d="M-20 165L610 130M165 -20L190 520M-20 330L620 285M345 -20L340 520" /></g>
+            <g stroke="#e4e9db" strokeWidth="2" fill="none"><path d="M-20 165L610 130M165 -20L190 520M-20 330L620 285M345 -20L340 520" /></g>
+            <g fill="#92b777"><circle cx="83" cy="91" r="17" /><circle cx="112" cy="100" r="14" /><circle cx="278" cy="403" r="17" /><circle cx="303" cy="414" r="14" /></g>
+            <circle cx="295" cy="220" r="70" fill="#cbe94d" fillOpacity=".35" />
+            <path d="M295 146c-29 0-51 22-51 50 0 38 51 81 51 81s51-43 51-81c0-28-22-50-51-50Z" fill="#3d652e" /><circle cx="295" cy="194" r="19" fill="#fff" />
+            <g fill="#759361"><circle cx="104" cy="270" r="8" /><circle cx="508" cy="216" r="8" /><circle cx="233" cy="398" r="8" /></g>
+          </svg>
+          <div className={styles.searchIllustration}><span aria-hidden="true">⌕</span><span>近くのお店を探す</span><span className={styles.searchDot} aria-hidden="true" /></div>
+          <div className={styles.storeIllustration}>
+            <div className={styles.storeIcon} aria-hidden="true"><svg viewBox="0 0 100 86" fill="none"><path d="M18 35h64v42H18z" fill="#fff" stroke="#345528" strokeWidth="3"/><path d="m15 35 9-23h52l9 23" fill="#cbe94d" stroke="#345528" strokeWidth="3"/><path d="M15 35c0 14 18 14 18 0 0 14 17 14 17 0 0 14 17 14 17 0 0 14 18 14 18 0" stroke="#345528" strokeWidth="3"/><path d="M28 52h19v13H28zM60 52h13v25H60z" fill="#eaf3dc" stroke="#345528" strokeWidth="3"/></svg></div>
+            <div><p className={styles.storeTitle}>街のお店</p><p>営業時間・写真・お知らせ</p><div className={styles.infoPills}><span>店舗情報</span><span>口コミ返信</span></div></div>
+          </div>
+          <figcaption>店舗情報の整備イメージ（実際のGoogleの画面ではありません）</figcaption>
+        </figure>
+      </div>
+    </section>
+    <div className={styles.promise}><p>情報を整える。魅力を伝える。運用を続ける。</p><span>お店の「いま」が伝わるGoogleマップへ。</span></div>
+    <section className={styles.section} aria-labelledby="issues-title">
+      <div className={styles.sectionHeading}><h2 id="issues-title">お店のことは、毎日忙しい。<br />マップの運用まで、手が回らない。</h2><p>そんな日々のお困りごとから、<br />一緒に整理していきます。</p></div>
+      <ul className={styles.issues}><li><span aria-hidden="true">✓</span>営業時間や店舗情報が<br />古いままになっている</li><li><span aria-hidden="true">✓</span>写真や投稿を更新する<br />時間がとれない</li><li><span aria-hidden="true">✓</span>口コミへの返信や<br />改善の進め方に迷っている</li></ul>
+    </section>
+    <section id="service" className={`${styles.section} ${styles.serviceSection}`} aria-labelledby="offering">
+      <div className={styles.sectionHeading}><h2 id="offering">店舗の情報整備から、<br />継続的な改善まで。</h2><p>必要な範囲を相談しながら、<br />お店に合った運用を支援します。</p></div>
+      <dl className={styles.offerings}>{offerings.map(([title, body], i) => <div key={title}><dt><span className={styles.serviceIcon} aria-hidden="true">{["⌖", "▧", "☷", "↗"][i]}</span><span className={styles.serviceTitle}>{title}</span></dt><dd>{body}</dd></div>)}</dl>
+    </section>
+    <section className={styles.section} aria-labelledby="process"><div className={styles.sectionHeading}><h2 id="process">まずは、お店の今を<br />聞かせてください。</h2><p>ご相談から運用開始までの流れ</p></div><ol className={styles.steps}>{steps.map(([title, body], i) => <li key={title}><span className={styles.stepNumber}>{i + 1}</span><h3>{title}</h3><p>{body}</p></li>)}</ol></section>
+    <section id="price" className={styles.priceSection} aria-labelledby="price-title"><div className={styles.priceInner}><div><h2 id="price-title">無理なく続ける、<br />店舗の運用支援。</h2><p>店舗情報・写真・投稿・口コミ返信・レポート。<br />具体的な支援範囲は、ご相談のうえ決定します。</p></div><div className={styles.priceDetail}><p>月額 <strong>30,000</strong> 円<span>（税別）</span></p><p>33,000円（税込）／最低契約期間6か月</p><p className={styles.priceNote}>対象店舗・支援範囲・開始日などの契約条件は、お申し込み後に双方で確認します。</p><Link href="/meo/apply" className={styles.primary}><span className="ui-button-label">MEO支援を申し込む</span></Link></div></div></section>
+    <section className={styles.section} aria-labelledby="policy"><div className={styles.policy}><h2 id="policy">お客様にも、お店にも。<br />誠実な運用を大切にします。</h2><div><p>実際の営業情報とお客様の体験を大切にします。口コミの購入や評価の操作は行わず、Googleのガイドラインに沿って支援します。プロフィールの対象可否や利用できる機能を確認し、公開内容と対応範囲は店舗側と相談して決めます。</p><p>検索結果の順位や売上をお約束するサービスではありません。ClearAIはGoogleとは独立した事業者です。</p><a href="https://support.google.com/business/answer/7091?hl=ja" target="_blank" rel="noopener noreferrer">Google公式：ローカル検索結果のランキングについて</a><a href="https://support.google.com/contributionpolicy/answer/7400114?hl=ja" target="_blank" rel="noopener noreferrer">Google公式：マップ投稿コンテンツのポリシー</a></div></div></section>
+    <section id="faq" className={`${styles.section} ${styles.faqSection}`} aria-labelledby="faq-title"><h2 id="faq-title">よくあるご質問</h2><div className={styles.faqs}>{faqs.map(([question, answer]) => <details key={question}><summary>{question}<span aria-hidden="true" /></summary><p>{answer}</p></details>)}</div></section>
+    <section className={styles.conversion} aria-labelledby="contact-title"><Image src="/images/meo/meo-logo.png" alt="meo" width={2008} height={783} /><h2 id="contact-title">お店の魅力を、<br />必要としている人へ。</h2><p>店舗の業種・地域と、お困りのことをお聞かせください。<br />プロフィールがまだない場合も、ご相談いただけます。</p><div className={styles.actions}><a {...BOOKING_LINK_PROPS} className={styles.primary}><span className="ui-button-label">MEOについて相談する</span></a><Link href="/download?document=meo" className={styles.secondary}>資料をダウンロード</Link></div><Link href="/meo/apply" className={styles.applyLink}>MEO支援のお申し込みはこちら</Link></section>
     <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "Service", name: "Googleマップ・MEO支援", description, url, provider: { "@type": "Organization", name: "ClearAI株式会社", url: "https://clearai.jp" } }) }} />
-  </div>}</LocalizedContent>;
+  </div></LocalizedContent>;
 }
