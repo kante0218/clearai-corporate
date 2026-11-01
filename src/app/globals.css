@@ -938,3 +938,9 @@ details[open] summary {
 .language-menu button:hover { background:#f5f5f5; }
 .language-menu button:focus-visible { outline:2px solid #222; outline-offset:-2px; background:#f5f5f5; }
 .language-select-mobile .language-menu { right:50%; transform:translateX(50%); }
+
+/* Text links keep their navigation and keyboard focus without underlines. */
+:root body a:any-link,
+:root body a:any-link :where(span, h2, h3) {
+  text-decoration-line: none;
+}

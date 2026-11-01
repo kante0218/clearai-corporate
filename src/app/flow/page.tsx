@@ -199,7 +199,7 @@ export default function FlowPage() {
       <section className="border-t border-gray-100 py-14 lg:py-20 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
           <h2 className="mb-10 text-2xl md:text-3xl font-bold text-neutral-900">その他の事業の流れ</h2>
-          <div className="mb-8 flex flex-wrap gap-4 text-sm font-semibold underline underline-offset-4"><Link href="/website-production">Web制作の進め方</Link><Link href="/sns-management">SNS運用の進め方</Link><Link href="/aio">AIO支援の進め方</Link></div>
+          <div className="mb-8 flex flex-wrap gap-4 text-sm font-semibold"><Link href="/website-production">Web制作の進め方</Link><Link href="/sns-management">SNS運用の進め方</Link><Link href="/aio">AIO支援の進め方</Link></div>
           <div className="grid gap-8 md:grid-cols-2">
             {OTHER_FLOWS.map((f) => (
               <div key={f.href} className="border border-neutral-200 p-7 md:p-8">

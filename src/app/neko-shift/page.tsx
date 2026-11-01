@@ -15,7 +15,7 @@ export default function NekoShiftPage() {
         <p className="mt-5 text-lg leading-relaxed text-gray-600">
           シフトを記録して、給与の見込みを確認。働いた時間に応じて、ねこたちが集まるiPhoneアプリです。
         </p>
-        <nav aria-label="このページの内容" className="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-sm underline underline-offset-4">
+        <nav aria-label="このページの内容" className="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-sm">
           <a href="#support">使い方・サポート</a>
           <a href="#privacy">アプリのプライバシーポリシー</a>
           <a href="#contact">お問い合わせ</a>
