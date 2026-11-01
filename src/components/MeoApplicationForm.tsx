@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { prepareMeoApplication } from "@/lib/meo-application";
 import styles from "./TrainingLeadForm.module.css";
+import animation from "./MeoApplicationForm.module.css";
 
 const fields = [
   ["company", "会社名・屋号", 200, "organization", "text"],
@@ -48,7 +49,7 @@ export default function MeoApplicationForm() {
   }
   const error = (name: string) => errors[name] ? <span id={`meo-${name}-error`} className={styles.error}>{errors[name]}</span> : null;
   const accessibility = (name: string) => ({ "aria-invalid": !!errors[name], "aria-describedby": errors[name] ? `meo-${name}-error` : undefined });
-  if (status === "success") return <div ref={successRef} className={styles.success} role="status" tabIndex={-1}><h2 className="text-xl font-bold">お申し込みありがとうございます。</h2><p>担当者より1営業日以内に、ご登録のメールアドレスへご連絡いたします。</p><a href="/meo" className="inline-flex min-h-12 items-center justify-center underline">MEO支援のページへ戻る</a></div>;
+  if (status === "success") return <div ref={successRef} className={styles.success} role="status" tabIndex={-1}><svg className={animation.successIcon} viewBox="0 0 64 64" aria-hidden="true" focusable="false"><circle cx="32" cy="32" r="29" fill="none" stroke="currentColor" strokeWidth="2" /><path className={animation.check} d="M18 32l10 10 19-21" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" pathLength="1" /></svg><h2 className="text-xl font-bold">お申し込みありがとうございます。</h2><p>担当者より1営業日以内に、ご登録のメールアドレスへご連絡いたします。</p><a href="/meo" className="inline-flex min-h-12 items-center justify-center underline">MEO支援のページへ戻る</a></div>;
   return <form className={styles.form} onSubmit={submit} aria-label="MEO支援のお申し込み" aria-busy={status === "submitting"}>
     <div className={styles.honeypot} aria-hidden="true"><label>Website<input name="website" tabIndex={-1} autoComplete="off" /></label></div>
     <fieldset className={styles.fields} disabled={status === "submitting"}>

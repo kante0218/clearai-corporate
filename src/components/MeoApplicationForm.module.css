@@ -1,0 +1,28 @@
+.successIcon {
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 24px;
+  color: #15803d;
+  animation: successEnter 200ms cubic-bezier(0.2, 0, 0, 1) both;
+}
+
+.check {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+  animation: checkDraw 400ms cubic-bezier(0.2, 0, 0, 1) both;
+}
+
+@keyframes successEnter {
+  from { transform: scale(0.96); }
+  to { transform: scale(1); }
+}
+
+@keyframes checkDraw {
+  from { stroke-dashoffset: 1; }
+  to { stroke-dashoffset: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .successIcon, .check { animation: none; }
+}
