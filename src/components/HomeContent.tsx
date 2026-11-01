@@ -19,8 +19,7 @@ import { BOOKING_URL } from "@/lib/booking";
 // Temporarily hide the homepage Products section at the owner's request (2026-10-28).
 // Keep the component and /products route so this can be restored independently.
 const SHOW_HOME_PRODUCTS = false;
-// Owner requested hiding this homepage logo band, while keeping detailed case studies.
-const SHOW_HOME_CLIENT_LOGOS = false;
+const SHOW_HOME_CLIENT_LOGOS = true;
 
 /* Keep reading content visible without scroll-triggered motion. */
 function Reveal({ children, className = "" }: { children: ReactNode; className?: string; delay?: number }) {
