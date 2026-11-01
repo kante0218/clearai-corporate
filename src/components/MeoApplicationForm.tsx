@@ -48,7 +48,7 @@ export default function MeoApplicationForm() {
   }
   const error = (name: string) => errors[name] ? <span id={`meo-${name}-error`} className={styles.error}>{errors[name]}</span> : null;
   const accessibility = (name: string) => ({ "aria-invalid": !!errors[name], "aria-describedby": errors[name] ? `meo-${name}-error` : undefined });
-  if (status === "success") return <div ref={successRef} className={styles.success} role="status" tabIndex={-1}><h2 className="text-xl font-bold">MEO支援のお申し込みを受け付けました</h2><p>ご登録のメールアドレスへ、担当者より支援範囲・費用と契約手続きについてご連絡します。</p><p>現時点では契約・お支払いは発生していません。</p><a href="/meo" className="inline-flex min-h-12 items-center justify-center underline">MEO支援のページへ戻る</a></div>;
+  if (status === "success") return <div ref={successRef} className={styles.success} role="status" tabIndex={-1}><h2 className="text-xl font-bold">お申し込みありがとうございます。</h2><p>担当者より1営業日以内に、ご登録のメールアドレスへご連絡いたします。</p><a href="/meo" className="inline-flex min-h-12 items-center justify-center underline">MEO支援のページへ戻る</a></div>;
   return <form className={styles.form} onSubmit={submit} aria-label="MEO支援のお申し込み" aria-busy={status === "submitting"}>
     <div className={styles.honeypot} aria-hidden="true"><label>Website<input name="website" tabIndex={-1} autoComplete="off" /></label></div>
     <fieldset className={styles.fields} disabled={status === "submitting"}>
