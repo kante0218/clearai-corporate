@@ -127,7 +127,7 @@ type ExtendedServiceKey = ServiceKey | "sns";
 const EXTENDED_SERVICE_KEYS: readonly string[] = [...(SERVICE_KEYS as readonly string[]), "sns"];
 
 const CONTACT_SERVICES: { key: ServiceKey; ja: string; en: string }[] = [
-  { key: "web-marketing", ja: "ウェブマーケティング事業", en: "Web Marketing" },
+  { key: "web-marketing", ja: "MEO事業", en: "MEO Services" },
   { key: "software-development", ja: "システム・ソフトウェア開発", en: "System & Software Development" },
   { key: "robot-rental", ja: "ロボットレンタル", en: "Robot Rental" },
   { key: "aio", ja: "AIO（AI検索最適化）", en: "AIO (AI Search Optimization)" },

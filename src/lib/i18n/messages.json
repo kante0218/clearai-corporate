@@ -8219,6 +8219,8 @@
   "利用開始日をカレンダーから選択してください。": {"en": "Select a start date on the calendar.", "zh-CN": "请在日历上选择使用开始日期。", "ko": "달력에서 이용 시작일을 선택하세요."},
   "利用終了日": {"en": "Rental end date", "zh-CN": "使用结束日期", "ko": "이용 종료일"},
   "利用日程": {"en": "Rental dates", "zh-CN": "使用日期", "ko": "이용 일정"},
+  "MEO事業": {"en": "MEO Services", "zh-CN": "MEO服务", "ko": "MEO 서비스"},
+  "Googleマップで店舗の情報が正しく伝わるよう、店舗情報の整備、写真・投稿、口コミ返信、分析と改善を支援します。": {"en": "We support accurate business information on Google Maps through profile updates, photos and posts, review responses, and performance analysis.", "zh-CN": "通过店铺信息整理、照片与帖子、评价回复及分析改进，帮助您在Google地图准确展示店铺信息。", "ko": "매장 정보 정비, 사진·게시물, 리뷰 답변, 분석과 개선으로 Google 지도에 정확한 매장 정보를 전달하도록 지원합니다。"},
   "ウェブマーケティング事業": {"en": "Web Marketing", "zh-CN": "网络营销业务", "ko": "웹 마케팅 사업"},
   "集客と営業の接点を、目的に合わせて整えます。": {"en": "Build customer and sales touchpoints around your goals.", "zh-CN": "围绕目标，完善获客与销售触点。", "ko": "목적에 맞게 고객 유입과 영업 접점을 정비합니다."},
   "MEO・AIO・SEO、フォーム営業自動化、SNS運用、ホームページ制作・改善。4つの支援から、いまの課題に必要な範囲を一緒に整理します。": {"en": "MEO, AIO and SEO, contact-form sales automation, social media, and website creation and improvement. Together, we identify which support your current challenges require.", "zh-CN": "涵盖MEO、AIO、SEO、表单销售自动化、社交媒体运营及网站制作与改善。我们一起从四类支持中确定当前所需的范围。", "ko": "MEO·AIO·SEO, 문의 폼 영업 자동화, SNS 운영, 홈페이지 제작·개선. 네 가지 지원 중 현재 과제에 필요한 범위를 함께 정리합니다."},

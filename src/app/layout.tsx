@@ -22,7 +22,7 @@ export const viewport: Viewport = {
 };
 
 const ogDescription =
-  "ClearAI株式会社（クリアエーアイ／読み方：クリアエーアイ）は、日本の中小企業向けにAIの受託開発・導入支援を行うAI企業です。AIを組み込んだ業務システムやAIエージェントの受託開発、AI検索で企業情報が正しく理解・参照されるためのAIO支援、社内で作れる人材を育てるCodex研修をはじめ、ロボットレンタル・ウェブマーケティング事業（MEO・AIO・SEO、フォーム営業自動化、SNS運用、HP制作・改善）まで、事業の課題に合わせて支援します。2026年4月創業、茨城県拠点、全国対応。";
+  "ClearAI株式会社（クリアエーアイ／読み方：クリアエーアイ）は、日本の中小企業向けにAIの受託開発・導入支援を行うAI企業です。AIを組み込んだ業務システムやAIエージェントの受託開発、AI検索で企業情報が正しく理解・参照されるためのAIO支援、社内で作れる人材を育てるCodex研修をはじめ、ロボットレンタル・MEO事業（店舗情報整備、写真・投稿、口コミ返信、分析改善）まで、事業の課題に合わせて支援します。2026年4月創業、茨城県拠点、全国対応。";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://clearai.jp"),
@@ -141,7 +141,7 @@ const organizationSchema = {
     "address": { "@type": "PostalAddress", "addressRegion": "茨城県", "addressCountry": "JP" },
   },
   "description":
-    "ClearAI株式会社（読み方：クリアエーアイ）は、日本の中小企業向けにAIの受託開発・導入支援を行うAI企業。AIを組み込んだ業務システムやAIエージェントの受託開発、AIO（AI検索最適化）、Codex研修をはじめ、ロボットレンタル・ウェブマーケティング事業（MEO・AIO・SEO、フォーム営業自動化、SNS運用、HP制作・改善）を提供する。",
+    "ClearAI株式会社（読み方：クリアエーアイ）は、日本の中小企業向けにAIの受託開発・導入支援を行うAI企業。AIを組み込んだ業務システムやAIエージェントの受託開発、AIO（AI検索最適化）、Codex研修をはじめ、ロボットレンタル・MEO事業（店舗情報整備、写真・投稿、口コミ返信、分析改善）を提供する。",
   "slogan": "AIで、すべてをクリアにする。",
   "founder": { "@type": "Person", "name": "髙橋 敢輝" },
   "address": {
@@ -187,7 +187,7 @@ const organizationSchema = {
     "四足歩行ロボット",
   ],
   "makesOffer": [
-    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "ウェブマーケティング事業", "url": "https://clearai.jp/web-marketing" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "MEO事業", "url": "https://clearai.jp/web-marketing" } },
     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "SNS運用代行", "url": "https://clearai.jp/sns-management" } },
     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Googleマップ・MEO支援", "url": "https://clearai.jp/meo" } },
     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "システム・ソフトウェア開発（AI受託開発）", "url": "https://clearai.jp/software-development" } },
@@ -220,7 +220,7 @@ const professionalServiceSchema = {
     "@type": "OfferCatalog",
     "name": "ClearAI サービス一覧",
     "itemListElement": [
-    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "ウェブマーケティング事業", "url": "https://clearai.jp/web-marketing" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "MEO事業", "url": "https://clearai.jp/web-marketing" } },
     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "SNS運用代行", "url": "https://clearai.jp/sns-management" } },
     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Googleマップ・MEO支援", "url": "https://clearai.jp/meo" } },
       {
@@ -262,7 +262,7 @@ const siteNavigationSchema = {
     { "@type": "SiteNavigationElement", "position": 1, "name": "システム・ソフトウェア開発", "url": "https://clearai.jp/software-development" },
     { "@type": "SiteNavigationElement", "position": 2, "name": "ロボットレンタル", "url": "https://clearai.jp/robot-rental" },
     { "@type": "SiteNavigationElement", "position": 3, "name": "Codex研修", "url": "https://clearai.jp/training/codex" },
-    { "@type": "SiteNavigationElement", "position": 4, "name": "ウェブマーケティング事業", "url": "https://clearai.jp/web-marketing" },
+    { "@type": "SiteNavigationElement", "position": 4, "name": "MEO事業", "url": "https://clearai.jp/web-marketing" },
     { "@type": "SiteNavigationElement", "position": 5, "name": "導入実績", "url": "https://clearai.jp/case-studies" },
     { "@type": "SiteNavigationElement", "position": 6, "name": "コラム", "url": "https://clearai.jp/column" },
     { "@type": "SiteNavigationElement", "position": 7, "name": "私たちについて", "url": "https://clearai.jp/about" },

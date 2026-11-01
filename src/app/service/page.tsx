@@ -70,16 +70,16 @@ const SERVICES: Service[] = [
   },
   {
     no: "04",
-    title: "ウェブマーケティング事業",
+    title: "MEO事業",
     href: "/web-marketing",
-    lead: "MEO・AIO・SEO、フォーム営業自動化、SNS運用、ホームページ制作・改善の4つを、集客や営業の目的に合わせて支援します。必要な支援だけでもご相談いただけます。",
+    lead: "Googleマップで店舗の正しい情報を届けるため、Googleビジネスプロフィールの整備と継続的な運用を支援します。",
     points: [
-      { label: "起点", value: "集客・営業の課題を整理" },
-      { label: "対応", value: "4つの支援から必要な範囲を選択" },
+      { label: "起点", value: "店舗情報・運用の課題を整理" },
+      { label: "対応", value: "店舗に必要な整備・運用を相談" },
       { label: "費用", value: "個別お見積り" },
     ],
-    bullets: ["MEO・AIO・SEO", "フォーム営業自動化", "SNS運用", "ホームページ制作・改善"],
-    forWhom: "検索・SNS・営業・ホームページを通じて、顧客との接点を整えたい方",
+    bullets: ["店舗情報の整備", "写真・投稿の運用", "口コミ返信", "分析と改善提案"],
+    forWhom: "Googleマップで店舗の情報を正しく伝え、日々の運用を整えたい方",
   },
 ];
 
@@ -187,7 +187,7 @@ export default function ServicePage() {
             どれが合うか、一緒に決めましょう。
           </h2>
           <p className="mb-10 text-[15px] leading-[1.9] text-white/60">
-            課題を伺ったうえで、開発・レンタル・研修・ウェブマーケティングのどれで取り組むかをお伝えします。初回のご相談は無料です。
+            課題を伺ったうえで、開発・レンタル・研修・MEOのどれで取り組むかをお伝えします。初回のご相談は無料です。
           </p>
           <a data-ui-with-icon data-ui-button="filled"
             href={BOOKING_URL}
