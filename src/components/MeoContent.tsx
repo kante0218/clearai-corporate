@@ -4,7 +4,7 @@ import LocalizedContent from "@/components/LocalizedContent";
 import Link from "next/link";
 import PageHeader from "@/components/PageHeader";
 
-const description = "ClearAIのGoogleマップ・MEO支援。Googleビジネスプロフィールの店舗情報整備、写真・投稿の運用、口コミ返信、レポートと改善提案を、必要な範囲からご相談いただけます。料金は要相談。順位や売上は保証していません。";
+const description = "ClearAIのGoogleマップ・MEO支援。Googleビジネスプロフィールの店舗情報整備、写真・投稿の運用、口コミ返信、レポートと改善提案を、必要な範囲からご相談いただけます。月額30,000円（税別）、最低契約期間6か月。順位や売上は保証していません。";
 
 const offerings = [
   ["店舗情報を正確に整える", "店名、住所・サービス提供地域、電話番号、営業時間・特別営業時間などを、実際の営業状況と照らし合わせて確認します。カテゴリやサービス情報も、事業の実態に合う内容へ整理します。"],
@@ -19,7 +19,7 @@ const steps = [
 ];
 const faqs = [
   ["MEO支援とは何ですか？", "GoogleマップやGoogle検索で店舗を調べる方に、正しい情報を届けるための支援です。Googleビジネスプロフィールの整備と継続的な運用を中心に進めます。"],
-  ["料金はいくらですか？", "料金は要相談です。店舗数、現在の情報、更新内容や頻度、社内で担当できる作業を伺い、支援範囲と費用を個別にお見積りします。"],
+  ["料金はいくらですか？", "月額30,000円（税別）／33,000円（税込）、最低契約期間は6か月です。対象店舗や支援範囲・開始日など、最終的な契約条件はお申し込み後にご案内し、双方で確認してから契約します。"],
   ["上位表示や売上は保証されますか？", "上位表示、特定の順位、問い合わせ数、来店数、売上は保証していません。Googleのローカル検索結果は関連性、距離、知名度などで決まり、料金を支払って順位を指定することはできません。"],
   ["口コミを増やすための依頼もできますか？", "実際のお客様の体験に基づき、評価や内容を誘導しない案内方法をご相談いただけます。架空口コミ、レビューの購入、特典と引き換えの口コミ依頼、好意的な口コミだけの選別依頼は行いません。"],
   ["Googleの公式サービスですか？", "ClearAIが提供する独立した運用支援サービスです。Googleの公式代理店や提携サービスとして提供するものではありません。"],
@@ -31,8 +31,8 @@ export default function MeoContent({ url }: { url: string }) {
     <div className="mx-auto max-w-[1800px] px-6 py-10 lg:px-8 lg:py-16">
       <div className="mb-12 max-w-3xl">
         <p className="text-sm leading-[1.9] text-neutral-600 sm:text-base">営業時間が古いまま、写真を更新できていない、口コミへの返信に迷っている。そんな日々の課題を整理し、お客様が来店や問い合わせを検討しやすい情報へ整えます。</p>
-        <Link data-ui-button="filled" href="/contact?service=meo" className="mt-6 inline-flex min-h-12 items-center justify-center rounded-lg bg-cta px-7 py-3.5 text-sm font-semibold text-white hover:bg-cta-hover focus-visible:outline-2 focus-visible:outline-offset-4"><span className="ui-button-label">MEO支援について相談する</span></Link>
-        <p className="mt-3 text-xs leading-relaxed text-neutral-500">料金は要相談。支援範囲と費用は事前に確認します。</p>
+        <Link data-ui-button="filled" href="/meo/apply" className="mt-6 inline-flex min-h-12 items-center justify-center rounded-lg bg-cta px-7 py-3.5 text-sm font-semibold text-white hover:bg-cta-hover focus-visible:outline-2 focus-visible:outline-offset-4"><span className="ui-button-label">MEO支援を申し込む</span></Link>
+        <p className="mt-3 text-xs leading-relaxed text-neutral-500">月額30,000円（税別）／33,000円（税込）、最低契約期間6か月。契約条件はお申し込み後に確認します。</p>
       </div>
       <section className="mb-12 lg:mb-20" aria-labelledby="offering">
         <h2 id="offering" className="mb-6 text-xl font-bold sm:text-3xl">店舗の情報整備から、継続的な改善まで。</h2>
@@ -58,7 +58,7 @@ export default function MeoContent({ url }: { url: string }) {
       <section className="border-t border-neutral-200 pt-8">
         <h2 className="mb-4 text-xl font-bold sm:text-3xl">いまの店舗情報から、一緒に見直しませんか。</h2>
         <p className="mb-6 max-w-3xl text-sm leading-[1.9] text-neutral-600">店舗の業種・地域と、更新や運用でお困りのことをお知らせください。プロフィールがまだない場合も、対応できる範囲からご案内します。</p>
-        <Link data-ui-button="filled" href="/contact?service=meo" className="inline-flex min-h-12 items-center justify-center rounded-lg bg-cta px-7 py-3.5 text-sm font-semibold text-white hover:bg-cta-hover focus-visible:outline-2 focus-visible:outline-offset-4"><span className="ui-button-label">MEO支援について相談する</span></Link>
+        <Link data-ui-button="filled" href="/meo/apply" className="inline-flex min-h-12 items-center justify-center rounded-lg bg-cta px-7 py-3.5 text-sm font-semibold text-white hover:bg-cta-hover focus-visible:outline-2 focus-visible:outline-offset-4"><span className="ui-button-label">MEO支援を申し込む</span></Link>
           <Link href="/download?document=meo" className="inline-flex min-h-12 items-center py-3 text-sm font-semibold underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4">事業紹介資料をダウンロード</Link>
       </section>
     </div>
