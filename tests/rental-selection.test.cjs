@@ -6,6 +6,10 @@ const filename = require('node:path').resolve('src/lib/robot-rental-order.ts');
 const compiled = new Module(filename, module);
 compiled.filename = filename;
 compiled.paths = Module._nodeModulePaths(require('node:path').dirname(filename));
+const dateFilename = require('node:path').resolve('src/app/robot-rental/apply/rental-date.ts');
+const dateModule = new Module(dateFilename, module);
+dateModule._compile(ts.transpileModule(fs.readFileSync(dateFilename, 'utf8'), { compilerOptions: { module: ts.ModuleKind.CommonJS } }).outputText, dateFilename);
+compiled.require = (id) => id === '@/app/robot-rental/apply/rental-date' ? dateModule.exports : require(id);
 compiled._compile(ts.transpileModule(fs.readFileSync(filename, 'utf8'), { compilerOptions: { module: ts.ModuleKind.CommonJS } }).outputText, filename);
 const { parseRentalSelection } = compiled.exports;
 for (const model of ['r1', 'g1', 'go2']) {

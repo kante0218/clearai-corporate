@@ -4,6 +4,7 @@ import LocalizedContent from "@/components/LocalizedContent";
 
 import { Suspense, useState, useEffect, useRef, FormEvent, type ReactNode } from "react";
 import { BOOKING_URL } from "@/lib/booking";
+import { parseRentalSelection } from "@/lib/robot-rental-order";
 import { useSearchParams } from "next/navigation";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 import { validateContactForm, SERVICE_KEYS, SERVICE_LABELS, type ServiceKey, DOCUMENT_KEYS, DOCUMENT_LABELS, type DocumentKey } from "@/lib/validators";
@@ -195,10 +196,18 @@ function ContactPageInner() {
   const requestedModel = searchParams.get("model") ?? "";
   const modelLabel = ({ r1: "Unitree R1", g1: "Unitree G1", go2: "Unitree Go2" } as Record<string, string>);
   const knownModel = Object.prototype.hasOwnProperty.call(modelLabel, requestedModel) ? modelLabel[requestedModel] : "";
-  const contextLabel = knownProduct || knownPlan || (knownModel ? `${knownModel}の空き状況・利用条件（希望日：未定）` : "");
+  const rentalSelection = searchParams.get("service") === "robot-rental" && knownModel && ["grade", "nights", "engineerPlan", "engineerHours"].some((key) => searchParams.has(key))
+    ? parseRentalSelection(Object.fromEntries(searchParams)) : null;
+  const rentalContext = knownModel ? (lang === "ja" ? `${knownModel}の空き状況・利用条件（希望日：未定）` : `${knownModel} availability and rental conditions (preferred date: undecided)`) : "";
+  const contextLabel = knownProduct || knownPlan || rentalContext;
+  const contextMessage = rentalSelection
+    ? lang === "ja"
+      ? `${rentalContext}について相談します。\nグレード：${rentalSelection.grade}\n利用期間：${rentalSelection.nights}泊${rentalSelection.nights + 1}日\n初日エンジニア帯同：${rentalSelection.engineerPlan === "day" ? "1日" : `${rentalSelection.engineerHours}時間`}\n`
+      : `I'd like to inquire about ${rentalContext}.\nGrade: ${rentalSelection.grade}\nRental duration: ${rentalSelection.nights} night(s), ${rentalSelection.nights + 1} days\nDay-one engineer support: ${rentalSelection.engineerPlan === "day" ? "Full day" : `${rentalSelection.engineerHours} hour(s)`}\n`
+    : contextLabel ? (knownProduct || knownPlan || lang === "ja" ? `${contextLabel}について相談します。\n` : `I'd like to inquire about ${contextLabel}.\n`) : "";
   useEffect(() => {
-    if (contextLabel) setForm((prev) => prev.message ? prev : { ...prev, message: `${contextLabel}について相談します。\n` });
-  }, [contextLabel]);
+    if (contextMessage) setForm((prev) => prev.message ? prev : { ...prev, message: contextMessage });
+  }, [contextMessage]);
 
   const requestedDoc: DocumentKey | "" = form.document;
 

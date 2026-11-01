@@ -4,7 +4,14 @@ const vm = require('node:vm');
 const ts = require('typescript');
 const exportsForDate = {};
 vm.runInNewContext(ts.transpileModule(fs.readFileSync('src/app/robot-rental/apply/rental-date.ts', 'utf8'), { compilerOptions: { module: ts.ModuleKind.CommonJS } }).outputText, { exports: exportsForDate });
-const { todayInJapan, addDays, moveMonth, formatRentalDate } = exportsForDate;
+const { todayInJapan, minimumRentalStartDate, addDays, moveMonth, formatRentalDate } = exportsForDate;
+for (const [now, minimum] of [
+ ['2026-10-31T14:59:59Z', '2026-12-31'],
+ ['2026-10-31T15:00:00Z', '2027-01-01'],
+ ['2026-12-31T03:00:00Z', '2027-02-28'],
+ ['2027-12-31T03:00:00Z', '2028-02-29'],
+ ['2026-07-31T03:00:00Z', '2026-09-30'],
+]) assert.equal(minimumRentalStartDate(new Date(now)), minimum);
 assert.equal(todayInJapan(new Date('2026-10-29T14:59:59Z')), '2026-10-29');
 assert.equal(todayInJapan(new Date('2026-10-29T15:00:00Z')), '2026-10-30');
 assert.equal(addDays('2026-12-31', 1), '2027-01-01');

@@ -32,7 +32,7 @@ export async function POST(request: Request) {
     }
   }
 
-  if (event.type === "checkout.session.completed") {
+  if (event.type === "checkout.session.completed" || event.type === "checkout.session.async_payment_succeeded") {
     const checkout = event.data.object as Stripe.Checkout.Session;
     if (checkout.metadata?.application_type !== "robot_rental" || checkout.payment_status !== "paid") {
       return NextResponse.json({ received: true });

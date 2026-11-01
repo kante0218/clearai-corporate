@@ -143,8 +143,6 @@ type Copy = {
   heroDesc: string;
   heroCta: string;
   heroCta2: string;
-  applyCta: string;
-  applyNote: string;
   lineupLabel: string;
   lineupTitle: string;
   lineupDesc: string;
@@ -192,8 +190,6 @@ const COPY: Record<"ja" | "en", Copy> = {
     heroDesc: "Unitree の R1・G1・Go2 を 1泊2日から全国にお貸し出しし、購入前の検証・展示・実証をそのまま現場で試していただけます。",
     heroCta: "見積・空き状況を問い合わせる",
     heroCta2: "料金表を見る",
-    applyCta: "本人確認・レンタル申込",
-    applyNote: "免許証確認後、在庫・送料を確定してStripe決済",
     lineupLabel: "Lineup",
     lineupTitle: "取扱機体",
     lineupDesc: "現在お貸し出しできるのは Unitree の3機種です。用途に迷われる場合は、想定シーンを伺ったうえで機種選定からご相談いただけます。",
@@ -307,8 +303,6 @@ const COPY: Record<"ja" | "en", Copy> = {
     heroDesc: "Rent the Unitree R1, G1, and Go2 from two days up, delivered anywhere in Japan — so you can test a robot on your own site before you buy one.",
     heroCta: "Request a quote",
     heroCta2: "See pricing",
-    applyCta: "Verify identity and apply",
-    applyNote: "Identity check first, then final pricing and Stripe payment",
     lineupLabel: "Lineup",
     lineupTitle: "Available models",
     lineupDesc: "We currently rent three Unitree models. If you aren't sure which fits, tell us the scenario and we'll help you choose.",
@@ -417,8 +411,6 @@ const COPY: Record<"ja" | "en", Copy> = {
     ctaButton: "Discuss a rental",
   },
 };
-
-const RENTAL_APPLICATION_ENABLED = process.env.NEXT_PUBLIC_ROBOT_RENTAL_APPLICATION_ENABLED === "true";
 
 function PriceTable({ model, t }: { model: Model; t: Copy }) {
   return <LocalizedContent>{(
@@ -570,14 +562,7 @@ export default function RobotRentalPage() {
                       {c.option && <p className="text-xs text-gray-500 leading-relaxed mb-3">{c.option}</p>}
 
                       <div className="mt-auto border-t border-gray-100 pt-5">
-                        {RENTAL_APPLICATION_ENABLED ? (
-                          <>
-                            <Link data-ui-button="filled" href={`/robot-rental/apply?model=${m.id}`} className="block rounded-md bg-cta px-4 py-3 text-center text-sm font-bold text-white transition-colors hover:bg-cta-hover"><span className="ui-button-label">{t.applyCta}</span></Link>
-                            <p className="mt-2 text-center text-[11px] leading-5 text-gray-500">{t.applyNote}</p>
-                          </>
-                        ) : (
-                          <a data-ui-button="control" href="#simulation" className="block rounded-md border border-gray-200 px-4 py-3 text-center text-sm font-semibold text-gray-600 transition-colors hover:border-gray-400 hover:text-gray-900"><span className="ui-button-label">{lang === "ja" ? "料金を計算する" : "Calculate price"}</span></a>
-                        )}
+                        <Link data-ui-button="filled" href={`/contact?service=robot-rental&model=${m.id}`} className="flex items-center justify-center rounded-md bg-cta px-4 py-3 text-center text-sm font-bold text-white transition-colors hover:bg-cta-hover"><span className="ui-button-label">{lang === "ja" ? "この機種について問い合わせる" : "Inquire about this model"}</span></Link>
                       </div>
                     </div>
                   </div>
@@ -631,8 +616,7 @@ export default function RobotRentalPage() {
                 <div className="flex justify-between"><dt className="text-gray-500">{lang === "ja" ? "初日エンジニア" : "Day-one engineer"}</dt><dd className="font-semibold">{yen(simEngineer)}</dd></div>
                 <div className="border-t border-gray-200 pt-4"><dt className="text-gray-500">{lang === "ja" ? "概算合計（税別）" : "Estimated total (excl. tax)"}</dt><dd className="mt-1 text-3xl font-bold text-gray-900">{yen(simSubtotal)}</dd><dd className="mt-1 text-xs text-gray-500">{lang === "ja" ? `税込 ${yen(Math.round(simSubtotal * 1.1))}・送料別` : `${yen(Math.round(simSubtotal * 1.1))} incl. tax, shipping excluded`}</dd></div>
               </dl>
-              <Link href={`/contact?service=robot-rental&model=${simModel.id}`} className="mt-4 block text-center text-sm font-semibold underline underline-offset-4">{lang === "ja" ? "空き状況・利用条件を文章で相談" : "Ask about availability and conditions"}</Link>
-              {RENTAL_APPLICATION_ENABLED && <Link data-ui-button="filled" href={`/robot-rental/apply?${new URLSearchParams({ model: simModel.id, grade: simModel.grades[simGradeIndex], nights: String(simNights), engineerPlan: simEngineerPlan, engineerHours: String(simEngineerHours) }).toString()}`} onClick={() => { const query = new URLSearchParams({ model: simModel.id, grade: simModel.grades[simGradeIndex], nights: String(simNights), engineerPlan: simEngineerPlan, engineerHours: String(simEngineerHours) }); window.history.replaceState(window.history.state, "", `/robot-rental?${query}#simulation`); }} className="mt-6 block rounded-md bg-cta px-4 py-3 text-center text-sm font-bold text-white hover:bg-cta-hover"><span className="ui-button-label">{lang === "ja" ? "この内容で申込・決済へ" : "Apply and continue to payment"}</span></Link>}
+              <Link data-ui-button="filled" href={`/contact?${new URLSearchParams({ service: "robot-rental", model: simModel.id, grade: simModel.grades[simGradeIndex], nights: String(simNights), engineerPlan: simEngineerPlan, engineerHours: String(simEngineerHours) }).toString()}`} className="mt-6 flex items-center justify-center rounded-md bg-cta px-4 py-3 text-center text-sm font-bold text-white hover:bg-cta-hover"><span className="ui-button-label">{lang === "ja" ? "この内容で問い合わせる" : "Inquire about this selection"}</span></Link>
             </aside>
           </div>
         </div>

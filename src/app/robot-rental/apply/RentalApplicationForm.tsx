@@ -5,7 +5,7 @@ import LocalizedContent from "@/components/LocalizedContent";
 
 import Link from "next/link";
 import RentalDatePicker from "./RentalDatePicker";
-import { addDays, formatRentalDate, todayInJapan } from "./rental-date";
+import { addDays, formatRentalDate, minimumRentalStartDate } from "./rental-date";
 import { FormEvent, useMemo, useRef, useState } from "react";
 import { parseRentalSelection, ENGINEER_DAY_RATE, ENGINEER_HOURLY_RATE, RENTAL_MODELS, RENTAL_USE_CASES, type RentalModelId } from "@/lib/robot-rental-order";
 
@@ -40,8 +40,8 @@ export default function RentalApplicationForm({ initialSelection }: { initialSel
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setError("");
-    if (!startDate || startDate < todayInJapan()) {
-      setError("利用開始日をカレンダーから選択してください。");
+    if (!startDate || startDate < minimumRentalStartDate()) {
+      setError("利用開始日は本日から2か月後以降をカレンダーから選択してください。");
       dateSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
       dateSectionRef.current?.querySelector<HTMLButtonElement>('[data-date]:not(:disabled)')?.focus({ preventScroll: true });
       return;
@@ -115,6 +115,7 @@ export default function RentalApplicationForm({ initialSelection }: { initialSel
                 <div className="mt-6 grid items-start gap-6 md:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)]">
                   <div ref={dateSectionRef}>
                     <RentalDatePicker value={startDate} nights={nights} onChange={setStartDate} />
+                    <p className="mt-3 text-sm leading-6 text-slate-600"><Link href="/contact?service=robot-rental" className="font-semibold underline underline-offset-4">2か月以内のご利用はお問い合わせください。</Link></p>
                   </div>
                   <div className="pt-2">
                     <label className="block text-sm font-semibold text-slate-700">利用期間

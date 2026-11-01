@@ -27,7 +27,7 @@ export async function POST(request: Request) {
     const verification = await getStripe().identity.verificationSessions.retrieve(sessionId);
     if (verification.status === "verified") {
       const result = await finalizeVerifiedRentalApplication(verification);
-      return NextResponse.json({ status: "verified", checkoutUrl: result.checkoutUrl });
+      return NextResponse.json({ status: result.status, checkoutUrl: result.checkoutUrl });
     }
     return NextResponse.json({ status: verification.status, resumeUrl: verification.url ?? null });
   } catch (error) {

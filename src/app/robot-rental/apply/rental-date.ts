@@ -2,6 +2,10 @@ export function todayInJapan(now = new Date()) {
   return new Intl.DateTimeFormat("sv-SE", { timeZone: "Asia/Tokyo" }).format(now);
 }
 
+export function minimumRentalStartDate(now = new Date()) {
+  return moveMonth(todayInJapan(now), 2);
+}
+
 export function addDays(date: string, days: number) {
   const value = new Date(`${date}T12:00:00Z`);
   value.setUTCDate(value.getUTCDate() + days);

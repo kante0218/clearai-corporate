@@ -1,3 +1,5 @@
+import { minimumRentalStartDate } from "@/app/robot-rental/apply/rental-date";
+
 export const RENTAL_MODELS = {
   r1: {
     name: "Unitree R1",
@@ -137,9 +139,8 @@ export function parseRentalApplication(input: unknown):
 
   const start = new Date(`${startDate}T00:00:00+09:00`);
   const japanDate = new Intl.DateTimeFormat("sv-SE", { timeZone: "Asia/Tokyo" });
-  const today = japanDate.format(new Date());
-  if (Number.isNaN(start.getTime()) || japanDate.format(start) !== startDate || startDate < today) {
-    return { ok: false, error: "利用開始日は本日以降を指定してください。" };
+  if (Number.isNaN(start.getTime()) || japanDate.format(start) !== startDate || startDate < minimumRentalStartDate()) {
+    return { ok: false, error: "オンライン申込の利用開始日は本日から2か月後以降を指定してください。直近のご利用はお問い合わせください。" };
   }
   if (!company || !name || !email || !phone || !postalCode || !prefecture || !address1 || !isUseCase(useCase)) {
     return { ok: false, error: "必須項目をすべて入力してください。" };

@@ -1,6 +1,7 @@
 import { Resend } from "resend";
 import Stripe from "stripe";
 import { getStripe } from "@/lib/stripe";
+import { addDays, minimumRentalStartDate, todayInJapan } from "@/app/robot-rental/apply/rental-date";
 
 const TO_EMAIL = process.env.CONTACT_TO_EMAIL ?? "info@clearai.jp";
 const FROM_EMAIL = process.env.CONTACT_FROM_EMAIL ?? "clearAI <onboarding@resend.dev>";
@@ -21,16 +22,27 @@ export async function finalizeVerifiedRentalApplication(session: Stripe.Identity
   const amount = Number(metadata.amount_including_tax);
   if (!Number.isInteger(amount) || amount < 1) throw new Error("Invalid rental amount");
 
+  const eligibleDate = /^\d{4}-\d{2}-\d{2}$/.test(metadata.rental_start ?? "") && metadata.rental_start >= minimumRentalStartDate();
   let checkoutSessionId = metadata.rental_checkout_session_id;
-  let checkoutUrl: string | null = null;
+  let checkout: Stripe.Checkout.Session;
   if (checkoutSessionId) {
-    checkoutUrl = (await stripe.checkout.sessions.retrieve(checkoutSessionId)).url;
+    checkout = await stripe.checkout.sessions.retrieve(checkoutSessionId);
   } else {
+    if (process.env.NEXT_PUBLIC_ROBOT_RENTAL_APPLICATION_ENABLED !== "true" || !eligibleDate) {
+      return { status: "unavailable", checkoutSessionId: null, checkoutUrl: null };
+    }
+    const now = Date.now();
+    const expiresAt = Math.floor(Date.parse(`${addDays(todayInJapan(new Date(now)), 1)}T00:00:00+09:00`) / 1000);
+    const needsMidnightExpiry = metadata.rental_start < minimumRentalStartDate(new Date(now + 86400000));
+    if (needsMidnightExpiry && expiresAt - Math.floor(now / 1000) <= 30 * 60) {
+      return { status: "unavailable", checkoutSessionId: null, checkoutUrl: null };
+    }
     const siteUrl = (process.env.NEXT_PUBLIC_APP_URL ?? "https://clearai.jp").replace(/\/$/, "");
-    const checkout = await stripe.checkout.sessions.create({
+    checkout = await stripe.checkout.sessions.create({
       mode: "payment",
+      ...(needsMidnightExpiry ? { expires_at: expiresAt } : {}),
       customer: customer.id,
-      customer_update: { address: "auto", shipping: "auto" },
+      customer_update: { address: "auto" },
       billing_address_collection: "required",
       phone_number_collection: { enabled: true },
       line_items: [{ quantity: 1, price_data: {
@@ -52,14 +64,27 @@ export async function finalizeVerifiedRentalApplication(session: Stripe.Identity
       integration_identifier: "clearai-rental-qwertyui",
     }, { idempotencyKey: `rental-checkout-${session.id}` });
     checkoutSessionId = checkout.id;
-    checkoutUrl = checkout.url;
     await stripe.customers.update(customer.id, { metadata: {
       application_status: "identity_verified_payment_pending", identity_status: "verified",
       identity_session_id: session.id, rental_checkout_session_id: checkoutSessionId,
     } });
   }
 
-  if (process.env.RESEND_API_KEY && customer.email) {
+  if (!["open", "complete", "expired"].includes(checkout.status ?? "")) {
+    throw new Error("Unknown checkout status");
+  }
+  const status = checkout.payment_status === "paid" || checkout.payment_status === "no_payment_required"
+    ? "paid"
+    : checkout.status === "expired" ? "expired"
+    : checkout.status === "complete" ? "payment_processing" : "verified";
+  if (status === "verified" && !eligibleDate) {
+    await stripe.checkout.sessions.expire(checkout.id);
+    return { status: "unavailable", checkoutSessionId, checkoutUrl: null };
+  }
+  const checkoutUrl = status === "verified" ? checkout.url : null;
+  if (status === "verified" && !checkoutUrl) throw new Error("Checkout URL was not returned");
+
+  if (status === "verified" && process.env.RESEND_API_KEY && customer.email) {
     const resend = new Resend(process.env.RESEND_API_KEY);
     const engineer = metadata.engineer_plan === "day" ? "1日（100,000円・税別）" : `${metadata.engineer_hours}時間（10,000円/時・税別）`;
     const summary = `${metadata.model_name} / ${metadata.grade} / ${metadata.rental_start}〜${metadata.rental_return} / 初日エンジニア帯同 ${engineer}`;
@@ -75,6 +100,5 @@ export async function finalizeVerifiedRentalApplication(session: Stripe.Identity
       }, { idempotencyKey: `rental-customer-${session.id}` }),
     ]);
   }
-  if (!checkoutUrl) throw new Error("Checkout URL was not returned");
-  return { checkoutSessionId, checkoutUrl };
+  return { status, checkoutSessionId, checkoutUrl };
 }

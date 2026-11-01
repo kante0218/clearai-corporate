@@ -8209,6 +8209,10 @@
     "zh-CN": "再次确认结果",
     "ko": "결과 다시 확인"
   },
+  "最短日を選ぶ": {"en": "Select earliest date", "zh-CN": "选择最早日期", "ko": "가장 빠른 날짜 선택"},
+  "オンライン申込は本日から2か月後以降の開始日を選べます。開始日を選ぶと、利用終了日まで表示されます。": {"en": "Online applications require a start date at least two months from today. Select a start date to see your rental period.", "zh-CN": "在线申请的开始日期须为今天起两个月后或更晚。选择开始日期后，将显示完整使用期间。", "ko": "온라인 신청은 오늘부터 2개월 이후의 시작일을 선택할 수 있습니다. 시작일을 선택하면 이용 종료일까지 표시됩니다."},
+  "2か月以内のご利用はお問い合わせください。": {"en": "Contact us for rentals within two months.", "zh-CN": "如需在两个月内使用，请联系我们。", "ko": "2개월 이내 이용은 문의해 주세요."},
+  "利用開始日は本日から2か月後以降をカレンダーから選択してください。": {"en": "Select a start date at least two months from today on the calendar.", "zh-CN": "请从日历中选择今天起两个月后或更晚的开始日期。", "ko": "달력에서 오늘부터 2개월 이후의 시작일을 선택해 주세요."},
   "今日を選ぶ": {"en": "Select today", "zh-CN": "选择今天", "ko": "오늘 선택"},
   "開始日を選ぶと、利用終了日まで表示されます。": {"en": "Select a start date to see your rental period.", "zh-CN": "选择开始日期后，将显示完整使用期间。", "ko": "시작일을 선택하면 이용 종료일까지 표시됩니다."},
   "前の月": {"en": "Previous month", "zh-CN": "上个月", "ko": "이전 달"},
@@ -8257,5 +8261,14 @@
   "展示会・研究開発・巡回点検などの使用用途": {"en": "Use cases including exhibitions, R&D and inspection patrols", "zh-CN": "展会、研发、巡检等用途", "ko": "전시회·연구개발·순찰 점검 등의 활용 용도"},
   "申し込み・配送・レクチャー・返却の流れ": {"en": "Application, delivery, instruction and return process", "zh-CN": "申请、配送、操作指导及返还流程", "ko": "신청·배송·사용 안내·반납 절차"},
   "運営会社の概要": {"en": "Company overview", "zh-CN": "运营公司概要", "ko": "운영 회사 개요"},
-  "ラインナップと機種ごとの特徴 / Basic・R&Dの料金表（1泊2日〜4泊5日） / 展示会・研究開発・巡回点検などの使用用途 / 過去の取引実績 / 申し込み・配送・レクチャー・返却の流れ / 運営会社の概要": {"en": "Lineup and model features / Basic and R&D pricing (2 to 5 days) / Use cases including exhibitions, R&D and inspection patrols / Previous business engagements / Application, delivery, instruction and return process / Company overview", "zh-CN": "机型及各机型特点 / Basic及R&D价格表（2至5天） / 展会、研发、巡检等用途 / 过往交易实绩 / 申请、配送、操作指导及返还流程 / 运营公司概要", "ko": "기종별 특징 / Basic·R&D 요금표(1박 2일~4박 5일) / 전시회·연구개발·순찰 점검 등의 활용 용도 / 거래 실적 / 신청·배송·사용 안내·반납 절차 / 운영 회사 개요"}
+  "ラインナップと機種ごとの特徴 / Basic・R&Dの料金表（1泊2日〜4泊5日） / 展示会・研究開発・巡回点検などの使用用途 / 過去の取引実績 / 申し込み・配送・レクチャー・返却の流れ / 運営会社の概要": {"en": "Lineup and model features / Basic and R&D pricing (2 to 5 days) / Use cases including exhibitions, R&D and inspection patrols / Previous business engagements / Application, delivery, instruction and return process / Company overview", "zh-CN": "机型及各机型特点 / Basic及R&D价格表（2至5天） / 展会、研发、巡检等用途 / 过往交易实绩 / 申请、配送、操作指导及返还流程 / 运营公司概要", "ko": "기종별 특징 / Basic·R&D 요금표(1박 2일~4박 5일) / 전시회·연구개발·순찰 점검 등의 활용 용도 / 거래 실적 / 신청·배송·사용 안내·반납 절차 / 운영 회사 개요"},
+  "レンタルはお問い合わせで受け付けています": {"en": "Rental inquiries are now being accepted", "zh-CN": "租赁现通过咨询受理", "ko": "렌탈은 문의로 접수하고 있습니다"},
+  "ご希望の日程や機種をお問い合わせください。担当者がご案内します。": {"en": "Contact us with your preferred dates and model. Our team will guide you through the next steps.", "zh-CN": "请咨询您希望的日期和机型，工作人员将为您提供说明。", "ko": "희망 일정과 기종을 문의해 주세요. 담당자가 안내해 드립니다."},
+  "お支払いが完了しました": {"en": "Payment completed", "zh-CN": "付款已完成", "ko": "결제가 완료되었습니다"},
+  "clearAIが在庫を確認し、送料を別途ご案内します。在庫確認後にレンタル予約が確定します。": {"en": "clearAI will check availability and provide shipping costs separately. Your rental reservation will be confirmed after availability is checked.", "zh-CN": "clearAI将确认库存，并另行告知运费。确认库存后，租赁预约才会确定。", "ko": "clearAI가 재고를 확인한 후 배송비를 별도로 안내합니다. 재고 확인 후 렌탈 예약이 확정됩니다."},
+  "お支払い結果を確認しています": {"en": "Checking your payment status", "zh-CN": "正在确认付款结果", "ko": "결제 결과를 확인하고 있습니다"},
+  "決済の処理中です。再度お支払いせず、時間をおいて結果をもう一度確認してください。": {"en": "Your payment is being processed. Please do not pay again. Wait a while, then check the result again.", "zh-CN": "付款正在处理中。请勿重复付款，稍后再次确认结果。", "ko": "결제를 처리하고 있습니다. 다시 결제하지 마시고 잠시 후 결과를 다시 확인해 주세요."},
+  "決済画面の有効期限が切れました": {"en": "The payment page has expired", "zh-CN": "付款页面已过期", "ko": "결제 페이지의 유효 기간이 만료되었습니다"},
+  "決済は再作成されていません。お手続きについてinfo@clearai.jpまでお問い合わせください。": {"en": "No new payment session has been created. Contact info@clearai.jp for help with the next steps.", "zh-CN": "未重新创建付款会话。有关办理手续，请联系info@clearai.jp。", "ko": "새 결제 세션은 생성되지 않았습니다. 절차에 대해서는 info@clearai.jp로 문의해 주세요."},
+  "レンタルについて問い合わせる": {"en": "Inquire about rental", "zh-CN": "咨询租赁", "ko": "렌탈 문의하기"}
 }
