@@ -5,7 +5,7 @@
 .page .productTitle { font-size: clamp(42px, 6vw, 76px); }
 .heroLinks { display:flex; align-items:center; justify-content:center; gap:24px; flex-wrap:wrap; margin:28px 0; }
 .heroLinks > a:last-child { color:#fff; text-decoration:underline; text-underline-offset:4px; }
-.answerPreview { position:relative; max-width:720px; background:#fff; color:#222; border:1px solid #e5dfef; border-radius:12px; padding:28px; margin:36px auto 0; }
+.answerPreview { position:relative; max-width:720px; background:#fff; color:#222; border:1px solid #e5dfef; border-radius:var(--surface-radius); padding:28px; margin:36px auto 0; }
 .answerPreview > strong { display:block; font-size:clamp(18px, 2vw, 26px); margin:12px 0; }
 .answerPreview > div { display:flex; justify-content:center; flex-wrap:wrap; gap:12px; margin:20px 0; }
 .answerPreview > div > span { background:#f5f2fc; padding:6px 14px; border-radius:4px; font-size:14px; }
@@ -18,12 +18,12 @@
 .page .seo { margin-top:36px; padding:28px; background:#f5f2fc; }
 .page .seo a, .details a { text-decoration:underline; text-underline-offset:4px; }
 .seo a { display:inline-block; font-size:13px; margin-top:16px; }
-.explanation { background:#f5f2fc; border:1px solid #e5dfef; padding:30px; border-radius:8px; }
+.explanation { background:#f5f2fc; border:1px solid #e5dfef; padding:30px; border-radius:var(--surface-radius); }
 .explanation > span { color:#6941d9; font-size:13px; font-weight:700; }
 .explanation > strong { display:block; font-size:24px; line-height:1.7; margin:18px 0; }
 .explanation > p { font-size:14px; }
 .deliverables { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
-.deliverables > article { border:1px solid #e5dfef; border-radius:8px; padding:28px; }
+.deliverables > article { border:1px solid #e5dfef; border-radius:var(--surface-radius); padding:28px; }
 .deliverables dl { margin:20px 0 0; padding-top:16px; border-top:1px solid #e5dfef; font-size:14px; }
 .deliverables dt { font-weight:700; margin-top:12px; }
 .deliverables dd { margin:4px 0 0; }
@@ -41,7 +41,7 @@
 .steps li { display:flex; gap:24px; padding:28px 0; border-bottom:1px solid #e5dfef; }
 .steps li > span { color:#6941d9; font-weight:700; font-size:24px; }
 .page .processNote { margin-top:24px; font-size:14px; }
-.price { text-align:center; padding:32px; border:1px solid #e5dfef; border-radius:8px; }
+.price { text-align:center; padding:32px; border:1px solid #e5dfef; border-radius:var(--surface-radius); }
 .price > strong { font-size:24px; font-weight:700; }
 .price p { margin:20px auto 24px; max-width:680px; }
 .contactActions { display:flex; flex-direction:column; gap:18px; align-items:center; }

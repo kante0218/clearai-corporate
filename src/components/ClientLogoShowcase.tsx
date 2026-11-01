@@ -11,12 +11,6 @@ import { useLanguage } from "@/lib/i18n/LanguageContext";
 const homeLogos = CLIENT_LOGOS;
 
 function LogoImage({ logo }: { logo: (typeof homeLogos)[number] }) {
-  if (logo.src === "/images/clients/kanden-engineering.png") {
-    return <LocalizedContent>{<span className="block aspect-[696/201] w-full max-w-[calc(36px*696/201)] overflow-hidden md:max-w-[calc(44px*696/201)]"><Image src={logo.src} alt={`${logo.name} ロゴ`} width={logo.width} height={logo.height} className="h-full w-full object-cover object-center opacity-90" sizes="(max-width: 767px) 125px, 153px" /></span>}</LocalizedContent>;
-  }
-  if (logo.src === "/images/clients/digital-strategy-room.png") {
-    return <LocalizedContent>{<span className="relative block aspect-[530/120] w-full max-w-[176px] overflow-hidden"><Image src={logo.src} alt={`${logo.name} ロゴ`} width={logo.width} height={logo.height} className="absolute left-1/2 top-1/2 h-auto w-[124.34%] max-w-none -translate-x-1/2 -translate-y-1/2 opacity-90" sizes="219px" /></span>}</LocalizedContent>;
-  }
   if (logo.src === "/images/clients/local-dive.png") {
     return <LocalizedContent>{<Image src={logo.src} alt={`${logo.name} ロゴ`} width={logo.width} height={logo.height} className="h-auto w-full max-w-[176px] object-contain opacity-90" sizes="176px" />}</LocalizedContent>;
   }

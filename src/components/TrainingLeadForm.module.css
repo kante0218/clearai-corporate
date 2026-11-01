@@ -5,7 +5,7 @@
 .required, .optional { display: inline-block; margin-left: 10px; font-size: 11px; font-weight: 600; vertical-align: middle; }
 .required { color: var(--course-accent, #6941d9); }
 .optional { color: #6a687a; }
-.field input, .field select, .field textarea { width: 100%; min-height: 50px; padding: 12px 14px; border: 1px solid var(--course-border, #cecadb); border-radius: 6px; background: #fff; color: #202047; font: inherit; font-size: 16px; font-weight: 400; line-height: 1.6; }
+.field input, .field select, .field textarea { width: 100%; min-height: 50px; padding: 12px 14px; border: 1px solid var(--course-border, #cecadb); border-radius: var(--control-radius); background: #fff; color: #202047; font: inherit; font-size: 16px; font-weight: 400; line-height: 1.6; }
 .field textarea { resize: vertical; }
 .field input::placeholder, .field textarea::placeholder { color: #777384; opacity: 1; }
 .field input[aria-invalid="true"], .field textarea[aria-invalid="true"] { border-color: #b02b25; }
@@ -14,7 +14,7 @@
 .consent { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; line-height: 1.8; }
 .consent input { flex-shrink: 0; width: 20px; height: 20px; margin-top: 2px; accent-color: var(--course-accent, #6941d9); }
 .consent a { color: var(--course-accent, #6941d9); text-decoration: underline; text-underline-offset: 3px; }
-.submit, .booking { display: inline-flex; align-items: center; justify-content: center; min-height: 58px; padding: 16px 24px; border: 0; border-radius: 6px; background: var(--brand-cta-gradient); color: #fff; font-size: 16px; font-weight: 700; line-height: 1.6; text-align: center; cursor: pointer; text-decoration: none; }
+.submit, .booking { display: inline-flex; align-items: center; justify-content: center; min-height: 58px; padding: 16px 24px; border: 0; border-radius: var(--control-radius); background: var(--brand-cta-gradient); color: #fff; font-size: 16px; font-weight: 700; line-height: 1.6; text-align: center; cursor: pointer; text-decoration: none; }
 .submit:hover, .booking:hover { background: var(--brand-cta-gradient-hover); }
 .submit:disabled { opacity: .65; cursor: wait; }
 .note { margin: -8px 0 0; color: #666176; font-size: 12px; line-height: 1.9; text-align: center; }
@@ -40,6 +40,5 @@
   .form { font-size: 14px; line-height: 1.5; }
   .intro, .field, .consent, .compact .field, .compact .consent, .submit, .booking { font-size: 14px; line-height: 21px; }
   .note, .compact .note, .required, .optional, .compact .required { font-size: 12px; line-height: 18px; }
-  .field input, .field select, .field textarea, .submit, .booking { border-radius: 0; }
   .fields, .row, .compact .fields, .compact .row { gap: 24px; }
 }

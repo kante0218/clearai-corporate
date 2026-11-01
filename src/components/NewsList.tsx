@@ -43,7 +43,7 @@ export default async function NewsList() {
           href={`/blog/${post.slug}`}
           className={`${styles.homeCard} group grid grid-cols-[92px_1fr] gap-3 overflow-hidden rounded-lg border border-gray-200 bg-white p-3 transition hover:border-gray-300 hover:shadow-sm sm:block sm:p-0`}
         >
-          <div className="relative aspect-[16/9] overflow-hidden rounded-md bg-gray-100 sm:aspect-[16/9] sm:rounded-none">
+          <div className="relative aspect-[16/9] overflow-hidden rounded-md bg-gray-100 sm:aspect-[16/9]">
             <Image src={cmsImage(post.image, 800)} unoptimized alt="" fill sizes="(max-width: 639px) 92px, 33vw" className="object-contain" />
           </div>
           <div className="min-w-0 sm:p-4">

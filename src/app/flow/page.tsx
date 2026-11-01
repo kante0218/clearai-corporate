@@ -116,7 +116,7 @@ export default function FlowPage() {
       {/* Principle */}
       <section className="border-b border-gray-100 py-14 bg-white">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-8">
-          <div className="border-l-2 border-neutral-900 bg-neutral-50 px-6 py-6">
+          <div className="rounded-lg border-l-2 border-neutral-900 bg-neutral-50 px-6 py-6">
             <p className="mb-2 text-sm font-bold text-neutral-900">進め方の原則</p>
             <p className="text-[15px] leading-[1.95] text-neutral-600">
               いきなりフルスコープでお受けすることはしません。工程を区切り、そのつど判断できる状態でお渡しします。

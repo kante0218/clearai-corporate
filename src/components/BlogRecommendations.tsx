@@ -32,7 +32,7 @@ export default function BlogRecommendations({ posts, currentId }: { posts: Recom
       <div className="divide-y divide-neutral-200">
         {selected.map((post) => (
           <Link key={post.id} href={`/blog/${post.id}`} className="group flex gap-3 py-5 first:pt-0 focus-visible:outline-2 focus-visible:outline-offset-4">
-            <div className="relative h-[64px] w-[88px] shrink-0 overflow-hidden bg-neutral-100">
+            <div className="relative h-[64px] w-[88px] shrink-0 overflow-hidden rounded-lg bg-neutral-100">
               <Image src={cmsImage(post.image, 264)} unoptimized alt="" fill sizes="88px" className="object-cover" />
             </div>
             <div className="min-w-0">

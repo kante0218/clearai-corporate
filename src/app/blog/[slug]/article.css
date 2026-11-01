@@ -1,5 +1,5 @@
 .blog-article.prose { overflow-wrap: anywhere; color: #222222; font-size: 18px; line-height: 1.8; letter-spacing: .02em; }
-.blog-article.prose img, .article-cover-image { display: block; width: auto; max-width: min(100%, 560px); max-height: 400px; height: auto; margin-inline: auto; object-fit: contain; border-radius: 0; }
+.blog-article.prose img, .article-cover-image { display: block; width: auto; max-width: min(100%, 560px); max-height: 400px; height: auto; margin-inline: auto; object-fit: contain; border-radius: var(--surface-radius); }
 .blog-article.prose img { margin-block: 24px 12px; }
 
 .blog-article.prose h2 { font-size: 22px; line-height: 1.6; }

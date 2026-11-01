@@ -40,7 +40,7 @@ export default function DownloadPageContent({ initialDocument }: { initialDocume
                       width={logo.width}
                       height={logo.height}
                       sizes="100px"
-                      className="max-h-6 w-auto object-contain"
+                      className="max-h-6 w-auto max-w-full object-contain"
                     />
                   </li>
                 ))}
