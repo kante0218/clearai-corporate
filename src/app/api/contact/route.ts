@@ -1,4 +1,5 @@
 import { Resend } from "resend";
+import { trustedMeoContactIds } from "@/lib/meo-onboarding";
 import { createHash, createHmac } from "node:crypto";
 import { validateContactForm, INQUIRY_TYPES, SERVICE_KEYS, SERVICE_LABELS, DOCUMENT_KEYS, DOCUMENT_LABELS, type InquiryType, type ServiceKey, type DocumentKey } from "@/lib/validators";
 
@@ -223,7 +224,8 @@ export async function POST(request: Request) {
       .update(`${fingerprint}\0${JSON.stringify(payload)}\0${bucket}`)
       .digest("hex");
     // ダッシュボード側のUUID契約を満たす決定的ID（同一内容の再試行で不変）。
-    const submissionId = [
+    const trustedSubmissionId = trustedMeoContactIds.get(request);
+    const submissionId = trustedSubmissionId ?? [
       submissionDigest.slice(0, 8),
       submissionDigest.slice(8, 12),
       `5${submissionDigest.slice(13, 16)}`,
@@ -266,7 +268,7 @@ export async function POST(request: Request) {
       subject: `${subjectPrefix}${subjectBody}`,
       text,
       html,
-    });
+    }, trustedSubmissionId ? { idempotencyKey: `meo-contact/${trustedSubmissionId}` } : undefined);
 
     if (error) {
       console.error("[contact] resend error", error);

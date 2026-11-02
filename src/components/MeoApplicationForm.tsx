@@ -2,8 +2,8 @@
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { prepareMeoApplication } from "@/lib/meo-application";
+import { BOOKING_URL } from "@/lib/booking";
 import styles from "./TrainingLeadForm.module.css";
-import animation from "./MeoApplicationForm.module.css";
 
 const fields = [
   ["company", "会社名・屋号", 200, "organization", "text"],
@@ -16,6 +16,8 @@ const fields = [
 
 export default function MeoApplicationForm() {
   const sending = useRef(false);
+  const applicationId = useRef<string | null>(null);
+  const [result, setResult] = useState<{ dashboard_url: string } | null>(null);
   const successRef = useRef<HTMLDivElement>(null);
   const errorRef = useRef<HTMLParagraphElement>(null);
   const [status, setStatus] = useState("idle");
@@ -32,7 +34,8 @@ export default function MeoApplicationForm() {
     if (sending.current) return;
     const form = event.currentTarget;
     const values = new FormData(form);
-    const body = { ...Object.fromEntries(values), privacy: values.get("privacy") === "on", acknowledged: values.get("acknowledged") === "on" };
+    applicationId.current ??= crypto.randomUUID();
+    const body = { applicationId: applicationId.current, ...Object.fromEntries(values), privacy: values.get("privacy") === "on", acknowledged: values.get("acknowledged") === "on" };
     const validation = prepareMeoApplication(body).errors;
     setErrors(validation);
     if (Object.keys(validation).length) {
@@ -44,7 +47,7 @@ export default function MeoApplicationForm() {
     try {
       const response = await fetch("/api/meo/apply", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
       const data = await response.json();
-      if (response.ok && data.ok === true) { setStatus("success"); return; }
+      if (response.ok && data.ok === true) { setResult(data); setStatus("success"); return; }
       setErrors({ ...data.errors, _form: data.errors?._form || "入力内容を確認して再度送信してください。" });
       setStatus("idle");
     } catch {
@@ -54,7 +57,16 @@ export default function MeoApplicationForm() {
   }
   const error = (name: string) => errors[name] ? <span id={`meo-${name}-error`} className={styles.error}>{errors[name]}</span> : null;
   const accessibility = (name: string) => ({ "aria-invalid": !!errors[name], "aria-describedby": errors[name] ? `meo-${name}-error` : undefined });
-  if (status === "success") return <div ref={successRef} className={styles.success} role="status" tabIndex={-1}><svg className={animation.successIcon} viewBox="0 0 64 64" aria-hidden="true" focusable="false"><defs><linearGradient id="meo-success-gradient" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stopColor="#F1623F" /><stop offset="38%" stopColor="#E35AAF" /><stop offset="62%" stopColor="#E053DD" /><stop offset="100%" stopColor="#AE5DF5" /></linearGradient></defs><circle cx="32" cy="32" r="29" fill="none" stroke="url(#meo-success-gradient)" strokeWidth="2" /><path className={animation.check} d="M18 32l10 10 19-21" fill="none" stroke="url(#meo-success-gradient)" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" pathLength="1" /></svg><h2 className="text-xl font-bold">お申し込みありがとうございます。</h2><p>担当者より1営業日以内に、ご登録のメールアドレスへご連絡いたします。</p><a href="/meo" className="inline-flex min-h-12 items-center justify-center underline">MEO支援のページへ戻る</a></div>;
+  if (status === "success") return <div ref={successRef} className={styles.success} role="status" tabIndex={-1}>
+    <h2 className="text-xl font-bold">お申し込みを受け付けました</h2>
+    <p>ご登録のメールアドレスに、ご利用の案内を送りました。初めての方はメール内のリンクからパスワードを設定してください。パスキーも登録できます。設定済みの方はメールの案内に沿ってログインしてください。届かない場合は迷惑メールフォルダをご確認ください。</p>
+    <h3 className="text-base font-bold">続けて、初回面談の日時をお選びください</h3>
+    <p>TimeRexで予約の確定まで進むと日程調整が完了します。すでに予約済みの方は再予約不要です。</p>
+    <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className={styles.booking}>初回面談を予約する（別タブ）</a>
+    <p>アカウント設定後、ダッシュボードから店舗のGoogleアカウントを接続してください。Googleのパスワードをお知らせいただく必要はありません。</p>
+    {result?.dashboard_url && <a href={result.dashboard_url} className="inline-flex min-h-12 items-center justify-center underline underline-offset-4">ダッシュボードへ</a>}
+    <p>送信だけで契約・料金は発生しません。支援範囲・契約条件の確認後に運用を開始します。</p>
+  </div>;
   return <form className={styles.form} onSubmit={submit} aria-label="MEO支援のお申し込み" aria-busy={status === "submitting"}>
     <div className={styles.honeypot} aria-hidden="true"><label>Website<input name="website" tabIndex={-1} autoComplete="off" /></label></div>
     <fieldset className={styles.fields} disabled={status === "submitting"}>
