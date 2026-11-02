@@ -29,14 +29,10 @@ const faqs = [
 
 export default function MeoContent({ url }: { url: string }) {
   return <LocalizedContent><div className={styles.page}>
-    <div className={styles.serviceNav}>
-      <a href="#meo-top" aria-label="meo ページの先頭へ" className={styles.brand}><Image src="/images/meo/meo-logo.png" alt="meo" width={2008} height={783} priority /></a>
-      <nav aria-label="MEO支援のページ内メニュー"><a href="#service">支援内容</a><a href="#price">料金</a><a href="#faq">よくあるご質問</a></nav>
-      <a {...BOOKING_LINK_PROPS} className={styles.navCta}>相談を予約する</a>
-    </div>
     <section id="meo-top" className={styles.hero} aria-labelledby="meo-title">
       <div className={styles.heroInner}>
         <div className={styles.heroCopy}>
+          <Image className={styles.heroBrand} src="/images/meo/meo-logo.png" alt="meo" width={2008} height={783} priority />
           <p className={styles.intro}>Googleマップ・MEO運用支援</p>
           <h1 id="meo-title">あなたのお店と、<br />探している人を<br />つなぐ。</h1>
           <p className={styles.lead}>お店の魅力が、きちんと伝わるように。<br />店舗情報の整備から、写真・投稿、口コミへの返信まで。<br className={styles.desktopBreak} />日々のGoogleマップ運用を、ClearAIが支援します。</p>
@@ -44,24 +40,7 @@ export default function MeoContent({ url }: { url: string }) {
           <p className={styles.heroPrice}>月額 <strong>30,000</strong> 円（税別）から<span>税込33,000円／最低契約期間6か月</span></p>
         </div>
         <figure className={styles.visual}>
-          <svg viewBox="0 0 600 500" role="img" aria-labelledby="meo-map-title" className={styles.map}>
-            <title id="meo-map-title">地域の中でお店を見つけるイメージ</title>
-            <rect width="600" height="500" rx="40" fill="#eaf3dc" />
-            <path d="M425 -30C360 80 530 120 460 240S375 390 450 540" stroke="#c4e5ea" strokeWidth="58" fill="none" />
-            <g fill="#d9e9c3"><rect x="38" y="42" width="128" height="100" rx="18" /><rect x="190" y="25" width="130" height="92" rx="18" /><rect x="38" y="200" width="115" height="98" rx="18" /><rect x="190" y="175" width="130" height="90" rx="18" /><rect x="40" y="365" width="150" height="95" rx="18" /><rect x="270" y="340" width="100" height="125" rx="18" /><rect x="485" y="315" width="84" height="130" rx="18" /></g>
-            <g stroke="#fff" strokeWidth="23" fill="none"><path d="M-20 165L610 130M165 -20L190 520M-20 330L620 285M345 -20L340 520" /></g>
-            <g stroke="#e4e9db" strokeWidth="2" fill="none"><path d="M-20 165L610 130M165 -20L190 520M-20 330L620 285M345 -20L340 520" /></g>
-            <g fill="#92b777"><circle cx="83" cy="91" r="17" /><circle cx="112" cy="100" r="14" /><circle cx="278" cy="403" r="17" /><circle cx="303" cy="414" r="14" /></g>
-            <circle cx="295" cy="220" r="70" fill="#cbe94d" fillOpacity=".35" />
-            <path d="M295 146c-29 0-51 22-51 50 0 38 51 81 51 81s51-43 51-81c0-28-22-50-51-50Z" fill="#3d652e" /><circle cx="295" cy="194" r="19" fill="#fff" />
-            <g fill="#759361"><circle cx="104" cy="270" r="8" /><circle cx="508" cy="216" r="8" /><circle cx="233" cy="398" r="8" /></g>
-          </svg>
-          <div className={styles.searchIllustration}><span aria-hidden="true">⌕</span><span>近くのお店を探す</span><span className={styles.searchDot} aria-hidden="true" /></div>
-          <div className={styles.storeIllustration}>
-            <div className={styles.storeIcon} aria-hidden="true"><svg viewBox="0 0 100 86" fill="none"><path d="M18 35h64v42H18z" fill="#fff" stroke="#345528" strokeWidth="3"/><path d="m15 35 9-23h52l9 23" fill="#cbe94d" stroke="#345528" strokeWidth="3"/><path d="M15 35c0 14 18 14 18 0 0 14 17 14 17 0 0 14 17 14 17 0 0 14 18 14 18 0" stroke="#345528" strokeWidth="3"/><path d="M28 52h19v13H28zM60 52h13v25H60z" fill="#eaf3dc" stroke="#345528" strokeWidth="3"/></svg></div>
-            <div><p className={styles.storeTitle}>街のお店</p><p>営業時間・写真・お知らせ</p><div className={styles.infoPills}><span>店舗情報</span><span>口コミ返信</span></div></div>
-          </div>
-          <figcaption>店舗情報の整備イメージ（実際のGoogleの画面ではありません）</figcaption>
+          <Image src="/images/meo/illustration-hero.webp" alt="カフェや飲食店、美容室が並び、人々が行き交う街の水彩イラスト" width={1536} height={1024} priority sizes="(max-width: 767px) 100vw, 55vw" />
         </figure>
       </div>
     </section>
@@ -72,7 +51,11 @@ export default function MeoContent({ url }: { url: string }) {
     </section>
     <section id="service" className={`${styles.section} ${styles.serviceSection}`} aria-labelledby="offering">
       <div className={styles.sectionHeading}><h2 id="offering">店舗の情報整備から、<br />継続的な改善まで。</h2><p>必要な範囲を相談しながら、<br />お店に合った運用を支援します。</p></div>
-      <dl className={styles.offerings}>{offerings.map(([title, body], i) => <div key={title}><dt><span className={styles.serviceIcon} aria-hidden="true">{["⌖", "▧", "☷", "↗"][i]}</span><span className={styles.serviceTitle}>{title}</span></dt><dd>{body}</dd></div>)}</dl>
+      <dl className={styles.offerings}>{offerings.map(([title, body], i) => <div key={title}><dt><Image className={styles.offeringImage} src={`/images/meo/illustration-${["search", "about", "reviews", "analytics"][i]}.webp`} alt="" width={1536} height={1024} sizes="(max-width: 767px) 100vw, 45vw" /><span className={styles.serviceTitle}>{title}</span></dt><dd>{body}</dd></div>)}</dl>
+    </section>
+    <section className={`${styles.section} ${styles.dashboardSection}`} aria-labelledby="dashboard-title">
+      <div className={styles.sectionHeading}><h2 id="dashboard-title">お店の変化を、<br />ひとつの画面で。</h2><p>プロフィールの閲覧やルート検索など、<br />日々の運用を振り返るダッシュボード。</p></div>
+      <figure className={styles.dashboard}><div className={styles.screenScroll} tabIndex={0} role="region" aria-label="ダッシュボード画面。スマートフォンでは横にスクロールできます"><Image src="/images/meo/dashboard-overview.jpg" alt="clear MEOのダッシュボード。閲覧数、ルート検索、口コミ、集客の推移を一覧で確認する画面" width={1800} height={1375} sizes="(max-width: 767px) 900px, 1200px" /></div><figcaption>clear MEOのダッシュボード。掲載画面の数値・口コミは説明用のサンプルです。</figcaption></figure>
     </section>
     <section className={styles.section} aria-labelledby="process"><div className={styles.sectionHeading}><h2 id="process">まずは、お店の今を<br />聞かせてください。</h2><p>ご相談から運用開始までの流れ</p></div><ol className={styles.steps}>{steps.map(([title, body], i) => <li key={title}><span className={styles.stepNumber}>{i + 1}</span><h3>{title}</h3><p>{body}</p></li>)}</ol></section>
     <section id="price" className={styles.priceSection} aria-labelledby="price-title"><div className={styles.priceInner}><div><h2 id="price-title">無理なく続ける、<br />店舗の運用支援。</h2><p>店舗情報・写真・投稿・口コミ返信・レポート。<br />具体的な支援範囲は、ご相談のうえ決定します。</p></div><div className={styles.priceDetail}><p>月額 <strong>30,000</strong> 円<span>（税別）</span></p><p>33,000円（税込）／最低契約期間6か月</p><p className={styles.priceNote}>対象店舗・支援範囲・開始日などの契約条件は、お申し込み後に双方で確認します。</p><Link href="/meo/apply" className={styles.primary}><span className="ui-button-label">MEO支援を申し込む</span></Link></div></div></section>
