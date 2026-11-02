@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import styles from "./AdvertiseTrialSlot.module.css";
 
-const ADVERTISE_ORIGIN = "https://clearai-meo-dashboard.clearryusei.workers.dev";
+const ADVERTISE_ORIGIN = "https://advertise.clearai.jp";
 const SLOT_ID = "clearai-home-trial";
 
 export default function AdvertiseTrialSlot({ english = false }: { english?: boolean }) {

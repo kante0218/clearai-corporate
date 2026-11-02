@@ -3,8 +3,8 @@ import LocalizedContent from "@/components/LocalizedContent";
 import Link from "next/link";
 
 const products = [
-  { name: "Aqua", category: "文字起こし・議事録", description: "音声の文字起こしと議事録づくりを支援するサービスです。", href: "https://aqua-ai.jp/", destination: "aqua-ai.jp" },
-  { name: "まぜまぜReading", category: "英語学習", description: "日本語と英語が混ざった文章を読みながら、英語に親しむ学習サービスです。", href: "https://yomu-mixed-reading.vercel.app/", destination: "yomu-mixed-reading.vercel.app" },
+  { name: "Aqua", category: "文字起こし・議事録", description: "音声の文字起こしと議事録づくりを支援するサービスです。", href: "https://aqua.clearai.jp/", destination: "aqua.clearai.jp" },
+  { name: "まぜまぜReading", category: "英語学習", description: "日本語と英語が混ざった文章を読みながら、英語に親しむ学習サービスです。", href: "https://reading.clearai.jp/", destination: "reading.clearai.jp" },
   { name: "猫シフト", category: "シフト・給与計算", description: "シフトの管理と給与の見込み計算に、猫の報酬を組み合わせたアプリを準備しています。" },
   { name: "Stella", category: "日々の記録", description: "日替わりのお題で写真や記録を残し、カードやカレンダーで振り返り、友達と共有するアプリを準備しています。" },
   { name: "PR Business", category: "プレスリリース・企画段階", description: "日本企業のプレスリリースを、AIが内容に合う国へ推薦し、多言語で届ける媒体を構想しています。" },
