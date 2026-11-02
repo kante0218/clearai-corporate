@@ -4,6 +4,7 @@ import LocalizedContent from "@/components/LocalizedContent";
 
 import Link from "next/link";
 import ProductList from "@/components/ProductList";
+import AdvertiseTrialSlot from "@/components/AdvertiseTrialSlot";
 import styles from "./HomeContent.module.css";
 import Image from "next/image";
 import { type ReactNode } from "react";
@@ -740,6 +741,8 @@ export default function HomeContent({ newsSlot }: { newsSlot: ReactNode }) {
           </Reveal>
         </div>
       </section>
+
+      <AdvertiseTrialSlot english={lang === "en"} />
 
       {/* ═══ NEWS / BLOG ═══ */}
       <section id="home-news" className="scroll-mt-28 pt-4 pb-8 md:pt-10 md:pb-20 lg:pt-12 lg:pb-28 bg-gray-50">

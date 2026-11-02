@@ -20,6 +20,7 @@ export const SERVICE_KEYS = [
   "ceo",
   "subsidy",
   "advertising",
+  "advertise",
   "website",
 ] as const;
 export type ServiceKey = (typeof SERVICE_KEYS)[number];
@@ -37,6 +38,7 @@ export const SERVICE_LABELS: Record<ServiceKey, string> = {
   ceo: "経営者向けAI活用",
   subsidy: "補助金・助成金サポート",
   advertising: "AI広告運用",
+  advertise: "Advertise・広告枠の掲載相談",
   website: "ホームページ制作",
 };
 
