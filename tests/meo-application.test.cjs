@@ -9,11 +9,13 @@ function load(file, mocks = {}) {
 }
 const validators = load('src/lib/validators.ts');
 const application = load('src/lib/meo-application.ts', { './validators': validators });
-const valid = { company: 'テスト会社', store: 'テスト店舗', location: '東京都港区', name: '山田', email: 'test@example.com', privacy: true, acknowledged: true };
+const valid = { company: 'テスト会社', store: 'テスト店舗', location: '東京都港区', name: '山田', email: 'test@example.com', privacy: true, acknowledged: true, authority:true, scope:true, consentVersion:"2026-11-03" };
 assert.equal(Object.keys(application.prepareMeoApplication(valid).errors).length, 0);
-for (const field of ['company', 'store', 'location', 'name', 'email', 'privacy', 'acknowledged']) {
+for (const field of ['company', 'store', 'location', 'name', 'email', 'privacy', 'acknowledged', 'authority', 'scope', 'consentVersion']) {
   assert.ok(application.prepareMeoApplication({ ...valid, [field]: '' }).errors[field], field);
 }
+for (const field of ['privacy','acknowledged','authority','scope']) assert.ok(application.prepareMeoApplication({...valid,[field]:'true'}).errors[field]);
+assert.ok(application.prepareMeoApplication({...valid,consentVersion:'old'}).errors.consentVersion);
 assert.ok(application.prepareMeoApplication({ ...valid, details: 'a'.repeat(3001) }).errors.details);
 const payload = application.prepareMeoApplication(valid).payload;
 assert.equal(payload.service, 'meo');
@@ -25,10 +27,10 @@ const applicationId = '12345678-1234-4234-a234-123456789012';
 assert.equal(onboarding.meoSubmissionId('invalid', payload), null);
 assert.equal(onboarding.meoSubmissionId(applicationId, payload), onboarding.meoSubmissionId(applicationId, payload));
 assert.notEqual(onboarding.meoSubmissionId(applicationId, payload), onboarding.meoSubmissionId(applicationId, {...payload, email:'other@example.com'}));
-let received, invites = 0, failInvitation = false, failPrepare = false, receivedFingerprint;
+let received, invites = 0, failInvitation = false, failPrepare = false, receivedFingerprint, receivedConsent;
 const route = load('src/app/api/meo/apply/route.ts', {
   '@/lib/meo-application': application,
-  '@/lib/meo-onboarding': { ...onboarding, prepareMeoAccount: async app => { receivedFingerprint=app.fingerprint; if (failPrepare) throw {status:429}; return {setup_url:'https://dashboard.example/setup'}; }, meoOnboardingConfig: () => ({}), sendMeoSetupInvitation: async () => { invites++; if (failInvitation) throw new Error('failed'); return {dashboard_url:'https://dashboard.example/account.html'}; } },
+  '@/lib/meo-onboarding': { ...onboarding, prepareMeoAccount: async app => { receivedFingerprint=app.fingerprint; receivedConsent=app.consent; if (failPrepare) throw {status:429}; return {setup_url:'https://dashboard.example/setup'}; }, meoOnboardingConfig: () => ({}), sendMeoSetupInvitation: async () => { invites++; if (failInvitation) throw new Error('failed'); return {dashboard_url:'https://dashboard.example/account.html'}; } },
   '@/app/api/contact/route': { POST: async request => { received = await request.json(); return Response.json({ ok: true }); } },
 });
 (async () => {
@@ -43,6 +45,9 @@ const route = load('src/app/api/meo/apply/route.ts', {
   failPrepare = false;
   const success = await send(valid);
   assert.match(receivedFingerprint,/^[0-9a-f]{64}$/);
+  assert.equal(receivedConsent.version,'2026-11-03');
+  for (const name of ['privacy','acknowledged','authority','scope']) assert.equal(receivedConsent[name],true);
+  assert.match(receivedConsent.acceptedAt,/^\d{4}-\d{2}-\d{2}T/);
   assert.notEqual(receivedFingerprint,'unknown');
   assert.equal(success.status, 200);
   const successBody = await success.json();
@@ -60,6 +65,8 @@ const route = load('src/app/api/meo/apply/route.ts', {
   failInvitation = false;
   assert.equal((await send({...valid, applicationId:'bad'})).status,400);
   assert.equal(received.service, 'meo');
+  assert.match(received.message,/privacy=true, acknowledged=true, authority=true, scope=true/);
+  assert.match(received.message,/サーバー受付日時：\d{4}-\d{2}-\d{2}T/);
   assert.match(received.message, /テスト店舗/);
   assert.equal((await send({ details: 'a'.repeat(21000) })).status, 413);
   assert.equal((await route.POST(new Request('https://clearai.jp/api/meo/apply',{method:'POST',body:'[]'}))).status, 400);

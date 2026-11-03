@@ -22,7 +22,7 @@ export function meoOnboardingConfig() {
   return { origin: origin.origin, secret, apiKey, from };
 }
 
-type MeoApplication = { applicationId: string; email: string; name: string; company: string; store: string; location: string; fingerprint?: string };
+type MeoApplication = { applicationId: string; email: string; name: string; company: string; store: string; location: string; fingerprint?: string; consent?: { version: string; acceptedAt: string; privacy: boolean; acknowledged: boolean; authority: boolean; scope: boolean } };
 type PreparedAccount = { setup_url: string | null };
 
 export async function prepareMeoAccount(application: MeoApplication): Promise<PreparedAccount> {
@@ -54,7 +54,7 @@ export async function sendMeoSetupInvitation(application: MeoApplication, prepar
   const resend = new Resend(config.apiKey);
   const { error } = await resend.emails.send({
     from: config.from, to: [application.email], subject: "【ClearAI MEO】アカウント設定と初回面談のご案内",
-    text: `${application.name}様\n\nMEO支援のお申し込みを受け付けました。\n\n${accountInstructions}\n\n2. 初回面談を予約する\n${BOOKING_URL}\nTimeRexで日時を選択し、予約の確定までお進みください。すでに予約済みの場合は再予約不要です。\n\n3. 店舗のGoogleアカウントを接続する\n設定後のダッシュボードから、Googleビジネスプロフィールの管理権限を持つアカウントで接続に同意してください。GoogleのパスワードをClearAIへお知らせいただく必要はありません。\n\nダッシュボード：${loginUrl}\nこのお申し込みだけで契約・料金は発生しません。月額30,000円（税別）／33,000円（税込）、最低契約期間6か月の条件・支援範囲を確認後、別途契約手続きを行います。\n\nお心当たりがない場合は設定せず、このメールを破棄してください。お問い合わせ：info@clearai.jp`,
+    text: `${application.name}様\n\nMEO支援のお申し込みを受け付けました。\n\n${accountInstructions}\n\n2. 初回面談を予約する\n${BOOKING_URL}\nTimeRexで日時を選択し、予約の確定までお進みください。すでに予約済みの場合は再予約不要です。\n\n3. 店舗のGoogleアカウントを接続する\n設定後のダッシュボードから、Googleビジネスプロフィールの管理権限を持つアカウントで接続に同意してください。GoogleのパスワードをClearAIへお知らせいただく必要はありません。\n\nダッシュボード：${loginUrl}\nこのお申し込みだけで契約・料金は発生しません。月額30,000円（税別）／33,000円（税込）、最低契約期間6か月・初期6か月総額198,000円（税込）／店舗・初期6か月の通常の中途解約不可（法令上の権利や当社債務不履行等による解除を除く）の条件・支援範囲を確認後、別途契約手続きを行います。利用条件：https://clearai.jp/meo/terms\n\nお心当たりがない場合は設定せず、このメールを破棄してください。お問い合わせ：info@clearai.jp`,
   }, { idempotencyKey: `meo-${setup ? "setup" : "signin"}/${application.applicationId}` });
   if (error) throw new Error("MEO invitation delivery failed");
   return { dashboard_url: loginUrl };

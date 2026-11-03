@@ -1,5 +1,5 @@
 import { POST as submitContact } from "@/app/api/contact/route";
-import { prepareMeoApplication } from "@/lib/meo-application";
+import { MEO_CONSENT_VERSION, prepareMeoApplication } from "@/lib/meo-application";
 import { createHmac } from "node:crypto";
 import { prepareMeoAccount, meoOnboardingConfig, meoSubmissionId, sendMeoSetupInvitation, trustedMeoContactIds } from "@/lib/meo-onboarding";
 
@@ -26,9 +26,12 @@ export async function POST(request: Request) {
   }
   const sourceIp = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || request.headers.get("x-real-ip")?.trim() || "unknown";
   const fingerprint = createHmac("sha256", process.env.CONTACT_INGEST_SECRET!).update(sourceIp).digest("hex");
-  const application = { applicationId, email: payload.email.toLowerCase(), name: payload.name, company: payload.company, store: String(body.store).trim(), location: String(body.location).trim(), fingerprint };
+  const consent = { version: MEO_CONSENT_VERSION, acceptedAt: new Date().toISOString(), privacy: true, acknowledged: true, authority: true, scope: true };
+  payload.message += `\nサーバー受付日時：${consent.acceptedAt}`;
+  const application = { consent, applicationId, email: payload.email.toLowerCase(), name: payload.name, company: payload.company, store: String(body.store).trim(), location: String(body.location).trim(), fingerprint };
   let prepared;
   try { prepared = await prepareMeoAccount(application); } catch (error) {
+    console.error("[meo] account preparation failed", { status: typeof error === "object" && error !== null && "status" in error ? error.status : "network_or_response" });
     const limited = typeof error === "object" && error !== null && "status" in error && error.status === 429;
     return Response.json({ ok: false, errors: { _form: limited ? "短時間のお申し込み回数が上限に達しました。時間をおいて再度お試しください。" : "アカウントの準備を完了できず、お申し込みは受け付けていません。時間をおいて再度お試しください。" } }, { status: limited ? 429 : 502 });
   }

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
-import { prepareMeoApplication } from "@/lib/meo-application";
+import { MEO_CONSENT_VERSION, prepareMeoApplication } from "@/lib/meo-application";
 import { BOOKING_URL } from "@/lib/booking";
 import styles from "./TrainingLeadForm.module.css";
 
@@ -35,7 +35,7 @@ export default function MeoApplicationForm() {
     const form = event.currentTarget;
     const values = new FormData(form);
     applicationId.current ??= crypto.randomUUID();
-    const body = { applicationId: applicationId.current, ...Object.fromEntries(values), privacy: values.get("privacy") === "on", acknowledged: values.get("acknowledged") === "on" };
+    const body = { applicationId: applicationId.current, ...Object.fromEntries(values), consentVersion: MEO_CONSENT_VERSION, privacy: values.get("privacy") === "on", acknowledged: values.get("acknowledged") === "on", authority: values.get("authority") === "on", scope: values.get("scope") === "on" };
     const validation = prepareMeoApplication(body).errors;
     setErrors(validation);
     if (Object.keys(validation).length) {
@@ -73,8 +73,11 @@ export default function MeoApplicationForm() {
       <legend className={styles.srOnly}>店舗情報とご連絡先</legend>
       {fields.map(([name, label, maxLength, autoComplete, type]) => <label key={name} className={styles.field} htmlFor={`meo-${name}`}><span>{label}<span className={name === "phone" ? styles.optional : styles.required}>{name === "phone" ? "任意" : "必須"}</span></span><input id={`meo-${name}`} name={name} type={type} maxLength={maxLength} autoComplete={autoComplete} required={name !== "phone"} {...accessibility(name)} />{error(name)}</label>)}
       <label className={styles.field} htmlFor="meo-details"><span>ご希望・補足<span className={styles.optional}>任意</span></span><textarea id="meo-details" name="details" rows={4} maxLength={3000} placeholder="複数店舗のお申し込み、ご希望の開始時期など" {...accessibility("details")} />{error("details")}</label>
-      <label className={styles.consent}><input name="privacy" type="checkbox" required {...accessibility("privacy")} /><span><a href="/privacy" target="_blank" rel="noopener noreferrer">プライバシーポリシー（別タブ）</a>に同意する<span className={styles.required}>必須</span></span></label>{error("privacy")}
-      <label className={styles.consent}><input name="acknowledged" type="checkbox" required {...accessibility("acknowledged")} /><span>月額30,000円（税別）／33,000円（税込）、最低契約期間6か月を確認しました。送信後に支援範囲・最終的な契約条件・開始日を確認し、別途契約手続きを行うことを確認しました。送信だけで契約・料金は発生しません。<span className={styles.required}>必須</span></span></label>{error("acknowledged")}
+      <label className={styles.consent}><input name="privacy" type="checkbox" required {...accessibility("privacy")} /><span><a href="/meo/terms" target="_blank" rel="noopener noreferrer">MEO利用条件（別タブ）</a>と<a href="/privacy" target="_blank" rel="noopener noreferrer">プライバシーポリシー（別タブ）</a>、MEO利用条件内のデータの取り扱いに同意する<span className={styles.required}>必須</span></span></label>{error("privacy")}
+      <label className={styles.consent}><input name="acknowledged" type="checkbox" required {...accessibility("acknowledged")} /><span>月額30,000円（税別）／33,000円（税込）、最低契約期間6か月・1店舗あたり初期6か月総額198,000円（税込）を確認しました。契約開始後の初期6か月は通常の中途解約ができません（法令上の権利、当社の債務不履行等による解除を除く）。送信後に支援範囲・最終的な契約条件・開始日を確認し、別途契約手続きを行うことを確認しました。送信だけで契約・料金は発生しません。<span className={styles.required}>必須</span></span></label>{error("acknowledged")}
+      <label className={styles.consent}><input name="authority" type="checkbox" required {...accessibility("authority")} /><span>店舗を申し込む正当な権限があります。Google上の取得・投稿には店舗管理者の権限、接続同意、必要なAPI承認が必要で、GoogleのパスワードをClearAIへ渡さないことを確認しました。<span className={styles.required}>必須</span></span></label>{error("authority")}
+      <label className={styles.consent}><input name="scope" type="checkbox" required {...accessibility("scope")} /><span>1店舗につき月4回の投稿支援、口コミ返信案は2営業日以内、月次レポートと合意したキーワード・地点での月次順位計測が対象です。投稿・返信は店舗責任者の承認後に行います。検索順位・売上は保証されず、Google連携の利用条件がそろうまでは自動取得・投稿を開始しないことを確認しました。<span className={styles.required}>必須</span></span></label>{error("scope")}
+      {errors.consentVersion && <p className={styles.formError} role="alert">{errors.consentVersion}</p>}
       {errors._form && <p ref={errorRef} tabIndex={-1} className={styles.formError} role="alert">{errors._form}</p>}
       <button className={styles.submit} data-ui-button="filled" type="submit" disabled={status === "submitting"}><span className="ui-button-label">{status === "submitting" ? "送信しています…" : "MEO支援を申し込む"}</span></button>
     </fieldset>
