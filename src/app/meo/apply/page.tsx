@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
-import Logo from "@/components/Logo";
 import MeoApplicationForm from "@/components/MeoApplicationForm";
 import { BOOKING_URL } from "@/lib/booking";
 
@@ -15,7 +15,7 @@ export default function MeoApplyPage() {
   return <main className="mx-auto max-w-2xl px-6 pb-16 pt-28 text-neutral-800 sm:pt-36">
     <Link href="/meo" className="inline-flex min-h-11 items-center text-sm underline underline-offset-4">MEO支援について</Link>
     <h1 className="sr-only">MEO支援のお申し込み</h1>
-    <Logo size={56} className="mt-5 h-12 w-auto sm:h-14" />
+    <span className="relative mt-5 block h-[62px] w-[180px] overflow-hidden"><Image src="/images/meo/meo-logo.png?v=20261102-gradient" alt="meo" width={2008} height={783} className="absolute -left-[62px] -top-[33px] h-auto w-[301px] max-w-none" priority /></span>
     <p className="mt-5 text-sm leading-[1.9]">店舗情報とご連絡先を入力すると、アカウント設定の案内メールが届きます。パスワードの設定後、ダッシュボードへログインできます。パスキーも登録できます。</p>
     <div role="region" className="my-8 border-b border-neutral-200 pb-6 text-sm leading-[1.9]" aria-labelledby="meo-start-steps">
       <h2 id="meo-start-steps" className="text-xl font-bold">運用開始までの準備</h2>
