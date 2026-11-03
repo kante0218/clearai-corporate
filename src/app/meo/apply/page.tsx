@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Logo from "@/components/Logo";
 import MeoApplicationForm from "@/components/MeoApplicationForm";
 import { BOOKING_URL } from "@/lib/booking";
 
@@ -13,10 +14,9 @@ export const metadata: Metadata = {
 export default function MeoApplyPage() {
   return <main className="mx-auto max-w-2xl px-6 pb-16 pt-28 text-neutral-800 sm:pt-36">
     <Link href="/meo" className="inline-flex min-h-11 items-center text-sm underline underline-offset-4">MEO支援について</Link>
-    <h1 className="mt-5 text-2xl font-bold sm:text-4xl">MEO支援のお申し込み</h1>
+    <h1 className="sr-only">MEO支援のお申し込み</h1>
+    <Logo size={56} className="mt-5 h-12 w-auto sm:h-14" />
     <p className="mt-5 text-sm leading-[1.9]">店舗情報とご連絡先を入力すると、アカウント設定の案内メールが届きます。パスワードの設定後、ダッシュボードへログインできます。パスキーも登録できます。</p>
-    <p className="mt-3 text-sm leading-[1.9]">送信時点では契約・お支払いは発生しません。契約条件をご確認いただいてから運用を開始します。</p>
-    <dl className="mt-7 grid grid-cols-[auto_1fr] gap-x-6 gap-y-3 border-y border-neutral-200 py-5 text-sm"><dt className="font-bold">月額料金</dt><dd>30,000円（税別）／33,000円（税込）</dd><dt className="font-bold">最低契約期間</dt><dd>6か月（初期6か月の通常の中途解約不可）</dd><dt className="font-bold">初期6か月総額</dt><dd>1店舗あたり198,000円（税込）</dd></dl>
     <div role="region" className="my-8 border-b border-neutral-200 pb-6 text-sm leading-[1.9]" aria-labelledby="meo-start-steps">
       <h2 id="meo-start-steps" className="text-xl font-bold">運用開始までの準備</h2>
       <ol className="mt-4 list-decimal space-y-3 pl-5">
