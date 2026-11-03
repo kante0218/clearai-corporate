@@ -67,7 +67,7 @@ export default function MeoApplicationForm() {
     {result?.dashboard_url && <a href={result.dashboard_url} className="inline-flex min-h-12 items-center justify-center underline underline-offset-4">ダッシュボードへ</a>}
     <p>送信だけで契約・料金は発生しません。支援範囲・契約条件の確認後に運用を開始します。</p>
   </div>;
-  return <form className={styles.form} onSubmit={submit} aria-label="MEO支援のお申し込み" aria-busy={status === "submitting"}>
+  return <form className={`${styles.form} ${styles.meo}`} onSubmit={submit} aria-label="MEO支援のお申し込み" aria-busy={status === "submitting"}>
     <div className={styles.honeypot} aria-hidden="true"><label>Website<input name="website" tabIndex={-1} autoComplete="off" /></label></div>
     <fieldset className={styles.fields} disabled={status === "submitting"}>
       <legend className={styles.srOnly}>店舗情報とご連絡先</legend>

@@ -4,6 +4,7 @@
 .field { display: flex; min-width: 0; flex-direction: column; gap: 9px; font-size: 14px; font-weight: 700; }
 .required, .optional { display: inline-block; margin-left: 10px; font-size: 11px; font-weight: 600; vertical-align: middle; }
 .required { color: var(--course-accent, #6941d9); }
+.meo .required { color: #345528; }
 .optional { color: #6a687a; }
 .field input, .field select, .field textarea { width: 100%; min-height: 50px; padding: 12px 14px; border: 1px solid var(--course-border, #cecadb); border-radius: var(--control-radius); background: #fff; color: #202047; font: inherit; font-size: 16px; font-weight: 400; line-height: 1.6; }
 .field textarea { resize: vertical; }
