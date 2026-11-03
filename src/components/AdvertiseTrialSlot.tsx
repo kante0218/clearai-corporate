@@ -7,7 +7,7 @@ export default function AdvertiseTrialSlot({ english = false }: { english?: bool
   return <section id="advertise-trial" className={styles.section} aria-label={english ? "Sponsor advertisement — trial placement" : "スポンサー広告・試験掲載"}>
     <iframe
       className={styles.frame}
-      src={`${ADVERTISE_ORIGIN}/api/advertise/embed/${SLOT_ID}?showSupport=1${english ? "&lang=en" : ""}`}
+      src={`${ADVERTISE_ORIGIN}/api/advertise/embed/${SLOT_ID}${english ? "?lang=en" : ""}`}
       title={english ? "ClearAI sponsor advertisement" : "ClearAIのスポンサー広告枠"}
       loading="lazy"
       referrerPolicy="no-referrer"

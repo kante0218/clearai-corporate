@@ -1,3 +1,3 @@
 .section { background: #fff; width: calc(100% - 48px); max-width: 880px; margin: 32px auto 48px; scroll-margin-top: 100px; }
-.frame { display: block; width: 100%; height: 324px; border: 1px solid #dce5f3; border-radius: 6px; background: #fff; }
-@media (max-width: 767px) { .section { margin-top: 24px; margin-bottom: 40px; } .frame { height: 404px; } }
+.frame { display: block; width: 100%; height: 280px; border: 1px solid #dce5f3; border-radius: 6px; background: #fff; }
+@media (max-width: 767px) { .section { margin-top: 24px; margin-bottom: 40px; } .frame { height: 360px; } }
