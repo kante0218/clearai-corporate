@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useId, useRef, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import { MEO_CONSENT_VERSION, prepareMeoApplication } from "@/lib/meo-application";
 import { BOOKING_URL } from "@/lib/booking";
 import styles from "./TrainingLeadForm.module.css";
-import successStyles from "./MeoApplicationForm.module.css";
+import SuccessCheck from "./SuccessCheck";
 
 const fields = [
   ["company", "会社名・屋号", 200, "organization", "text"],
@@ -16,7 +16,6 @@ const fields = [
 ] as const;
 
 export default function MeoApplicationForm() {
-  const gradientId = useId();
   const sending = useRef(false);
   const applicationId = useRef<string | null>(null);
   const [result, setResult] = useState<{ dashboard_url: string } | null>(null);
@@ -60,10 +59,7 @@ export default function MeoApplicationForm() {
   const error = (name: string) => errors[name] ? <span id={`meo-${name}-error`} className={styles.error}>{errors[name]}</span> : null;
   const accessibility = (name: string) => ({ "aria-invalid": !!errors[name], "aria-describedby": errors[name] ? `meo-${name}-error` : undefined });
   if (status === "success") return <div ref={successRef} className={styles.success} role="status" tabIndex={-1}>
-    <svg className={successStyles.successIcon} viewBox="0 0 64 64" fill="none" aria-hidden="true" focusable="false">
-      <defs><linearGradient id={gradientId} x1="12" y1="32" x2="52" y2="32" gradientUnits="userSpaceOnUse"><stop stopColor="#e35aaf" /><stop offset="0.5" stopColor="#e053dd" /><stop offset="1" stopColor="#ae5df5" /></linearGradient></defs>
-      <path className={successStyles.check} d="M14 33l12 12 24-26" pathLength="1" stroke={`url(#${gradientId})`} strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
+    <SuccessCheck />
     <h2 className="text-xl font-bold">お申し込みを受け付けました</h2>
     <p>ご登録のメールアドレスに、ご利用の案内を送りました。初めての方はメール内のリンクからパスワードを設定してください。パスキーも登録できます。設定済みの方はメールの案内に沿ってログインしてください。届かない場合は迷惑メールフォルダをご確認ください。</p>
     <h3 className="text-base font-bold">続けて、初回面談の日時をお選びください</h3>

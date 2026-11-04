@@ -1,5 +1,6 @@
 "use client";
 import LocalizedContent from "@/components/LocalizedContent";
+import SuccessCheck from "@/components/SuccessCheck";
 
 
 import { Suspense, useState, useEffect, useRef, FormEvent, type ReactNode } from "react";
@@ -327,11 +328,7 @@ function ContactPageInner() {
         {status === "success" ? (
           <Reveal>
             <div className="bg-white border border-gray-200 rounded-lg px-8 py-16 text-center shadow-sm">
-              <div className="w-14 h-14 bg-neutral-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                <svg className="w-6 h-6 text-neutral-900" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                </svg>
-              </div>
+              <SuccessCheck />
               <h2 className="text-xl font-bold text-gray-900 mb-3">{t.successTitle}</h2>
               <p className="text-sm text-gray-600 leading-relaxed max-w-md mx-auto mb-8">
                 {t.successBody}
@@ -416,7 +413,7 @@ function ContactPageInner() {
               {/* Submit (full width) */}
               <div className="pt-2 space-y-4">
                 <button data-ui-with-icon data-ui-button="filled" type="submit" disabled={status === "submitting"}
-                  className={`w-full inline-flex items-center justify-center gap-2 rounded-lg bg-neutral-900 text-white font-semibold px-10 py-4 hover:bg-neutral-800 active:bg-neutral-900 transition-all duration-200 shadow-sm hover:shadow-md ${
+                  className={`w-full inline-flex items-center justify-center gap-2 rounded-lg bg-cta text-white font-semibold px-10 py-4 hover:bg-cta-hover transition-all duration-200 shadow-sm hover:shadow-md ${
                     status === "submitting" ? "opacity-60 cursor-not-allowed" : ""
                   }`}><span className="ui-button-label">{status === "submitting" ? t.submitSending : t.submitButton}</span><span className="ui-button-icon" data-ui-side="start" aria-hidden="true">{status === "submitting" && (
                     <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24" aria-hidden="true">

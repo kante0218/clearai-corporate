@@ -6,11 +6,14 @@
   animation: successEnter 200ms cubic-bezier(0.2, 0, 0, 1) both;
 }
 
-.check {
+.circle, .check {
   stroke-dasharray: 1;
   stroke-dashoffset: 0;
-  animation: checkDraw 400ms cubic-bezier(0.2, 0, 0, 1) both;
+  animation: checkDraw 320ms cubic-bezier(0.2, 0, 0, 1) both;
 }
+
+.circle { transform: rotate(-90deg); transform-origin: 32px 32px; }
+.check { animation-delay: 240ms; }
 
 @keyframes successEnter {
   from { transform: scale(0.96); }
@@ -23,5 +26,5 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .successIcon, .check { animation: none; }
+  .successIcon, .circle, .check { animation: none; }
 }
